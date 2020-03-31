@@ -5,7 +5,13 @@ import "./inputScene.scss"
 class InputScene extends React.Component {
 	render(){
 		return(
-			<div>Hello world</div>
+			<div className="InputScene">
+				
+
+				a
+
+
+			</div>
 		)
 	}
 }
