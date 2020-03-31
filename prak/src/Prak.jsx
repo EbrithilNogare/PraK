@@ -3,16 +3,16 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Link
-  } from "react-router-dom";
+} from "react-router-dom"
 
 import "./Prak.scss"
+import "./styles/colorSchema/materialDesign/lightBlue.scss"
+import "./styles/objectDefinition/materialDesign.scss"
 
 import NavBar from "./components/navBar/navBar"
 import MainPageScene from "./scenes/mainPage"
 import InputScene from "./scenes/input"
 import EditScene from "./scenes/edit"
-
 
 
 class Prak extends React.Component {
@@ -37,5 +37,6 @@ class Prak extends React.Component {
 		)
 	}
 }
+
 
 export default Prak

@@ -4,24 +4,28 @@ ul {
 	padding: 0;
 	overflow: hidden;
 	background-color: #333;
-  }
-  
-  li {
+}
+
+li {
 	float: left;
-  }
-  
-  li a {
+}
+
+li a {
 	display: block;
 	color: white;
 	text-align: center;
-	padding: 14px 16px;
+	padding: 24px 36px;
 	text-decoration: none;
-  }
-  
-  li a:hover {
-	background-color: #111;
-  }
+}
 
-  .active {
-	background-color: #4CAF50;
-  }
+li a:hover {
+	background: #111;
+}
+
+.active {
+	background: var(--primary);
+}
+
+.active:hover {
+	background: var(--palette-800);
+}
