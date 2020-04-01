@@ -27,5 +27,6 @@ li a:hover {
 }
 
 .active:hover {
-	background: var(--palette-800);
+	color: var(--onPrimary-hover);
+	background-color: var(--primary-hover);
 }
