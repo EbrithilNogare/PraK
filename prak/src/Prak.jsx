@@ -5,9 +5,9 @@ import {
 	Route,
 } from "react-router-dom"
 
+import 'typeface-roboto';
+
 import "./Prak.scss"
-import "./styles/colorSchema/materialDesign/lightBlue.scss"
-import "./styles/objectDefinition/materialDesign.scss"
 
 import NavBar from "./components/navBar/navBar"
 import MainPageScene from "./scenes/mainPage"

@@ -23,10 +23,9 @@ li a:hover {
 }
 
 .active {
-	background: var(--primary);
+	background: #0277bd;
 }
 
 .active:hover {
-	color: var(--onPrimary-hover);
-	background-color: var(--primary-hover);
+	background-color: #01579b;
 }

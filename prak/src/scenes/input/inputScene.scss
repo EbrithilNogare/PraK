@@ -1,38 +1,19 @@
-@import "../../styles/objectDefinition/materialDesign.scss";
-
 .InputScene {
 	width: 100%;
 
 	padding: 20px;
 
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: auto 1fr 1fr auto;
+	grid-template-columns: 1fr 1fr;
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 
+}
 
-	.ProgressBar {
-		grid-area: 1 / 1 / 2 / 3;
-	}
-
-	.FieldSet {
-		@extend .box;
-		grid-area: 2 / 1 / 4 / 2;
-	}
-
-	.Helper {
-		@extend .box;
-		grid-area: 2 / 2 / 3 / 3;
-	}
-
-	.Statistics {
-		@extend .box;
-		grid-area: 3 / 2 / 5 / 3;
-	}
-
-	.Buttons {
-		@extend .box;
-		grid-area: 4 / 1 / 5 / 2;
-	}
+.InputSceneRight{
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto auto 1fr auto auto;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
 }
