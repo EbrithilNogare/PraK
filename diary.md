@@ -37,3 +37,13 @@ Budu potrebovat forward na dalsi port od ufalu, protoze pres 80
 nechci tahat uplne vsechno (API).
 
 databaze bude interni, takze tu forwardovat nebudu muset.
+
+
+
+Dnes jsem pokrocil v instalaci MongoDB.
+Zatim ji mam u sebe a az si budu jisty ze ji rozumim,
+zkusim ji nainstalovat i na nas server.
+
+Zatim to tedy vypada ze mam 3 funkcni casti na nejvic basic urovni.
+Zbyva je jen propojit mezi sebou.
+Na serveru by to pry melo jit pres nginx, tak uvidime, jak to bude intuitivni.
