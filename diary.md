@@ -47,3 +47,11 @@ zkusim ji nainstalovat i na nas server.
 Zatim to tedy vypada ze mam 3 funkcni casti na nejvic basic urovni.
 Zbyva je jen propojit mezi sebou.
 Na serveru by to pry melo jit pres nginx, tak uvidime, jak to bude intuitivni.
+
+
+
+Jelikoz bych musel pro testovani udrzovat lokalni verzi databaze,
+tak nove prechazim na MongoDB Atlas, coz je free databaze na webu.
+Tim mi i docasne odpada nutnost konfigurovat mongoDB na serveru i na lokalu.
+
+Ted budu pokracovat na konfiguraci api, aby bylo pristupne pro frontend.
