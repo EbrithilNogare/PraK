@@ -11,9 +11,14 @@ app.use(bodyParser.json());
 
 mongoose.connect(process.env.DBUrl, {useNewUrlParser: true, useUnifiedTopology: true})	
 
-const usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
 
+// routes
+
+const usersRouter = require('./routes/user');
+app.use('/user', usersRouter);
+
+const libraryRouter = require('./routes/book');
+app.use('/book', libraryRouter);
 
 
 
