@@ -3,23 +3,39 @@ import {
 	NavLink
 } from "react-router-dom";
 
-import "./navBar.scss"
+import styles from "./navBar.module.scss"
 
 class NavBar extends React.Component {
 	render(){
+		console.log(styles);
 		return(
-			<nav>
-				<ul>
+			<nav className={styles.navBar}>
+				<NavLink exact={true} to="/prak" className={styles.title}>
+					Databaze prameny Krkonos
+				</NavLink>
+				<ul className={styles.navigation}>
 					<li>
-						<NavLink exact={true} to="/">MainPageScene</NavLink>
+						<NavLink to="/prak/input">InputScene</NavLink>
 					</li>
 					<li>
-						<NavLink to="/input">InputScene</NavLink>
-					</li>
-					<li>
-						<NavLink to="/edit">EditScene</NavLink>
+						<NavLink to="/prak/edit">EditScene</NavLink>
 					</li>
 				</ul>
+				<ul className={styles.userNavigation}>
+					<li>
+						<NavLink exact={true} to="/prak/myLibrary">Moje knihovna</NavLink>
+					</li>
+					<li>
+						<NavLink to="/prak/searchHistory">Historie hledani</NavLink>
+					</li>
+					<li>
+						<NavLink to="/prak/help">Napoveda</NavLink>
+					</li>
+					<li>
+						<NavLink to="#">CZ</NavLink>
+					</li>
+				</ul>
+				<span className={styles.userInfo}>David Napravnik</span>
 			</nav>
 		)
 	}

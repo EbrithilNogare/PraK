@@ -22,13 +22,13 @@ class Prak extends React.Component {
 				<Router>
 					<NavBar/>
 					<Switch>
-						<Route path="/input">
+						<Route path="/prak/input">
 							<InputScene/>
 						</Route>
-						<Route path="/edit">
+						<Route path="/prak/edit">
 							<EditScene/>
 						</Route>
-						<Route path="/">
+						<Route path="/prak">
 							<MainPageScene/>
 						</Route>
 					</Switch>
