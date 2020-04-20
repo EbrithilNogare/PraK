@@ -7,7 +7,6 @@ import styles from "./navBar.module.scss"
 
 class NavBar extends React.Component {
 	render(){
-		console.log(styles);
 		return(
 			<nav className={styles.navBar}>
 				<NavLink exact={true} to="/prak" className={styles.title}>

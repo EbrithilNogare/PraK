@@ -5,8 +5,8 @@
 	display: grid;
 	grid-template-rows: auto 1fr;
 
-	background: var(--background);
+	background: var(--main-bg-color);
 
 	font-family: Roboto;
-	color: var(--onBackground);
+	color: var(--main-text-color);
 }

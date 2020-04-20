@@ -8,6 +8,7 @@ import {
 import 'typeface-roboto';
 
 import "./Prak.scss"
+import "./styles/colorScheme.scss"
 
 import NavBar from "./components/navBar/navBar"
 import MainPageScene from "./scenes/mainPage"

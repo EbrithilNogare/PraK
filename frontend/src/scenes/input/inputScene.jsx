@@ -1,14 +1,8 @@
 import React from 'react'
 
+import Paper from '../../components/paper'
 import { 
-	ExpansionPanel,
-	ExpansionPanelSummary,
-	ExpansionPanelDetails,
-	Paper,
 	Select,
-	MenuItem,
-	FormControl,
-	InputLabel,
 	LinearProgress,
 	TextField,
 	Table,
@@ -18,12 +12,9 @@ import {
 	TableHead,
 	TableRow,
 	Button,
-	Card,
-	Grid,
-	Box
 } from '@material-ui/core'
 
-import './inputScene.scss'
+import styles from './inputScene.module.scss'
 
 class InputScene extends React.Component {
 	handleChange = (event) => {
@@ -32,67 +23,46 @@ class InputScene extends React.Component {
 
 	render(){
 		return(
-			<div className="InputScene">
-				<Paper>
-					<Select
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						onChange={this.handleChange}
-						value={"Book"}
-						>
-						<option aria-label="None" value="" />
-						<option value={"Book"}>Book</option>
-						<option value={"Magazine"}>Magazine</option>
-					</Select>
-					<ExpansionPanel>
-						<ExpansionPanelSummary>
-							Document
-						</ExpansionPanelSummary>
-						<ExpansionPanelDetails>
-							<TextField label="Author"/>
-							<TextField label="Title"/>
-							<TextField label="Alternative title"/>
-							<TextField label="Publisher"/>
-						</ExpansionPanelDetails>
-					</ExpansionPanel>
-					<ExpansionPanel>
-						<ExpansionPanelSummary>
-							Technical notes
-						</ExpansionPanelSummary>
-						<ExpansionPanelDetails>
-							<TextField
-								id="standard-multiline-flexible"
-								label="Multiline"
-								multiline
-								rowsMax="4"
-								value={""}
-								onChange={this.handleChange}
-							/>
-						</ExpansionPanelDetails>
-					</ExpansionPanel>
-					<ExpansionPanel>
-						<ExpansionPanelSummary>
-							factual description
-						</ExpansionPanelSummary>
-						<ExpansionPanelDetails>
-							<TextField label="Standard" /><br/>
-							<TextField label="Standard" /><br/>
-							<TextField label="Standard" /><br/>
-							<TextField label="Standard" /><br/>
-						</ExpansionPanelDetails>
-					</ExpansionPanel>
-				</Paper>
+			<div className={styles.InputScene}>
+				<div className={styles.LeftPanel}>
+					<Paper className={styles.mainInput}>
+						<Select
+							labelId="demo-simple-select-label"
+							id="demo-simple-select"
+							onChange={this.handleChange}
+							value={"Book"}
+							>
+							<option aria-label="None" value="" />
+							<option value={"Book"}>Book</option>
+							<option value={"Magazine"}>Magazine</option>
+						</Select>
+						<div></div>
+						<TextField label="Author"/>
+						<div></div>
+						<TextField label="Title"/>
+						<div></div>
+						<TextField label="Alternative title"/>
+						<div></div>
+						<TextField label="Publisher"/>						
+					</Paper>
+					<Paper className={styles.technicalInput}>
+						<TextField label="Technical notes" multiline rows="5"/>
+					</Paper>
+					<Paper className={styles.factualInput}>	
+						<TextField label="Factual description" multiline rows="5"/>
+					</Paper>
+				</div>
 				
-				<Box className="InputSceneRight">
+				<div className={styles.RightPanel}>
 					<LinearProgress variant="determinate" value={42}/>
 
-					<Paper>
+					<div>
 						<Button variant="contained" color="primary">Save</Button>
 						<Button variant="contained" color="primary">Upload</Button>
-					</Paper>
+					</div>
 
-					<Paper>
-						click to nodes on the left to open them
+					<Paper className={styles.helpField}>
+						Napoveda
 					</Paper>
 
 					<TableContainer component={Paper}>
@@ -119,7 +89,7 @@ class InputScene extends React.Component {
 							</TableBody>
 						</Table>
 					</TableContainer>
-				</Box>
+				</div>
 			</div>
 		)
 	}

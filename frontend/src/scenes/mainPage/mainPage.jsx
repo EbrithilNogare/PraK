@@ -1,24 +1,11 @@
 import React from "react"
 
-import { makeStyles } from '@material-ui/core/styles';
 import { 
 	AppBar,
-	Box,
 	Button,
 	Card,
-	CardHeader,
 	CardContent,
-	ExpansionPanel,
-	ExpansionPanelDetails,
-	ExpansionPanelSummary,
-	FormControl,
 	Grid,
-	IconButton,
-	InputLabel,
-	LinearProgress,
-	MenuItem,
-	Paper,
-	Select,
 	Table,
 	TableBody,
 	TableCell,
@@ -26,24 +13,10 @@ import {
 	TableHead,
 	TableRow,
 	TextField,
-	Toolbar,
 	Typography,
 } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu';
 
 import "./mainPage.scss"
-
-const useStyles = makeStyles((theme) => ({
-	root: {
-	  flexGrow: 1,
-	},
-	menuButton: {
-	  marginRight: theme.spacing(2),
-	},
-	title: {
-	  flexGrow: 1,
-	},
-  }));
 
 export default class MainPageScene extends React.Component {
 	constructor(props){
