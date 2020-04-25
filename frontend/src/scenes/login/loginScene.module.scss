@@ -1,0 +1,21 @@
+.loginScene{
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	
+}
+
+.loginForm{
+	width: 500px;
+	height: 700px;
+
+	padding: 30px;
+
+	display: grid;
+	grid-row-gap: 20px;
+}
+
+.logo{
+	width: 150px;
+	height: 150px;
+}

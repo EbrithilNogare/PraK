@@ -13,6 +13,7 @@ import "./styles/colorScheme.scss"
 import NavBar from "./components/navBar/navBar"
 import MainPageScene from "./scenes/mainPage"
 import InputScene from "./scenes/input"
+import LoginScene from "./scenes/login"
 import EditScene from "./scenes/edit"
 
 
@@ -23,6 +24,9 @@ class Prak extends React.Component {
 				<Router>
 					<NavBar/>
 					<Switch>
+						<Route path="/prak/login">
+							<LoginScene/>
+						</Route>
 						<Route path="/prak/input">
 							<InputScene/>
 						</Route>
