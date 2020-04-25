@@ -1,0 +1,23 @@
+.MainPage{
+	width: 100%;
+
+	padding: 50px 100px;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 100px;
+}
+
+.LeftPanel{
+	display: grid;
+	grid-template-rows: auto auto auto 1fr;
+	grid-template-columns: 1fr;
+	grid-row-gap: 20px;
+}
+
+.RightPanel{
+	display: grid;
+	grid-template-rows: auto auto auto auto 1fr;
+	grid-template-columns: 1fr;
+	row-gap: 20px;
+}

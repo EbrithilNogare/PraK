@@ -1,11 +1,9 @@
 import React from "react"
 
+import Paper from '../../components/paper'
 import { 
-	AppBar,
-	Button,
 	Card,
 	CardContent,
-	Grid,
 	Table,
 	TableBody,
 	TableCell,
@@ -16,7 +14,7 @@ import {
 	Typography,
 } from '@material-ui/core'
 
-import "./mainPage.scss"
+import styles from './mainPage.module.scss'
 
 export default class MainPageScene extends React.Component {
 	constructor(props){
@@ -25,36 +23,13 @@ export default class MainPageScene extends React.Component {
 			counter: 0
 		};		
 	}
-	render(){
-
-		return(
-			<div className="MainPageScene">
-				<AppBar position="static">
-					<Grid container>
-						
-						<Grid item xs={4}>
-							<Typography variant="h6">
-								Database <br/> source of Krkonose
-							</Typography>
-						</Grid>
-
-						<Grid item xs>
-							<Button color="inherit">MOJE KNIHOVNA</Button>
-							<Button color="inherit">HISTORIE HLEDÁNÍ</Button>
-							<Button color="inherit">NÁPOVĚDA</Button>
-							<Button color="inherit">CZ</Button>
-						</Grid>
-						
-						<Grid item xs={2}>
-							Log in {"Jiri Kocian"}
-						</Grid>
-
-					</Grid>
-				</AppBar>
-
-				<TextField id="filled-basic" label="Search" variant="filled" />
-
-				<Card>
+	render(){ return(
+		<div className={styles.MainPage}>
+			<div className={styles.LeftPanel}>
+				<Paper>
+					<TextField id="filled-basic" label="Search" variant="filled"/>
+				</Paper>
+				<Paper>
 					<CardContent>
 						<Typography gutterBottom variant="h5" component="h2">
 							Documents
@@ -64,20 +39,20 @@ export default class MainPageScene extends React.Component {
 						<TextField id="outlined-basic" label="Location" variant="outlined" />
 						<TextField id="outlined-basic" label="Author" variant="outlined" />
 						<TextField id="outlined-basic" label="Year" variant="outlined" />			
-					</CardContent>		
-				</Card>
-
-				<Card>
+					</CardContent>
+				</Paper>
+				<Paper>
 					<CardContent>
 						<Typography gutterBottom variant="h5" component="h2">
 							Registers
 						</Typography>
 						<TextField id="outlined-basic" label="Location" variant="outlined" />
 						<TextField id="outlined-basic" label="Year" variant="outlined" />					
-					</CardContent>		
-				</Card>
-				
-				<Card>
+					</CardContent>
+				</Paper>
+			</div>
+			<div className={styles.RightPanel}>
+				<Paper>
 					<CardContent>
 						<Typography gutterBottom variant="h5" component="h2">
 							Results
@@ -93,23 +68,20 @@ export default class MainPageScene extends React.Component {
 										<TableCell>Year</TableCell>
 									</TableRow>
 								</TableHead>
-								<TableBody>
-								
+								<TableBody>								
 									<TableRow key={0}>
 										<TableCell>{"Kniha"}</TableCell>
 										<TableCell>{"von. Sojka praskacka"}</TableCell>
 										<TableCell>{"Trantumberk"}</TableCell>
 										<TableCell>{"Vrchlabi"}</TableCell>
 										<TableCell>{1927}</TableCell>
-									</TableRow>
-								
+									</TableRow>								
 								</TableBody>
 							</Table>
-						</TableContainer>				
-					</CardContent>		
-				</Card>
-
-			</div>
-		)
-	}
+						</TableContainer>
+					</CardContent>
+				</Paper>
+			</div>		
+		</div>
+	)}
 }
