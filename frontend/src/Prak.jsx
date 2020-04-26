@@ -24,18 +24,11 @@ class Prak extends React.Component {
 				<Router>
 					<NavBar/>
 					<Switch>
-						<Route path="/prak/login">
-							<LoginScene/>
-						</Route>
-						<Route path="/prak/input">
-							<InputScene/>
-						</Route>
-						<Route path="/prak/edit">
-							<EditScene/>
-						</Route>
-						<Route path="/prak">
-							<MainPageScene/>
-						</Route>
+						<Route path="/prak/login"><LoginScene variant="login"/></Route>						
+						<Route path="/prak/registration"><LoginScene variant="registration"/></Route>
+						<Route path="/prak/input"><InputScene/></Route>
+						<Route path="/prak/edit"><EditScene/></Route>
+						<Route path="/prak"><MainPageScene/></Route>
 					</Switch>
 				</Router>
 			</div>
