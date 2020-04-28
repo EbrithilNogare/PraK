@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Paper from '../../components/paper'
 import { 
 	Select,
 	LinearProgress,
@@ -12,7 +11,16 @@ import {
 	TableHead,
 	TableRow,
 	Button,
+	InputLabel,
+	MenuItem,
+	FormControl,
+	Typography,
+	CardContent,
+	ButtonGroup,
 } from '@material-ui/core'
+
+import { Pair } from '../../components/layout'
+import Paper from '../../components/paper'
 
 import styles from './inputScene.module.scss'
 
@@ -26,23 +34,20 @@ class InputScene extends React.Component {
 			<div className={styles.InputScene}>
 				<div className={styles.LeftPanel}>
 					<Paper className={styles.mainInput}>
-						<Select
-							labelId="demo-simple-select-label"
-							id="demo-simple-select"
-							onChange={this.handleChange}
-							value={"Book"}
-							>
-							<option aria-label="None" value="" />
-							<option value={"Book"}>Book</option>
-							<option value={"Magazine"}>Magazine</option>
-						</Select>
-						<div></div>
+						<FormControl>
+							<InputLabel id="selectTypeLabel">Type</InputLabel>
+							<Select labelId="selectTypeLabel">
+								<MenuItem value={"Book"}>Book</MenuItem>
+								<MenuItem value={"Magazine"}>Magazine</MenuItem>
+							</Select>
+						</FormControl>
+						<div/>
 						<TextField label="Author"/>
-						<div></div>
+						<div/>
 						<TextField label="Title"/>
-						<div></div>
+						<div/>
 						<TextField label="Alternative title"/>
-						<div></div>
+						<div/>
 						<TextField label="Publisher"/>						
 					</Paper>
 					<Paper className={styles.technicalInput}>
@@ -55,17 +60,25 @@ class InputScene extends React.Component {
 				
 				<div className={styles.RightPanel}>
 					<LinearProgress variant="determinate" value={42}/>
-
-					<div>
+					
+					<Pair variant="text" color="primary" aria-label="text primary button group">
 						<Button variant="contained" color="primary">Save</Button>
 						<Button variant="contained" color="primary">Upload</Button>
-					</div>
+					</Pair>
+
 
 					<Paper className={styles.helpField}>
-						Napoveda
+						<Typography gutterBottom variant="h5">
+							Helper
+						</Typography>
 					</Paper>
 
 					<TableContainer component={Paper}>
+						<CardContent>
+							<Typography gutterBottom variant="h5">
+								Duplicates match
+							</Typography>
+						</CardContent>						
 						<Table aria-label="simple table">
 							<TableHead>
 								<TableRow>
@@ -78,12 +91,12 @@ class InputScene extends React.Component {
 							</TableHead>
 							<TableBody>
 							
-								<TableRow key={1}>
-									<TableCell>89%</TableCell>
-									<TableCell>Kniha</TableCell>
-									<TableCell>Jaksem vyhral negaro</TableCell>
-									<TableCell>Jarg</TableCell>
-									<TableCell>Muzeum kladno</TableCell>
+								<TableRow>
+									<TableCell>{}</TableCell>
+									<TableCell>{}</TableCell>
+									<TableCell>{}</TableCell>
+									<TableCell>{}</TableCell>
+									<TableCell>{}</TableCell>
 								</TableRow>
 
 							</TableBody>
