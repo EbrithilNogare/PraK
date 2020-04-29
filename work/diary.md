@@ -89,3 +89,17 @@ Tudiz jsem ho prenastavil, snad bude staci redirect na static slozku stacit
 
 Rovnou jsem tam prihodil 404 error page,
 at se mam cim kochat, az to zase nebude fungovat
+
+
+vzhledem k potrebe prezentovat, ze nas tym neco dela a jen
+se neflaka, tak bylo vylepseno GUI, aby zobrazovalo,
+co by system do budoucna mel umet,
+tudiz byla pridana mapka, par posuvniku a layout
+byl rozdelen do podcasti.
+
+Spolu s tim tedy byly vsechny tri sceny upgradovany
+(vyhledavani, vkladani noveho zaznamu a editovaci workflow stranka)
+
+
+Prezentace uspesna, do tydne bych mel dostat prvni data,
+takze pak budu moct naplnit databazi a konecne ji napojit na frontend
