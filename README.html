@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="theme-color" content="#000000" />
+	<title>PraK - Documentation</title>
+
+	<script>
+		const prettyJson = {
+			replacer: function(match, pIndent, pKey, pVal, pEnd) {
+				var key = '<span class=json-key>';
+				var val = '<span class=json-value>';
+				var str = '<span class=json-string>';
+				var r = pIndent || '';
+				if (pKey)
+					r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
+				if (pVal)
+					r = r + (pVal[0] == '"' ? str : val) + pVal + '</span>';
+				return r + (pEnd || '');
+				},
+			prettyPrint: function(obj) {
+				var jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+				return JSON.stringify(obj, null, 3)
+					.replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
+					.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+					.replace(jsonLine, prettyJson.replacer);
+			}
+		}
+		function render(){	
+			try{		
+				for(let route in data){
+					const routeNode = document.createElement("div")
+					routeNode.className = "route"
+					const routeTitle = document.createElement("div")
+					routeTitle.className = "routeTitle"
+					routeTitle.innerText = route
+					routeNode.appendChild(routeTitle);
+
+					for(let method in data[route]){
+						const methodNode = document.createElement("div")
+						methodNode.className = "method"
+						routeNode.appendChild(methodNode);
+						
+							const methodTitleNode = document.createElement("div")
+							methodTitleNode.className = method
+							methodTitleNode.innerText = method
+							methodNode.appendChild(methodTitleNode);	
+							
+							const methodInfoNode = document.createElement("div")
+							methodInfoNode.className = "info"
+							methodInfoNode.innerText = data[route][method].info
+							methodNode.appendChild(methodInfoNode);
+												
+							const methodInputCodeBlockNode = document.createElement("div")
+							methodInputCodeBlockNode.className = "codeBlock"
+							methodInputCodeBlockNode.innerText = "Input:"
+							methodNode.appendChild(methodInputCodeBlockNode);
+							
+								const methodInputNode = document.createElement("pre")
+								methodInputNode.className = "input"
+								methodInputNode.innerHTML = prettyJson.prettyPrint(data[route][method].input)
+								methodInputCodeBlockNode.appendChild(methodInputNode);
+							
+							const methodOutputCodeBlockNode = document.createElement("div")
+							methodOutputCodeBlockNode.className = "codeBlock"
+							methodOutputCodeBlockNode.innerText = "Output:"
+							methodNode.appendChild(methodOutputCodeBlockNode);
+
+							for(let code in data[route][method].output){
+								const methodOutputBrNode = document.createElement("br")
+								methodOutputCodeBlockNode.appendChild(methodOutputBrNode);
+
+								const methodOutputCodeNode = document.createElement("div")
+								methodOutputCodeNode.className = `outputCode${code}`
+								methodOutputCodeNode.innerText = code
+								methodOutputCodeBlockNode.appendChild(methodOutputCodeNode);
+
+								const methodOutputNode = document.createElement("pre")
+								methodOutputNode.className = "output"
+								methodOutputNode.innerHTML = prettyJson.prettyPrint(data[route][method].output[code])
+								methodOutputCodeBlockNode.appendChild(methodOutputNode);
+							}
+					}
+					document.getElementsByTagName("body")[0].appendChild(routeNode);
+				}
+			}catch(err){
+				document.getElementsByTagName("body")[0].innerHTML += err
+			}
+		}
+	</script>
+
+	<script>
+		const data = {
+			Users:{
+				get:{
+					info: "get user",
+					input: "id={id}",
+					output: {
+						200:{
+							_id: "ObjectId",
+							username: "String",
+							email: "String",
+							password: {
+								hashed: "String",
+								salt: "String",
+							},
+							role: "String",
+							session: {
+								id: "String",
+								expiration: "String",
+							},
+							firstName: "? String",
+							secondName: "? String",
+						},
+						500:{
+							message: "String"
+						},
+					}
+				},
+				post:{
+					info: "update existing user",
+					input: {
+						_id: "ObjectId",
+						user: "User"
+					},
+					output: {
+						200:{},
+						500:{
+							message: "String"
+						},
+					}
+				},
+				put:{
+					info: "register new user",
+					input: {
+						username: "String",
+						email: "String",
+						password: {
+							hashed: "String",
+							salt: "String",
+						},
+						role: "String",
+						firstName: "? String",
+						secondName: "? String",
+					},
+					output: {
+						200:{
+							session: {
+								id: "String",
+							},
+						},
+						500:{
+							message: "String"
+						},
+					}
+				},
+				delete:{
+					info: "remove account",
+					input: "id={id}",
+					output: {
+						200:{},
+						500:{
+							message: "String"
+						},
+					}
+				}
+			},
+			
+
+
+
+			
+			
+			
+			Template:{
+				get:{
+					info: "",
+					input: "",
+					output: {}
+				},
+				post:{
+					info: "",
+					input: {},
+					output: {}
+				},
+				put:{
+					info: "",
+					input: {},
+					output: {}
+				},
+				delete:{
+					info: "",
+					input: {},
+					output: {}
+				}
+			},
+		}
+	</script>
+
+	<style>
+		::-webkit-scrollbar {
+		width: 15px;
+		}
+		::-webkit-scrollbar-track {
+			background: #191919; 
+			border-radius: 10px;
+		}
+		::-webkit-scrollbar-thumb {
+			background: #000; 
+			border-radius: 10px;
+		}
+		::-webkit-scrollbar-thumb:hover {
+			background: #090909; 
+		}
+
+		pre {
+			border: 1px solid #444;
+			padding: 10px 20px;
+			margin: 0;
+		}
+		.json-key {
+			color: #ff5722;
+		}
+		.json-value {
+			color: #03a9f4;
+		}
+		.json-string {
+			color: #ffeb3b;
+		}
+
+
+		body{
+			font-family: Roboto;
+			background-color: #222;
+			color:#fff;
+
+			display: grid;
+			row-gap: 50px;
+		}
+		.route{
+			background-color: #111;
+			font-family: Roboto;
+			border-radius: 10px;
+
+			padding: 15px;
+			box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
+
+			display: grid;
+			align-items: start;
+			grid-template-columns: repeat(4, 1fr);
+			column-gap: 30px;
+			row-gap: 10px;
+		}
+		.routeTitle{
+			grid-column: span 4;
+			font-size: 35px;
+		}
+		.get, .post, .put, .delete{
+			font-size: 21px;
+			padding: 10px;
+			border-radius: 10px 10px 0px 0px;
+		}
+		.get{
+			background-color: #3F51B5;
+		}
+		.post{
+			background-color: #4CAF50;
+		}
+		.put{
+			background-color: #FFC107;
+		}
+		.delete{
+			background-color: #E91E63;
+		}
+		.method{
+			background-color: #222;
+			border-radius: 10px;
+			box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
+		}
+		.info{
+			padding: 10px;
+		}
+		.codeBlock{
+			padding: 10px;
+		}
+		[class^=outputCode]{
+			display: inline-block;
+			padding: 5px;
+		}
+		[class^=outputCode1]{ background-color: #9e9e9e; }
+		[class^=outputCode2]{ background-color: #4caf50; }
+		[class^=outputCode3]{ background-color: #ffeb3b; }
+		[class^=outputCode4]{ background-color: #f44336; }
+		[class^=outputCode5]{ background-color: #3f51b5; }
+	</style>
+</head>
+<body onload="render()">
+	<center><h1>PraK - API documentation</h1></center>
+</body>
+</html>
+
