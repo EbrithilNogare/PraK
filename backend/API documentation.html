@@ -145,9 +145,8 @@
 					},
 					output: {
 						200:{
-							session: {
-								id: "String",
-							},
+							status: "String",
+							message: "? String",
 						},
 						500:{
 							message: "String"
@@ -166,7 +165,69 @@
 				}
 			},
 			
-
+			Auth:{
+				get:{
+					info: "check if user is logged in",
+					input: "cookie with sessionID",
+					output: {
+						200:{
+							status: "LOGGED_IN | NOT_LOGGED_IN",
+							username: "? String",
+						},
+						500:{
+							message: "String",
+						},
+					}
+				},
+				post:{
+					info: "login",
+					input: {
+						username: "String",
+						password: "String",
+					},
+					output: {
+						200:{
+							status: "LOGGED_IN | NOT_LOGGED_IN",
+							message: "? String",
+						},
+						500:{
+							message: "String",
+						},
+					}
+				},
+				put:{
+					info: "register new user",
+					input: {
+						username: "String",
+						email: "String",
+						password: {
+							hashed: "String",
+							salt: "String",
+						},
+						firstName: "? String",
+						secondName: "? String",
+					},
+					output: {
+						200:{
+							status: "String",
+							message: "? String",
+						},
+						500:{
+							message: "String"
+						},
+					}
+				},
+				delete:{
+					info: "remove account",
+					input: "id={id}",
+					output: {
+						200:{},
+						500:{
+							message: "String"
+						},
+					}
+				}
+			},
 
 
 			
@@ -176,22 +237,30 @@
 				get:{
 					info: "",
 					input: "",
-					output: {}
+					output: {
+						200:{},
+					}
 				},
 				post:{
 					info: "",
 					input: {},
-					output: {}
+					output: {
+						200:{},
+					}
 				},
 				put:{
 					info: "",
 					input: {},
-					output: {}
+					output: {
+						200:{},
+					}
 				},
 				delete:{
 					info: "",
 					input: {},
-					output: {}
+					output: {
+						200:{},
+					}
 				}
 			},
 		}
