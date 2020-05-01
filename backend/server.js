@@ -14,6 +14,10 @@ mongoose.connect(process.env.DBUrl, {useNewUrlParser: true, useUnifiedTopology: 
 
 // routes
 
+app.get('/documentation', function(req, res) {
+    res.sendFile(__dirname+'/API documentation.html');
+});
+
 const usersRouter = require('./routes/user');
 app.use('/user', usersRouter);
 
@@ -22,6 +26,7 @@ app.use('/book', libraryRouter);
 
 const loginRouter = require('./routes/login');
 app.use('/login', loginRouter);
+
 
 
 
