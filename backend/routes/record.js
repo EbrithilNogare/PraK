@@ -1,13 +1,13 @@
 const router = require('express').Router()
 
-const Book = require('../models/book.model')
+const Record = require('../models/record.model')
 
 router.route('/').get((req, res) => {
 	const response = {
 		action: "get"
 	}
 
-	Book.find()
+	Record.find()
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

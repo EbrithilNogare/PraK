@@ -4,77 +4,149 @@ const randomstring = require("randomstring")
 const mongoose = require("mongoose")
 const md5 = require('md5')
 
-router.route('/').get((req, res) => {
-	const response = {
-		action: "get"
-	}
+router.route('/:id').get((req, res) => {	
+	if(!req.params.id)
+		res.status(400).json({ message: "incorrect ID" })
 
-	User.find()
+	User.find({_id: req.params.id})
 		.exec()
 		.then(result => {
 			res.status(200).json(result)
 		})
 		.catch(err => {
 			console.log(err)
-			res.status(500).json("something wrong")
+			res.status(500).json({message: "something wrong", details:err})
 		})
 })
 
 router.route('/').post((req, res) => {
-	const response = {
-		info: {
-			action: "post",
-			status: "success",
-		}
-	}
+	if(!req.body._id)
+		res.status(400).json({ message: "incorrect ID" })
+		
+	const id = req.body._id
+	const user = {}
+	const isOwner = true; // todo
+	const isAdmin = true; // todo
 
+	const unrequiredProps = [
+		"firstName",
+		"secondName",
+	]
+	
+	for(const prop of unrequiredProps)
+		if(req.body.user[prop]) 
+			user[prop] = req.body[prop]
+
+	if(req.body.user.password){
+		if(!(isOwner || isAdmin)){
+			res.status(401).json({
+				message: "not permitted - only admin or owner can change password",
+			})
+		}
+
+		const passwordSalt = randomstring.generate(16)
+		user.password = {
+			hashed: md5(req.body.user.password + passwordSalt),
+			salt: passwordSalt,
+		}		
+	}	
+
+	if(req.body.user.email){
+		if(!(isOwner || isAdmin)){
+			res.status(401).json({
+				message: "not permitted - only admin or owner can change email",
+			})
+		}
+		user.email = req.body.user.email		
+	}	
+
+	
+	if(req.body.user.role){
+		if(!isAdmin){
+			res.status(401).json({
+				message: "not permitted - only admin or owner can change role",
+			})
+		}
+		user.role = req.body.user.role		
+	}	
+	
+
+
+	User.findByIdAndUpdate(id,user)
+	.then(() => {
+		res.status(200).json({})
+	})
+	.catch(err => {
+		res.status(500).json({
+			message: "something wrong",
+			details: err,
+		})
+	})
+})
+
+router.route('/').put((req, res) => {	
 	const passwordSalt = randomstring.generate(16)
 
-	const user = new User({
+	const newUser = new User({
 		_id: mongoose.Types.ObjectId(),
-		username: req.body.username,
+		email: req.body.email,
 		password: {
 			hashed: md5(req.body.password + passwordSalt),
 			salt: passwordSalt,
 		},
-		role: req.body.role,
+		role: "User",
 		session: {
 			id: randomstring.generate(16),
-		}
+			expiration: Date.now(), 
+		},
 	})
 
-	user.save()
+	const unrequiredProps = [
+		"firstName",
+		"secondName",
+	]
+	
+	for(const prop of unrequiredProps)
+		if(req.body[prop]) 
+			newUser[prop] = req.body[prop]
+
+	newUser.save()
 		.then(result => {
-			console.log(result)
-			res.json(response)
+			res.status(200).json(result)
 		})
 		.catch(err => {
-			console.log(err)
-			response.info.status = "error"
-			response.info.message = err
-			res.status(500).json(response)
-			return
+			res.status(500).json({
+				message: "something wrong",
+				details: err,
+			})
 		})
 })
 
-router.route('/').patch((req, res) => {
-	const response = {
-		action: "patch"
+router.route('/:id').delete((req, res) => {
+	if(!req.params.id)
+		res.status(400).json({ message: "incorrect ID" })
+	
+	const id = req.params.id
+	const isOwner = true; // todo
+	const isAdmin = true; // todo
+
+	if(!(isOwner || isAdmin)){
+		res.status(401).json({
+			message: "not permitted - only admin or owner can remove account",
+		})
 	}
 
+	User.findByIdAndRemove(id)
+	.then(() => {
+		res.status(200).json({})
+	})
+	.catch(err => {
+		res.status(500).json({
+			message: "something wrong",
+			details: err,
+		})
+	})
 
-
-	res.json(response)
-})
-
-router.route('/').delete((req, res) => {
-	const response = {
-		action: "delete"
-	}
-
-
-
-	res.json(response)
 })
 
 

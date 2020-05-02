@@ -21,11 +21,12 @@ app.get('/documentation', function(req, res) {
 const usersRouter = require('./routes/user');
 app.use('/user', usersRouter);
 
-const libraryRouter = require('./routes/book');
-app.use('/book', libraryRouter);
+const loginRouter = require('./routes/auth');
+app.use('/auth', loginRouter);
 
-const loginRouter = require('./routes/login');
-app.use('/login', loginRouter);
+const libraryRouter = require('./routes/record');
+app.use('/record', libraryRouter);
+
 
 
 
