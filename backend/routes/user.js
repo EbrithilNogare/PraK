@@ -34,7 +34,7 @@ router.route('/').post((req, res) => {
 	]
 	
 	for(const prop of unrequiredProps)
-		if(req.body.user[prop]) 
+		if(req.body.user[prop] !== undefined) 
 			user[prop] = req.body[prop]
 
 	if(req.body.user.password){
@@ -96,7 +96,7 @@ router.route('/').put((req, res) => {
 		},
 		role: "User",
 		session: {
-			id: randomstring.generate(16),
+			id: randomstring.generate(32),
 			expiration: Date.now(), 
 		},
 	})
@@ -107,7 +107,7 @@ router.route('/').put((req, res) => {
 	]
 	
 	for(const prop of unrequiredProps)
-		if(req.body[prop]) 
+		if(req.body[prop] !== undefined) 
 			newUser[prop] = req.body[prop]
 
 	newUser.save()
