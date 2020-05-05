@@ -29,8 +29,7 @@ router.route('/:id').get((req, res) => {
 				})
 		})
 		.catch(err => {
-			console.log(err)
-			res.status(500).json({message: "something wrong", details: err})
+			res.status(500).json({message: "something went wrong", details: err})
 		})
 })
 
@@ -77,10 +76,25 @@ router.route('/').post((req, res) => {
 			})
 		})
 		.catch(err => {
-			console.log(err)
-			res.status(500).json({message: "something wrong", details: err})
+			res.status(500).json({message: "something went wrong", details: err})
 		})
 })
 
+router.route('/:sessionID').delete((req, res) => {
+	const sessionID = req.params.sessionID
+	if(sessionID === undefined)
+		res.status(400).json({ message: "missing sessionID" })
+		
+	const filter = {"session.id": sessionID}
+	const update = {"session.expiration": new Date()}
+	User.findOneAndUpdate(filter, update)
+		.exec()
+		.then(result => {
+			res.status(200).json({})
+		})
+		.catch(err => {
+			res.status(500).json({message: "something went wrong", details: err})
+		})
+})
 
 module.exports = router

@@ -103,3 +103,40 @@ Spolu s tim tedy byly vsechny tri sceny upgradovany
 
 Prezentace uspesna, do tydne bych mel dostat prvni data,
 takze pak budu moct naplnit databazi a konecne ji napojit na frontend
+
+
+Je na case zapracovat na API.
+abych neudelal api pro knizky a pak nezjistil, ze neco delam
+spatne, tak to nejdrive zkusim pro neco mensiho.
+Knizka ma asi 30 polozek, zatimco uzivatel jen deset, takze je to pro prvni
+pokus vhodnejsi.
+
+Mame 4 zakladni typy requestu:
+GET, POST, PUT a DELETE.
+
+ackoliv u PUTu si nejsem jist, zda se bezne pouziva pro tenhle ucel,
+tak ho pouziji, at v tom je poradek
+
+Paralelne s API musim pracovat na dokumentaci a testech.
+Dokumentaci zatim drzim v jedinem souboru, coz nevim jak dopadne.
+Je to jedno velke html se vsim vsudy. Coz mi dava moznost
+ho rovnou posilat uzivateli, bez nejakyho predrenderovani, nebo dalsich requestu,
+ale za cenu toho, ze za chvili bude ten soubor bez dobreho
+IDE necitelny.
+
+PS: dlouho jsem si hral s barvickami a musim rict, ze muj
+design si mi velmi libi, t zije material design dark :)
+
+
+Mam hotove napojeni na tabulku uzivatele a to pres route
+Auth a User, takze teoreticky uz to bere logovani uzivatelu.
+Jen musim dokoncit prava pro samotnou spravu uzivatelu, ale to
+jeste chvili pocka.
+
+Dal jsem zacal na API pro zaznamy (records) nad tabulkou metadata.
+Prvni dotazi jsou neuspesne, asi mu vadi muj umele vytvoreny zaznam,
+takze je v planu nejdrive udelat funkci PUT a pak teprve GET.
+
+Pokud se tomu da rikat testy, tak ty jsou pro user a auth skoro hotove.
+staci je jen spravne zretezit. A narvat do nejake knihovny pro jejich spravu.
+V potaz se nabizi Jest a Mocha, s tim ze zatim pro mne vede Jest.
