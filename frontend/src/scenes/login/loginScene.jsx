@@ -25,7 +25,7 @@ class LoginScene extends React.Component {
 		<div className={styles.loginScene}>
 			<Paper className={styles.loginForm}>
 				<center><h1>{this.props.variant.toUpperCase()}</h1></center>
-				<center><img src="/images/logo.png" alt="logo" className={ styles.logo }></img></center>
+				<center><img src="images/logo.png" alt="logo" className={ styles.logo }></img></center>
 				{ renderVariants[this.props.variant].render }	
 				<center>
 					{ renderVariants[this.props.variant].text }
