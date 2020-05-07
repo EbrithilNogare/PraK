@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
-const bookSchema = new mongoose.Schema({
+const recordSchema = new mongoose.Schema({
 	author: mongoose.Types.ObjectId,
 	other_authors: mongoose.Types.ObjectId,
 	name: {
 		type: String,
 		unique: true,
-		required: true
+		required: true,
 	},
 	other_names: String,
 	language: String,
@@ -16,9 +16,9 @@ const bookSchema = new mongoose.Schema({
 	publishing_date: [{
 		date: {
 			type: Number,
-			required: true
+			required: true,
 		},
-		note: String
+		note: String,
 	}],
 	isbn: String,
 	edition_order: String,
@@ -29,7 +29,7 @@ const bookSchema = new mongoose.Schema({
 		from: Number,
 		to: Number,
 		note: String,
-		periodicity: String
+		periodicity: String,
 	}],
 	issn: String,
 	source_document_name: String,
@@ -41,18 +41,21 @@ const bookSchema = new mongoose.Schema({
 	location: [{
 		institution: mongoose.Types.ObjectId,
 		fund: String,
-		access_conditions: String
+		access_conditions: String,
+		acess_note: String,
+		location_note: String,
 	}],
 	digitized_document_url: String,
 	external_source: [{
 		name: String,
 		url: String,
-		url_leading_to_document: String
+		url_leading_to_document: String,
 	}],
 	attachment: [{
 		name: String,
-		url: String
+		url: String,
 	}],
+	source_citation: [String],
 	previous_name: mongoose.Types.ObjectId,
 	following_name: mongoose.Types.ObjectId,
 	form: String,
@@ -72,10 +75,8 @@ const bookSchema = new mongoose.Schema({
 	editor_note: String,
 	submitter: {
 		type: String,
-		required: true
-	}
-});
+		required: true,
+	},
+})
 
-const model = mongoose.model('metadata', bookSchema);
-
-module.exports = model
+module.exports = mongoose.model('metadata', recordSchema)
