@@ -14,6 +14,9 @@ class NavBar extends React.Component {
 				</NavLink>
 				<ul className={styles.navigation}>
 					<li>
+						<NavLink to="/prak/search">SearchScene</NavLink>
+					</li>
+					<li>
 						<NavLink to="/prak/input">InputScene</NavLink>
 					</li>
 					<li>

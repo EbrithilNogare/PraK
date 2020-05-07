@@ -1,3 +1,3 @@
-import InputScene from "./mainPage"
+import mainPage from "./mainPage"
 
-export default InputScene
+export default mainPage
