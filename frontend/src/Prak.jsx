@@ -5,7 +5,7 @@ import {
 	Route,
 } from "react-router-dom"
 
-import 'typeface-roboto';
+import WebFont from 'webfontloader';
 
 import "./Prak.scss"
 import "./styles/colorScheme.scss"
@@ -20,6 +20,12 @@ import EditScene from "./scenes/edit"
 
 class Prak extends React.Component {
 	render(){
+		WebFont.load({
+			google: {
+				families: ['Roboto:400,700']
+			}
+		});
+
 		return (
 			<div className="prak">
 				<Router>

@@ -55,6 +55,9 @@
 	.leftInfo, .rightInfo, .info{
 		padding: 30px;
 
+		text-align: justify;
+		text-justify: inter-word;
+
 		img{
 			width: 100%;
 			height: auto;

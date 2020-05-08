@@ -62,6 +62,7 @@
     "ts-pnp": "1.1.6",
     "typeface-roboto": "0.0.75",
     "url-loader": "2.3.0",
+    "webfontloader": "^1.6.28",
     "webpack": "4.42.0",
     "webpack-dev-server": "3.10.3",
     "webpack-manifest-plugin": "2.2.0",
