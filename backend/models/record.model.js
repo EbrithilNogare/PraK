@@ -2,20 +2,20 @@ const mongoose = require('mongoose')
 
 const recordSchema = new mongoose.Schema({
 	author: mongoose.Types.ObjectId,
-	other_authors: mongoose.Types.ObjectId,
+	other_authors: [mongoose.Types.ObjectId],
 	name: {
 		type: String,
 		unique: true,
 		required: true,
 	},
-	other_names: String,
-	language: String,
+	other_names: [String],
+	language: [String],
 	publish_country: mongoose.Types.ObjectId,
 	publish_place: mongoose.Types.ObjectId,
 	publisher: mongoose.Types.ObjectId,
 	publishing_date: [{
 		date: {
-			type: Number,
+			type: Date,
 			required: true,
 		},
 		note: String,
@@ -69,7 +69,7 @@ const recordSchema = new mongoose.Schema({
 	corporation_content_specification: mongoose.Types.ObjectId,
 	chronological_content_specification: String,
 	geographical_content_specification: mongoose.Types.ObjectId,
-	keywords: mongoose.Types.ObjectId,
+	keywords: [mongoose.Types.ObjectId],
 	description: String,
 	general_note: String,
 	editor_note: String,

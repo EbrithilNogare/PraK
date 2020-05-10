@@ -302,20 +302,20 @@
 					output: {
 						200:{
 							author: "ObjectId",
-							other_authors: "ObjectId",
+							other_authors: ["ObjectId"],
 							name: {
 								type: "String",
 								unique: true,
 								required: true,
 							},
-							other_names: "String",
-							language: "String",
+							other_names: ["String"],
+							language: ["String"],
 							publish_country: "ObjectId",
 							publish_place: "ObjectId",
 							publisher: "ObjectId",
 							publishing_date: [{
 								date: {
-									type: "Number",
+									type: "Date",
 									required: true
 								},
 								note: "String",
@@ -369,7 +369,7 @@
 							corporation_content_specification: "ObjectId",
 							chronological_content_specification: "String",
 							geographical_content_specification: "ObjectId",
-							keywords: "ObjectId",
+							keywords: ["ObjectId"],
 							description: "String",
 							general_note: "String",
 							editor_note: "String",
@@ -378,27 +378,58 @@
 								required: true
 							},
 						},
+						400:{
+							message: "String"
+						},
+						500:{
+							message: "String",
+							details: "Object",
+						},
 					}
 				},
 				post:{
-					info: "",
-					input: {},
+					info: "update record",
+					input: {
+							name: "String",
+							submitter: "String",
+						},
 					output: {
 						200:{},
+						400:{
+							message: "String"
+						},
+						500:{
+							message: "String",
+							details: "Object",
+						},
 					}
 				},
 				put:{
-					info: "",
+					info: "create record",
 					input: {},
 					output: {
 						200:{},
+						400:{
+							message: "String"
+						},
+						500:{
+							message: "String",
+							details: "Object",
+						},
 					}
 				},
 				delete:{
-					info: "",
+					info: "change record status to deleted",
 					input: {},
 					output: {
 						200:{},
+						400:{
+							message: "String"
+						},
+						500:{
+							message: "String",
+							details: "Object",
+						},
 					}
 				}
 			},
