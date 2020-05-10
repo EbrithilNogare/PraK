@@ -294,13 +294,14 @@
 
 			Record:{
 				info:{
-					info: "records collection",
+					info: "metadata collection",
 				},
 				get:{
 					info: "get record",
 					input: "id={id}",
 					output: {
 						200:{
+							_id: "ObjectId",
 							author: "ObjectId",
 							other_authors: ["ObjectId"],
 							name: {
@@ -390,13 +391,79 @@
 				post:{
 					info: "update record",
 					input: {
-							name: "String",
-							submitter: "String",
+							id: "ObjectId",
+							record: {
+								author: "ObjectId",
+								other_authors: ["ObjectId"],
+								other_names: ["String"],
+								language: ["String"],
+								publish_country: "ObjectId",
+								publish_place: "ObjectId",
+								publisher: "ObjectId",
+								publishing_date: [{
+									date: "Date",
+									note: "String",
+								}],
+								isbn: "String",
+								edition_order: "String",
+								edition: "String",
+								action_name: "ObjectId",
+								volume_content: "ObjectId",
+								publishing_year: [{
+									from: "Number",
+									to: "Number",
+									note: "String",
+									periodicity: "String",
+								}],
+								issn: "String",
+								source_document_name: "String",
+								year: "Number",
+								volume: "Number",
+								number: "Number",
+								date: "Date",
+								corporation_name: "ObjectId",
+								location: [{
+									institution: "ObjectId",
+									fund: "String",
+									access_conditions: "String",
+									acess_note: "String",
+									location_note: "String",
+								}],
+								digitized_document_url: "String",
+								external_source: [{
+									name: "String",
+									url: "String",
+									url_leading_to_document: "String",
+								}],
+								attachment: [{
+									name: "String",
+									url: "String",
+								}],
+								source_citation: ["String"],
+								previous_name: "ObjectId",
+								following_name: "ObjectId",
+								form: "String",
+								range: "String",
+								dimension: "String",
+								map_scale: "String",
+								format: "String",
+								processing_level: "String",
+								archival_aids: "String",
+								topic: "ObjectId",
+								corporation_content_specification: "ObjectId",
+								chronological_content_specification: "String",
+								geographical_content_specification: "ObjectId",
+								keywords: ["ObjectId"],
+								description: "String",
+								general_note: "String",
+								editor_note: "String",
+								submitter: "String",
+							},
 						},
 					output: {
-						200:{},
+						200: {},
 						400:{
-							message: "String"
+							message: "String",
 						},
 						500:{
 							message: "String",
@@ -406,11 +473,90 @@
 				},
 				put:{
 					info: "create record",
-					input: {},
+					input: {
+							author: "ObjectId",
+							other_authors: ["ObjectId"],
+							name: {
+								type: "String",
+								unique: true,
+								required: true,
+							},
+							other_names: ["String"],
+							language: ["String"],
+							publish_country: "ObjectId",
+							publish_place: "ObjectId",
+							publisher: "ObjectId",
+							publishing_date: [{
+								date: {
+									type: "Date",
+									required: true
+								},
+								note: "String",
+							}],
+							isbn: "String",
+							edition_order: "String",
+							edition: "String",
+							action_name: "ObjectId",
+							volume_content: "ObjectId",
+							publishing_year: [{
+								from: "Number",
+								to: "Number",
+								note: "String",
+								periodicity: "String",
+							}],
+							issn: "String",
+							source_document_name: "String",
+							year: "Number",
+							volume: "Number",
+							number: "Number",
+							date: "Date",
+							corporation_name: "ObjectId",
+							location: [{
+								institution: "ObjectId",
+								fund: "String",
+								access_conditions: "String",
+								acess_note: "String",
+								location_note: "String",
+							}],
+							digitized_document_url: "String",
+							external_source: [{
+								name: "String",
+								url: "String",
+								url_leading_to_document: "String",
+							}],
+							attachment: [{
+								name: "String",
+								url: "String",
+							}],
+							source_citation: ["String"],
+							previous_name: "ObjectId",
+							following_name: "ObjectId",
+							form: "String",
+							range: "String",
+							dimension: "String",
+							map_scale: "String",
+							format: "String",
+							processing_level: "String",
+							archival_aids: "String",
+							topic: "ObjectId",
+							corporation_content_specification: "ObjectId",
+							chronological_content_specification: "String",
+							geographical_content_specification: "ObjectId",
+							keywords: ["ObjectId"],
+							description: "String",
+							general_note: "String",
+							editor_note: "String",
+							submitter: {
+								type: "String",
+								required: true
+							},
+						},
 					output: {
-						200:{},
+						200:{
+							id: "ObjectId",
+						},
 						400:{
-							message: "String"
+							message: "String",
 						},
 						500:{
 							message: "String",
@@ -420,11 +566,11 @@
 				},
 				delete:{
 					info: "change record status to deleted",
-					input: {},
+					input: "id={id}",
 					output: {
 						200:{},
 						400:{
-							message: "String"
+							message: "String",
 						},
 						500:{
 							message: "String",

@@ -1,8 +1,14 @@
 const mongoose = require('mongoose')
 
 const recordSchema = new mongoose.Schema({
-	author: mongoose.Types.ObjectId,
-	other_authors: [mongoose.Types.ObjectId],
+	author: {
+		type: mongoose.Types.ObjectId,
+		ref: "nameIndexPersons",
+	},
+	other_authors: [{
+		type: mongoose.Types.ObjectId,
+		ref: "nameIndexPersons",
+	}],
 	name: {
 		type: String,
 		unique: true,
@@ -10,9 +16,18 @@ const recordSchema = new mongoose.Schema({
 	},
 	other_names: [String],
 	language: [String],
-	publish_country: mongoose.Types.ObjectId,
-	publish_place: mongoose.Types.ObjectId,
-	publisher: mongoose.Types.ObjectId,
+	publish_country: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	publish_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	publisher: {
+		type: mongoose.Types.ObjectId,
+		ref: "?????",
+	},
 	publishing_date: [{
 		date: {
 			type: Date,
@@ -23,8 +38,14 @@ const recordSchema = new mongoose.Schema({
 	isbn: String,
 	edition_order: String,
 	edition: String,
-	action_name: mongoose.Types.ObjectId,
-	volume_content: mongoose.Types.ObjectId,
+	action_name: {
+		type: mongoose.Types.ObjectId,
+		ref: "?????",
+	},
+	volume_content: {
+		type: mongoose.Types.ObjectId,
+		ref: "?????",
+	},
 	publishing_year: [{
 		from: Number,
 		to: Number,
@@ -37,9 +58,15 @@ const recordSchema = new mongoose.Schema({
 	volume: Number,
 	number: Number,
 	date: Date,
-	corporation_name: mongoose.Types.ObjectId,
+	corporation_name: {
+		type: mongoose.Types.ObjectId,
+		ref: "nameIndexCorporations",
+	},
 	location: [{
-		institution: mongoose.Types.ObjectId,
+		institution: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 		fund: String,
 		access_conditions: String,
 		acess_note: String,
@@ -56,8 +83,14 @@ const recordSchema = new mongoose.Schema({
 		url: String,
 	}],
 	source_citation: [String],
-	previous_name: mongoose.Types.ObjectId,
-	following_name: mongoose.Types.ObjectId,
+	previous_name: {
+		type: mongoose.Types.ObjectId,
+		ref: "?????",
+	},
+	following_name: {
+		type: mongoose.Types.ObjectId,
+		ref: "?????",
+	},
 	form: String,
 	range: String,
 	dimension: String,
@@ -65,11 +98,23 @@ const recordSchema = new mongoose.Schema({
 	format: String,
 	processing_level: String,
 	archival_aids: String,
-	topic: mongoose.Types.ObjectId,
-	corporation_content_specification: mongoose.Types.ObjectId,
+	topic: {
+		type: mongoose.Types.ObjectId,
+		ref: "?????",
+	},
+	corporation_content_specification: {
+		type: mongoose.Types.ObjectId,
+		ref: "nameIndexCorporations",
+	},
 	chronological_content_specification: String,
-	geographical_content_specification: mongoose.Types.ObjectId,
-	keywords: [mongoose.Types.ObjectId],
+	geographical_content_specification: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	keywords: [{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordsIndex",
+	}],
 	description: String,
 	general_note: String,
 	editor_note: String,
