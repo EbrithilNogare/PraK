@@ -12,17 +12,6 @@ class NavBar extends React.Component {
 				<NavLink exact={true} to="/prak/" className={styles.title}>
 					Databaze prameny Krkonos
 				</NavLink>
-				<ul className={styles.navigation}>
-					<li>
-						<NavLink to="/prak/search">SearchScene</NavLink>
-					</li>
-					<li>
-						<NavLink to="/prak/input">InputScene</NavLink>
-					</li>
-					<li>
-						<NavLink to="/prak/edit">EditScene</NavLink>
-					</li>
-				</ul>
 				<ul className={styles.userNavigation}>
 					<li>
 						<NavLink exact={true} to="/prak/myLibrary">Moje knihovna</NavLink>
@@ -32,7 +21,7 @@ class NavBar extends React.Component {
 					</li>
 					<li>
 						<NavLink to="/prak/help">Napoveda</NavLink>
-					</li>
+					</li> 
 					<li>
 						<NavLink to="#">CZ</NavLink>
 					</li>

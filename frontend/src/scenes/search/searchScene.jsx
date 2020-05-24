@@ -6,7 +6,6 @@ import {
 	Button,
 	Chip,
 	CardContent,
-	FormControl,
 	Table,
 	TableBody,
 	TableCell,
@@ -16,13 +15,7 @@ import {
 	TextField,
 	Typography,
 	Slider,
-	InputLabel,
-	Input,
-	Divider,
-	InputAdornment,
-	Box,
 } from '@material-ui/core'
-import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import styles from './searchScene.module.scss'
 
@@ -126,6 +119,7 @@ export default class SearchScene extends React.Component {
 						frameborder="0"
 						style={{border: "0", width:"100%", "min-height":"300px"}}
 						allowfullscreen
+						title="googleMap"
 					/>
 				</Paper>
 

@@ -1,3 +1,3 @@
-import NavBar from "./inputScene"
+import NavBar from "./navBar"
 
 export default NavBar

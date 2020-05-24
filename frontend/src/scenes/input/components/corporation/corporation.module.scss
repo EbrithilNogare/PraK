@@ -1,0 +1,15 @@
+.corporation {
+	width: 100%;
+
+	padding: 50px 100px;
+
+	display: grid;
+	grid-template-columns: 1fr;
+	align-items: start;
+	grid-column-gap: 50px;
+	grid-row-gap: 50px;
+}
+
+.dataBlock{
+	padding: 20px;
+}

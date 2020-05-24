@@ -2,25 +2,15 @@ import React from "react"
 
 import { 	
 	Button,
-	ButtonGroup,
-	CardContent,
 	Checkbox,
-	FormControl,
-	InputLabel,
-	LinearProgress,
-	MenuItem,
-	Select,
 	Table,
 	TableBody,
 	TableCell,
 	TableContainer,
 	TableHead,
 	TableRow,
-	TextField,
-	Typography,
 } from '@material-ui/core'
 
-import { Pair } from '../../components/layout'
 import Paper from '../../components/paper'
 
 import styles from './editScene.module.scss'

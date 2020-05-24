@@ -10,7 +10,8 @@ import WebFont from 'webfontloader';
 import "./Prak.scss"
 import "./styles/colorScheme.scss"
 
-import NavBar from "./components/navBar/navBar"
+import NavBar from "./components/navBar"
+import Footer from "./components/footer"
 import MainPageScene from "./scenes/mainPage"
 import SearchScene from "./scenes/search"
 import InputScene from "./scenes/input"
@@ -38,6 +39,7 @@ class Prak extends React.Component {
 						<Route path="/prak/search"><SearchScene/></Route>
 						<Route path="/prak"><MainPageScene/></Route>
 					</Switch>
+					<Footer/>
 				</Router>
 			</div>
 		)

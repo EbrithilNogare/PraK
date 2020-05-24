@@ -12,10 +12,6 @@ import Registration from './components/registration'
 import styles from './loginScene.module.scss'
 
 class LoginScene extends React.Component {
-	constructor(props){
-		super(props)
-	}
-
 	render(){
 		const renderVariants = {
 			login:{render:(<Login/>), text: "Not registered? ", link:"/prak/registration", linkText:"Create an account"},
