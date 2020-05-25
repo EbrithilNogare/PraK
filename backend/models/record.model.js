@@ -95,9 +95,14 @@ const recordSchema = new mongoose.Schema({
 	range: String,
 	dimension: String,
 	map_scale: String,
-	format: String,
+	format: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordsIndex",
+	},
 	processing_level: String,
 	archival_aids: String,
+	multiple_placement: String,
+	multiple_placement_url: String,
 	topic: {
 		type: mongoose.Types.ObjectId,
 		ref: "?????",
