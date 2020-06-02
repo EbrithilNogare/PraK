@@ -1,5 +1,5 @@
 {
-	"types":[
+	"types": [
 		"Archivní dokument",
 		"Archivní sbírka",
 		"Audiovizuální dokument",
@@ -11,65 +11,244 @@
 		"Svazek",
 		"3D objekt"
 	],
-	"fields":{
-		"Hlavní autor nebo původce":[						1,1,1,1,1,1,1,1,1,1],
-		"Další původci":[									1,1,1,1,1,1,1,1,1,1],
-		"Hlavní název":[									1,1,1,1,1,1,1,1,1,1],
-		"Další názvy":[										1,1,1,1,1,1,1,1,1,1],
-		"Jazyk":[											1,1,1,1,1,1,1,1,1,0],
-		"Země vydání nebo vzniku":[							1,1,1,1,1,1,1,1,1,1],
-		"Místo vydání nebo vzniku":[						1,1,1,1,1,1,1,1,1,1],
-		"Vydavatel":[										0,0,1,0,1,1,1,1,1,1],
-		"Datum vydání nebo vzniku":[						1,1,1,0,1,1,1,0,1,1],
-		"Poznámka k datu vydání":[							1,1,1,0,1,1,1,0,1,1],
-		"ISBN":[											0,0,0,0,0,1,0,0,1,0],
-		"Pořadí vydání":[									0,0,0,0,0,0,0,0,1,0],
-		"Edice":[											0,0,0,0,0,0,0,0,1,0],
-		"Název akce":[										0,0,0,0,0,0,0,0,1,0],
-		"Obsah svazku":[									0,0,0,0,0,0,0,0,1,1],
-		"Roky vycházení od":[								0,0,0,0,0,0,0,1,0,0],
-		"Roky vycházení do":[								0,0,0,0,0,0,0,1,0,0],
-		"Poznámka k rokům vycházení":[						0,0,0,0,0,0,0,1,0,0],
-		"Periodicita":[										0,0,0,0,0,0,0,1,0,0],
-		"ISSN":[											0,0,0,1,0,0,0,1,0,0],
-		"Název zdrojového dokumentu":[						1,0,0,1,0,1,0,0,1,1],
-		"rok":[												0,0,0,1,0,0,0,0,0,0],
-		"ročník":[											0,0,0,1,0,0,0,0,0,0],
-		"číslo":[											0,0,0,1,0,0,0,0,0,0],
-		"datum":[											0,0,0,1,0,0,0,0,0,0],
-		"Název korporace":[									1,1,1,1,1,1,1,1,1,1],
-		"Podmínky přístupu":[								1,1,1,1,1,1,1,1,1,1],
-		"Poznámka k přístupu":[								1,1,0,0,0,0,0,0,0,1],
-		"Umístění v instituci":[							1,1,1,1,0,1,1,1,1,1],
-		"Umístění ve fondu/Lokace":[						1,1,1,1,0,1,1,1,1,1],
-		"Poznámka k umístění":[								1,1,0,0,0,0,0,0,0,1],
-		"URL digitalizovaného dokumentu":[					1,0,1,1,0,1,1,0,0,1],
-		"Název externího umístění":[						1,1,1,1,0,1,1,1,1,1],
-		"URL externího umístění":[							1,1,1,1,1,1,1,1,1,1],
-		"URL vedoucí k dokumentu v externím zdroji":[		1,0,1,1,0,1,1,0,1,1],
-		"Název přílohy":[									1,1,1,1,1,1,1,1,1,1],
-		"URL přílohy":[										1,1,1,1,1,1,1,1,1,1],
-		"Citace zdroje":[									1,1,0,0,0,0,0,0,0,1],
-		"Předcházející název":[								1,1,1,1,1,1,1,1,1,0],
-		"Následující název":[								1,1,1,1,1,1,1,1,1,0],
-		"Forma":[											1,1,1,1,1,1,1,1,1,1],
-		"Rozsah":[											1,1,1,1,0,1,1,1,1,1],
-		"Rozměr":[											1,0,0,0,0,0,1,0,1,1],
-		"Měřítko":[											1,0,0,0,1,1,1,0,0,1],
-		"Formát/Jak to vypadá":[							1,1,1,1,1,1,1,1,1,1],
-		"Úroveň zpracování":[								1,1,0,0,0,0,1,1,0,1],
-		"úroveň popisu":[									1,0,0,0,0,0,0,0,0,1],
-		"Násobné umístění":[								1,0,1,0,1,0,1,1,1,1],
-		"Násobné umístění url":[							0,0,0,0,0,0,0,0,0,1],
-		"Archivní pomůcky":[								1,1,0,0,0,0,0,0,0,1],
-		"Téma":[											1,1,1,1,1,1,1,1,1,1],
-		"Osoba, korporace jako předmět obsahu dokumentu":[	1,1,1,1,1,1,1,1,1,1],
-		"Chronologické zpřesnění obsahu dokumentu":[		1,1,1,1,1,1,1,1,1,1],
-		"Geografické zpřesnění obsahu dokumentu":[			1,1,1,1,1,1,1,1,1,1],
-		"Klíčová slova":[									1,1,1,1,1,1,1,1,1,1],
-		"Abstrakt/Popis":[									1,1,1,1,1,1,1,1,1,1],
-		"Poznámka obecná":[									1,1,1,1,1,1,1,1,1,1],
-		"Poznámka editora":[								1,1,1,1,1,1,1,1,1,1],
-		"Zadavatel":[										1,1,1,1,1,1,1,1,1,1]
-	}	
+	"properties": {
+		"author": {
+			"label": "Hlavní autor nebo původce",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"other_authors": {
+			"label": "Další původci",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"name": {
+			"label": "Hlavní název",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"other_names": {
+			"label": "Další názvy",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"language": {
+			"label": "Jazyk",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+			"options": ["","čeština","latina","němčina","angličtina","polština","slovenština","jiné"]
+		},
+		"publish_country": {
+			"label": "Země vydání nebo vzniku",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+			"options": ["","Rakousko-Uhersko", "Československo 1918-1938", "Protektorát Čechy a Morava 1938-1945", "Československá republika 1945-1960", "Československá socialistická republika 1960-1990", "Česká a Slovenská federativní republika 1990-1992", "Česká republika 1993-", "Německo", "Německá říše", "Polsko", "jiné"]
+		},
+		"publish_place": {
+			"label": "Místo vydání nebo vzniku",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"publisher": {
+			"label": "Vydavatel",
+			"fields": [0, 0, 1, 0, 1, 1, 1, 1, 1, 1]
+		},
+		"publishing_date": {
+			"label": "Datum vydání nebo vzniku",
+			"fields": [1, 1, 1, 0, 1, 1, 1, 0, 1, 1]
+		},
+		"publishing_date_note": {
+			"label": "Poznámka k datu vydání",
+			"fields": [1, 1, 1, 0, 1, 1, 1, 0, 1, 1]
+		},
+		"isbn": {
+			"label": "ISBN",
+			"fields": [0, 0, 0, 0, 0, 1, 0, 0, 1, 0]
+		},
+		"edition_order": {
+			"label": "Pořadí vydání",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+		},
+		"edition": {
+			"label": "Edice",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+		},
+		"action_name": {
+			"label": "Název akce",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+		},
+		"volume_content": {
+			"label": "Obsah svazku",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 1]
+		},
+		"publishing_year_from": {
+			"label": "Roky vycházení od",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+		},
+		"publishing_year_to": {
+			"label": "Roky vycházení do",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+		},
+		"publishing_year_note": {
+			"label": "Poznámka k rokům vycházení",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+		},
+		"periodicity": {
+			"label": "Periodicita",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+		},
+		"issn": {
+			"label": "ISSN",
+			"fields": [0, 0, 0, 1, 0, 0, 0, 1, 0, 0]
+		},
+		"source_document_name": {
+			"label": "Název zdrojového dokumentu",
+			"fields": [1, 0, 0, 1, 0, 1, 0, 0, 1, 1]
+		},
+		"year": {
+			"label": "rok",
+			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+		},
+		"volume": {
+			"label": "ročník",
+			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+		},
+		"number": {
+			"label": "číslo",
+			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+		},
+		"date": {
+			"label": "datum",
+			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+		},
+		"corporation_name": {
+			"label": "Název korporace",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"access_conditions": {
+			"label": "Podmínky přístupu",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"acces_note": {
+			"label": "Poznámka k přístupu",
+			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1]
+		},
+		"location_in_institution": {
+			"label": "Umístění v instituci",
+			"fields": [1, 1, 1, 1, 0, 1, 1, 1, 1, 1]
+		},
+		"location_in_fund": {
+			"label": "Umístění ve fondu/Lokace",
+			"fields": [1, 1, 1, 1, 0, 1, 1, 1, 1, 1]
+		},
+		"location_note": {
+			"label": "Poznámka k umístění",
+			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1]
+		},
+		"digitized_document_url": {
+			"label": "URL digitalizovaného dokumentu",
+			"fields": [1, 0, 1, 1, 0, 1, 1, 0, 0, 1]
+		},
+		"external_source_name": {
+			"label": "Název externího umístění",
+			"fields": [1, 1, 1, 1, 0, 1, 1, 1, 1, 1]
+		},
+		"external_source_url": {
+			"label": "URL externího umístění",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"url_leading_to_document": {
+			"label": "URL vedoucí k dokumentu v externím zdroji",
+			"fields": [1, 0, 1, 1, 0, 1, 1, 0, 1, 1]
+		},
+		"attachment_name": {
+			"label": "Název přílohy",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"attachment_url": {
+			"label": "URL přílohy",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"source_citation": {
+			"label": "Citace zdroje",
+			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1]
+		},
+		"previous_name": {
+			"label": "Předcházející název",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+		},
+		"following_name": {
+			"label": "Následující název",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+		},
+		"form": {
+			"label": "Forma",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"range": {
+			"label": "Rozsah",
+			"fields": [1, 1, 1, 1, 0, 1, 1, 1, 1, 1]
+		},
+		"dimension": {
+			"label": "Rozměr",
+			"fields": [1, 0, 0, 0, 0, 0, 1, 0, 1, 1]
+		},
+		"map_scale": {
+			"label": "Měřítko",
+			"fields": [1, 0, 0, 0, 1, 1, 1, 0, 0, 1]
+		},
+		"format": {
+			"label": "Formát/Jak to vypadá",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"processing_level": {
+			"label": "Úroveň zpracování",
+			"fields": [1, 1, 0, 0, 0, 0, 1, 1, 0, 1]
+		},
+		"description_level": {
+			"label": "úroveň popisu",
+			"fields": [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+		},
+		"archival_aids": {
+			"label": "Násobné umístění",
+			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1]
+		},
+		"multiple_placement": {
+			"label": "Násobné umístění url",
+			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+		},
+		"multiple_placement_url": {
+			"label": "Archivní pomůcky",
+			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1]
+		},
+		"topic": {
+			"label": "Téma",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"corporation_content_specification": {
+			"label": "Osoba, korporace jako předmět obsahu dokumentu",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"chronological_content_specification": {
+			"label": "Chronologické zpřesnění obsahu dokumentu",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"geographical_content_specification": {
+			"label": "Geografické zpřesnění obsahu dokumentu",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"keywords": {
+			"label": "Klíčová slova",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"description": {
+			"label": "Abstrakt/Popis",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"general_note": {
+			"label": "Poznámka obecná",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"editor_note": {
+			"label": "Poznámka editora",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"submitter": {
+			"label": "Zadavatel",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		}
+	}
 }

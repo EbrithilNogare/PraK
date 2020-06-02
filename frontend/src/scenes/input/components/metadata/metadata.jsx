@@ -20,6 +20,8 @@ import {
 import { Pair } from '../../../../components/layout'
 import Paper from '../../../../components/paper'
 
+import ISBNField from './components/ISBNField'
+
 import styles from './metadata.module.scss'
 import metadataTypes from './metadataTypes.json'
 
@@ -27,8 +29,10 @@ class Metadata extends React.Component {
 	constructor(props){
 		super(props)
 		
-		this.state = { 
+		this.state = {
 			documentType: 0,
+			language: "",
+			publish_country: "",
 		}	
 
 		this.handleChange = this.handleChange.bind(this)
@@ -41,7 +45,11 @@ class Metadata extends React.Component {
 	}
 
 	conditionalField(fieldName){
-		return metadataTypes.fields[fieldName][this.state.documentType] === 1
+		return metadataTypes.properties[fieldName].fields[this.state.documentType] === 1
+	}
+
+	getTranslation(fieldName){
+		return metadataTypes.properties[fieldName].label
 	}
 	
 
@@ -65,198 +73,224 @@ class Metadata extends React.Component {
 						</FormControl>
 					</Paper>					
 					<Paper className={styles.mainInput}>
-						{this.conditionalField("Hlavní autor nebo původce") && 
-							<TextField label="Hlavní autor nebo původce"/>
+						{this.conditionalField("author") && 
+							<TextField name="author" label={this.getTranslation("author")}/>
 						}
-						{this.conditionalField("Další původci") && 
-							<TextField label="Další původci"/>
+						{this.conditionalField("other_authors") && 
+							<TextField name="other_authors" label={this.getTranslation("other_authors")}/>
 						}					
-						{this.conditionalField("Hlavní název") && 
-							<TextField label="Hlavní název"/>
+						{this.conditionalField("name") && 
+							<TextField name="name" label={this.getTranslation("name")}/>
 						}					
-						{this.conditionalField("Další názvy") && 
-							<TextField label="Další názvy"/>
+						{this.conditionalField("other_names") && 
+							<TextField name="other_names" label={this.getTranslation("other_names")}/>
 						}					
-						{this.conditionalField("Jazyk") && 
-							<TextField label="Jazyk"/>
+						{this.conditionalField("language") && 
+							<FormControl>
+								<InputLabel id="selectLanguageLabel">{this.getTranslation("language")}</InputLabel>
+								<Select
+									labelId="selectLanguageLabel"
+									name="language"
+									value={this.state.language}
+									onChange={this.handleChange}
+								>
+									{
+										metadataTypes.properties["language"].options.map((value, index) => {
+											return <MenuItem key={index} value={value}>{value}</MenuItem>
+									})}
+								</Select>
+							</FormControl>
 						}					
-						{this.conditionalField("Země vydání nebo vzniku") && 
-							<TextField label="Země vydání nebo vzniku"/>
+						{this.conditionalField("publish_country") && 
+							<FormControl>
+								<InputLabel id="selectPublish_countryLabel">{this.getTranslation("publish_country")}</InputLabel>
+								<Select
+									labelId="selectPublish_countryLabel"
+									name="publish_country"
+									value={this.state.publish_country}
+									onChange={this.handleChange}
+								>
+									{
+										metadataTypes.properties["publish_country"].options.map((value, index) => {
+											return <MenuItem key={index} value={value}>{value}</MenuItem>
+									})}
+								</Select>
+							</FormControl>
 						}					
-						{this.conditionalField("Místo vydání nebo vzniku") && 
-							<TextField label="Místo vydání nebo vzniku"/>
+						{this.conditionalField("publish_place") && 
+							<TextField name="publish_place" label={this.getTranslation("publish_place")}/>
 						}					
-						{this.conditionalField("Vydavatel") && 
-							<TextField label="Vydavatel"/>
+						{this.conditionalField("publisher") && 
+							<TextField name="publisher" label={this.getTranslation("publisher")}/>
 						}					
-						{this.conditionalField("Datum vydání nebo vzniku") && 
-							<TextField label="Datum vydání nebo vzniku"/>
+						{this.conditionalField("publishing_date") && 
+							<TextField type="number" name="publishing_date" label={this.getTranslation("publishing_date")}/>
 						}					
-						{this.conditionalField("Poznámka k datu vydání") && 
-							<TextField label="Poznámka k datu vydání"/>
+						{this.conditionalField("publishing_date_note") && 
+							<TextField name="publishing_date_note" label={this.getTranslation("publishing_date_note")}/>
 						}					
 
 						</Paper>
 					<Paper className={styles.mainInput}>
 
-					{this.conditionalField("ISBN") && 
-						<TextField label="ISBN"/>
+					{this.conditionalField("isbn") && 
+						<ISBNField name="isbn" label={this.getTranslation("isbn")}/>
 					}					
-					{this.conditionalField("Pořadí vydání") && 
-						<TextField label="Pořadí vydání"/>
+					{this.conditionalField("edition_order") && 
+						<TextField name="edition_order" label={this.getTranslation("edition_order")}/>
 					}					
-					{this.conditionalField("Edice") && 
-						<TextField label="Edice"/>
+					{this.conditionalField("edition") && 
+						<TextField name="edition" label={this.getTranslation("edition")}/>
 					}					
-					{this.conditionalField("Název akce") && 
-						<TextField label="Název akce"/>
+					{this.conditionalField("action_name") && 
+						<TextField name="action_name" label={this.getTranslation("action_name")}/>
 					}					
-					{this.conditionalField("Obsah svazku") && 
-						<TextField label="Obsah svazku"/>
+					{this.conditionalField("volume_content") && 
+						<TextField name="volume_content" label={this.getTranslation("volume_content")}/>
 					}					
-					{this.conditionalField("Roky vycházení od") && 
-						<TextField label="Roky vycházení od"/>
+					{this.conditionalField("publishing_year_from") && 
+						<TextField name="publishing_year_from" label={this.getTranslation("publishing_year_from")}/>
 					}					
-					{this.conditionalField("Roky vycházení do") && 
-						<TextField label="Roky vycházení do"/>
+					{this.conditionalField("publishing_year_to") && 
+						<TextField name="publishing_year_to" label={this.getTranslation("publishing_year_to")}/>
 					}					
-					{this.conditionalField("Poznámka k rokům vycházení") && 
-						<TextField label="Poznámka k rokům vycházení"/>
+					{this.conditionalField("publishing_year_note") && 
+						<TextField name="publishing_year_note" label={this.getTranslation("publishing_year_note")}/>
 					}					
-					{this.conditionalField("Periodicita") && 
-						<TextField label="Periodicita"/>
+					{this.conditionalField("periodicity") && 
+						<TextField name="periodicity" label={this.getTranslation("periodicity")}/>
 					}					
-					{this.conditionalField("ISSN") && 
-						<TextField label="ISSN"/>
+					{this.conditionalField("issn") && 
+						<TextField name="issn" label={this.getTranslation("issn")}/>
 					}					
-					{this.conditionalField("Název zdrojového dokumentu") && 
-						<TextField label="Název zdrojového dokumentu"/>
+					{this.conditionalField("source_document_name") && 
+						<TextField name="source_document_name" label={this.getTranslation("source_document_name")}/>
 					}					
-					{this.conditionalField("rok") && 
-						<TextField label="rok"/>
+					{this.conditionalField("year") && 
+						<TextField name="year" label={this.getTranslation("year")}/>
 					}					
-					{this.conditionalField("ročník") && 
-						<TextField label="ročník"/>
+					{this.conditionalField("volume") && 
+						<TextField name="volume" label={this.getTranslation("volume")}/>
 					}					
-					{this.conditionalField("číslo") && 
-						<TextField label="číslo"/>
+					{this.conditionalField("number") && 
+						<TextField name="number" label={this.getTranslation("number")}/>
 					}					
-					{this.conditionalField("datum") && 
-						<TextField label="datum"/>
+					{this.conditionalField("date") && 
+						<TextField name="date" label={this.getTranslation("date")}/>
 					}					
 
 					</Paper>
 					<Paper className={styles.mainInput}>
 
-					{this.conditionalField("Název korporace") && 
-						<TextField label="Název korporace"/>
+					{this.conditionalField("corporation_name") && 
+						<TextField name="corporation_name" label={this.getTranslation("corporation_name")}/>
 					}					
-					{this.conditionalField("Podmínky přístupu") && 
-						<TextField label="Podmínky přístupu"/>
+					{this.conditionalField("access_conditions") && 
+						<TextField name="access_conditions" label={this.getTranslation("access_conditions")}/>
 					}					
-					{this.conditionalField("Poznámka k přístupu") && 
-						<TextField label="Poznámka k přístupu"/>
+					{this.conditionalField("acces_note") && 
+						<TextField name="acces_note" label={this.getTranslation("acces_note")}/>
 					}					
-					{this.conditionalField("Umístění v instituci") && 
-						<TextField label="Umístění v instituci"/>
+					{this.conditionalField("location_in_institution") && 
+						<TextField name="location_in_institution" label={this.getTranslation("location_in_institution")}/>
 					}					
-					{this.conditionalField("Umístění ve fondu/Lokace") && 
-						<TextField label="Umístění ve fondu/Lokace"/>
+					{this.conditionalField("location_in_fund") && 
+						<TextField name="location_in_fund" label={this.getTranslation("location_in_fund")}/>
 					}					
-					{this.conditionalField("Poznámka k umístění") && 
-						<TextField label="Poznámka k umístění"/>
+					{this.conditionalField("location_note") && 
+						<TextField name="location_note" label={this.getTranslation("location_note")}/>
 					}					
-					{this.conditionalField("URL digitalizovaného dokumentu") && 
-						<TextField label="URL digitalizovaného dokumentu"/>
+					{this.conditionalField("digitized_document_url") && 
+						<TextField name="digitized_document_url" label={this.getTranslation("digitized_document_url")}/>
 					}					
-					{this.conditionalField("Název externího umístění") && 
-						<TextField label="Název externího umístění"/>
+					{this.conditionalField("external_source_name") && 
+						<TextField name="external_source_name" label={this.getTranslation("external_source_name")}/>
 					}					
-					{this.conditionalField("URL externího umístění") && 
-						<TextField label="URL externího umístění"/>
+					{this.conditionalField("external_source_url") && 
+						<TextField name="external_source_url" label={this.getTranslation("external_source_url")}/>
 					}					
-					{this.conditionalField("URL vedoucí k dokumentu v externím zdroji") && 
-						<TextField label="URL vedoucí k dokumentu v externím zdroji"/>
+					{this.conditionalField("url_leading_to_document") && 
+						<TextField name="url_leading_to_document" label={this.getTranslation("url_leading_to_document")}/>
 					}					
-					{this.conditionalField("Název přílohy") && 
-						<TextField label="Název přílohy"/>
+					{this.conditionalField("attachment_name") && 
+						<TextField name="attachment_name" label={this.getTranslation("attachment_name")}/>
 					}					
-					{this.conditionalField("URL přílohy") && 
-						<TextField label="URL přílohy"/>
+					{this.conditionalField("attachment_url") && 
+						<TextField name="attachment_url" label={this.getTranslation("attachment_url")}/>
 					}					
-					{this.conditionalField("Citace zdroje") && 
-						<TextField label="Citace zdroje"/>
+					{this.conditionalField("source_citation") && 
+						<TextField name="source_citation" label={this.getTranslation("source_citation")}/>
 					}					
-					{this.conditionalField("Předcházející název") && 
-						<TextField label="Předcházející název"/>
+					{this.conditionalField("previous_name") && 
+						<TextField name="previous_name" label={this.getTranslation("previous_name")}/>
 					}					
-					{this.conditionalField("Následující název") && 
-						<TextField label="Následující název"/>
+					{this.conditionalField("following_name") && 
+						<TextField name="following_name" label={this.getTranslation("following_name")}/>
 					}						
 
 					</Paper>
 					<Paper className={styles.mainInput}>
 
-					{this.conditionalField("Forma") && 
-						<TextField label="Forma"/>
+					{this.conditionalField("form") && 
+						<TextField name="form" label={this.getTranslation("form")}/>
 					}						
-					{this.conditionalField("Rozsah") && 
-						<TextField label="Rozsah"/>
+					{this.conditionalField("range") && 
+						<TextField name="range" label={this.getTranslation("range")}/>
 					}						
-					{this.conditionalField("Rozměr") && 
-						<TextField label="Rozměr"/>
+					{this.conditionalField("dimension") && 
+						<TextField name="dimension" label={this.getTranslation("dimension")}/>
 					}						
-					{this.conditionalField("Měřítko") && 
-						<TextField label="Měřítko"/>
+					{this.conditionalField("map_scale") && 
+						<TextField name="map_scale" label={this.getTranslation("map_scale")}/>
 					}						
-					{this.conditionalField("Formát/Jak to vypadá") && 
-						<TextField label="Formát/Jak to vypadá"/>
+					{this.conditionalField("format") && 
+						<TextField name="format" label={this.getTranslation("format")}/>
 					}						
-					{this.conditionalField("Úroveň zpracování") && 
-						<TextField label="Úroveň zpracování"/>
+					{this.conditionalField("processing_level") && 
+						<TextField name="processing_level" label={this.getTranslation("processing_level")}/>
 					}						
-					{this.conditionalField("úroveň popisu") && 
-						<TextField label="úroveň popisu"/>
+					{this.conditionalField("description_level") && 
+						<TextField name="description_level" label={this.getTranslation("description_level")}/>
 					}						
-					{this.conditionalField("Násobné umístění") && 
-						<TextField label="Násobné umístění"/>
+					{this.conditionalField("archival_aids") && 
+						<TextField name="archival_aids" label={this.getTranslation("archival_aids")}/>
 					}						
-					{this.conditionalField("Násobné umístění url") && 
-						<TextField label="Násobné umístění url"/>
+					{this.conditionalField("multiple_placement") && 
+						<TextField name="multiple_placement" label={this.getTranslation("multiple_placement")}/>
 					}						
-					{this.conditionalField("Archivní pomůcky") && 
-						<TextField label="Archivní pomůcky"/>
+					{this.conditionalField("multiple_placement_url") && 
+						<TextField name="multiple_placement_url" label={this.getTranslation("multiple_placement_url")}/>
 					}						
-					{this.conditionalField("Téma") && 
-						<TextField label="Téma"/>
+					{this.conditionalField("topic") && 
+						<TextField name="topic" label={this.getTranslation("topic")}/>
 					}						
-					{this.conditionalField("Osoba, korporace jako předmět obsahu dokumentu") && 
-						<TextField label="Osoba, korporace jako předmět obsahu dokumentu"/>
+					{this.conditionalField("corporation_content_specification") && 
+						<TextField name="corporation_content_specification" label={this.getTranslation("corporation_content_specification")}/>
 					}						
-					{this.conditionalField("Chronologické zpřesnění obsahu dokumentu") && 
-						<TextField label="Chronologické zpřesnění obsahu dokumentu"/>
+					{this.conditionalField("chronological_content_specification") && 
+						<TextField name="chronological_content_specification" label={this.getTranslation("chronological_content_specification")}/>
 					}						
-					{this.conditionalField("Geografické zpřesnění obsahu dokumentu") && 
-						<TextField label="Geografické zpřesnění obsahu dokumentu"/>
+					{this.conditionalField("geographical_content_specification") && 
+						<TextField name="geographical_content_specification" label={this.getTranslation("geographical_content_specification")}/>
 					}						
-					{this.conditionalField("Klíčová slova") && 
-						<TextField label="Klíčová slova"/>
+					{this.conditionalField("keywords") && 
+						<TextField name="keywords" label={this.getTranslation("keywords")}/>
 					}						
-					{this.conditionalField("Abstrakt/Popis") && 
-						<TextField label="Abstrakt/Popis"/>
+					{this.conditionalField("description") && 
+						<TextField name="description" label={this.getTranslation("description")}/>
 					}						
 
 					</Paper>
 					<Paper className={styles.mainInput}>
 
-					{this.conditionalField("Poznámka obecná") && 
-						<TextField label="Poznámka obecná"/>
+					{this.conditionalField("general_note") && 
+						<TextField name="general_note" label={this.getTranslation("general_note")}/>
 					}						
-					{this.conditionalField("Poznámka editora") && 
-						<TextField label="Poznámka editora"/>
+					{this.conditionalField("editor_note") && 
+						<TextField name="editor_note" label={this.getTranslation("editor_note")}/>
 					}						
-					{this.conditionalField("Zadavatel") && 
-						<TextField label="Zadavatel"/>
+					{this.conditionalField("submitter") && 
+						<TextField name="submitter" label={this.getTranslation("submitter")}/>
 					}						
 
 					</Paper>
