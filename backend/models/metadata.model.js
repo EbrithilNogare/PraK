@@ -54,10 +54,12 @@ const recordSchema = new mongoose.Schema({
 	}],
 	issn: String,
 	source_document_name: String,
-	year: Number,
-	volume: Number,
-	number: Number,
-	date: Date,
+	copies:{
+		year: Number,
+		volume: Number,
+		number: Number,
+		date: Date,
+	},
 	corporation_name: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationsIndex",
