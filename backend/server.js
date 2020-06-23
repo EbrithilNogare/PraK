@@ -24,8 +24,8 @@ app.use('/user', usersRouter);
 const loginRouter = require('./routes/auth');
 app.use('/auth', loginRouter);
 
-const libraryRouter = require('./routes/record');
-app.use('/record', libraryRouter);
+const libraryRouter = require('./routes/metadata');
+app.use('/metadata', libraryRouter);
 
 
 

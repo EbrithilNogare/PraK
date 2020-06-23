@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Record = require('../models/record.model')
+const Metadata = require('../models/metadata.model')
 const mongoose = require("mongoose")
 
 
@@ -8,7 +8,7 @@ router.route('/:id').get((req, res) => {
 	if(id === undefined)
 		res.status(400).json({ message: "missing id" })
 
-	Record.find({_id:id})
+	Metadata.find({_id:id})
 		.exec()
 		.then(result => {
 			res.status(200).json(result)
@@ -22,7 +22,7 @@ router.route('/').put((req, res) => {
 	if(req.body.name === undefined)
 		res.status(400).json({ message: "missing Name" })
 
-	const newRecord = new Record({
+	const newMetadata = new Metadata({
 		_id: mongoose.Types.ObjectId(),
 		name: req.body.name,
 		submitter: req.body.submitter,
@@ -76,13 +76,13 @@ router.route('/').put((req, res) => {
 	
 	for(const prop of unrequiredProps)
 		if(req.body[prop] !== undefined) 
-			newRecord[prop] = req.body[prop]
+			newMetadata[prop] = req.body[prop]
 
 
-	newRecord.save()
+	newMetadata.save()
 		.then(result => {
 			res.status(200).json({
-				id: newRecord._id,
+				id: newMetadata._id,
 			 })
 		})
 		.catch(err => {

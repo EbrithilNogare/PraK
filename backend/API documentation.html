@@ -292,12 +292,12 @@
 				}
 			},
 
-			Record:{
+			Metadata:{
 				info:{
 					info: "metadata collection",
 				},
 				get:{
-					info: "get record",
+					info: "get metadata",
 					input: "id={id}",
 					output: {
 						200:{
@@ -391,10 +391,10 @@
 					}
 				},
 				post:{
-					info: "update record",
+					info: "update metadata",
 					input: {
 							id: "ObjectId",
-							record: {
+							metadata: {
 								author: "ObjectId",
 								other_authors: ["ObjectId"],
 								other_names: ["String"],
@@ -476,7 +476,7 @@
 					}
 				},
 				put:{
-					info: "create record",
+					info: "create metadata",
 					input: {
 							author: "ObjectId",
 							other_authors: ["ObjectId"],
@@ -571,7 +571,7 @@
 					}
 				},
 				delete:{
-					info: "change record status to deleted",
+					info: "change metadata status to deleted",
 					input: "id={id}",
 					output: {
 						200:{},
