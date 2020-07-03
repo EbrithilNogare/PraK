@@ -16,8 +16,16 @@
 			"label": "Hlavní autor nebo původce",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 		},
+		"author_role": {
+			"label": "Role",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
 		"other_authors": {
 			"label": "Další původci",
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		},
+		"other_authors_role": {
+			"label": "Role",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 		},
 		"name": {
@@ -76,19 +84,19 @@
 		},
 		"publishing_year_from": {
 			"label": "Roky vycházení od",
-			"fields": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+			"fields": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
 		},
 		"publishing_year_to": {
 			"label": "Roky vycházení do",
-			"fields": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+			"fields": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
 		},
 		"publishing_year_note": {
 			"label": "Poznámka k rokům vycházení",
-			"fields": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+			"fields": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
 		},
 		"periodicity": {
 			"label": "Periodicita",
-			"fields": [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+			"fields": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
 		},
 		"issn": {
 			"label": "ISSN",
@@ -162,17 +170,17 @@
 			"label": "URL přílohy",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 		},
-		"source_citation": {
+		"source_object_citation": {
 			"label": "Citace zdroje",
-			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1]
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 		},
 		"previous_name": {
 			"label": "Předcházející název",
-			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+			"fields": [0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
 		},
 		"following_name": {
 			"label": "Následující název",
-			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+			"fields": [0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
 		},
 		"form": {
 			"label": "Forma",
@@ -205,14 +213,18 @@
 		"archival_aids": {
 			"label": "Násobné umístění",
 			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1]
+		},		
+		"source_document_citation": {
+			"label": "Citace zdrojového dokumentu",
+			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 		},
 		"multiple_placement": {
-			"label": "Násobné umístění url",
-			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+			"label": "Násobné umístění",
+			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1]
 		},
 		"multiple_placement_url": {
-			"label": "Archivní pomůcky",
-			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1]
+			"label": "Násobné umístění url",
+			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1]
 		},
 		"topic": {
 			"label": "Téma",

@@ -2,12 +2,18 @@ const mongoose = require('mongoose')
 
 const recordSchema = new mongoose.Schema({
 	author: {
-		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		id: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+			},
+		role: String,
 	},
 	other_authors: [{
-		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		id: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+			},
+		role: String,
 	}],
 	name: {
 		type: String,
@@ -84,7 +90,7 @@ const recordSchema = new mongoose.Schema({
 		name: String,
 		url: String,
 	}],
-	source_citation: [String],
+	source_object_citation: [String],
 	previous_name: {
 		type: mongoose.Types.ObjectId,
 		ref: "?????",
@@ -103,6 +109,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	processing_level: String,
 	archival_aids: String,
+	source_document_citation: String,
 	multiple_placement: String,
 	multiple_placement_url: String,
 	topic: {

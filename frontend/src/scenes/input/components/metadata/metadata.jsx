@@ -76,8 +76,14 @@ class Metadata extends React.Component {
 						{this.conditionalField("author") && 
 							<TextField name="author" label={this.getTranslation("author")}/>
 						}
+						{this.conditionalField("author_role") && 
+							<TextField name="author_role" label={this.getTranslation("author_role")}/>
+						}	
 						{this.conditionalField("other_authors") && 
 							<TextField name="other_authors" label={this.getTranslation("other_authors")}/>
+						}	
+						{this.conditionalField("other_authors_role") && 
+							<TextField name="other_authors_role" label={this.getTranslation("other_authors_role")}/>
 						}					
 						{this.conditionalField("name") && 
 							<TextField name="name" label={this.getTranslation("name")}/>
@@ -218,8 +224,8 @@ class Metadata extends React.Component {
 					{this.conditionalField("attachment_url") && 
 						<TextField name="attachment_url" label={this.getTranslation("attachment_url")}/>
 					}					
-					{this.conditionalField("source_citation") && 
-						<TextField name="source_citation" label={this.getTranslation("source_citation")}/>
+					{this.conditionalField("source_object_citation") && 
+						<TextField name="source_object_citation" label={this.getTranslation("source_object_citation")}/>
 					}					
 					{this.conditionalField("previous_name") && 
 						<TextField name="previous_name" label={this.getTranslation("previous_name")}/>
@@ -254,7 +260,10 @@ class Metadata extends React.Component {
 					}						
 					{this.conditionalField("archival_aids") && 
 						<TextField name="archival_aids" label={this.getTranslation("archival_aids")}/>
-					}						
+					}
+					{this.conditionalField("source_document_citation") && 
+						<TextField name="source_document_citation" label={this.getTranslation("source_document_citation")}/>
+					}
 					{this.conditionalField("multiple_placement") && 
 						<TextField name="multiple_placement" label={this.getTranslation("multiple_placement")}/>
 					}						
