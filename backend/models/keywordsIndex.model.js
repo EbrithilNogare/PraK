@@ -1,132 +1,94 @@
 const mongoose = require('mongoose')
 
 const recordSchema = new mongoose.Schema({
-	author: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexPersons",
-	},
-	other_authors: [{
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexPersons",
+	other_source: [{
+		name: String,
+		id: String,
+		identificator: String,
 	}],
 	name: {
 		type: String,
-		unique: true,
 		required: true,
 	},
-	other_names: [String],
-	language: [String],
-	publish_country: {
+
+	synonyms:[String],
+	inverted_wordorder_terms:[String],
+	spelling_variants:[String],
+	foreign_language_descriptors:[String],
+	form_descriptors:[String],
+
+	main_part:String,
+	other_part:[String],
+
+	general_complement:String,
+	clarification:String,
+
+	definition:String,
+	manual:String,
+	history:String,
+
+	hierarchical_relations:[String],
+	associative_relations:[String],
+
+	founding_person:{
 		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
+		ref: "peopleIndex",
 	},
-	publish_place: {
+	founding_corporation:{
 		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
+		ref: "corporationsIndex",
 	},
-	publisher: {
+	founding_subject:{
 		type: mongoose.Types.ObjectId,
-		ref: "?????",
+		ref: "creationIndex",
 	},
-	publishing_date: [{
-		date: {
-			type: Date,
-			required: true,
-		},
-		note: String,
+	founding_event:[{
+		type: mongoose.Types.ObjectId,
+		ref: "subjectIndex",
 	}],
-	isbn: String,
-	edition_order: String,
-	edition: String,
-	action_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	volume_content: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	publishing_year: [{
-		from: Number,
-		to: Number,
-		note: String,
-		periodicity: String,
-	}],
-	issn: String,
-	source_document_name: String,
-	year: Number,
-	volume: Number,
-	number: Number,
-	date: Date,
-	corporation_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexCorporations",
-	},
-	location: [{
-		institution: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-		fund: String,
-		access_conditions: String,
-		acess_note: String,
-		location_note: String,
-	}],
-	digitized_document_url: String,
-	external_source: [{
-		name: String,
-		url: String,
-		url_leading_to_document: String,
-	}],
-	attachment: [{
-		name: String,
-		url: String,
-	}],
-	source_citation: [String],
-	previous_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	following_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	form: String,
-	range: String,
-	dimension: String,
-	map_scale: String,
-	format: {
-		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
-	},
-	processing_level: String,
-	archival_aids: String,
-	multiple_placement: String,
-	multiple_placement_url: String,
-	topic: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	corporation_content_specification: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexCorporations",
-	},
-	chronological_content_specification: String,
-	geographical_content_specification: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	keywords: [{
+	founding_keyword:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordsIndex",
 	}],
-	description: String,
-	general_note: String,
-	editor_note: String,
-	submitter: {
-		type: String,
-		required: true,
+	chronological_specification:String,
+
+
+	cancellation_person:{
+		type: mongoose.Types.ObjectId,
+		ref: "peopleIndex",
 	},
+	cancellation_corporation:{
+		type: mongoose.Types.ObjectId,
+		ref: "corporationsIndex",
+	},
+	cancellation_subject:{
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	},
+	cancellation_event:[{
+		type: mongoose.Types.ObjectId,
+		ref: "subjectIndex",
+	}],
+	cancellation_keyword:{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordsIndex",
+	},
+	cancellation_specification:String,
+
+	category:[{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordsIndex",
+		required: true,
+	}],
+	domain:[{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordsIndex",
+	}],
+	idc:[String],
+
+	notes:[String],
+
+	record_sources:[String],
 })
 
-module.exports = mongoose.model('metadata', recordSchema)
+module.exports = mongoose.model('keywordsIndex', recordSchema)

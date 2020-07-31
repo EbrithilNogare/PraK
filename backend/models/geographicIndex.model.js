@@ -1,132 +1,169 @@
 const mongoose = require('mongoose')
 
 const recordSchema = new mongoose.Schema({
-	author: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexPersons",
-	},
-	other_authors: [{
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexPersons",
-	}],
-	name: {
-		type: String,
-		unique: true,
-		required: true,
-	},
-	other_names: [String],
-	language: [String],
-	publish_country: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	publish_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	publisher: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	publishing_date: [{
-		date: {
-			type: Date,
-			required: true,
-		},
-		note: String,
-	}],
-	isbn: String,
-	edition_order: String,
-	edition: String,
-	action_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	volume_content: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	publishing_year: [{
-		from: Number,
-		to: Number,
-		note: String,
-		periodicity: String,
-	}],
-	issn: String,
-	source_document_name: String,
-	year: Number,
-	volume: Number,
-	number: Number,
-	date: Date,
-	corporation_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexCorporations",
-	},
-	location: [{
-		institution: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-		fund: String,
-		access_conditions: String,
-		acess_note: String,
-		location_note: String,
-	}],
-	digitized_document_url: String,
-	external_source: [{
+	other_source: [{
 		name: String,
-		url: String,
-		url_leading_to_document: String,
+		id: String,
+		identificator: String,
 	}],
-	attachment: [{
-		name: String,
-		url: String,
-	}],
-	source_citation: [String],
-	previous_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	following_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	form: String,
-	range: String,
-	dimension: String,
-	map_scale: String,
-	format: {
-		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
-	},
-	processing_level: String,
-	archival_aids: String,
-	multiple_placement: String,
-	multiple_placement_url: String,
-	topic: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	corporation_content_specification: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexCorporations",
-	},
-	chronological_content_specification: String,
-	geographical_content_specification: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	keywords: [{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
-	}],
+
+
+
+	acronym: [String],
+	historical_name: [String],
+	other_name_form: [String],
+
+	main_part: String,
+	other_part: [String],
+
+	general_complement: String,
+	geographical_complement: String,
+	chronological_complement: String,
+
+	characteristic: String,
 	description: String,
-	general_note: String,
-	editor_note: String,
-	submitter: {
-		type: String,
-		required: true,
+	history: String,
+
+	coordinates: String,
+
+	partner_object: [{
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	}],
+	owner: [{
+		type: mongoose.Types.ObjectId,
+		ref: "peopleIndex",
+	}],
+	part_of: [{
+		corporation_name: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationsIndex",
+		}],
+		corporation_owner: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+	}],
+	related_entity: [{
+		related_person: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		related_subject: [{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		}],
+		related_event: [{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+		related_corporation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationsIndex",
+		}],
+	}],
+
+	founding_person: {
+		type: mongoose.Types.ObjectId,
+		ref: "peopleIndex",
 	},
+	founding_corporation: {
+		type: mongoose.Types.ObjectId,
+		ref: "corporationsIndex",
+	},
+	founding_document: {
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	},
+	founding_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	first_mention_event: {
+		type: mongoose.Types.ObjectId,
+		ref: "subjectIndex",
+	},
+	first_mention_subject: {
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	},
+	first_mention_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+
+
+	cancellation_person: {
+		type: mongoose.Types.ObjectId,
+		ref: "peopleIndex",
+	},
+	cancellation_corporation: {
+		type: mongoose.Types.ObjectId,
+		ref: "corporationsIndex",
+	},
+	cancellation_document: {
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	},
+	cancellation_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	last_mention_event: {
+		type: mongoose.Types.ObjectId,
+		ref: "subjectIndex",
+	},
+	last_mention_subject: {
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	},
+	last_mention_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	owner_change: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	chronological_specification: String,
+	historical_milestones: [String],
+
+	awards: [{
+		award: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		event_award: {
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		},
+		awarder_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		awarder_corporation: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationsIndex",
+		},
+	}],
+
+	category:[{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordsIndex",
+		required: true,
+	}],
+	characteristic:[{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordsIndex",
+	}],
+	arm:[String],
+	logo:[String],
+	mark:[String],
+	flag:[String],
+
+	notes:[String],
+
+	record_sources:[String],
 })
 
-module.exports = mongoose.model('metadata', recordSchema)
+module.exports = mongoose.model('geographicIndex', recordSchema)
