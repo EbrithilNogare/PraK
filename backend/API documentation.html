@@ -116,7 +116,25 @@
 							}
 						}
 					}
-					document.getElementsByTagName("body")[0].appendChild(routeNode);
+					document.getElementById("leftPanel").appendChild(routeNode);
+				}
+
+
+				for (let item in schema) {
+					const routeNode = document.createElement("div")
+					routeNode.className = "collapsible schema"
+					routeNode.style.maxHeight = "42px"
+					const routeTitle = document.createElement("div")
+					routeTitle.className = "routeTitle"
+					routeTitle.innerText = item
+					routeNode.appendChild(routeTitle)
+				
+					const methodInputNode = document.createElement("pre")
+					methodInputNode.className = "input"
+					methodInputNode.innerHTML = prettyJson.prettyPrint(schema[item])
+					routeNode.appendChild(methodInputNode)
+
+					document.getElementById("rightPanel").appendChild(routeNode);
 				}
 			} catch (err) {
 				document.getElementsByTagName("body")[0].innerHTML += err
@@ -247,7 +265,6 @@
 					}
 				}
 			},
-
 			Auth: {
 				info: {
 					info: "user authentification",
@@ -314,96 +331,7 @@
 					info: "get metadata",
 					input: "id={id}",
 					output: {
-						200: {
-							_id: "ObjectId",
-							author: {
-								id: "ObjectId",
-								role: "String",
-							},
-							other_authors: [{
-								id: "ObjectId",
-								role: "String",
-							}],
-							name: {
-								type: "String",
-								unique: true,
-								required: true,
-							},
-							other_names: ["String"],
-							language: ["String"],
-							publish_country: "ObjectId",
-							publish_place: "ObjectId",
-							publisher: "ObjectId",
-							publishing_date: [{
-								date: {
-									type: "Date",
-									required: true
-								},
-								note: "String",
-							}],
-							isbn: "String",
-							edition_order: "String",
-							edition: "String",
-							action_name: "ObjectId",
-							volume_content: "ObjectId",
-							publishing_year: [{
-								from: "Number",
-								to: "Number",
-								note: "String",
-								periodicity: "String",
-							}],
-							issn: "String",
-							source_document_name: "String",
-							copies: {
-								year: "Number",
-								volume: "Number",
-								number: "Number",
-								date: "Date",
-							},
-							corporation_name: "ObjectId",
-							location: [{
-								institution: "ObjectId",
-								fund: "String",
-								access_conditions: "String",
-								acess_note: "String",
-								location_note: "String",
-							}],
-							digitized_document_url: "String",
-							external_source: [{
-								name: "String",
-								url: "String",
-								url_leading_to_document: "String",
-							}],
-							attachment: [{
-								name: "String",
-								url: "String",
-							}],
-							source_object_citation: ["String"],
-							previous_name: "ObjectId",
-							following_name: "ObjectId",
-							form: "String",
-							range: "String",
-							dimension: "String",
-							map_scale: "String",
-							format: "String",
-							processing_level: "String",
-							archival_aids: "String",
-							source_document_citation: "String",
-							multiple_placement: "String",
-							multiple_placement_url: "String",
-							topic: "ObjectId",
-							corporation_content_specification: "ObjectId",
-							chronological_content_specification: "String",
-							geographical_content_specification: "ObjectId",
-							keywords: ["ObjectId"],
-							description: "String",
-							general_note: "String",
-							editor_note: "String",
-							submitter: {
-								type: "String",
-								required: true
-							},
-						},
+						200: "metadata schema",
 						400: {
 							message: "String"
 						},
@@ -417,82 +345,7 @@
 					info: "update metadata",
 					input: {
 						id: "ObjectId",
-						data: {
-							author: {
-								id: "ObjectId",
-								role: "String",
-							},
-							other_authors: [{
-								id: "ObjectId",
-								role: "String",
-							}],
-							other_names: ["String"],
-							language: ["String"],
-							publish_country: "ObjectId",
-							publish_place: "ObjectId",
-							publisher: "ObjectId",
-							publishing_date: [{
-								date: "Date",
-								note: "String",
-							}],
-							isbn: "String",
-							edition_order: "String",
-							edition: "String",
-							action_name: "ObjectId",
-							volume_content: "ObjectId",
-							publishing_year: [{
-								from: "Number",
-								to: "Number",
-								note: "String",
-								periodicity: "String",
-							}],
-							issn: "String",
-							source_document_name: "String",
-							year: "Number",
-							volume: "Number",
-							number: "Number",
-							date: "Date",
-							corporation_name: "ObjectId",
-							location: [{
-								institution: "ObjectId",
-								fund: "String",
-								access_conditions: "String",
-								acess_note: "String",
-								location_note: "String",
-							}],
-							digitized_document_url: "String",
-							external_source: [{
-								name: "String",
-								url: "String",
-								url_leading_to_document: "String",
-							}],
-							attachment: [{
-								name: "String",
-								url: "String",
-							}],
-							source_object_citation: ["String"],
-							previous_name: "ObjectId",
-							following_name: "ObjectId",
-							form: "String",
-							range: "String",
-							dimension: "String",
-							map_scale: "String",
-							format: "String",
-							processing_level: "String",
-							archival_aids: "String",
-							source_document_citation: "String",
-							multiple_placement: "String",
-							multiple_placement_url: "String",
-							topic: "ObjectId",
-							corporation_content_specification: "ObjectId",
-							chronological_content_specification: "String",
-							geographical_content_specification: "ObjectId",
-							keywords: ["ObjectId"],
-							description: "String",
-							general_note: "String",
-							editor_note: "String",
-							submitter: "String",
-						},
+						data: "metadata schema",
 					},
 					output: {
 						200: {},
@@ -507,93 +360,7 @@
 				},
 				put: {
 					info: "create metadata",
-					input: {
-						author: {
-							id: "ObjectId",
-							role: "String",
-						},
-						other_authors: [{
-							id: "ObjectId",
-							role: "String",
-						}],
-						name: {
-							type: "String",
-							unique: true,
-							required: true,
-						},
-						other_names: ["String"],
-						language: ["String"],
-						publish_country: "ObjectId",
-						publish_place: "ObjectId",
-						publisher: "ObjectId",
-						publishing_date: [{
-							date: {
-								type: "Date",
-								required: true
-							},
-							note: "String",
-						}],
-						isbn: "String",
-						edition_order: "String",
-						edition: "String",
-						action_name: "ObjectId",
-						volume_content: "ObjectId",
-						publishing_year: [{
-							from: "Number",
-							to: "Number",
-							note: "String",
-							periodicity: "String",
-						}],
-						issn: "String",
-						source_document_name: "String",
-						year: "Number",
-						volume: "Number",
-						number: "Number",
-						date: "Date",
-						corporation_name: "ObjectId",
-						location: [{
-							institution: "ObjectId",
-							fund: "String",
-							access_conditions: "String",
-							acess_note: "String",
-							location_note: "String",
-						}],
-						digitized_document_url: "String",
-						external_source: [{
-							name: "String",
-							url: "String",
-							url_leading_to_document: "String",
-						}],
-						attachment: [{
-							name: "String",
-							url: "String",
-						}],
-						source_object_citation: ["String"],
-						previous_name: "ObjectId",
-						following_name: "ObjectId",
-						form: "String",
-						range: "String",
-						dimension: "String",
-						map_scale: "String",
-						format: "String",
-						processing_level: "String",
-						archival_aids: "String",
-						source_document_citation: "String",
-						multiple_placement: "String",
-						multiple_placement_url: "String",
-						topic: "ObjectId",
-						corporation_content_specification: "ObjectId",
-						chronological_content_specification: "String",
-						geographical_content_specification: "ObjectId",
-						keywords: ["ObjectId"],
-						description: "String",
-						general_note: "String",
-						editor_note: "String",
-						submitter: {
-							type: "String",
-							required: true
-						},
-					},
+					input: "metadata schema",
 					output: {
 						200: {
 							id: "ObjectId",
@@ -622,1161 +389,15 @@
 					}
 				}
 			},
-
-			CorporationsIndex: {
-				info: {
-					info: "Corporations collection",
-				},
-				get: {
-					info: "get info about Corporation",
-					input: "id={id}",
-					output: {
-						200: {
-							"other_source": [{
-								"name": "String",
-								"id": "String",
-								"identificator": "String",
-							}],
-
-							"name": {
-								"type": "String",
-								"required": true,
-							},
-
-							"acronym": ["String"],
-							"historical_name": ["String"],
-							"other_name_form": ["String"],
-							"following_name": ["String"],
-
-							"main_part": "String",
-							"side_part": ["String"],
-
-							"general_complement": "String",
-							"geographical_complement": "String",
-							"chronological_complement": "String",
-							"characteristic": "String",
-							"history": "String",
-							"function": "String",
-							"constitutive_standards": ["String"],
-							"scope_standards": ["String"],
-
-							"coordinates": "String",
-
-							"parent_corporation": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"part_of": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"precedent_corporation": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"related_country": [{
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							}],
-
-							"founder": {
-								"type": "ObjectId",
-								"ref": "peopleIndex",
-							},
-							"founding_document": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"founding_place": {
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							},
-							"registration_subject": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"registration_event": {
-								"type": "ObjectId",
-								"ref": "subjectIndex",
-							},
-							"cleavage_person": {
-								"type": "ObjectId",
-								"ref": "peopleIndex",
-							},
-							"cleavage_document": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"cleavage_place": {
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							},
-							"chronological_specification": "String",
-
-							"cancellation_person": {
-								"type": "ObjectId",
-								"ref": "peopleIndex",
-							},
-							"cancellation_document": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"cancellation_place": {
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							},
-							"delete_from_evidence_subject": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"delete_from_evidence_event": {
-								"type": "ObjectId",
-								"ref": "subjectIndex",
-							},
-							"chronological_specification": "String",
-
-							"owner_change": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"place_change": [{
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							}],
-							"organisation_inclusion": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"change_parent_organisation": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"awards": [{
-								"award": {
-									"type": "ObjectId",
-									"ref": "creationIndex",
-								},
-								"event_award": {
-									"type": "ObjectId",
-									"ref": "subjectIndex",
-								},
-								"awarder_person": {
-									"type": "ObjectId",
-									"ref": "peopleIndex",
-								},
-								"awarder_corporation": {
-									"type": "ObjectId",
-									"ref": "corporationsIndex",
-								},
-							}],
-
-							"categorization": [{
-								"type": "ObjectId",
-								"ref": "keywordsIndex",
-							}],
-							"category": [{
-								"type": "ObjectId",
-								"ref": "keywordsIndex",
-							}],
-							"domain_scope": [{
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							}],
-							"geographical_scope": [{
-								"type": "ObjectId",
-								"ref": "keywordsIndex",
-							}],
-							"characteristic": [{
-								"type": "ObjectId",
-								"ref": "",
-							}],
-							"logo": ["String"],
-							"mark": ["String"],
-							"flag": ["String"],
-
-							"notes": ["String"],
-
-							"record_sources": {
-								"type": ["String"],
-								required: true,
-							},
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				post: {
-					info: "update ",
-					input: {
-						"id": "ObjectId",
-						"data": {
-							"other_source": [{
-								"name": "String",
-								"id": "String",
-								"identificator": "String",
-							}],
-
-							"name": {
-								"type": "String",
-								"required": true,
-							},
-
-							"acronym": ["String"],
-							"historical_name": ["String"],
-							"other_name_form": ["String"],
-							"following_name": ["String"],
-
-							"main_part": "String",
-							"side_part": ["String"],
-
-							"general_complement": "String",
-							"geographical_complement": "String",
-							"chronological_complement": "String",
-							"characteristic": "String",
-							"history": "String",
-							"function": "String",
-							"constitutive_standards": ["String"],
-							"scope_standards": ["String"],
-
-							"coordinates": "String",
-
-							"parent_corporation": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"part_of": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"precedent_corporation": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"related_country": [{
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							}],
-
-							"founder": {
-								"type": "ObjectId",
-								"ref": "peopleIndex",
-							},
-							"founding_document": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"founding_place": {
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							},
-							"registration_subject": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"registration_event": {
-								"type": "ObjectId",
-								"ref": "subjectIndex",
-							},
-							"cleavage_person": {
-								"type": "ObjectId",
-								"ref": "peopleIndex",
-							},
-							"cleavage_document": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"cleavage_place": {
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							},
-							"chronological_specification": "String",
-
-							"cancellation_person": {
-								"type": "ObjectId",
-								"ref": "peopleIndex",
-							},
-							"cancellation_document": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"cancellation_place": {
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							},
-							"delete_from_evidence_subject": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"delete_from_evidence_event": {
-								"type": "ObjectId",
-								"ref": "subjectIndex",
-							},
-							"chronological_specification": "String",
-
-							"owner_change": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"place_change": [{
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							}],
-							"organisation_inclusion": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"change_parent_organisation": [{
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							}],
-							"awards": [{
-								"award": {
-									"type": "ObjectId",
-									"ref": "creationIndex",
-								},
-								"event_award": {
-									"type": "ObjectId",
-									"ref": "subjectIndex",
-								},
-								"awarder_person": {
-									"type": "ObjectId",
-									"ref": "peopleIndex",
-								},
-								"awarder_corporation": {
-									"type": "ObjectId",
-									"ref": "corporationsIndex",
-								},
-							}],
-
-							"categorization": [{
-								"type": "ObjectId",
-								"ref": "keywordsIndex",
-							}],
-							"category": [{
-								"type": "ObjectId",
-								"ref": "keywordsIndex",
-							}],
-							"domain_scope": [{
-								"type": "ObjectId",
-								"ref": "geographicIndex",
-							}],
-							"geographical_scope": [{
-								"type": "ObjectId",
-								"ref": "keywordsIndex",
-							}],
-							"characteristic": [{
-								"type": "ObjectId",
-								"ref": "",
-							}],
-							"logo": ["String"],
-							"mark": ["String"],
-							"flag": ["String"],
-
-							"notes": ["String"],
-
-							"record_sources": {
-								"type": ["String"],
-								required: true,
-							},
-						},
-					},
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put: {
-					info: "create",
-					input: {
-						"other_source": [{
-							"name": "String",
-							"id": "String",
-							"identificator": "String",
-						}],
-
-						"name": {
-							"type": "String",
-							"required": true,
-						},
-
-						"acronym": ["String"],
-						"historical_name": ["String"],
-						"other_name_form": ["String"],
-						"following_name": ["String"],
-
-						"main_part": "String",
-						"side_part": ["String"],
-
-						"general_complement": "String",
-						"geographical_complement": "String",
-						"chronological_complement": "String",
-						"characteristic": "String",
-						"history": "String",
-						"function": "String",
-						"constitutive_standards": ["String"],
-						"scope_standards": ["String"],
-
-						"coordinates": "String",
-
-						"parent_corporation": [{
-							"type": "ObjectId",
-							"ref": "corporationsIndex",
-						}],
-						"part_of": [{
-							"type": "ObjectId",
-							"ref": "corporationsIndex",
-						}],
-						"precedent_corporation": [{
-							"type": "ObjectId",
-							"ref": "corporationsIndex",
-						}],
-						"related_country": [{
-							"type": "ObjectId",
-							"ref": "geographicIndex",
-						}],
-
-						"founder": {
-							"type": "ObjectId",
-							"ref": "peopleIndex",
-						},
-						"founding_document": {
-							"type": "ObjectId",
-							"ref": "creationIndex",
-						},
-						"founding_place": {
-							"type": "ObjectId",
-							"ref": "geographicIndex",
-						},
-						"registration_subject": {
-							"type": "ObjectId",
-							"ref": "creationIndex",
-						},
-						"registration_event": {
-							"type": "ObjectId",
-							"ref": "subjectIndex",
-						},
-						"cleavage_person": {
-							"type": "ObjectId",
-							"ref": "peopleIndex",
-						},
-						"cleavage_document": {
-							"type": "ObjectId",
-							"ref": "creationIndex",
-						},
-						"cleavage_place": {
-							"type": "ObjectId",
-							"ref": "geographicIndex",
-						},
-						"chronological_specification": "String",
-
-						"cancellation_person": {
-							"type": "ObjectId",
-							"ref": "peopleIndex",
-						},
-						"cancellation_document": {
-							"type": "ObjectId",
-							"ref": "creationIndex",
-						},
-						"cancellation_place": {
-							"type": "ObjectId",
-							"ref": "geographicIndex",
-						},
-						"delete_from_evidence_subject": {
-							"type": "ObjectId",
-							"ref": "creationIndex",
-						},
-						"delete_from_evidence_event": {
-							"type": "ObjectId",
-							"ref": "subjectIndex",
-						},
-						"chronological_specification": "String",
-
-						"owner_change": [{
-							"type": "ObjectId",
-							"ref": "corporationsIndex",
-						}],
-						"place_change": [{
-							"type": "ObjectId",
-							"ref": "geographicIndex",
-						}],
-						"organisation_inclusion": [{
-							"type": "ObjectId",
-							"ref": "corporationsIndex",
-						}],
-						"change_parent_organisation": [{
-							"type": "ObjectId",
-							"ref": "corporationsIndex",
-						}],
-						"awards": [{
-							"award": {
-								"type": "ObjectId",
-								"ref": "creationIndex",
-							},
-							"event_award": {
-								"type": "ObjectId",
-								"ref": "subjectIndex",
-							},
-							"awarder_person": {
-								"type": "ObjectId",
-								"ref": "peopleIndex",
-							},
-							"awarder_corporation": {
-								"type": "ObjectId",
-								"ref": "corporationsIndex",
-							},
-						}],
-
-						"categorization": [{
-							"type": "ObjectId",
-							"ref": "keywordsIndex",
-						}],
-						"category": [{
-							"type": "ObjectId",
-							"ref": "keywordsIndex",
-						}],
-						"domain_scope": [{
-							"type": "ObjectId",
-							"ref": "geographicIndex",
-						}],
-						"geographical_scope": [{
-							"type": "ObjectId",
-							"ref": "keywordsIndex",
-						}],
-						"characteristic": [{
-							"type": "ObjectId",
-							"ref": "",
-						}],
-						"logo": ["String"],
-						"mark": ["String"],
-						"flag": ["String"],
-
-						"notes": ["String"],
-
-						"record_sources": {
-							"type": ["String"],
-							required: true,
-						},
-					},
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete: {
-					info: "change status to deleted",
-					input: "id={id}",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				}
-			},
-
-			CreationIndex: {
-				info: {
-					info: "Creations collection",
-				},
-				get: {
-					info: "get",
-					input: "id={id}",
-					output: {
-						200: {
-							author: {
-								type: "ObjectId",
-								ref: "nameIndexPersons",
-							},
-							other_authors: [{
-								type: "ObjectId",
-								ref: "nameIndexPersons",
-							}],
-							name: {
-								type: "String",
-								unique: true,
-								required: true,
-							},
-							other_names: ["String"],
-							language: ["String"],
-							publish_country: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							publish_place: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							publisher: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							publishing_date: [{
-								date: {
-									type: "Date",
-									required: true,
-								},
-								note: "String",
-							}],
-							isbn: "String",
-							edition_order: "String",
-							edition: "String",
-							action_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							volume_content: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							publishing_year: [{
-								from: "Number",
-								to: "Number",
-								note: "String",
-								periodicity: "String",
-							}],
-							issn: "String",
-							source_document_name: "String",
-							year: "Number",
-							volume: "Number",
-							number: "Number",
-							date: "Date",
-							corporation_name: {
-								type: "ObjectId",
-								ref: "nameIndexCorporations",
-							},
-							location: [{
-								institution: {
-									type: "ObjectId",
-									ref: "geographicIndex",
-								},
-								fund: "String",
-								access_conditions: "String",
-								acess_note: "String",
-								location_note: "String",
-							}],
-							digitized_document_url: "String",
-							external_source: [{
-								name: "String",
-								url: "String",
-								url_leading_to_document: "String",
-							}],
-							attachment: [{
-								name: "String",
-								url: "String",
-							}],
-							source_citation: ["String"],
-							previous_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							following_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							form: "String",
-							range: "String",
-							dimension: "String",
-							map_scale: "String",
-							format: {
-								type: "ObjectId",
-								ref: "keywordsIndex",
-							},
-							processing_level: "String",
-							archival_aids: "String",
-							multiple_placement: "String",
-							multiple_placement_url: "String",
-							topic: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							corporation_content_specification: {
-								type: "ObjectId",
-								ref: "nameIndexCorporations",
-							},
-							chronological_content_specification: "String",
-							geographical_content_specification: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							keywords: [{
-								type: "ObjectId",
-								ref: "keywordsIndex",
-							}],
-							description: "String",
-							general_note: "String",
-							editor_note: "String",
-							submitter: {
-								type: "String",
-								required: true,
-							},
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				post: {
-					info: "update",
-					input: {
-						"id": "ObjectId",
-						"data": {
-							author: {
-								type: "ObjectId",
-								ref: "nameIndexPersons",
-							},
-							other_authors: [{
-								type: "ObjectId",
-								ref: "nameIndexPersons",
-							}],
-							name: {
-								type: "String",
-								unique: true,
-								required: true,
-							},
-							other_names: ["String"],
-							language: ["String"],
-							publish_country: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							publish_place: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							publisher: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							publishing_date: [{
-								date: {
-									type: "Date",
-									required: true,
-								},
-								note: "String",
-							}],
-							isbn: "String",
-							edition_order: "String",
-							edition: "String",
-							action_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							volume_content: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							publishing_year: [{
-								from: "Number",
-								to: "Number",
-								note: "String",
-								periodicity: "String",
-							}],
-							issn: "String",
-							source_document_name: "String",
-							year: "Number",
-							volume: "Number",
-							number: "Number",
-							date: "Date",
-							corporation_name: {
-								type: "ObjectId",
-								ref: "nameIndexCorporations",
-							},
-							location: [{
-								institution: {
-									type: "ObjectId",
-									ref: "geographicIndex",
-								},
-								fund: "String",
-								access_conditions: "String",
-								acess_note: "String",
-								location_note: "String",
-							}],
-							digitized_document_url: "String",
-							external_source: [{
-								name: "String",
-								url: "String",
-								url_leading_to_document: "String",
-							}],
-							attachment: [{
-								name: "String",
-								url: "String",
-							}],
-							source_citation: ["String"],
-							previous_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							following_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							form: "String",
-							range: "String",
-							dimension: "String",
-							map_scale: "String",
-							format: {
-								type: "ObjectId",
-								ref: "keywordsIndex",
-							},
-							processing_level: "String",
-							archival_aids: "String",
-							multiple_placement: "String",
-							multiple_placement_url: "String",
-							topic: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							corporation_content_specification: {
-								type: "ObjectId",
-								ref: "nameIndexCorporations",
-							},
-							chronological_content_specification: "String",
-							geographical_content_specification: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							keywords: [{
-								type: "ObjectId",
-								ref: "keywordsIndex",
-							}],
-							description: "String",
-							general_note: "String",
-							editor_note: "String",
-							submitter: {
-								type: "String",
-								required: true,
-							},
-						},
-					},
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put: {
-					info: "create",
-					input: {
-							author: {
-								type: "ObjectId",
-								ref: "nameIndexPersons",
-							},
-							other_authors: [{
-								type: "ObjectId",
-								ref: "nameIndexPersons",
-							}],
-							name: {
-								type: "String",
-								unique: true,
-								required: true,
-							},
-							other_names: ["String"],
-							language: ["String"],
-							publish_country: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							publish_place: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							publisher: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							publishing_date: [{
-								date: {
-									type: "Date",
-									required: true,
-								},
-								note: "String",
-							}],
-							isbn: "String",
-							edition_order: "String",
-							edition: "String",
-							action_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							volume_content: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							publishing_year: [{
-								from: "Number",
-								to: "Number",
-								note: "String",
-								periodicity: "String",
-							}],
-							issn: "String",
-							source_document_name: "String",
-							year: "Number",
-							volume: "Number",
-							number: "Number",
-							date: "Date",
-							corporation_name: {
-								type: "ObjectId",
-								ref: "nameIndexCorporations",
-							},
-							location: [{
-								institution: {
-									type: "ObjectId",
-									ref: "geographicIndex",
-								},
-								fund: "String",
-								access_conditions: "String",
-								acess_note: "String",
-								location_note: "String",
-							}],
-							digitized_document_url: "String",
-							external_source: [{
-								name: "String",
-								url: "String",
-								url_leading_to_document: "String",
-							}],
-							attachment: [{
-								name: "String",
-								url: "String",
-							}],
-							source_citation: ["String"],
-							previous_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							following_name: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							form: "String",
-							range: "String",
-							dimension: "String",
-							map_scale: "String",
-							format: {
-								type: "ObjectId",
-								ref: "keywordsIndex",
-							},
-							processing_level: "String",
-							archival_aids: "String",
-							multiple_placement: "String",
-							multiple_placement_url: "String",
-							topic: {
-								type: "ObjectId",
-								ref: "?????",
-							},
-							corporation_content_specification: {
-								type: "ObjectId",
-								ref: "nameIndexCorporations",
-							},
-							chronological_content_specification: "String",
-							geographical_content_specification: {
-								type: "ObjectId",
-								ref: "geographicIndex",
-							},
-							keywords: [{
-								type: "ObjectId",
-								ref: "keywordsIndex",
-							}],
-							description: "String",
-							general_note: "String",
-							editor_note: "String",
-							submitter: {
-								type: "String",
-								required: true,
-							},
-						},
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete: {
-					info: "change status to deleted",
-					input: "id={id}",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				}
-			},
-
-			FamilyIndex:{
+			CorporationsIndex:{
 				info:{
-					info: "families collection",
+					info: "corporation collection",
 				},
 				get:{
 					info: "get",
 					input: "id={id}",
 					output: {
-						200: {
-	author: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexPersons",
-	},
-	other_authors: [{
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexPersons",
-	}],
-	name: {
-		type: String,
-		unique: true,
-		required: true,
-	},
-	other_names: [String],
-	language: [String],
-	publish_country: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	publish_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	publisher: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	publishing_date: [{
-		date: {
-			type: Date,
-			required: true,
-		},
-		note: String,
-	}],
-	isbn: String,
-	edition_order: String,
-	edition: String,
-	action_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	volume_content: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	publishing_year: [{
-		from: Number,
-		to: Number,
-		note: String,
-		periodicity: String,
-	}],
-	issn: String,
-	source_document_name: String,
-	year: Number,
-	volume: Number,
-	number: Number,
-	date: Date,
-	corporation_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexCorporations",
-	},
-	location: [{
-		institution: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-		fund: String,
-		access_conditions: String,
-		acess_note: String,
-		location_note: String,
-	}],
-	digitized_document_url: String,
-	external_source: [{
-		name: String,
-		url: String,
-		url_leading_to_document: String,
-	}],
-	attachment: [{
-		name: String,
-		url: String,
-	}],
-	source_citation: [String],
-	previous_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	following_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	form: String,
-	range: String,
-	dimension: String,
-	map_scale: String,
-	format: {
-		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
-	},
-	processing_level: String,
-	archival_aids: String,
-	multiple_placement: String,
-	multiple_placement_url: String,
-	topic: {
-		type: mongoose.Types.ObjectId,
-		ref: "?????",
-	},
-	corporation_content_specification: {
-		type: mongoose.Types.ObjectId,
-		ref: "nameIndexCorporations",
-	},
-	chronological_content_specification: String,
-	geographical_content_specification: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	keywords: [{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
-	}],
-	description: String,
-	general_note: String,
-	editor_note: String,
-	submitter: {
-		type: String,
-		required: true,
-	},
-},
+						200: "corporation schema",
 						400: {
 							message: "String"
 						},
@@ -1790,7 +411,7 @@
 					info: "update",
 					input: {
 						id: "ObjectId",
-						data:{},
+						data: "corporation schema",
 					},
 					output: {
 						200: {},
@@ -1805,7 +426,7 @@
 				},
 				put:{
 					info: "create",
-					input: {},
+					input: "corporation schema",
 					output: {
 						200: {},
 						400: {
@@ -1832,17 +453,15 @@
 					}
 				}
 			},
-
-			/*
-			Template:{
+			CreationIndex:{
 				info:{
-					info: "collection",
+					info: "creation collection",
 				},
 				get:{
 					info: "get",
 					input: "id={id}",
 					output: {
-						200: {},
+						200: "creation schema",
 						400: {
 							message: "String"
 						},
@@ -1856,7 +475,7 @@
 					info: "update",
 					input: {
 						id: "ObjectId",
-						data:{},
+						data: "creation schema",
 					},
 					output: {
 						200: {},
@@ -1871,7 +490,393 @@
 				},
 				put:{
 					info: "create",
-					input: {},
+					input: "creation schema",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				delete:{
+					info: "change status to deleted",
+					input: "id={id}",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				}
+			},
+			FamilyIndex:{
+				info:{
+					info: "family collection",
+				},
+				get:{
+					info: "get",
+					input: "id={id}",
+					output: {
+						200: "family schema",
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				post:{
+					info: "update",
+					input: {
+						id: "ObjectId",
+						data: "family schema",
+					},
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				put:{
+					info: "create",
+					input: "family schema",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				delete:{
+					info: "change status to deleted",
+					input: "id={id}",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				}
+			},
+			GeographicIndex:{
+				info:{
+					info: "geographic collection",
+				},
+				get:{
+					info: "get",
+					input: "id={id}",
+					output: {
+						200: "geographic schema",
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				post:{
+					info: "update",
+					input: {
+						id: "ObjectId",
+						data: "geographic schema",
+					},
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				put:{
+					info: "create",
+					input: "geographic schema",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				delete:{
+					info: "change status to deleted",
+					input: "id={id}",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				}
+			},
+			KeywordsIndex:{
+				info:{
+					info: "keywords collection",
+				},
+				get:{
+					info: "get",
+					input: "id={id}",
+					output: {
+						200: "keywords schema",
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				post:{
+					info: "update",
+					input: {
+						id: "ObjectId",
+						data: "keywords schema",
+					},
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				put:{
+					info: "create",
+					input: "keywords schema",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				delete:{
+					info: "change status to deleted",
+					input: "id={id}",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				}
+			},
+			PeopleIndex:{
+				info:{
+					info: "person collection",
+				},
+				get:{
+					info: "get",
+					input: "id={id}",
+					output: {
+						200: "person schema",
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				post:{
+					info: "update",
+					input: {
+						id: "ObjectId",
+						data: "person schema",
+					},
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				put:{
+					info: "create",
+					input: "person schema",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				delete:{
+					info: "change status to deleted",
+					input: "id={id}",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				}
+			},
+			SubjectIndex:{
+				info:{
+					info: "subject collection",
+				},
+				get:{
+					info: "get",
+					input: "id={id}",
+					output: {
+						200: "subject schema",
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				post:{
+					info: "update",
+					input: {
+						id: "ObjectId",
+						data: "subject schema",
+					},
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				put:{
+					info: "create",
+					input: "subject schema",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				delete:{
+					info: "change status to deleted",
+					input: "id={id}",
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				}
+			},
+			
+			/*
+			Template:{
+				info:{
+					info: "collection",
+				},
+				get:{
+					info: "get",
+					input: "id={id}",
+					output: {
+						200: "schema",
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				post:{
+					info: "update",
+					input: {
+						id: "ObjectId",
+						data: "schema",
+					},
+					output: {
+						200: {},
+						400: {
+							message: "String"
+						},
+						500: {
+							message: "String",
+							details: "Object"
+						},
+					}
+				},
+				put:{
+					info: "create",
+					input: "schema",
 					output: {
 						200: {},
 						400: {
@@ -1902,6 +907,926 @@
 		}
 	</script>
 
+	<script>
+		const schema = {
+		metadata:{
+		_id: "ObjectId",
+		author: {
+		id: "ObjectId",
+		role: "String",
+		},
+		other_authors: [{
+		id: "ObjectId",
+		role: "String",
+		}],
+		name: {
+		type: "String",
+		unique: true,
+		required: true,
+		},
+		other_names: ["String"],
+		language: ["String"],
+		publish_country: "ObjectId",
+		publish_place: "ObjectId",
+		publisher: "ObjectId",
+		publishing_date: [{
+		date: {
+		type: "Date",
+		required: true
+		},
+		note: "String",
+		}],
+		isbn: "String",
+		edition_order: "String",
+		edition: "String",
+		action_name: "ObjectId",
+		volume_content: "ObjectId",
+		publishing_year: [{
+		from: "Number",
+		to: "Number",
+		note: "String",
+		periodicity: "String",
+		}],
+		issn: "String",
+		source_document_name: "String",
+		copies: {
+		year: "Number",
+		volume: "Number",
+		number: "Number",
+		date: "Date",
+		},
+		corporation_name: "ObjectId",
+		location: [{
+		institution: "ObjectId",
+		fund: "String",
+		access_conditions: "String",
+		acess_note: "String",
+		location_note: "String",
+		}],
+		digitized_document_url: "String",
+		external_source: [{
+		name: "String",
+		url: "String",
+		url_leading_to_document: "String",
+		}],
+		attachment: [{
+		name: "String",
+		url: "String",
+		}],
+		source_object_citation: ["String"],
+		previous_name: "ObjectId",
+		following_name: "ObjectId",
+		form: "String",
+		range: "String",
+		dimension: "String",
+		map_scale: "String",
+		format: "String",
+		processing_level: "String",
+		archival_aids: "String",
+		source_document_citation: "String",
+		multiple_placement: "String",
+		multiple_placement_url: "String",
+		topic: "ObjectId",
+		corporation_content_specification: "ObjectId",
+		chronological_content_specification: "String",
+		geographical_content_specification: "ObjectId",
+		keywords: ["ObjectId"],
+		description: "String",
+		general_note: "String",
+		editor_note: "String",
+		submitter: {
+		type: "String",
+		required: true
+		},
+		},
+		corporation:{
+		other_source:[{
+		name: "String",
+		id: "String",
+		identificator: "String",
+		}],
+
+		name:{
+		type: "String",
+		required: true,
+		},
+
+		acronym: ["String"],
+		historical_name: ["String"],
+		other_name_form: ["String"],
+		following_name: ["String"],
+
+		main_part: "String",
+		side_part: ["String"],
+
+		general_complement: "String",
+		geographical_complement: "String",
+		chronological_complement: "String",
+		characteristic: "String",
+		history: "String",
+		function: "String",
+		constitutive_standards: ["String"],
+		scope_standards: ["String"],
+
+		coordinates: "String",
+
+		parent_corporation: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		part_of: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		precedent_corporation: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		related_country: [{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+
+		founder: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		founding_document: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		founding_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		registration_subject: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		registration_event: {
+		type: "ObjectId",
+		ref: "subjectIndex",
+		},
+		cleavage_person: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		cleavage_document: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		cleavage_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		chronological_specification: "String",
+
+		cancellation_person: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		cancellation_document: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		cancellation_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		delete_from_evidence_subject: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		delete_from_evidence_event: {
+		type: "ObjectId",
+		ref: "subjectIndex",
+		},
+		chronological_specification: "String",
+
+		owner_change: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		place_change: [{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+		organisation_inclusion: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		change_parent_organisation: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		awards: [{
+		award: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		event_award: {
+		type: "ObjectId",
+		ref: "subjectIndex",
+		},
+		awarder_person: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		awarder_corporation: {
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		}],
+
+		categorization: [{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		}],
+		category: [{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		}],
+		domain_scope: [{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+		geographical_scope: [{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		}],
+		characteristic: [{
+		type: "ObjectId",
+		ref: "",
+		}],
+		logo: ["String"],
+		mark: ["String"],
+		flag: ["String"],
+
+		notes: ["String"],
+
+		record_sources:{
+		type: ["String"],
+		required: true,
+		},
+		},
+		creation:{
+		other_source: [{
+		name: "String",
+		id: "String",
+		identificator: "String",
+		}],
+
+		name:{
+		type: "String",
+		required: true,
+		},
+
+
+		other_name_form: ["String"],
+
+		main_part:"String",
+		other_part:["String"],
+		numeric_tag:"String",
+		cast:["String"],
+		tone:"String",
+		arrangement:["String"],
+		name_part:["String"],
+
+		general_complement:"String",
+		geographical_complement:"String",
+		chronological_complement:"String",
+		author:["String"],
+		language:["String"],
+		source:["String"],
+
+		characteristic:"String",
+		description:{
+		type: "String",
+		required: true,
+		},
+		geographical_description:"String",
+
+		history:"String",
+		purpose:["String"],
+
+		hierarchical_relations:[{
+		type: "ObjectId",
+		ref: "creationIndex",
+		}],
+		associative_relations:[{
+		type: "ObjectId",
+		ref: "creationIndex",
+		}],
+		locality:[{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+		related_person:[{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		related_corporation:[{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		related_event:[{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		}],
+		related_location:[{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+		owner_person:[{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		owner_corporation:[{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		related_document:[{
+		type: "ObjectId",
+		ref: "creationIndex",
+		}],
+
+		founding_person:{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		founding_corporation:{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		first_mention_place:{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		first_mention_subject:{
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		first_realization_event:{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		},
+		first_realization_subject:{
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		chronological_specification_beginning:"String",
+
+		cancellation_person:{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		cancellation_corporation:{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		last_mention_place:{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		last_mention_subject:{
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		last_realization_event:{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		},
+		last_realization_subject:{
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		chronological_specification_end:"String",
+
+		document_change_person:[{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		document_change_corporation:[{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		ownership_change_person:[{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		ownership_change_corporation:[{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		location_change:[{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+
+		category:[{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		required: true,
+		}],
+
+		notes:["String"],
+
+		record_sources:["String"],
+
+
+
+
+
+		},
+		family:{
+		other_source: [{
+		name: "String",
+		id: "String",
+		identificator: "String",
+		}],
+		},
+		geographic:{
+		other_source: [{
+		name: "String",
+		id: "String",
+		identificator: "String",
+		}],
+
+		acronym: ["String"],
+		historical_name: ["String"],
+		other_name_form: ["String"],
+
+		main_part: "String",
+		other_part: ["String"],
+
+		general_complement: "String",
+		geographical_complement: "String",
+		chronological_complement: "String",
+
+		characteristic: "String",
+		description: "String",
+		history: "String",
+
+		coordinates: "String",
+
+		partner_object: [{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+		owner: [{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		part_of: [{
+		corporation_name: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		corporation_owner: [{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		}],
+		related_entity: [{
+		related_person: [{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		related_subject: [{
+		type: "ObjectId",
+		ref: "creationIndex",
+		}],
+		related_event: [{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		}],
+		related_corporation: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		}],
+
+		founding_person: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		founding_corporation: {
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		founding_document: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		founding_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		first_mention_event: {
+		type: "ObjectId",
+		ref: "subjectIndex",
+		},
+		first_mention_subject: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		first_mention_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+
+
+		cancellation_person: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		cancellation_corporation: {
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		cancellation_document: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		cancellation_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		last_mention_event: {
+		type: "ObjectId",
+		ref: "subjectIndex",
+		},
+		last_mention_subject: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		last_mention_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		owner_change: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		chronological_specification: "String",
+		historical_milestones: ["String"],
+
+		awards: [{
+		award: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		event_award: {
+		type: "ObjectId",
+		ref: "subjectIndex",
+		},
+		awarder_person: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		awarder_corporation: {
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		}],
+
+		category:[{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		required: true,
+		}],
+		characteristic:[{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		}],
+		arm:["String"],
+		logo:["String"],
+		mark:["String"],
+		flag:["String"],
+
+		notes:["String"],
+
+		record_sources:["String"],
+		},
+		keywords:{
+		other_source: [{
+		name: "String",
+		id: "String",
+		identificator: "String",
+		}],
+		name: {
+		type: "String",
+		required: true,
+		},
+
+		synonyms:["String"],
+		inverted_wordorder_terms:["String"],
+		spelling_variants:["String"],
+		foreign_language_descriptors:["String"],
+		form_descriptors:["String"],
+
+		main_part:"String",
+		other_part:["String"],
+
+		general_complement:"String",
+		clarification:"String",
+
+		definition:"String",
+		manual:"String",
+		history:"String",
+
+		hierarchical_relations:["String"],
+		associative_relations:["String"],
+
+		founding_person:{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		founding_corporation:{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		founding_subject:{
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		founding_event:[{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		}],
+		founding_keyword:[{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		}],
+		chronological_specification:"String",
+
+
+		cancellation_person:{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		cancellation_corporation:{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		cancellation_subject:{
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+		cancellation_event:[{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		}],
+		cancellation_keyword:{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		},
+		cancellation_specification:"String",
+
+		category:[{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		required: true,
+		}],
+		domain:[{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		}],
+		idc:["String"],
+
+		notes:["String"],
+
+		record_sources:["String"],
+		},
+		person:{
+		other_source:[{
+		name: "String",
+		id: "String",
+		identificator: "String",
+		}],
+
+		name:{
+		type: ["String"],
+		required: true,
+		},
+		surname:{
+		type: ["String"],
+		required: true,
+		},
+		born_year: "String",
+		death_year: "String",
+		initials: ["String"],
+		general_complement: ["String"],
+		roman_numerals: ["String"],
+		geographical_complement: ["String"],
+
+		original_name: ["String"],
+		acronym: ["String"],
+		cipher: ["String"],
+		religious_name: ["String"],
+		marriage_name: ["String"],
+		historical_name: ["String"],
+		straight_order: "String",
+
+		titles:[{
+		title: "String",
+		date: "String",
+		}],
+
+		bibliographical_note:{
+		type: "String",
+		required: true,
+		},
+		cv: "String",
+		domain_branch:{
+		type: ["String"],
+		required: true,
+		},
+		gender:{
+		type: "String",
+		required: true,
+		},
+
+		country_membership: [{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+		born_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		death_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		related_country: {
+		type: ["ObjectId"],
+		required: true,
+		ref: "geographicIndex",
+		},
+
+		language_country:{
+		type: ["String"],
+		required: true,
+		},
+
+		parents: [{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		siblings: [{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		family: [{
+		type: "ObjectId",
+		ref: "familyIndex",
+		}],
+		membreship: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		employment: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		affiliation: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+		important_subject: [{
+		type: "ObjectId",
+		ref: "creationIndex",
+		}],
+		important_event: [{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		}],
+		marriage_start: ["String"],
+		marriage_end: ["String"],
+		study: [{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+
+		arm: ["String"],
+		photo: ["String"],
+
+		notes: ["String"],
+		record_sources:{
+		type: ["String"],
+		required: true,
+		},
+		},
+		subject:{
+		other_source: [{
+		name: "String",
+		id: "String",
+		identificator: "String",
+		}],
+
+		name:{
+		type: "String",
+		required: true,
+		},
+
+		acronym: ["String"],
+		other_name_form: ["String"],
+
+		main_part: "String",
+		other_part: ["String"],
+
+		general_complement: "String",
+		geographical_complement: "String",
+		chronological_complement: "String",
+		event_order: "String",
+
+		aggregate_event:[{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		}],
+		sub_event:[{
+		type: "ObjectId",
+		ref: "subjectIndex",
+		}],
+
+		related_person:[{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		related_subject:[{
+		type: "ObjectId",
+		ref: "creationIndex",
+		}],
+		related_place:[{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+		venue:[{
+		type: "ObjectId",
+		ref: "geographicIndex",
+		}],
+		organizator_person:[{
+		type: "ObjectId",
+		ref: "peopleIndex",
+		}],
+		organizator_corporation:[{
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		}],
+
+		founding_person: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		founding_corporation: {
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		founding_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		first_mention: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+
+
+		cancellation_person: {
+		type: "ObjectId",
+		ref: "peopleIndex",
+		},
+		last_mention_event: {
+		type: "ObjectId",
+		ref: "corporationsIndex",
+		},
+		cancellation_place: {
+		type: "ObjectId",
+		ref: "geographicIndex",
+		},
+		last_mention: {
+		type: "ObjectId",
+		ref: "creationIndex",
+		},
+
+		category:[{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		}],
+		topic:[{
+		type: "ObjectId",
+		ref: "keywordsIndex",
+		}],
+
+		notes:["String"],
+
+		record_sources:["String"],
+		},
+		}
+
+	</script>
+
 	<style>
 		::-webkit-scrollbar {
 			width: 15px;
@@ -1919,6 +1844,7 @@
 		}
 
 		pre {
+			background-color: #222;
 			border: 1px solid #444;
 			padding: 10px 20px;
 			margin: 0;
@@ -1936,14 +1862,30 @@
 			color: #ffeb3b;
 		}
 
-
-		body {
+		body{
 			font-family: Roboto;
 			background-color: #222;
 			color: #fff;
+		}
 
+		#root {
+			height: 100wh;
 			display: grid;
-			row-gap: 50px;
+			align-items: start;
+			gap: 20px;
+			grid-template-columns: 21fr 9fr;
+		}
+
+		#leftPanel{
+			display: grid;
+			row-gap: 20px;	
+			overflow-y: scroll;	
+		}
+		
+		#rightPanel{
+			display: grid;
+			row-gap: 20px;	
+			overflow-y: scroll;		
 		}
 
 		.route {
@@ -1959,6 +1901,19 @@
 			grid-template-columns: repeat(4, 1fr);
 			column-gap: 30px;
 			row-gap: 30px;
+		}
+
+		.schema {
+			background-color: #111;
+			font-family: Roboto;
+			border-radius: 10px;
+
+			padding: 20px;
+			box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
+		}
+
+		.schema .input{
+			margin-top: 30px;
 		}
 
 		.collapsible {
@@ -2062,9 +2017,16 @@
 </head>
 
 <body onload="render()">
-	<center>
-		<h1>PraK - API documentation</h1>
-	</center>
+	<div id="root">
+		<center>
+			<h1>PraK - API documentation</h1>
+		</center>
+		<center>
+			<h1>PraK - Schema documentation</h1>
+		</center>
+		<div id="leftPanel"></div>
+		<div id="rightPanel"></div>
+	</div>
 </body>
 
 </html>

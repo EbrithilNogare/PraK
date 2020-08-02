@@ -7,8 +7,6 @@ const recordSchema = new mongoose.Schema({
 		identificator: String,
 	}],
 
-
-
 	acronym: [String],
 	historical_name: [String],
 	other_name_form: [String],
