@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="theme-color" content="#000000" />
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
 	<title>PraK - API Documentation</title>
 
 	<script>
@@ -145,8 +146,7 @@
 				coll[i].addEventListener("click", function () {
 					this.classList.toggle("active")
 					if (this.parentNode.style.maxHeight == "42px") {
-						this.parentNode.style.maxHeight = this.parentNode
-							.scrollHeight + "px"
+						this.parentNode.style.maxHeight = this.parentNode.scrollHeight + "px"
 					} else {
 						this.parentNode.style.maxHeight = "42px"
 					}
