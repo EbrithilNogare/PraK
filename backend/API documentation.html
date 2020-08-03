@@ -71,6 +71,19 @@
 						methodInfoNode.className = "methodInfo"
 						methodInfoNode.innerText = data[route][method].info
 						methodNode.appendChild(methodInfoNode);
+						
+						if (data[route][method].url !== undefined) {
+							const methodUrlCodeBlockNode = document.createElement(
+								"div")
+							methodUrlCodeBlockNode.className = "codeBlock"
+							methodUrlCodeBlockNode.innerText = "Url:"
+							methodNode.appendChild(methodUrlCodeBlockNode);
+
+							const methodUrlNode = document.createElement("pre")
+							methodUrlNode.className = "Url"
+							methodUrlNode.innerHTML = data[route][method].url
+							methodUrlCodeBlockNode.appendChild(methodUrlNode);
+						}
 
 						if (data[route][method].input !== undefined) {
 							const methodInputCodeBlockNode = document.createElement(
@@ -85,7 +98,6 @@
 								route][method].input)
 							methodInputCodeBlockNode.appendChild(methodInputNode);
 						}
-
 
 						if (data[route][method].output !== undefined) {
 							const methodOutputCodeBlockNode = document.createElement(
@@ -165,7 +177,7 @@
 					info: `get info about user
 					
 					only owner can access to password and session`,
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {
 							_id: "ObjectId",
@@ -249,7 +261,7 @@
 					info: `remove account
 					
 					only owner or admin can remove account`,
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -329,7 +341,7 @@
 				},
 				get: {
 					info: "get metadata",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "metadata schema",
 						400: {
@@ -342,23 +354,6 @@
 					}
 				},
 				post: {
-					info: "update metadata",
-					input: {
-						id: "ObjectId",
-						data: "metadata schema",
-					},
-					output: {
-						200: {},
-						400: {
-							message: "String",
-						},
-						500: {
-							message: "String",
-							details: "Object",
-						},
-					}
-				},
-				put: {
 					info: "create metadata",
 					input: "metadata schema",
 					output: {
@@ -374,9 +369,24 @@
 						},
 					}
 				},
+				patch: {
+					info: "update metadata",
+					url: "/id",
+					input: "metadata schema",
+					output: {
+						200: {},
+						400: {
+							message: "String",
+						},
+						500: {
+							message: "String",
+							details: "Object",
+						},
+					}
+				},
 				delete: {
 					info: "change metadata status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -395,7 +405,7 @@
 				},
 				get:{
 					info: "get",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "corporation schema",
 						400: {
@@ -408,11 +418,8 @@
 					}
 				},
 				post:{
-					info: "update",
-					input: {
-						id: "ObjectId",
-						data: "corporation schema",
-					},
+					info: "create",
+					input: "corporation schema",
 					output: {
 						200: {},
 						400: {
@@ -424,8 +431,9 @@
 						},
 					}
 				},
-				put:{
-					info: "create",
+				patch:{
+					info: "update",
+					url: "/id",
 					input: "corporation schema",
 					output: {
 						200: {},
@@ -440,7 +448,7 @@
 				},
 				delete:{
 					info: "change status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -459,7 +467,7 @@
 				},
 				get:{
 					info: "get",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "creation schema",
 						400: {
@@ -472,11 +480,8 @@
 					}
 				},
 				post:{
-					info: "update",
-					input: {
-						id: "ObjectId",
-						data: "creation schema",
-					},
+					info: "create",
+					input: "creation schema",
 					output: {
 						200: {},
 						400: {
@@ -488,8 +493,9 @@
 						},
 					}
 				},
-				put:{
-					info: "create",
+				patch:{
+					info: "update",
+					url: "/id",
 					input: "creation schema",
 					output: {
 						200: {},
@@ -504,7 +510,7 @@
 				},
 				delete:{
 					info: "change status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -523,7 +529,7 @@
 				},
 				get:{
 					info: "get",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "family schema",
 						400: {
@@ -536,11 +542,8 @@
 					}
 				},
 				post:{
-					info: "update",
-					input: {
-						id: "ObjectId",
-						data: "family schema",
-					},
+					info: "create",
+					input: "family schema",
 					output: {
 						200: {},
 						400: {
@@ -552,8 +555,9 @@
 						},
 					}
 				},
-				put:{
-					info: "create",
+				patch:{
+					info: "update",
+					url: "/id",
 					input: "family schema",
 					output: {
 						200: {},
@@ -568,7 +572,7 @@
 				},
 				delete:{
 					info: "change status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -587,7 +591,7 @@
 				},
 				get:{
 					info: "get",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "geographic schema",
 						400: {
@@ -600,11 +604,8 @@
 					}
 				},
 				post:{
-					info: "update",
-					input: {
-						id: "ObjectId",
-						data: "geographic schema",
-					},
+					info: "create",
+					input: "geographic schema",
 					output: {
 						200: {},
 						400: {
@@ -616,8 +617,9 @@
 						},
 					}
 				},
-				put:{
-					info: "create",
+				patch:{
+					info: "update",
+					url: "/id",
 					input: "geographic schema",
 					output: {
 						200: {},
@@ -632,7 +634,7 @@
 				},
 				delete:{
 					info: "change status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -651,7 +653,7 @@
 				},
 				get:{
 					info: "get",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "keywords schema",
 						400: {
@@ -664,11 +666,8 @@
 					}
 				},
 				post:{
-					info: "update",
-					input: {
-						id: "ObjectId",
-						data: "keywords schema",
-					},
+					info: "create",
+					input: "keywords schema",
 					output: {
 						200: {},
 						400: {
@@ -680,8 +679,9 @@
 						},
 					}
 				},
-				put:{
-					info: "create",
+				patch:{
+					info: "update",
+					url: "/id",
 					input: "keywords schema",
 					output: {
 						200: {},
@@ -696,7 +696,7 @@
 				},
 				delete:{
 					info: "change status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -715,7 +715,7 @@
 				},
 				get:{
 					info: "get",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "person schema",
 						400: {
@@ -728,11 +728,8 @@
 					}
 				},
 				post:{
-					info: "update",
-					input: {
-						id: "ObjectId",
-						data: "person schema",
-					},
+					info: "create",
+					input: "person schema",
 					output: {
 						200: {},
 						400: {
@@ -744,8 +741,9 @@
 						},
 					}
 				},
-				put:{
-					info: "create",
+				patch:{
+					info: "update",
+					url: "/id",
 					input: "person schema",
 					output: {
 						200: {},
@@ -760,7 +758,7 @@
 				},
 				delete:{
 					info: "change status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -779,7 +777,7 @@
 				},
 				get:{
 					info: "get",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "subject schema",
 						400: {
@@ -792,11 +790,8 @@
 					}
 				},
 				post:{
-					info: "update",
-					input: {
-						id: "ObjectId",
-						data: "subject schema",
-					},
+					info: "create",
+					input: "subject schema",
 					output: {
 						200: {},
 						400: {
@@ -808,8 +803,9 @@
 						},
 					}
 				},
-				put:{
-					info: "create",
+				patch:{
+					info: "update",
+					url: "/id",
 					input: "subject schema",
 					output: {
 						200: {},
@@ -824,7 +820,7 @@
 				},
 				delete:{
 					info: "change status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -845,7 +841,7 @@
 				},
 				get:{
 					info: "get",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: "schema",
 						400: {
@@ -858,11 +854,8 @@
 					}
 				},
 				post:{
-					info: "update",
-					input: {
-						id: "ObjectId",
-						data: "schema",
-					},
+					info: "create",
+					input: "schema",
 					output: {
 						200: {},
 						400: {
@@ -874,8 +867,9 @@
 						},
 					}
 				},
-				put:{
-					info: "create",
+				patch:{
+					info: "update",
+					url: "/id",
 					input: "schema",
 					output: {
 						200: {},
@@ -890,7 +884,7 @@
 				},
 				delete:{
 					info: "change status to deleted",
-					input: "id={id}",
+					url: "/id",
 					output: {
 						200: {},
 						400: {
@@ -1832,8 +1826,6 @@
 			width: 15px;
 		}
 
-		::-webkit-scrollbar-track {}
-
 		::-webkit-scrollbar-thumb {
 			background: #111;
 			border-radius: 10px;
@@ -1942,8 +1934,10 @@
 		}
 
 		.get,
-		.post,
 		.put,
+		.header,
+		.post,
+		.patch,
 		.delete {
 			font-size: 21px;
 			padding: 10px;
@@ -1962,8 +1956,16 @@
 			background-color: #4CAF50;
 		}
 
-		.put {
+		.patch {
 			background-color: #FFC107;
+		}
+
+		.put {
+			background-color: #9c27b0;
+		}
+		
+		.header {
+			background-color: #795548;
 		}
 
 		.delete {
