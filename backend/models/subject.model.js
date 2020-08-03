@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	other_source: [{
 		name: String,
 		id: String,
@@ -54,7 +54,7 @@ const recordSchema = new mongoose.Schema({
 	}],
 	organizator_corporation:[{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	
 	founding_person: {
@@ -63,7 +63,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	founding_corporation: {
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	founding_place: {
 		type: mongoose.Types.ObjectId,
@@ -81,7 +81,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	last_mention_event: {
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	cancellation_place: {
 		type: mongoose.Types.ObjectId,
@@ -94,11 +94,11 @@ const recordSchema = new mongoose.Schema({
 	
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 	topic:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 
 	notes:[String],
@@ -106,4 +106,4 @@ const recordSchema = new mongoose.Schema({
 	record_sources:[String],
 })
 
-module.exports = mongoose.model('subjectIndex', recordSchema)
+module.exports = mongoose.model('subjectIndex', schema, 'subjectIndex')

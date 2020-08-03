@@ -1,7 +1,7 @@
 const router = require('express').Router()
-const Model = require('../models/metadata.model')
+const Model = require('../models/corporation.model')
 const mongoose = require("mongoose")
-mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', false)
 
 router.route('/:id').get((req, res) => {
 	const id = req.params.id

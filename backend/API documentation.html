@@ -357,7 +357,7 @@
 					info: "create metadata",
 					input: "metadata schema",
 					output: {
-						200: {
+						201: {
 							id: "ObjectId",
 						},
 						400: {
@@ -399,7 +399,7 @@
 					}
 				}
 			},
-			CorporationsIndex:{
+			CorporationIndex:{
 				info:{
 					info: "corporation collection",
 				},
@@ -421,7 +421,9 @@
 					info: "create",
 					input: "corporation schema",
 					output: {
-						200: {},
+						201: {
+							id: "ObjectId",
+						},
 						400: {
 							message: "String"
 						},
@@ -447,7 +449,7 @@
 					}
 				},
 				delete:{
-					info: "change status to deleted",
+					info: "remove",
 					url: "/id",
 					output: {
 						200: {},
@@ -483,7 +485,9 @@
 					info: "create",
 					input: "creation schema",
 					output: {
-						200: {},
+						201: {
+							id: "ObjectId",
+						},
 						400: {
 							message: "String"
 						},
@@ -509,7 +513,7 @@
 					}
 				},
 				delete:{
-					info: "change status to deleted",
+					info: "remove",
 					url: "/id",
 					output: {
 						200: {},
@@ -545,7 +549,9 @@
 					info: "create",
 					input: "family schema",
 					output: {
-						200: {},
+						201: {
+							id: "ObjectId",
+						},
 						400: {
 							message: "String"
 						},
@@ -571,7 +577,7 @@
 					}
 				},
 				delete:{
-					info: "change status to deleted",
+					info: "remove",
 					url: "/id",
 					output: {
 						200: {},
@@ -607,7 +613,9 @@
 					info: "create",
 					input: "geographic schema",
 					output: {
-						200: {},
+						201: {
+							id: "ObjectId",
+						},
 						400: {
 							message: "String"
 						},
@@ -633,7 +641,7 @@
 					}
 				},
 				delete:{
-					info: "change status to deleted",
+					info: "remove",
 					url: "/id",
 					output: {
 						200: {},
@@ -647,7 +655,7 @@
 					}
 				}
 			},
-			KeywordsIndex:{
+			keywordIndex:{
 				info:{
 					info: "keywords collection",
 				},
@@ -669,7 +677,9 @@
 					info: "create",
 					input: "keywords schema",
 					output: {
-						200: {},
+						201: {
+							id: "ObjectId",
+						},
 						400: {
 							message: "String"
 						},
@@ -695,7 +705,7 @@
 					}
 				},
 				delete:{
-					info: "change status to deleted",
+					info: "remove",
 					url: "/id",
 					output: {
 						200: {},
@@ -731,7 +741,9 @@
 					info: "create",
 					input: "person schema",
 					output: {
-						200: {},
+						201: {
+							id: "ObjectId",
+						},
 						400: {
 							message: "String"
 						},
@@ -757,7 +769,7 @@
 					}
 				},
 				delete:{
-					info: "change status to deleted",
+					info: "remove",
 					url: "/id",
 					output: {
 						200: {},
@@ -793,7 +805,9 @@
 					info: "create",
 					input: "subject schema",
 					output: {
-						200: {},
+						201: {
+							id: "ObjectId",
+						},
 						400: {
 							message: "String"
 						},
@@ -819,7 +833,7 @@
 					}
 				},
 				delete:{
-					info: "change status to deleted",
+					info: "remove",
 					url: "/id",
 					output: {
 						200: {},
@@ -883,7 +897,7 @@
 					}
 				},
 				delete:{
-					info: "change status to deleted",
+					info: "remove",
 					url: "/id",
 					output: {
 						200: {},
@@ -1026,15 +1040,15 @@
 
 		parent_corporation: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		part_of: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		precedent_corporation: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		related_country: [{
 		type: "ObjectId",
@@ -1099,7 +1113,7 @@
 
 		owner_change: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		place_change: [{
 		type: "ObjectId",
@@ -1107,11 +1121,11 @@
 		}],
 		organisation_inclusion: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		change_parent_organisation: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		awards: [{
 		award: {
@@ -1128,17 +1142,17 @@
 		},
 		awarder_corporation: {
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		}],
 
 		categorization: [{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		}],
 		category: [{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		}],
 		domain_scope: [{
 		type: "ObjectId",
@@ -1146,7 +1160,7 @@
 		}],
 		geographical_scope: [{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		}],
 		characteristic: [{
 		type: "ObjectId",
@@ -1221,7 +1235,7 @@
 		}],
 		related_corporation:[{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		related_event:[{
 		type: "ObjectId",
@@ -1237,7 +1251,7 @@
 		}],
 		owner_corporation:[{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		related_document:[{
 		type: "ObjectId",
@@ -1250,7 +1264,7 @@
 		},
 		founding_corporation:{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		first_mention_place:{
 		type: "ObjectId",
@@ -1276,7 +1290,7 @@
 		},
 		cancellation_corporation:{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		last_mention_place:{
 		type: "ObjectId",
@@ -1302,7 +1316,7 @@
 		}],
 		document_change_corporation:[{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		ownership_change_person:[{
 		type: "ObjectId",
@@ -1310,7 +1324,7 @@
 		}],
 		ownership_change_corporation:[{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		location_change:[{
 		type: "ObjectId",
@@ -1319,7 +1333,7 @@
 
 		category:[{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		required: true,
 		}],
 
@@ -1374,7 +1388,7 @@
 		part_of: [{
 		corporation_name: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		corporation_owner: [{
 		type: "ObjectId",
@@ -1396,7 +1410,7 @@
 		}],
 		related_corporation: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		}],
 
@@ -1406,7 +1420,7 @@
 		},
 		founding_corporation: {
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		founding_document: {
 		type: "ObjectId",
@@ -1436,7 +1450,7 @@
 		},
 		cancellation_corporation: {
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		cancellation_document: {
 		type: "ObjectId",
@@ -1480,18 +1494,18 @@
 		},
 		awarder_corporation: {
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		}],
 
 		category:[{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		required: true,
 		}],
 		characteristic:[{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		}],
 		arm:["String"],
 		logo:["String"],
@@ -1538,7 +1552,7 @@
 		},
 		founding_corporation:{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		founding_subject:{
 		type: "ObjectId",
@@ -1550,7 +1564,7 @@
 		}],
 		founding_keyword:[{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		}],
 		chronological_specification:"String",
 
@@ -1561,7 +1575,7 @@
 		},
 		cancellation_corporation:{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		cancellation_subject:{
 		type: "ObjectId",
@@ -1573,18 +1587,18 @@
 		}],
 		cancellation_keyword:{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		},
 		cancellation_specification:"String",
 
 		category:[{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		required: true,
 		}],
 		domain:[{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		}],
 		idc:["String"],
 
@@ -1678,15 +1692,15 @@
 		}],
 		membreship: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		employment: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		affiliation: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 		important_subject: [{
 		type: "ObjectId",
@@ -1700,7 +1714,7 @@
 		marriage_end: ["String"],
 		study: [{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 
 		arm: ["String"],
@@ -1766,7 +1780,7 @@
 		}],
 		organizator_corporation:[{
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		}],
 
 		founding_person: {
@@ -1775,7 +1789,7 @@
 		},
 		founding_corporation: {
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		founding_place: {
 		type: "ObjectId",
@@ -1793,7 +1807,7 @@
 		},
 		last_mention_event: {
 		type: "ObjectId",
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 		},
 		cancellation_place: {
 		type: "ObjectId",
@@ -1806,11 +1820,11 @@
 
 		category:[{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		}],
 		topic:[{
 		type: "ObjectId",
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		}],
 
 		notes:["String"],

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	other_source: [{
 		name: String,
 		id: String,
@@ -35,7 +35,7 @@ const recordSchema = new mongoose.Schema({
 	part_of: [{
 		corporation_name: [{
 			type: mongoose.Types.ObjectId,
-			ref: "corporationsIndex",
+			ref: "corporationIndex",
 		}],
 		corporation_owner: [{
 			type: mongoose.Types.ObjectId,
@@ -57,7 +57,7 @@ const recordSchema = new mongoose.Schema({
 		}],
 		related_corporation: [{
 			type: mongoose.Types.ObjectId,
-			ref: "corporationsIndex",
+			ref: "corporationIndex",
 		}],
 	}],
 
@@ -67,7 +67,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	founding_corporation: {
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	founding_document: {
 		type: mongoose.Types.ObjectId,
@@ -97,7 +97,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	cancellation_corporation: {
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	cancellation_document: {
 		type: mongoose.Types.ObjectId,
@@ -141,18 +141,18 @@ const recordSchema = new mongoose.Schema({
 		},
 		awarder_corporation: {
 			type: mongoose.Types.ObjectId,
-			ref: "corporationsIndex",
+			ref: "corporationIndex",
 		},
 	}],
 
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		required: true,
 	}],
 	characteristic:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 	arm:[String],
 	logo:[String],
@@ -164,4 +164,4 @@ const recordSchema = new mongoose.Schema({
 	record_sources:[String],
 })
 
-module.exports = mongoose.model('geographicIndex', recordSchema)
+module.exports = mongoose.model('geographicIndex', schema, 'geographicIndex')

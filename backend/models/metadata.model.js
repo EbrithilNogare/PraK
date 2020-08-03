@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	author: {
 		id: {
 			type: mongoose.Types.ObjectId,
@@ -68,7 +68,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	corporation_name: {
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	location: [{
 		institution: {
@@ -105,7 +105,7 @@ const recordSchema = new mongoose.Schema({
 	map_scale: String,
 	format: {
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	},
 	processing_level: String,
 	archival_aids: String,
@@ -118,7 +118,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	corporation_content_specification: {
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	chronological_content_specification: String,
 	geographical_content_specification: {
@@ -127,7 +127,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	keywords: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 	description: String,
 	general_note: String,
@@ -138,4 +138,4 @@ const recordSchema = new mongoose.Schema({
 	},
 })
 
-module.exports = mongoose.model('metadata', recordSchema)
+module.exports = mongoose.model('metadata', schema, 'metadata')

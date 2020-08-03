@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
-	other_source:[{
+const schema = new mongoose.Schema({
+	other_source: [{
 		name: String,
 		id: String,
 		identificator: String,
 	}],
 
-	name:{
+	name: {
 		type: String,
 		required: true,
 	},
@@ -33,15 +33,15 @@ const recordSchema = new mongoose.Schema({
 
 	parent_corporation: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	part_of: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	precedent_corporation: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	related_country: [{
 		type: mongoose.Types.ObjectId,
@@ -106,7 +106,7 @@ const recordSchema = new mongoose.Schema({
 
 	owner_change: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	place_change: [{
 		type: mongoose.Types.ObjectId,
@@ -114,11 +114,11 @@ const recordSchema = new mongoose.Schema({
 	}],
 	organisation_inclusion: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	change_parent_organisation: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	awards: [{
 		award: {
@@ -135,17 +135,17 @@ const recordSchema = new mongoose.Schema({
 		},
 		awarder_corporation: {
 			type: mongoose.Types.ObjectId,
-			ref: "corporationsIndex",
-		},		
+			ref: "corporationIndex",
+		},
 	}],
 
 	categorization: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 	category: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 	domain_scope: [{
 		type: mongoose.Types.ObjectId,
@@ -153,7 +153,7 @@ const recordSchema = new mongoose.Schema({
 	}],
 	geographical_scope: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 	characteristic: [{
 		type: mongoose.Types.ObjectId,
@@ -165,10 +165,10 @@ const recordSchema = new mongoose.Schema({
 
 	notes: [String],
 
-	record_sources:{
+	record_sources: {
 		type: [String],
 		required: true,
 	},
 })
 
-module.exports = mongoose.model('corporationsIndex', recordSchema)
+module.exports = mongoose.model('corporationIndex', schema, 'corporationIndex')

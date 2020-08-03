@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	other_source: [{
 		name: String,
 		id: String,
@@ -36,7 +36,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	founding_corporation:{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	founding_subject:{
 		type: mongoose.Types.ObjectId,
@@ -48,7 +48,7 @@ const recordSchema = new mongoose.Schema({
 	}],
 	founding_keyword:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 	chronological_specification:String,
 
@@ -59,7 +59,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	cancellation_corporation:{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	cancellation_subject:{
 		type: mongoose.Types.ObjectId,
@@ -71,18 +71,18 @@ const recordSchema = new mongoose.Schema({
 	}],
 	cancellation_keyword:{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	},
 	cancellation_specification:String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		required: true,
 	}],
 	domain:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 	}],
 	idc:[String],
 
@@ -91,4 +91,4 @@ const recordSchema = new mongoose.Schema({
 	record_sources:[String],
 })
 
-module.exports = mongoose.model('keywordsIndex', recordSchema)
+module.exports = mongoose.model('keywordIndex', schema, 'keywordIndex')

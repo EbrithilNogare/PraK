@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	other_source: [{
 		name: String,
 		id: String,
@@ -11,7 +11,6 @@ const recordSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-
 
 	other_name_form: [String],
 		
@@ -58,7 +57,7 @@ const recordSchema = new mongoose.Schema({
 	}],
 	related_corporation:[{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	related_event:[{
 		type: mongoose.Types.ObjectId,
@@ -74,7 +73,7 @@ const recordSchema = new mongoose.Schema({
 	}],
 	owner_corporation:[{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	related_document:[{
 		type: mongoose.Types.ObjectId,
@@ -87,7 +86,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	founding_corporation:{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	first_mention_place:{
 		type: mongoose.Types.ObjectId,
@@ -113,7 +112,7 @@ const recordSchema = new mongoose.Schema({
 	},
 	cancellation_corporation:{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	},
 	last_mention_place:{
 		type: mongoose.Types.ObjectId,
@@ -139,7 +138,7 @@ const recordSchema = new mongoose.Schema({
 	}],
 	document_change_corporation:[{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	ownership_change_person:[{
 		type: mongoose.Types.ObjectId,
@@ -147,7 +146,7 @@ const recordSchema = new mongoose.Schema({
 	}],
 	ownership_change_corporation:[{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	location_change:[{
 		type: mongoose.Types.ObjectId,
@@ -156,18 +155,13 @@ const recordSchema = new mongoose.Schema({
 	
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordsIndex",
+		ref: "keywordIndex",
 		required: true,
 	}],
 	
 	notes:[String],
 
 	record_sources:[String],
-
-
-
-
-
 })
 
-module.exports = mongoose.model('creationIndex', recordSchema)
+module.exports = mongoose.model('creationIndex', schema, 'creationIndex')

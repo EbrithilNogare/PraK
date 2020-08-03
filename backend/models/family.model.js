@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	other_source: [{
 		name: String,
 		id: String,
@@ -8,4 +8,4 @@ const recordSchema = new mongoose.Schema({
 	}],
 })
 
-module.exports = mongoose.model('familyIndex', recordSchema)
+module.exports = mongoose.model('familyIndex', schema, 'familyIndex')

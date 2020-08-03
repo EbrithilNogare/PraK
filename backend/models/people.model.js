@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const recordSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	other_source:[{
 		name: String,
 		id: String,
@@ -86,15 +86,15 @@ const recordSchema = new mongoose.Schema({
 	}],
 	membreship: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	employment: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	affiliation: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	important_subject: [{
 		type: mongoose.Types.ObjectId,
@@ -108,7 +108,7 @@ const recordSchema = new mongoose.Schema({
 	marriage_end: [String],
 	study: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationsIndex",
+		ref: "corporationIndex",
 	}],
 	
 	arm: [String],
@@ -121,4 +121,4 @@ const recordSchema = new mongoose.Schema({
 	},
 })
 
-module.exports = mongoose.model('peopleIndex', recordSchema)
+module.exports = mongoose.model('peopleIndex', schema, 'peopleIndex')
