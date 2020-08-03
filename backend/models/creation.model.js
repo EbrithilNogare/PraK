@@ -155,7 +155,7 @@ const schema = new mongoose.Schema({
 	
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		required: true,
 	}],
 	

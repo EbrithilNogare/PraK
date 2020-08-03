@@ -94,11 +94,11 @@ const schema = new mongoose.Schema({
 	
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 	topic:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 
 	notes:[String],

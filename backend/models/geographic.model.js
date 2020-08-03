@@ -147,12 +147,12 @@ const schema = new mongoose.Schema({
 
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		required: true,
 	}],
 	characteristic:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 	arm:[String],
 	logo:[String],

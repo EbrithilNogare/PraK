@@ -48,7 +48,7 @@ const schema = new mongoose.Schema({
 	}],
 	founding_keyword:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 	chronological_specification:String,
 
@@ -71,18 +71,18 @@ const schema = new mongoose.Schema({
 	}],
 	cancellation_keyword:{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	},
 	cancellation_specification:String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		required: true,
 	}],
 	domain:[{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 	idc:[String],
 
@@ -91,4 +91,4 @@ const schema = new mongoose.Schema({
 	record_sources:[String],
 })
 
-module.exports = mongoose.model('keywordIndex', schema, 'keywordIndex')
+module.exports = mongoose.model('KeywordIndex', schema, 'KeywordIndex')

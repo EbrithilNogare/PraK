@@ -141,11 +141,11 @@ const schema = new mongoose.Schema({
 
 	categorization: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 	category: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 	domain_scope: [{
 		type: mongoose.Types.ObjectId,
@@ -153,7 +153,7 @@ const schema = new mongoose.Schema({
 	}],
 	geographical_scope: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 	characteristic: [{
 		type: mongoose.Types.ObjectId,

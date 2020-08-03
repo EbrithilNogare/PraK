@@ -105,7 +105,7 @@ const schema = new mongoose.Schema({
 	map_scale: String,
 	format: {
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	},
 	processing_level: String,
 	archival_aids: String,
@@ -127,7 +127,7 @@ const schema = new mongoose.Schema({
 	},
 	keywords: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 	}],
 	description: String,
 	general_note: String,

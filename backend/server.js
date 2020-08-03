@@ -31,7 +31,7 @@ app.use('/corporationIndex', require('./routes/corporationIndex'))
 app.use('/creationIndex', require('./routes/creationIndex'))
 app.use('/familyIndex', require('./routes/familyIndex'))
 app.use('/geographicIndex', require('./routes/geographicIndex'))
-app.use('/keywordIndex', require('./routes/keywordIndex'))
+app.use('/KeywordIndex', require('./routes/KeywordIndex'))
 app.use('/peopleIndex', require('./routes/peopleIndex'))
 app.use('/subjectIndex', require('./routes/subjectIndex'))
 

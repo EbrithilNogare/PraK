@@ -655,7 +655,7 @@
 					}
 				}
 			},
-			keywordIndex:{
+			KeywordIndex:{
 				info:{
 					info: "keywords collection",
 				},
@@ -663,7 +663,7 @@
 					info: "get",
 					url: "/id",
 					output: {
-						200: "keywords schema",
+						200: "keyword schema",
 						400: {
 							message: "String"
 						},
@@ -675,7 +675,7 @@
 				},
 				post:{
 					info: "create",
-					input: "keywords schema",
+					input: "keyword schema",
 					output: {
 						201: {
 							id: "ObjectId",
@@ -692,7 +692,7 @@
 				patch:{
 					info: "update",
 					url: "/id",
-					input: "keywords schema",
+					input: "keyword schema",
 					output: {
 						200: {},
 						400: {
@@ -1148,11 +1148,11 @@
 
 		categorization: [{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		}],
 		category: [{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		}],
 		domain_scope: [{
 		type: "ObjectId",
@@ -1160,7 +1160,7 @@
 		}],
 		geographical_scope: [{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		}],
 		characteristic: [{
 		type: "ObjectId",
@@ -1333,7 +1333,7 @@
 
 		category:[{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		required: true,
 		}],
 
@@ -1500,12 +1500,12 @@
 
 		category:[{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		required: true,
 		}],
 		characteristic:[{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		}],
 		arm:["String"],
 		logo:["String"],
@@ -1516,7 +1516,7 @@
 
 		record_sources:["String"],
 		},
-		keywords:{
+		keyword:{
 		other_source: [{
 		name: "String",
 		id: "String",
@@ -1564,7 +1564,7 @@
 		}],
 		founding_keyword:[{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		}],
 		chronological_specification:"String",
 
@@ -1587,18 +1587,18 @@
 		}],
 		cancellation_keyword:{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		},
 		cancellation_specification:"String",
 
 		category:[{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		required: true,
 		}],
 		domain:[{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		}],
 		idc:["String"],
 
@@ -1820,11 +1820,11 @@
 
 		category:[{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		}],
 		topic:[{
 		type: "ObjectId",
-		ref: "keywordIndex",
+		ref: "KeywordIndex",
 		}],
 
 		notes:["String"],
