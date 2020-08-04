@@ -18,6 +18,20 @@ router.route('/:id').get((req, res) => {
 		})
 })
 
+router.route('/').get((req, res) => {
+	if(Object.keys(req.body).length === 0)
+		res.status(400).json({ message: "missing body" })
+		
+	Model.find(res.body)
+		.exec()
+		.then(result => {
+			res.status(200).json(result)
+		})
+		.catch(err => {
+			res.status(500).json("something went wrong")
+		})
+})
+
 router.route('/').post((req, res) => {
 	const newModel = new Model({
 		_id: mongoose.Types.ObjectId(),
