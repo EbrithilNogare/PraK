@@ -22,7 +22,8 @@ router.route('/').get((req, res) => {
 	if(Object.keys(req.body).length === 0)
 		res.status(400).json({ message: "missing body" })
 		
-	Model.find(res.body)
+	Model.find(req.body)
+		.limit(5)
 		.exec()
 		.then(result => {
 			res.status(200).json(result)
