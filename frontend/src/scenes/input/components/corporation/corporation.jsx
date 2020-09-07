@@ -105,6 +105,9 @@ class Corporation extends React.Component {
 				
 				<Card>
 					<CardContent>
+						<Typography variant="h4">
+							Název
+						</Typography>
 						<TextField label="Název"/>
 					</CardContent>
 				</Card>
@@ -114,10 +117,10 @@ class Corporation extends React.Component {
 						<Typography variant="h4">
 							Variantní označení
 						</Typography>
-						<TextField label="akronym/zkratka"/><br/>
-						<TextField label="historická/dřívější forma jména"/><br/>
-						<TextField label="jiné označení"/><br/>
-						<TextField label="následující forma jména"/><br/>
+						<TextField label="Akronym/zkratka"/><br/>
+						<TextField label="Historická/dřívější forma jména"/><br/>
+						<TextField label="Jiné označení"/><br/>
+						<TextField label="Následující forma jména"/><br/>
 					</CardContent>
 				</Card>
 				
@@ -126,8 +129,8 @@ class Corporation extends React.Component {
 						<Typography variant="h4">
 							Části označení
 						</Typography>
-						<TextField label="hlavní část"/>
-						<TextField label="vedlejší část"/>
+						<TextField label="Hlavní část"/>
+						<TextField label="Vedlejší část"/>
 					</CardContent>
 				</Card>
 				
@@ -136,19 +139,22 @@ class Corporation extends React.Component {
 						<Typography variant="h4">
 							Doplňky označení
 						</Typography>
-						<TextField label="obecný doplněk"/>
-						<TextField label="geografický doplněk"/>
-						<TextField label="chronologický doplněk"/>
-						<TextField label="stručná charakteristika"/>
-						<TextField label="historie"/>
-						<TextField label="funkce"/>
-						<TextField label="normy konstitutivní"/>
-						<TextField label="normy - působnost původce"/>
+						<TextField label="Obecný doplněk"/>
+						<TextField label="Geografický doplněk"/>
+						<TextField label="Chronologický doplněk"/>
+						<TextField label="Stručná charakteristika"/>
+						<TextField label="Historie"/>
+						<TextField label="Funkce"/>
+						<TextField label="Normy konstitutivní"/>
+						<TextField label="Normy - působnost původce"/>
 					</CardContent>
 				</Card>
 				
 				<Card>
 					<CardContent>
+						<Typography variant="h4">
+						Souřadnice
+						</Typography>
 						<TextField label="Souřadnice"/>
 					</CardContent>
 				</Card>
@@ -158,10 +164,10 @@ class Corporation extends React.Component {
 						<Typography variant="h4">
 							Vztahy
 						</Typography>
-						<TextField label="nadřízená korporace"/>
-						<TextField label="je část"/>
-						<TextField label="zahrnuta v korporaci"/>
-						<TextField label="související země"/>
+						<TextField label="Nadřízená korporace"/>
+						<TextField label="Je část"/>
+						<TextField label="Zahrnuta v korporaci"/>
+						<TextField label="Související země"/>
 					</CardContent>
 				</Card>
 				
@@ -170,15 +176,15 @@ class Corporation extends React.Component {
 						<Typography variant="h4">
 							Vznik/ počátek existence
 						</Typography>
-						<TextField label="zřízení, založení zakladatel"/>
-						<TextField label="ustanovující dokument"/>
-						<TextField label="geografický objekt v roli předchůdce"/>
-						<TextField label="zapsání dílo"/>
-						<TextField label="událost"/>
-						<TextField label="odštěpení evidence existence - osoba"/>
-						<TextField label="ustanovující dokument"/>
-						<TextField label="geografický objekt v roli předchůdce"/>
-						<TextField label="chronologické zpřesnění"/>
+						<TextField label="Zřízení, založení zakladatel"/>
+						<TextField label="Ustanovující dokument"/>
+						<TextField label="Geografický objekt v roli předchůdce"/>
+						<TextField label="Zapsání dílo"/>
+						<TextField label="Událost"/>
+						<TextField label="Odštěpení evidence existence - osoba"/>
+						<TextField label="Ustanovující dokument"/>
+						<TextField label="Geografický objekt v roli předchůdce"/>
+						<TextField label="Chronologické zpřesnění"/>
 					</CardContent>
 				</Card>
 				
@@ -187,27 +193,12 @@ class Corporation extends React.Component {
 						<Typography variant="h4">
 							Konec existence
 						</Typography>
-						<TextField label="zrušení, likvidace, rozpuštění osoba/bytost která se podílela na zániku"/>
-						<TextField label="související dokument"/>
-						<TextField label="geografický objekt jako následník"/>
-						<TextField label="výmaz z evidence dilo/vytvor"/>
-						<TextField label="udalost"/>
-						<TextField label="chronologické zpřesnění"/>
-					</CardContent>
-				</Card>
-				
-				
-				<Card>
-					<CardContent>
-						<Typography variant="h4">
-							Konec existence
-						</Typography>
-						<TextField label="zrušení, likvidace, rozpuštění osoba/bytost která se podílela na zániku"/>
-						<TextField label="související dokument"/>
-						<TextField label="geografický objekt jako následník"/>
-						<TextField label="výmaz z evidence dilo/vytvor"/>
-						<TextField label="udalost"/>
-						<TextField label="chronologické zpřesnění"/>
+						<TextField label="Zrušení, likvidace, rozpuštění osoba/bytost která se podílela na zániku"/>
+						<TextField label="Související dokument"/>
+						<TextField label="Geografický objekt jako následník"/>
+						<TextField label="Výmaz z evidence dilo/vytvor"/>
+						<TextField label="Udalost"/>
+						<TextField label="Chronologické zpřesnění"/>
 					</CardContent>
 				</Card>
 				
@@ -217,14 +208,14 @@ class Corporation extends React.Component {
 						<Typography variant="h4">
 							Událost
 						</Typography>
-						<TextField label="změna majitele, držitele"/>
-						<TextField label="přesun na jiné místo"/>
-						<TextField label="organizační začlenění"/>
-						<TextField label="změna nadřazené organizace"/>
-						<TextField label="ocenění"/>
-						<TextField label="ocenění"/>
-						<TextField label="udělení ocenění"/>
-						<TextField label="udělovatel"/>
+						<TextField label="Změna majitele, držitele"/>
+						<TextField label="Přesun na jiné místo"/>
+						<TextField label="Organizační začlenění"/>
+						<TextField label="Změna nadřazené organizace"/>
+						<TextField label="Ocenění"/>
+						<TextField label="Ocenění"/>
+						<TextField label="Udělení ocenění"/>
+						<TextField label="Udělovatel"/>
 					</CardContent>
 				</Card>				
 				
@@ -233,24 +224,30 @@ class Corporation extends React.Component {
 						<Typography variant="h4">
 							Zařazení
 						</Typography>
-						<TextField label="zařazení"/>
-						<TextField label="obor působnosti"/>
-						<TextField label="geografická působnosti"/>
-						<TextField label="charakteristika"/>
-						<TextField label="logo"/>
-						<TextField label="značka"/>
-						<TextField label="vlajka"/>
+						<TextField label="Zařazení"/>
+						<TextField label="Obor působnosti"/>
+						<TextField label="Geografická působnosti"/>
+						<TextField label="Charakteristika"/>
+						<TextField label="Logo"/>
+						<TextField label="Značka"/>
+						<TextField label="Vlajka"/>
 					</CardContent>
 				</Card>
 				
 				<Card>
 					<CardContent>
+						<Typography variant="h4">
+						Poznámky
+						</Typography>
 						<TextField label="Poznámky"/>
 					</CardContent>
 				</Card>
 
 				<Card>
 					<CardContent>
+						<Typography variant="h4">
+						Zdroje o heslu
+						</Typography>
 						<TextField label="Zdroje o heslu"/>
 					</CardContent>
 				</Card>					

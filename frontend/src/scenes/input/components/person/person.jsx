@@ -32,36 +32,36 @@ class Author extends React.Component {
 		return(
 			<div className={styles.person}>
 				<Paper className={styles.dataBlock}>
-					<h2>jiny zdroj</h2>
-					<TextField label="nazev"/>
-					<TextField label="id"/>
+					<h2>Jiný zdroj</h2>
+					<TextField label="Nazev"/>
+					<TextField label="Id"/>
 					<TextField label="Identifikátor"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					<h2>biograficka data</h2>
-					<TextField label="jmeno"/>
-					<TextField label="prijmeni"/>
+					<h2>Biografická data</h2>
+					<TextField label="Jmeno"/>
+					<TextField label="Prijmeni"/>
 					<TextField label="Rok narození"/>
 					<TextField label="Rok úmrtí"/>
-					<TextField label="rozpis iniciál"/>
-					<TextField label="obecný doplněk "/>
-					<TextField label="římské číslice"/>
-					<TextField label="geografický doplněk"/>
+					<TextField label="Rozpis iniciál"/>
+					<TextField label="Obecný doplněk "/>
+					<TextField label="Římské číslice"/>
+					<TextField label="Geografický doplněk"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Variantní označení</h2>
-					<TextField label="původní jméno"/>
-					<TextField label="akronym/zkratka"/>
-					<TextField label="autorská šifra/novinářská značka"/>
-					<TextField label="církevní jméno"/>
-					<TextField label="jméno získané sňatkem"/>
-					<TextField label="historická podoba jména"/>
-					<TextField label="přímé pořadí"/>
+					<TextField label="Původní jméno"/>
+					<TextField label="Akronym/zkratka"/>
+					<TextField label="Autorská šifra/novinářská značka"/>
+					<TextField label="Církevní jméno"/>
+					<TextField label="Jméno získané sňatkem"/>
+					<TextField label="Historická podoba jména"/>
+					<TextField label="Přímé pořadí"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Tituly</h2>
 					<TextField label="Tituly"/>
-					<TextField label="datum"/>
+					<TextField label="Datum"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Biografická poznámka</h2>
@@ -81,9 +81,9 @@ class Author extends React.Component {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Příslušnost k zemi</h2>
-					<TextField label="místo narození"/>
-					<TextField label="místo skonu"/>
-					<TextField label="související země"/>
+					<TextField label="Místo narození"/>
+					<TextField label="Místo skonu"/>
+					<TextField label="Související země"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Určení jazykové oblasti</h2>
@@ -91,28 +91,28 @@ class Author extends React.Component {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Vyobrazení</h2>
-					<TextField label="rodiče"/>
-					<TextField label="sourozenci"/>
-					<TextField label="člen rodu/rodiny"/>
-					<TextField label="členství"/>
-					<TextField label="zaměstnání"/>
-					<TextField label="affiliace"/>
-					<TextField label="významná díla"/>
-					<TextField label="významné události"/>
-					<TextField label="uzavření manželství"/>
-					<TextField label="ukončení manželství"/>
-					<TextField label="studium"/>
+					<TextField label="Rodiče"/>
+					<TextField label="Sourozenci"/>
+					<TextField label="Člen rodu/rodiny"/>
+					<TextField label="Členství"/>
+					<TextField label="Zaměstnání"/>
+					<TextField label="Affiliace"/>
+					<TextField label="Významná díla"/>
+					<TextField label="Významné události"/>
+					<TextField label="Uzavření manželství"/>
+					<TextField label="Ukončení manželství"/>
+					<TextField label="Studium"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Poznámky</h2>
-					<TextField label="erby"/>
-					<TextField label="fotografie"/>
+					<TextField label="Erby"/>
+					<TextField label="Fotografie"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Zdroje o heslu</h2>
 					<TextField multiline/>
 				</Paper>
-				<Pair variant="text" color="primary" aria-label="text primary button group">
+				<Pair variant="text" color="primary" aria-label="Text primary button group">
 					<Button variant="contained" color="primary">Save</Button>
 					<Button variant="contained" color="primary">Upload</Button>
 				</Pair>
