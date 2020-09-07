@@ -33,14 +33,14 @@ class Author extends React.Component {
 			<div className={styles.person}>
 				<Paper className={styles.dataBlock}>
 					<h2>Jiný zdroj</h2>
-					<TextField label="Nazev"/>
-					<TextField label="Id"/>
-					<TextField label="Identifikátor"/>
+					<TextField label="Název"/>
+					<TextField label="ID"/>
+					<TextField label="Identifikátor hesla"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Biografická data</h2>
-					<TextField label="Jmeno"/>
-					<TextField label="Prijmeni"/>
+					<TextField label="Jméno"/>
+					<TextField label="Příjmeni"/>
 					<TextField label="Rok narození"/>
 					<TextField label="Rok úmrtí"/>
 					<TextField label="Rozpis iniciál"/>

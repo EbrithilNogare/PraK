@@ -10,7 +10,7 @@ class NavBar extends React.Component {
 		return(
 			<nav className={styles.navBar}>
 				<NavLink exact={true} to="/prak/" className={styles.title}>
-					Databaze prameny Krkonos
+					Databáze prameny Krkonoš
 				</NavLink>
 				<ul className={styles.userNavigation}>
 					<li>

@@ -57,11 +57,11 @@ class Corporation extends React.Component {
 		return(
 			<div className={styles.corporation}>
 				<MaterialTable
-					title="Jiny zdroj"
+					title="Jiný zdroj"
 					columns={[
-						{title:"nazev", field:"name"},
-						{title:"id", field:"id"},
-						{title:"Identifikátor", field:"identificator"},
+						{title:"Název", field:"name"},
+						{title:"ID", field:"id"},
+						{title:"Identifikátor hesla", field:"identificator"},
 					]}
 					data={this.state.schema.other_source}
 					editable = {{
@@ -179,7 +179,7 @@ class Corporation extends React.Component {
 						<TextField label="Zřízení, založení zakladatel"/>
 						<TextField label="Ustanovující dokument"/>
 						<TextField label="Geografický objekt v roli předchůdce"/>
-						<TextField label="Zapsání dílo"/>
+						<TextField label="Zapsání díla"/>
 						<TextField label="Událost"/>
 						<TextField label="Odštěpení evidence existence - osoba"/>
 						<TextField label="Ustanovující dokument"/>
@@ -197,7 +197,7 @@ class Corporation extends React.Component {
 						<TextField label="Související dokument"/>
 						<TextField label="Geografický objekt jako následník"/>
 						<TextField label="Výmaz z evidence dilo/vytvor"/>
-						<TextField label="Udalost"/>
+						<TextField label="Událost"/>
 						<TextField label="Chronologické zpřesnění"/>
 					</CardContent>
 				</Card>
@@ -212,7 +212,6 @@ class Corporation extends React.Component {
 						<TextField label="Přesun na jiné místo"/>
 						<TextField label="Organizační začlenění"/>
 						<TextField label="Změna nadřazené organizace"/>
-						<TextField label="Ocenění"/>
 						<TextField label="Ocenění"/>
 						<TextField label="Udělení ocenění"/>
 						<TextField label="Udělovatel"/>
