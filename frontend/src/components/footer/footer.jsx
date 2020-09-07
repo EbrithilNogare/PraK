@@ -27,10 +27,10 @@ class Footer extends React.Component {
 							<NavLink exact={true} to="/prak/myLibrary">Moje knihovna</NavLink>
 						</li>
 						<li>
-							<NavLink to="/prak/searchHistory">Historie hledani</NavLink>
+							<NavLink to="/prak/searchHistory">Historie hledání</NavLink>
 						</li>
 						<li>
-							<NavLink to="/prak/help">Napoveda</NavLink>
+							<NavLink to="/prak/help">Nápověda</NavLink>
 						</li>
 						<li>
 							<NavLink to="#">CZ</NavLink>

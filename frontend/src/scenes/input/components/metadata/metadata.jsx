@@ -307,8 +307,8 @@ class Metadata extends React.Component {
 				</div>
 				<div className={styles.rightPanel}>
 					<Pair variant="text" color="primary" aria-label="text primary button group">
-						<Button variant="contained" color="primary">Save</Button>
-						<Button variant="contained" color="primary">Upload</Button>
+						<Button variant="contained" color="primary">Uložit</Button>
+						<Button variant="contained" color="primary">Nahrát</Button>
 					</Pair>
 					<Paper>
 						<TableContainer className={styles.mainInput}>

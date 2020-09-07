@@ -40,7 +40,7 @@ class Author extends React.Component {
 				<Paper className={styles.dataBlock}>
 					<h2>Biografická data</h2>
 					<TextField label="Jméno"/>
-					<TextField label="Příjmeni"/>
+					<TextField label="Příjmení"/>
 					<TextField label="Rok narození"/>
 					<TextField label="Rok úmrtí"/>
 					<TextField label="Rozpis iniciál"/>
@@ -96,7 +96,7 @@ class Author extends React.Component {
 					<TextField label="Člen rodu/rodiny"/>
 					<TextField label="Členství"/>
 					<TextField label="Zaměstnání"/>
-					<TextField label="Affiliace"/>
+					<TextField label="Afiliace"/>
 					<TextField label="Významná díla"/>
 					<TextField label="Významné události"/>
 					<TextField label="Uzavření manželství"/>
@@ -113,8 +113,8 @@ class Author extends React.Component {
 					<TextField multiline/>
 				</Paper>
 				<Pair variant="text" color="primary" aria-label="Text primary button group">
-					<Button variant="contained" color="primary">Save</Button>
-					<Button variant="contained" color="primary">Upload</Button>
+					<Button variant="contained" color="primary">Uložit</Button>
+					<Button variant="contained" color="primary">Nahrát</Button>
 				</Pair>
 			</div>
 		)
