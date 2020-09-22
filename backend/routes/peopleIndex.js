@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Model = require('../models/people.model')
 const mongoose = require("mongoose")
 mongoose.set('useFindAndModify', false);
-
+/*
 router.route('/:id').get((req, res) => {
 	const id = req.params.id
 	if(id === undefined)
@@ -17,11 +17,12 @@ router.route('/:id').get((req, res) => {
 			res.status(500).json("something went wrong")
 		})
 })
-
-router.route('/').get((req, res) => {
+*/
+router.route('/').post((req, res) => {
 	if(Object.keys(req.body).length === 0)
 		res.status(400).json({ message: "missing body" })
 		
+
 	Model.find(req.body)
 		.limit(5)
 		.exec()
@@ -33,7 +34,7 @@ router.route('/').get((req, res) => {
 		})
 })
 
-router.route('/').post((req, res) => {
+router.route('/').put((req, res) => {
 	const newModel = new Model({
 		_id: mongoose.Types.ObjectId(),
 		...req.body,

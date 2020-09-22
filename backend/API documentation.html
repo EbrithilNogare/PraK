@@ -403,9 +403,8 @@
 				info:{
 					info: "corporation collection",
 				},
-				get:{
-					info: "get \n From url param by ID or \n From body as fulltext",
-					url: "/id",
+				post:{
+					info: "get match by body content",
 					input: "corporation schema",
 					output: {
 						200: "corporation schema",
@@ -418,7 +417,7 @@
 						},
 					}
 				},
-				post:{
+				put:{
 					info: "create",
 					input: "corporation schema",
 					output: {
@@ -468,9 +467,8 @@
 				info:{
 					info: "creation collection",
 				},
-				get:{
-					info: "get \n From url param by ID or \n From body as fulltext",
-					url: "/id",
+				post:{
+					info: "get match by body content",
 					input: "creation schema",
 					output: {
 						200: "creation schema",
@@ -483,7 +481,7 @@
 						},
 					}
 				},
-				post:{
+				put:{
 					info: "create",
 					input: "creation schema",
 					output: {
@@ -533,9 +531,8 @@
 				info:{
 					info: "family collection",
 				},
-				get:{
-					info: "get \n From url param by ID or \n From body as fulltext",
-					url: "/id",
+				post:{
+					info: "get match by body content",
 					input: "family schema",
 					output: {
 						200: "family schema",
@@ -548,7 +545,7 @@
 						},
 					}
 				},
-				post:{
+				put:{
 					info: "create",
 					input: "family schema",
 					output: {
@@ -598,9 +595,8 @@
 				info:{
 					info: "geographic collection",
 				},
-				get:{
-					info: "get \n From url param by ID or \n From body as fulltext",
-					url: "/id",
+				post:{
+					info: "get match by body content",
 					input: "geographic schema",
 					output: {
 						200: "geographic schema",
@@ -613,7 +609,7 @@
 						},
 					}
 				},
-				post:{
+				put:{
 					info: "create",
 					input: "geographic schema",
 					output: {
@@ -663,9 +659,8 @@
 				info:{
 					info: "keywords collection",
 				},
-				get:{
-					info: "get \n From url param by ID or \n From body as fulltext",
-					url: "/id",
+				post:{
+					info: "get match by body content",
 					input: "keyword schema",
 					output: {
 						200: "keyword schema",
@@ -678,7 +673,7 @@
 						},
 					}
 				},
-				post:{
+				put:{
 					info: "create",
 					input: "keyword schema",
 					output: {
@@ -727,10 +722,9 @@
 			PeopleIndex:{
 				info:{
 					info: "person collection",
-				},
-				get:{
-					info: "get \n From url param by ID or \n From body as fulltext",
-					url: "/id",
+				},		
+				post:{
+					info: "get match by body content",
 					input: "person schema",
 					output: {
 						200: "person schema",
@@ -743,7 +737,7 @@
 						},
 					}
 				},
-				post:{
+				put:{
 					info: "create",
 					input: "person schema",
 					output: {
@@ -793,9 +787,8 @@
 				info:{
 					info: "subject collection",
 				},
-				get:{
-					info: "get \n From url param by ID or \n From body as fulltext",
-					url: "/id",
+				post:{
+					info: "get match by body content",
 					input: "subject schema",
 					output: {
 						200: "subject schema",
@@ -808,7 +801,7 @@
 						},
 					}
 				},
-				post:{
+				put:{
 					info: "create",
 					input: "subject schema",
 					output: {
@@ -860,7 +853,7 @@
 				info:{
 					info: "collection",
 				},
-				get:{
+				post:{
 					info: "get",
 					url: "/id",
 					input: "",
