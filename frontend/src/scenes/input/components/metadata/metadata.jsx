@@ -21,6 +21,7 @@ import { Pair } from '../../../../components/layout'
 import Paper from '../../../../components/paper'
 
 import ISBNField from './components/ISBNField'
+import AuthorField from './components/AuthorField'
 
 import styles from './metadata.module.scss'
 import metadataTypes from './metadataTypes.json'
@@ -73,6 +74,7 @@ class Metadata extends React.Component {
 						</FormControl>
 					</Paper>					
 					<Paper className={styles.mainInput}>
+						<AuthorField/>
 						{this.conditionalField("author") && 
 							<TextField name="author" label={this.getTranslation("author")}/>
 						}
