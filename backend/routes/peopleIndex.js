@@ -23,8 +23,15 @@ router.route('/').post((req, res) => {
 		res.status(400).json({ message: "missing body" })
 		
 	// support for regexp search
-	if(req.body.name && req.body.name[0] == "/" && req.body.name.slice(-1) == "/")
-		req.body.name = {$regex : req.body.name.substring(1, req.body.name.length - 1)}
+	for(let key of ["name", "surname"])
+		if(
+			req.body[key] &&
+			typeof req.body[key] === "string" &&
+			req.body[key].length > 1 &&
+			req.body[key][0] == "/" &&
+			req.body[key].slice(-1) == "/"
+		)
+			req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
 
 	Model.find(req.body)
 		.limit(5)

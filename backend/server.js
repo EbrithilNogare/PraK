@@ -2,8 +2,10 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
+mongoose.set('useUnifiedTopology', true);
 mongoose.set('useCreateIndex', true);
 
 require('dotenv').config()
@@ -12,7 +14,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-mongoose.connect(process.env.DBUrl, {useNewUrlParser: true, useUnifiedTopology: true})	
+mongoose.connect(process.env.DBUrl)	
 
 
 // routes

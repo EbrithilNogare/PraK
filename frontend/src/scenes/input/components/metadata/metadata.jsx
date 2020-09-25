@@ -21,7 +21,10 @@ import { Pair } from '../../../../components/layout'
 import Paper from '../../../../components/paper'
 
 import ISBNField from './components/ISBNField'
-import AuthorField from './components/AuthorField'
+import {
+	PersonComboBox,
+	CorporationComboBox,
+} from '../comboBoxes'
 
 import styles from './metadata.module.scss'
 import metadataTypes from './metadataTypes.json'
@@ -74,15 +77,14 @@ class Metadata extends React.Component {
 						</FormControl>
 					</Paper>					
 					<Paper className={styles.mainInput}>
-						<AuthorField/>
 						{this.conditionalField("author") && 
-							<TextField name="author" label={this.getTranslation("author")}/>
+							<PersonComboBox name="author" label={this.getTranslation("author")}/>
 						}
 						{this.conditionalField("author_role") && 
 							<TextField name="author_role" label={this.getTranslation("author_role")}/>
 						}	
 						{this.conditionalField("other_authors") && 
-							<TextField name="other_authors" label={this.getTranslation("other_authors")}/>
+							<PersonComboBox name="other_authors" label={this.getTranslation("other_authors")}/>
 						}	
 						{this.conditionalField("other_authors_role") && 
 							<TextField name="other_authors_role" label={this.getTranslation("other_authors_role")}/>
@@ -191,7 +193,7 @@ class Metadata extends React.Component {
 					<Paper className={styles.mainInput}>
 
 					{this.conditionalField("corporation_name") && 
-						<TextField name="corporation_name" label={this.getTranslation("corporation_name")}/>
+						<CorporationComboBox name="corporation_name" label={this.getTranslation("corporation_name")}/>
 					}					
 					{this.conditionalField("access_conditions") && 
 						<TextField name="access_conditions" label={this.getTranslation("access_conditions")}/>
