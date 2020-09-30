@@ -1,6 +1,6 @@
-import FetchComboBox from "./FetchComboBox"
+import ComboBox from "./ComboBox"
 
-class PersonComboBox extends FetchComboBox {
+class PersonComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/PeopleIndex"
 
 	generateObjectForMongooseFind = (value) => {

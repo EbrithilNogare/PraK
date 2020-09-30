@@ -1,7 +1,7 @@
 import ComboBox from "./ComboBox"
 
-class CorporationComboBox extends ComboBox {
-	getFetchURL = () => "/prak/api/CorporationIndex"
+class KeywordComboBox extends ComboBox {
+	getFetchURL = () => "/prak/api/KeywordIndex"
 
 	generateObjectForMongooseFind = (value) => {
 		return { name: `/${value}/` }
@@ -10,4 +10,4 @@ class CorporationComboBox extends ComboBox {
 	parseReturnedObjectFromMongooseFind = (element) => element.name
 }
 
-export default CorporationComboBox
+export default KeywordComboBox

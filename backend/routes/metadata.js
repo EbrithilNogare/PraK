@@ -2,7 +2,7 @@ const router = require('express').Router()
 const Model = require('../models/metadata.model')
 const mongoose = require("mongoose")
 mongoose.set('useFindAndModify', false);
-
+/*
 router.route('/:id').get((req, res) => {
 	const id = req.params.id
 	if(id === undefined)
@@ -17,8 +17,34 @@ router.route('/:id').get((req, res) => {
 			res.status(500).json("something went wrong")
 		})
 })
-
+*/
 router.route('/').post((req, res) => {
+	if(Object.keys(req.body).length === 0)
+		res.status(400).json({ message: "missing body" })
+		
+	// support for regexp search
+	for(let key of ["name"])
+	if(
+		req.body[key] &&
+		typeof req.body[key] === "string" &&
+		req.body[key].length > 1 &&
+		req.body[key][0] == "/" &&
+		req.body[key].slice(-1) == "/"
+	)
+		req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
+	
+	Model.findById(req.body
+		.limit(5))
+		.exec()
+		.then(result => {
+			res.status(200).json(result)
+		})
+		.catch(err => {
+			res.status(500).json("something went wrong")
+		})
+})
+
+router.route('/').put((req, res) => {
 	const newModel = new Model({
 		_id: mongoose.Types.ObjectId(),
 		...req.body,

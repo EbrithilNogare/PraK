@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core'
 
 
-class FetchComboBox extends React.Component {
+class ComboBox extends React.Component {
 	constructor(props){
 		super(props)
 		
@@ -98,4 +98,4 @@ class FetchComboBox extends React.Component {
 	}
 }
 
-export default FetchComboBox
+export default ComboBox
