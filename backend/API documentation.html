@@ -2,2035 +2,2048 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="theme-color" content="#000000" />
-	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
-	<title>PraK - API Documentation</title>
+<meta charset="utf-8" />
+<meta name="theme-color" content="#000000" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+<title>PraK - API Documentation</title>
 
-	<script>
-		const prettyJson = {
-			replacer: function (match, pIndent, pKey, pVal, pEnd) {
-				var key = '<span class=json-key>';
-				var val = '<span class=json-value>';
-				var str = '<span class=json-string>';
-				var r = pIndent || '';
-				if (pKey)
-					r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
-				if (pVal)
-					r = r + (pVal[0] == '"' ? str : val) + pVal + '</span>';
-				return r + (pEnd || '');
-			},
-			prettyPrint: function (obj) {
-				var jsonLine =
-					/^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
-				return JSON.stringify(obj, null, 3)
-					.replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
-					.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-					.replace(jsonLine, prettyJson.replacer);
-			}
+<script>
+	const prettyJson = {
+		replacer: function (match, pIndent, pKey, pVal, pEnd) {
+			var key = '<span class=json-key>';
+			var val = '<span class=json-value>';
+			var str = '<span class=json-string>';
+			var r = pIndent || '';
+			if (pKey)
+				r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
+			if (pVal)
+				r = r + (pVal[0] == '"' ? str : val) + pVal + '</span>';
+			return r + (pEnd || '');
+		},
+		prettyPrint: function (obj) {
+			var jsonLine =
+				/^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+			return JSON.stringify(obj, null, 3)
+				.replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
+				.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+				.replace(jsonLine, prettyJson.replacer);
 		}
+	}
 
-		const codeTable = {
-			200: "OK",
-			201: "Created",
-			202: "Accepted",
-			204: "No Content",
-			400: "Bad Request",
-			401: "Unauthorized",
-			403: "Forbidden",
-			404: "Not Found",
-			405: "Method Not Allowed",
-			406: "Not Acceptable",
-			415: "Unsupported Media Type",
-			500: "Internal Server Error",
-		}
+	const codeTable = {
+		200: "OK",
+		201: "Created",
+		202: "Accepted",
+		204: "No Content",
+		400: "Bad Request",
+		401: "Unauthorized",
+		403: "Forbidden",
+		404: "Not Found",
+		405: "Method Not Allowed",
+		406: "Not Acceptable",
+		415: "Unsupported Media Type",
+		500: "Internal Server Error",
+	}
 
-		function render() {
-			try {
-				for (let route in data) {
-					const routeNode = document.createElement("div")
-					routeNode.className = "collapsible route"
-					routeNode.style.maxHeight = "42px"
-					const routeTitle = document.createElement("div")
-					routeTitle.className = "routeTitle"
-					routeTitle.innerText = route
-					routeNode.appendChild(routeTitle);
+	function render() {
+		try {
+			for (let route in data) {
+				const routeNode = document.createElement("div")
+				routeNode.className = "collapsible route"
+				routeNode.style.maxHeight = "42px"
+				const routeTitle = document.createElement("div")
+				routeTitle.className = "routeTitle"
+				routeTitle.innerText = route
+				routeNode.appendChild(routeTitle);
 
-					for (let method in data[route]) {
-						const methodNode = document.createElement("div")
-						methodNode.className = method === "info" ? "information" :
-							"method"
-						routeNode.appendChild(methodNode);
+				for (let method in data[route]) {
+					const methodNode = document.createElement("div")
+					methodNode.className = method === "info" ? "information" :
+						"method"
+					routeNode.appendChild(methodNode);
 
-						const methodTitleNode = document.createElement("div")
-						methodTitleNode.className = method
-						methodTitleNode.innerText = method
-						methodNode.appendChild(methodTitleNode);
+					const methodTitleNode = document.createElement("div")
+					methodTitleNode.className = method
+					methodTitleNode.innerText = method
+					methodNode.appendChild(methodTitleNode);
 
-						const methodInfoNode = document.createElement("div")
-						methodInfoNode.className = "methodInfo"
-						methodInfoNode.innerText = data[route][method].info
-						methodNode.appendChild(methodInfoNode);
-						
-						if (data[route][method].url !== undefined) {
-							const methodUrlCodeBlockNode = document.createElement(
-								"div")
-							methodUrlCodeBlockNode.className = "codeBlock"
-							methodUrlCodeBlockNode.innerText = "Url:"
-							methodNode.appendChild(methodUrlCodeBlockNode);
-
-							const methodUrlNode = document.createElement("pre")
-							methodUrlNode.className = "Url"
-							methodUrlNode.innerHTML = data[route][method].url
-							methodUrlCodeBlockNode.appendChild(methodUrlNode);
-						}
-
-						if (data[route][method].input !== undefined) {
-							const methodInputCodeBlockNode = document.createElement(
-								"div")
-							methodInputCodeBlockNode.className = "codeBlock"
-							methodInputCodeBlockNode.innerText = "Input:"
-							methodNode.appendChild(methodInputCodeBlockNode);
-
-							const methodInputNode = document.createElement("pre")
-							methodInputNode.className = "input"
-							methodInputNode.innerHTML = prettyJson.prettyPrint(data[
-								route][method].input)
-							methodInputCodeBlockNode.appendChild(methodInputNode);
-						}
-
-						if (data[route][method].output !== undefined) {
-							const methodOutputCodeBlockNode = document.createElement(
-								"div")
-							methodOutputCodeBlockNode.className = "codeBlock"
-							methodOutputCodeBlockNode.innerText = "Output:"
-							methodNode.appendChild(methodOutputCodeBlockNode);
-
-							for (let code in data[route][method].output) {
-								const methodOutputBrNode = document.createElement(
-									"br")
-								methodOutputCodeBlockNode.appendChild(
-									methodOutputBrNode);
-
-								const methodOutputCodeNode = document.createElement(
-									"div")
-								methodOutputCodeNode.className = `outputCode${code}`
-								methodOutputCodeNode.innerText =
-									`${code} - ${codeTable[code] || ""}`
-								methodOutputCodeBlockNode.appendChild(
-									methodOutputCodeNode);
-
-								const methodOutputNode = document.createElement("pre")
-								methodOutputNode.className = "output"
-								methodOutputNode.innerHTML = prettyJson.prettyPrint(
-									data[route][method].output[code])
-								methodOutputCodeBlockNode.appendChild(
-									methodOutputNode);
-							}
-						}
-					}
-					document.getElementById("leftPanel").appendChild(routeNode);
-				}
-
-
-				for (let item in schema) {
-					const routeNode = document.createElement("div")
-					routeNode.className = "collapsible schema"
-					routeNode.style.maxHeight = "42px"
-					const routeTitle = document.createElement("div")
-					routeTitle.className = "routeTitle"
-					routeTitle.innerText = item
-					routeNode.appendChild(routeTitle)
-				
-					const methodInputNode = document.createElement("pre")
-					methodInputNode.className = "input"
-					methodInputNode.innerHTML = prettyJson.prettyPrint(schema[item])
-					routeNode.appendChild(methodInputNode)
-
-					document.getElementById("rightPanel").appendChild(routeNode);
-				}
-			} catch (err) {
-				document.getElementsByTagName("body")[0].innerHTML += err
-			}
-
-			const coll = document.getElementsByClassName("routeTitle")
-			for (let i = 0; i < coll.length; i++) {
-				coll[i].addEventListener("click", function () {
-					this.classList.toggle("active")
-					if (this.parentNode.style.maxHeight == "42px") {
-						this.parentNode.style.maxHeight = this.parentNode.scrollHeight + "px"
-					} else {
-						this.parentNode.style.maxHeight = "42px"
-					}
-				})
-			}
-		}
-	</script>
-
-	<script>
-		const data = {
-			User: {
-				info: {
-					info: "users collection",
-				},
-				get: {
-					info: `get info about user
+					const methodInfoNode = document.createElement("div")
+					methodInfoNode.className = "methodInfo"
+					methodInfoNode.innerText = data[route][method].info
+					methodNode.appendChild(methodInfoNode);
 					
-					only owner can access to password and session`,
-					url: "/id",
-					output: {
-						200: {
-							_id: "ObjectId",
-							email: "String",
-							password: {
-								hashed: "String",
-								salt: "String",
-							},
-							role: "String",
-							session: {
-								id: "String",
-								expiration: "Date",
-							},
-							firstName: "? String",
-							secondName: "? String",
-							"__v": "Number",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				post: {
-					info: `update existing user
+					if (data[route][method].url !== undefined) {
+						const methodUrlCodeBlockNode = document.createElement(
+							"div")
+						methodUrlCodeBlockNode.className = "codeBlock"
+						methodUrlCodeBlockNode.innerText = "Url:"
+						methodNode.appendChild(methodUrlCodeBlockNode);
 
-						permissions:
-						email -> admin, owner
-						password -> admin, owner
-						role -> admin`,
-					input: {
-						id: "ObjectId",
-						data: {
-							email: "? String",
-							password: "? String",
-							firstName: "? String",
-							secondName: "? String",
-							role: "? String",
-						}
-					},
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						401: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
+						const methodUrlNode = document.createElement("pre")
+						methodUrlNode.className = "Url"
+						methodUrlNode.innerHTML = data[route][method].url
+						methodUrlCodeBlockNode.appendChild(methodUrlNode);
 					}
-				},
-				put: {
-					info: "register new user",
-					input: {
+
+					if (data[route][method].input !== undefined) {
+						const methodInputCodeBlockNode = document.createElement(
+							"div")
+						methodInputCodeBlockNode.className = "codeBlock"
+						methodInputCodeBlockNode.innerText = "Input:"
+						methodNode.appendChild(methodInputCodeBlockNode);
+
+						const methodInputNode = document.createElement("pre")
+						methodInputNode.className = "input"
+						methodInputNode.innerHTML = prettyJson.prettyPrint(data[
+							route][method].input)
+						methodInputCodeBlockNode.appendChild(methodInputNode);
+					}
+
+					if (data[route][method].output !== undefined) {
+						const methodOutputCodeBlockNode = document.createElement(
+							"div")
+						methodOutputCodeBlockNode.className = "codeBlock"
+						methodOutputCodeBlockNode.innerText = "Output:"
+						methodNode.appendChild(methodOutputCodeBlockNode);
+
+						for (let code in data[route][method].output) {
+							const methodOutputBrNode = document.createElement(
+								"br")
+							methodOutputCodeBlockNode.appendChild(
+								methodOutputBrNode);
+
+							const methodOutputCodeNode = document.createElement(
+								"div")
+							methodOutputCodeNode.className = `outputCode${code}`
+							methodOutputCodeNode.innerText =
+								`${code} - ${codeTable[code] || ""}`
+							methodOutputCodeBlockNode.appendChild(
+								methodOutputCodeNode);
+
+							const methodOutputNode = document.createElement("pre")
+							methodOutputNode.className = "output"
+							methodOutputNode.innerHTML = prettyJson.prettyPrint(
+								data[route][method].output[code])
+							methodOutputCodeBlockNode.appendChild(
+								methodOutputNode);
+						}
+					}
+				}
+				document.getElementById("leftPanel").appendChild(routeNode);
+			}
+
+
+			for (let item in schema) {
+				const routeNode = document.createElement("div")
+				routeNode.className = "collapsible schema"
+				routeNode.style.maxHeight = "42px"
+				const routeTitle = document.createElement("div")
+				routeTitle.className = "routeTitle"
+				routeTitle.innerText = item
+				routeNode.appendChild(routeTitle)
+			
+				const methodInputNode = document.createElement("pre")
+				methodInputNode.className = "input"
+				methodInputNode.innerHTML = prettyJson.prettyPrint(schema[item])
+				routeNode.appendChild(methodInputNode)
+
+				document.getElementById("rightPanel").appendChild(routeNode);
+			}
+		} catch (err) {
+			document.getElementsByTagName("body")[0].innerHTML += err
+		}
+
+		const coll = document.getElementsByClassName("routeTitle")
+		for (let i = 0; i < coll.length; i++) {
+			coll[i].addEventListener("click", function () {
+				this.classList.toggle("active")
+				if (this.parentNode.style.maxHeight == "42px") {
+					this.parentNode.style.maxHeight = this.parentNode.scrollHeight + "px"
+				} else {
+					this.parentNode.style.maxHeight = "42px"
+				}
+			})
+		}
+	}
+</script>
+
+<script>
+	const data = {
+		User: {
+			info: {
+				info: "users collection",
+			},
+			get: {
+				info: `get info about user
+				
+				only owner can access to password and session`,
+				url: "/id",
+				output: {
+					200: {
+						_id: "ObjectId",
 						email: "String",
-						password: "String",
+						password: {
+							hashed: "String",
+							salt: "String",
+						},
+						role: "String",
+						session: {
+							id: "String",
+							expiration: "Date",
+						},
 						firstName: "? String",
 						secondName: "? String",
+						"__v": "Number",
 					},
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						401: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete: {
-					info: `remove account
-					
-					only owner or admin can remove account`,
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						401: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				}
-			},
-			Auth: {
-				info: {
-					info: "user authentification",
-				},
-				get: {
-					info: "check if user is logged in",
-					input: "sessionID={sessionID}",
-					output: {
-						200: {
-							status: "LOGGED_IN | SESSION_EXPIRED | NOT_LOGGED_IN",
-							userID: "? ObjectId",
-						},
-						400: {
-							message: "String",
-						},
-						500: {
-							message: "String",
-							details: "Object",
-						},
-					}
-				},
-				post: {
-					info: "login",
-					input: {
-						email: "String",
-						password: "String",
+					400: {
+						message: "String"
 					},
-					output: {
-						200: {
-							status: "LOGGED_IN | NOT_LOGGED_IN",
-							message: "? String",
-							sessionID: "? String",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object",
-						},
-					}
-				},
-				delete: {
-					info: "logout",
-					input: "sessionID={sessionID}",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object",
-						},
-					}
+					500: {
+						message: "String",
+						details: "Object"
+					},
 				}
 			},
+			post: {
+				info: `update existing user
 
-			Metadata: {
-				info: {
-					info: "metadata collection",
-				},
-				get: {
-					info: "get metadata",
-					url: "/id",
-					output: {
-						200: "metadata schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object",
-						},
+					permissions:
+					email -> admin, owner
+					password -> admin, owner
+					role -> admin`,
+				input: {
+					id: "ObjectId",
+					data: {
+						email: "? String",
+						password: "? String",
+						firstName: "? String",
+						secondName: "? String",
+						role: "? String",
 					}
 				},
-				post: {
-					info: "create metadata",
-					input: "metadata schema",
-					output: {
-						201: {
-							id: "ObjectId",
-						},
-						400: {
-							message: "String",
-						},
-						500: {
-							message: "String",
-							details: "Object",
-						},
-					}
-				},
-				patch: {
-					info: "update metadata",
-					url: "/id",
-					input: "metadata schema",
-					output: {
-						200: {},
-						400: {
-							message: "String",
-						},
-						500: {
-							message: "String",
-							details: "Object",
-						},
-					}
-				},
-				delete: {
-					info: "change metadata status to deleted",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String",
-						},
-						500: {
-							message: "String",
-							details: "Object",
-						},
-					}
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					401: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
 				}
 			},
-			CorporationIndex:{
-				info:{
-					info: "corporation collection",
+			put: {
+				info: "register new user",
+				input: {
+					email: "String",
+					password: "String",
+					firstName: "? String",
+					secondName: "? String",
 				},
-				post:{
-					info: "get match by body content",
-					input: "corporation schema",
-					output: {
-						200: "corporation schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put:{
-					info: "create",
-					input: "corporation schema",
-					output: {
-						201: {
-							id: "ObjectId",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				patch:{
-					info: "update",
-					url: "/id",
-					input: "corporation schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete:{
-					info: "remove",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					401: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
 				}
 			},
-			CreationIndex:{
-				info:{
-					info: "creation collection",
-				},
-				post:{
-					info: "get match by body content",
-					input: "creation schema",
-					output: {
-						200: "creation schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put:{
-					info: "create",
-					input: "creation schema",
-					output: {
-						201: {
-							id: "ObjectId",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				patch:{
-					info: "update",
-					url: "/id",
-					input: "creation schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete:{
-					info: "remove",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
+			delete: {
+				info: `remove account
+				
+				only owner or admin can remove account`,
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					401: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		Auth: {
+			info: {
+				info: "user authentification",
+			},
+			get: {
+				info: "check if user is logged in",
+				input: "sessionID={sessionID}",
+				output: {
+					200: {
+						status: "LOGGED_IN | SESSION_EXPIRED | NOT_LOGGED_IN",
+						userID: "? ObjectId",
+					},
+					400: {
+						message: "String",
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
 				}
 			},
-			FamilyIndex:{
-				info:{
-					info: "family collection",
+			post: {
+				info: "login",
+				input: {
+					email: "String",
+					password: "String",
 				},
-				post:{
-					info: "get match by body content",
-					input: "family schema",
-					output: {
-						200: "family schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put:{
-					info: "create",
-					input: "family schema",
-					output: {
-						201: {
-							id: "ObjectId",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				patch:{
-					info: "update",
-					url: "/id",
-					input: "family schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete:{
-					info: "remove",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
+				output: {
+					200: {
+						status: "LOGGED_IN | NOT_LOGGED_IN",
+						message: "? String",
+						sessionID: "? String",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
 				}
 			},
-			GeographicIndex:{
-				info:{
-					info: "geographic collection",
-				},
-				post:{
-					info: "get match by body content",
-					input: "geographic schema",
-					output: {
-						200: "geographic schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put:{
-					info: "create",
-					input: "geographic schema",
-					output: {
-						201: {
-							id: "ObjectId",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				patch:{
-					info: "update",
-					url: "/id",
-					input: "geographic schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete:{
-					info: "remove",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
+			delete: {
+				info: "logout",
+				input: "sessionID={sessionID}",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
+				}
+			}
+		},
+
+		Metadata: {
+			info: {
+				info: "metadata collection",
+			},
+			post: {
+				info: "get match by body content",
+				input: "metadata schema",
+				output: {
+					200: "metadata schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
 				}
 			},
-			KeywordIndex:{
-				info:{
-					info: "keywords collection",
-				},
-				post:{
-					info: "get match by body content",
-					input: "keyword schema",
-					output: {
-						200: "keyword schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put:{
-					info: "create",
-					input: "keyword schema",
-					output: {
-						201: {
-							id: "ObjectId",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				patch:{
-					info: "update",
-					url: "/id",
-					input: "keyword schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete:{
-					info: "remove",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
+			put: {
+				info: "create metadata",
+				input: "metadata schema",
+				output: {
+					201: {
+						id: "ObjectId",
+					},
+					400: {
+						message: "String",
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
 				}
 			},
-			PeopleIndex:{
-				info:{
-					info: "person collection",
-				},		
-				post:{
-					info: "get match by body content \n name, surname is RegExp-able",
-					input: "person schema",
-					output: {
-						200: "person schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put:{
-					info: "create",
-					input: "person schema",
-					output: {
-						201: {
-							id: "ObjectId",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				patch:{
-					info: "update",
-					url: "/id",
-					input: "person schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete:{
-					info: "remove",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
+			patch: {
+				info: "update metadata",
+				url: "/id",
+				input: "metadata schema",
+				output: {
+					200: {},
+					400: {
+						message: "String",
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
 				}
 			},
-			SubjectIndex:{
-				info:{
-					info: "subject collection",
-				},
-				post:{
-					info: "get match by body content",
-					input: "subject schema",
-					output: {
-						200: "subject schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				put:{
-					info: "create",
-					input: "subject schema",
-					output: {
-						201: {
-							id: "ObjectId",
-						},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				patch:{
-					info: "update",
-					url: "/id",
-					input: "subject schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete:{
-					info: "remove",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
+			delete: {
+				info: "change metadata status to deleted",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String",
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
+				}
+			}
+		},
+		CorporationIndex:{
+			info:{
+				info: "corporation collection",
+			},
+			post:{
+				info: "get match by body content",
+				input: "corporation schema",
+				output: {
+					200: "corporation schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
 				}
 			},
-			
-			/*
-			Template:{
-				info:{
-					info: "collection",
-				},
-				post:{
-					info: "get",
-					url: "/id",
-					input: "",
-					output: {
-						200: "schema",
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				post:{
-					info: "create",
-					input: "schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				patch:{
-					info: "update",
-					url: "/id",
-					input: "schema",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
-				},
-				delete:{
-					info: "remove",
-					url: "/id",
-					output: {
-						200: {},
-						400: {
-							message: "String"
-						},
-						500: {
-							message: "String",
-							details: "Object"
-						},
-					}
+			put:{
+				info: "create",
+				input: "corporation schema",
+				output: {
+					201: {
+						id: "ObjectId",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
 				}
 			},
-			*/
-		}
-	</script>
-
-	<script>
-		const schema = {
-		metadata:{
-		_id: "ObjectId",
-		author: {
-		id: "ObjectId",
-		role: "String",
+			patch:{
+				info: "update",
+				url: "/id",
+				input: "corporation schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete:{
+				info: "remove",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		CreationIndex:{
+			info:{
+				info: "creation collection",
+			},
+			post:{
+				info: "get match by body content",
+				input: "creation schema",
+				output: {
+					200: "creation schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			put:{
+				info: "create",
+				input: "creation schema",
+				output: {
+					201: {
+						id: "ObjectId",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			patch:{
+				info: "update",
+				url: "/id",
+				input: "creation schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete:{
+				info: "remove",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		FamilyIndex:{
+			info:{
+				info: "family collection",
+			},
+			post:{
+				info: "get match by body content",
+				input: "family schema",
+				output: {
+					200: "family schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			put:{
+				info: "create",
+				input: "family schema",
+				output: {
+					201: {
+						id: "ObjectId",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			patch:{
+				info: "update",
+				url: "/id",
+				input: "family schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete:{
+				info: "remove",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		GeographicIndex:{
+			info:{
+				info: "geographic collection",
+			},
+			post:{
+				info: "get match by body content",
+				input: "geographic schema",
+				output: {
+					200: "geographic schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			put:{
+				info: "create",
+				input: "geographic schema",
+				output: {
+					201: {
+						id: "ObjectId",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			patch:{
+				info: "update",
+				url: "/id",
+				input: "geographic schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete:{
+				info: "remove",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		KeywordIndex:{
+			info:{
+				info: "keywords collection",
+			},
+			post:{
+				info: "get match by body content",
+				input: "keyword schema",
+				output: {
+					200: "keyword schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			put:{
+				info: "create",
+				input: "keyword schema",
+				output: {
+					201: {
+						id: "ObjectId",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			patch:{
+				info: "update",
+				url: "/id",
+				input: "keyword schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete:{
+				info: "remove",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		PeopleIndex:{
+			info:{
+				info: "person collection",
+			},		
+			post:{
+				info: "get match by body content \n name, surname is RegExp-able",
+				input: "person schema",
+				output: {
+					200: "person schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			put:{
+				info: "create",
+				input: "person schema",
+				output: {
+					201: {
+						id: "ObjectId",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			patch:{
+				info: "update",
+				url: "/id",
+				input: "person schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete:{
+				info: "remove",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		SubjectIndex:{
+			info:{
+				info: "subject collection",
+			},
+			post:{
+				info: "get match by body content",
+				input: "subject schema",
+				output: {
+					200: "subject schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			put:{
+				info: "create",
+				input: "subject schema",
+				output: {
+					201: {
+						id: "ObjectId",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			patch:{
+				info: "update",
+				url: "/id",
+				input: "subject schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete:{
+				info: "remove",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
 		},
-		other_authors: [{
-		id: "ObjectId",
-		role: "String",
-		}],
-		name: {
-		type: "String",
-		unique: true,
-		required: true,
-		},
-		other_names: ["String"],
-		language: ["String"],
-		publish_country: "ObjectId",
-		publish_place: "ObjectId",
-		publisher: "ObjectId",
-		publishing_date: [{
-		date: {
-		type: "Date",
-		required: true
-		},
-		note: "String",
-		}],
-		isbn: "String",
-		edition_order: "String",
-		edition: "String",
-		action_name: "ObjectId",
-		volume_content: "ObjectId",
-		publishing_year: [{
-		from: "Number",
-		to: "Number",
-		note: "String",
-		periodicity: "String",
-		}],
-		issn: "String",
-		source_document_name: "String",
-		copies: {
-		year: "Number",
-		volume: "Number",
-		number: "Number",
-		date: "Date",
-		},
-		corporation_name: "ObjectId",
-		location: [{
-		institution: "ObjectId",
-		fund: "String",
-		access_conditions: "String",
-		acess_note: "String",
-		location_note: "String",
-		}],
-		digitized_document_url: "String",
-		external_source: [{
-		name: "String",
-		url: "String",
-		url_leading_to_document: "String",
-		}],
-		attachment: [{
-		name: "String",
-		url: "String",
-		}],
-		source_object_citation: ["String"],
-		previous_name: "ObjectId",
-		following_name: "ObjectId",
-		form: "String",
-		range: "String",
-		dimension: "String",
-		map_scale: "String",
-		format: "String",
-		processing_level: "String",
-		archival_aids: "String",
-		source_document_citation: "String",
-		multiple_placement: "String",
-		multiple_placement_url: "String",
-		topic: "ObjectId",
-		corporation_content_specification: "ObjectId",
-		chronological_content_specification: "String",
-		geographical_content_specification: "ObjectId",
-		keywords: ["ObjectId"],
-		description: "String",
-		general_note: "String",
-		editor_note: "String",
-		submitter: {
-		type: "String",
-		required: true
-		},
-		},
-		corporation:{
-		other_source:[{
-		name: "String",
-		id: "String",
-		identificator: "String",
-		}],
-
-		name:{
-		type: "String",
-		required: true,
-		},
-
-		acronym: ["String"],
-		historical_name: ["String"],
-		other_name_form: ["String"],
-		following_name: ["String"],
-
-		main_part: "String",
-		side_part: ["String"],
-
-		general_complement: "String",
-		geographical_complement: "String",
-		chronological_complement: "String",
-		characteristic: "String",
-		history: "String",
-		function: "String",
-		constitutive_standards: ["String"],
-		scope_standards: ["String"],
-
-		coordinates: "String",
-
-		parent_corporation: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		part_of: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		precedent_corporation: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		related_country: [{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-
-		founder: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		founding_document: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		founding_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		registration_subject: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		registration_event: {
-		type: "ObjectId",
-		ref: "subjectIndex",
-		},
-		cleavage_person: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		cleavage_document: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		cleavage_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		chronological_specification: "String",
-
-		cancellation_person: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		cancellation_document: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		cancellation_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		delete_from_evidence_subject: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		delete_from_evidence_event: {
-		type: "ObjectId",
-		ref: "subjectIndex",
-		},
-		chronological_specification: "String",
-
-		owner_change: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		place_change: [{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-		organisation_inclusion: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		change_parent_organisation: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		awards: [{
-		award: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		event_award: {
-		type: "ObjectId",
-		ref: "subjectIndex",
-		},
-		awarder_person: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		awarder_corporation: {
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		}],
-
-		categorization: [{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		}],
-		category: [{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		}],
-		domain_scope: [{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-		geographical_scope: [{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		}],
-		characteristic: [{
-		type: "ObjectId",
-		ref: "",
-		}],
-		logo: ["String"],
-		mark: ["String"],
-		flag: ["String"],
-
-		notes: ["String"],
-
-		record_sources:{
-		type: ["String"],
-		required: true,
-		},
-		},
-		creation:{
-		other_source: [{
-		name: "String",
-		id: "String",
-		identificator: "String",
-		}],
-
-		name:{
-		type: "String",
-		required: true,
-		},
-
-
-		other_name_form: ["String"],
-
-		main_part:"String",
-		other_part:["String"],
-		numeric_tag:"String",
-		cast:["String"],
-		tone:"String",
-		arrangement:["String"],
-		name_part:["String"],
-
-		general_complement:"String",
-		geographical_complement:"String",
-		chronological_complement:"String",
-		author:["String"],
-		language:["String"],
-		source:["String"],
-
-		characteristic:"String",
-		description:{
-		type: "String",
-		required: true,
-		},
-		geographical_description:"String",
-
-		history:"String",
-		purpose:["String"],
-
-		hierarchical_relations:[{
-		type: "ObjectId",
-		ref: "creationIndex",
-		}],
-		associative_relations:[{
-		type: "ObjectId",
-		ref: "creationIndex",
-		}],
-		locality:[{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-		related_person:[{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		related_corporation:[{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		related_event:[{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		}],
-		related_location:[{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-		owner_person:[{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		owner_corporation:[{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		related_document:[{
-		type: "ObjectId",
-		ref: "creationIndex",
-		}],
-
-		founding_person:{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		founding_corporation:{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		first_mention_place:{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		first_mention_subject:{
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		first_realization_event:{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		},
-		first_realization_subject:{
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		chronological_specification_beginning:"String",
-
-		cancellation_person:{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		cancellation_corporation:{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		last_mention_place:{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		last_mention_subject:{
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		last_realization_event:{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		},
-		last_realization_subject:{
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		chronological_specification_end:"String",
-
-		document_change_person:[{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		document_change_corporation:[{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		ownership_change_person:[{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		ownership_change_corporation:[{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		location_change:[{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-
-		category:[{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		required: true,
-		}],
-
-		notes:["String"],
-
-		record_sources:["String"],
-
-
-
-
-
-		},
-		family:{
-		other_source: [{
-		name: "String",
-		id: "String",
-		identificator: "String",
-		}],
-		},
-		geographic:{
-		other_source: [{
-		name: "String",
-		id: "String",
-		identificator: "String",
-		}],
-
-		acronym: ["String"],
-		historical_name: ["String"],
-		other_name_form: ["String"],
-
-		main_part: "String",
-		other_part: ["String"],
-
-		general_complement: "String",
-		geographical_complement: "String",
-		chronological_complement: "String",
-
-		characteristic: "String",
-		description: "String",
-		history: "String",
-
-		coordinates: "String",
-
-		partner_object: [{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-		owner: [{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		part_of: [{
-		corporation_name: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		corporation_owner: [{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		}],
-		related_entity: [{
-		related_person: [{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		related_subject: [{
-		type: "ObjectId",
-		ref: "creationIndex",
-		}],
-		related_event: [{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		}],
-		related_corporation: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		}],
-
-		founding_person: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		founding_corporation: {
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		founding_document: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		founding_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		first_mention_event: {
-		type: "ObjectId",
-		ref: "subjectIndex",
-		},
-		first_mention_subject: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		first_mention_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-
-
-		cancellation_person: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		cancellation_corporation: {
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		cancellation_document: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		cancellation_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		last_mention_event: {
-		type: "ObjectId",
-		ref: "subjectIndex",
-		},
-		last_mention_subject: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		last_mention_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		owner_change: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		chronological_specification: "String",
-		historical_milestones: ["String"],
-
-		awards: [{
-		award: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		event_award: {
-		type: "ObjectId",
-		ref: "subjectIndex",
-		},
-		awarder_person: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		awarder_corporation: {
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		}],
-
-		category:[{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		required: true,
-		}],
-		characteristic:[{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		}],
-		arm:["String"],
-		logo:["String"],
-		mark:["String"],
-		flag:["String"],
-
-		notes:["String"],
-
-		record_sources:["String"],
-		},
-		keyword:{
-		other_source: [{
-		name: "String",
-		id: "String",
-		identificator: "String",
-		}],
-		name: {
-		type: "String",
-		required: true,
-		},
-
-		synonyms:["String"],
-		inverted_wordorder_terms:["String"],
-		spelling_variants:["String"],
-		foreign_language_descriptors:["String"],
-		form_descriptors:["String"],
-
-		main_part:"String",
-		other_part:["String"],
-
-		general_complement:"String",
-		clarification:"String",
-
-		definition:"String",
-		manual:"String",
-		history:"String",
-
-		hierarchical_relations:["String"],
-		associative_relations:["String"],
-
-		founding_person:{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		founding_corporation:{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		founding_subject:{
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		founding_event:[{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		}],
-		founding_keyword:[{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		}],
-		chronological_specification:"String",
-
-
-		cancellation_person:{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		cancellation_corporation:{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		cancellation_subject:{
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-		cancellation_event:[{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		}],
-		cancellation_keyword:{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		},
-		cancellation_specification:"String",
-
-		category:[{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		required: true,
-		}],
-		domain:[{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		}],
-		idc:["String"],
-
-		notes:["String"],
-
-		record_sources:["String"],
-		},
-		person:{
-		other_source:[{
-		name: "String",
-		id: "String",
-		identificator: "String",
-		}],
-
-		name:{
-		type: ["String"],
-		required: true,
-		},
-		surname:{
-		type: ["String"],
-		required: true,
-		},
-		born_year: "String",
-		death_year: "String",
-		initials: ["String"],
-		general_complement: ["String"],
-		roman_numerals: ["String"],
-		geographical_complement: ["String"],
-
-		original_name: ["String"],
-		acronym: ["String"],
-		cipher: ["String"],
-		religious_name: ["String"],
-		marriage_name: ["String"],
-		historical_name: ["String"],
-		straight_order: "String",
-
-		titles:[{
-		title: "String",
-		date: "String",
-		}],
-
-		bibliographical_note:{
-		type: "String",
-		required: true,
-		},
-		cv: "String",
-		domain_branch:{
-		type: ["String"],
-		required: true,
-		},
-		gender:{
-		type: "String",
-		required: true,
-		},
-
-		country_membership: [{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-		born_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		death_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		related_country: {
-		type: ["ObjectId"],
-		required: true,
-		ref: "geographicIndex",
-		},
-
-		language_country:{
-		type: ["String"],
-		required: true,
-		},
-
-		parents: [{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		siblings: [{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		family: [{
-		type: "ObjectId",
-		ref: "familyIndex",
-		}],
-		membreship: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		employment: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		affiliation: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-		important_subject: [{
-		type: "ObjectId",
-		ref: "creationIndex",
-		}],
-		important_event: [{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		}],
-		marriage_start: ["String"],
-		marriage_end: ["String"],
-		study: [{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-
-		arm: ["String"],
-		photo: ["String"],
-
-		notes: ["String"],
-		record_sources:{
-		type: ["String"],
-		required: true,
-		},
-		},
-		subject:{
-		other_source: [{
-		name: "String",
-		id: "String",
-		identificator: "String",
-		}],
-
-		name:{
-		type: "String",
-		required: true,
-		},
-
-		acronym: ["String"],
-		other_name_form: ["String"],
-
-		main_part: "String",
-		other_part: ["String"],
-
-		general_complement: "String",
-		geographical_complement: "String",
-		chronological_complement: "String",
-		event_order: "String",
-
-		aggregate_event:[{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		}],
-		sub_event:[{
-		type: "ObjectId",
-		ref: "subjectIndex",
-		}],
-
-		related_person:[{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		related_subject:[{
-		type: "ObjectId",
-		ref: "creationIndex",
-		}],
-		related_place:[{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-		venue:[{
-		type: "ObjectId",
-		ref: "geographicIndex",
-		}],
-		organizator_person:[{
-		type: "ObjectId",
-		ref: "peopleIndex",
-		}],
-		organizator_corporation:[{
-		type: "ObjectId",
-		ref: "corporationIndex",
-		}],
-
-		founding_person: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		founding_corporation: {
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		founding_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		first_mention: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-
-
-		cancellation_person: {
-		type: "ObjectId",
-		ref: "peopleIndex",
-		},
-		last_mention_event: {
-		type: "ObjectId",
-		ref: "corporationIndex",
-		},
-		cancellation_place: {
-		type: "ObjectId",
-		ref: "geographicIndex",
-		},
-		last_mention: {
-		type: "ObjectId",
-		ref: "creationIndex",
-		},
-
-		category:[{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		}],
-		topic:[{
-		type: "ObjectId",
-		ref: "KeywordIndex",
-		}],
-
-		notes:["String"],
-
-		record_sources:["String"],
-		},
-		}
-
-	</script>
-
-	<style>
-		::-webkit-scrollbar {
-			width: 15px;
-		}
-
-		::-webkit-scrollbar-thumb {
-			background: #111;
-			border-radius: 10px;
-		}
-
-		::-webkit-scrollbar-thumb:hover {
-			background: #090909;
-		}
-
-		pre {
-			background-color: #222;
-			border: 1px solid #444;
-			padding: 10px 20px;
-			margin: 0;
-		}
-
-		.json-key {
-			color: #ff5722;
-		}
-
-		.json-value {
-			color: #03a9f4;
-		}
-
-		.json-string {
-			color: #ffeb3b;
-		}
-
-		body{
-			font-family: Roboto;
-			background-color: #222;
-			color: #fff;
-		}
-
-		#root {
-			height: 100wh;
-			display: grid;
-			align-items: start;
-			gap: 20px;
-			grid-template-columns: 21fr 9fr;
-		}
-
-		#leftPanel{
-			display: grid;
-			row-gap: 20px;	
-			overflow-y: scroll;	
-		}
 		
-		#rightPanel{
-			display: grid;
-			row-gap: 20px;	
-			overflow-y: scroll;		
-		}
+		/*
+		Template:{
+			info:{
+				info: "collection",
+			},
+			post:{
+				info: "get",
+				url: "/id",
+				input: "",
+				output: {
+					200: "schema",
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			post:{
+				info: "create",
+				input: "schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			patch:{
+				info: "update",
+				url: "/id",
+				input: "schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete:{
+				info: "remove",
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		*/
+	}
+</script>
 
-		.route {
-			background-color: #111;
-			font-family: Roboto;
-			border-radius: 10px;
+<script>
+	const schema = {
+		metadata: {
+			_id: "ObjectId",
+			author: {
+				id: "ObjectId",
+				role: "String",
+			},
+			other_authors: [{
+				id: "ObjectId",
+				role: "String",
+			}],
+			name: {
+				type: "String",
+				unique: true,
+				required: true,
+			},
+			other_names: ["String"],
+			language: ["String"],
+			publish_country: "ObjectId",
+			publish_place: "ObjectId",
+			publisher: "ObjectId",
+			publishing_date: [{
+				date: {
+					type: "Date",
+					required: true
+				},
+				note: "String",
+			}],
+			isbn: "String",
+			edition_order: "String",
+			edition: "String",
+			action_name: "ObjectId",
+			volume_content: "ObjectId",
+			publishing_year: [{
+				from: "Number",
+				to: "Number",
+				note: "String",
+				periodicity: "String",
+			}],
+			issn: "String",
+			source_document_name: "String",
+			copies: {
+				year: "Number",
+				volume: "Number",
+				number: "Number",
+				date: "Date",
+			},
+			corporation_name: "ObjectId",
+			location: [{
+				institution: "ObjectId",
+				fund: "String",
+				access_conditions: "String",
+				acess_note: "String",
+				location_note: "String",
+			}],
+			digitized_document_url: "String",
+			external_source: [{
+				name: "String",
+				url: "String",
+				url_leading_to_document: "String",
+			}],
+			attachment: [{
+				name: "String",
+				url: "String",
+			}],
+			source_object_citation: ["String"],
+			previous_name: "ObjectId",
+			following_name: "ObjectId",
+			form: "String",
+			range: "String",
+			dimension: "String",
+			map_scale: "String",
+			format: "String",
+			processing_level: "String",
+			archival_aids: "String",
+			source_document_citation: "String",
+			multiple_placement: "String",
+			multiple_placement_url: "String",
+			topic: "ObjectId",
+			corporation_content_specification: "ObjectId",
+			chronological_content_specification: "String",
+			geographical_content_specification: "ObjectId",
+			keywords: ["ObjectId"],
+			description: "String",
+			general_note: "String",
+			editor_note: "String",
+			submitter: {
+				type: "String",
+				required: true
+			},
+		},
+		corporation: {
+			other_source: [{
+				name: "String",
+				id: "String",
+				identificator: "String",
+			}],
 
-			padding: 20px;
-			box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
+			name: {
+				type: "String",
+				required: true,
+			},
 
-			display: grid;
-			align-items: start;
-			grid-template-columns: repeat(4, 1fr);
-			column-gap: 30px;
-			row-gap: 30px;
-		}
+			acronym: ["String"],
+			historical_name: ["String"],
+			other_name_form: ["String"],
+			following_name: ["String"],
 
-		.schema {
-			background-color: #111;
-			font-family: Roboto;
-			border-radius: 10px;
+			main_part: "String",
+			side_part: ["String"],
 
-			padding: 20px;
-			box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
-		}
+			general_complement: "String",
+			geographical_complement: "String",
+			chronological_complement: "String",
+			characteristic: "String",
+			history: "String",
+			function: "String",
+			constitutive_standards: ["String"],
+			scope_standards: ["String"],
 
-		.schema .input{
-			margin-top: 30px;
-		}
+			coordinates: "String",
 
-		.collapsible {
-			overflow: hidden;
-			transition: max-height 0.2s cubic-bezier(0, 0, 0.2, 1);
-		}
+			parent_corporation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			part_of: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			precedent_corporation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			related_country: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
 
-		.routeTitle {
-			padding: 20px;
-			margin: -20px;
-			cursor: pointer;
-			grid-column: span 4;
-			font-size: 35px;
-		}
+			founder: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			founding_document: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			founding_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			registration_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			registration_event: {
+				type: "ObjectId",
+				ref: "subjectIndex",
+			},
+			cleavage_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			cleavage_document: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			cleavage_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			chronological_specification: "String",
 
-		.routeTitle:after {
-			content: '\002B';
-			color: white;
-			font-weight: bold;
-			float: right;
-			margin-left: 5px;
-		}
+			cancellation_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			cancellation_document: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			cancellation_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			delete_from_evidence_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			delete_from_evidence_event: {
+				type: "ObjectId",
+				ref: "subjectIndex",
+			},
+			chronological_specification: "String",
 
-		.active:after {
-			content: "\2212";
-		}
+			owner_change: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			place_change: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
+			organisation_inclusion: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			change_parent_organisation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			awards: [{
+				award: {
+					type: "ObjectId",
+					ref: "creationIndex",
+				},
+				event_award: {
+					type: "ObjectId",
+					ref: "subjectIndex",
+				},
+				awarder_person: {
+					type: "ObjectId",
+					ref: "peopleIndex",
+				},
+				awarder_corporation: {
+					type: "ObjectId",
+					ref: "corporationIndex",
+				},
+			}],
 
-		.get,
-		.put,
-		.header,
-		.post,
-		.patch,
-		.delete {
-			font-size: 21px;
-			padding: 10px;
-			border-radius: 10px 10px 0px 0px;
-		}
+			categorization: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			}],
+			category: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			}],
+			domain_scope: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
+			geographical_scope: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			}],
+			characteristic: [{
+				type: "ObjectId",
+				ref: "",
+			}],
+			logo: ["String"],
+			mark: ["String"],
+			flag: ["String"],
 
-		.info {
-			display: none;
-		}
+			notes: ["String"],
 
-		.get {
-			background-color: #3F51B5;
-		}
+			record_sources: {
+				type: ["String"],
+				required: true,
+			},
+		},
+		creation: {
+			other_source: [{
+				name: "String",
+				id: "String",
+				identificator: "String",
+			}],
 
-		.post {
-			background-color: #4CAF50;
-		}
+			name: {
+				type: "String",
+				required: true,
+			},
 
-		.patch {
-			background-color: #FFC107;
-		}
 
-		.put {
-			background-color: #9c27b0;
-		}
-		
-		.header {
-			background-color: #795548;
-		}
+			other_name_form: ["String"],
 
-		.delete {
-			background-color: #E91E63;
-		}
+			main_part: "String",
+			other_part: ["String"],
+			numeric_tag: "String",
+			cast: ["String"],
+			tone: "String",
+			arrangement: ["String"],
+			name_part: ["String"],
 
-		.method,
-		.information {
-			background-color: #222;
-			border-radius: 10px;
-			box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
-		}
+			general_complement: "String",
+			geographical_complement: "String",
+			chronological_complement: "String",
+			author: ["String"],
+			language: ["String"],
+			source: ["String"],
 
-		.information {
-			grid-column: span 4;
-		}
+			characteristic: "String",
+			description: {
+				type: "String",
+				required: true,
+			},
+			geographical_description: "String",
 
-		.methodInfo {
-			padding: 10px;
-		}
+			history: "String",
+			purpose: ["String"],
 
-		.codeBlock {
-			padding: 10px;
-		}
+			hierarchical_relations: [{
+				type: "ObjectId",
+				ref: "creationIndex",
+			}],
+			associative_relations: [{
+				type: "ObjectId",
+				ref: "creationIndex",
+			}],
+			locality: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
+			related_person: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			related_corporation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			related_event: [{
+				type: "ObjectId",
+				ref: "subjectIndex",
+			}],
+			related_location: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
+			owner_person: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			owner_corporation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			related_document: [{
+				type: "ObjectId",
+				ref: "creationIndex",
+			}],
 
-		[class^=outputCode] {
-			display: inline-block;
-			padding: 5px;
-		}
+			founding_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			founding_corporation: {
+				type: "ObjectId",
+				ref: "corporationIndex",
+			},
+			first_mention_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			first_mention_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			first_realization_event: {
+				type: "ObjectId",
+				ref: "subjectIndex",
+			},
+			first_realization_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			chronological_specification_beginning: "String",
 
-		[class^=outputCode1] {
-			background-color: #9e9e9e;
-		}
+			cancellation_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			cancellation_corporation: {
+				type: "ObjectId",
+				ref: "corporationIndex",
+			},
+			last_mention_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			last_mention_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			last_realization_event: {
+				type: "ObjectId",
+				ref: "subjectIndex",
+			},
+			last_realization_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			chronological_specification_end: "String",
 
-		[class^=outputCode2] {
-			background-color: #4caf50;
-		}
+			document_change_person: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			document_change_corporation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			ownership_change_person: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			ownership_change_corporation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			location_change: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
 
-		[class^=outputCode3] {
-			background-color: #ffeb3b;
-		}
+			category: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+				required: true,
+			}],
 
-		[class^=outputCode4] {
-			background-color: #f44336;
-		}
+			notes: ["String"],
 
-		[class^=outputCode5] {
-			background-color: #3f51b5;
-		}
-	</style>
+			record_sources: ["String"],
+
+
+
+
+
+		},
+		family: {
+			other_source: [{
+				name: "String",
+				id: "String",
+				identificator: "String",
+			}],
+		},
+		geographic: {
+			other_source: [{
+				name: "String",
+				id: "String",
+				identificator: "String",
+			}],
+
+			name: {
+				type: "String",
+				required: true,
+			},
+
+			acronym: ["String"],
+			historical_name: ["String"],
+			other_name_form: ["String"],
+
+			main_part: "String",
+			other_part: ["String"],
+
+			general_complement: "String",
+			geographical_complement: "String",
+			chronological_complement: "String",
+
+			characteristic: "String",
+			description: "String",
+			history: "String",
+			electronical_location: ["String"],
+
+			coordinates: "String",
+
+			partner_object: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
+			owner: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			part_of: [{
+				corporation_name: [{
+					type: "ObjectId",
+					ref: "corporationIndex",
+				}],
+				corporation_owner: [{
+					type: "ObjectId",
+					ref: "peopleIndex",
+				}],
+			}],
+			related_entity: [{
+				related_person: [{
+					type: "ObjectId",
+					ref: "peopleIndex",
+				}],
+				related_subject: [{
+					type: "ObjectId",
+					ref: "creationIndex",
+				}],
+				related_event: [{
+					type: "ObjectId",
+					ref: "subjectIndex",
+				}],
+				related_corporation: [{
+					type: "ObjectId",
+					ref: "corporationIndex",
+				}],
+			}],
+			superordinate: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			subordinate: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},			
+
+			founding_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			founding_corporation: {
+				type: "ObjectId",
+				ref: "corporationIndex",
+			},
+			founding_document: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			founding_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			first_mention_event: {
+				type: "ObjectId",
+				ref: "subjectIndex",
+			},
+			first_mention_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			first_mention_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			chronological_specification: "String",
+
+			cancellation_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			cancellation_corporation: {
+				type: "ObjectId",
+				ref: "corporationIndex",
+			},
+			cancellation_document: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			cancellation_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			last_mention_event: {
+				type: "ObjectId",
+				ref: "subjectIndex",
+			},
+			last_mention_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			last_mention_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			owner_change: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			chronological_specification: "String",
+			historical_milestones: ["String"],
+
+			awards: [{
+				award: {
+					type: "ObjectId",
+					ref: "creationIndex",
+				},
+				event_award: {
+					type: "ObjectId",
+					ref: "subjectIndex",
+				},
+				awarder_person: {
+					type: "ObjectId",
+					ref: "peopleIndex",
+				},
+				awarder_corporation: {
+					type: "ObjectId",
+					ref: "corporationIndex",
+				},
+			}],
+
+			category: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+				required: true,
+			}],
+			characteristic: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			}],
+			arm: ["String"],
+			logo: ["String"],
+			mark: ["String"],
+			flag: ["String"],
+
+			notes: ["String"],
+
+			record_sources: ["String"],
+		},
+		keyword: {
+			other_source: [{
+				name: "String",
+				id: "String",
+				identificator: "String",
+			}],
+			name: {
+				type: "String",
+				required: true,
+			},
+
+			synonyms: ["String"],
+			inverted_wordorder_terms: ["String"],
+			spelling_variants: ["String"],
+			foreign_language_descriptors: ["String"],
+			form_descriptors: ["String"],
+
+			main_part: "String",
+			other_part: ["String"],
+
+			general_complement: "String",
+			clarification: "String",
+
+			definition: "String",
+			manual: "String",
+			history: "String",
+
+			hierarchical_relations: ["String"],
+			associative_relations: ["String"],
+
+			founding_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			founding_corporation: {
+				type: "ObjectId",
+				ref: "corporationIndex",
+			},
+			founding_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			founding_event: [{
+				type: "ObjectId",
+				ref: "subjectIndex",
+			}],
+			founding_keyword: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			}],
+			chronological_specification: "String",
+
+
+			cancellation_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			cancellation_corporation: {
+				type: "ObjectId",
+				ref: "corporationIndex",
+			},
+			cancellation_subject: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+			cancellation_event: [{
+				type: "ObjectId",
+				ref: "subjectIndex",
+			}],
+			cancellation_keyword: {
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			},
+			cancellation_specification: "String",
+
+			category: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+				required: true,
+			}],
+			domain: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			}],
+			idc: ["String"],
+
+			notes: ["String"],
+
+			record_sources: ["String"],
+		},
+		person: {
+			other_source: [{
+				name: "String",
+				id: "String",
+				identificator: "String",
+			}],
+
+			name: {
+				type: ["String"],
+				required: true,
+			},
+			surname: {
+				type: ["String"],
+				required: true,
+			},
+			born_year: "String",
+			death_year: "String",
+			initials: ["String"],
+			general_complement: ["String"],
+			roman_numerals: ["String"],
+			geographical_complement: ["String"],
+
+			original_name: ["String"],
+			acronym: ["String"],
+			cipher: ["String"],
+			religious_name: ["String"],
+			marriage_name: ["String"],
+			historical_name: ["String"],
+			straight_order: "String",
+
+			titles: [{
+				title: "String",
+				date: "String",
+			}],
+
+			bibliographical_note: {
+				type: "String",
+				required: true,
+			},
+			cv: "String",
+			domain_branch: {
+				type: ["String"],
+				required: true,
+			},
+			gender: {
+				type: "String",
+				required: true,
+			},
+
+			country_membership: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
+			born_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			death_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			related_country: {
+				type: ["ObjectId"],
+				required: true,
+				ref: "geographicIndex",
+			},
+
+			language_country: {
+				type: ["String"],
+				required: true,
+			},
+
+			parents: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			siblings: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			family: [{
+				type: "ObjectId",
+				ref: "familyIndex",
+			}],
+			membreship: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			employment: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			affiliation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+			important_subject: [{
+				type: "ObjectId",
+				ref: "creationIndex",
+			}],
+			important_event: [{
+				type: "ObjectId",
+				ref: "subjectIndex",
+			}],
+			marriage_start: ["String"],
+			marriage_end: ["String"],
+			study: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+
+			arm: ["String"],
+			photo: ["String"],
+
+			notes: ["String"],
+			record_sources: {
+				type: ["String"],
+				required: true,
+			},
+		},
+		subject: {
+			other_source: [{
+				name: "String",
+				id: "String",
+				identificator: "String",
+			}],
+
+			name: {
+				type: "String",
+				required: true,
+			},
+
+			acronym: ["String"],
+			other_name_form: ["String"],
+
+			main_part: "String",
+			other_part: ["String"],
+
+			general_complement: "String",
+			geographical_complement: "String",
+			chronological_complement: "String",
+			event_order: "String",
+
+			aggregate_event: [{
+				type: "ObjectId",
+				ref: "subjectIndex",
+			}],
+			sub_event: [{
+				type: "ObjectId",
+				ref: "subjectIndex",
+			}],
+
+			related_person: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			related_subject: [{
+				type: "ObjectId",
+				ref: "creationIndex",
+			}],
+			related_place: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
+			venue: [{
+				type: "ObjectId",
+				ref: "geographicIndex",
+			}],
+			organizator_person: [{
+				type: "ObjectId",
+				ref: "peopleIndex",
+			}],
+			organizator_corporation: [{
+				type: "ObjectId",
+				ref: "corporationIndex",
+			}],
+
+			founding_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			founding_corporation: {
+				type: "ObjectId",
+				ref: "corporationIndex",
+			},
+			founding_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			first_mention: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+
+
+			cancellation_person: {
+				type: "ObjectId",
+				ref: "peopleIndex",
+			},
+			last_mention_event: {
+				type: "ObjectId",
+				ref: "corporationIndex",
+			},
+			cancellation_place: {
+				type: "ObjectId",
+				ref: "geographicIndex",
+			},
+			last_mention: {
+				type: "ObjectId",
+				ref: "creationIndex",
+			},
+
+			category: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			}],
+			topic: [{
+				type: "ObjectId",
+				ref: "KeywordIndex",
+			}],
+
+			notes: ["String"],
+
+			record_sources: ["String"],
+		},
+	}
+</script>
+
+<style>
+	::-webkit-scrollbar {
+		width: 15px;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #111;
+		border-radius: 10px;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #090909;
+	}
+
+	pre {
+		background-color: #222;
+		border: 1px solid #444;
+		padding: 10px 20px;
+		margin: 0;
+	}
+
+	.json-key {
+		color: #ff5722;
+	}
+
+	.json-value {
+		color: #03a9f4;
+	}
+
+	.json-string {
+		color: #ffeb3b;
+	}
+
+	body{
+		font-family: Roboto;
+		background-color: #222;
+		color: #fff;
+	}
+
+	#root {
+		height: 100wh;
+		display: grid;
+		align-items: start;
+		gap: 20px;
+		grid-template-columns: 21fr 9fr;
+	}
+
+	#leftPanel{
+		display: grid;
+		row-gap: 20px;	
+		overflow-y: scroll;	
+	}
+	
+	#rightPanel{
+		display: grid;
+		row-gap: 20px;	
+		overflow-y: scroll;		
+	}
+
+	.route {
+		background-color: #111;
+		font-family: Roboto;
+		border-radius: 10px;
+
+		padding: 20px;
+		box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
+
+		display: grid;
+		align-items: start;
+		grid-template-columns: repeat(4, 1fr);
+		column-gap: 30px;
+		row-gap: 30px;
+	}
+
+	.schema {
+		background-color: #111;
+		font-family: Roboto;
+		border-radius: 10px;
+
+		padding: 20px;
+		box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
+	}
+
+	.schema .input{
+		margin-top: 30px;
+	}
+
+	.collapsible {
+		overflow: hidden;
+		transition: max-height 0.2s cubic-bezier(0, 0, 0.2, 1);
+	}
+
+	.routeTitle {
+		padding: 20px;
+		margin: -20px;
+		cursor: pointer;
+		grid-column: span 4;
+		font-size: 35px;
+	}
+
+	.routeTitle:after {
+		content: '\002B';
+		color: white;
+		font-weight: bold;
+		float: right;
+		margin-left: 5px;
+	}
+
+	.active:after {
+		content: "\2212";
+	}
+
+	.get,
+	.put,
+	.header,
+	.post,
+	.patch,
+	.delete {
+		font-size: 21px;
+		padding: 10px;
+		border-radius: 10px 10px 0px 0px;
+	}
+
+	.info {
+		display: none;
+	}
+
+	.get {
+		background-color: #3F51B5;
+	}
+
+	.post {
+		background-color: #4CAF50;
+	}
+
+	.patch {
+		background-color: #FFC107;
+	}
+
+	.put {
+		background-color: #9c27b0;
+	}
+	
+	.header {
+		background-color: #795548;
+	}
+
+	.delete {
+		background-color: #E91E63;
+	}
+
+	.method,
+	.information {
+		background-color: #222;
+		border-radius: 10px;
+		box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
+	}
+
+	.information {
+		grid-column: span 4;
+	}
+
+	.methodInfo {
+		padding: 10px;
+	}
+
+	.codeBlock {
+		padding: 10px;
+	}
+
+	[class^=outputCode] {
+		display: inline-block;
+		padding: 5px;
+	}
+
+	[class^=outputCode1] {
+		background-color: #9e9e9e;
+	}
+
+	[class^=outputCode2] {
+		background-color: #4caf50;
+	}
+
+	[class^=outputCode3] {
+		background-color: #ffeb3b;
+	}
+
+	[class^=outputCode4] {
+		background-color: #f44336;
+	}
+
+	[class^=outputCode5] {
+		background-color: #3f51b5;
+	}
+</style>
 </head>
 
 <body onload="render()">

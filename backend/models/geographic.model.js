@@ -7,6 +7,11 @@ const schema = new mongoose.Schema({
 		identificator: String,
 	}],
 
+	name: {
+		type: String,
+		required: true,
+	},
+
 	acronym: [String],
 	historical_name: [String],
 	other_name_form: [String],
@@ -21,6 +26,7 @@ const schema = new mongoose.Schema({
 	characteristic: String,
 	description: String,
 	history: String,
+	electronical_location: [String],
 
 	coordinates: String,
 
@@ -60,6 +66,14 @@ const schema = new mongoose.Schema({
 			ref: "corporationIndex",
 		}],
 	}],
+	superordinate: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	subordinate: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},	
 
 	founding_person: {
 		type: mongoose.Types.ObjectId,
@@ -89,7 +103,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-
+	chronological_specification: "String",
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
