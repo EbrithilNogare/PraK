@@ -14,6 +14,7 @@ router.route('/:id').get((req, res) => {
 			res.status(200).json(result)
 		})
 		.catch(err => {
+			console.error(err)
 			res.status(500).json("something went wrong")
 		})
 })
@@ -40,6 +41,7 @@ router.route('/').post((req, res) => {
 			res.status(200).json(result)
 		})
 		.catch(err => {
+			console.error(err)
 			res.status(500).json("something went wrong")
 		})
 })
@@ -57,6 +59,7 @@ router.route('/').put((req, res) => {
 			 })
 		})
 		.catch(err => {
+			console.error(err)
 			res.status(500).json({
 				message: "something went wrong",
 				details: err,
@@ -80,6 +83,10 @@ router.route('/:id').patch((req, res) => {
             res.status(200).json({})
         }
 	})
+	.catch(err => {
+		console.error(err)
+		res.status(500).json("something went wrong")
+	})
 })
 
 router.route('/:id').delete((req, res) => {
@@ -97,6 +104,10 @@ router.route('/:id').delete((req, res) => {
         else{
             res.status(200).json({})
         }
+	})
+	.catch(err => {
+		console.error(err)
+		res.status(500).json("something went wrong")
 	})
 })
 

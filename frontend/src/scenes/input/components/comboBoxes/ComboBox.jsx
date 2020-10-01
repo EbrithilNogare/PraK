@@ -81,6 +81,7 @@ class ComboBox extends React.Component {
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}
+					inputProps={{realvalue:this.state.ID}}
 				/>
 				{this.state.loading && <LinearProgress />}
 				<MenuList>
