@@ -22,8 +22,13 @@ import Paper from '../../../../components/paper'
 
 import ISBNField from './components/ISBNField'
 import {
-	PersonComboBox,
 	CorporationComboBox,
+	CreationComboBox,
+	FamilyComboBox,
+	GeographicComboBox,
+	KeywordComboBox,
+	PersonComboBox,
+	SubjectComboBox,
 } from '../comboBoxes'
 
 import styles from './metadata.module.scss'
@@ -284,7 +289,7 @@ class Metadata extends React.Component {
 						<TextField name="chronological_content_specification" label={this.getTranslation("chronological_content_specification")}/>
 					}						
 					{this.conditionalField("geographical_content_specification") && 
-						<TextField name="geographical_content_specification" label={this.getTranslation("geographical_content_specification")}/>
+						<GeographicComboBox name="geographical_content_specification" label={this.getTranslation("geographical_content_specification")}/>
 					}						
 					{this.conditionalField("keywords") && 
 						<TextField name="keywords" label={this.getTranslation("keywords")}/>
