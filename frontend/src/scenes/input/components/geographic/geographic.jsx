@@ -3,10 +3,11 @@ import React from "react"
 import { 
 	TextField,
 	Button,
+	Paper,
 } from '@material-ui/core'
-
-import { Pair } from '../../../../components/layout'
-import Paper from '../../../../components/paper'
+import {
+	withSnackbar,
+} from 'notistack';
 
 import styles from './geographic.module.scss'
 
@@ -14,12 +15,11 @@ class Geographic extends React.Component {
 	constructor(props){
 		super(props)
 		
-		this.state = { 
-			documentType: 0,
-		}	
-
+		this.state = {}	
+	
 		this.handleChange = this.handleChange.bind(this)
 	}
+	
 
 	handleChange(event){
 		this.setState({
@@ -27,10 +27,54 @@ class Geographic extends React.Component {
 		})
 	}
 
+	handleSubmit = event => {		
+		event.preventDefault()
+		const data = {}
+		let errors = 0
+		
+		for(let element of event.target.elements)
+			if(element.name && element.value !== ""){
+				if(element.getAttribute("aria-invalid")==="true")
+					{
+						errors++
+						console.warning(`Incorrect format of: ${element.name}`);
+						this.props.enqueueSnackbar(`Incorrect format of: ${element.name}`, { variant: "warning" })
+					}
+				data[element.name] = element.value
+			}
+
+		if(errors>0){
+			console.error(`Cannot send data, there is ${errors} errors`);
+			this.props.enqueueSnackbar(`Cannot send data, there is ${errors} errors`, { variant: "error" })
+			return
+		}
+
+		fetch("/prak/api/GeographicIndex",{
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data)
+		})
+		.then(response => response.json())
+		.then(response => {
+			console.log(response)
+			this.props.enqueueSnackbar(`Sending succesfull\nID: ${response.id}`, { variant: "success" })
+		})
+		.catch((error) => {
+			console.error('Sending unsuccesfull:', error);
+			this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error" })
+		})
+
+	}
+
 
 	render(){
 		return(
-			<div className={styles.geographic}>
+			<form onSubmit={this.handleSubmit} className={styles.geographic}>
+				<Paper className={styles.doubledataBlock}>
+					<h1>Nový záznam do Geografického rejstříku</h1>
+				</Paper>			
 				<Paper className={styles.dataBlock}>
 					<h2>Jiný zdroj</h2>
 					<TextField name="other_source-name" label="Název"/>
@@ -39,7 +83,7 @@ class Geographic extends React.Component {
 				</Paper>				
 				<Paper className={styles.dataBlock}>
 					<h2>Název</h2>
-					<TextField name="name" label="Název"/>
+					<TextField required name="name" label="Název"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Variantní označení</h2>
@@ -132,13 +176,10 @@ class Geographic extends React.Component {
 					<h2>Zdroje o heslu</h2>
 					<TextField name="record_sources" multiline/>
 				</Paper>
-				<Pair variant="text" color="primary" aria-name="" label="Text primary button group">
-					<Button variant="contained" color="primary">Uložit</Button>
-					<Button variant="contained" color="primary">Nahrát</Button>
-				</Pair>
-			</div>
+				<Button type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
+			</form>
 		)
 	}
 }
 
-export default Geographic
+export default withSnackbar(Geographic)

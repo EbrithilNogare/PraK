@@ -5,6 +5,10 @@ import {
 	Route,
 } from "react-router-dom"
 
+import {
+	SnackbarProvider,
+} from 'notistack';
+
 import WebFont from 'webfontloader';
 
 import "./Prak.scss"
@@ -29,18 +33,20 @@ class Prak extends React.Component {
 
 		return (
 			<div className="prak">
-				<Router>
-					<NavBar/>
-					<Switch>
-						<Route path="/prak/login"><LoginScene variant="login"/></Route>						
-						<Route path="/prak/registration"><LoginScene variant="registration"/></Route>
-						<Route path="/prak/input"><InputScene/></Route>
-						<Route path="/prak/edit"><EditScene/></Route>
-						<Route path="/prak/search"><SearchScene/></Route>
-						<Route path="/prak"><MainPageScene/></Route>
-					</Switch>
-					<Footer/>
-				</Router>
+				<SnackbarProvider>
+					<Router>
+						<NavBar/>
+						<Switch>
+							<Route path="/prak/login"><LoginScene variant="login"/></Route>						
+							<Route path="/prak/registration"><LoginScene variant="registration"/></Route>
+							<Route path="/prak/input"><InputScene/></Route>
+							<Route path="/prak/edit"><EditScene/></Route>
+							<Route path="/prak/search"><SearchScene/></Route>
+							<Route path="/prak"><MainPageScene/></Route>
+						</Switch>
+						<Footer/>
+					</Router>
+				</SnackbarProvider>
 			</div>
 		)
 	}
