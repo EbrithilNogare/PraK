@@ -917,936 +917,952 @@
 </script>
 
 <script>
+	// mongoose model variables to string convert
+	const String = "String"
+	const mongoose = { Types: { ObjectId: "ObjectId" } }
+
 	const schema = {
-		metadata: {
-			_id: "ObjectId",
-			author: {
-				id: "ObjectId",
-				role: "String",
-			},
-			other_authors: [{
-				id: "ObjectId",
-				role: "String",
-			}],
-			name: {
-				type: "String",
-				unique: true,
-				required: true,
-			},
-			other_names: ["String"],
-			language: ["String"],
-			publish_country: "ObjectId",
-			publish_place: "ObjectId",
-			publisher: "ObjectId",
-			publishing_date: [{
-				date: {
-					type: "Date",
-					required: true
-				},
-				note: "String",
-			}],
-			isbn: "String",
-			edition_order: "String",
-			edition: "String",
-			action_name: "ObjectId",
-			volume_content: "ObjectId",
-			publishing_year: [{
-				from: "Number",
-				to: "Number",
-				note: "String",
-				periodicity: "String",
-			}],
-			issn: "String",
-			source_document_name: "String",
-			copies: {
-				year: "Number",
-				volume: "Number",
-				number: "Number",
-				date: "Date",
-			},
-			corporation_name: "ObjectId",
-			location: [{
-				institution: "ObjectId",
-				fund: "String",
-				access_conditions: "String",
-				acess_note: "String",
-				location_note: "String",
-			}],
-			digitized_document_url: "String",
-			external_source: [{
-				name: "String",
-				url: "String",
-				url_leading_to_document: "String",
-			}],
-			attachment: [{
-				name: "String",
-				url: "String",
-			}],
-			source_object_citation: ["String"],
-			previous_name: "ObjectId",
-			following_name: "ObjectId",
-			form: "String",
-			range: "String",
-			dimension: "String",
-			map_scale: "String",
-			format: "String",
-			processing_level: "String",
-			archival_aids: "String",
-			source_document_citation: "String",
-			multiple_placement: "String",
-			multiple_placement_url: "String",
-			topic: "ObjectId",
-			corporation_content_specification: "ObjectId",
-			chronological_content_specification: "String",
-			geographical_content_specification: "ObjectId",
-			keywords: ["ObjectId"],
-			description: "String",
-			general_note: "String",
-			editor_note: "String",
-			submitter: {
-				type: "String",
+	metadata: {
+		_id: mongoose.Types.ObjectId,
+		author: {
+			id: mongoose.Types.ObjectId,
+			role: String,
+		},
+		other_authors: [{
+			id: mongoose.Types.ObjectId,
+			role: String,
+		}],
+		name: {
+			type: String,
+			unique: true,
+			required: true,
+		},
+		other_names: [String],
+		language: [String],
+		publish_country: mongoose.Types.ObjectId,
+		publish_place: mongoose.Types.ObjectId,
+		publisher: mongoose.Types.ObjectId,
+		publishing_date: [{
+			date: {
+				type: "Date",
 				required: true
 			},
+			note: String,
+		}],
+		isbn: String,
+		edition_order: String,
+		edition: String,
+		action_name: mongoose.Types.ObjectId,
+		volume_content: mongoose.Types.ObjectId,
+		publishing_year: [{
+			from: "Number",
+			to: "Number",
+			note: String,
+			periodicity: String,
+		}],
+		issn: String,
+		source_document_name: String,
+		copies: {
+			year: "Number",
+			volume: "Number",
+			number: "Number",
+			date: "Date",
 		},
-		corporation: {
-			other_source: [{
-				name: "String",
-				id: "String",
-				identificator: "String",
-			}],
+		corporation_name: mongoose.Types.ObjectId,
+		location: [{
+			institution: mongoose.Types.ObjectId,
+			fund: String,
+			access_conditions: String,
+			acess_note: String,
+			location_note: String,
+		}],
+		digitized_document_url: String,
+		external_source: [{
+			name: String,
+			url: String,
+			url_leading_to_document: String,
+		}],
+		attachment: [{
+			name: String,
+			url: String,
+		}],
+		source_object_citation: [String],
+		previous_name: mongoose.Types.ObjectId,
+		following_name: mongoose.Types.ObjectId,
+		form: String,
+		range: String,
+		dimension: String,
+		map_scale: String,
+		format: String,
+		processing_level: String,
+		archival_aids: String,
+		source_document_citation: String,
+		multiple_placement: String,
+		multiple_placement_url: String,
+		topic: mongoose.Types.ObjectId,
+		corporation_content_specification: mongoose.Types.ObjectId,
+		chronological_content_specification: String,
+		geographical_content_specification: mongoose.Types.ObjectId,
+		keywords: [mongoose.Types.ObjectId],
+		description: String,
+		general_note: String,
+		editor_note: String,
+		submitter: {
+			type: String,
+			required: true
+		},
+	},
+	corporation: {
+		other_source: [{
+			name: String,
+			id: String,
+			identificator: String,
+		}],
 
-			name: {
-				type: "String",
-				required: true,
-			},
+		name: {
+			type: String,
+			required: true,
+		},
 
-			acronym: ["String"],
-			historical_name: ["String"],
-			other_name_form: ["String"],
-			following_name: ["String"],
+		acronym: [String],
+		historical_name: [String],
+		other_name_form: [String],
+		following_name: [String],
 
-			main_part: "String",
-			side_part: ["String"],
+		main_part: String,
+		side_part: [String],
 
-			general_complement: "String",
-			geographical_complement: "String",
-			chronological_complement: "String",
-			characteristic: "String",
-			history: "String",
-			function: "String",
-			constitutive_standards: ["String"],
-			scope_standards: ["String"],
+		general_complement: String,
+		geographical_complement: String,
+		chronological_complement: String,
+		characteristic: String,
+		history: String,
+		function: String,
+		constitutive_standards: [String],
+		scope_standards: [String],
 
-			coordinates: "String",
+		coordinates: String,
 
-			parent_corporation: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			part_of: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			precedent_corporation: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			related_country: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
+		parent_corporation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		part_of: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		precedent_corporation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		related_country: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
 
-			founder: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			founding_document: {
-				type: "ObjectId",
+		founder: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		founding_document: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		founding_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		registration_subject: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		registration_event: {
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		},
+		cleavage_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		cleavage_document: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		cleavage_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_specification: String,
+
+		cancellation_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		cancellation_document: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		cancellation_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		delete_from_evidence_subject: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		delete_from_evidence_event: {
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		},
+		chronological_specification: String,
+
+		owner_change: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		place_change: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		organisation_inclusion: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		change_parent_organisation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		awards: [{
+			award: {
+				type: mongoose.Types.ObjectId,
 				ref: "creationIndex",
 			},
-			founding_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			registration_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			registration_event: {
-				type: "ObjectId",
+			event_award: {
+				type: mongoose.Types.ObjectId,
 				ref: "subjectIndex",
 			},
-			cleavage_person: {
-				type: "ObjectId",
+			awarder_person: {
+				type: mongoose.Types.ObjectId,
 				ref: "peopleIndex",
 			},
-			cleavage_document: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			cleavage_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			chronological_specification: "String",
-
-			cancellation_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			cancellation_document: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			cancellation_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			delete_from_evidence_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			delete_from_evidence_event: {
-				type: "ObjectId",
-				ref: "subjectIndex",
-			},
-			chronological_specification: "String",
-
-			owner_change: [{
-				type: "ObjectId",
+			awarder_corporation: {
+				type: mongoose.Types.ObjectId,
 				ref: "corporationIndex",
-			}],
-			place_change: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
-			organisation_inclusion: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			change_parent_organisation: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			awards: [{
-				award: {
-					type: "ObjectId",
-					ref: "creationIndex",
-				},
-				event_award: {
-					type: "ObjectId",
-					ref: "subjectIndex",
-				},
-				awarder_person: {
-					type: "ObjectId",
-					ref: "peopleIndex",
-				},
-				awarder_corporation: {
-					type: "ObjectId",
-					ref: "corporationIndex",
-				},
-			}],
-
-			categorization: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			}],
-			category: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			}],
-			domain_scope: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
-			geographical_scope: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			}],
-			characteristic: [{
-				type: "ObjectId",
-				ref: "",
-			}],
-			logo: ["String"],
-			mark: ["String"],
-			flag: ["String"],
-
-			notes: ["String"],
-
-			record_sources: {
-				type: ["String"],
-				required: true,
 			},
+		}],
+
+		categorization: [{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		category: [{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		domain_scope: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		geographical_scope: [{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		characteristic: [{
+			type: mongoose.Types.ObjectId,
+			ref: "",
+		}],
+		logo: [String],
+		mark: [String],
+		flag: [String],
+
+		notes: [String],
+
+		record_sources: {
+			type: [String],
+			required: true,
 		},
-		creation: {
-			other_source: [{
-				name: "String",
-				id: "String",
-				identificator: "String",
+	},
+	creation: {
+		other_source: [{
+			name: String,
+			id: String,
+			identificator: String,
+		}],
+
+		name: {
+			type: String,
+			required: true,
+		},
+
+
+		other_name_form: [String],
+
+		main_part: String,
+		other_part: [String],
+		numeric_tag: String,
+		cast: [String],
+		tone: String,
+		arrangement: [String],
+		name_part: [String],
+
+		general_complement: String,
+		geographical_complement: String,
+		chronological_complement: String,
+		author: [String],
+		language: [String],
+		source: [String],
+
+		characteristic: String,
+		description: {
+			type: String,
+			required: true,
+		},
+		geographical_description: String,
+
+		history: String,
+		purpose: [String],
+
+		hierarchical_relations: [{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		}],
+		associative_relations: [{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		}],
+		locality: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		related_person: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		related_corporation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		related_event: [{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+		related_location: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		owner_person: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		owner_corporation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		related_document: [{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		}],
+
+		founding_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		founding_corporation: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		first_mention_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		first_mention_subject: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		first_realization_event: {
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		},
+		first_realization_subject: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		chronological_specification_beginning: String,
+
+		cancellation_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		cancellation_corporation: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		last_mention_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		last_mention_subject: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		last_realization_event: {
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		},
+		last_realization_subject: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		chronological_specification_end: String,
+
+		document_change_person: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		document_change_corporation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		ownership_change_person: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		ownership_change_corporation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		location_change: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+
+		category: [{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+			required: true,
+		}],
+
+		notes: [String],
+
+		record_sources: [String],
+
+
+
+
+
+	},
+	family: {
+		other_source: [{
+			name: String,
+			id: String,
+			identificator: String,
+		}],
+	},
+	geographic: {
+		other_source: [{
+			name: String,
+			id: String,
+			identificator: String,
+		}],
+
+		name: {
+			type: String,
+			required: true,
+		},
+
+		acronym: [String],
+		historical_name: [String],
+		other_name_form: [String],
+
+		main_part: String,
+		other_part: [String],
+
+		general_complement: String,
+		geographical_complement: String,
+		chronological_complement: String,
+
+		characteristic: String,
+		description: String,
+		history: String,
+		electronical_location: [String],
+
+		coordinates: String,
+
+		partner_object: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		owner: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		part_of: [{
+			corporation_name: [{
+				type: mongoose.Types.ObjectId,
+				ref: "corporationIndex",
 			}],
-
-			name: {
-				type: "String",
-				required: true,
-			},
-
-
-			other_name_form: ["String"],
-
-			main_part: "String",
-			other_part: ["String"],
-			numeric_tag: "String",
-			cast: ["String"],
-			tone: "String",
-			arrangement: ["String"],
-			name_part: ["String"],
-
-			general_complement: "String",
-			geographical_complement: "String",
-			chronological_complement: "String",
-			author: ["String"],
-			language: ["String"],
-			source: ["String"],
-
-			characteristic: "String",
-			description: {
-				type: "String",
-				required: true,
-			},
-			geographical_description: "String",
-
-			history: "String",
-			purpose: ["String"],
-
-			hierarchical_relations: [{
-				type: "ObjectId",
-				ref: "creationIndex",
+			corporation_owner: [{
+				type: mongoose.Types.ObjectId,
+				ref: "peopleIndex",
 			}],
-			associative_relations: [{
-				type: "ObjectId",
-				ref: "creationIndex",
-			}],
-			locality: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
+		}],
+		related_entity: [{
 			related_person: [{
-				type: "ObjectId",
-				ref: "peopleIndex",
-			}],
-			related_corporation: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			related_event: [{
-				type: "ObjectId",
-				ref: "subjectIndex",
-			}],
-			related_location: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
-			owner_person: [{
-				type: "ObjectId",
-				ref: "peopleIndex",
-			}],
-			owner_corporation: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			related_document: [{
-				type: "ObjectId",
-				ref: "creationIndex",
-			}],
-
-			founding_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			founding_corporation: {
-				type: "ObjectId",
-				ref: "corporationIndex",
-			},
-			first_mention_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			first_mention_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			first_realization_event: {
-				type: "ObjectId",
-				ref: "subjectIndex",
-			},
-			first_realization_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			chronological_specification_beginning: "String",
-
-			cancellation_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			cancellation_corporation: {
-				type: "ObjectId",
-				ref: "corporationIndex",
-			},
-			last_mention_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			last_mention_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			last_realization_event: {
-				type: "ObjectId",
-				ref: "subjectIndex",
-			},
-			last_realization_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			chronological_specification_end: "String",
-
-			document_change_person: [{
-				type: "ObjectId",
-				ref: "peopleIndex",
-			}],
-			document_change_corporation: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			ownership_change_person: [{
-				type: "ObjectId",
-				ref: "peopleIndex",
-			}],
-			ownership_change_corporation: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			location_change: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
-
-			category: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-				required: true,
-			}],
-
-			notes: ["String"],
-
-			record_sources: ["String"],
-
-
-
-
-
-		},
-		family: {
-			other_source: [{
-				name: "String",
-				id: "String",
-				identificator: "String",
-			}],
-		},
-		geographic: {
-			other_source: [{
-				name: "String",
-				id: "String",
-				identificator: "String",
-			}],
-
-			name: {
-				type: "String",
-				required: true,
-			},
-
-			acronym: ["String"],
-			historical_name: ["String"],
-			other_name_form: ["String"],
-
-			main_part: "String",
-			other_part: ["String"],
-
-			general_complement: "String",
-			geographical_complement: "String",
-			chronological_complement: "String",
-
-			characteristic: "String",
-			description: "String",
-			history: "String",
-			electronical_location: ["String"],
-
-			coordinates: "String",
-
-			partner_object: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
-			owner: [{
-				type: "ObjectId",
-				ref: "peopleIndex",
-			}],
-			part_of: [{
-				corporation_name: [{
-					type: "ObjectId",
-					ref: "corporationIndex",
-				}],
-				corporation_owner: [{
-					type: "ObjectId",
-					ref: "peopleIndex",
-				}],
-			}],
-			related_entity: [{
-				related_person: [{
-					type: "ObjectId",
-					ref: "peopleIndex",
-				}],
-				related_subject: [{
-					type: "ObjectId",
-					ref: "creationIndex",
-				}],
-				related_event: [{
-					type: "ObjectId",
-					ref: "subjectIndex",
-				}],
-				related_corporation: [{
-					type: "ObjectId",
-					ref: "corporationIndex",
-				}],
-			}],
-			superordinate: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			subordinate: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},			
-
-			founding_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			founding_corporation: {
-				type: "ObjectId",
-				ref: "corporationIndex",
-			},
-			founding_document: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			founding_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			first_mention_event: {
-				type: "ObjectId",
-				ref: "subjectIndex",
-			},
-			first_mention_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			first_mention_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			chronological_specification: "String",
-
-			cancellation_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			cancellation_corporation: {
-				type: "ObjectId",
-				ref: "corporationIndex",
-			},
-			cancellation_document: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			cancellation_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			last_mention_event: {
-				type: "ObjectId",
-				ref: "subjectIndex",
-			},
-			last_mention_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			last_mention_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			owner_change: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			chronological_specification: "String",
-			historical_milestones: ["String"],
-
-			awards: [{
-				award: {
-					type: "ObjectId",
-					ref: "creationIndex",
-				},
-				event_award: {
-					type: "ObjectId",
-					ref: "subjectIndex",
-				},
-				awarder_person: {
-					type: "ObjectId",
-					ref: "peopleIndex",
-				},
-				awarder_corporation: {
-					type: "ObjectId",
-					ref: "corporationIndex",
-				},
-			}],
-
-			category: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-				required: true,
-			}],
-			characteristic: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			}],
-			arm: ["String"],
-			logo: ["String"],
-			mark: ["String"],
-			flag: ["String"],
-
-			notes: ["String"],
-
-			record_sources: ["String"],
-		},
-		keyword: {
-			other_source: [{
-				name: "String",
-				id: "String",
-				identificator: "String",
-			}],
-			name: {
-				type: "String",
-				required: true,
-			},
-
-			synonyms: ["String"],
-			inverted_wordorder_terms: ["String"],
-			spelling_variants: ["String"],
-			foreign_language_descriptors: ["String"],
-			form_descriptors: ["String"],
-
-			main_part: "String",
-			other_part: ["String"],
-
-			general_complement: "String",
-			clarification: "String",
-
-			definition: "String",
-			manual: "String",
-			history: "String",
-
-			hierarchical_relations: ["String"],
-			associative_relations: ["String"],
-
-			founding_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			founding_corporation: {
-				type: "ObjectId",
-				ref: "corporationIndex",
-			},
-			founding_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			founding_event: [{
-				type: "ObjectId",
-				ref: "subjectIndex",
-			}],
-			founding_keyword: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			}],
-			chronological_specification: "String",
-
-
-			cancellation_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			cancellation_corporation: {
-				type: "ObjectId",
-				ref: "corporationIndex",
-			},
-			cancellation_subject: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-			cancellation_event: [{
-				type: "ObjectId",
-				ref: "subjectIndex",
-			}],
-			cancellation_keyword: {
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			},
-			cancellation_specification: "String",
-
-			category: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-				required: true,
-			}],
-			domain: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			}],
-			idc: ["String"],
-
-			notes: ["String"],
-
-			record_sources: ["String"],
-		},
-		person: {
-			other_source: [{
-				name: "String",
-				id: "String",
-				identificator: "String",
-			}],
-
-			name: {
-				type: ["String"],
-				required: true,
-			},
-			surname: {
-				type: ["String"],
-				required: true,
-			},
-			born_year: "String",
-			death_year: "String",
-			initials: ["String"],
-			general_complement: ["String"],
-			roman_numerals: ["String"],
-			geographical_complement: ["String"],
-
-			original_name: ["String"],
-			acronym: ["String"],
-			cipher: ["String"],
-			religious_name: ["String"],
-			marriage_name: ["String"],
-			historical_name: ["String"],
-			straight_order: "String",
-
-			titles: [{
-				title: "String",
-				date: "String",
-			}],
-
-			bibliographical_note: {
-				type: "String",
-				required: true,
-			},
-			cv: "String",
-			domain_branch: {
-				type: ["String"],
-				required: true,
-			},
-			gender: {
-				type: "String",
-				required: true,
-			},
-
-			country_membership: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
-			born_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			death_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			related_country: {
-				type: ["ObjectId"],
-				required: true,
-				ref: "geographicIndex",
-			},
-
-			language_country: {
-				type: ["String"],
-				required: true,
-			},
-
-			parents: [{
-				type: "ObjectId",
-				ref: "peopleIndex",
-			}],
-			siblings: [{
-				type: "ObjectId",
-				ref: "peopleIndex",
-			}],
-			family: [{
-				type: "ObjectId",
-				ref: "familyIndex",
-			}],
-			membreship: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			employment: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			affiliation: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-			important_subject: [{
-				type: "ObjectId",
-				ref: "creationIndex",
-			}],
-			important_event: [{
-				type: "ObjectId",
-				ref: "subjectIndex",
-			}],
-			marriage_start: ["String"],
-			marriage_end: ["String"],
-			study: [{
-				type: "ObjectId",
-				ref: "corporationIndex",
-			}],
-
-			arm: ["String"],
-			photo: ["String"],
-
-			notes: ["String"],
-			record_sources: {
-				type: ["String"],
-				required: true,
-			},
-		},
-		subject: {
-			other_source: [{
-				name: "String",
-				id: "String",
-				identificator: "String",
-			}],
-
-			name: {
-				type: "String",
-				required: true,
-			},
-
-			acronym: ["String"],
-			other_name_form: ["String"],
-
-			main_part: "String",
-			other_part: ["String"],
-
-			general_complement: "String",
-			geographical_complement: "String",
-			chronological_complement: "String",
-			event_order: "String",
-
-			aggregate_event: [{
-				type: "ObjectId",
-				ref: "subjectIndex",
-			}],
-			sub_event: [{
-				type: "ObjectId",
-				ref: "subjectIndex",
-			}],
-
-			related_person: [{
-				type: "ObjectId",
+				type: mongoose.Types.ObjectId,
 				ref: "peopleIndex",
 			}],
 			related_subject: [{
-				type: "ObjectId",
+				type: mongoose.Types.ObjectId,
 				ref: "creationIndex",
 			}],
-			related_place: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
+			related_event: [{
+				type: mongoose.Types.ObjectId,
+				ref: "subjectIndex",
 			}],
-			venue: [{
-				type: "ObjectId",
-				ref: "geographicIndex",
-			}],
-			organizator_person: [{
-				type: "ObjectId",
-				ref: "peopleIndex",
-			}],
-			organizator_corporation: [{
-				type: "ObjectId",
+			related_corporation: [{
+				type: mongoose.Types.ObjectId,
 				ref: "corporationIndex",
 			}],
-
-			founding_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			founding_corporation: {
-				type: "ObjectId",
-				ref: "corporationIndex",
-			},
-			founding_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			first_mention: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-
-
-			cancellation_person: {
-				type: "ObjectId",
-				ref: "peopleIndex",
-			},
-			last_mention_event: {
-				type: "ObjectId",
-				ref: "corporationIndex",
-			},
-			cancellation_place: {
-				type: "ObjectId",
-				ref: "geographicIndex",
-			},
-			last_mention: {
-				type: "ObjectId",
-				ref: "creationIndex",
-			},
-
-			category: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			}],
-			topic: [{
-				type: "ObjectId",
-				ref: "KeywordIndex",
-			}],
-
-			notes: ["String"],
-
-			record_sources: ["String"],
+		}],
+		superordinate: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
 		},
-	}
+		subordinate: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},			
+
+		founding_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		founding_corporation: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		founding_document: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		founding_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		first_mention_event: {
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		},
+		first_mention_subject: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		first_mention_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_specification: String,
+
+		cancellation_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		cancellation_corporation: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		cancellation_document: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		cancellation_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		last_mention_event: {
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		},
+		last_mention_subject: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		last_mention_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		owner_change: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_specification: String,
+		historical_milestones: [String],
+
+		awards: [{
+			award: {
+				type: mongoose.Types.ObjectId,
+				ref: "creationIndex",
+			},
+			event_award: {
+				type: mongoose.Types.ObjectId,
+				ref: "subjectIndex",
+			},
+			awarder_person: {
+				type: mongoose.Types.ObjectId,
+				ref: "peopleIndex",
+			},
+			awarder_corporation: {
+				type: mongoose.Types.ObjectId,
+				ref: "corporationIndex",
+			},
+		}],
+
+		category: [{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+			required: true,
+		}],
+		characteristic: [{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		arm: [String],
+		logo: [String],
+		mark: [String],
+		flag: [String],
+
+		notes: [String],
+
+		record_sources: [String],
+	},
+	keyword: {
+		other_source: [{
+			name: String,
+			id: String,
+			identificator: String,
+		}],
+		name: {
+			type: String,
+			required: true,
+		},
+
+		synonyms:[String],
+		inverted_wordorder_terms:[String],
+		spelling_variants:[String],
+		foreign_language_descriptors:[String],
+		form_descriptors:[String],
+		other_name_form:[String],
+
+		main_part:String,
+		other_part:[String],
+
+		general_complement:String,
+		clarification:String,
+
+		definition:String,
+		manual:String,
+		history:String,
+		electronical_location:[String],
+		
+		superordinate:[{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		subordinate:[{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		associative:[{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+
+		founding_person:{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		founding_corporation:{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		founding_subject:{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		founding_event:[{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+		founding_keyword:[{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		chronological_specification:String,
+
+
+		cancellation_person:{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		cancellation_corporation:{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		cancellation_subject:{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+		cancellation_event:[{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+		cancellation_keyword:{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		},
+		chronological_specification:String,
+
+		category:[{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+			required: true,
+		}],
+		domain:[{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		idc:[String],
+
+		notes:[String],
+
+		record_sources:[String],
+	},
+	person: {
+		other_source: [{
+			name: String,
+			id: String,
+			identificator: String,
+		}],
+
+		name: {
+			type: [String],
+			required: true,
+		},
+		surname: {
+			type: [String],
+			required: true,
+		},
+		born_year: String,
+		death_year: String,
+		initials: [String],
+		general_complement: [String],
+		roman_numerals: [String],
+		geographical_complement: [String],
+
+		original_name: [String],
+		acronym: [String],
+		cipher: [String],
+		religious_name: [String],
+		marriage_name: [String],
+		historical_name: [String],
+		straight_order: String,
+
+		titles: [{
+			title: String,
+			date: String,
+		}],
+
+		bibliographical_note: {
+			type: String,
+			required: true,
+		},
+		cv: String,
+		domain_branch: {
+			type: [String],
+			required: true,
+		},
+		gender: {
+			type: String,
+			required: true,
+		},
+
+		country_membership: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		born_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		death_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		related_country: {
+			type: [mongoose.Types.ObjectId],
+			required: true,
+			ref: "geographicIndex",
+		},
+
+		language_country: {
+			type: [String],
+			required: true,
+		},
+
+		parents: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		siblings: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		family: [{
+			type: mongoose.Types.ObjectId,
+			ref: "familyIndex",
+		}],
+		membreship: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		employment: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		affiliation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		important_subject: [{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		}],
+		important_event: [{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+		marriage_start: [String],
+		marriage_end: [String],
+		study: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+
+		arm: [String],
+		photo: [String],
+
+		notes: [String],
+		record_sources: {
+			type: [String],
+			required: true,
+		},
+	},
+	subject: {
+		other_source: [{
+			name: String,
+			id: String,
+			identificator: String,
+		}],
+
+		name: {
+			type: String,
+			required: true,
+		},
+
+		acronym: [String],
+		other_name_form: [String],
+
+		main_part: String,
+		other_part: [String],
+
+		general_complement: String,
+		geographical_complement: String,
+		chronological_complement: String,
+		event_order: String,
+
+		aggregate_event: [{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+		sub_event: [{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+
+		related_person: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		related_subject: [{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		}],
+		related_place: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		venue: [{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		organizator_person: [{
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		}],
+		organizator_corporation: [{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+
+		founding_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		founding_corporation: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		founding_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		first_mention: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+
+
+		cancellation_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "peopleIndex",
+		},
+		last_mention_event: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		cancellation_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		last_mention: {
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		},
+
+		category: [{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+		topic: [{
+			type: mongoose.Types.ObjectId,
+			ref: "KeywordIndex",
+		}],
+
+		notes: [String],
+
+		record_sources: [String],
+	},
+}
 </script>
 
 <style>

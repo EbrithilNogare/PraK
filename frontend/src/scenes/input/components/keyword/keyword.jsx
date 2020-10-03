@@ -19,9 +19,9 @@ import {
 	SubjectComboBox,
 } from '../comboBoxes'
 
-import styles from './geographic.module.scss'
+import styles from './keyword.module.scss'
 
-class Geographic extends React.Component {
+class Keyword extends React.Component {
 	constructor(props){
 		super(props)
 		
@@ -62,7 +62,7 @@ class Geographic extends React.Component {
 		console.log(data)
 		
 
-		fetch("/prak/api/GeographicIndex",{
+		fetch("/prak/api/KeywordIndex",{
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -90,7 +90,7 @@ class Geographic extends React.Component {
 				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
 			>
 				<Paper className={styles.doubledataBlock}>
-					<h1>Nový záznam do Geografického rejstříku</h1>
+					<h1>Nový záznam do rejstříku Klíčových slov</h1>
 				</Paper>			
 				<Paper className={styles.dataBlock}>
 					<h2>Jiný zdroj</h2>
@@ -104,8 +104,11 @@ class Geographic extends React.Component {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Variantní označení</h2>
-					<TextField name="acronym" label="akronym/zkratka"/>
-					<TextField name="historical_name" label="historická/dřívější forma jména"/>
+					<TextField name="synonyms" label="synonyma"/>
+					<TextField name="inverted_wordorder_terms" label="termíny v invertovaném slovosledu"/>
+					<TextField name="spelling_variants" label="pravopisné varianty "/>
+					<TextField name="foreign_language_descriptors" label="cizojazyčné deskriptory"/>
+					<TextField name="form_descriptors" label="tvar deskriptorů v singuláru"/>
 					<TextField name="other_name_form" label="jiný tvar jména/označení"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
@@ -116,75 +119,45 @@ class Geographic extends React.Component {
 				<Paper className={styles.dataBlock}>
 					<h2>Doplňky označení</h2>
 					<TextField name="general_complement" label="obecný doplněk"/>
-					<TextField name="geographical_complement" label="geografický doplněk"/>
-					<TextField name="chronological_complement" label="chronologický doplněk"/>
+					<TextField name="clarification" label="zpřesnění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Popis</h2>
-					<KeywordComboBox name="characteristic" label="stručná charakteristika"/>
-					<TextField name="description" label="popis"/>
+					<TextField name="definition" label="definice"/>
+					<TextField name="manual" label="pokyny k použití"/>
 					<TextField name="history" label="historie"/>
-					<TextField name="" label="elektronické umístění"/>
-				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Souřadnice</h2>
-					<TextField name="coordinates" label="Souřadnice"/>
+					<TextField name="electronical_location" label="elektronické umístění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Vztahy</h2>
-					<GeographicComboBox name="partner_object" label="partnerský geografický objekt"/>
-					<PersonComboBox name="owner" label="majitelé"/>
-					<h2>zahrnuta v korporaci</h2>
-					<CorporationComboBox name="corporation_name" label="název"/>
-					<PersonComboBox name="corporation_owner" label="majitel"/>
-					<h2>spojená entita</h2>
-					<PersonComboBox name="related_person" label="spojená entita"/>
-					<CreationComboBox name="related_subject" label="spojená entita"/>
-					<SubjectComboBox name="related_event" label="spojená entita"/>
-					<CorporationComboBox name="related_corporation" label="spojená entita"/>
-					<GeographicComboBox name="superordinate" label="nadřazený"/>
-					<GeographicComboBox name="subordinate" label="podřazený"/>
+					<KeywordComboBox name="superordinate" label="nadřazený"/>
+					<KeywordComboBox name="subordinate" label="podřazený"/>
+					<KeywordComboBox name="associative" label="asociativní"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Počátek existence</h2>
-					<PersonComboBox name="founding_person" label="vznik_person"/>
-					<CorporationComboBox name="founding_corporation" label="vznik_corporation"/>
-					<CreationComboBox name="founding_document" label="vznik_document"/>
-					<GeographicComboBox name="founding_place" label="vznik_place"/>
-					<SubjectComboBox name="first_mention_event" label="první písemná zmínka_event"/>
-					<CreationComboBox name="first_mention_subject" label="první písemná zmínka_subject"/>
-					<GeographicComboBox name="first_mention_place" label="první písemná zmínka_place"/>
+					<PersonComboBox name="founding_person" label="začátek_person"/>
+					<CorporationComboBox name="founding_corporation" label="začátek_corporation"/>
+					<CreationComboBox name="founding_subject" label="začátek_subject"/>
+					<SubjectComboBox name="founding_event" label="začátek_event"/>
+					<KeywordComboBox name="founding_keyword" label="začátek_keyword"/>
 					<TextField name="chronological_specification" label="chronologické zpřesnění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Konec existence</h2>
-					<PersonComboBox name="cancellation_person" label="zánik_person"/>
-					<CorporationComboBox name="cancellation_corporation" label="zánik_corporation"/>
-					<CreationComboBox name="cancellation_document" label="zánik_document"/>
-					<GeographicComboBox name="cancellation_place" label="zánik_place"/>
-					<SubjectComboBox name="last_mention_event" label="poslední písemná zmínka_event"/>
-					<CreationComboBox name="last_mention_subject" label="poslední písemná zmínka_subject"/>
-					<GeographicComboBox name="last_mention_place" label="poslední písemná zmínka_place"/>
-					<GeographicComboBox name="owner_change" label="změna majitele, držitele"/>
-					<TextField name="chronological_specification" label="chronologické zpřesnění"/>
-					<TextField name="historical_milestones" label="historické milníky"/>
-				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Událost</h2>
-					<CreationComboBox name="award" label="ocenění"/>
-					<SubjectComboBox name="event_award" label="udělení ocenění"/>
-					<PersonComboBox name="awarder_person" label="udělovatel_person"/>
-					<CorporationComboBox name="awarder_corporation" label="udělovatel_corporation"/>
+					<PersonComboBox name="cancellation_person" label="konec_person"/>
+					<CorporationComboBox name="cancellation_corporation" label="konec_corporation"/>
+					<CreationComboBox name="cancellation_subject" label="konec_subject"/>
+					<SubjectComboBox name="cancellation_event" label="konec_event"/>
+					<KeywordComboBox name="cancellation_keyword" label="konec_keyword"/>
+					<TextField name="chronological_specification:" label="chronologické zpřesnění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Zařazení</h2>
 					<KeywordComboBox name="category" label="kategorie"/>
-					<TextField name="characteristic" label="charakteristika"/>
-					<TextField name="arm" label="erb"/>
-					<TextField name="logo" label="logo"/>
-					<TextField name="mark" label="značka"/>
-					<TextField name="flag" label="vlajka"/>
-				</Paper>
+					<KeywordComboBox name="domain" label="obor"/>
+					<TextField name="idc" label="mdt"/>
+				</Paper>				
 				<Paper className={styles.dataBlock}>
 					<h2>Poznámky</h2>
 					<TextField name="notes" multiline/>
@@ -199,4 +172,4 @@ class Geographic extends React.Component {
 	}
 }
 
-export default withSnackbar(Geographic)
+export default withSnackbar(Keyword)

@@ -16,6 +16,7 @@ const schema = new mongoose.Schema({
 	spelling_variants:[String],
 	foreign_language_descriptors:[String],
 	form_descriptors:[String],
+	other_name_form:[String],
 
 	main_part:String,
 	other_part:[String],
@@ -26,9 +27,20 @@ const schema = new mongoose.Schema({
 	definition:String,
 	manual:String,
 	history:String,
-
-	hierarchical_relations:[String],
-	associative_relations:[String],
+	electronical_location:[String],
+	
+	superordinate:[{
+		type: mongoose.Types.ObjectId,
+		ref: "KeywordIndex",
+	}],
+	subordinate:[{
+		type: mongoose.Types.ObjectId,
+		ref: "KeywordIndex",
+	}],
+	associative:[{
+		type: mongoose.Types.ObjectId,
+		ref: "KeywordIndex",
+	}],
 
 	founding_person:{
 		type: mongoose.Types.ObjectId,
@@ -73,7 +85,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "KeywordIndex",
 	},
-	cancellation_specification:String,
+	chronological_specification:String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,
