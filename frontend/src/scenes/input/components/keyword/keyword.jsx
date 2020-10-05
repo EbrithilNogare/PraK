@@ -12,8 +12,6 @@ import {
 import {
 	CorporationComboBox,
 	CreationComboBox,
-	FamilyComboBox,
-	GeographicComboBox,
 	KeywordComboBox,
 	PersonComboBox,
 	SubjectComboBox,
@@ -76,7 +74,12 @@ class Keyword extends React.Component {
 		})
 		.catch((error) => {
 			console.error('Sending unsuccesfull:', error);
-			this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error" })
+			if(error.status && error.status === 500) error.json().then(errorMessage =>{
+				console.error("errorMessage from server:", errorMessage);
+				this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error" })
+			})
+			else
+				this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error" })
 		})
 
 	}

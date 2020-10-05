@@ -23,12 +23,12 @@ import Paper from '../../../../components/paper'
 import ISBNField from './components/ISBNField'
 import {
 	CorporationComboBox,
-	CreationComboBox,
-	FamilyComboBox,
+//	CreationComboBox,
+//	FamilyComboBox,
 	GeographicComboBox,
-	KeywordComboBox,
+//	KeywordComboBox,
 	PersonComboBox,
-	SubjectComboBox,
+//	SubjectComboBox,
 } from '../comboBoxes'
 
 import styles from './metadata.module.scss'
