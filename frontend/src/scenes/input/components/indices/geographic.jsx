@@ -1,14 +1,12 @@
 import React from "react"
 import { withRouter } from 'react-router-dom'
+import { withSnackbar } from 'notistack'
 
 import { 
 	TextField,
 	Button,
 	Paper,
 } from '@material-ui/core'
-import {
-	withSnackbar,
-} from 'notistack';
 
 import {
 	CorporationComboBox,
@@ -19,83 +17,32 @@ import {
 	SubjectComboBox,
 } from '../comboBoxes'
 
-import GPSField from "./components/GPSField"
+import IndexParent from "./indexParent"
 
-import styles from './geographic.module.scss'
+import GPSField from "../validationTextFields/GPSField"
 
-class Geographic extends React.Component {
+import styles from './parent.module.scss'
+
+class Geographic extends IndexParent {
 	constructor(props){
 		super(props)
 		
-		this.state = {}	
-
-		this.handleChange = this.handleChange.bind(this)
-
+		this.state = {}
+		this.indexURL = "geographic"	
 	}
 	
-	handleChange(event){
-		this.setState({
-			[event.target.name]: event.target.value
-		})
-	}
-
-	handleSubmit = event => {		
-		event.preventDefault()
+	getDataReady = (elements) => {
 		const data = {}
-		let errors = 0
+		const errors = []
 		
-		for(let element of event.target.elements)
+		for(let element of elements)
 			if(element.name && element.value !== ""){
 				if(element.getAttribute("aria-invalid")==="true")
-					{
-						errors++
-						console.warn(`Incorrect format of: ${element.name}`);
-						this.props.enqueueSnackbar(`Incorrect format of: ${element.name}`, { variant: "warning" })
-					}
+					errors.push(`Incorrect format of: ${element.name}`)
 				data[element.name] = element.hasAttribute("realvalue") ? element.getAttribute("realvalue") : element.value
 			}
-
-		if(errors>0){
-			console.error(`Cannot send data, there is ${errors} errors`);
-			this.props.enqueueSnackbar(`Cannot send data, there is ${errors} errors`, { variant: "error" })
-			return
-		}
-
-		console.log(data)
-				
-		fetch("/prak/api/GeographicIndex",{
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(data)
-		})
-		.then(response => {
-			if(response.status === 500)
-				throw response
-			return response.json()
-		})
-		.then(response => {
-			console.log(response)
-			this.props.enqueueSnackbar(`Sending succesfull\nID: ${response.id}`, { variant: "success" })
-			this.props.history.push("/prak/show/geographic/"+response.id)
-		})
-		.catch((error) => {
-			console.error('Sending unsuccesfull:', error)
-
-			if(error.status && error.status === 500) error.json().then(errorMessage =>{
-				console.error("errorMessage from server:", errorMessage)
-				if(errorMessage.details.message)
-					this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error" })
-				if(errorMessage.details.code && (errorMessage.details.code === 11000 || errorMessage.details.code === 11001))
-					this.props.enqueueSnackbar(`duplicite error at: ${JSON.stringify(errorMessage.details.keyValue)}`, { variant: "error" })
-			})
-			else
-				this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error" })
-		})
-
+		return {data, errors}
 	}
-
 
 	render(){
 		return(
@@ -136,7 +83,7 @@ class Geographic extends React.Component {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Popis</h2>
-					<KeywordComboBox name="characteristic" label="Stručná charakteristika"/>
+					<KeywordComboBox name="brief_characteristic" label="Stručná charakteristika"/>
 					<TextField name="description" label="Popis"/>
 					<TextField name="history" label="Historie"/>
 					<TextField name="" label="Elektronické umístění"/>

@@ -1,35 +1,36 @@
 import React from 'react'
 import {
-	BrowserRouter as Router,
 	Switch,
 	Route,
 } from "react-router-dom"
 
 
-import Metadata from './components/metadata'
-import Person from './components/person'
-import Corporation from './components/corporation'
-import Geographic from './components/geographic'
-import Keyword from './components/keyword'
+import Metadata from './components/indices/metadata'
+import Corporation from './components/indices/corporation'
+import Creation from './components/indices/indexParent' //todo 
+import Family from './components/indices/indexParent' //todo
+import Geographic from './components/indices/geographic'
+import Keyword from './components/indices/keyword'
+import Person from './components/indices/person'
+import Subject from './components/indices/indexParent' //todo
 
 
 import styles from './inputScene.module.scss'
 
 class InputScene extends React.Component {
-	handleChange = (event) => {
-		
-	};
-
 	render(){
 		return(
 			<div className={styles.InputScene}>
 					<Switch>
-						<Route path="/prak/input/metadata"><Metadata/></Route>
+						<Route path="/prak/input/metadata">		<Metadata/>		</Route>
 						
-						<Route path="/prak/input/person"><Person/></Route>
-						<Route path="/prak/input/corporation"><Corporation/></Route>
-						<Route path="/prak/input/geographic"><Geographic/></Route>
-						<Route path="/prak/input/keyword"><Keyword/></Route>
+						<Route path="/prak/input/corporation">	<Corporation/>	</Route>
+						<Route path="/prak/input/creation">		<Creation/>		</Route>
+						<Route path="/prak/input/family">		<Family/>		</Route>
+						<Route path="/prak/input/geographic">	<Geographic/>	</Route>
+						<Route path="/prak/input/keyword">		<Keyword/>		</Route>
+						<Route path="/prak/input/person">		<Person/>		</Route>
+						<Route path="/prak/input/subject">		<Subject/>		</Route>
 					</Switch>
 			</div>
 		)

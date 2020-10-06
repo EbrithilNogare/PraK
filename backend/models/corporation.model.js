@@ -24,7 +24,7 @@ const schema = new mongoose.Schema({
 	general_complement: String,
 	geographical_complement: String,
 	chronological_complement: String,
-	characteristic: String,
+	brief_characteristic: String,
 	history: String,
 	function: String,
 	constitutive_standards: [String],
@@ -158,7 +158,7 @@ const schema = new mongoose.Schema({
 	}],
 	characteristic: [{
 		type: mongoose.Types.ObjectId,
-		ref: "",
+		ref: "KeywordIndex",
 	}],
 	logo: [String],
 	mark: [String],

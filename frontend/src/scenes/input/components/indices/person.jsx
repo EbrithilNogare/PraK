@@ -8,7 +8,7 @@ import {
 import { Pair } from '../../../../components/layout'
 import Paper from '../../../../components/paper'
 
-import styles from './person.module.scss'
+import styles from './parent.module.scss'
 
 class Author extends React.Component {
 	constructor(props){

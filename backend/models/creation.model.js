@@ -30,7 +30,7 @@ const schema = new mongoose.Schema({
 	language:[String],
 	source:[String],
 			
-	characteristic:String,
+	brief_characteristic: String,
 	description:{
 		type: String,
 		required: true,

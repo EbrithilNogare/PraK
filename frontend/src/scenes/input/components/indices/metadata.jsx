@@ -20,7 +20,7 @@ import {
 import { Pair } from '../../../../components/layout'
 import Paper from '../../../../components/paper'
 
-import ISBNField from './components/ISBNField'
+import ISBNField from '../validationTextFields/ISBNField'
 import {
 	CorporationComboBox,
 //	CreationComboBox,
@@ -31,7 +31,8 @@ import {
 //	SubjectComboBox,
 } from '../comboBoxes'
 
-import styles from './metadata.module.scss'
+import styles from './parent.module.scss'
+
 import metadataTypes from './metadataTypes.json'
 
 class Metadata extends React.Component {

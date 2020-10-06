@@ -24,7 +24,7 @@ const schema = new mongoose.Schema({
 	geographical_complement: String,
 	chronological_complement: String,
 
-	characteristic: String,
+	brief_characteristic: String,
 	description: String,
 	history: String,
 	electronical_location: [String],
