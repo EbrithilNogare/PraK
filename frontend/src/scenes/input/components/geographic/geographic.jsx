@@ -87,7 +87,7 @@ class Geographic extends React.Component {
 				console.error("errorMessage from server:", errorMessage)
 				if(errorMessage.details.message)
 					this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error" })
-				if(errorMessage.details.code && errorMessage.details.code === 11000|| errorMessage.details.code === 11001)
+				if(errorMessage.details.code && (errorMessage.details.code === 11000 || errorMessage.details.code === 11001))
 					this.props.enqueueSnackbar(`duplicite error at: ${JSON.stringify(errorMessage.details.keyValue)}`, { variant: "error" })
 			})
 			else

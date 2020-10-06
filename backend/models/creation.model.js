@@ -10,6 +10,7 @@ const schema = new mongoose.Schema({
 	name:{
 		type: String,
 		required: true,
+		unique: true,
 	},
 
 	other_name_form: [String],
