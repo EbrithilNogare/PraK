@@ -14,7 +14,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-mongoose.connect(process.env.DBUrl)	
+mongoose.connect(`mongodb+srv://${process.env.DBUsername}:${process.env.DBPassword}@prak.oew3t.gcp.mongodb.net/${process.env.DBName}?retryWrites=true&w=majority`)
 
 
 // routes
