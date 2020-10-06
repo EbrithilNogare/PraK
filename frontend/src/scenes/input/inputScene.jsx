@@ -23,7 +23,6 @@ class InputScene extends React.Component {
 	render(){
 		return(
 			<div className={styles.InputScene}>
-				<Router>
 					<Switch>
 						<Route path="/prak/input/metadata"><Metadata/></Route>
 						
@@ -32,7 +31,6 @@ class InputScene extends React.Component {
 						<Route path="/prak/input/geographic"><Geographic/></Route>
 						<Route path="/prak/input/keyword"><Keyword/></Route>
 					</Switch>
-				</Router>
 			</div>
 		)
 	}
