@@ -719,7 +719,7 @@
 				}
 			}
 		},
-		PeopleIndex:{
+		personIndex:{
 			info:{
 				info: "person collection",
 			},		
@@ -1063,7 +1063,7 @@
 
 		founder: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		founding_document: {
 			type: mongoose.Types.ObjectId,
@@ -1083,7 +1083,7 @@
 		},
 		cleavage_person: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		cleavage_document: {
 			type: mongoose.Types.ObjectId,
@@ -1097,7 +1097,7 @@
 
 		cancellation_person: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		cancellation_document: {
 			type: mongoose.Types.ObjectId,
@@ -1144,7 +1144,7 @@
 			},
 			awarder_person: {
 				type: mongoose.Types.ObjectId,
-				ref: "peopleIndex",
+				ref: "personIndex",
 			},
 			awarder_corporation: {
 				type: mongoose.Types.ObjectId,
@@ -1239,7 +1239,7 @@
 		}],
 		related_person:[{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		related_corporation:[{
 			type: mongoose.Types.ObjectId,
@@ -1255,7 +1255,7 @@
 		}],
 		owner_person:[{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		owner_corporation:[{
 			type: mongoose.Types.ObjectId,
@@ -1268,7 +1268,7 @@
 		
 		founding_person:{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		founding_corporation:{
 			type: mongoose.Types.ObjectId,
@@ -1294,7 +1294,7 @@
 		
 		cancellation_person:{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		cancellation_corporation:{
 			type: mongoose.Types.ObjectId,
@@ -1320,7 +1320,7 @@
 		
 		document_change_person:[{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		document_change_corporation:[{
 			type: mongoose.Types.ObjectId,
@@ -1328,7 +1328,7 @@
 		}],
 		ownership_change_person:[{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		ownership_change_corporation:[{
 			type: mongoose.Types.ObjectId,
@@ -1393,7 +1393,7 @@
 		}],
 		owner: [{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		part_of: [{
 			corporation_name: [{
@@ -1402,13 +1402,13 @@
 			}],
 			corporation_owner: [{
 				type: mongoose.Types.ObjectId,
-				ref: "peopleIndex",
+				ref: "personIndex",
 			}],
 		}],
 		related_entity: [{
 			related_person: [{
 				type: mongoose.Types.ObjectId,
-				ref: "peopleIndex",
+				ref: "personIndex",
 			}],
 			related_subject: [{
 				type: mongoose.Types.ObjectId,
@@ -1434,7 +1434,7 @@
 
 		founding_person: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		founding_corporation: {
 			type: mongoose.Types.ObjectId,
@@ -1464,7 +1464,7 @@
 
 		cancellation_person: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		cancellation_corporation: {
 			type: mongoose.Types.ObjectId,
@@ -1508,7 +1508,7 @@
 			},
 			awarder_person: {
 				type: mongoose.Types.ObjectId,
-				ref: "peopleIndex",
+				ref: "personIndex",
 			},
 			awarder_corporation: {
 				type: mongoose.Types.ObjectId,
@@ -1579,7 +1579,7 @@
 
 		founding_person:{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		founding_corporation:{
 			type: mongoose.Types.ObjectId,
@@ -1602,7 +1602,7 @@
 
 		cancellation_person:{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		cancellation_corporation:{
 			type: mongoose.Types.ObjectId,
@@ -1711,11 +1711,11 @@
 
 		parents: [{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		siblings: [{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		family: [{
 			type: mongoose.Types.ObjectId,
@@ -1792,7 +1792,7 @@
 
 		related_person: [{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		related_subject: [{
 			type: mongoose.Types.ObjectId,
@@ -1808,7 +1808,7 @@
 		}],
 		organizator_person: [{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		organizator_corporation: [{
 			type: mongoose.Types.ObjectId,
@@ -1817,7 +1817,7 @@
 
 		founding_person: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		founding_corporation: {
 			type: mongoose.Types.ObjectId,
@@ -1835,7 +1835,7 @@
 
 		cancellation_person: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		last_mention_event: {
 			type: mongoose.Types.ObjectId,

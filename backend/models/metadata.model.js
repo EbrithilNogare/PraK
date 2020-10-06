@@ -4,14 +4,14 @@ const schema = new mongoose.Schema({
 	author: {
 		id: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 			},
 		role: String,
 	},
 	other_authors: [{
 		id: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 			},
 		role: String,
 	}],

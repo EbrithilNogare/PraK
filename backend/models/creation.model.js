@@ -56,7 +56,7 @@ const schema = new mongoose.Schema({
 	}],
 	related_person:[{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	related_corporation:[{
 		type: mongoose.Types.ObjectId,
@@ -72,7 +72,7 @@ const schema = new mongoose.Schema({
 	}],
 	owner_person:[{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	owner_corporation:[{
 		type: mongoose.Types.ObjectId,
@@ -85,7 +85,7 @@ const schema = new mongoose.Schema({
 	
 	founding_person:{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	founding_corporation:{
 		type: mongoose.Types.ObjectId,
@@ -111,7 +111,7 @@ const schema = new mongoose.Schema({
 	
 	cancellation_person:{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	cancellation_corporation:{
 		type: mongoose.Types.ObjectId,
@@ -137,7 +137,7 @@ const schema = new mongoose.Schema({
 	
 	document_change_person:[{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	document_change_corporation:[{
 		type: mongoose.Types.ObjectId,
@@ -145,7 +145,7 @@ const schema = new mongoose.Schema({
 	}],
 	ownership_change_person:[{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	ownership_change_corporation:[{
 		type: mongoose.Types.ObjectId,

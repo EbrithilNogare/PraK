@@ -38,55 +38,15 @@ class Footer extends React.Component {
 					</ul>
 				</div>
 				<div>
-					<h3>Metadata</h3>
+					<h3>Input</h3>
 					<hr/>
 					<ul>
-						<li>
-							<NavLink to="/prak/search/metadata">Search</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/input/metadata">Insert</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/show/metadata">Show</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/edit/metadata">Edit</NavLink>
-						</li>
-					</ul>
-				</div>
-				<div>
-				<h3>Person</h3>
-					<hr/>
-					<ul>
-						<li>
-							<NavLink to="/prak/search/person">Search</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/input/person">Insert</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/show/person">Show</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/edit/person">Edit</NavLink>
-						</li>
-					</ul>
-					<h3>Corporation</h3>
-					<hr/>
-					<ul>
-						<li>
-							<NavLink to="/prak/search/corporation">Search</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/input/corporation">Insert</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/show/corporation">Show</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/edit/corporation">Edit</NavLink>
-						</li>
+						<li> <NavLink to="/prak/input/metadata">metadata</NavLink> </li>
+						<li> <NavLink to="/prak/input/corporation">corporation</NavLink> </li>
+						<li> <NavLink to="/prak/input/creation">creation</NavLink> </li>
+						<li> <NavLink to="/prak/input/geographic">geographic</NavLink> </li>
+						<li> <NavLink to="/prak/input/keyword">keyword</NavLink> </li>
+						<li> <NavLink to="/prak/input/person">person</NavLink> </li>
 					</ul>
 				</div>
 			</div>

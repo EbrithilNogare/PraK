@@ -35,7 +35,7 @@ const schema = new mongoose.Schema({
 	
 	related_person:[{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	related_subject:[{
 		type: mongoose.Types.ObjectId,
@@ -51,7 +51,7 @@ const schema = new mongoose.Schema({
 	}],
 	organizator_person:[{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	organizator_corporation:[{
 		type: mongoose.Types.ObjectId,
@@ -60,7 +60,7 @@ const schema = new mongoose.Schema({
 	
 	founding_person: {
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	founding_corporation: {
 		type: mongoose.Types.ObjectId,
@@ -78,7 +78,7 @@ const schema = new mongoose.Schema({
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	last_mention_event: {
 		type: mongoose.Types.ObjectId,

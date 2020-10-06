@@ -51,7 +51,7 @@ const schema = new mongoose.Schema({
 
 	founder: {
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	founding_document: {
 		type: mongoose.Types.ObjectId,
@@ -71,7 +71,7 @@ const schema = new mongoose.Schema({
 	},
 	cleavage_person: {
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	cleavage_document: {
 		type: mongoose.Types.ObjectId,
@@ -85,7 +85,7 @@ const schema = new mongoose.Schema({
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	cancellation_document: {
 		type: mongoose.Types.ObjectId,
@@ -132,7 +132,7 @@ const schema = new mongoose.Schema({
 		},
 		awarder_person: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		awarder_corporation: {
 			type: mongoose.Types.ObjectId,

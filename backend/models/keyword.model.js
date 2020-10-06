@@ -45,7 +45,7 @@ const schema = new mongoose.Schema({
 
 	founding_person:{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	founding_corporation:{
 		type: mongoose.Types.ObjectId,
@@ -68,7 +68,7 @@ const schema = new mongoose.Schema({
 
 	cancellation_person:{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	cancellation_corporation:{
 		type: mongoose.Types.ObjectId,

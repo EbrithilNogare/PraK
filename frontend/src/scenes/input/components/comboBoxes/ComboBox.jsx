@@ -78,6 +78,7 @@ class ComboBox extends React.Component {
 				<TextField
 					name={this.props.name}
 					label={this.props.label}
+					required={this.props.required}
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}

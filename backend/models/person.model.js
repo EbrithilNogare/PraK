@@ -74,11 +74,11 @@ const schema = new mongoose.Schema({
 	
 	parents: [{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	siblings: [{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	family: [{
 		type: mongoose.Types.ObjectId,
@@ -121,4 +121,4 @@ const schema = new mongoose.Schema({
 	},
 })
 
-module.exports = mongoose.model('peopleIndex', schema, 'peopleIndex')
+module.exports = mongoose.model('personIndex', schema, 'personIndex')

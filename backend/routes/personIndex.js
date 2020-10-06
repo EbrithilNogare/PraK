@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Model = require('../models/people.model')
+const Model = require('../models/person.model')
 const mongoose = require("mongoose")
 mongoose.set('useFindAndModify', false);
 

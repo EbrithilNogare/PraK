@@ -37,7 +37,7 @@ const schema = new mongoose.Schema({
 	}],
 	owner: [{
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	}],
 	part_of: [{
 		corporation_name: [{
@@ -46,13 +46,13 @@ const schema = new mongoose.Schema({
 		}],
 		corporation_owner: [{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 	}],
 	related_entity: [{
 		related_person: [{
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		}],
 		related_subject: [{
 			type: mongoose.Types.ObjectId,
@@ -78,7 +78,7 @@ const schema = new mongoose.Schema({
 
 	founding_person: {
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	founding_corporation: {
 		type: mongoose.Types.ObjectId,
@@ -108,7 +108,7 @@ const schema = new mongoose.Schema({
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
-		ref: "peopleIndex",
+		ref: "personIndex",
 	},
 	cancellation_corporation: {
 		type: mongoose.Types.ObjectId,
@@ -152,7 +152,7 @@ const schema = new mongoose.Schema({
 		},
 		awarder_person: {
 			type: mongoose.Types.ObjectId,
-			ref: "peopleIndex",
+			ref: "personIndex",
 		},
 		awarder_corporation: {
 			type: mongoose.Types.ObjectId,

@@ -31,6 +31,7 @@ class ISBNField extends React.Component {
 			<TextField
 				name={this.props.name}
 				label={this.props.label}
+				required={ this.props.required }
 				onChange={this.handleChange}
 				error={this.state.error}
 				helperText={this.state.error?this.props.errorMessage||"invalid ISBN":""}
