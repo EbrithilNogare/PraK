@@ -39,6 +39,8 @@ const schema = new mongoose.Schema({
 	
 	history:String,
 	purpose:[String],
+
+	coordinates:String,
 	
 	hierarchical_relations:[{
 		type: mongoose.Types.ObjectId,

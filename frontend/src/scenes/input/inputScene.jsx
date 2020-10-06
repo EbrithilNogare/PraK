@@ -7,7 +7,7 @@ import {
 
 import Metadata from './components/indices/metadata'
 import Corporation from './components/indices/corporation'
-import Creation from './components/indices/indexParent' //todo 
+import Creation from './components/indices/creation' //todo 
 import Family from './components/indices/indexParent' //todo
 import Geographic from './components/indices/geographic'
 import Keyword from './components/indices/keyword'
