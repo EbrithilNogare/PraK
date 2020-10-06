@@ -1368,6 +1368,7 @@
 		name: {
 			type: String,
 			required: true,
+			unique: true,
 		},
 
 		acronym: [String],
@@ -1431,7 +1432,7 @@
 		subordinate: {
 			type: mongoose.Types.ObjectId,
 			ref: "geographicIndex",
-		},			
+		},	
 
 		founding_person: {
 			type: mongoose.Types.ObjectId,
@@ -1461,7 +1462,7 @@
 			type: mongoose.Types.ObjectId,
 			ref: "geographicIndex",
 		},
-		chronological_specification: String,
+		chronological_specification: "String",
 
 		cancellation_person: {
 			type: mongoose.Types.ObjectId,
@@ -1517,23 +1518,23 @@
 			},
 		}],
 
-		category: [{
+		category:[{
 			type: mongoose.Types.ObjectId,
 			ref: "KeywordIndex",
 			required: true,
 		}],
-		characteristic: [{
+		characteristic:[{
 			type: mongoose.Types.ObjectId,
 			ref: "KeywordIndex",
 		}],
-		arm: [String],
-		logo: [String],
-		mark: [String],
-		flag: [String],
+		arm:[String],
+		logo:[String],
+		mark:[String],
+		flag:[String],
 
-		notes: [String],
+		notes:[String],
 
-		record_sources: [String],
+		record_sources:[String],
 	},
 	keyword: {
 		other_source: [{

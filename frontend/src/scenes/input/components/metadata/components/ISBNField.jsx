@@ -12,7 +12,6 @@ class ISBNField extends React.Component {
 		this.state = {
 			value: 0,
 			error: false,
-			message: "invalid ISBN"
 		}	
 
 		this.handleChange = this.handleChange.bind(this)
@@ -30,11 +29,11 @@ class ISBNField extends React.Component {
 	render(){
 		return(
 			<TextField
-				name="isbn"
-				label="ISBN"
+				name={this.props.name}
+				label={this.props.label}
 				onChange={this.handleChange}
 				error={this.state.error}
-				helperText={this.state.error?this.state.message:""}
+				helperText={this.state.error?this.props.errorMessage||"invalid ISBN":""}
 			/>			
 		)
 	}

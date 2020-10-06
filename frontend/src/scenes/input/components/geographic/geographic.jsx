@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter } from 'react-router-dom'
 
 import { 
 	TextField,
@@ -18,6 +19,8 @@ import {
 	SubjectComboBox,
 } from '../comboBoxes'
 
+import GPSField from "./components/GPSField"
+
 import styles from './geographic.module.scss'
 
 class Geographic extends React.Component {
@@ -25,11 +28,11 @@ class Geographic extends React.Component {
 		super(props)
 		
 		this.state = {}	
-	
+
 		this.handleChange = this.handleChange.bind(this)
+
 	}
 	
-
 	handleChange(event){
 		this.setState({
 			[event.target.name]: event.target.value
@@ -46,7 +49,7 @@ class Geographic extends React.Component {
 				if(element.getAttribute("aria-invalid")==="true")
 					{
 						errors++
-						console.warning(`Incorrect format of: ${element.name}`);
+						console.warn(`Incorrect format of: ${element.name}`);
 						this.props.enqueueSnackbar(`Incorrect format of: ${element.name}`, { variant: "warning" })
 					}
 				data[element.name] = element.hasAttribute("realvalue") ? element.getAttribute("realvalue") : element.value
@@ -59,8 +62,7 @@ class Geographic extends React.Component {
 		}
 
 		console.log(data)
-		
-
+				
 		fetch("/prak/api/GeographicIndex",{
 			method: "PUT",
 			headers: {
@@ -76,12 +78,17 @@ class Geographic extends React.Component {
 		.then(response => {
 			console.log(response)
 			this.props.enqueueSnackbar(`Sending succesfull\nID: ${response.id}`, { variant: "success" })
+			this.props.history.push("/prak/show/geographic/"+response.id)
 		})
 		.catch((error) => {
-			console.error('Sending unsuccesfull:', error);
+			console.error('Sending unsuccesfull:', error)
+
 			if(error.status && error.status === 500) error.json().then(errorMessage =>{
-				console.error("errorMessage from server:", errorMessage);
-				this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error" })
+				console.error("errorMessage from server:", errorMessage)
+				if(errorMessage.details.message)
+					this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error" })
+				if(errorMessage.details.code && errorMessage.details.code === 11000|| errorMessage.details.code === 11001)
+					this.props.enqueueSnackbar(`duplicite error at: ${JSON.stringify(errorMessage.details.keyValue)}`, { variant: "error" })
 			})
 			else
 				this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error" })
@@ -136,7 +143,7 @@ class Geographic extends React.Component {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Souřadnice</h2>
-					<TextField name="coordinates" label="Souřadnice"/>
+					<GPSField name="coordinates" label="Souřadnice" errorMessage="Chybný formát souřadnic"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Vztahy</h2>
@@ -207,4 +214,4 @@ class Geographic extends React.Component {
 	}
 }
 
-export default withSnackbar(Geographic)
+export default withSnackbar(withRouter(Geographic))
