@@ -20,7 +20,7 @@ class ShowScene extends React.Component {
 	getRecord = (type, id) => {
 		if(this.state.record !== "null") return
 
-		fetch(`/prak/api/${type}index/${id}`)
+		fetch(`/prak/api/${type}${type=="metadata"?"":"index"}/${id}`)
 		.then(response => response.json())
 		.then(data => {
 			this.setState({record:JSON.stringify(data, null, 2)})

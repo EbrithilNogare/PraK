@@ -26,7 +26,7 @@ class IndexParent extends React.Component {
 
 		console.log("Sending data:\n", data)
 				
-		fetch(`/prak/api/${this.indexURL}index`,{
+		fetch(`/prak/api/${this.indexURL}${this.indexURL=="metadata"?"":"index"}`,{
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
