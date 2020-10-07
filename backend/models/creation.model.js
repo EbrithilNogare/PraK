@@ -15,17 +15,17 @@ const schema = new mongoose.Schema({
 
 	other_name_form: [String],
 		
-	main_part:String,
+	main_part: String,
 	other_part:[String],
-	numeric_tag:String,
+	numeric_tag: String,
 	cast:[String],
-	tone:String,
+	tone: String,
 	arrangement:[String],
 	name_part:[String],
 	
-	general_complement:String,
-	geographical_complement:String,
-	chronological_complement:String,
+	general_complement: String,
+	geographical_complement: String,
+	chronological_complement: String,
 	author:[String],
 	language:[String],
 	source:[String],
@@ -35,12 +35,12 @@ const schema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	geographical_description:String,
+	geographical_description: String,
 	
-	history:String,
+	history: String,
 	purpose:[String],
 
-	coordinates:String,
+	coordinates: String,
 	
 	hierarchical_relations:[{
 		type: mongoose.Types.ObjectId,
@@ -107,7 +107,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	},
-	chronological_specification_beginning:String,
+	chronological_specification_beginning: String,
 	
 	cancellation_person:{
 		type: mongoose.Types.ObjectId,
@@ -133,7 +133,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	},	
-	chronological_specification_end:String,
+	chronological_specification_cancellation: String,
 	
 	document_change_person:[{
 		type: mongoose.Types.ObjectId,

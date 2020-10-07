@@ -19,15 +19,15 @@ const schema = new mongoose.Schema({
 	form_descriptors:[String],
 	other_name_form:[String],
 
-	main_part:String,
+	main_part: String,
 	other_part:[String],
 
-	general_complement:String,
-	clarification:String,
+	general_complement: String,
+	clarification: String,
 
-	definition:String,
-	manual:String,
-	history:String,
+	definition: String,
+	manual: String,
+	history: String,
 	electronical_location:[String],
 	
 	superordinate:[{
@@ -63,7 +63,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "KeywordIndex",
 	}],
-	chronological_specification:String,
+	chronological_specification_beginning: String,
 
 
 	cancellation_person:{
@@ -86,7 +86,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "KeywordIndex",
 	},
-	chronological_specification:String,
+	chronological_specification_cancellation: String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,

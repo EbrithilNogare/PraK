@@ -81,7 +81,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	founding_chronological_specification: String,
+	chronological_specification_beginning: String,
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
@@ -103,7 +103,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	cancellation_chronological_specification: String,
+	cancellation_chronological_specification_cancellation : String,
 
 	owner_change: [{
 		type: mongoose.Types.ObjectId,
