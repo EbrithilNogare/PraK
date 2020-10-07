@@ -102,7 +102,7 @@ class Subject extends IndexParent {
 					<CorporationComboBox name="founding_corporation" label="Vznik_corporation"/>
 					<GeographicComboBox name="first_mention_place" label="První písemná zmínka_place"/>
 					<CreationComboBox name="first_mention" label="První písemná zmínka"/>
-					<TextField name="chronological_specification_beginning" label="Chronologické zpřesnění"/>
+					<TextField name="founding_chronological_specification" label="Chronologické zpřesnění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Konec existence</h2>
@@ -110,7 +110,7 @@ class Subject extends IndexParent {
 					<CorporationComboBox name="cancellation_event" label="Zničení, zánik_corporation"/>
 					<GeographicComboBox name="last_mention_place" label="Poslední zmínka_place"/>
 					<CreationComboBox name="last_mention" label="Poslední písemná zmínka"/>
-					<TextField name="chronological_specification_end" label="Chronologické zpřesnění_end"/>
+					<TextField name="cancellation_chronological_specification" label="Chronologické zpřesnění"/>
 				</Paper>				
 				<Paper className={styles.dataBlock}>
 					<h2>Zařazení</h2>

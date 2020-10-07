@@ -103,7 +103,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	cancellation_chronological_specification_cancellation : String,
+	chronological_specification_cancellation : String,
 
 	owner_change: [{
 		type: mongoose.Types.ObjectId,

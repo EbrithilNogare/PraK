@@ -109,7 +109,7 @@ class Corporation extends IndexParent {
 					<PersonComboBox name="cleavage_person" label="Odštěpení evidence existence - osoba"/>
 					<CreationComboBox name="cleavage_document" label="Ustanovující dokument"/>
 					<GeographicComboBox name="cleavage_place" label="Geografický objekt v roli předchůdce"/>
-					<TextField name="chronological_specification" label="Chronologické zpřesnění"/>
+					<TextField name="chronological_specification_beginning" label="Chronologické zpřesnění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Konec existence</h2>
@@ -118,7 +118,7 @@ class Corporation extends IndexParent {
 					<GeographicComboBox name="cancellation_place" label="Geografický objekt jako následník"/>
 					<CreationComboBox name="delete_from_evidence_subject" label="Výmaz z evidence dilo/vytvor"/>
 					<SubjectComboBox name="delete_from_evidence_event" label="Událost"/>
-					<TextField name="chronological_specification" label="Chronologické zpřesnění"/>
+					<TextField name="chronological_specification_cancellation" label="Chronologické zpřesnění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Událost</h2>

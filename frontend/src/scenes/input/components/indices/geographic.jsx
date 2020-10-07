@@ -117,7 +117,7 @@ class Geographic extends IndexParent {
 						<SubjectComboBox name="first_mention_event" label="První písemná zmínka_event"/>
 						<CreationComboBox name="first_mention_subject" label="První písemná zmínka_subject"/>
 						<GeographicComboBox name="first_mention_place" label="První písemná zmínka_place"/>
-						<TextField name="chronological_specification" label="Chronologické zpřesnění"/>
+						<TextField name="chronological_specification_beginning" label="Chronologické zpřesnění"/>
 					</Paper>
 					<Paper className={styles.dataBlock}>
 						<h2>Konec existence</h2>
@@ -129,7 +129,7 @@ class Geographic extends IndexParent {
 						<CreationComboBox name="last_mention_subject" label="Poslední písemná zmínka_subject"/>
 						<GeographicComboBox name="last_mention_place" label="Poslední písemná zmínka_place"/>
 						<GeographicComboBox name="owner_change" label="Změna majitele, držitele"/>
-						<TextField name="chronological_specification" label="Chronologické zpřesnění"/>
+						<TextField name="chronological_specification_cancellation" label="Chronologické zpřesnění"/>
 						<TextField name="historical_milestones" label="Historické milníky"/>
 					</Paper>
 					<Paper className={styles.dataBlock}>

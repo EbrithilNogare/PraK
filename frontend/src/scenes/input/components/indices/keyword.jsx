@@ -102,7 +102,7 @@ class Keyword extends IndexParent {
 					<CreationComboBox name="founding_subject" label="Začátek_subject"/>
 					<SubjectComboBox name="founding_event" label="Začátek_event"/>
 					<KeywordComboBox name="founding_keyword" label="Začátek_keyword"/>
-					<TextField name="chronological_specification" label="Chronologické zpřesnění"/>
+					<TextField name="chronological_specification_beginning" label="Chronologické zpřesnění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Konec existence</h2>
@@ -111,7 +111,7 @@ class Keyword extends IndexParent {
 					<CreationComboBox name="cancellation_subject" label="Konec_subject"/>
 					<SubjectComboBox name="cancellation_event" label="Konec_event"/>
 					<KeywordComboBox name="cancellation_keyword" label="Konec_keyword"/>
-					<TextField name="chronological_specification:" label="Chronologické zpřesnění"/>
+					<TextField name="chronological_specification_cancellation:" label="Chronologické zpřesnění"/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Zařazení</h2>
