@@ -79,6 +79,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	},
+	founding_chronological_specification: String,
 
 
 	cancellation_person: {
@@ -97,6 +98,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	},
+	cancellation_chronological_specification: String,
 	
 	category:[{
 		type: mongoose.Types.ObjectId,
