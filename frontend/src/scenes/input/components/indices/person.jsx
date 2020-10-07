@@ -51,9 +51,10 @@ class Person extends IndexParent {
 				className={styles.main}
 				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
 			>
-				<Paper className={styles.doubledataBlock}>
+				<Paper className={styles.header}>
 					<h1>Nový záznam do Rejstříku osoby</h1>
-				</Paper>			
+				</Paper>
+				<div className={styles.body}>			
 				<Paper className={styles.dataBlock}>
 					<h2>Jiný zdroj</h2>
 					<TextField name="other_source-name" label="Název"/>
@@ -141,6 +142,8 @@ class Person extends IndexParent {
 					<TextField name="record_sources" label="Zdroje o heslu"/>
 				</Paper>					
 				<Button type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
+				</div>
+				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
 			</form>
 		)
 	}

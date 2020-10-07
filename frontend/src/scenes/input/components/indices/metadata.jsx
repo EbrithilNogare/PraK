@@ -86,10 +86,11 @@ class Metadata extends IndexParent {
 				className={styles.main}
 				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
 			>
-				<Paper className={styles.doubledataBlock}>
+				<Paper className={styles.header}>
 					<h1>Nový záznam do Rejstříku metadat</h1>
-				</Paper>	
-				<Paper className={[styles.doubledataBlock,styles.dataBlock].join(' ')}>
+				</Paper>
+				<div className={styles.body}>	
+				<Paper className={styles.dataBlock}>
 					<FormControl>
 						<InputLabel id="selectTypeLabel">Type</InputLabel>
 						<Select
@@ -335,10 +336,10 @@ class Metadata extends IndexParent {
 				}						
 
 				</Paper>
-
-				<Button type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
+				</div>
+				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
 				{/*
-				<Paper className={[styles.doubledataBlock,styles.dataBlock].join(' ')}>
+				<Paper className={[styles.footer,styles.dataBlock].join(' ')}>
 					<TableContainer>
 						<CardContent>
 							<Typography gutterBottom variant="h5">
