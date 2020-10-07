@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const schema = new mongoose.Schema({
 	author: {
@@ -20,6 +20,7 @@ const schema = new mongoose.Schema({
 		unique: true,
 		required: true,
 	},
+	author_responsibility: [String],
 	other_names: [String],
 	language: [String],
 	publish_country: {
@@ -32,7 +33,7 @@ const schema = new mongoose.Schema({
 	},
 	publisher: {
 		type: mongoose.Types.ObjectId,
-		ref: "?????",
+		ref: "corporationIndex",
 	},
 	publishing_date: [{
 		date: {
@@ -46,11 +47,15 @@ const schema = new mongoose.Schema({
 	edition: String,
 	action_name: {
 		type: mongoose.Types.ObjectId,
-		ref: "?????",
+		ref: "corporationIndex",
 	},
 	volume_content: {
 		type: mongoose.Types.ObjectId,
-		ref: "?????",
+		refPath: "volume_contentModel"
+	},
+	volume_contentModel:{
+		type: String,
+		enum: ["corporationIndex", "geographicIndex"]
 	},
 	publishing_year: [{
 		from: Number,
@@ -71,14 +76,14 @@ const schema = new mongoose.Schema({
 		ref: "corporationIndex",
 	},
 	location: [{
-		institution: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-		fund: String,
 		access_conditions: String,
 		acess_note: String,
-		location_note: String,
+		institution: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		fund: String,
+		note: String,
 	}],
 	digitized_document_url: String,
 	external_source: [{
@@ -93,11 +98,11 @@ const schema = new mongoose.Schema({
 	source_object_citation: [String],
 	previous_name: {
 		type: mongoose.Types.ObjectId,
-		ref: "?????",
+		ref: "metadata",
 	},
 	following_name: {
 		type: mongoose.Types.ObjectId,
-		ref: "?????",
+		ref: "metadata"
 	},
 	form: String,
 	range: String,
@@ -114,11 +119,19 @@ const schema = new mongoose.Schema({
 	multiple_placement_url: String,
 	topic: {
 		type: mongoose.Types.ObjectId,
-		ref: "?????",
+		ref: "topicModel",
+	},
+	topicModel: {
+	  type: String,
+	  enum: ['subjectIndex', 'creationIndex']
 	},
 	corporation_content_specification: {
 		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
+		refPath: "corporation_content_specificationModel",
+	},
+	corporation_content_specificationModel: {
+	  type: String,
+	  enum: ['personIndex', 'corporationIndex']
 	},
 	chronological_content_specification: String,
 	geographical_content_specification: {
@@ -138,4 +151,4 @@ const schema = new mongoose.Schema({
 	},
 })
 
-module.exports = mongoose.model('metadata', schema, 'metadata')
+module.exports = mongoose.model("metadata", schema, "metadata")

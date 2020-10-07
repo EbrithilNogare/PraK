@@ -22,12 +22,12 @@ import {
 
 import {
 	CorporationComboBox,
-	CreationComboBox,
-	FamilyComboBox,
+//	CreationComboBox,
+//	FamilyComboBox,
 	GeographicComboBox,
-	KeywordComboBox,
+//	KeywordComboBox,
 	PersonComboBox,
-	SubjectComboBox,
+//	SubjectComboBox,
 } from '../comboBoxes'
 
 import IndexParent from "./indexParent"

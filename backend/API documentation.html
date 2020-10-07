@@ -917,11 +917,13 @@
 </script>
 
 <script>
-	// mongoose model variables to string convert
-	const String = "String"
-	const mongoose = { Types: { ObjectId: "ObjectId" } }
+// mongoose model variables to string convert
+const String = "String"
+const Number = "Number"
+const Date = "Date"
+const mongoose = { Types: { ObjectId: "ObjectId" } }
 
-	const schema = {
+const schema = {
 	metadata: {
 		author: {
 			id: {
@@ -942,6 +944,7 @@
 			unique: true,
 			required: true,
 		},
+		author_responsibility: [String],
 		other_names: [String],
 		language: [String],
 		publish_country: {
@@ -954,7 +957,7 @@
 		},
 		publisher: {
 			type: mongoose.Types.ObjectId,
-			ref: "?????",
+			ref: "corporationIndex",
 		},
 		publishing_date: [{
 			date: {
@@ -968,11 +971,15 @@
 		edition: String,
 		action_name: {
 			type: mongoose.Types.ObjectId,
-			ref: "?????",
+			ref: "corporationIndex",
 		},
 		volume_content: {
 			type: mongoose.Types.ObjectId,
-			ref: "?????",
+			refPath: "volume_contentModel"
+		},
+		volume_contentModel:{
+			type: String,
+			enum: ["corporationIndex", "geographicIndex"]
 		},
 		publishing_year: [{
 			from: Number,
@@ -993,14 +1000,14 @@
 			ref: "corporationIndex",
 		},
 		location: [{
-			institution: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-			fund: String,
 			access_conditions: String,
 			acess_note: String,
-			location_note: String,
+			institution: {
+				type: mongoose.Types.ObjectId,
+				ref: "geographicIndex",
+			},
+			fund: String,
+			note: String,
 		}],
 		digitized_document_url: String,
 		external_source: [{
@@ -1015,11 +1022,11 @@
 		source_object_citation: [String],
 		previous_name: {
 			type: mongoose.Types.ObjectId,
-			ref: "?????",
+			ref: "metadata",
 		},
 		following_name: {
 			type: mongoose.Types.ObjectId,
-			ref: "?????",
+			ref: "metadata"
 		},
 		form: String,
 		range: String,
@@ -1036,11 +1043,19 @@
 		multiple_placement_url: String,
 		topic: {
 			type: mongoose.Types.ObjectId,
-			ref: "?????",
+			ref: "topicModel",
+		},
+		topicModel: {
+		type: String,
+		enum: ['subjectIndex', 'creationIndex']
 		},
 		corporation_content_specification: {
 			type: mongoose.Types.ObjectId,
-			ref: "corporationIndex",
+			refPath: "corporation_content_specificationModel",
+		},
+		corporation_content_specificationModel: {
+		type: String,
+		enum: ['personIndex', 'corporationIndex']
 		},
 		chronological_content_specification: String,
 		geographical_content_specification: {
