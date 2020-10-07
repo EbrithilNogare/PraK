@@ -7,12 +7,12 @@ import {
 
 import Metadata from './components/indices/metadata'
 import Corporation from './components/indices/corporation'
-import Creation from './components/indices/creation' //todo 
-import Family from './components/indices/family' //todo
+import Creation from './components/indices/creation' 
+import Family from './components/indices/family'
 import Geographic from './components/indices/geographic'
 import Keyword from './components/indices/keyword'
 import Person from './components/indices/person'
-import Subject from './components/indices/indexParent' //todo
+import Subject from './components/indices/subject'
 
 
 import styles from './inputScene.module.scss'

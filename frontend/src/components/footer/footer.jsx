@@ -47,6 +47,8 @@ class Footer extends React.Component {
 						<li> <NavLink to="/prak/input/geographic">geographic</NavLink> </li>
 						<li> <NavLink to="/prak/input/keyword">keyword</NavLink> </li>
 						<li> <NavLink to="/prak/input/person">person</NavLink> </li>
+						<li> <NavLink to="/prak/input/subject">subject</NavLink> </li>
+						<li> <NavLink to="/prak/input/family">family</NavLink> </li>
 					</ul>
 				</div>
 			</div>

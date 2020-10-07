@@ -23,6 +23,11 @@ const schema = new mongoose.Schema({
 	geographical_complement: String,
 	chronological_complement: String,
 	event_order: String,
+	
+	description:{
+		type: String,
+		required: true,
+	},
 
 	aggregate_event:[{
 		type: mongoose.Types.ObjectId,
