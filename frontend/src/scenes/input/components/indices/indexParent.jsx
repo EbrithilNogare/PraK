@@ -4,10 +4,13 @@ class IndexParent extends React.Component {
 	constructor(props){
 		super(props)
 		
+		window.debug = ()=>{return this.formData} // todo remove this line
+
+		this.formData = null	// abstract
 		this.indexURL = null	// abstract
 	}
 	
-	handleSubmit = event => {		
+	handleSubmit = event => {
 		event.preventDefault()
 		
 		const {data, errors} = this.getDataReady(event.target.elements)
@@ -57,6 +60,11 @@ class IndexParent extends React.Component {
 				this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error" })
 		})
 
+	}
+
+	
+	handleFormChange = (e, a) => {
+		a.split('.').reduce((o,p,i) => o[p] = a.split('.').length === ++i ? e.target.value : o[p] || {}, this.formData)
 	}
 
 	getDataReady = (elements) => {	// abstract

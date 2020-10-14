@@ -60,7 +60,6 @@ class ComboBox extends React.Component {
 				this.setState({loading: false})
 			})
 		}
-
 	}
 
 	handleMenuItemClick(value){
@@ -70,6 +69,7 @@ class ComboBox extends React.Component {
 			ID: value.key,
 			menuList: [],
 		})
+		if(this.props.onChange) this.props.onChange({target:{value:value.key}})
 	}
 
 	render(){

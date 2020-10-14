@@ -24,6 +24,8 @@ class ISBNField extends React.Component {
 			value: event.target.value,
 			error: event.target.value.length !== 0 && !regex.test(event.target.value)
 		})
+
+		if(this.props.onChange) this.props.onChange(event)
 	}	
 
 	render(){
