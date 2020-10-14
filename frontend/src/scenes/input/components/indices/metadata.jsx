@@ -22,6 +22,7 @@ import {
 //	SubjectComboBox,
 } from '../comboBoxes'
 import ISBNField from '../validationTextFields/ISBNField'
+import DateField from '../validationTextFields/DateField'
 
 import IndexParent from "./indexParent"
 
@@ -152,7 +153,7 @@ class Metadata extends IndexParent {
 						label={this.getTranslation("publisher")} 
 						onChange={e=>{this.handleFormChange(e, "publisher")}}/>
 					}
-					{this.conditionalField("publishing_date") && <TextField
+					{this.conditionalField("publishing_date") && <DateField
 						label={this.getTranslation("publishing_date")}
 						onChange={e=>{this.handleFormChange(e, "publishing_date.date")}}/>
 					}
@@ -220,7 +221,7 @@ class Metadata extends IndexParent {
 					label={this.getTranslation("number")} 
 					onChange={e=>{this.handleFormChange(e, "copies.number")}}/>
 				}
-				{this.conditionalField("date") && <TextField 
+				{this.conditionalField("date") && <DateField 
 					label={this.getTranslation("date")} 
 					onChange={e=>{this.handleFormChange(e, "copies.date")}}/>
 				}

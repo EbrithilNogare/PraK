@@ -17,6 +17,8 @@ import {
 	SubjectComboBox,
 } from '../comboBoxes'
 
+import DateField from '../validationTextFields/DateField'
+
 import IndexParent from "./indexParent"
 
 import styles from './parent.module.scss'
@@ -74,7 +76,7 @@ class Person extends IndexParent {
 				<Paper className={styles.dataBlock}>
 					<h2>Tituly</h2>
 					<TextField label="Tituly" onChange={e=>{this.handleFormChange(e, "titles.title")}}/>
-					<TextField label="Datum" onChange={e=>{this.handleFormChange(e, "titles.date")}}/>
+					<DateField label="Datum" onChange={e=>{this.handleFormChange(e, "titles.date")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Biografická poznámka</h2>
