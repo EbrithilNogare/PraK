@@ -5,7 +5,11 @@ import {
 	MenuList,
 	MenuItem,
 	LinearProgress,
+	InputAdornment,
 } from '@material-ui/core'
+import {
+	Check
+} from '@material-ui/icons';
 
 
 class ComboBox extends React.Component {
@@ -23,12 +27,16 @@ class ComboBox extends React.Component {
 
 	getFetchURL = () => {throw new Error("Calling abstract function")}
 
-	generateObjectForMongooseFind = (value) => {throw new Error("Calling abstract function")}
+	generateObjectForMongooseFind = value => {throw new Error("Calling abstract function")}
 	
-	parseReturnedObjectFromMongooseFind = (element) => {throw new Error("Calling abstract function")}
+	parseReturnedObjectFromMongooseFind = element => {throw new Error("Calling abstract function")}
 
-	handleChange(event){
-		this.setState({value: event.target.value})
+	handleChange = event => {
+		this.setState({
+			value: event.target.value,
+			ID: ""
+		})
+		if(this.props.onChange) this.props.onChange({target:{value:undefined}})
 
 		if(event.target.value.length > 2){
 			this.setState({loading: true})
@@ -59,7 +67,7 @@ class ComboBox extends React.Component {
 		}
 	}
 
-	handleMenuItemClick(value){
+	handleMenuItemClick = value => {
 		this.setState({
 			value: value.text,
 			name: value.text,
@@ -67,6 +75,10 @@ class ComboBox extends React.Component {
 			menuList: [],
 		})
 		if(this.props.onChange) this.props.onChange({target:{value:value.key}})
+	}
+
+	openNewFieldWindow = () => {
+		console.log("here")
 	}
 
 	render(){
@@ -79,18 +91,26 @@ class ComboBox extends React.Component {
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}
-					inputProps={{realvalue:this.state.ID}}
+					InputProps={{
+						realvalue:this.state.ID,
+						startAdornment: this.state.ID ? (
+							<InputAdornment position="start">
+								<Check />
+							</InputAdornment>) : ""
+					  }}
 				/>
 				{this.state.loading && <LinearProgress />}
-				<MenuList>
+				<MenuList style={{"paddingTop": 0, "paddingBottom": 0, "boxShadow": "rgba(0, 0, 0, 0.2) 0px 2px 3px 0px"}}>
 					{this.state.menuList.map(value=>(
-						<MenuItem
-							key={value.key}
-							onClick={() => this.handleMenuItemClick(value)}
-						>
+						<MenuItem key={value.key} onClick={() => this.handleMenuItemClick(value)}>
 							{value.text}
 						</MenuItem>
 					))}
+					{ this.state.menuList.length === 0 && this.state.value.length >= 3 && (!this.state.loading) && this.state.ID === "" &&
+						<MenuItem key="add_new_field" onClick={this.openNewFieldWindow} style={{background: "#a9dc39"}}>
+							+ Přidat nový záznam
+						</MenuItem>
+					}
 				</MenuList>
 			</div>
 		)
