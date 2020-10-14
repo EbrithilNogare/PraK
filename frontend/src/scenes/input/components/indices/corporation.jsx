@@ -29,17 +29,7 @@ class Corporation extends IndexParent {
 		this.state = {}
 		this.formData = {}
 
-
 		this.indexURL = "corporation"
-	}
-	
-	getDataReady = (elements) => {
-		const errors = []
-		for(let element of elements)
-			if(element.name && element.value !== "" && element.getAttribute("aria-invalid")==="true")
-				errors.push(`Incorrect format of: ${element.name}`)
-			
-		return {data:this.formData, errors}
 	}
 
 	render(){

@@ -25,10 +25,10 @@ class IndexParent extends React.Component {
 		const {data, errors} = this.getDataReady(event.target.elements)
 
 		if(errors.length > 0){
-			for (let i = 0; i < errors.length; i++) {
-				console.warn(errors[i]);
-				this.props.enqueueSnackbar(errors[i], { variant: "warning" })
-			}
+			errors.forEach( value => {
+				console.warn(value);
+				this.props.enqueueSnackbar(value, { variant: "warning" })
+			})
 
 			console.error(`Cannot send data, because of ${errors.length} errors`);
 			this.props.enqueueSnackbar(`Cannot send data, because of ${errors.length} errors`, { variant: "error" })
@@ -72,7 +72,8 @@ class IndexParent extends React.Component {
 	}
 	
 	handleFormChange = (e, a) => {
-		a.split('.').reduce((o,p,i) => o[p] = a.split('.').length === ++i ? e.target.value : o[p] || {}, this.formData)
+		a.split('.').reduce((o,p,i) =>
+			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || {}, this.formData)
 	}
 }
 
