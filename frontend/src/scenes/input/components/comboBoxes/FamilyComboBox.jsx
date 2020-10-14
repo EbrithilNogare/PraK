@@ -2,6 +2,7 @@ import ComboBox from "./ComboBox"
 
 class FamilyComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/FamilyIndex"
+	getNewFieldURL = () => "/prak/input/family"
 
 	generateObjectForMongooseFind = (value) => {
 		return { other_source: { name: `/${value}/` } }

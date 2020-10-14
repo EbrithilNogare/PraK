@@ -26,6 +26,7 @@ class ComboBox extends React.Component {
 	}
 
 	getFetchURL = () => {throw new Error("Calling abstract function")}
+	getNewFieldURL = () => {throw new Error("Calling abstract function")}
 
 	generateObjectForMongooseFind = value => {throw new Error("Calling abstract function")}
 	
@@ -78,7 +79,9 @@ class ComboBox extends React.Component {
 	}
 
 	openNewFieldWindow = () => {
-		console.log("here")
+		const url = this.getNewFieldURL()
+		console.log("Opening new window\n", url)
+		window.open(url)
 	}
 
 	render(){
