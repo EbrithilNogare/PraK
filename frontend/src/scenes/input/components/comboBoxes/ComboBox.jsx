@@ -18,10 +18,7 @@ class ComboBox extends React.Component {
 			ID: "",
 			menuList: [],
 			loading: false,
-		}	
-
-
-		this.handleChange = this.handleChange.bind(this)
+		}
 	}
 
 	getFetchURL = () => {throw new Error("Calling abstract function")}

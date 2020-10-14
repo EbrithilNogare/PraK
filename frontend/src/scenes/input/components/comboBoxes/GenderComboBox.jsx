@@ -38,6 +38,7 @@ class GenderComboBox extends React.Component {
 			value: value,
 			menuList: [],
 		})
+		if(this.props.onChange) this.props.onChange({target:{value:value}})
 	}
 
 	render(){

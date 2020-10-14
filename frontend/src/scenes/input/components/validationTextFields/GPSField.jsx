@@ -10,7 +10,7 @@ class GPSField extends React.Component {
 		super(props)
 		
 		this.state = {
-			value: 0,
+			value: "",
 			error: false,
 		}	
 
