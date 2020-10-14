@@ -9,6 +9,15 @@ class IndexParent extends React.Component {
 		this.formData = null	// abstract
 		this.indexURL = null	// abstract
 	}
+
+	getDataReady = (elements) => {
+		const errors = []
+		for(let element of elements)
+			if(element.name && element.value !== "" && element.getAttribute("aria-invalid")==="true")
+				errors.push(`Incorrect format of: ${element.name}`)
+
+		return {data:this.formData, errors}
+	}
 	
 	handleSubmit = event => {
 		event.preventDefault()
@@ -42,7 +51,7 @@ class IndexParent extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			console.log(response)
+			console.log("Response:\n",response)
 			this.props.enqueueSnackbar(`Sending succesfull\nID: ${response.id}`, { variant: "success" })
 			this.props.history.push(`/prak/show/${this.indexURL}/`+response.id)
 		})
@@ -61,14 +70,9 @@ class IndexParent extends React.Component {
 		})
 
 	}
-
 	
 	handleFormChange = (e, a) => {
 		a.split('.').reduce((o,p,i) => o[p] = a.split('.').length === ++i ? e.target.value : o[p] || {}, this.formData)
-	}
-
-	getDataReady = (elements) => {	// abstract
-		throw new Error("Calling abstract function") 
 	}
 }
 

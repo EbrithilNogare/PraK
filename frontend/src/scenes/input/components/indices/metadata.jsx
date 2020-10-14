@@ -2,22 +2,14 @@ import React from "react"
 import { withRouter } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
 
-import { 
+import {
 	Paper,
 	Select,
 	TextField,
-//	Table,
-//	TableBody,
-//	TableCell,
-//	TableContainer,
-//	TableHead,
-//	TableRow,
 	Button,
 	InputLabel,
 	MenuItem,
 	FormControl,
-//	Typography,
-//	CardContent,
 } from '@material-ui/core'
 
 import {
@@ -29,10 +21,9 @@ import {
 	PersonComboBox,
 //	SubjectComboBox,
 } from '../comboBoxes'
+import ISBNField from '../validationTextFields/ISBNField'
 
 import IndexParent from "./indexParent"
-
-import ISBNField from '../validationTextFields/ISBNField'
 
 import styles from './parent.module.scss'
 
@@ -41,12 +32,15 @@ import metadataTypes from './metadataTypes.json'
 class Metadata extends IndexParent {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {
 			documentType: 0,
 			language: "",
 			publish_country: "",
-		}	
+		}
+
+		this.formData = {}
+
 		this.indexURL = "metadata"
 
 		this.handleChange = this.handleChange.bind(this)
@@ -65,19 +59,6 @@ class Metadata extends IndexParent {
 	getTranslation(fieldName){
 		return metadataTypes.properties[fieldName].label
 	}
-	
-	getDataReady = (elements) => {
-		const data = {}
-		const errors = []
-		
-		for(let element of elements)
-			if(element.name && element.value !== ""){
-				if(element.getAttribute("aria-invalid")==="true")
-					errors.push(`Incorrect format of: ${element.name}`)
-				data[element.name] = element.hasAttribute("realvalue") ? element.getAttribute("realvalue") : element.value
-			}
-		return {data, errors}
-	}	
 
 	render(){
 		return(
@@ -89,7 +70,7 @@ class Metadata extends IndexParent {
 				<Paper className={styles.header}>
 					<h1>Nový záznam do Rejstříku metadat</h1>
 				</Paper>
-				<div className={styles.body}>	
+				<div className={styles.body}>
 				<Paper className={styles.dataBlock}>
 					<FormControl>
 						<InputLabel id="selectTypeLabel">Type</InputLabel>
@@ -104,27 +85,34 @@ class Metadata extends IndexParent {
 							})}
 						</Select>
 					</FormControl>
-				</Paper>					
+				</Paper>
 				<Paper className={styles.dataBlock}>
-					{this.conditionalField("author") && 
-						<PersonComboBox name="author" label={this.getTranslation("author")}/>
+					{this.conditionalField("author") && <PersonComboBox 
+						label={this.getTranslation("author")}
+						onChange={e=>{this.handleFormChange(e, "author.id")}}/>
 					}
-					{this.conditionalField("author_role") && 
-						<TextField name="author_role" label={this.getTranslation("author_role")}/>
-					}	
-					{this.conditionalField("other_authors") && 
-						<PersonComboBox name="other_authors" label={this.getTranslation("other_authors")}/>
-					}	
-					{this.conditionalField("other_authors_role") && 
-						<TextField name="other_authors_role" label={this.getTranslation("other_authors_role")}/>
-					}					
-					{this.conditionalField("name") && 
-						<TextField required name="name" label={this.getTranslation("name")}/>
-					}					
-					{this.conditionalField("other_names") && 
-						<TextField name="other_names" label={this.getTranslation("other_names")}/>
-					}					
-					{this.conditionalField("language") && 
+					{this.conditionalField("author_role") && <TextField
+						label={this.getTranslation("author_role")}
+						onChange={e=>{this.handleFormChange(e, "author.role")}}/>
+					}
+					{this.conditionalField("other_authors") && <PersonComboBox
+						label={this.getTranslation("other_authors")}
+						onChange={e=>{this.handleFormChange(e, "other_authors.id")}}/>
+					}
+					{this.conditionalField("other_authors_role") && <TextField
+						label={this.getTranslation("other_authors_role")}
+						onChange={e=>{this.handleFormChange(e, "other_authors.role")}}/>
+					}
+					{this.conditionalField("name") && <TextField
+						required
+						label={this.getTranslation("name")}
+						onChange={e=>{this.handleFormChange(e, "name")}}/>
+					}
+					{this.conditionalField("other_names") && <TextField 
+						label={this.getTranslation("other_names")} 
+						onChange={e=>{this.handleFormChange(e, "other_names")}}/>
+					}
+					{this.conditionalField("language") &&
 						<FormControl>
 							<InputLabel id="selectLanguageLabel">{this.getTranslation("language")}</InputLabel>
 							<Select
@@ -139,8 +127,8 @@ class Metadata extends IndexParent {
 								})}
 							</Select>
 						</FormControl>
-					}					
-					{this.conditionalField("publish_country") && 
+					}
+					{this.conditionalField("publish_country") &&
 						<FormControl>
 							<InputLabel id="selectPublish_countryLabel">{this.getTranslation("publish_country")}</InputLabel>
 							<Select
@@ -155,185 +143,237 @@ class Metadata extends IndexParent {
 								})}
 							</Select>
 						</FormControl>
-					}					
-					{this.conditionalField("publish_place") && 
-						<TextField name="publish_place" label={this.getTranslation("publish_place")}/>
-					}					
-					{this.conditionalField("publisher") && 
-						<TextField name="publisher" label={this.getTranslation("publisher")}/>
-					}					
-					{this.conditionalField("publishing_date") && 
-						<TextField type="number" name="publishing_date" label={this.getTranslation("publishing_date")}/>
-					}					
-					{this.conditionalField("publishing_date_note") && 
-						<TextField name="publishing_date_note" label={this.getTranslation("publishing_date_note")}/>
-					}					
+					}
+					{this.conditionalField("publish_place") && <TextField 
+						label={this.getTranslation("publish_place")} 
+						onChange={e=>{this.handleFormChange(e, "publish_place")}}/>
+					}
+					{this.conditionalField("publisher") && <TextField 
+						label={this.getTranslation("publisher")} 
+						onChange={e=>{this.handleFormChange(e, "publisher")}}/>
+					}
+					{this.conditionalField("publishing_date") && <TextField
+						label={this.getTranslation("publishing_date")}
+						onChange={e=>{this.handleFormChange(e, "publishing_date.date")}}/>
+					}
+					{this.conditionalField("publishing_date_note") && <TextField 
+						label={this.getTranslation("publishing_date_note")} 
+						onChange={e=>{this.handleFormChange(e, "publishing_date.note")}}/>
+					}
 
 					</Paper>
 				<Paper className={styles.dataBlock}>
 
-				{this.conditionalField("isbn") && 
-					<ISBNField name="isbn" label={this.getTranslation("isbn")}/>
-				}					
-				{this.conditionalField("edition_order") && 
-					<TextField name="edition_order" label={this.getTranslation("edition_order")}/>
-				}					
-				{this.conditionalField("edition") && 
-					<TextField name="edition" label={this.getTranslation("edition")}/>
-				}					
-				{this.conditionalField("action_name") && 
-					<TextField name="action_name" label={this.getTranslation("action_name")}/>
-				}					
-				{this.conditionalField("volume_content") && 
-					<TextField name="volume_content" label={this.getTranslation("volume_content")}/>
-				}					
-				{this.conditionalField("publishing_year_from") && 
-					<TextField name="publishing_year_from" label={this.getTranslation("publishing_year_from")}/>
-				}					
-				{this.conditionalField("publishing_year_to") && 
-					<TextField name="publishing_year_to" label={this.getTranslation("publishing_year_to")}/>
-				}					
-				{this.conditionalField("publishing_year_note") && 
-					<TextField name="publishing_year_note" label={this.getTranslation("publishing_year_note")}/>
-				}					
-				{this.conditionalField("periodicity") && 
-					<TextField name="periodicity" label={this.getTranslation("periodicity")}/>
-				}					
-				{this.conditionalField("issn") && 
-					<TextField name="issn" label={this.getTranslation("issn")}/>
-				}					
-				{this.conditionalField("source_document_name") && 
-					<TextField name="source_document_name" label={this.getTranslation("source_document_name")}/>
-				}					
-				{this.conditionalField("year") && 
-					<TextField name="year" label={this.getTranslation("year")}/>
-				}					
-				{this.conditionalField("volume") && 
-					<TextField name="volume" label={this.getTranslation("volume")}/>
-				}					
-				{this.conditionalField("number") && 
-					<TextField name="number" label={this.getTranslation("number")}/>
-				}					
-				{this.conditionalField("date") && 
-					<TextField name="date" label={this.getTranslation("date")}/>
-				}					
-
-				</Paper>
-				<Paper className={styles.dataBlock}>
-
-				{this.conditionalField("corporation_name") && 
-					<CorporationComboBox name="corporation_name" label={this.getTranslation("corporation_name")}/>
-				}					
-				{this.conditionalField("access_conditions") && 
-					<TextField name="access_conditions" label={this.getTranslation("access_conditions")}/>
-				}					
-				{this.conditionalField("acces_note") && 
-					<TextField name="acces_note" label={this.getTranslation("acces_note")}/>
-				}					
-				{this.conditionalField("location_in_institution") && 
-					<TextField name="location_in_institution" label={this.getTranslation("location_in_institution")}/>
-				}					
-				{this.conditionalField("location_in_fund") && 
-					<TextField name="location_in_fund" label={this.getTranslation("location_in_fund")}/>
-				}					
-				{this.conditionalField("location_note") && 
-					<TextField name="location_note" label={this.getTranslation("location_note")}/>
-				}					
-				{this.conditionalField("digitized_document_url") && 
-					<TextField name="digitized_document_url" label={this.getTranslation("digitized_document_url")}/>
-				}					
-				{this.conditionalField("external_source_name") && 
-					<TextField name="external_source_name" label={this.getTranslation("external_source_name")}/>
-				}					
-				{this.conditionalField("external_source_url") && 
-					<TextField name="external_source_url" label={this.getTranslation("external_source_url")}/>
-				}					
-				{this.conditionalField("url_leading_to_document") && 
-					<TextField name="url_leading_to_document" label={this.getTranslation("url_leading_to_document")}/>
-				}					
-				{this.conditionalField("attachment_name") && 
-					<TextField name="attachment_name" label={this.getTranslation("attachment_name")}/>
-				}					
-				{this.conditionalField("attachment_url") && 
-					<TextField name="attachment_url" label={this.getTranslation("attachment_url")}/>
-				}					
-				{this.conditionalField("source_object_citation") && 
-					<TextField name="source_object_citation" label={this.getTranslation("source_object_citation")}/>
-				}					
-				{this.conditionalField("previous_name") && 
-					<TextField name="previous_name" label={this.getTranslation("previous_name")}/>
-				}					
-				{this.conditionalField("following_name") && 
-					<TextField name="following_name" label={this.getTranslation("following_name")}/>
-				}						
-
-				</Paper>
-				<Paper className={styles.dataBlock}>
-
-				{this.conditionalField("form") && 
-					<TextField name="form" label={this.getTranslation("form")}/>
-				}						
-				{this.conditionalField("range") && 
-					<TextField name="range" label={this.getTranslation("range")}/>
-				}						
-				{this.conditionalField("dimension") && 
-					<TextField name="dimension" label={this.getTranslation("dimension")}/>
-				}						
-				{this.conditionalField("map_scale") && 
-					<TextField name="map_scale" label={this.getTranslation("map_scale")}/>
-				}						
-				{this.conditionalField("format") && 
-					<TextField name="format" label={this.getTranslation("format")}/>
-				}						
-				{this.conditionalField("processing_level") && 
-					<TextField name="processing_level" label={this.getTranslation("processing_level")}/>
-				}						
-				{this.conditionalField("description_level") && 
-					<TextField name="description_level" label={this.getTranslation("description_level")}/>
-				}						
-				{this.conditionalField("archival_aids") && 
-					<TextField name="archival_aids" label={this.getTranslation("archival_aids")}/>
+				{this.conditionalField("isbn") && <ISBNField
+					label={this.getTranslation("isbn")}
+					onChange={e=>{this.handleFormChange(e, "isbn")}}/>
 				}
-				{this.conditionalField("source_document_citation") && 
-					<TextField name="source_document_citation" label={this.getTranslation("source_document_citation")}/>
+				{this.conditionalField("edition_order") && <TextField 
+					label={this.getTranslation("edition_order")} 
+					onChange={e=>{this.handleFormChange(e, "edition_order")}}/>
 				}
-				{this.conditionalField("multiple_placement") && 
-					<TextField name="multiple_placement" label={this.getTranslation("multiple_placement")}/>
-				}						
-				{this.conditionalField("multiple_placement_url") && 
-					<TextField name="multiple_placement_url" label={this.getTranslation("multiple_placement_url")}/>
-				}						
-				{this.conditionalField("topic") && 
-					<TextField name="topic" label={this.getTranslation("topic")}/>
-				}						
-				{this.conditionalField("corporation_content_specification") && 
-					<TextField name="corporation_content_specification" label={this.getTranslation("corporation_content_specification")}/>
-				}						
-				{this.conditionalField("chronological_content_specification") && 
-					<TextField name="chronological_content_specification" label={this.getTranslation("chronological_content_specification")}/>
-				}						
-				{this.conditionalField("geographical_content_specification") && 
-					<GeographicComboBox name="geographical_content_specification" label={this.getTranslation("geographical_content_specification")}/>
-				}						
-				{this.conditionalField("keywords") && 
-					<TextField name="keywords" label={this.getTranslation("keywords")}/>
-				}						
-				{this.conditionalField("description") && 
-					<TextField name="description" label={this.getTranslation("description")}/>
-				}						
+				{this.conditionalField("edition") && <TextField 
+					label={this.getTranslation("edition")} 
+					onChange={e=>{this.handleFormChange(e, "edition")}}/>
+				}
+				{this.conditionalField("action_name") && <TextField 
+					label={this.getTranslation("action_name")} 
+					onChange={e=>{this.handleFormChange(e, "action_name")}}/>
+				}
+				{this.conditionalField("volume_content") && <TextField 
+					label={this.getTranslation("volume_content")} 
+					onChange={e=>{this.handleFormChange(e, "volume_content")}}/>
+				}
+				{this.conditionalField("publishing_year_from") && <TextField 
+					label={this.getTranslation("publishing_year_from")} 
+					onChange={e=>{this.handleFormChange(e, "publishing_year.from")}}/>
+				}
+				{this.conditionalField("publishing_year_to") && <TextField 
+					label={this.getTranslation("publishing_year_to")} 
+					onChange={e=>{this.handleFormChange(e, "publishing_year.to")}}/>
+				}
+				{this.conditionalField("publishing_year_note") && <TextField 
+					label={this.getTranslation("publishing_year_note")} 
+					onChange={e=>{this.handleFormChange(e, "publishing_year.note")}}/>
+				}
+				{this.conditionalField("periodicity") && <TextField 
+					label={this.getTranslation("periodicity")} 
+					onChange={e=>{this.handleFormChange(e, "publishing_year.periodicity")}}/>
+				}
+				{this.conditionalField("issn") && <TextField 
+					label={this.getTranslation("issn")} 
+					onChange={e=>{this.handleFormChange(e, "issn")}}/>
+				}
+				{this.conditionalField("source_document_name") && <TextField 
+					label={this.getTranslation("source_document_name")} 
+					onChange={e=>{this.handleFormChange(e, "source_document_name")}}/>
+				}
+				{this.conditionalField("year") && <TextField 
+					label={this.getTranslation("year")} 
+					onChange={e=>{this.handleFormChange(e, "copies.year")}}/>
+				}
+				{this.conditionalField("volume") && <TextField 
+					label={this.getTranslation("volume")} 
+					onChange={e=>{this.handleFormChange(e, "copies.volume")}}/>
+				}
+				{this.conditionalField("number") && <TextField 
+					label={this.getTranslation("number")} 
+					onChange={e=>{this.handleFormChange(e, "copies.number")}}/>
+				}
+				{this.conditionalField("date") && <TextField 
+					label={this.getTranslation("date")} 
+					onChange={e=>{this.handleFormChange(e, "copies.date")}}/>
+				}
 
 				</Paper>
 				<Paper className={styles.dataBlock}>
 
-				{this.conditionalField("general_note") && 
-					<TextField name="general_note" label={this.getTranslation("general_note")}/>
-				}						
-				{this.conditionalField("editor_note") && 
-					<TextField name="editor_note" label={this.getTranslation("editor_note")}/>
-				}						
-				{this.conditionalField("submitter") && 
-					<TextField required name="submitter" label={this.getTranslation("submitter")}/>
-				}						
+				{this.conditionalField("corporation_name") &&
+					<CorporationComboBox label={this.getTranslation("corporation_name")} onChange={e=>{this.handleFormChange(e, "corporation_name")}}/>
+				}
+				{this.conditionalField("access_conditions") && <TextField 
+					label={this.getTranslation("access_conditions")} 
+					onChange={e=>{this.handleFormChange(e, "location.access_conditions")}}/>
+				}
+				{this.conditionalField("acces_note") && <TextField 
+					label={this.getTranslation("acces_note")} 
+					onChange={e=>{this.handleFormChange(e, "location.acces_note")}}/>
+				}
+				{this.conditionalField("location_in_institution") && <TextField 
+					label={this.getTranslation("location_in_institution")} 
+					onChange={e=>{this.handleFormChange(e, "location.institution")}}/>
+				}
+				{this.conditionalField("location_in_fund") && <TextField 
+					label={this.getTranslation("location_in_fund")} 
+					onChange={e=>{this.handleFormChange(e, "location.fund")}}/>
+				}
+				{this.conditionalField("location_note") && <TextField 
+					label={this.getTranslation("location_note")} 
+					onChange={e=>{this.handleFormChange(e, "location.note")}}/>
+				}
+				{this.conditionalField("digitized_document_url") && <TextField 
+					label={this.getTranslation("digitized_document_url")} 
+					onChange={e=>{this.handleFormChange(e, "digitized_document_url")}}/>
+				}
+				{this.conditionalField("external_source_name") && <TextField 
+					label={this.getTranslation("external_source_name")} 
+					onChange={e=>{this.handleFormChange(e, "external_source.name")}}/>
+				}
+				{this.conditionalField("external_source_url") && <TextField 
+					label={this.getTranslation("external_source_url")} 
+					onChange={e=>{this.handleFormChange(e, "external_source.url")}}/>
+				}
+				{this.conditionalField("url_leading_to_document") && <TextField 
+					label={this.getTranslation("url_leading_to_document")} 
+					onChange={e=>{this.handleFormChange(e, "external_source.url_leading_to_document")}}/>
+				}
+				{this.conditionalField("attachment_name") && <TextField 
+					label={this.getTranslation("attachment_name")} 
+					onChange={e=>{this.handleFormChange(e, "attachment.name")}}/>
+				}
+				{this.conditionalField("attachment_url") && <TextField 
+					label={this.getTranslation("attachment_url")} 
+					onChange={e=>{this.handleFormChange(e, "attachment.url")}}/>
+				}
+				{this.conditionalField("source_object_citation") && <TextField 
+					label={this.getTranslation("source_object_citation")} 
+					onChange={e=>{this.handleFormChange(e, "source_object_citation")}}/>
+				}
+				{this.conditionalField("previous_name") && <TextField 
+					label={this.getTranslation("previous_name")} 
+					onChange={e=>{this.handleFormChange(e, "previous_name")}}/>
+				}
+				{this.conditionalField("following_name") && <TextField 
+					label={this.getTranslation("following_name")} 
+					onChange={e=>{this.handleFormChange(e, "following_name")}}/>
+				}
+
+				</Paper>
+				<Paper className={styles.dataBlock}>
+
+				{this.conditionalField("form") && <TextField 
+					label={this.getTranslation("form")} 
+					onChange={e=>{this.handleFormChange(e, "form")}}/>
+				}
+				{this.conditionalField("range") && <TextField 
+					label={this.getTranslation("range")} 
+					onChange={e=>{this.handleFormChange(e, "range")}}/>
+				}
+				{this.conditionalField("dimension") && <TextField 
+					label={this.getTranslation("dimension")} 
+					onChange={e=>{this.handleFormChange(e, "dimension")}}/>
+				}
+				{this.conditionalField("map_scale") && <TextField 
+					label={this.getTranslation("map_scale")} 
+					onChange={e=>{this.handleFormChange(e, "map_scale")}}/>
+				}
+				{this.conditionalField("format") && <TextField 
+					label={this.getTranslation("format")} 
+					onChange={e=>{this.handleFormChange(e, "format")}}/>
+				}
+				{this.conditionalField("processing_level") && <TextField 
+					label={this.getTranslation("processing_level")} 
+					onChange={e=>{this.handleFormChange(e, "processing_level")}}/>
+				}
+				{this.conditionalField("description_level") && <TextField 
+					label={this.getTranslation("description_level")} 
+					onChange={e=>{this.handleFormChange(e, "description_level")}}/>
+				}
+				{this.conditionalField("archival_aids") && <TextField 
+					label={this.getTranslation("archival_aids")} 
+					onChange={e=>{this.handleFormChange(e, "archival_aids")}}/>
+				}
+				{this.conditionalField("source_document_citation") && <TextField 
+					label={this.getTranslation("source_document_citation")} 
+					onChange={e=>{this.handleFormChange(e, "source_document_citation")}}/>
+				}
+				{this.conditionalField("multiple_placement") && <TextField 
+					label={this.getTranslation("multiple_placement")} 
+					onChange={e=>{this.handleFormChange(e, "multiple_placement")}}/>
+				}
+				{this.conditionalField("multiple_placement_url") && <TextField 
+					label={this.getTranslation("multiple_placement_url")} 
+					onChange={e=>{this.handleFormChange(e, "multiple_placement_url")}}/>
+				}
+				{this.conditionalField("topic") && <TextField 
+					label={this.getTranslation("topic")} 
+					onChange={e=>{this.handleFormChange(e, "topic")}}/>
+				}
+				{this.conditionalField("corporation_content_specification") && <TextField 
+					label={this.getTranslation("corporation_content_specification")} 
+					onChange={e=>{this.handleFormChange(e, "corporation_content_specification")}}/>
+				}
+				{this.conditionalField("chronological_content_specification") && <TextField 
+					label={this.getTranslation("chronological_content_specification")} 
+					onChange={e=>{this.handleFormChange(e, "chronological_content_specification")}}/>
+				}
+				{this.conditionalField("geographical_content_specification") &&
+					<GeographicComboBox label={this.getTranslation("geographical_content_specification")} onChange={e=>{this.handleFormChange(e, "geographical_content_specification")}}/>
+				}
+				{this.conditionalField("keywords") && <TextField 
+					label={this.getTranslation("keywords")} 
+					onChange={e=>{this.handleFormChange(e, "keywords")}}/>
+				}
+				{this.conditionalField("description") && <TextField 
+					label={this.getTranslation("description")} 
+					onChange={e=>{this.handleFormChange(e, "description")}}/>
+				}
+
+				</Paper>
+				<Paper className={styles.dataBlock}>
+
+				{this.conditionalField("general_note") && <TextField 
+					label={this.getTranslation("general_note")} 
+					onChange={e=>{this.handleFormChange(e, "general_note")}}/>
+				}
+				{this.conditionalField("editor_note") && <TextField 
+					label={this.getTranslation("editor_note")} 
+					onChange={e=>{this.handleFormChange(e, "editor_note")}}/>
+				}
+				{this.conditionalField("submitter") && <TextField 
+					required label={this.getTranslation("submitter"
+					)} onChange={e=>{this.handleFormChange(e, "submitter")}}/>
+				}
 
 				</Paper>
 				</div>
@@ -345,7 +385,7 @@ class Metadata extends IndexParent {
 							<Typography gutterBottom variant="h5">
 								Duplicates match
 							</Typography>
-						</CardContent>						
+						</CardContent>
 						<Table aria-label="simple table">
 							<TableHead>
 								<TableRow>
@@ -357,7 +397,7 @@ class Metadata extends IndexParent {
 								</TableRow>
 							</TableHead>
 							<TableBody>
-							
+
 								<TableRow>
 									<TableCell>{}</TableCell>
 									<TableCell>{}</TableCell>
