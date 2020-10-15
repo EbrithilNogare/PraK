@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const schema = new mongoose.Schema({
+	documentType: Number,
 	author: {
 		id: {
 			type: mongoose.Types.ObjectId,

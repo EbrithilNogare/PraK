@@ -1,3 +1,4 @@
+export {default as MetadataComboBox} from './MetadataComboBox'
 export {default as CorporationComboBox} from './CorporationComboBox'
 export {default as CreationComboBox} from './CreationComboBox'
 export {default as FamilyComboBox} from './FamilyComboBox'

@@ -13,13 +13,14 @@ import {
 } from '@material-ui/core'
 
 import {
+	MetadataComboBox,
 	CorporationComboBox,
-//	CreationComboBox,
-//	FamilyComboBox,
+	CreationComboBox,
+	FamilyComboBox,
 	GeographicComboBox,
-//	KeywordComboBox,
+	KeywordComboBox,
 	PersonComboBox,
-//	SubjectComboBox,
+	SubjectComboBox,
 } from '../comboBoxes'
 import ISBNField from '../validationTextFields/ISBNField'
 import DateField from '../validationTextFields/DateField'
@@ -35,22 +36,12 @@ class Metadata extends IndexParent {
 		super(props)
 
 		this.state = {
-			documentType: 0,
-			language: "",
-			publish_country: "",
+			documentType: 0
 		}
 
 		this.formData = {}
 
 		this.indexURL = "metadata"
-
-		this.handleChange = this.handleChange.bind(this)
-	}
-
-	handleChange(event){
-		this.setState({
-			[event.target.name]: event.target.value
-		})
 	}
 
 	conditionalField(fieldName){
@@ -79,7 +70,10 @@ class Metadata extends IndexParent {
 							labelId="selectTypeLabel"
 							name="documentType"
 							value={this.state.documentType}
-							onChange={this.handleChange}
+							onChange={(e) => {
+								this.setState({documentType: e.target.value})
+								this.formData.documentType = e.target.value
+							}}
 						>
 							{metadataTypes.types.map((value, index) => {
 								return <MenuItem key={index} value={index}>{value}</MenuItem>
@@ -118,38 +112,24 @@ class Metadata extends IndexParent {
 							<InputLabel id="selectLanguageLabel">{this.getTranslation("language")}</InputLabel>
 							<Select
 								labelId="selectLanguageLabel"
-								name="language"
-								value={this.state.language}
-								onChange={this.handleChange}
+								defaultValue=""
+								onChange={e=>{this.handleFormChange(e, "language")}}
 							>
-								{
-									metadataTypes.properties["language"].options.map((value, index) => {
-										return <MenuItem key={index} value={value}>{value}</MenuItem>
-								})}
+								{metadataTypes.properties["language"].options.map((value, index) => 
+									<MenuItem key={index} value={value}>{value}</MenuItem>
+								)}
 							</Select>
 						</FormControl>
 					}
-					{this.conditionalField("publish_country") &&
-						<FormControl>
-							<InputLabel id="selectPublish_countryLabel">{this.getTranslation("publish_country")}</InputLabel>
-							<Select
-								labelId="selectPublish_countryLabel"
-								name="publish_country"
-								value={this.state.publish_country}
-								onChange={this.handleChange}
-							>
-								{
-									metadataTypes.properties["publish_country"].options.map((value, index) => {
-										return <MenuItem key={index} value={value}>{value}</MenuItem>
-								})}
-							</Select>
-						</FormControl>
+					{this.conditionalField("publish_country") && <GeographicComboBox
+							label={this.getTranslation("publish_country")}
+							onChange={e=>{this.handleFormChange(e, "publish_country")}}/>
 					}
-					{this.conditionalField("publish_place") && <TextField 
+					{this.conditionalField("publish_place") && <GeographicComboBox 
 						label={this.getTranslation("publish_place")} 
 						onChange={e=>{this.handleFormChange(e, "publish_place")}}/>
 					}
-					{this.conditionalField("publisher") && <TextField 
+					{this.conditionalField("publisher") && <CorporationComboBox 
 						label={this.getTranslation("publisher")} 
 						onChange={e=>{this.handleFormChange(e, "publisher")}}/>
 					}
@@ -177,19 +157,25 @@ class Metadata extends IndexParent {
 					label={this.getTranslation("edition")} 
 					onChange={e=>{this.handleFormChange(e, "edition")}}/>
 				}
-				{this.conditionalField("action_name") && <TextField 
+				{this.conditionalField("action_name") && <CorporationComboBox 
 					label={this.getTranslation("action_name")} 
 					onChange={e=>{this.handleFormChange(e, "action_name")}}/>
 				}
-				{this.conditionalField("volume_content") && <TextField 
-					label={this.getTranslation("volume_content")} 
-					onChange={e=>{this.handleFormChange(e, "volume_content")}}/>
+				{this.conditionalField("volume_content") && <CorporationComboBox 
+						label={this.getTranslation("volume_content") + " - Corporation"}
+						onChange={e=>{this.handleFormChange(e, "volume_content"); this.formData.volume_contentModel = "corporationIndex"}}/>
 				}
-				{this.conditionalField("publishing_year_from") && <TextField 
+				{this.conditionalField("volume_content") && <GeographicComboBox 
+						label={this.getTranslation("volume_content") + " - Geographic"}
+						onChange={e=>{this.handleFormChange(e, "volume_content"); this.formData.volume_contentModel = "geographicIndex"}}/>
+				}
+				{this.conditionalField("publishing_year_from") && <TextField
+					type="Number"
 					label={this.getTranslation("publishing_year_from")} 
 					onChange={e=>{this.handleFormChange(e, "publishing_year.from")}}/>
 				}
 				{this.conditionalField("publishing_year_to") && <TextField 
+					type="Number"
 					label={this.getTranslation("publishing_year_to")} 
 					onChange={e=>{this.handleFormChange(e, "publishing_year.to")}}/>
 				}
@@ -201,23 +187,26 @@ class Metadata extends IndexParent {
 					label={this.getTranslation("periodicity")} 
 					onChange={e=>{this.handleFormChange(e, "publishing_year.periodicity")}}/>
 				}
-				{this.conditionalField("issn") && <TextField 
-					label={this.getTranslation("issn")} 
-					onChange={e=>{this.handleFormChange(e, "issn")}}/>
+				{this.conditionalField("isbn") && <TextField 
+					label={this.getTranslation("isbn")} 
+					onChange={e=>{this.handleFormChange(e, "isbn")}}/>
 				}
 				{this.conditionalField("source_document_name") && <TextField 
 					label={this.getTranslation("source_document_name")} 
 					onChange={e=>{this.handleFormChange(e, "source_document_name")}}/>
 				}
 				{this.conditionalField("year") && <TextField 
+					type="Number"
 					label={this.getTranslation("year")} 
 					onChange={e=>{this.handleFormChange(e, "copies.year")}}/>
 				}
 				{this.conditionalField("volume") && <TextField 
+					type="Number"
 					label={this.getTranslation("volume")} 
 					onChange={e=>{this.handleFormChange(e, "copies.volume")}}/>
 				}
 				{this.conditionalField("number") && <TextField 
+					type="Number"
 					label={this.getTranslation("number")} 
 					onChange={e=>{this.handleFormChange(e, "copies.number")}}/>
 				}
@@ -225,12 +214,12 @@ class Metadata extends IndexParent {
 					label={this.getTranslation("date")} 
 					onChange={e=>{this.handleFormChange(e, "copies.date")}}/>
 				}
-
 				</Paper>
-				<Paper className={styles.dataBlock}>
 
-				{this.conditionalField("corporation_name") &&
-					<CorporationComboBox label={this.getTranslation("corporation_name")} onChange={e=>{this.handleFormChange(e, "corporation_name")}}/>
+				<Paper className={styles.dataBlock}>
+				{this.conditionalField("corporation_name") && <CorporationComboBox
+					label={this.getTranslation("corporation_name")}
+					onChange={e=>{this.handleFormChange(e, "corporation_name")}}/>
 				}
 				{this.conditionalField("access_conditions") && <TextField 
 					label={this.getTranslation("access_conditions")} 
@@ -240,7 +229,7 @@ class Metadata extends IndexParent {
 					label={this.getTranslation("acces_note")} 
 					onChange={e=>{this.handleFormChange(e, "location.acces_note")}}/>
 				}
-				{this.conditionalField("location_in_institution") && <TextField 
+				{this.conditionalField("location_in_institution") && <GeographicComboBox 
 					label={this.getTranslation("location_in_institution")} 
 					onChange={e=>{this.handleFormChange(e, "location.institution")}}/>
 				}
@@ -280,11 +269,11 @@ class Metadata extends IndexParent {
 					label={this.getTranslation("source_object_citation")} 
 					onChange={e=>{this.handleFormChange(e, "source_object_citation")}}/>
 				}
-				{this.conditionalField("previous_name") && <TextField 
+				{this.conditionalField("previous_name") && <MetadataComboBox 
 					label={this.getTranslation("previous_name")} 
 					onChange={e=>{this.handleFormChange(e, "previous_name")}}/>
 				}
-				{this.conditionalField("following_name") && <TextField 
+				{this.conditionalField("following_name") && <MetadataComboBox 
 					label={this.getTranslation("following_name")} 
 					onChange={e=>{this.handleFormChange(e, "following_name")}}/>
 				}
@@ -308,7 +297,7 @@ class Metadata extends IndexParent {
 					label={this.getTranslation("map_scale")} 
 					onChange={e=>{this.handleFormChange(e, "map_scale")}}/>
 				}
-				{this.conditionalField("format") && <TextField 
+				{this.conditionalField("format") && <KeywordComboBox 
 					label={this.getTranslation("format")} 
 					onChange={e=>{this.handleFormChange(e, "format")}}/>
 				}
@@ -336,22 +325,31 @@ class Metadata extends IndexParent {
 					label={this.getTranslation("multiple_placement_url")} 
 					onChange={e=>{this.handleFormChange(e, "multiple_placement_url")}}/>
 				}
-				{this.conditionalField("topic") && <TextField 
-					label={this.getTranslation("topic")} 
-					onChange={e=>{this.handleFormChange(e, "topic")}}/>
+				{this.conditionalField("topic") && <SubjectComboBox 
+						label={this.getTranslation("topic") + " - Subject"}
+						onChange={e=>{this.handleFormChange(e, "topic"); this.formData.topicModel = "subjectIndex"}}/>
 				}
-				{this.conditionalField("corporation_content_specification") && <TextField 
-					label={this.getTranslation("corporation_content_specification")} 
-					onChange={e=>{this.handleFormChange(e, "corporation_content_specification")}}/>
+				{this.conditionalField("topic") && <CreationComboBox 
+						label={this.getTranslation("topic") + " - Creation"}
+						onChange={e=>{this.handleFormChange(e, "topic"); this.formData.topicModel = "creationIndex"}}/>
+				}
+				{this.conditionalField("corporation_content_specification") && <PersonComboBox 
+						label={this.getTranslation("corporation_content_specification") + " - Person"}
+						onChange={e=>{this.handleFormChange(e, "corporation_content_specification"); this.formData.corporation_content_specificationModel = "personIndex"}}/>
+				}
+				{this.conditionalField("corporation_content_specification") && <CorporationComboBox 
+						label={this.getTranslation("corporation_content_specification") + " - Corporation"}
+						onChange={e=>{this.handleFormChange(e, "corporation_content_specification"); this.formData.corporation_content_specificationModel = "corporationIndex"}}/>
 				}
 				{this.conditionalField("chronological_content_specification") && <TextField 
 					label={this.getTranslation("chronological_content_specification")} 
 					onChange={e=>{this.handleFormChange(e, "chronological_content_specification")}}/>
 				}
-				{this.conditionalField("geographical_content_specification") &&
-					<GeographicComboBox label={this.getTranslation("geographical_content_specification")} onChange={e=>{this.handleFormChange(e, "geographical_content_specification")}}/>
+				{this.conditionalField("geographical_content_specification") && <GeographicComboBox
+					label={this.getTranslation("geographical_content_specification")}
+					onChange={e=>{this.handleFormChange(e, "geographical_content_specification")}}/>
 				}
-				{this.conditionalField("keywords") && <TextField 
+				{this.conditionalField("keywords") && <KeywordComboBox 
 					label={this.getTranslation("keywords")} 
 					onChange={e=>{this.handleFormChange(e, "keywords")}}/>
 				}

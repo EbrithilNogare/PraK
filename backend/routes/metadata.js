@@ -33,8 +33,8 @@ router.route('/').post((req, res) => {
 	)
 		req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
 	
-	Model.findById(req.body
-		.limit(5))
+	Model.find(req.body)
+		.limit(5)
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

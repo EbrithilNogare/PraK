@@ -48,7 +48,7 @@ class ShowScene extends React.Component {
 									<pre>
 										{this.getRecord(match.params.type, match.params.id)}
 										{JSON.stringify(this.state.record, null, 4)
-											.replace(/\"/g, "")
+											.replace(/"/g, "")
 											.replace(/\[\]/g, "[ ]")
 										}
 									</pre>
