@@ -4,7 +4,9 @@ import {
 } from "react-router-dom";
 import {withRouter} from 'react-router';
 
-import Paper from '../../components/paper'
+import { 	
+	Paper,
+} from '@material-ui/core'
 
 import Login from './components/login'
 import Registration from './components/registration'

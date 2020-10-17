@@ -1,6 +1,7 @@
 import React from "react"
 
-import { 	
+import {
+	Paper,
 	Button,
 	Checkbox,
 	Table,
@@ -10,8 +11,6 @@ import {
 	TableHead,
 	TableRow,
 } from '@material-ui/core'
-
-import Paper from '../../components/paper'
 
 import styles from './editScene.module.scss'
 

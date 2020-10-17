@@ -1,6 +1,8 @@
 import React from "react"
 
-import Paper from '../../components/paper'
+import { 	
+	Paper,
+} from '@material-ui/core'
 
 import { LoremIpsum } from "lorem-ipsum"
   

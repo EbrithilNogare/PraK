@@ -1,8 +1,8 @@
 import React from "react"
 
-import Paper from '../../components/paper'
 import { Pair } from '../../components/layout'
 import {
+	Paper,
 	Button,
 	Chip,
 	CardContent,
