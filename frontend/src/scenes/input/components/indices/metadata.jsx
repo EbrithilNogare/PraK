@@ -16,7 +16,7 @@ import {
 	MetadataComboBox,
 	CorporationComboBox,
 	CreationComboBox,
-	FamilyComboBox,
+//	FamilyComboBox,
 	GeographicComboBox,
 	KeywordComboBox,
 	PersonComboBox,
