@@ -10,33 +10,23 @@ class Footer extends React.Component {
 		return(
 			<div className={styles.footer}>
 				<div>
+					<p>Financování: Projekt je fnancován Ministerstvem kultury ČR z Programu aplikovaného výzkumu a vývoje národní a kulturní identity (NAKI II)</p>
+					<p>Doba realizace: 2020-2022</p>
+					<p>Kód: DG20P02OVV010</p>
+				</div>
+
+				<div/>
+
+				<div>
 					<h3>Scenes</h3>
 					<hr/>
 					<ul>
-					<li>
-						<NavLink to="/prak/edit">EditScene</NavLink>
-					</li>
-				</ul>
-
-				</div>
-				<div>
-					<h3>User Scenes</h3>
-					<hr/>
-					<ul>
 						<li>
-							<NavLink exact={true} to="/prak/myLibrary">Moje knihovna</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/searchHistory">Historie hledání</NavLink>
-						</li>
-						<li>
-							<NavLink to="/prak/help">Nápověda</NavLink>
-						</li>
-						<li>
-							<NavLink to="#">CZ</NavLink>
+							<NavLink to="/prak/edit">EditScene</NavLink>
 						</li>
 					</ul>
 				</div>
+
 				<div>
 					<h3>Input</h3>
 					<hr/>

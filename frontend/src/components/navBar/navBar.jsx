@@ -2,6 +2,9 @@ import React from "react"
 import {
 	NavLink
 } from "react-router-dom";
+import {
+	Search
+} from '@material-ui/icons';
 
 import styles from "./navBar.module.scss"
 
@@ -9,24 +12,15 @@ class NavBar extends React.Component {
 	render(){
 		return(
 			<nav className={styles.navBar}>
-				<NavLink exact={true} to="/prak/" className={styles.title}>
-					Databáze prameny Krkonoš
-				</NavLink>
+				<NavLink exact={true} to="/prak" className={styles.title}>PRAMENY KRKONOŠ</NavLink>
 				<ul className={styles.userNavigation}>
-					<li>
-						<NavLink exact={true} to="/prak/myLibrary">Moje knihovna</NavLink>
-					</li>
-					<li>
-						<NavLink to="/prak/searchHistory">Historie hledání</NavLink>
-					</li>
-					<li>
-						<NavLink to="/prak/help">Nápověda</NavLink>
-					</li> 
-					<li>
-						<NavLink to="#">CZ</NavLink>
-					</li>
+					<li><NavLink to="/prak/about">O projektu</NavLink></li>
+					<li><NavLink to="/prak/team">Řešitelský tým</NavLink></li>
+					<li><NavLink to="/prak/ourwork">Výstupy</NavLink></li> 
+					<li><NavLink to="/prak/partners">Partneři</NavLink></li> 
+					<li><NavLink to="/prak/contacts">Kontakty</NavLink></li> 
 				</ul>
-				<NavLink to="/prak/login" className={styles.userInfo}>David Napravnik</NavLink>
+				<Search className={styles.searchBar}/>
 			</nav>
 		)
 	}

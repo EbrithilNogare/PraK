@@ -1,0 +1,36 @@
+.root{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin: 50px auto;
+	padding: 50px;
+	max-width: 1200px;
+	column-gap: 60px;
+}
+
+.grid{
+	display: grid;
+	row-gap: 20px;
+}
+
+.newsCard{
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	grid-template-rows: auto 1fr;
+	grid-template-areas: 
+    "picture title"
+    "picture text";
+	column-gap: 20px;
+	row-gap: 10px;
+}
+
+.picture{
+	grid-area: picture;
+}
+.title{
+	grid-area: title;
+	font-weight: bold;
+}
+.text{
+	grid-area: text;
+    text-align: justify;
+}

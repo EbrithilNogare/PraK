@@ -98,7 +98,7 @@ class ComboBox extends React.Component {
 						realvalue:this.state.ID,
 						startAdornment: this.state.ID ? (
 							<InputAdornment position="start">
-								<Check />
+								<Check/>
 							</InputAdornment>) : ""
 					  }}
 				/>

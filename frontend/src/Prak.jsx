@@ -11,39 +11,51 @@ import {
 
 import WebFont from 'webfontloader';
 
-import "./Prak.scss"
-import "./styles/colorScheme.scss"
 
 import NavBar from "./components/navBar"
 import Footer from "./components/footer"
-import MainPageScene from "./scenes/mainPage"
-import SearchScene from "./scenes/search"
+import MainPageScene from "./pages/mainPage"
 import InputScene from "./scenes/input"
 import LoginScene from "./scenes/login"
 import EditScene from "./scenes/edit"
 import ShowScene from "./scenes/show"
 
+import AboutPage from "./pages/aboutPage"
+import TeamPage from "./pages/teamPage"
+import OurWorkPage from "./pages/ourWorkPage"
+import PartnersPage from "./pages/partnersPage"
+import ContactsPage from "./pages/contactsPage"
+
+import "./styles/colorScheme.scss"
+import styles from "./Prak.module.scss"
 
 class Prak extends React.Component {
 	render(){
 		WebFont.load({
 			google: {
-				families: ['Roboto:400,700']
+				families: ["Roboto:400,700", "Balsamiq Sans:400"]
 			}
 		});
 
 		return (
-			<div className="prak">
+			<div className={styles.prak}>
 				<SnackbarProvider>
 					<Router>
 						<NavBar/>
 						<Switch>
 							<Route path="/prak/login"><LoginScene variant="login"/></Route>						
 							<Route path="/prak/registration"><LoginScene variant="registration"/></Route>
+							
 							<Route path="/prak/input"><InputScene/></Route>
 							<Route path="/prak/edit"><EditScene/></Route>
-							<Route path="/prak/search"><SearchScene/></Route>
 							<Route path="/prak/show"><ShowScene/></Route>
+							
+							<Route path="/prak/about"><AboutPage/></Route>
+							<Route path="/prak/team"><TeamPage/></Route>
+							<Route path="/prak/ourwork"><OurWorkPage/></Route>
+							<Route path="/prak/partners"><PartnersPage/></Route>
+							<Route path="/prak/contacts"><ContactsPage/></Route>
+							
 							<Route path="/prak"><MainPageScene/></Route>
 						</Switch>
 						<Footer/>
