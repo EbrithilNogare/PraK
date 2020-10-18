@@ -5,9 +5,6 @@ import {
 	Paper,
 	TextField,
 } from '@material-ui/core'
-import {
-	Person
-} from '@material-ui/icons';
 
 import styles from "./contactsPage.module.scss"
 
@@ -42,7 +39,7 @@ class ContactsPage extends React.Component {
 				<TextField variant="outlined" label="Email" style={{width:"300px"}}/><br/><br/>
 				<TextField variant="outlined" style={{width:"100%"}} label="Zpráva" multiline rows={8}/><br/><br/>
 				<Button variant="contained" style={{width:"150px"}}>Odeslat</Button><br/><br/><br/><br/>
-				Kontaktovat můžete také koordinátora projektu ({"kohoutek" + '@' + "hiu.cas.cz"}) či jednotlivé řešitele.
+				Kontaktovat můžete také koordinátora projektu ({"kohoutek" + String.fromCharCode(64) + "hiu.cas.cz"}) či jednotlivé řešitele.
 			</Paper>
 		)
 	}
