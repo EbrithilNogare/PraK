@@ -8,7 +8,8 @@ import {
 	InputAdornment,
 } from '@material-ui/core'
 import {
-	Check
+	Check, 
+	SyncDisabled,
 } from '@material-ui/icons';
 
 
@@ -23,13 +24,14 @@ class ComboBox extends React.Component {
 			menuList: [],
 			loading: false,
 		}
+
+		this.request_v = 0
+		this.newestRequest_v = 0
 	}
 
 	getFetchURL = () => {throw new Error("Calling abstract function")}
 	getNewFieldURL = () => {throw new Error("Calling abstract function")}
-
 	generateObjectForMongooseFind = value => {throw new Error("Calling abstract function")}
-	
 	parseReturnedObjectFromMongooseFind = element => {throw new Error("Calling abstract function")}
 
 	handleChange = event => {
@@ -37,10 +39,13 @@ class ComboBox extends React.Component {
 			value: event.target.value,
 			ID: ""
 		})
+
 		if(this.props.onChange) this.props.onChange({target:{value:undefined}})
 
 		if(event.target.value.length > 2){
 			this.setState({loading: true})
+
+			const thisRequestVesion = this.request_v++
 			fetch(this.getFetchURL(),{
 				method: "POST",
 				headers: {
@@ -48,7 +53,12 @@ class ComboBox extends React.Component {
 				},
 				body: JSON.stringify(this.generateObjectForMongooseFind(event.target.value))
 			})
-			.then(response => response.json())
+			.then(response => {
+				if(thisRequestVesion < this.newestRequest_v)
+					Promise.reject(`Old request version: ${thisRequestVesion}`)
+				this.newestRequest_v = thisRequestVesion
+				return response.json()
+			})
 			.then(data => {
 				const tempList = []
 				data.forEach(element => {
@@ -94,13 +104,19 @@ class ComboBox extends React.Component {
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}
+					inputProps={{
+						dbnotsynced: this.state.ID && this.state.value !== "" ? "false" : "true",
+					}}
 					InputProps={{
-						realvalue:this.state.ID,
 						startAdornment: this.state.ID ? (
 							<InputAdornment position="start">
-								<Check/>
-							</InputAdornment>) : ""
-					  }}
+								<Check style={{color: "#090"}}/>
+							</InputAdornment>) : this.state.value !== "" ? (
+								<InputAdornment position="start">
+									<SyncDisabled style={{color: "#d00"}}/>
+								</InputAdornment>
+							) : ""
+					}}
 				/>
 				{this.state.loading && <LinearProgress />}
 				<MenuList style={{"paddingTop": 0, "paddingBottom": 0, "boxShadow": "rgba(0, 0, 0, 0.2) 0px 2px 3px 0px"}}>
@@ -109,7 +125,10 @@ class ComboBox extends React.Component {
 							{value.text}
 						</MenuItem>
 					))}
-					{ this.state.menuList.length === 0 && this.state.value.length >= 3 && (!this.state.loading) && this.state.ID === "" &&
+					{ 	this.state.menuList.length === 0 &&
+						this.state.value.length >= 3 &&
+						(!this.state.loading)&&
+						this.state.ID === "" &&
 						<MenuItem key="add_new_field" onClick={this.openNewFieldWindow} style={{background: "#a9dc39"}}>
 							+ Přidat nový záznam
 						</MenuItem>

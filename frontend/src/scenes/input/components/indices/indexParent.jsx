@@ -13,9 +13,10 @@ class IndexParent extends React.Component {
 	getDataReady = (elements) => {
 		const errors = []
 		for(let element of elements)
-			if(element.name && element.value !== "" && element.getAttribute("aria-invalid")==="true")
-				errors.push(`Incorrect format of: ${element.name}`)
+		if(element.value !== "" && (element.getAttribute("aria-invalid")==="true" || element.getAttribute("dbnotsynced")==="true"))
+			errors.push(`"${element.value}" is invalid value`)
 
+		console.log(errors)
 		return {data:this.formData, errors}
 	}
 	
@@ -26,7 +27,7 @@ class IndexParent extends React.Component {
 
 		if(errors.length > 0){
 			errors.forEach( value => {
-				console.warn(value);
+				console.warn(value)
 				this.props.enqueueSnackbar(value, { variant: "warning" })
 			})
 
