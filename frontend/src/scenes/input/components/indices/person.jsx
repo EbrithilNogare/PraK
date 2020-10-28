@@ -15,6 +15,8 @@ import {
 //	KeywordComboBox,
 	PersonComboBox,
 	SubjectComboBox,
+	FamilyComboBox,
+	StaticComboBox,
 } from '../comboBoxes'
 
 import DateField from '../validationTextFields/DateField'
@@ -22,8 +24,6 @@ import DateField from '../validationTextFields/DateField'
 import IndexParent from "./indexParent"
 
 import styles from './parent.module.scss'
-import GenderComboBox from "../comboBoxes/GenderComboBox"
-import FamilyComboBox from "../comboBoxes/FamilyComboBox"
 
 class Person extends IndexParent {
 	constructor(props){
@@ -92,7 +92,12 @@ class Person extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Pohlaví</h2>
-					<GenderComboBox required label="Pohlaví" onChange={e=>{this.handleFormChange(e, "gender")}}/>
+					<StaticComboBox
+						required
+						label="Pohlaví"
+						onChange={e=>{this.handleFormChange(e, "gender")}}
+						data={["Neuvedeno", "Muž", "Žena"]}
+						/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Příslušnost k zemi</h2>

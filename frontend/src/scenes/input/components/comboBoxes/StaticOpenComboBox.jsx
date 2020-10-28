@@ -6,7 +6,11 @@ import {
 	MenuItem,
 } from '@material-ui/core'
 
-class GenderComboBox extends React.Component {
+/**
+ * Combo box with option other.
+ * So user can choose one from menu, or type his own
+ */
+class StaticOpenComboBox extends React.Component {
 	constructor(props){
 		super(props)
 		
@@ -14,23 +18,25 @@ class GenderComboBox extends React.Component {
 			value: "",
 			menuList: [],
 		}	
-		this.menu = [
-			"Muž",
-			"Žena",
-			"Transsexuál",
-			"Cis",
-			"Hermafrodit",
-			"Intersexuální muž",
-			"Intersexuální žena",
-			"Asexuál",
-			"Jiné",
-		]
 
 		this.handleChange = this.handleChange.bind(this)
 	}
 
-	handleChange(event){
-		this.setState({value: event.target.value})
+	handleChange(e){
+
+		this.setState({value: e.target.value, menuList: e.target.value === "" ? this.props.data : []})
+
+		if(this.props.onChange) this.props.onChange(e)
+	}
+
+	handleClick = (e) => {
+		this.setState({menuList:this.props.data})
+	}
+
+	handleKeyUp = (e) => {
+		if(e.key === "Escape"){
+			this.setState({menuList:[]})
+		}
 	}
 
 	handleMenuItemClick(value){
@@ -51,10 +57,19 @@ class GenderComboBox extends React.Component {
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}
-					inputProps={{realvalue:this.state.ID}}
-					onClick={()=>{this.setState({menuList:this.menu})}}
+					inputProps={{
+						realvalue: this.state.ID,
+					}}
+					onClick={this.handleClick}
+					onKeyUp={this.handleKeyUp}
 				/>
-				<MenuList>
+				<MenuList style={{
+						paddingTop: 0,
+						paddingBottom: 0,
+						boxShadow: "rgba(0, 0, 0, 0.2) 0px 2px 3px 0px",
+						maxHeight: "500px",
+						overflowY: "auto"
+					}}>
 					{this.state.menuList.map((value, key)=>(
 						<MenuItem
 							key={key}
@@ -69,4 +84,4 @@ class GenderComboBox extends React.Component {
 	}
 }
 
-export default GenderComboBox
+export default StaticOpenComboBox
