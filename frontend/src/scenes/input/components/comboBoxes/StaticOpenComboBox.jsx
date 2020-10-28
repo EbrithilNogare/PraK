@@ -52,7 +52,7 @@ class StaticOpenComboBox extends React.Component {
 			<div>
 				<TextField
 					name={this.props.name}
-					label={this.props.label}
+					label={this.props.label[0].toUpperCase() + this.props.label.slice(1)}
 					required={this.props.required}
 					onChange={this.handleChange}
 					value={this.state.value}
