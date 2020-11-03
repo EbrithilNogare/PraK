@@ -15,7 +15,18 @@ class Footer extends React.Component {
 					<p>Kód: DG20P02OVV010</p>
 				</div>
 
-				<div/>
+				<div>
+					<h3>Staticke stranky</h3>
+					<hr/>
+					<ul>
+						<li> <NavLink to="/prak/manual">Manual</NavLink> </li>
+						<li> <NavLink to="/prak/about">About</NavLink> </li>
+						<li> <NavLink to="/prak/team">Team</NavLink> </li>
+						<li> <NavLink to="/prak/ourwork">Ourwork</NavLink> </li>
+						<li> <NavLink to="/prak/partners">Partners</NavLink> </li>
+						<li> <NavLink to="/prak/contacts">Contacts</NavLink> </li>
+					</ul>
+				</div>
 
 				<div>
 					<h3>Scenes</h3>
@@ -31,14 +42,14 @@ class Footer extends React.Component {
 					<h3>Input</h3>
 					<hr/>
 					<ul>
-						<li> <NavLink to="/prak/input/metadata">metadata</NavLink> </li>
-						<li> <NavLink to="/prak/input/corporation">corporation</NavLink> </li>
-						<li> <NavLink to="/prak/input/creation">creation</NavLink> </li>
-						<li> <NavLink to="/prak/input/geographic">geographic</NavLink> </li>
-						<li> <NavLink to="/prak/input/keyword">keyword</NavLink> </li>
-						<li> <NavLink to="/prak/input/person">person</NavLink> </li>
-						<li> <NavLink to="/prak/input/subject">subject</NavLink> </li>
-						<li> <NavLink to="/prak/input/family">family</NavLink> </li>
+						<li> <NavLink to="/prak/input/metadata">Metadata</NavLink> </li>
+						<li> <NavLink to="/prak/input/corporation">Corporation</NavLink> </li>
+						<li> <NavLink to="/prak/input/creation">Creation</NavLink> </li>
+						<li> <NavLink to="/prak/input/geographic">Geographic</NavLink> </li>
+						<li> <NavLink to="/prak/input/keyword">Keyword</NavLink> </li>
+						<li> <NavLink to="/prak/input/person">Person</NavLink> </li>
+						<li> <NavLink to="/prak/input/subject">Subject</NavLink> </li>
+						<li> <NavLink to="/prak/input/family">Family</NavLink> </li>
 					</ul>
 				</div>
 			</div>

@@ -19,7 +19,7 @@ class DateField extends React.Component {
 
 	handleChange(event){
 		const value = event.target.value
-		const regex = /^\d{1,2}[.]\d{1,2}[.]\d{4}$/
+		const regex = /^\d{1,2}[.]\d{1,2}[.]\d{4}$|^\d{4}$/
 		let state = {}
 		let newDate = undefined
 		
@@ -27,9 +27,13 @@ class DateField extends React.Component {
 			state = {value: undefined, error: false}
 		else if(!regex.test(value))
 			state = {value, error: true}
-		else{
+		else {
 			let sd = value.split('.')
-			newDate = new Date(`${sd[1]}-${sd[0]}-${sd[2]}`)
+			if(value.split('.').length === 1)
+				newDate = new Date(value)
+			else
+				newDate = new Date(`${sd[1]}-${sd[0]}-${sd[2]}`)
+
 			if(newDate instanceof Date && !isNaN(newDate))
 				state = {value, error: false}
 			else
@@ -49,7 +53,7 @@ class DateField extends React.Component {
 				required={ this.props.required }
 				onChange={ this.handleChange }
 				error={ this.state.error }
-				helperText={ this.state.error ? this.props.errorMessage || "Invalid Date, use format dd.mm.yyyy" : "" }
+				helperText={ this.state.error ? this.props.errorMessage || "Invalid Date, use format dd.mm.yyyy or yyyy" : "" }
 			/>			
 		)
 	}

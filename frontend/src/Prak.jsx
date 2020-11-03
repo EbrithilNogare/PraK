@@ -14,17 +14,20 @@ import WebFont from 'webfontloader';
 
 import NavBar from "./components/navBar"
 import Footer from "./components/footer"
-import MainPageScene from "./pages/mainPage"
+import ScrollToTop from "./components/ScrollToTop"
+
 import InputScene from "./scenes/input"
 import LoginScene from "./scenes/login"
 import EditScene from "./scenes/edit"
 import ShowScene from "./scenes/show"
 
+import MainPageScene from "./pages/mainPage"
 import AboutPage from "./pages/aboutPage"
 import TeamPage from "./pages/teamPage"
 import OurWorkPage from "./pages/ourWorkPage"
 import PartnersPage from "./pages/partnersPage"
 import ContactsPage from "./pages/contactsPage"
+import ManualPage from "./pages/manualPage"
 
 import "./styles/colorScheme.scss"
 import styles from "./Prak.module.scss"
@@ -41,6 +44,7 @@ class Prak extends React.Component {
 			<div className={styles.prak}>
 				<SnackbarProvider>
 					<Router>
+						<ScrollToTop/>
 						<NavBar/>
 						<Switch>
 							<Route path="/prak/login"><LoginScene variant="login"/></Route>						
@@ -55,6 +59,8 @@ class Prak extends React.Component {
 							<Route path="/prak/ourwork"><OurWorkPage/></Route>
 							<Route path="/prak/partners"><PartnersPage/></Route>
 							<Route path="/prak/contacts"><ContactsPage/></Route>
+
+							<Route path="/prak/manual"><ManualPage/></Route>
 							
 							<Route path="/prak"><MainPageScene/></Route>
 						</Switch>

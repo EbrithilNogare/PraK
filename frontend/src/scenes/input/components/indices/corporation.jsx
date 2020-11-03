@@ -6,7 +6,13 @@ import {
 	TextField,
 	Button,
 	Paper,
+	InputAdornment,
+	Tooltip,
 } from '@material-ui/core'
+
+import {
+	HelpOutline
+} from '@material-ui/icons'
 
 import {
 	CorporationComboBox,
@@ -32,6 +38,16 @@ class Corporation extends IndexParent {
 		this.indexURL = "corporation"
 	}
 
+	helperProp = (text) => {return{
+		endAdornment: (
+			<InputAdornment position = "end" >
+				<Tooltip title = {text} >
+					<HelpOutline style = {{fontSize: 15, cursor: "help"}}/>
+				</Tooltip>
+			</InputAdornment>
+		)}}
+	
+
 	render(){
 		return(
 			<form
@@ -45,8 +61,15 @@ class Corporation extends IndexParent {
 				<div className={styles.body}>			
 				<Paper className={styles.dataBlock}>
 					<h2>Jiný zdroj</h2>
-					<TextField label="Název" onChange={e=>{this.handleFormChange(e, "other_source.name")}}/>
-					<TextField label="ID" onChange={e=>{this.handleFormChange(e, "other_source.id")}}/>
+					<TextField
+						label="Název"
+						onChange={e=>{this.handleFormChange(e, "other_source.name")}}
+					/>
+					<TextField
+						label="ID"
+						onChange = { e => { this.handleFormChange(e, "other_source.id") } }
+						InputProps = {this.helperProp("just fill it")}
+					/>
 					<TextField label="Identifikátor hesla" onChange={e=>{this.handleFormChange(e, "other_source.identificator")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
