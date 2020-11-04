@@ -397,7 +397,7 @@
 			"label": "Zadavatel",
 			"schema": "submitter",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"options": ["", "Katerina", "Petra", "Tamara", "Slavicek", "Kamila", "🤖"],
+			"options": ["", "Petra Hoffmannová", "Kamila Brožová", "Kateřina Brožová", "Tamara Nováková", "🤖"],
 			"helper": ""
 		}
 	}
