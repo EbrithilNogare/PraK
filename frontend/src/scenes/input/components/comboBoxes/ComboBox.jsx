@@ -6,6 +6,7 @@ import {
 	MenuItem,
 	LinearProgress,
 	InputAdornment,
+	Tooltip,
 } from '@material-ui/core'
 import {
 	Check, 
@@ -110,12 +111,17 @@ class ComboBox extends React.Component {
 					InputProps={{
 						startAdornment: this.state.ID ? (
 							<InputAdornment position="start">
-								<Check style={{color: "#090"}}/>
+								<Tooltip title="synced with DB">
+									<Check style={{color: "#090", fontSize: 20, cursor: "help"}}/>
+								</Tooltip>
 							</InputAdornment>) : this.state.value !== "" ? (
 								<InputAdornment position="start">
-									<SyncDisabled style={{color: "#d00"}}/>
+									<Tooltip title="not synced with DB">
+										<SyncDisabled style={{color: "#d00", fontSize: 20, cursor: "help"}}/>
+									</Tooltip>
 								</InputAdornment>
-							) : ""
+							) : "",
+						...this.props.InputProps
 					}}
 				/>
 				{this.state.loading && <LinearProgress />}

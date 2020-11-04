@@ -1,5 +1,14 @@
 import React from "react"
 
+import { 
+	InputAdornment,
+	Tooltip,
+} from '@material-ui/core'
+
+import {
+	HelpOutline
+} from '@material-ui/icons'
+
 class IndexParent extends React.Component {
 	constructor(props){
 		super(props)
@@ -76,6 +85,15 @@ class IndexParent extends React.Component {
 		a.split('.').reduce((o,p,i) =>
 			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || {}, this.formData)
 	}
+
+	helperProp = (text) => {return{
+		endAdornment: (
+			<InputAdornment position="end">
+				<Tooltip title={text}>
+					<HelpOutline style={{fontSize: 12, color: "#c5c5c5", cursor: "help"}} />
+				</Tooltip>
+			</InputAdornment>
+	)}}
 }
 
 export default IndexParent

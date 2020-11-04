@@ -35,7 +35,10 @@ class StaticComboBox extends React.Component {
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}
-					inputProps={{realvalue:this.state.ID}}
+					inputProps={{
+						realvalue:this.state.ID,
+					}}
+					endAdornment={this.props.InputProps.endAdornment}
 					>
 					{this.props.data.map((value, key)=>(
 						<MenuItem key={key} value={value}>

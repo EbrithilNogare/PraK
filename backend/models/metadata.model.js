@@ -134,7 +134,10 @@ const schema = new mongoose.Schema({
 	  type: String,
 	  enum: ['personIndex', 'corporationIndex']
 	},
-	chronological_content_specification: String,
+	chronological_content_specification: {
+		begin: Number,
+		end: Number,
+	},
 	geographical_content_specification: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",

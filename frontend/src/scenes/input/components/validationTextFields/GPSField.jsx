@@ -30,7 +30,7 @@ class GPSField extends React.Component {
 
 	render(){
 		return(
-			<TextField
+			<TextField {...this.props}
 				name={ this.props.name }
 				label={ this.props.label }
 				required={ this.props.required }

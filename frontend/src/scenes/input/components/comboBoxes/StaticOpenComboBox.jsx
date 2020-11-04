@@ -58,7 +58,10 @@ class StaticOpenComboBox extends React.Component {
 					value={this.state.value}
 					style={{width: "100%"}}
 					inputProps={{
-						realvalue: this.state.ID,
+						realvalue: this.state.ID
+					}}
+					InputProps={{
+						...this.props.InputProps
 					}}
 					onClick={this.handleClick}
 					onKeyUp={this.handleKeyUp}
