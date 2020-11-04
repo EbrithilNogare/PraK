@@ -38,7 +38,7 @@ class StaticComboBox extends React.Component {
 					inputProps={{
 						realvalue:this.state.ID,
 					}}
-					endAdornment={this.props.InputProps.endAdornment}
+					endAdornment={this.props.InputProps && this.props.InputProps.endAdornment ? this.props.InputProps.endAdornment : undefined}
 					>
 					{this.props.data.map((value, key)=>(
 						<MenuItem key={key} value={value}>
