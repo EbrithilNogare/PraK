@@ -24,10 +24,7 @@ const schema = new mongoose.Schema({
 	author_responsibility: [String],
 	other_names: [String],
 	language: [String],
-	publish_country: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
+	publish_country: String,
 	publish_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
@@ -81,7 +78,7 @@ const schema = new mongoose.Schema({
 		acess_note: String,
 		institution: {
 			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
+			ref: "corporationIndex",
 		},
 		fund: String,
 		note: String,
@@ -96,7 +93,7 @@ const schema = new mongoose.Schema({
 		name: String,
 		url: String,
 	}],
-	source_object_citation: [String],
+	described_object_citation: [String],
 	previous_name: {
 		type: mongoose.Types.ObjectId,
 		ref: "metadata",
@@ -115,7 +112,7 @@ const schema = new mongoose.Schema({
 	},
 	processing_level: String,
 	archival_aids: String,
-	source_document_citation: String,
+	source_citation: String,
 	multiple_placement: String,
 	multiple_placement_url: String,
 	topic: {

@@ -16,33 +16,33 @@
 			"label": "Hlavní autor nebo původce",
 			"schema": "author.id",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": "Původce je osoba/korporace/akce odpovědná za vytváření dokumentu, narůstání a správu archiválií. Pro volbu správné podoby jména (pravopis, iniciály, rozepsané iniciály apod.) se používá přednostně Soubor národních autorit"
+			"helper": "Původce je osoba/korporace/akce odpovědná za vytváření dokumentu, narůstání a správu archiválií. Pro volbu správné podoby jména (pravopis, iniciály, rozepsané iniciály apod.) se používá přednostně Soubor národních autorit."
 		},
 		"author_role": {
 			"label": "Role",
 			"schema": "author.role",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"options": ["", "Adresát, příjemce", "Analytik", "Animátor", "Anotátor, autor rukopisných poznámek", "Architekt", "Autor adaptace, upravovatel", "Autor aranžmá", "Autor citací nebo úryvků textu", "Autor dialogů", "Autor diplomové práce nebo disertace", "Autor doslovu, tiráže atd.", "Autor exlibris", "Autor filmového scénáře atd.", "Autor komentáře textu", "Autor komentáře", "Autor koncepce", "Autor obálky", "Autor textu doprovodného materiálu", "Autor textu na přebalu", "Autor uměleckých replik", "Autor úvodu atd.", "Autor věnování", "Autor", "Bibliografický předchůdce", "Cenzor", "Choreograf", "Člen produkčního týmu", "Člen výzkumného týmu", "Dárce", "Dedikant", "Dedikátor", "Dirigent", "Distributor", "Domnělý (pochybný) autor", "Dotazovaný, interviewovaný", "Dotazovatel, interviewující", "Dozorčí, kontrolor", "Dřevořezbář", "Dřevorytec", "Dřívější majitel", "Druhá strana", "Editor programovacích jazyků", "Editor", "Expert", "Falzifikátor, padělatel", "Fotograf", "Galvanotypér", "Geodet, zeměměřič", "Grafický technik", "Herec", "Hostitelská podpora", "Hudební režie", "Hudebník", "Iluminátor", "Ilustrátor", "Inspicient", "Instrumentalista, hráč na hudební nástroje", "Investor", "Jevištní úprava", "Jiná role", "Kaligraf", "Kamera filmu", "Kartograf", "Klient", "Knihkupec", "Knižní grafik", "Kolorista", "Kolotypér", "Konferenciér", "Kontrahent, smluvní partner", "Konzervátor", "Konzultant projektu", "Konzultant", "Korektor tištěných materiálů", "Korektor", "Korespondent", "Kovorytec", "Kreslič", "Kurátor výstavy", "Laboratoř", "Leptař", "Libretista", "Licitátor, vyvolávač", "Litograf", "Loutkoherec", "Majitel patentu", "Manažer produkce", "Mecenáš", "Místo distribuce", "Místo produkce", "Místo univerzity", "Místo vydání události", "Místo vydání", "Místo výroby", "Moderátor", "Mramorování", "Nabyvatel autorského práva", "Nakladatel, vydavatel", "Návrhář kostýmů", "Návrhář písma", "Návrhář", "Nositel autorského práva", "Obhájce jako odpůrce odvolatele v odvolacím řízení", "Obhájce jako odvolávající se strana v odvolacím řízení", "Obhájce", "Obžalovaný (v církevním nebo námořním právu)", "Obžalovaný jako odpůrce odvolatele v odvolacím řízení", "Obžalovaný jako odvolávající se strana v odvolacím řízení", "Obžalovaný v odvolacím řízení (v církevním nebo námořním právu) jako odpůrce odvolatele", "Obžalovaný v odvolacím řízení (v církevním nebo námořním právu) jako odvolávající se strana", "Obžalovaný", "Odpovědná strana", "Odpůrce odvolatele", "Odpůrce v odvolacím řízení, odvolatel", "Odpůrce", "Opisování not", "Oponent", "Organizátor akce", "Osvětlení", "Osvětlovač", "Pěvec", "Písař, opisovač", "Poctěná osoba", "Poskytovatel dat", "Překladatel", "Přepisovač", "Přidružené jméno", "Připisované jméno", "Přispěvatel", "Producent, výrobce", "Programátor", "Projektant architektonických ztvárnění", "Provozní technik", "První strana", "Půjčovatel", "Původce", "Původní nositel práv, licence", "Recenzent", "Redaktor, výkonný redaktor", "Reportér, zpravodaj", "Repozitář", "Režisér", "Rubrikátor", "Rytec", "Sazeč", "Sběratel", "Scénárista", "Scénograf", "Schvalovatel", "Šéfredaktor, odpovědný redaktor", "Sekretář, tajemník, jednatel", "Sestavovatel, kompilátor", "Signatář", "Skladatel", "Skladník", "Sochař", "Specialista na geografické informace", "Spíkr", "Spolupracovník", "Sponzor", "Správce dat", "Stereotypér", "Střihač", "Svědek", "Tanečník", "Technik v oblasti metadat", "Technik záznamu", "Technik", "Textař", "Tiskař grafik", "Tiskař obrazu", "Tiskař", "Tvůrce", "Typograf", "Účinkující", "Učitel", "Udělovatel akademické hodnosti", "Udělovatel povolení", "Umělec", "Umělecký vedoucí", "Vazač", "Vědecký poradce", "Vedoucí diplomové práce nebo disertace", "Vedoucí práce v terénu", "Vedoucí produkčního týmu", "Vedoucí projektu", "Vedoucí výzkumného týmu", "Vedoucí", "Video kameraman", "Vlastník", "Vynálezce", "Vypravěč pohádek, anekdot", "Vypravěč-komentátor", "Výrobce knihy", "Výrobce papíru", "Výrobce tiskových forem", "Výrobce", "Výtvarník desky knihy nebo ochranného pouzdra pro dokument", "Výtvarník vazby", "Výtvarník", "Vývojový pracovník v oblasti standardizace", "Výzkumník", "Žadatel o udělení autorského práva", "Žadatel o udělení patentu", "Žadatel, uchazeč", "Zahradní a krajinný architekt", "Žalobce (v církevním nebo námořním právu)", "Žalobce (v civilních věcech) jako odpůrce odvolatele", "Žalobce (v civilních věcech) jako odvolávající se strana", "Žalobce (v civilních věcech)", "Žalobce jako odpůrce odvolatele v odvolacím řízení", "Žalobce jako odvolávající se strana v odvolacím řízení", "Žalobce v odvolacím řízení (v církevním nebo námořním právu) jako odpůrce odvolatele", "Žalobce v odvolacím řízení (v církevním nebo námořním právu) jako odvolávající se strana", "Žalobce", "Zhotovitel faksimile", "Zobrazovaný", "Zpěvák", "Zúčastněná osoba v odvolacím řízení", "Zúčastněná osoba v odvolacím řízení", "Zúčastněná osoba", "Zvuk"],
-			"helper": "Uvádí se role, kterou konkrétní původce přispěl ke vzniku díla. Výběr z kontrolovaného seznamu"
+			"helper": "Uvádí se role, kterou konkrétní původce přispěl ke vzniku díla. Výběr z kontrolovaného seznamu."
 		},
 		"other_authors": {
 			"label": "Další původci",
 			"schema": "other_authors.id",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": "Další původce je osoba/korporace/akce, která přispěla k vytváření dokumentu, narůstání a správě archiválií. Pole se může opakovat "
+			"helper": "Další původce je další osoba/korporace/akce, která přispěla k vytváření dokumentu, narůstání a správě archiválií. Pole se může opakovat."
 		},
 		"other_authors_role": {
 			"label": "Role",
 			"schema": "other_authors.role",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"options": ["", "Adresát, příjemce", "Analytik", "Animátor", "Anotátor, autor rukopisných poznámek", "Architekt", "Autor adaptace, upravovatel", "Autor aranžmá", "Autor citací nebo úryvků textu", "Autor dialogů", "Autor diplomové práce nebo disertace", "Autor doslovu, tiráže atd.", "Autor exlibris", "Autor filmového scénáře atd.", "Autor komentáře textu", "Autor komentáře", "Autor koncepce", "Autor obálky", "Autor textu doprovodného materiálu", "Autor textu na přebalu", "Autor uměleckých replik", "Autor úvodu atd.", "Autor věnování", "Autor", "Bibliografický předchůdce", "Cenzor", "Choreograf", "Člen produkčního týmu", "Člen výzkumného týmu", "Dárce", "Dedikant", "Dedikátor", "Dirigent", "Distributor", "Domnělý (pochybný) autor", "Dotazovaný, interviewovaný", "Dotazovatel, interviewující", "Dozorčí, kontrolor", "Dřevořezbář", "Dřevorytec", "Dřívější majitel", "Druhá strana", "Editor programovacích jazyků", "Editor", "Expert", "Falzifikátor, padělatel", "Fotograf", "Galvanotypér", "Geodet, zeměměřič", "Grafický technik", "Herec", "Hostitelská podpora", "Hudební režie", "Hudebník", "Iluminátor", "Ilustrátor", "Inspicient", "Instrumentalista, hráč na hudební nástroje", "Investor", "Jevištní úprava", "Jiná role", "Kaligraf", "Kamera filmu", "Kartograf", "Klient", "Knihkupec", "Knižní grafik", "Kolorista", "Kolotypér", "Konferenciér", "Kontrahent, smluvní partner", "Konzervátor", "Konzultant projektu", "Konzultant", "Korektor tištěných materiálů", "Korektor", "Korespondent", "Kovorytec", "Kreslič", "Kurátor výstavy", "Laboratoř", "Leptař", "Libretista", "Licitátor, vyvolávač", "Litograf", "Loutkoherec", "Majitel patentu", "Manažer produkce", "Mecenáš", "Místo distribuce", "Místo produkce", "Místo univerzity", "Místo vydání události", "Místo vydání", "Místo výroby", "Moderátor", "Mramorování", "Nabyvatel autorského práva", "Nakladatel, vydavatel", "Návrhář kostýmů", "Návrhář písma", "Návrhář", "Nositel autorského práva", "Obhájce jako odpůrce odvolatele v odvolacím řízení", "Obhájce jako odvolávající se strana v odvolacím řízení", "Obhájce", "Obžalovaný (v církevním nebo námořním právu)", "Obžalovaný jako odpůrce odvolatele v odvolacím řízení", "Obžalovaný jako odvolávající se strana v odvolacím řízení", "Obžalovaný v odvolacím řízení (v církevním nebo námořním právu) jako odpůrce odvolatele", "Obžalovaný v odvolacím řízení (v církevním nebo námořním právu) jako odvolávající se strana", "Obžalovaný", "Odpovědná strana", "Odpůrce odvolatele", "Odpůrce v odvolacím řízení, odvolatel", "Odpůrce", "Opisování not", "Oponent", "Organizátor akce", "Osvětlení", "Osvětlovač", "Pěvec", "Písař, opisovač", "Poctěná osoba", "Poskytovatel dat", "Překladatel", "Přepisovač", "Přidružené jméno", "Připisované jméno", "Přispěvatel", "Producent, výrobce", "Programátor", "Projektant architektonických ztvárnění", "Provozní technik", "První strana", "Půjčovatel", "Původce", "Původní nositel práv, licence", "Recenzent", "Redaktor, výkonný redaktor", "Reportér, zpravodaj", "Repozitář", "Režisér", "Rubrikátor", "Rytec", "Sazeč", "Sběratel", "Scénárista", "Scénograf", "Schvalovatel", "Šéfredaktor, odpovědný redaktor", "Sekretář, tajemník, jednatel", "Sestavovatel, kompilátor", "Signatář", "Skladatel", "Skladník", "Sochař", "Specialista na geografické informace", "Spíkr", "Spolupracovník", "Sponzor", "Správce dat", "Stereotypér", "Střihač", "Svědek", "Tanečník", "Technik v oblasti metadat", "Technik záznamu", "Technik", "Textař", "Tiskař grafik", "Tiskař obrazu", "Tiskař", "Tvůrce", "Typograf", "Účinkující", "Učitel", "Udělovatel akademické hodnosti", "Udělovatel povolení", "Umělec", "Umělecký vedoucí", "Vazač", "Vědecký poradce", "Vedoucí diplomové práce nebo disertace", "Vedoucí práce v terénu", "Vedoucí produkčního týmu", "Vedoucí projektu", "Vedoucí výzkumného týmu", "Vedoucí", "Video kameraman", "Vlastník", "Vynálezce", "Vypravěč pohádek, anekdot", "Vypravěč-komentátor", "Výrobce knihy", "Výrobce papíru", "Výrobce tiskových forem", "Výrobce", "Výtvarník desky knihy nebo ochranného pouzdra pro dokument", "Výtvarník vazby", "Výtvarník", "Vývojový pracovník v oblasti standardizace", "Výzkumník", "Žadatel o udělení autorského práva", "Žadatel o udělení patentu", "Žadatel, uchazeč", "Zahradní a krajinný architekt", "Žalobce (v církevním nebo námořním právu)", "Žalobce (v civilních věcech) jako odpůrce odvolatele", "Žalobce (v civilních věcech) jako odvolávající se strana", "Žalobce (v civilních věcech)", "Žalobce jako odpůrce odvolatele v odvolacím řízení", "Žalobce jako odvolávající se strana v odvolacím řízení", "Žalobce v odvolacím řízení (v církevním nebo námořním právu) jako odpůrce odvolatele", "Žalobce v odvolacím řízení (v církevním nebo námořním právu) jako odvolávající se strana", "Žalobce", "Zhotovitel faksimile", "Zobrazovaný", "Zpěvák", "Zúčastněná osoba v odvolacím řízení", "Zúčastněná osoba v odvolacím řízení", "Zúčastněná osoba", "Zvuk"],
-			"helper": "Uvádí se role, kterou konkrétní původce přispěl ke vzniku díla. Výběr z kontrolovaného seznamu"
+			"helper": "Uvádí se role, kterou konkrétní původce přispěl ke vzniku díla. Výběr z kontrolovaného seznamu."
 		},
 		"name": {
 			"label": "Hlavní název",
 			"schema": "name",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": "Celý název (včetně případných podnázvů, čísla a označení částí) Název : podnázev. Část x, Název části Interpunkce je doporučená, nikoli povinná",
+			"helper": "Celý název (včetně případných podnázvů, čísla a označení částí). Název: podnázev. Část x, Název části. Interpunkce je doporučená, nikoli povinná.",
 			"required": true
 		},
 		"other_names": {
@@ -57,26 +57,26 @@
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
 			"options": ["", "angličtina", "bulharština", "čeština", "dolnoněmčina", "francouzština", "italština", "jidiš", "judendeutsch", "latina", "němčina", "polština", "rumunština", "ruština", "slovenština", "španělština", "ukrajinština"
 			],
-			"helper": "Jiný (či další)  název - cizojazyčný název (je-li na objektu uveden), obálkový název apod. Píše se do jednoho pole v uvedeném pořadí údajů Název : podnázev. Část x, Název části Interpunkce je doporučená, nikoli povinná"
+			"helper": "Jiný (či další)  název - cizojazyčný název (je-li na objektu uveden), obálkový název apod. Píše se do jednoho pole v uvedeném pořadí údajů. Název : podnázev. Část x, Název části Interpunkce je doporučená, nikoli povinná"
 		},
 		"publish_country": {
 			"label": "Země vydání nebo vzniku",
 			"schema": "publish_country",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"options": ["","Rakousko-Uhersko", "Československo 1918-1938", "Protektorát Čechy a Morava 1938-1945", "Československá republika 1945-1960", "Československá socialistická republika 1960-1990", "Česká a Slovenská federativní republika 1990-1992", "Česká republika 1993-", "Německo", "Německá říše", "Polsko", "Prusko"],
-			"helper": "Výběr z nabídky"
+			"helper": "Výběr z nabídky."
 		},
 		"publish_place": {
 			"label": "Místo vydání nebo vzniku",
 			"schema": "publish_place",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": "Výběr z nabídky"
+			"helper": "Výběr z nabídky."
 		},
 		"publisher": {
 			"label": "Vydavatel",
 			"schema": "publisher",
 			"fields": [0, 0, 1, 0, 1, 1, 1, 1, 1, 1],
-			"helper": "Výběr z nabídky. Místo původu  (uvádí se město). "
+			"helper": "Místo původu  (uvádí se město). Výběr z nabídky. "
 		},
 		"publishing_date": {
 			"label": "Datum vydání nebo vzniku",
@@ -88,7 +88,7 @@
 			"label": "Poznámka k datu vydání",
 			"schema": "publishing_date.note",
 			"fields": [1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
-			"helper": "Rok vydání nebo vzniku (i pravděpodobný údaj). Copyright"
+			"helper": "Rok vydání nebo vzniku (i pravděpodobný údaj). Copyright."
 		},
 		"isbn": {
 			"label": "ISBN",
@@ -100,19 +100,19 @@
 			"label": "Pořadí vydání",
 			"schema": "edition_order",
 			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-			"helper": "10-místné nebo 13-místné ISBN"
+			"helper": "10-místné nebo 13-místné ISBN."
 		},
 		"edition": {
 			"label": "Edice",
 			"schema": "edition",
 			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-			"helper": "Uvádí se pořadí ve tvaru uvedené v knize"
+			"helper": "Uvádí se pořadí ve tvaru uvedené v knize."
 		},
 		"action_name": {
 			"label": "Název akce",
 			"schema": "action_name",
 			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-			"helper": "Název edice. Svazek číslo"
+			"helper": "Název edice. Svazek číslo."
 		},
 		"volume_content": {
 			"label": "Obsah svazku",
@@ -124,21 +124,21 @@
 			"label": "Roky vycházení od",
 			"schema": "publishing_year.from",
 			"fields": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
-			"helper": "Uvádí se významné části svazku, které se nezpracovávají samostatně",
+			"helper": "Uvádí se významné části svazku, které se nezpracovávají samostatně.",
 			"type": "Number"
 		},
 		"publishing_year_to": {
 			"label": "Roky vycházení do",
 			"schema": "publishing_year.to",
 			"fields": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
-			"helper": "Uvádí se roky vycházení včetně nejistých nebo pravděpodobných",
+			"helper": "Uvádí se roky vycházení včetně nejistých nebo pravděpodobných.",
 			"type": "Number"
 		},
 		"publishing_year_note": {
 			"label": "Poznámka k rokům vycházení",
 			"schema": "publishing_year.note",
 			"fields": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
-			"helper": "Upřesnění roků vycházení"
+			"helper": "Upřesnění roků vycházení."
 		},
 		"periodicity": {
 			"label": "Periodicita",
@@ -151,254 +151,254 @@
 			"label": "ISSN",
 			"schema": "isbn",
 			"fields": [0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
-			"helper": ""
+			"helper": "4-místný kód ISSN."
 		},
 		"source_document_name": {
 			"label": "Název zdrojového dokumentu",
 			"schema": "source_document_name",
 			"fields": [1, 0, 0, 1, 0, 1, 0, 0, 1, 1],
-			"helper": ""
+			"helper": "Název sbírky, ve které se dokument nachází. Výběr z nabídky."
 		},
 		"year": {
 			"label": "rok",
 			"schema": "copies.year",
 			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-			"helper": "",
+			"helper": "Rok vydání - periodika.",
 			"type": "Number"
 		},
 		"volume": {
 			"label": "ročník",
 			"schema": "copies.volume",
 			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-			"helper": "",
+			"helper": "Ročník zdrojového objektu - periodika.",
 			"type": "Number"
 		},
 		"number": {
 			"label": "číslo",
 			"schema": "copies.number",
 			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-			"helper": "",
+			"helper": "Číslo zdrojového objektu - periodika",
 			"type": "Number"
 		},
 		"date": {
 			"label": "datum",
 			"schema": "copies.date",
 			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-			"helper": ""
+			"helper": "Datum vydání - periodika."
 		},
 		"corporation_name": {
 			"label": "Název korporace",
 			"schema": "corporation_name",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Místo fyzického uložení objektu.  Výběr z rejstříku osob nebo korporací."
 		},
 		"access_conditions": {
 			"label": "Podmínky přístupu",
 			"schema": "location.access_conditions",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"options": ["", "online", "prezenčně", "přístupné po domluvě soukromá sbírka", "přístupné po domluvě instituce", "nepřístupné", "dostupné online s omezením", "absenčně"],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},
 		"acces_note": {
 			"label": "Poznámka k přístupu",
 			"schema": "location.acces_note",
 			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-			"helper": ""
+			"helper": "Textová poznámka k podmínkám přístupu."
 		},
 		"location_in_institution": {
 			"label": "Umístění v instituci",
 			"schema": "location.institution",
 			"fields": [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Všechny údaje, které  vedou v rámci uvedené instituce k zadávanému objektu, včetně informace o umístění v jiných budovách instituce."
 		},
 		"location_in_fund": {
 			"label": "Umístění ve fondu/Lokace",
 			"schema": "location.fund",
 			"fields": [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Údaje určující uložení zadávaného dokumentu v uvedené instituci. Referenční kódy/inventární čísla/signatury/lokace."
 		},
 		"location_note": {
 			"label": "Poznámka k umístění",
 			"schema": "location.note",
 			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-			"helper": ""
+			"helper": "Textová poznámka."
 		},
 		"digitized_document_url": {
 			"label": "URL digitalizovaného dokumentu",
 			"schema": "digitized_document_url",
 			"fields": [1, 0, 1, 1, 0, 1, 1, 0, 0, 1],
-			"helper": ""
+			"helper": "URL digitalizátu v našem repozitáři."
 		},
 		"external_source_name": {
 			"label": "Název externího umístění",
 			"schema": "external_source.name",
 			"fields": [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Název Elektronického zdroje, ve kterém je možné digitalizát zadávaného dokumentu dohledat. Výběr ze seznamu samostatně zpracovaných objektů Elektronický zdroj."
 		},
 		"external_source_url": {
 			"label": "URL externího umístění",
 			"schema": "external_source.url",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Uvádí se URL externího elektronického zdroje."
 		},
 		"url_leading_to_document": {
 			"label": "URL vedoucí k dokumentu v externím zdroji",
 			"schema": "external_source.url_leading_to_document",
 			"fields": [1, 0, 1, 1, 0, 1, 1, 0, 1, 1],
-			"helper": ""
+			"helper": "URL dokumentu v externím zdroji."
 		},
 		"attachment_name": {
 			"label": "Název přílohy",
 			"schema": "attachment.name",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Převzatý nebo vlastní název přílohy."
 		},
 		"attachment_url": {
 			"label": "URL přílohy",
 			"schema": "attachment.url",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "URL přílohy."
 		},
-		"source_object_citation": {
-			"label": "Citace zdroje",
-			"schema": "source_object_citation",
+		"described_object_citation": {
+			"label": "Citace (popisovaný objekt)",
+			"schema": "described_object_citation",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Citace zdroje týkající se popisovaného objektu."
 		},
 		"previous_name": {
 			"label": "Předcházející název",
 			"schema": "previous_name",
 			"fields": [0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-			"helper": ""
+			"helper": "Původní název - periodika."
 		},
 		"following_name": {
 			"label": "Následující název",
 			"schema": "following_name",
 			"fields": [0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-			"helper": ""
+			"helper": "Následující název - periodika."
 		},
 		"form": {
 			"label": "Forma",
 			"schema": "form",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Výběr z rejstříku klíčových slov."
 		},
 		"range": {
 			"label": "Rozsah",
 			"schema": "range",
 			"fields": [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Počet stran, svazků, vybavení obrázky apod."
 		},
 		"dimension": {
 			"label": "Rozměr",
 			"schema": "dimension",
 			"fields": [1, 0, 0, 0, 0, 0, 1, 0, 1, 1],
-			"helper": ""
+			"helper": "Rozměr v cm."
 		},
 		"map_scale": {
 			"label": "Měřítko",
 			"schema": "map_scale",
 			"fields": [1, 0, 0, 0, 1, 1, 1, 0, 0, 1],
-			"helper": ""
+			"helper": "Měřítko mapy."
 		},
 		"format": {
 			"label": "Formát/Jak to vypadá",
 			"schema": "format",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Textový popis vzhledu."
 		},
 		"processing_level": {
 			"label": "Úroveň zpracování",
 			"schema": "processing_level",
 			"fields": [1, 1, 0, 0, 0, 0, 1, 1, 0, 1],
 			"options": ["", "nezpracováno", "digitalizováno", "inventarizováno", "katalogizováno", "excerpováno", "vlastní"],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},
 		"description_level": {
 			"label": "úroveň popisu",
 			"schema": "description_level",
 			"fields": [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 			"options": ["", "část fondu", "série", "podsérie", "spis", "jednotlivina", "podsbírka"],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},
 		"archival_aids": {
 			"label": "Násobné umístění",
 			"schema": "archival_aids",
 			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},		
-		"source_document_citation": {
-			"label": "Citace zdrojového dokumentu",
-			"schema": "source_document_citation",
+		"source_citation": {
+			"label": "Citace (zdroj)",
+			"schema": "source_citation",
 			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-			"helper": ""
+			"helper": "Výběr ze seznamu názvů samostatně zpracovaného objektu."
 		},
 		"multiple_placement": {
 			"label": "Násobné umístění",
 			"schema": "multiple_placement",
 			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Odkazy do katalogů knihoven."
 		},
 		"multiple_placement_url": {
 			"label": "Násobné umístění url",
 			"schema": "multiple_placement_url",
 			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "URL katalogů knihoven."
 		},
 		"topic": {
 			"label": "Téma",
 			"schema": "topic",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},
 		"corporation_content_specification": {
 			"label": "Osoba, korporace jako předmět obsahu dokumentu",
 			"schema": "corporation_content_specification",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},
 		"chronological_content_specification": {
 			"label": "Chronologické zpřesnění obsahu dokumentu",
 			"schema": ["chronological_content_specification.begin", "chronological_content_specification.end"],
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},
 		"geographical_content_specification": {
 			"label": "Geografické zpřesnění obsahu dokumentu",
 			"schema": "geographical_content_specification",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},
 		"keywords": {
 			"label": "Klíčová slova",
 			"schema": "keywords",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Výběr z nabídky."
 		},
 		"description": {
 			"label": "Abstrakt/Popis",
 			"schema": "description",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Text."
 		},
 		"general_note": {
 			"label": "Poznámka obecná",
 			"schema": "general_note",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Text poznámky."
 		},
 		"editor_note": {
 			"label": "Poznámka editora",
 			"schema": "editor_note",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": ""
+			"helper": "Text poznámky."
 		},
 		"submitter": {
 			"label": "Zadavatel",
 			"schema": "submitter",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"options": ["", "Petra Hoffmannová", "Kamila Brožová", "Kateřina Brožová", "Tamara Nováková", "🤖"],
-			"helper": ""
+			"helper": "Výběr z nabídky. "
 		}
 	}
 }

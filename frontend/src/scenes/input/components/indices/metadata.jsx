@@ -117,7 +117,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
 					{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}
 					{this.conditionalField("language") && <StaticOpenComboBox {...this.createFieldProps("language")}/>}
-					{this.conditionalField("publish_country") && <GeographicComboBox {...this.createFieldProps("publish_country")}/>}
+					{this.conditionalField("publish_country") && <StaticComboBox{...this.createFieldProps("publish_country")}/>}
 					{this.conditionalField("publish_place") && <GeographicComboBox {...this.createFieldProps("publish_place")}/>}
 					{this.conditionalField("publisher") && <CorporationComboBox {...this.createFieldProps("publisher")}/>}
 					{this.conditionalField("publishing_date") && <DateField {...this.createFieldProps("publishing_date")}/>}
@@ -145,7 +145,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("corporation_name") && <CorporationComboBox {...this.createFieldProps("corporation_name")}/>}
 					{this.conditionalField("access_conditions") && <StaticOpenComboBox  {...this.createFieldProps("access_conditions")}/>}
 					{this.conditionalField("acces_note") && <TextField  {...this.createFieldProps("acces_note")}/>}
-					{this.conditionalField("location_in_institution") && <GeographicComboBox  {...this.createFieldProps("location_in_institution")}/>}
+					{this.conditionalField("location_in_institution") && <CorporationComboBox {...this.createFieldProps("location_in_institution")}/>}
 					{this.conditionalField("location_in_fund") && <TextField  {...this.createFieldProps("location_in_fund")}/>}
 					{this.conditionalField("location_note") && <TextField  {...this.createFieldProps("location_note")}/>}
 					{this.conditionalField("digitized_document_url") && <TextField  {...this.createFieldProps("digitized_document_url")}/>}
@@ -154,7 +154,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("url_leading_to_document") && <TextField  {...this.createFieldProps("url_leading_to_document")}/>}
 					{this.conditionalField("attachment_name") && <TextField  {...this.createFieldProps("attachment_name")}/>}
 					{this.conditionalField("attachment_url") && <TextField  {...this.createFieldProps("attachment_url")}/>}
-					{this.conditionalField("source_object_citation") && <TextField  {...this.createFieldProps("source_object_citation")}/>}
+					{this.conditionalField("described_object_citation") && <TextField  {...this.createFieldProps("described_object_citation")}/>}
 					{this.conditionalField("previous_name") && <MetadataComboBox  {...this.createFieldProps("previous_name")}/>}
 					{this.conditionalField("following_name") && <MetadataComboBox  {...this.createFieldProps("following_name")}/>}
 				</Paper>
@@ -167,19 +167,17 @@ class Metadata extends IndexParent {
 					{this.conditionalField("processing_level") && <StaticOpenComboBox  {...this.createFieldProps("processing_level")}/>}
 					{this.conditionalField("description_level") && <StaticOpenComboBox  {...this.createFieldProps("description_level")}/>}
 					{this.conditionalField("archival_aids") && <TextField {...this.createFieldProps("archival_aids")}/>} 
-					{this.conditionalField("source_document_citation") && <TextField {...this.createFieldProps("source_document_citation")}/>} 
+					{this.conditionalField("source_citation") && <TextField {...this.createFieldProps("source_citation")}/>} 
 					{this.conditionalField("multiple_placement") && <TextField {...this.createFieldProps("multiple_placement")}/>} 
 					{this.conditionalField("multiple_placement_url") && <TextField {...this.createFieldProps("multiple_placement_url")}/>} 
 					{this.conditionalField("topic") && <SubjectComboBox {...this.createFieldProps("topic")}/>} 
 					{this.conditionalField("topic") && <CreationComboBox {...this.createFieldProps("topic")}/>} 
 					{this.conditionalField("corporation_content_specification") && <PersonComboBox {...this.createFieldProps("corporation_content_specification")}/>} 
 					{this.conditionalField("corporation_content_specification") && <CorporationComboBox {...this.createFieldProps("corporation_content_specification")}/>} 
-					{this.conditionalField("chronological_content_specification") && <DoubleSlider
+					{this.conditionalField("chronological_content_specification") && <DoubleSlider {...this.createFieldProps("chronological_content_specification")}
 						BeginLabel="Začátek"
 						EndLabel="Konec"
-						label={this.getTranslation("chronological_content_specification")}
 						defaultValue={[0,0]}
-						InputProps = {this.helperProp(this.getHelper("chronological_content_specification"))}
 						min={(new Date()).getFullYear()-90}
 						max={(new Date()).getFullYear()+10}
 						onChange={(e)=>{

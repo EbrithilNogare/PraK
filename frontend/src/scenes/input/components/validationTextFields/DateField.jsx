@@ -19,26 +19,32 @@ class DateField extends React.Component {
 
 	handleChange(event){
 		const value = event.target.value
-		const regex = /^\d{1,2}[.]\d{1,2}[.]\d{4}$|^\d{4}$/
+		const regex = /^(?:\d{1,2}\.){0,2}\d{4}$/
 		let state = {}
 		let newDate = undefined
 		
-		if(event.target.value.length === 0)
-			state = {value: undefined, error: false}
-		else if(!regex.test(value))
-			state = {value, error: true}
-		else {
-			let sd = value.split('.')
-			if(value.split('.').length === 1)
-				newDate = new Date(value)
-			else
-				newDate = new Date(`${sd[1]}-${sd[0]}-${sd[2]}`)
-
-			if(newDate instanceof Date && !isNaN(newDate))
-				state = {value, error: false}
-			else
-				state = {value, error: true}
+		if(!regex.test(value)){
+			this.setState({value, error: true})
+			return;
 		}
+
+		if(value.length === 0){
+			this.setState({value:undefined, error: false})
+			if(this.props.onChange) this.props.onChange(event)
+			return;
+		}
+		
+		const sd = value.split('.')
+		switch(sd.length){
+			case 1: newDate = new Date(value); break;
+			case 2: newDate = new Date(`${sd[0]}-1-${sd[1]}`); break;
+			case 3: newDate = new Date(`${sd[1]}-${sd[0]}-${sd[2]}`); break;
+		}
+		
+		if(newDate instanceof Date && !isNaN(newDate))
+			state = {value, error: false}
+		else
+			state = {value, error: true}
 
 		this.setState(state)
 
