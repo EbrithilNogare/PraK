@@ -4,6 +4,8 @@ class FamilyComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/FamilyIndex"
 	getNewFieldURL = () => "/prak/input/family"
 
+	labelPostfix = () => " (Restřík rodů)"
+
 	generateObjectForMongooseFind = (value) => {
 		return { other_source: { name: `/${value}/` } }
 	}

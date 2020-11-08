@@ -4,6 +4,8 @@ class PersonComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/personIndex"
 	getNewFieldURL = () => "/prak/input/person"
 
+	labelPostfix = () => " (Restřík osob)"
+
 	generateObjectForMongooseFind = (value) => {
 		return {surname: `/${value}/`}
 	}

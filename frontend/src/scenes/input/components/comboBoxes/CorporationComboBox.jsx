@@ -4,6 +4,8 @@ class CorporationComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/CorporationIndex"
 	getNewFieldURL = () => "/prak/input/corporation"
 
+	labelPostfix = () => " (Restřík korporací)"
+
 	generateObjectForMongooseFind = (value) => {
 		return { name: `/${value}/` }
 	}

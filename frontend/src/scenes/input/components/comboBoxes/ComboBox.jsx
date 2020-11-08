@@ -38,6 +38,7 @@ class ComboBox extends React.Component {
 
 	getFetchURL = () => {throw new Error("Calling abstract function")}
 	getNewFieldURL = () => {throw new Error("Calling abstract function")}
+	labelPostfix = () => ""
 	generateObjectForMongooseFind = value => {throw new Error("Calling abstract function")}
 	parseReturnedObjectFromMongooseFind = element => {throw new Error("Calling abstract function")}
 
@@ -106,7 +107,7 @@ class ComboBox extends React.Component {
 			<div>
 				<TextField
 					name={this.props.name}
-					label={this.props.label[0].toUpperCase() + this.props.label.slice(1)}
+					label={this.props.label[0].toUpperCase() + this.props.label.slice(1) + this.labelPostfix()}
 					required={this.props.required}
 					onChange={this.handleChange}
 					value={this.state.value}

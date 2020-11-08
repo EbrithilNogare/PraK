@@ -123,8 +123,8 @@ class Corporation extends IndexParent {
 					<CorporationComboBox label="Změna nadřazené organizace" onChange={e=>{this.handleFormChange(e, "change_parent_organisation")}}/>
 					<CreationComboBox label="Ocenění" onChange={e=>{this.handleFormChange(e, "awards.award")}}/>
 					<SubjectComboBox label="Udělení ocenění" onChange={e=>{this.handleFormChange(e, "awards.event_award")}}/>
-					<PersonComboBox label="Udělovatel_Osoba" onChange={e=>{this.handleFormChange(e, "awards.awarder_person")}}/>
-					<CorporationComboBox label="Udělovatel_Korporace" onChange={e=>{this.handleFormChange(e, "awards.awarder_corporation")}}/>
+					<PersonComboBox label="Udělovatel" onChange={e=>{this.handleFormChange(e, "awards.awarder_person")}}/>
+					<CorporationComboBox label="Udělovatel" onChange={e=>{this.handleFormChange(e, "awards.awarder_corporation")}}/>
 				</Paper>				
 				<Paper className={styles.dataBlock}>
 					<h2>Zařazení</h2>

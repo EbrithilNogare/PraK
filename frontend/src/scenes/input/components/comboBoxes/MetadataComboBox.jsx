@@ -4,6 +4,8 @@ class MetadataComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/Metadata"
 	getNewFieldURL = () => "/prak/input/metadata"
 
+	labelPostfix = () => " (Metadata)"
+
 	generateObjectForMongooseFind = (value) => {
 		return { name: `/${value}/` }
 	}
