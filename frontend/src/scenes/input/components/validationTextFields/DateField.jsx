@@ -39,6 +39,7 @@ class DateField extends React.Component {
 			case 1: newDate = new Date(value); break;
 			case 2: newDate = new Date(`${sd[0]}-1-${sd[1]}`); break;
 			case 3: newDate = new Date(`${sd[1]}-${sd[0]}-${sd[2]}`); break;
+			default:
 		}
 		
 		if(newDate instanceof Date && !isNaN(newDate))

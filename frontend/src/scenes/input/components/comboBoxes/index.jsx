@@ -8,3 +8,5 @@ export {default as PersonComboBox} from './PersonComboBox'
 export {default as SubjectComboBox} from './SubjectComboBox'
 export {default as StaticOpenComboBox} from './StaticOpenComboBox'
 export {default as StaticComboBox} from './StaticComboBox'
+export {default as FormStaticComboBox} from './FormStaticComboBox'
+

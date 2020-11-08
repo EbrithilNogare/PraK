@@ -23,6 +23,7 @@ import {
 	SubjectComboBox,
 	StaticOpenComboBox,
 	StaticComboBox,
+	FormStaticComboBox,
 } from '../comboBoxes'
 import ISBNField from '../validationTextFields/ISBNField'
 import DateField from '../validationTextFields/DateField'
@@ -159,7 +160,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("following_name") && <MetadataComboBox  {...this.createFieldProps("following_name")}/>}
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					{this.conditionalField("form") && <TextField  {...this.createFieldProps("form")}/>}
+					{this.conditionalField("form") && <FormStaticComboBox  {...this.createFieldProps("form")}/>}
 					{this.conditionalField("range") && <TextField  {...this.createFieldProps("range")}/>}
 					{this.conditionalField("dimension") && <TextField {...this.createFieldProps("dimension")}/>} 
 					{this.conditionalField("map_scale") && <TextField {...this.createFieldProps("map_scale")}/>} 
