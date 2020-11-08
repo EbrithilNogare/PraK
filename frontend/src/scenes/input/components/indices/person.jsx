@@ -90,7 +90,7 @@ class Person extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Obor působnosti</h2>
-					<TextField label="Obor působnosti" onChange={e=>{this.handleFormChange(e, "domain_branch")}}/>
+					<TextField required label="Obor působnosti" onChange={e=>{this.handleFormChange(e, "domain_branch")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Pohlaví</h2>
@@ -106,11 +106,12 @@ class Person extends IndexParent {
 					<GeographicComboBox label="Příslušnost k zemi" onChange={e=>{this.handleFormChange(e, "country_membership")}}/>
 					<GeographicComboBox label="Místo narození" onChange={e=>{this.handleFormChange(e, "born_place")}}/>
 					<GeographicComboBox label="Místo skonu" onChange={e=>{this.handleFormChange(e, "death_place")}}/>
-					<GeographicComboBox label="Související země" onChange={e=>{this.handleFormChange(e, "related_country")}}/>
+					<GeographicComboBox required label="Související země" onChange={e=>{this.handleFormChange(e, "related_country")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Určení jazykové oblasti</h2>
 					<StaticComboBox
+						required
 						label="Určení jazykové oblasti"
 						data={[
 							"Čeština",
@@ -149,7 +150,7 @@ class Person extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Zdroje o heslu</h2>
-					<TextField label="Zdroje o heslu" onChange={e=>{this.handleFormChange(e, "record_sources")}}/>
+					<TextField required label="Zdroje o heslu" onChange={e=>{this.handleFormChange(e, "record_sources")}}/>
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

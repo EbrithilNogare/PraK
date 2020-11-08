@@ -90,10 +90,10 @@ class Geographic extends IndexParent {
 						<CorporationComboBox label="Název" onChange={e=>{this.handleFormChange(e, "part_of.corporation_name")}}/>
 						<PersonComboBox label="Majitel" onChange={e=>{this.handleFormChange(e, "part_of.corporation_owner")}}/>
 						<h2>Spojená entita</h2>
-						<PersonComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_entity.related_person")}}/>
-						<CreationComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_entity.related_subject")}}/>
-						<SubjectComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_entity.related_event")}}/>
-						<CorporationComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_entity.related_corporation")}}/>
+						<PersonComboBox label="Spojená entita (Restřík osob)" onChange={e=>{this.handleFormChange(e, "related_entity.related_person")}}/>
+						<CreationComboBox label="Spojená entita (Restřík dílo/výtvor)" onChange={e=>{this.handleFormChange(e, "related_entity.related_subject")}}/>
+						<SubjectComboBox label="Spojená entita (Restřík událostí)" onChange={e=>{this.handleFormChange(e, "related_entity.related_event")}}/>
+						<CorporationComboBox label="Spojená entita (Restřík korporací)" onChange={e=>{this.handleFormChange(e, "related_entity.related_corporation")}}/>
 						<GeographicComboBox label="Nadřazený" onChange={e=>{this.handleFormChange(e, "superordinate")}}/>
 						<GeographicComboBox label="Podřazený" onChange={e=>{this.handleFormChange(e, "subordinate")}}/>
 						<GeographicComboBox label="Země" onChange={e=>{this.handleFormChange(e, "country")}}/>
@@ -104,24 +104,24 @@ class Geographic extends IndexParent {
 					</Paper>
 					<Paper className={styles.dataBlock}>
 						<h2>Počátek existence</h2>
-						<PersonComboBox label="Vznik_person" onChange={e=>{this.handleFormChange(e, "founding_person")}}/>
-						<CorporationComboBox label="Vznik_corporation" onChange={e=>{this.handleFormChange(e, "founding_corporation")}}/>
-						<CreationComboBox label="Vznik_document" onChange={e=>{this.handleFormChange(e, "founding_document")}}/>
-						<GeographicComboBox label="Vznik_place" onChange={e=>{this.handleFormChange(e, "founding_place")}}/>
-						<SubjectComboBox label="První písemná zmínka_event" onChange={e=>{this.handleFormChange(e, "first_mention_event")}}/>
-						<CreationComboBox label="První písemná zmínka_subject" onChange={e=>{this.handleFormChange(e, "first_mention_subject")}}/>
-						<GeographicComboBox label="První písemná zmínka_place" onChange={e=>{this.handleFormChange(e, "first_mention_place")}}/>
+						<PersonComboBox label="Vznik (Restřík osob)" onChange={e=>{this.handleFormChange(e, "founding_person")}}/>
+						<CorporationComboBox label="Vznik (Restřík korporací)" onChange={e=>{this.handleFormChange(e, "founding_corporation")}}/>
+						<CreationComboBox label="Vznik (Restřík dílo/výtvor)" onChange={e=>{this.handleFormChange(e, "founding_document")}}/>
+						<GeographicComboBox label="Vznik (Geografický restřík)" onChange={e=>{this.handleFormChange(e, "founding_place")}}/>
+						<SubjectComboBox label="První písemná zmínka (Restřík událostí)" onChange={e=>{this.handleFormChange(e, "first_mention_event")}}/>
+						<CreationComboBox label="První písemná zmínka (Restřík dílo/výtvor)" onChange={e=>{this.handleFormChange(e, "first_mention_subject")}}/>
+						<GeographicComboBox label="První písemná zmínka (Geografický restřík)" onChange={e=>{this.handleFormChange(e, "first_mention_place")}}/>
 						<TextField label="Chronologické zpřesnění" onChange={e=>{this.handleFormChange(e, "chronological_specification_beginning")}}/>
 					</Paper>
 					<Paper className={styles.dataBlock}>
 						<h2>Konec existence</h2>
-						<PersonComboBox label="Zánik_person" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
-						<CorporationComboBox label="Zánik_corporation" onChange={e=>{this.handleFormChange(e, "cancellation_corporation")}}/>
-						<CreationComboBox label="Zánik_document" onChange={e=>{this.handleFormChange(e, "cancellation_document")}}/>
-						<GeographicComboBox label="Zánik_place" onChange={e=>{this.handleFormChange(e, "cancellation_place")}}/>
-						<SubjectComboBox label="Poslední písemná zmínka_event" onChange={e=>{this.handleFormChange(e, "last_mention_event")}}/>
-						<CreationComboBox label="Poslední písemná zmínka_subject" onChange={e=>{this.handleFormChange(e, "last_mention_subject")}}/>
-						<GeographicComboBox label="Poslední písemná zmínka_place" onChange={e=>{this.handleFormChange(e, "last_mention_place")}}/>
+						<PersonComboBox label="Zánik (Restřík osob)" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
+						<CorporationComboBox label="Zánik (Restřík korporací)" onChange={e=>{this.handleFormChange(e, "cancellation_corporation")}}/>
+						<CreationComboBox label="Zánik (Restřík dílo/výtvor)" onChange={e=>{this.handleFormChange(e, "cancellation_document")}}/>
+						<GeographicComboBox label="Zánik (Geografický restřík)" onChange={e=>{this.handleFormChange(e, "cancellation_place")}}/>
+						<SubjectComboBox label="Poslední písemná zmínka (Restřík událostí)" onChange={e=>{this.handleFormChange(e, "last_mention_event")}}/>
+						<CreationComboBox label="Poslední písemná zmínka (Restřík dílo/výtvor)" onChange={e=>{this.handleFormChange(e, "last_mention_subject")}}/>
+						<GeographicComboBox label="Poslední písemná zmínka (Geografický restřík)" onChange={e=>{this.handleFormChange(e, "last_mention_place")}}/>
 						<GeographicComboBox label="Změna majitele, držitele" onChange={e=>{this.handleFormChange(e, "owner_change")}}/>
 						<TextField label="Chronologické zpřesnění" onChange={e=>{this.handleFormChange(e, "chronological_specification_cancellation")}}/>
 						<TextField label="Historické milníky" onChange={e=>{this.handleFormChange(e, "historical_milestones")}}/>
@@ -130,12 +130,12 @@ class Geographic extends IndexParent {
 						<h2>Událost</h2>
 						<CreationComboBox label="Ocenění" onChange={e=>{this.handleFormChange(e, "awards.award")}}/>
 						<SubjectComboBox label="Udělení ocenění" onChange={e=>{this.handleFormChange(e, "awards.event_award")}}/>
-						<PersonComboBox label="Udělovatel_person" onChange={e=>{this.handleFormChange(e, "awards.awarder_person")}}/>
-						<CorporationComboBox label="Udělovatel_corporation" onChange={e=>{this.handleFormChange(e, "awards.awarder_corporation")}}/>
+						<PersonComboBox label="Udělovatel (Restřík osob)" onChange={e=>{this.handleFormChange(e, "awards.awarder_person")}}/>
+						<CorporationComboBox label="Udělovatel (Restřík korporací)" onChange={e=>{this.handleFormChange(e, "awards.awarder_corporation")}}/>
 					</Paper>
 					<Paper className={styles.dataBlock}>
 						<h2>Zařazení</h2>
-						<KeywordComboBox label="Kategorie" onChange={e=>{this.handleFormChange(e, "category")}}/>
+						<KeywordComboBox required label="Kategorie" onChange={e=>{this.handleFormChange(e, "category")}}/>
 						<TextField label="Charakteristika" onChange={e=>{this.handleFormChange(e, "characteristic")}}/>
 						<TextField label="Erb" onChange={e=>{this.handleFormChange(e, "arm")}}/>
 						<TextField label="Logo" onChange={e=>{this.handleFormChange(e, "logo")}}/>

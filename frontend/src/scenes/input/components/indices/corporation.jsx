@@ -142,7 +142,7 @@ class Corporation extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Zdroje o heslu</h2>
-					<TextField label="Zdroje o heslu" onChange={e=>{this.handleFormChange(e, "record_sources")}}/>
+					<TextField required label="Zdroje o heslu" onChange={e=>{this.handleFormChange(e, "record_sources")}}/>
 				</Paper>					
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

@@ -131,7 +131,7 @@ class Creation extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Zařazení</h2>
-					<KeywordComboBox label="Zařazení" onChange={e=>{this.handleFormChange(e, "category")}}/>
+					<KeywordComboBox required label="Zařazení" onChange={e=>{this.handleFormChange(e, "category")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Poznámky</h2>

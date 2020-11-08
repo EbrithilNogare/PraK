@@ -29,6 +29,12 @@ class ComboBox extends React.Component {
 		this.request_v = 0
 		this.newestRequest_v = 0
 	}
+	
+	handleKeyUp = (e) => {
+		if(e.key === "Escape"){
+			this.setState({value: "", menuList:[]})
+		}
+	}
 
 	getFetchURL = () => {throw new Error("Calling abstract function")}
 	getNewFieldURL = () => {throw new Error("Calling abstract function")}
@@ -123,6 +129,7 @@ class ComboBox extends React.Component {
 							) : "",
 						...this.props.InputProps
 					}}
+					onKeyUp={this.handleKeyUp}
 				/>
 				{this.state.loading && <LinearProgress />}
 				<MenuList style={{"paddingTop": 0, "paddingBottom": 0, "boxShadow": "rgba(0, 0, 0, 0.2) 0px 2px 3px 0px"}}>

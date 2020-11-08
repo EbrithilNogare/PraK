@@ -38,11 +38,11 @@ class IndexParent extends React.Component {
 		if(errors.length > 0){
 			errors.forEach( value => {
 				console.warn(value)
-				this.props.enqueueSnackbar(value, { variant: "warning" })
+				this.props.enqueueSnackbar(value, { variant: "warning", autoHideDuration: 6000 })
 			})
 
 			console.error(`Cannot send data, because of ${errors.length} errors`);
-			this.props.enqueueSnackbar(`Cannot send data, because of ${errors.length} errors`, { variant: "error" })
+			this.props.enqueueSnackbar(`Cannot send data, because of ${errors.length} errors`, { variant: "error", autoHideDuration: 6000 })
 			
 			return
 		}
@@ -63,7 +63,7 @@ class IndexParent extends React.Component {
 		})
 		.then(response => {
 			console.log("Response:\n",response)
-			this.props.enqueueSnackbar(`Sending succesfull\nID: ${response.id}`, { variant: "success" })
+			this.props.enqueueSnackbar(`Sending succesfull\nID: ${response.id}`, { variant: "success", autoHideDuration: 6000 })
 			this.props.history.push(`/prak/show/${this.indexURL}/`+response.id)
 		})
 		.catch((error) => {
@@ -72,12 +72,12 @@ class IndexParent extends React.Component {
 			if(error.status && error.status === 500) error.json().then(errorMessage =>{
 				console.error("errorMessage from server:", errorMessage)
 				if(errorMessage.details.message)
-					this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error" })
+					this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error", autoHideDuration: 6000 })
 				if(errorMessage.details.code && (errorMessage.details.code === 11000 || errorMessage.details.code === 11001))
-					this.props.enqueueSnackbar(`duplicite error at: ${JSON.stringify(errorMessage.details.keyValue)}`, { variant: "error" })
+					this.props.enqueueSnackbar(`duplicite error at: ${JSON.stringify(errorMessage.details.keyValue)}`, { variant: "error", autoHideDuration: 6000 })
 			})
 			else
-				this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error" })
+				this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error", autoHideDuration: 6000 })
 		})
 
 	}
