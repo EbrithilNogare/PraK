@@ -43,13 +43,13 @@ class Footer extends React.Component {
 					<hr/>
 					<ul>
 						<li> <NavLink to="/prak/input/metadata">Metadata</NavLink> </li>
-						<li> <NavLink to="/prak/input/corporation">Restřík korporací</NavLink> </li>
-						<li> <NavLink to="/prak/input/creation">Restřík dílo/výtvor</NavLink> </li>
-						<li> <NavLink to="/prak/input/geographic">Geografický restřík </NavLink> </li>
-						<li> <NavLink to="/prak/input/keyword">Restřík klíčových slov</NavLink> </li>
-						<li> <NavLink to="/prak/input/person">Restřík osob</NavLink> </li>
-						<li> <NavLink to="/prak/input/subject">Restřík událostí</NavLink> </li>
-						<li> <NavLink to="/prak/input/family">Restřík rodů</NavLink> </li>
+						<li> <NavLink to="/prak/input/corporation">Rejstřík korporací</NavLink> </li>
+						<li> <NavLink to="/prak/input/creation">Rejstřík dílo/výtvor</NavLink> </li>
+						<li> <NavLink to="/prak/input/geographic">Geografický rejstřík </NavLink> </li>
+						<li> <NavLink to="/prak/input/keyword">Rejstřík klíčových slov</NavLink> </li>
+						<li> <NavLink to="/prak/input/person">Rejstřík osob</NavLink> </li>
+						<li> <NavLink to="/prak/input/subject">Rejstřík událostí</NavLink> </li>
+						<li> <NavLink to="/prak/input/family">Rejstřík rodů</NavLink> </li>
 					</ul>
 				</div>
 			</div>

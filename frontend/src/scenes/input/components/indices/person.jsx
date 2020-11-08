@@ -98,7 +98,7 @@ class Person extends IndexParent {
 						required
 						label="Pohlaví"
 						onChange={e=>{this.handleFormChange(e, "gender")}}
-						data={["Neuvedeno", "Muž", "Žena"]}
+						data={["", "Neuvedeno", "Muž", "Žena"]}
 						/>
 				</Paper>
 				<Paper className={styles.dataBlock}>

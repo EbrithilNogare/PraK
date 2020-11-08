@@ -4,7 +4,7 @@ class GeographicComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/GeographicIndex"
 	getNewFieldURL = () => "/prak/input/geographic"
 
-	labelPostfix = () => " (Geografický restřík)"
+	labelPostfix = () => " (Geografický rejstřík)"
 
 	generateObjectForMongooseFind = (value) => {
 		return { name: `/${value}/` }

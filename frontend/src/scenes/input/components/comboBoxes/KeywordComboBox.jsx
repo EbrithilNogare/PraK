@@ -4,7 +4,7 @@ class KeywordComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/KeywordIndex"
 	getNewFieldURL = () => "/prak/input/keyword"
 
-	labelPostfix = () => " (Restřík klíčových slov)"
+	labelPostfix = () => " (Rejstřík klíčových slov)"
 
 	generateObjectForMongooseFind = (value) => {
 		return { name: `/${value}/` }

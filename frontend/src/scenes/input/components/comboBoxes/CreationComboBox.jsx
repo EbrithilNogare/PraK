@@ -4,7 +4,7 @@ class CreationComboBox extends ComboBox {
 	getFetchURL = () => "/prak/api/CreationIndex"
 	getNewFieldURL = () => "/prak/input/creation"
 
-	labelPostfix = () => " (Restřík dílo/výtvor)"
+	labelPostfix = () => " (Rejstřík dílo/výtvor)"
 
 	generateObjectForMongooseFind = (value) => {
 		return { name: `/${value}/` }
