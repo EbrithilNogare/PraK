@@ -10,7 +10,7 @@ class Footer extends React.Component {
 		return(
 			<div className={styles.footer}>
 				<div>
-					<p>Financování: Projekt je fnancován Ministerstvem kultury ČR z Programu aplikovaného výzkumu a vývoje národní a kulturní identity (NAKI II)</p>
+					<p>Financování: Projekt je financován Ministerstvem kultury ČR z Programu aplikovaného výzkumu a vývoje národní a kulturní identity (NAKI II)</p>
 					<p>Doba realizace: 2020-2022</p>
 					<p>Kód: DG20P02OVV010</p>
 				</div>

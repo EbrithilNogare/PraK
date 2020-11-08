@@ -55,8 +55,7 @@
 			"label": "Jazyk",
 			"schema": "language",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-			"options": ["", "angličtina", "bulharština", "čeština", "dolnoněmčina", "francouzština", "italština", "jidiš", "judendeutsch", "latina", "němčina", "polština", "rumunština", "ruština", "slovenština", "španělština", "ukrajinština"
-			],
+			"options": ["", "angličtina", "bulharština", "čeština", "dolnoněmčina", "francouzština", "italština", "jidiš", "judendeutsch", "latina", "němčina", "polština", "rumunština", "ruština", "slovenština", "španělština", "ukrajinština", "jiné"],
 			"helper": "Jiný (či další)  název - cizojazyčný název (je-li na objektu uveden), obálkový název apod. Píše se do jednoho pole v uvedeném pořadí údajů. Název : podnázev. Část x, Název části Interpunkce je doporučená, nikoli povinná"
 		},
 		"publish_country": {
@@ -150,7 +149,7 @@
 			"label": "Periodicita",
 			"schema": "publishing_year.periodicity",
 			"fields": [0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
-			"options": ["", "denně", "1x týdně", "1x měsíčně", "1x ročně", "2x měsíčně", "2x ročně", "4x ročně", "6x ročně", "nepravidelně", "není známa"],
+			"options": ["", "denně", "1x týdně", "1x měsíčně", "1x ročně", "2x měsíčně", "2x ročně", "4x ročně", "6x ročně", "nepravidelně", "není známa", "jiné"],
 			"helper": "Výběr z nabídky."
 		},
 		"issn": {
@@ -202,7 +201,7 @@
 			"label": "Podmínky přístupu",
 			"schema": "location.access_conditions",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"options": ["", "online", "prezenčně", "přístupné po domluvě soukromá sbírka", "přístupné po domluvě instituce", "nepřístupné", "dostupné online s omezením", "absenčně"],
+			"options": ["", "online", "prezenčně", "přístupné po domluvě soukromá sbírka", "přístupné po domluvě instituce", "nepřístupné", "dostupné online s omezením", "absenčně", "jiné"],
 			"helper": "Výběr z nabídky."
 		},
 		"acces_note": {
@@ -317,14 +316,14 @@
 			"label": "Úroveň zpracování",
 			"schema": "processing_level",
 			"fields": [1, 1, 0, 0, 0, 0, 1, 1, 0, 1],
-			"options": ["", "nezpracováno", "digitalizováno", "inventarizováno", "katalogizováno", "excerpováno", "vlastní"],
+			"options": ["", "nezpracováno", "digitalizováno", "inventarizováno", "katalogizováno", "excerpováno", "vlastní", "jiné"],
 			"helper": "Výběr z nabídky."
 		},
 		"description_level": {
 			"label": "úroveň popisu",
 			"schema": "description_level",
 			"fields": [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-			"options": ["", "část fondu", "série", "podsérie", "spis", "jednotlivina", "podsbírka"],
+			"options": ["", "část fondu", "série", "podsérie", "spis", "jednotlivina", "podsbírka", "jiné"],
 			"helper": "Výběr z nabídky."
 		},
 		"archival_aids": {

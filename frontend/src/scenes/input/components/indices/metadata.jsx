@@ -118,7 +118,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("other_authors_role") && <StaticComboBox {...this.createFieldProps("other_authors_role")}/>}
 					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
 					{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}
-					{this.conditionalField("language") && <StaticOpenComboBox {...this.createFieldProps("language")}/>}
+					{this.conditionalField("language") && <StaticComboBox {...this.createFieldProps("language")}/>}
 					{this.conditionalField("publish_country") && <StaticComboBox{...this.createFieldProps("publish_country")}/>}
 					{this.conditionalField("publish_place") && <GeographicComboBox {...this.createFieldProps("publish_place")}/>}
 					{this.conditionalField("publisher") && <CorporationComboBox {...this.createFieldProps("publisher")}/>}
@@ -141,7 +141,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("publishing_year_from") && <TextField {...this.createFieldProps("publishing_year_from")}/>}
 					{this.conditionalField("publishing_year_to") && <TextField  {...this.createFieldProps("publishing_year_to")}/>}
 					{this.conditionalField("publishing_year_note") && <TextField  {...this.createFieldProps("publishing_year_note")}/>}
-					{this.conditionalField("periodicity") && <StaticOpenComboBox  {...this.createFieldProps("periodicity")}/>}
+					{this.conditionalField("periodicity") && <StaticComboBox  {...this.createFieldProps("periodicity")}/>}
 					{this.conditionalField("isbn") && <TextField  {...this.createFieldProps("isbn")}/>}
 					{this.conditionalField("source_document_name") && <TextField  {...this.createFieldProps("source_document_name")}/>}
 					{this.conditionalField("year") && <TextField  {...this.createFieldProps("year")}/>}
@@ -151,7 +151,7 @@ class Metadata extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					{this.conditionalField("corporation_name") && <CorporationComboBox {...this.createFieldProps("corporation_name")}/>}
-					{this.conditionalField("access_conditions") && <StaticOpenComboBox  {...this.createFieldProps("access_conditions")}/>}
+					{this.conditionalField("access_conditions") && <StaticComboBox  {...this.createFieldProps("access_conditions")}/>}
 					{this.conditionalField("acces_note") && <TextField  {...this.createFieldProps("acces_note")}/>}
 					{this.conditionalField("location_in_institution") && <CorporationComboBox {...this.createFieldProps("location_in_institution")}/>}
 					{this.conditionalField("location_in_fund") && <TextField  {...this.createFieldProps("location_in_fund")}/>}
@@ -172,8 +172,8 @@ class Metadata extends IndexParent {
 					{this.conditionalField("dimension") && <TextField {...this.createFieldProps("dimension")}/>} 
 					{this.conditionalField("map_scale") && <TextField {...this.createFieldProps("map_scale")}/>} 
 					{this.conditionalField("format") && <KeywordComboBox  {...this.createFieldProps("format")}/>}
-					{this.conditionalField("processing_level") && <StaticOpenComboBox  {...this.createFieldProps("processing_level")}/>}
-					{this.conditionalField("description_level") && <StaticOpenComboBox  {...this.createFieldProps("description_level")}/>}
+					{this.conditionalField("processing_level") && <StaticComboBox  {...this.createFieldProps("processing_level")}/>}
+					{this.conditionalField("description_level") && <StaticComboBox  {...this.createFieldProps("description_level")}/>}
 					{this.conditionalField("archival_aids") && <TextField {...this.createFieldProps("archival_aids")}/>} 
 					{this.conditionalField("source_citation") && <TextField {...this.createFieldProps("source_citation")}/>} 
 					{this.conditionalField("multiple_placement") && <TextField {...this.createFieldProps("multiple_placement")}/>} 
