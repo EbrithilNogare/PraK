@@ -328,7 +328,7 @@
 			"helper": "Výběr z nabídky."
 		},
 		"archival_aids": {
-			"label": "Násobné umístění",
+			"label": "Archivní pomůcky",
 			"schema": "archival_aids",
 			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1],
 			"helper": "Výběr z nabídky."

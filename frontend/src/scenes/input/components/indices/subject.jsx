@@ -87,17 +87,17 @@ class Subject extends IndexParent {
 					</Paper>
 					<Paper className={styles.dataBlock}>
 						<h2>Počátek existence</h2>
-						<PersonComboBox label="Vznik_person" onChange={e=>{this.handleFormChange(e, "founding_person")}}/>
-						<CorporationComboBox label="Vznik_corporation" onChange={e=>{this.handleFormChange(e, "founding_corporation")}}/>
-						<GeographicComboBox label="První písemná zmínka_place" onChange={e=>{this.handleFormChange(e, "first_mention_place")}}/>
+						<PersonComboBox label="Vznik" onChange={e=>{this.handleFormChange(e, "founding_person")}}/>
+						<CorporationComboBox label="Vznik" onChange={e=>{this.handleFormChange(e, "founding_corporation")}}/>
+						<GeographicComboBox label="První písemná zmínka" onChange={e=>{this.handleFormChange(e, "first_mention_place")}}/>
 						<CreationComboBox label="První písemná zmínka" onChange={e=>{this.handleFormChange(e, "first_mention")}}/>
 						<TextField label="Chronologické zpřesnění" onChange={e=>{this.handleFormChange(e, "founding_chronological_specification")}}/>
 					</Paper>
 					<Paper className={styles.dataBlock}>
 						<h2>Konec existence</h2>
-						<PersonComboBox label="Zničení, zánik_person" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
-						<CorporationComboBox label="Zničení, zánik_corporation" onChange={e=>{this.handleFormChange(e, "cancellation_event")}}/>
-						<GeographicComboBox label="Poslední zmínka_place" onChange={e=>{this.handleFormChange(e, "last_mention_place")}}/>
+						<PersonComboBox label="Zničení, zánik" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
+						<CorporationComboBox label="Zničení, zánik" onChange={e=>{this.handleFormChange(e, "cancellation_event")}}/>
+						<GeographicComboBox label="Poslední zmínka" onChange={e=>{this.handleFormChange(e, "last_mention_place")}}/>
 						<CreationComboBox label="Poslední písemná zmínka" onChange={e=>{this.handleFormChange(e, "last_mention")}}/>
 						<TextField label="Chronologické zpřesnění" onChange={e=>{this.handleFormChange(e, "cancellation_chronological_specification")}}/>
 					</Paper>
