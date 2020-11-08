@@ -921,6 +921,7 @@
 const String = "String"
 const Number = "Number"
 const Date = "Date"
+const Boolean = "Boolean"
 const mongoose = { Types: { ObjectId: "ObjectId" } }
 
 const schema = {
@@ -962,6 +963,7 @@ const schema = {
 				type: Date,
 				required: true,
 			},
+			notAccurate: Boolean,
 			note: String,
 		}],
 		isbn: String,
@@ -1494,6 +1496,28 @@ const schema = {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},	
+	country: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},	
+	region: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},	
+	district: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},	
+	municipality: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},	
+	municipality_part: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},	
+	
+	
 
 	founding_person: {
 		type: mongoose.Types.ObjectId,
@@ -1729,7 +1753,9 @@ const schema = {
 	marriage_name: [String],
 	historical_name: [String],
 	straight_order: String,
-		
+	other_name_form: String,
+	pseudonym: String,
+	
 	titles:[{
 		title: String,
 		date: String,
@@ -1790,7 +1816,7 @@ const schema = {
 	}],
 	employment: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
+		ref: "KeywordIndex",
 	}],
 	affiliation: [{
 		type: mongoose.Types.ObjectId,

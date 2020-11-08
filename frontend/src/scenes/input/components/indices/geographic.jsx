@@ -96,6 +96,11 @@ class Geographic extends IndexParent {
 						<CorporationComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_entity.related_corporation")}}/>
 						<GeographicComboBox label="Nadřazený" onChange={e=>{this.handleFormChange(e, "superordinate")}}/>
 						<GeographicComboBox label="Podřazený" onChange={e=>{this.handleFormChange(e, "subordinate")}}/>
+						<GeographicComboBox label="Země" onChange={e=>{this.handleFormChange(e, "country")}}/>
+						<GeographicComboBox label="Kraj" onChange={e=>{this.handleFormChange(e, "region")}}/>
+						<GeographicComboBox label="Okres" onChange={e=>{this.handleFormChange(e, "district")}}/>
+						<GeographicComboBox label="Obec" onChange={e=>{this.handleFormChange(e, "municipality")}}/>
+						<GeographicComboBox label="Část obce" onChange={e=>{this.handleFormChange(e, "municipality_part")}}/>
 					</Paper>
 					<Paper className={styles.dataBlock}>
 						<h2>Počátek existence</h2>

@@ -40,7 +40,7 @@ class Corporation extends IndexParent {
 				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
 			>
 				<Paper className={styles.header}>
-					<h1>Nový záznam do Korporátního rejstříku</h1>
+					<h1>Nový záznam do Rejstříku korporací</h1>
 				</Paper>
 				<div className={styles.body}>			
 				<Paper className={styles.dataBlock}>
@@ -108,7 +108,7 @@ class Corporation extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Konec existence</h2>
-					<PersonComboBox label="Zrušení, likvidace, rozpuštění osoba/bytost která se podílela na zániku" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
+					<PersonComboBox label="Zrušení, likvidace, rozpuštění" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
 					<CreationComboBox label="Související dokument" onChange={e=>{this.handleFormChange(e, "cancellation_document")}}/>
 					<GeographicComboBox label="Geografický objekt jako následník" onChange={e=>{this.handleFormChange(e, "cancellation_place")}}/>
 					<CreationComboBox label="Výmaz z evidence dilo/vytvor" onChange={e=>{this.handleFormChange(e, "delete_from_evidence_subject")}}/>

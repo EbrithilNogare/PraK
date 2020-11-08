@@ -53,14 +53,12 @@ class DateField extends React.Component {
 	}	
 
 	render(){
+		const {errorMessage, ...config} = this.props 
 		return(
-			<TextField {...this.props}
-				name={ this.props.name }
-				label={ this.props.label }
-				required={ this.props.required }
+			<TextField {...config}
 				onChange={ this.handleChange }
 				error={ this.state.error }
-				helperText={ this.state.error ? this.props.errorMessage || "Invalid Date, use format dd.mm.yyyy or yyyy" : "" }
+				helperText={ this.state.error ? errorMessage || "Invalid Date, use format dd.mm.yyyy or mm.yyyy or yyyy" : "" }
 			/>			
 		)
 	}

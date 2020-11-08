@@ -69,7 +69,7 @@ export default class SearchScene extends React.Component {
 				<Paper>
 					<CardContent className={styles.gridChips}>		
 						<Typography>Keywords</Typography>
-						<TextField label="add keyword"/>
+						<TextField label="Add keyword"/>
 						<div>
 							<Chip
 								label="childs"
@@ -93,7 +93,7 @@ export default class SearchScene extends React.Component {
 				<Paper>
 					<CardContent className={styles.gridChips}>	
 						<Typography>Genre</Typography>
-						<TextField label="add genre"/>	
+						<TextField label="Add genre"/>	
 						<div>
 							<Chip
 								label="horror"

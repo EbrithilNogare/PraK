@@ -23,8 +23,9 @@ class IndexParent extends React.Component {
 		const errors = []
 		for(let element of elements)
 		if(element.value !== "" && (element.getAttribute("aria-invalid")==="true" || element.getAttribute("dbnotsynced")==="true"))
-			errors.push(`"${element.value}" is invalid value`)
-
+			{errors.push(`"${element.value}" is invalid value`)
+		console.log("here");
+		}
 		console.log(errors)
 		return {data:this.formData, errors}
 	}
@@ -84,6 +85,11 @@ class IndexParent extends React.Component {
 	handleFormChange = (e, a) => {
 		a.split('.').reduce((o,p,i) =>
 			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || {}, this.formData)
+	}
+
+	handleCheckboxChange = (e, a) => {
+		a.split('.').reduce((o,p,i) =>
+			o[p] = a.split('.').length === ++i ? e.target.checked : o[p] || {}, this.formData)
 	}
 
 	helperProp = (text) => {return{

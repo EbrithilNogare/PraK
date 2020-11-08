@@ -90,6 +90,12 @@
 			"fields": [1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
 			"helper": "Rok vydání nebo vzniku (i pravděpodobný údaj). Copyright."
 		},
+		"publishing_date_notAccurate": {
+			"label": "Datum není jisté",
+			"schema": "publishing_date.notAccurate",
+			"fields": [1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+			"helper": ""
+		},
 		"isbn": {
 			"label": "ISBN",
 			"schema": "isbn",

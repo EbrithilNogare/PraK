@@ -38,6 +38,7 @@ const schema = new mongoose.Schema({
 			type: Date,
 			required: true,
 		},
+		notAccurate: Boolean,
 		note: String,
 	}],
 	isbn: String,

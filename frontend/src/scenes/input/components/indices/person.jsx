@@ -12,7 +12,7 @@ import {
 	CorporationComboBox,
 	CreationComboBox,
 	GeographicComboBox,
-//	KeywordComboBox,
+	KeywordComboBox,
 	PersonComboBox,
 	SubjectComboBox,
 	FamilyComboBox,
@@ -72,6 +72,8 @@ class Person extends IndexParent {
 					<TextField label="Jméno získané sňatkem" onChange={e=>{this.handleFormChange(e, "marriage_name")}}/>
 					<TextField label="Historická podoba jména" onChange={e=>{this.handleFormChange(e, "historical_name")}}/>
 					<TextField label="Přímé pořadí" onChange={e=>{this.handleFormChange(e, "straight_order")}}/>
+					<TextField label="Jiná forma " onChange={e=>{this.handleFormChange(e, "other_name_form")}}/>
+					<TextField label="Pseudonym" onChange={e=>{this.handleFormChange(e, "pseudonym")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Tituly</h2>
@@ -108,7 +110,19 @@ class Person extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Určení jazykové oblasti</h2>
-					<TextField label="Určení jazykové oblasti" onChange={e=>{this.handleFormChange(e, "language_country")}}/>
+					<StaticComboBox
+						label="Určení jazykové oblasti"
+						data={[
+							"Čeština",
+							"Latina",
+							"Němčina",
+							"Angličtina",
+							"Polština",
+							"Slovenština",
+							"Jiné",
+						]}
+						onChange={ e => { this.handleFormChange(e, "language_country") }}
+					/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Vztahy a události</h2>
@@ -116,7 +130,7 @@ class Person extends IndexParent {
 					<PersonComboBox label="Sourozenci" onChange={e=>{this.handleFormChange(e, "siblings")}}/>
 					<FamilyComboBox label="Člen rodu/rodiny" onChange={e=>{this.handleFormChange(e, "family")}}/>
 					<CorporationComboBox label="Členství" onChange={e=>{this.handleFormChange(e, "membreship")}}/>
-					<CorporationComboBox label="Zaměstnání" onChange={e=>{this.handleFormChange(e, "employment")}}/>
+					<KeywordComboBox label="Zaměstnání" onChange={e=>{this.handleFormChange(e, "employment")}}/>
 					<CorporationComboBox label="Afiliace" onChange={e=>{this.handleFormChange(e, "affiliation")}}/>
 					<CreationComboBox label="Významná díla" onChange={e=>{this.handleFormChange(e, "important_subject")}}/>
 					<SubjectComboBox label="Významné události" onChange={e=>{this.handleFormChange(e, "important_event")}}/>
@@ -125,7 +139,7 @@ class Person extends IndexParent {
 					<CorporationComboBox label="Studium" onChange={e=>{this.handleFormChange(e, "study")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					<h2>Určení jazykové oblasti</h2>
+					<h2>Vyobrazení</h2>
 					<TextField label="Erby" onChange={e=>{this.handleFormChange(e, "arm")}}/>
 					<TextField label="Fotografie" onChange={e=>{this.handleFormChange(e, "photo")}}/>
 				</Paper>

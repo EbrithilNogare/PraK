@@ -29,7 +29,9 @@ const schema = new mongoose.Schema({
 	marriage_name: [String],
 	historical_name: [String],
 	straight_order: String,
-		
+	other_name_form: String,
+	pseudonym: String,
+	
 	titles:[{
 		title: String,
 		date: String,
@@ -90,7 +92,7 @@ const schema = new mongoose.Schema({
 	}],
 	employment: [{
 		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
+		ref: "KeywordIndex",
 	}],
 	affiliation: [{
 		type: mongoose.Types.ObjectId,

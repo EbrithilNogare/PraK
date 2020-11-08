@@ -105,7 +105,7 @@ class Keyword extends IndexParent {
 					<h2>Zařazení</h2>
 					<KeywordComboBox label="Kategorie" onChange={e=>{this.handleFormChange(e, "category")}}/>
 					<KeywordComboBox label="Obor" onChange={e=>{this.handleFormChange(e, "domain")}}/>
-					<TextField label="Mdt" onChange={e=>{this.handleFormChange(e, "idc")}}/>
+					<TextField label="MDT" onChange={e=>{this.handleFormChange(e, "idc")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Poznámky</h2>

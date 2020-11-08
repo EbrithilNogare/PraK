@@ -10,6 +10,7 @@ import {
 	InputLabel,
 	MenuItem,
 	FormControl,
+	Checkbox,
 } from '@material-ui/core'
 
 import {
@@ -86,7 +87,7 @@ class Metadata extends IndexParent {
 			<form
 				onSubmit={this.handleSubmit}
 				className={styles.main}
-				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
+				onKeyPress={event => { if (event.which === 13) event.preventDefault()}}
 			>
 				<Paper className={styles.header}>
 					<h1>Nový záznam do Rejstříku metadat</h1>
@@ -123,6 +124,13 @@ class Metadata extends IndexParent {
 					{this.conditionalField("publisher") && <CorporationComboBox {...this.createFieldProps("publisher")}/>}
 					{this.conditionalField("publishing_date") && <DateField {...this.createFieldProps("publishing_date")}/>}
 					{this.conditionalField("publishing_date_note") && <TextField  {...this.createFieldProps("publishing_date_note")}/>}
+					{this.conditionalField("publishing_date") && <div>
+						{ this.getTranslation("publishing_date_notAccurate") }
+						<Checkbox 
+							color="primary"
+							onChange = { e => this.handleCheckboxChange(e, this.getSchema("publishing_date_notAccurate")) }
+						/>
+					</div> }
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					{this.conditionalField("isbn") && <ISBNField {...this.createFieldProps("isbn")}/>}
@@ -191,7 +199,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("description") && <TextField  {...this.createFieldProps("description")}/>}
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					{this.conditionalField("general_note") && <TextField  {...this.createFieldProps("general_note")}/>}
+					{this.conditionalField("general_note") && <TextField multiline {...this.createFieldProps("general_note")}/>}
 					{this.conditionalField("editor_note") && <TextField  {...this.createFieldProps("editor_note")}/>}
 					{this.conditionalField("submitter") && <StaticOpenComboBox  {...this.createFieldProps("submitter")}/>}
 				</Paper>
