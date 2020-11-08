@@ -38,7 +38,7 @@ class Keyword extends IndexParent {
 				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
 			>
 				<Paper className={styles.header}>
-					<h1>Nový záznam do rejstříku Klíčových slov</h1>
+					<h1>Nový záznam do Rejstříku klíčových slov</h1>
 				</Paper>
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}>
@@ -85,20 +85,20 @@ class Keyword extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Počátek existence</h2>
-					<PersonComboBox label="Začátek_person" onChange={e=>{this.handleFormChange(e, "founding_person")}}/>
-					<CorporationComboBox label="Začátek_corporation" onChange={e=>{this.handleFormChange(e, "founding_corporation")}}/>
-					<CreationComboBox label="Začátek_subject" onChange={e=>{this.handleFormChange(e, "founding_subject")}}/>
-					<SubjectComboBox label="Začátek_event" onChange={e=>{this.handleFormChange(e, "founding_event")}}/>
-					<KeywordComboBox label="Začátek_keyword" onChange={e=>{this.handleFormChange(e, "founding_keyword")}}/>
+					<PersonComboBox label="Začátek" onChange={e=>{this.handleFormChange(e, "founding_person")}}/>
+					<CorporationComboBox label="Začátek" onChange={e=>{this.handleFormChange(e, "founding_corporation")}}/>
+					<CreationComboBox label="Začátek" onChange={e=>{this.handleFormChange(e, "founding_subject")}}/>
+					<SubjectComboBox label="Začátek" onChange={e=>{this.handleFormChange(e, "founding_event")}}/>
+					<KeywordComboBox label="Začátek" onChange={e=>{this.handleFormChange(e, "founding_keyword")}}/>
 					<TextField label="Chronologické zpřesnění" onChange={e=>{this.handleFormChange(e, "chronological_specification_beginning")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Konec existence</h2>
-					<PersonComboBox label="Konec_person" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
-					<CorporationComboBox label="Konec_corporation" onChange={e=>{this.handleFormChange(e, "cancellation_corporation")}}/>
-					<CreationComboBox label="Konec_subject" onChange={e=>{this.handleFormChange(e, "cancellation_subject")}}/>
-					<SubjectComboBox label="Konec_event" onChange={e=>{this.handleFormChange(e, "cancellation_event")}}/>
-					<KeywordComboBox label="Konec_keyword" onChange={e=>{this.handleFormChange(e, "cancellation_keyword")}}/>
+					<PersonComboBox label="Konec" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
+					<CorporationComboBox label="Konec" onChange={e=>{this.handleFormChange(e, "cancellation_corporation")}}/>
+					<CreationComboBox label="Konec" onChange={e=>{this.handleFormChange(e, "cancellation_subject")}}/>
+					<SubjectComboBox label="Konec" onChange={e=>{this.handleFormChange(e, "cancellation_event")}}/>
+					<KeywordComboBox label="Konec" onChange={e=>{this.handleFormChange(e, "cancellation_keyword")}}/>
 					<TextField label="Chronologické zpřesnění" onChange={e=>{this.handleFormChange(e, "chronological_specification_cancellation")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>

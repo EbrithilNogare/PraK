@@ -43,7 +43,7 @@ class Person extends IndexParent {
 				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
 			>
 				<Paper className={styles.header}>
-					<h1>Nový záznam do Rejstříku osoby</h1>
+					<h1>Nový záznam do Rejstříku osob</h1>
 				</Paper>
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}>
@@ -53,9 +53,9 @@ class Person extends IndexParent {
 					<TextField label="Identifikátor hesla" onChange={e=>{this.handleFormChange(e, "other_source.identificator")}}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					<h2>biograficka data</h2>
-					<TextField required label="Jmeno" onChange={e=>{this.handleFormChange(e, "name")}}/>
-					<TextField required label="Prijmeni" onChange={e=>{this.handleFormChange(e, "surname")}}/>
+					<h2>Biograficka data</h2>
+					<TextField required label="Jméno" onChange={e=>{this.handleFormChange(e, "name")}}/>
+					<TextField required label="Příjmení" onChange={e=>{this.handleFormChange(e, "surname")}}/>
 					<TextField label="Rok narození" onChange={e=>{this.handleFormChange(e, "born_year")}}/>
 					<TextField label="Rok úmrtí" onChange={e=>{this.handleFormChange(e, "death_year")}}/>
 					<TextField label="Rozpis iniciál" onChange={e=>{this.handleFormChange(e, "initials")}}/>

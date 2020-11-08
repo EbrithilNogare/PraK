@@ -40,7 +40,7 @@ class Creation extends IndexParent {
 				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
 			>
 				<Paper className={styles.header}>
-					<h1>Nový záznam do Rejstříku díla / výtvoru</h1>
+					<h1>Nový záznam do Rejstříku dílo/výtvor</h1>
 				</Paper>
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}>
