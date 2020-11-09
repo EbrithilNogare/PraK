@@ -17,6 +17,7 @@ import {
 import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
 import typeDefinitionFile from './subjectTypes.json'
+import Multiplier from '../Multiplier'
 
 class Family extends IndexParent {
 	constructor(props){
@@ -41,11 +42,12 @@ class Family extends IndexParent {
 					<h1>Nový záznam do Rejstříku rodů</h1>
 				</Paper>
 				<div className={styles.body}>
-				<Paper className={styles.dataBlock}>
-					<h2>Jiný zdroj</h2>
-					<TextField {...this.createFieldProps("other_source_name")}/>
-					<TextField {...this.createFieldProps("other_source_id")}/>
-					<TextField {...this.createFieldProps("other_source_identificator")}/>
+				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
+					<Multiplier>
+						<TextField {...this.createFieldProps("other_source_name")}/>
+						<TextField {...this.createFieldProps("other_source_id")}/>
+						<TextField {...this.createFieldProps("other_source_identificator")}/>
+					</Multiplier>
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

@@ -2,17 +2,17 @@
  	"properties":{
 		"other_source_name": {
 			"label": "Název",
-			"schema": "other_source.name",
+			"schema": "other_source[%].name",
 			"helper": "Název jiného zdroje."
 		},
 		"other_source_id": {
 			"label": "ID",
-			"schema": "other_source.id",
+			"schema": "other_source[%].id",
 			"helper": "ID cizího zdroje."
 		},
 		"other_source_identificator": {
 			"label": "Identifikátor hesla",
-			"schema": "other_source.identificator",
+			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
 		"name": {
@@ -23,7 +23,7 @@
 		},
 		"other_name_form": {
 			"label": "Jiný tvar jména/označení",
-			"schema": "other_name_form",
+			"schema": "other_name_form[%]",
 			"helper": "Jiné označení jména."
 		},
 		"main_part": {
@@ -33,7 +33,7 @@
 		},
 		"other_part": {
 			"label": "Další část",
-			"schema": "other_part",
+			"schema": "other_part[%]",
 			"helper": "Odkaz na části názvu díla/výtvoru."
 		},
 		"numeric_tag": {
@@ -43,7 +43,7 @@
 		},
 		"cast": {
 			"label": "Obsazení hudebního díla",
-			"schema": "cast",
+			"schema": "cast[%]",
 			"helper": "Pro hudební díla."
 		},
 		"tone": {
@@ -53,12 +53,12 @@
 		},
 		"arrangement": {
 			"label": "Údaj o aranžmá hudebního díla",
-			"schema": "arrangement",
+			"schema": "arrangement[%]",
 			"helper": "Pro hudební díla."
 		},
 		"name_part": {
 			"label": "Název části díla/výtvoru",
-			"schema": "name_part",
+			"schema": "name_part[%]",
 			"helper": "Název části názvu díla/výtvoru."
 		},
 		"general_complement": {
@@ -78,17 +78,17 @@
 		},
 		"author": {
 			"label": "Autor/tvůrce",
-			"schema": "author",
+			"schema": "author[%]",
 			"helper": "U hudebních a literárních děl (připadně výrobků), především kvůli rozlišení nejdnoznačných označení těchto děl (výrobků)."
 		},
 		"language": {
 			"label": "Jazyk díla",
-			"schema": "language",
+			"schema": "language[%]",
 			"helper": "Jazyk, ve které je dílo/výtvor."
 		},
 		"source": {
 			"label": "Pramen/zdroj",
-			"schema": "source",
+			"schema": "source[%]",
 			"helper": "Pro právní dokumenty, zapisuje se jako název zdroje, včetně čísla a roku označujícího právní dokument."
 		},
 		"brief_characteristic": {
@@ -117,7 +117,7 @@
 		},
 		"purpose": {
 			"label": "Účel a využití",
-			"schema": "purpose",
+			"schema": "purpose[%]",
 			"helper": "Narativní popis současného (příp. minulého) využití díla - typicky pro stavby.",
 			"multiline" : true
 		},
@@ -128,52 +128,52 @@
 		},
 		"hierarchical_relations": {
 			"label": "Hierarchické",
-			"schema": "hierarchical_relations",
+			"schema": "hierarchical_relations[%]",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"associative_relations": {
 			"label": "Asociativní",
-			"schema": "associative_relations",
+			"schema": "associative_relations[%]",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"locality": {
 			"label": "Umístění, lokalita",
-			"schema": "locality",
+			"schema": "locality[%]",
 			"helper": "Lokalita díla/výtvoru."
 		},
 		"related_person": {
 			"label": "Spojená entita",
-			"schema": "related_person",
+			"schema": "related_person[%]",
 			"helper": "Podle ní je objekt pojemenován. Výběr z rejstříku osob."
 		},
 		"related_corporation": {
 			"label": "Spojená entita",
-			"schema": "related_corporation",
+			"schema": "related_corporation[%]",
 			"helper": "Podle ní je objekt pojemenován. Výběr z rejstříku korporace."
 		},
 		"related_event": {
 			"label": "Spojená entita",
-			"schema": "related_event",
+			"schema": "related_event[%]",
 			"helper": "Podle ní je objekt pojemenován. Výběr z rejstříku událostí."
 		},
 		"related_location": {
 			"label": "Spojená entita",
-			"schema": "related_location",
+			"schema": "related_location[%]",
 			"helper": "Podle ní je objekt pojemenován. Výběr z geografického rejstříku."
 		},
 		"owner_person": {
 			"label": "Majitelé",
-			"schema": "owner_person",
+			"schema": "owner_person[%]",
 			"helper": "Držitelé, správci - pokud není nutné vyjádřit změnu vlastnictví pomocí události změna. Výběr z rejstříku osob."
 		},
 		"owner_corporation": {
 			"label": "Majitelé",
-			"schema": "owner_corporation",
+			"schema": "owner_corporation[%]",
 			"helper": "Držitelé, správci - pokud není nutné vyjádřit změnu vlastnictví pomocí události změna. Výběr z rejstříku korporací."
 		},
 		"related_document": {
 			"label": "Související dokument",
-			"schema": "related_document",
+			"schema": "related_document[%]",
 			"helper": "Písemná zmínka, zmínka o existenci. Výběr z rejstříku dílo/výtvor."
 		},
 		"founding_person": {
@@ -248,44 +248,44 @@
 		},
 		"document_change_person": {
 			"label": "Úprava, změna",
-			"schema": "document_change_person",
+			"schema": "document_change_person[%]",
 			"helper": "Zásahy do díla, kdy je potřebné uvést související osobu/bytost nebo korporaci. Výběr z rejstříku osob."
 		},
 		"document_change_corporation": {
 			"label": "Úprava, změna",
-			"schema": "document_change_corporation",
+			"schema": "document_change_corporation[%]",
 			"helper": "Zásahy do díla, kdy je potřebné uvést související osobu/bytost nebo korporaci. Výběr z rejstříku osob."
 		},
 		"ownership_change_person": {
 			"label": "Změna vlastnictví, správy",
-			"schema": "ownership_change_person",
+			"schema": "ownership_change_person[%]",
 			"helper": "Pokud nepostačuje zápis jako jednoduchý vztah. Výběr z rejstříku korporací."
 		},
 		"ownership_change_corporation": {
 			"label": "Změna vlastnictví, správy",
-			"schema": "ownership_change_corporation",
+			"schema": "ownership_change_corporation[%]",
 			"helper": "Pokud nepostačuje zápis jako jednoduchý vztah. Výběr z rejstříku osob."
 		},
 		"location_change": {
 			"label": "Změna umístění, uložení",
-			"schema": "location_change",
+			"schema": "location_change[%]",
 			"helper": "Pokud nepostačuje tuto informaci zapsat formou jednoduchého vztahu. Výběr z geografického rejstříku."
 		},
 		"category": {
 			"label": "Zařazení",
-			"schema": "category",
+			"schema": "category[%]",
 			"helper": "Upřesňuje podtřídu obecného pojmu. Výběr z rejstříku klíčových slov.",
 			"required": true
 		},
 		"notes": {
 			"label": "Poznámky",
-			"schema": "notes",
+			"schema": "notes[%]",
 			"helper": "Textová poznámka k heslu.",
 			"multiline" : true
 		},
 		"record_sources": {
 			"label": "Zdroje o heslu",
-			"schema": "record_sources",
+			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"multiline" : true
 		}

@@ -25,11 +25,11 @@ class IndexParent extends React.Component {
 		const definition = this.getTypeDefinition(name)
 
 		if(definition === undefined)
-			throw "createFieldProps: cannot find: [" + name + "]"
+			throw new Error("createFieldProps: cannot find: [" + name + "]")
 
 		const toReturn = {
 			label:definition.label,
-			onChange:e=>{this.handleFormChange(e, definition.schema)},
+			onChange:(e,multiplierIndex)=>{this.handleFormChange(e, definition.schema, multiplierIndex)},
 		}
 		if(definition.helper)
 			toReturn.InputProps = this.helperProp(definition.helper)
@@ -112,14 +112,16 @@ class IndexParent extends React.Component {
 
 	}
 	
-	handleFormChange = (e, a) => {
+	handleFormChange = (e, a, multiplierIndex=0) => {
+		a=a.replace("[%]", `.${multiplierIndex}`);
 		a.split('.').reduce((o,p,i) =>
-			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || {}, this.formData)
+			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || (isNaN(p)?[]:{}), this.formData)
 	}
 
-	handleCheckboxChange = (e, a) => {
+	handleCheckboxChange = (e, a, multiplierIndex=0) => {
+		a=a.replace("[%]", `.${multiplierIndex}`);
 		a.split('.').reduce((o,p,i) =>
-			o[p] = a.split('.').length === ++i ? e.target.checked : o[p] || {}, this.formData)
+			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || (isNaN(p)?[]:{}), this.formData)
 	}
 
 	helperProp = (text) => {return{

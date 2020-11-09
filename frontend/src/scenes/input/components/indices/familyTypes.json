@@ -2,17 +2,17 @@
  	"properties":{
 		"other_source_name": {
 			"label": "Název",
-			"schema": "other_source.name",
+			"schema": "other_source[%].name",
 			"helper": "Název jiného zdroje."
 		},
 		"other_source_id": {
 			"label": "ID",
-			"schema": "other_source.id",
+			"schema": "other_source[%].id",
 			"helper": "ID cizího zdroje."
 		},
 		"other_source_identificator": {
 			"label": "Identifikátor hesla",
-			"schema": "other_source.identificator",
+			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		}
 	}

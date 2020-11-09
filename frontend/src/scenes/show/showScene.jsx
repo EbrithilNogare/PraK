@@ -51,9 +51,16 @@ class ShowScene extends React.Component {
 
 	recursiveTreeItem = (nodes) => {
 		if(Array.isArray(nodes)){
-			return nodes.map( (value, key) => (
+			return nodes.map( (value, key) => {
+				if(typeof value === 'object' && value !== null)
+				return (
+					<TreeItem key={key} nodeId={key+"a"} label={key}>
+						{this.recursiveTreeItem(value)}
+					</TreeItem>
+				)
+				else return (
 				<TreeItem key={key} nodeId={key+"a"} label={value}/>
-			))
+			)})
 		}
 		else if(typeof nodes === 'object' && nodes !== null){
 			return Object.keys(nodes).map((value, key) => {

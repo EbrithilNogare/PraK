@@ -2,17 +2,17 @@
  	"properties":{
 		"other_source_name": {
 			"label": "Název",
-			"schema": "other_source_name",
+			"schema": "other_source[%].name",
 			"helper": "Název jiného zdroje."
 		},
 		"other_source_id": {
 			"label": "ID",
-			"schema": "other_source_id",
+			"schema": "other_source[%].id",
 			"helper": "ID cizího zdroje."
 		},
 		"other_source_identificator": {
 			"label": "Identifikátor hesla",
-			"schema": "other_source_identificator",
+			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
 		"name": {
@@ -23,22 +23,22 @@
 		},
 		"acronym": {
 			"label": "Akronym/zkratka",
-			"schema": "acronym",
+			"schema": "acronym[%]",
 			"helper": "Zkratka/akronym, pokud ji korporace používá."
 		},
 		"historical_name": {
 			"label": "Historická/dřívější forma jména",
-			"schema": "historical_name",
+			"schema": "historical_name[%]",
 			"helper": "Dřívejší jméno korporace."
 		},
 		"other_name_form": {
 			"label": "Jiné označení",
-			"schema": "other_name_form",
+			"schema": "other_name_form[%]",
 			"helper": "Jiné označení, pod kterým je korporace známa."
 		},
 		"following_name": {
 			"label": "Následující forma jména",
-			"schema": "following_name",
+			"schema": "following_name[%]",
 			"helper": "Nový název korporace."
 		},
 		"main_part": {
@@ -48,7 +48,7 @@
 		},
 		"side_part": {
 			"label": "Vedlejší část",
-			"schema": "side_part",
+			"schema": "side_part[%]",
 			"helper": "Odkaz na součásti korporace."
 		},
 		"general_complement": {
@@ -85,12 +85,12 @@
 		},
 		"constitutive_standards": {
 			"label": "Normy konstitutivní",
-			"schema": "constitutive_standards",
+			"schema": "constitutive_standards[%]",
 			"helper": "Výčet konstitutivních norem, které souvisejí s korporací."
 		},
 		"scope_standards": {
 			"label": "Normy - působnost původce",
-			"schema": "scope_standards",
+			"schema": "scope_standards[%]",
 			"helper": "Výčet norem, které upravují působnost korporace."
 		},
 		"coordinates": {
@@ -100,22 +100,22 @@
 		},
 		"parent_corporation": {
 			"label": "Nadřízená korporace",
-			"schema": "parent_corporation",
+			"schema": "parent_corporation[%]",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"part_of": {
 			"label": "Je část",
-			"schema": "part_of",
+			"schema": "part_of[%]",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"precedent_corporation": {
 			"label": "Zahrnuta v korporaci",
-			"schema": "precedent_corporation",
+			"schema": "precedent_corporation[%]",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"related_country": {
 			"label": "Související země",
-			"schema": "related_country",
+			"schema": "related_country[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
 		"founder": {
@@ -195,89 +195,89 @@
 		},
 		"owner_change": {
 			"label": "Změna majitele, držitele",
-			"schema": "owner_change",
+			"schema": "owner_change[%]",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"place_change": {
 			"label": "Přesun na jiné místo",
-			"schema": "place_change",
+			"schema": "place_change[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
 		"organisation_inclusion": {
 			"label": "Organizační začlenění",
-			"schema": "organisation_inclusion",
+			"schema": "organisation_inclusion[%]",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"change_parent_organisation": {
 			"label": "Změna nadřazené organizace",
-			"schema": "change_parent_organisation",
+			"schema": "change_parent_organisation[%]",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"award": {
 			"label": "Ocenění",
-			"schema": "awards.award",
+			"schema": "awards[%].award",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"event_award": {
 			"label": "Udělení ocenění",
-			"schema": "awards.event_award",
+			"schema": "awards[%].event_award",
 			"helper": "Výběr z rejstříku událost"
 		},
 		"awarder_person": {
 			"label": "Udělovatel",
-			"schema": "awards.awarder_person",
+			"schema": "awards[%].awarder_person",
 			"helper": "Výběr z rejstříku osob."
 		},
 		"awarder_corporation": {
 			"label": "Udělovatel",
-			"schema": "awards.awarder_corporation",
+			"schema": "awards[%].awarder_corporation",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"category": {
 			"label": "Zařazení",
-			"schema": "category",
+			"schema": "category[%]",
 			"helper": "Výběr z rejstříku klíčových slov."
 		},
 		"domain_scope": {
 			"label": "Obor působnosti",
-			"schema": "domain_scope",
+			"schema": "domain_scope[%]",
 			"helper": "Výběr z rejstříku klíčových slov."
 		},
 		"geographical_scope": {
 			"label": "Geografická působnosti",
-			"schema": "geographical_scope",
+			"schema": "geographical_scope[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
 		"characteristic": {
 			"label": "Charakteristika",
-			"schema": "characteristic",
+			"schema": "characteristic[%]",
 			"helper": "Výběr z rejstříku klíčových slov."
 		},
 		"logo": {
 			"label": "Logo",
-			"schema": "logo",
+			"schema": "logo[%]",
 			"helper": "URL do jiného zdroje."
 		},
 		"mark": {
 			"label": "Značka",
-			"schema": "mark",
+			"schema": "mark[%]",
 			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku.",
 			"multiline" : true
 		},
 		"flag": {
 			"label": "Vlajka",
-			"schema": "flag",
+			"schema": "flag[%]",
 			"helper": "URL do jiného zdroje."
 		},
 		"notes": {
 			"label": "Poznámky",
-			"schema": "notes",
+			"schema": "notes[%]",
 			"helper": "Textová poznámka k heslu.",
 			"multiline" : true
 		},
 		"record_sources": {
 			"label": "Zdroje o heslu",
-			"schema": "record_sources",
+			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"required": true,
 			"multiline" : true

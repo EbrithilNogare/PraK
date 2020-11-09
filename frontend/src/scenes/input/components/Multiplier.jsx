@@ -25,28 +25,38 @@ class Multiplier extends React.Component {
 
 	}
 
-	handleRemove = (keyOfChipToDelete) => {
-		this.setState({data: this.state.data.filter((chip) => chip.key !== keyOfChipToDelete)})
+	handleRemove = (keyOfChipToDelete, childs) => {
+		const newState = {data: this.state.data.filter((chip) => chip.key !== keyOfChipToDelete)}
+		childs.forEach((value, key)=>{
+			value.props.onChange({ target: { value:undefined } }, keyOfChipToDelete)
+		})
+
+		if(newState.data.length === 0) newState.data = [{ key: this.maxKey++, value: undefined }]
+		this.setState(newState)
 	}
 
-	handleAdd = (chipToDelete) => {
+	handleAdd = () => {
 		const newData = this.state.data
 		newData.push({ key: this.maxKey++, value: undefined })
 		this.setState({data: newData})
 	}
 
 	render(){
+		const propChildrens = Array.isArray(this.props.children) ? this.props.children : [this.props.children]
+		if(propChildrens.every(value=>value===false)) return null
 		return(
 			<div>
 				{this.state.data.map((value, key)=>(
-					<Grid container key={value.key}>
+					<Grid container key={value.key} spacing={1}>
 						<Grid item xs>
-							{this.props.children}
+							{propChildrens.map((child, childKey) =>
+								React.cloneElement(child, { style:{ width:"100%", ...child.props.style }, key: childKey, onChange:(e)=>{child.props.onChange(e,value.key)} })
+							)}
 						</Grid>
-						<Grid item>
+						<Grid item style={{width:"60px"}}>
 							<Button
-								onClick={()=>this.handleRemove(value.key)}
-								style={{height: "100%", width: "100%"}}
+								onClick={()=>this.handleRemove(value.key, propChildrens)}
+								style={{height: "100%", width: "60px"}}
 							>
 								<Remove/>
 							</Button>	
@@ -55,7 +65,7 @@ class Multiplier extends React.Component {
 				))}
 				<Button
 					onClick={this.handleAdd}
-					style={{height: "100%", width: "100%"}}
+					style={{height: "100%", width: "60px", float: "right"}}
 				>
 					<Add/>
 				</Button>	

@@ -2,17 +2,17 @@
  	"properties":{
 		"other_source_name": {
 			"label": "Název",
-			"schema": "other_source.name",
+			"schema": "other_source[%].name",
 			"helper": "Název jiného zdroje."
 		},
 		"other_source_id": {
 			"label": "ID",
-			"schema": "other_source.id",
+			"schema": "other_source[%].id",
 			"helper": "ID cizího zdroje."
 		},
 		"other_source_identificator": {
 			"label": "Identifikátor hesla",
-			"schema": "other_source.identificator",
+			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
 		"name": {
@@ -23,17 +23,17 @@
 		},
 		"acronym": {
 			"label": "Akronym/zkratka",
-			"schema": "acronym",
+			"schema": "acronym[%]",
 			"helper": "Zkratka/akronym, pokud ji geografická entita používá."
 		},
 		"historical_name": {
 			"label": "Historická/dřívější forma jména",
-			"schema": "historical_name",
+			"schema": "historical_name[%]",
 			"helper": "Dřívejší jméno geografické entity."
 		},
 		"other_name_form": {
 			"label": "Jiný tvar jména/označení",
-			"schema": "other_name_form",
+			"schema": "other_name_form[%]",
 			"helper": "Jiné označení, pod kterým je geografická entita známa."
 		},
 		"main_part": {
@@ -43,7 +43,7 @@
 		},
 		"other_part": {
 			"label": "Další část",
-			"schema": "other_part",
+			"schema": "other_part[%]",
 			"helper": "Odkaz na části názvu geografické entity."
 		},
 		"general_complement": {
@@ -81,7 +81,7 @@
 		},
 		"electronical_location": {
 			"label": "Elektronické umístění",
-			"schema": "electronical_location",
+			"schema": "electronical_location[%]",
 			"helper": "URL související s popisem geografického objektu."
 		},
 		"coordinates": {
@@ -91,42 +91,42 @@
 		},
 		"partner_object": {
 			"label": "Partnerský geografický objekt",
-			"schema": "partner_object",
+			"schema": "partner_object[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
 		"owner": {
 			"label": "Majitelé",
-			"schema": "owner",
+			"schema": "owner[%]",
 			"helper": "Výběr z rejstříku osob."
 		},
 		"corporation_name": {
 			"label": "Název",
-			"schema": "part_of.corporation_name",
+			"schema": "part_of[%].corporation_name",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"corporation_owner": {
 			"label": "Majitel",
-			"schema": "part_of.corporation_owner",
+			"schema": "part_of[%].corporation_owner",
 			"helper": "Výběr z rejstříku osob."
 		},
 		"related_person": {
 			"label": "Spojená entita",
-			"schema": "related_entity.related_person",
+			"schema": "related_entity[%].related_person",
 			"helper": "Výběr z rejstříku osob."
 		},
 		"related_subject": {
 			"label": "Spojená entita",
-			"schema": "related_entity.related_subject",
+			"schema": "related_entity[%].related_subject",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"related_event": {
 			"label": "Spojená entita",
-			"schema": "related_entity.related_event",
+			"schema": "related_entity[%].related_event",
 			"helper": "Výběr z rejstříku událost."
 		},
 		"related_corporation": {
 			"label": "Spojená entita",
-			"schema": "related_entity.related_corporation",
+			"schema": "related_entity[%].related_corporation",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"superordinate": {
@@ -251,7 +251,7 @@
 		},
 		"historical_milestones": {
 			"label": "Historické milníky",
-			"schema": "historical_milestones",
+			"schema": "historical_milestones[%]",
 			"helper": "Událost související s historií geografické entity, např. požár, přidělení práva."
 		},
 		"award": {
@@ -276,44 +276,44 @@
 		},
 		"category": {
 			"label": "Kategorie",
-			"schema": "category",
+			"schema": "category[%]",
 			"helper": "Výběr z rejstříku klíčových slov.",
 			"required": true
 		},
 		"characteristic": {
 			"label": "Charakteristika",
-			"schema": "characteristic",
+			"schema": "characteristic[%]",
 			"helper": "Výběr z rejstříku klíčových slov."
 		},
 		"arm": {
 			"label": "Erb",
-			"schema": "arm",
+			"schema": "arm[%]",
 			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
 		},
 		"logo": {
 			"label": "Logo",
-			"schema": "logo",
+			"schema": "logo[%]",
 			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
 		},
 		"mark": {
 			"label": "Značka",
-			"schema": "mark",
+			"schema": "mark[%]",
 			"helper": "Narativní popis, URL s odkazem na umístění obrázku, možno zaznamenat dataci a poznámku."
 		},
 		"flag": {
 			"label": "Vlajka",
-			"schema": "flag",
+			"schema": "flag[%]",
 			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
 		},
 		"notes": {
 			"label": "Poznámky",
-			"schema": "notes",
+			"schema": "notes[%]",
 			"helper": "Textová poznámka k heslu.",
 			"multiline" : true
 		},
 		"record_sources": {
 			"label": "Zdroje o heslu",
-			"schema": "record_sources",
+			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"multiline" : true
 		}

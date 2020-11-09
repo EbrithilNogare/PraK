@@ -18,6 +18,7 @@ import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
 import GPSField from "../validationTextFields/GPSField"
 import typeDefinitionFile from './corporationTypes.json'
+import Multiplier from '../Multiplier'
 
 class Corporation extends IndexParent {
 	constructor(props){
@@ -43,23 +44,35 @@ class Corporation extends IndexParent {
 				</Paper>
 				<div className={styles.body}>			
 				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
+				<Multiplier>
 					<TextField {...this.createFieldProps("other_source_name")}/>
 					<TextField {...this.createFieldProps("other_source_id")}/>
 					<TextField {...this.createFieldProps("other_source_identificator")}/>
+				</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Název</h2>
 					<TextField {...this.createFieldProps("name")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
-					<TextField {...this.createFieldProps("acronym")}/><br/>
-					<TextField {...this.createFieldProps("historical_name")}/><br/>
-					<TextField {...this.createFieldProps("other_name_form")}/><br/>
-					<TextField {...this.createFieldProps("following_name")}/><br/>
+					<Multiplier>
+						<TextField {...this.createFieldProps("acronym")}/><br/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("historical_name")}/><br/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("other_name_form")}/><br/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("following_name")}/><br/>
+					</Multiplier>
 				</Paper>
 				
 				<Paper className={styles.dataBlock}> <h2>Části označení</h2>
 					<TextField {...this.createFieldProps("main_part")}/>
-					<TextField {...this.createFieldProps("side_part")}/>
+					<Multiplier>
+						<TextField {...this.createFieldProps("side_part")}/>
+					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Doplňky označení</h2>
 					<TextField {...this.createFieldProps("general_complement")}/>
@@ -68,17 +81,29 @@ class Corporation extends IndexParent {
 					<TextField {...this.createFieldProps("brief_characteristic")}/>
 					<TextField {...this.createFieldProps("history")}/>
 					<TextField {...this.createFieldProps("function")}/>
-					<TextField {...this.createFieldProps("constitutive_standards")}/>
-					<TextField {...this.createFieldProps("scope_standards")}/>
+					<Multiplier>
+						<TextField {...this.createFieldProps("constitutive_standards")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("scope_standards")}/>
+					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Souřadnice</h2>
 					<GPSField {...this.createFieldProps("coordinates")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Vztahy</h2>
-					<CorporationComboBox {...this.createFieldProps("parent_corporation")}/>
-					<CorporationComboBox {...this.createFieldProps("part_of")}/>
-					<CorporationComboBox {...this.createFieldProps("precedent_corporation")}/>
-					<GeographicComboBox {...this.createFieldProps("related_country")}/>
+					<Multiplier>
+						<CorporationComboBox {...this.createFieldProps("parent_corporation")}/>
+					</Multiplier>
+					<Multiplier>
+						<CorporationComboBox {...this.createFieldProps("part_of")}/>
+					</Multiplier>
+					<Multiplier>
+						<CorporationComboBox {...this.createFieldProps("precedent_corporation")}/>
+					</Multiplier>
+					<Multiplier>
+						<GeographicComboBox {...this.createFieldProps("related_country")}/>
+					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Vznik/ počátek existence</h2>
 					<PersonComboBox {...this.createFieldProps("founder")}/>
@@ -100,29 +125,57 @@ class Corporation extends IndexParent {
 					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Událost</h2>
-					<CorporationComboBox {...this.createFieldProps("owner_change")}/>
-					<GeographicComboBox {...this.createFieldProps("place_change")}/>
-					<CorporationComboBox {...this.createFieldProps("organisation_inclusion")}/>
-					<CorporationComboBox {...this.createFieldProps("change_parent_organisation")}/>
-					<CreationComboBox {...this.createFieldProps("award")}/>
-					<SubjectComboBox {...this.createFieldProps("event_award")}/>
-					<PersonComboBox {...this.createFieldProps("awarder_person")}/>
-					<CorporationComboBox {...this.createFieldProps("awarder_corporation")}/>
+					<Multiplier>
+						<CorporationComboBox {...this.createFieldProps("owner_change")}/>
+					</Multiplier>
+					<Multiplier>
+						<GeographicComboBox {...this.createFieldProps("place_change")}/>
+					</Multiplier>
+					<Multiplier>
+						<CorporationComboBox {...this.createFieldProps("organisation_inclusion")}/>
+					</Multiplier>
+					<Multiplier>
+						<CorporationComboBox {...this.createFieldProps("change_parent_organisation")}/>
+					</Multiplier>
+					<Multiplier>
+						<CreationComboBox {...this.createFieldProps("award")}/>
+						<SubjectComboBox {...this.createFieldProps("event_award")}/>
+						<PersonComboBox {...this.createFieldProps("awarder_person")}/>
+						<CorporationComboBox {...this.createFieldProps("awarder_corporation")}/>
+					</Multiplier>
 				</Paper>				
 				<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
-					<KeywordComboBox {...this.createFieldProps("category")}/>
-					<GeographicComboBox {...this.createFieldProps("domain_scope")}/>
-					<KeywordComboBox {...this.createFieldProps("geographical_scope")}/>
-					<KeywordComboBox {...this.createFieldProps("characteristic")}/>
-					<TextField {...this.createFieldProps("logo")}/>
-					<TextField {...this.createFieldProps("mark")}/>
-					<TextField {...this.createFieldProps("flag")}/>
+					<Multiplier>
+						<KeywordComboBox {...this.createFieldProps("category")}/>
+					</Multiplier>
+					<Multiplier>
+						<GeographicComboBox {...this.createFieldProps("domain_scope")}/>
+					</Multiplier>
+					<Multiplier>
+						<KeywordComboBox {...this.createFieldProps("geographical_scope")}/>
+					</Multiplier>
+					<Multiplier>
+						<KeywordComboBox {...this.createFieldProps("characteristic")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("logo")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("mark")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("flag")}/>
+					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
-					<TextField {...this.createFieldProps("notes")}/>
+					<Multiplier>
+						<TextField {...this.createFieldProps("notes")}/>
+					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zdroje o heslu</h2>
-					<TextField required {...this.createFieldProps("record_sources")}/>
+					<Multiplier>
+						<TextField {...this.createFieldProps("record_sources")}/>
+					</Multiplier>
 				</Paper>					
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
