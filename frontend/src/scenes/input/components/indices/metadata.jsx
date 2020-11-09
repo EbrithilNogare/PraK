@@ -9,7 +9,6 @@ import {
 	InputLabel,
 	MenuItem,
 	FormControl,
-	Checkbox,
 } from '@material-ui/core'
 import {
 	MetadataComboBox,

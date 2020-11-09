@@ -2,7 +2,6 @@ import React from "react"
 
 import { 
 	Checkbox,
-	FormControlLabel,
 	Grid,
 } from '@material-ui/core'
 
