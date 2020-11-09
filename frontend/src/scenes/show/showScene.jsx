@@ -1,4 +1,5 @@
 import React from 'react'
+import { withSnackbar } from 'notistack'
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -6,6 +7,8 @@ import {
 } from "react-router-dom"
 import {
 	Paper,
+	Grid,
+	Button,
 } from '@material-ui/core'
 import {
 	TreeView,
@@ -100,6 +103,24 @@ class ShowScene extends React.Component {
 										{this.recursiveTreeItem(this.state.record, 0)}
 									</TreeView>
 								</Paper>
+								<Grid container spacing={10} justify="flex-end">
+								<Grid item>
+								</Grid>
+								<Grid item>
+									<Button
+										variant="contained" 
+										color="primary"
+										onClick={()=>this.props.enqueueSnackbar("Nemáte požadovaná oprávnění pro mazání záznamů", { variant: "error", autoHideDuration: 6000 })}
+									>Smazat záznam</Button>
+								</Grid>
+								<Grid item>
+									<Button
+										variant="contained" 
+										color="primary"
+										onClick={()=>this.props.enqueueSnackbar("Záznam je pouze pro čtení, pro editaci nemáte dostatečná oprávnění", { variant: "error", autoHideDuration: 6000 })}
+									>Editovat záznam</Button>
+								</Grid>
+								</Grid>
 							</div>
 						)}/>
 					</Switch>
@@ -109,4 +130,4 @@ class ShowScene extends React.Component {
 	}
 }
 
-export default ShowScene
+export default withSnackbar(ShowScene)

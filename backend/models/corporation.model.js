@@ -139,11 +139,6 @@ const schema = new mongoose.Schema({
 			ref: "corporationIndex",
 		},
 	}],
-
-	categorization: [{
-		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
-	}],
 	category: [{
 		type: mongoose.Types.ObjectId,
 		ref: "KeywordIndex",
