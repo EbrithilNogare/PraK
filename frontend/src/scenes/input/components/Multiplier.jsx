@@ -49,9 +49,10 @@ class Multiplier extends React.Component {
 				{this.state.data.map((value, key)=>(
 					<Grid container key={value.key} spacing={1}>
 						<Grid item xs>
-							{propChildrens.map((child, childKey) =>
-								React.cloneElement(child, { style:{ width:"100%", ...child.props.style }, key: childKey, onChange:(e)=>{child.props.onChange(e,value.key)} })
-							)}
+							{propChildrens.map((child, childKey) => {
+								if(child === false) return null
+								return React.cloneElement(child, { style:{ width:"100%", ...child.props.style }, key: childKey, onChange:(e)=>{child.props.onChange(e,value.key)} })
+						})}
 						</Grid>
 						<Grid item style={{width:"60px"}}>
 							<Button
