@@ -37,38 +37,47 @@ class ShowScene extends React.Component {
 			<div className={styles.ShowScene}>
 				<Paper className={styles.header}>
 					<h1>Vyhledavátko</h1>
+					<p>Vyberte rejstřík pro vyhledávání a vyplňte minimálně tři znaky</p>
 				</Paper>
 				<Paper className={styles.body}>
 					<MetadataComboBox
 						label={" "}
+						variant="outlined"
 						onChange={e=>{this.handleChange(e, "metadata")}}
 					/>
 					<CorporationComboBox
 						label={" "}
+						variant="outlined"
 						onChange={e=>{this.handleChange(e, "corporation")}}
 					/>
 					<CreationComboBox
 						label={" "}
+						variant="outlined"
 						onChange={e=>{this.handleChange(e, "creation")}}
 					/>
 					<GeographicComboBox
 						label={" "}
+						variant="outlined"
 						onChange={e=>{this.handleChange(e, "geographic")}}
 					/>
 					<KeywordComboBox
 						label={" "}
+						variant="outlined"
 						onChange={e=>{this.handleChange(e, "keyword")}}
 					/>
 					<PersonComboBox
 						label={" "}
+						variant="outlined"
 						onChange={e=>{this.handleChange(e, "person")}}
 					/>
 					<SubjectComboBox
 						label={" "}
+						variant="outlined"
 						onChange={e=>{this.handleChange(e, "subject")}}
 					/>
 					<FamilyComboBox
 						label={" "}
+						variant="outlined"
 						onChange={e=>{this.handleChange(e, "family")}}
 					/>
 				</Paper>

@@ -103,12 +103,11 @@ class ComboBox extends React.Component {
 	}
 
 	render(){
+		const {...config} = this.props
 		return(
 			<div>
-				<TextField
-					name={this.props.name}
+				<TextField {...config}
 					label={this.props.label && this.props.label.length !== 0 ? this.props.label[0].toUpperCase() + this.props.label.slice(1) + this.labelPostfix() : ""}
-					required={this.props.required}
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}
