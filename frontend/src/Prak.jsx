@@ -20,6 +20,7 @@ import InputScene from "./scenes/input"
 import LoginScene from "./scenes/login"
 import EditScene from "./scenes/edit"
 import ShowScene from "./scenes/show"
+import SearchScene from "./scenes/search"
 
 import MainPageScene from "./pages/mainPage"
 import AboutPage from "./pages/aboutPage"
@@ -53,6 +54,7 @@ class Prak extends React.Component {
 							<Route path="/prak/input"><InputScene/></Route>
 							<Route path="/prak/edit"><EditScene/></Route>
 							<Route path="/prak/show"><ShowScene/></Route>
+							<Route path="/prak/search"><SearchScene/></Route>
 							
 							<Route path="/prak/about"><AboutPage/></Route>
 							<Route path="/prak/team"><TeamPage/></Route>

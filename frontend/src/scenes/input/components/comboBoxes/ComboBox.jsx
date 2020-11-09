@@ -107,7 +107,7 @@ class ComboBox extends React.Component {
 			<div>
 				<TextField
 					name={this.props.name}
-					label={this.props.label[0].toUpperCase() + this.props.label.slice(1) + this.labelPostfix()}
+					label={this.props.label && this.props.label.length !== 0 ? this.props.label[0].toUpperCase() + this.props.label.slice(1) + this.labelPostfix() : ""}
 					required={this.props.required}
 					onChange={this.handleChange}
 					value={this.state.value}

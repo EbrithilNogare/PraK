@@ -49,17 +49,17 @@ class ShowScene extends React.Component {
 		this.getRecord(splitedHref[splitedHref.length-2], splitedHref[splitedHref.length-1])
 	}
 
-	recursiveTreeItem = (nodes) => {
+	recursiveTreeItem = (nodes, uniqueKey) => {
 		if(Array.isArray(nodes)){
 			return nodes.map( (value, key) => {
 				if(typeof value === 'object' && value !== null)
 				return (
-					<TreeItem key={key} nodeId={key+"a"} label={key}>
-						{this.recursiveTreeItem(value)}
+					<TreeItem key={key} nodeId={uniqueKey+"-"+key} label={key}>
+						{this.recursiveTreeItem(value, uniqueKey+"-"+key)}
 					</TreeItem>
 				)
 				else return (
-				<TreeItem key={key} nodeId={key+"a"} label={value}/>
+				<TreeItem key={key} nodeId={uniqueKey+"-"+key} label={value}/>
 			)})
 		}
 		else if(typeof nodes === 'object' && nodes !== null){
@@ -68,15 +68,15 @@ class ShowScene extends React.Component {
 					return null
 				if(typeof nodes[value] === 'object' && nodes[value] !== null)
 				return (
-					<TreeItem key={key} nodeId={key+""} label={value}>
-						{this.recursiveTreeItem(nodes[value])}
+					<TreeItem key={key} nodeId={uniqueKey+"-"+key} label={value}>
+						{this.recursiveTreeItem(nodes[value], uniqueKey+"-"+key)}
 					</TreeItem>
 				)
 				else
-					return (<TreeItem key={key} nodeId={key+""} label={value + ": " + nodes[value]}/>)
+					return (<TreeItem key={key} nodeId={uniqueKey+"-"+key} label={value + ": " + nodes[value]}/>)
 			})
 		} else {
-			return (<TreeItem key={nodes} nodeId={nodes+""} label={nodes}/>)
+			return (<TreeItem key={nodes} nodeId={uniqueKey+"-"+0} label={nodes}/>)
 		}
 		
 		
@@ -97,7 +97,7 @@ class ShowScene extends React.Component {
 										defaultCollapseIcon={<ExpandMore />}
 										defaultExpandIcon={<ChevronRight />}
 									>
-										{this.recursiveTreeItem(this.state.record)}
+										{this.recursiveTreeItem(this.state.record, 0)}
 									</TreeView>
 								</Paper>
 							</div>
