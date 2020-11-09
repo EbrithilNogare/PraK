@@ -57,7 +57,7 @@ class Multiplier extends React.Component {
 						<Grid item style={{width:"60px"}}>
 							<Button
 								onClick={()=>this.handleRemove(value.key, propChildrens)}
-								style={{height: "100%", width: "60px"}}
+								style={{height: "100%", width: "60px", color: "#949494"}}
 							>
 								<Remove/>
 							</Button>	
@@ -67,7 +67,7 @@ class Multiplier extends React.Component {
 				<Grid container spacing={1}>
 					<Grid item xs></Grid>
 					<Grid item style={{width:"60px"}}>
-						<Button onClick={this.handleAdd}>
+						<Button onClick={this.handleAdd} style={{color: "#949494"}}>
 							<Add/>
 						</Button>	
 					</Grid>
