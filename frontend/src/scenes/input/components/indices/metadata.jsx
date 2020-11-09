@@ -31,6 +31,7 @@ import Multiplier from '../Multiplier'
 import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
 import typeDefinitionFile from './metadataTypes.json'
+import LabeledCheckbox from "../LabeledCheckbox"
 
 class Metadata extends IndexParent {
 	constructor(props){
@@ -98,12 +99,7 @@ class Metadata extends IndexParent {
 					<Multiplier>
 						{this.conditionalField("publishing_date") && <DateField {...this.createFieldProps("publishing_date")}/>}
 						{this.conditionalField("publishing_date_note") && <TextField  {...this.createFieldProps("publishing_date_note")}/>}
-						{this.conditionalField("publishing_date") && <div> { this.getTypeDefinition("publishing_date_notAccurate").label }
-							<Checkbox 
-								color="primary"
-								onChange = { e => this.handleCheckboxChange(e, this.getTypeDefinition("publishing_date_notAccurate").schema) }
-								/>
-					</div>}
+						{this.conditionalField("publishing_date_notAccurate") && <LabeledCheckbox {...this.createFieldProps("publishing_date_notAccurate")}/>}
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}>
