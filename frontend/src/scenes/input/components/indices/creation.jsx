@@ -1,13 +1,11 @@
 import React from "react"
 import { withRouter } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
-
 import { 
 	TextField,
 	Button,
 	Paper,
 } from '@material-ui/core'
-
 import {
 	CorporationComboBox,
 	CreationComboBox,
@@ -16,11 +14,10 @@ import {
 	PersonComboBox,
 	SubjectComboBox,
 } from '../comboBoxes'
-
 import IndexParent from "./indexParent"
-
 import styles from './parent.module.scss'
 import GPSField from "../validationTextFields/GPSField"
+import typeDefinitionFile from './creationTypes.json'
 
 class Creation extends IndexParent {
 	constructor(props){
@@ -31,6 +28,8 @@ class Creation extends IndexParent {
 
 		this.indexURL = "creation"
 	}
+
+	getTypeDefinition = fieldName => typeDefinitionFile.properties[fieldName]
 
 	render(){
 		return(
@@ -45,101 +44,101 @@ class Creation extends IndexParent {
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}>
 					<h2>Jiný zdroj</h2>
-					<TextField label="Název" onChange={e=>{this.handleFormChange(e, "other_source.name")}}/>
-					<TextField label="ID" onChange={e=>{this.handleFormChange(e, "other_source.id")}}/>
-					<TextField label="Identifikátor hesla" onChange={e=>{this.handleFormChange(e, "other_source.identificator")}}/>
+					<TextField {...this.createFieldProps("other_source_name")}/>
+					<TextField {...this.createFieldProps("other_source_id")}/>
+					<TextField {...this.createFieldProps("other_source_identificator")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Název</h2>
-					<TextField required label="Název" onChange={e=>{this.handleFormChange(e, "name")}}/>
+					<TextField required {...this.createFieldProps("name")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Variantní označení</h2>
-					<TextField label="Jiné označení" onChange={e=>{this.handleFormChange(e, "other_name_form")}}/><br/>
+					<TextField {...this.createFieldProps("other_name_form")}/><br/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Části označení</h2>
-					<TextField label="Hlavní část" onChange={e=>{this.handleFormChange(e, "main_part")}}/>
-					<TextField label="Další část" onChange={e=>{this.handleFormChange(e, "other_part")}}/>
-					<TextField label="Číselné označení" onChange={e=>{this.handleFormChange(e, "numeric_tag")}}/>
-					<TextField label="Obsazení hudebního díla" onChange={e=>{this.handleFormChange(e, "cast")}}/>
-					<TextField label="Tónina hudebního díla" onChange={e=>{this.handleFormChange(e, "tone")}}/>
-					<TextField label="Údaj o aranžmá hudebního díla" onChange={e=>{this.handleFormChange(e, "arrangement")}}/>
-					<TextField label="Název části díla/výtvoru" onChange={e=>{this.handleFormChange(e, "name_part")}}/>
+					<TextField {...this.createFieldProps("main_part")}/>
+					<TextField {...this.createFieldProps("other_part")}/>
+					<TextField {...this.createFieldProps("numeric_tag")}/>
+					<TextField {...this.createFieldProps("cast")}/>
+					<TextField {...this.createFieldProps("tone")}/>
+					<TextField {...this.createFieldProps("arrangement")}/>
+					<TextField {...this.createFieldProps("name_part")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Doplňky označení</h2>
-					<TextField label="Obecný doplněk" onChange={e=>{this.handleFormChange(e, "general_complement")}}/>
-					<TextField label="Geografický doplněk" onChange={e=>{this.handleFormChange(e, "geographical_complement")}}/>
-					<TextField label="Chronologický doplněk" onChange={e=>{this.handleFormChange(e, "chronological_complement")}}/>
-					<TextField label="Autor/tvůrce" onChange={e=>{this.handleFormChange(e, "author")}}/>
-					<TextField label="Jazyk díla" onChange={e=>{this.handleFormChange(e, "language")}}/>
-					<TextField label="Pramen/zdroj" onChange={e=>{this.handleFormChange(e, "source")}}/>
+					<TextField {...this.createFieldProps("general_complement")}/>
+					<TextField {...this.createFieldProps("geographical_complement")}/>
+					<TextField {...this.createFieldProps("chronological_complement")}/>
+					<TextField {...this.createFieldProps("author")}/>
+					<TextField {...this.createFieldProps("language")}/>
+					<TextField {...this.createFieldProps("source")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Popis</h2>
-					<TextField label="Stručná charakteristika" onChange={e=>{this.handleFormChange(e, "brief_characteristic")}}/>
-					<TextField required label="Popis" onChange={e=>{this.handleFormChange(e, "description")}}/>
-					<TextField label="Geografický popis" onChange={e=>{this.handleFormChange(e, "geographical_description")}}/>
-					<TextField label="Historie" onChange={e=>{this.handleFormChange(e, "history")}}/>
-					<TextField label="Účel a využití" onChange={e=>{this.handleFormChange(e, "purpose")}}/>
+					<TextField {...this.createFieldProps("brief_characteristic")}/>
+					<TextField required {...this.createFieldProps("description")}/>
+					<TextField {...this.createFieldProps("geographical_description")}/>
+					<TextField {...this.createFieldProps("history")}/>
+					<TextField {...this.createFieldProps("purpose")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Souřadnice</h2>
-					<GPSField label="Souřadnice" onChange={e=>{this.handleFormChange(e, "coordinates")}}/>
+					<GPSField {...this.createFieldProps("coordinates")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Vztahy</h2>
-					<CreationComboBox label="Hierarchické" onChange={e=>{this.handleFormChange(e, "hierarchical_relations")}}/>
-					<CreationComboBox label="Asociativní" onChange={e=>{this.handleFormChange(e, "associative_relations")}}/>
-					<GeographicComboBox label="Umístění, lokalita" onChange={e=>{this.handleFormChange(e, "locality")}}/>
-					<PersonComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_person")}}/>
-					<CorporationComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_corporation")}}/>
-					<SubjectComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_event")}}/>
-					<GeographicComboBox label="Spojená entita" onChange={e=>{this.handleFormChange(e, "related_location")}}/>
-					<PersonComboBox label="Majitelé" onChange={e=>{this.handleFormChange(e, "owner_person")}}/>
-					<CorporationComboBox label="Majitelé" onChange={e=>{this.handleFormChange(e, "owner_corporation")}}/>
-					<CreationComboBox label="Související dokument" onChange={e=>{this.handleFormChange(e, "related_document")}}/>
+					<CreationComboBox {...this.createFieldProps("hierarchical_relations")}/>
+					<CreationComboBox {...this.createFieldProps("associative_relations")}/>
+					<GeographicComboBox {...this.createFieldProps("locality")}/>
+					<PersonComboBox {...this.createFieldProps("related_person")}/>
+					<CorporationComboBox {...this.createFieldProps("related_corporation")}/>
+					<SubjectComboBox {...this.createFieldProps("related_event")}/>
+					<GeographicComboBox {...this.createFieldProps("related_location")}/>
+					<PersonComboBox {...this.createFieldProps("owner_person")}/>
+					<CorporationComboBox {...this.createFieldProps("owner_corporation")}/>
+					<CreationComboBox {...this.createFieldProps("related_document")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Vznik/ počátek existence</h2>
-					<PersonComboBox label="Vznik" onChange={e=>{this.handleFormChange(e, "founding_person")}}/>
-					<CorporationComboBox label="Vznik" onChange={e=>{this.handleFormChange(e, "founding_corporation")}}/>
-					<GeographicComboBox label="První písemná zmínka" onChange={e=>{this.handleFormChange(e, "first_mention_place")}}/>
-					<CreationComboBox label="První písemná zmínka" onChange={e=>{this.handleFormChange(e, "first_mention_subject")}}/>
-					<SubjectComboBox label="První realizace" onChange={e=>{this.handleFormChange(e, "first_realization_event")}}/>
-					<CreationComboBox label="První realizace" onChange={e=>{this.handleFormChange(e, "first_realization_subject")}}/>
-					<TextField label="Chronologické zpřesnění vzniku" onChange={e=>{this.handleFormChange(e, "chronological_specification_beginning")}}/>
+					<PersonComboBox {...this.createFieldProps("founding_person")}/>
+					<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
+					<GeographicComboBox {...this.createFieldProps("first_mention_place")}/>
+					<CreationComboBox {...this.createFieldProps("first_mention_subject")}/>
+					<SubjectComboBox {...this.createFieldProps("first_realization_event")}/>
+					<CreationComboBox {...this.createFieldProps("first_realization_subject")}/>
+					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Konec existence</h2>
-					<PersonComboBox label="Zničení, zánik" onChange={e=>{this.handleFormChange(e, "cancellation_person")}}/>
-					<CorporationComboBox label="Zničení, zánik" onChange={e=>{this.handleFormChange(e, "cancellation_corporation")}}/>
-					<GeographicComboBox label="Poslední zmínka" onChange={e=>{this.handleFormChange(e, "last_mention_place")}}/>
-					<CreationComboBox label="Poslední zmínka" onChange={e=>{this.handleFormChange(e, "last_mention_subject")}}/>
-					<SubjectComboBox label="Poslední realizace" onChange={e=>{this.handleFormChange(e, "last_realization_event")}}/>
-					<CreationComboBox label="Poslední realizace" onChange={e=>{this.handleFormChange(e, "last_realization_subject")}}/>
-					<TextField label="Chronologické zpřesnění zániku" onChange={e=>{this.handleFormChange(e, "chronological_specification_end")}}/>
+					<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
+					<CorporationComboBox {...this.createFieldProps("cancellation_corporation")}/>
+					<GeographicComboBox {...this.createFieldProps("last_mention_place")}/>
+					<CreationComboBox {...this.createFieldProps("last_mention_subject")}/>
+					<SubjectComboBox {...this.createFieldProps("last_realization_event")}/>
+					<CreationComboBox {...this.createFieldProps("last_realization_subject")}/>
+					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Změna</h2>
-					<PersonComboBox label="Úprava, změna" onChange={e=>{this.handleFormChange(e, "document_change_person")}}/>
-					<CorporationComboBox label="Úprava, změna" onChange={e=>{this.handleFormChange(e, "document_change_corporation")}}/>
-					<PersonComboBox label="Změna vlastnictví, správy" onChange={e=>{this.handleFormChange(e, "ownership_change_person")}}/>
-					<CorporationComboBox label="Změna vlastnictví, správy" onChange={e=>{this.handleFormChange(e, "ownership_change_corporation")}}/>
-					<GeographicComboBox label="Změna umístění, uložení" onChange={e=>{this.handleFormChange(e, "location_change")}}/>
+					<PersonComboBox {...this.createFieldProps("document_change_person")}/>
+					<CorporationComboBox {...this.createFieldProps("document_change_corporation")}/>
+					<PersonComboBox {...this.createFieldProps("ownership_change_person")}/>
+					<CorporationComboBox {...this.createFieldProps("ownership_change_corporation")}/>
+					<GeographicComboBox {...this.createFieldProps("location_change")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Zařazení</h2>
-					<KeywordComboBox required label="Zařazení" onChange={e=>{this.handleFormChange(e, "category")}}/>
+					<KeywordComboBox required {...this.createFieldProps("category")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Poznámky</h2>
-					<TextField label="Poznámky" onChange={e=>{this.handleFormChange(e, "notes")}}/>
+					<TextField {...this.createFieldProps("notes")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}>
 					<h2>Zdroje o heslu</h2>
-					<TextField label="Zdroje o heslu" onChange={e=>{this.handleFormChange(e, "record_sources")}}/>
+					<TextField {...this.createFieldProps("record_sources")}/>
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

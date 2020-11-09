@@ -1,13 +1,11 @@
 import React from "react"
 import { withRouter } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
-
 import {
 	TextField,
 	Button,
 	Paper,
 } from '@material-ui/core'
-
 import {
 //	CorporationComboBox,
 //	CreationComboBox,
@@ -16,10 +14,9 @@ import {
 //	PersonComboBox,
 //	SubjectComboBox,
 } from '../comboBoxes'
-
 import IndexParent from "./indexParent"
-
 import styles from './parent.module.scss'
+import typeDefinitionFile from './subjectTypes.json'
 
 class Family extends IndexParent {
 	constructor(props){
@@ -30,6 +27,8 @@ class Family extends IndexParent {
 
 		this.indexURL = "family"
 	}
+
+	getTypeDefinition = fieldName => typeDefinitionFile.properties[fieldName]
 
 	render(){
 		return(
@@ -44,9 +43,9 @@ class Family extends IndexParent {
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}>
 					<h2>Jiný zdroj</h2>
-					<TextField label="Název" onChange={e=>{this.handleFormChange(e, "other_source.name")}}/>
-					<TextField label="ID" onChange={e=>{this.handleFormChange(e, "other_source.id")}}/>
-					<TextField label="Identifikátor hesla" onChange={e=>{this.handleFormChange(e, "other_source.identificator")}}/>
+					<TextField {...this.createFieldProps("other_source_name")}/>
+					<TextField {...this.createFieldProps("other_source_id")}/>
+					<TextField {...this.createFieldProps("other_source_identificator")}/>
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

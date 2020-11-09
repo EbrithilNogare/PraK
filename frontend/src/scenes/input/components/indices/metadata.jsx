@@ -1,7 +1,6 @@
 import React from "react"
 import { withRouter } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
-
 import {
 	Paper,
 	Select,
@@ -12,7 +11,6 @@ import {
 	FormControl,
 	Checkbox,
 } from '@material-ui/core'
-
 import {
 	MetadataComboBox,
 	CorporationComboBox,
@@ -29,12 +27,10 @@ import {
 import ISBNField from '../validationTextFields/ISBNField'
 import DateField from '../validationTextFields/DateField'
 import DoubleSlider from '../DoubleSlider'
-
+import Multiplier from '../Multiplier'
 import IndexParent from "./indexParent"
-
 import styles from './parent.module.scss'
-
-import metadataTypes from './metadataTypes.json'
+import typeDefinitionFile from './metadataTypes.json'
 
 class Metadata extends IndexParent {
 	constructor(props){
@@ -49,38 +45,9 @@ class Metadata extends IndexParent {
 		this.indexURL = "metadata"
 	}
 
-	conditionalField(fieldName){
-		return metadataTypes.properties[fieldName].fields[this.state.documentType] === 1
-	}
+	conditionalField = fieldName => this.getTypeDefinition(fieldName).fields[this.state.documentType] === 1
 
-	getTranslation(fieldName){
-		return metadataTypes.properties[fieldName].label || ""
-	}
-	getHelper(fieldName){
-		return metadataTypes.properties[fieldName].helper || ""
-	}
-	getSchema(fieldName){
-		return metadataTypes.properties[fieldName].schema
-	}
-
-	createFieldProps(name){
-		const toReturn = {
-			label:this.getTranslation(name),
-			onChange:e=>{this.handleFormChange(e, this.getSchema(name))},
-			InputProps:this.helperProp(this.getHelper(name)),
-		}
-
-		if(metadataTypes.properties[name].options)
-			toReturn.data = metadataTypes.properties[name].options
-
-		if(metadataTypes.properties[name].required)
-			toReturn.required = true
-			
-		if(metadataTypes.properties[name].type)
-			toReturn.type = metadataTypes.properties[name].type
-
-		return toReturn
-	}
+	getTypeDefinition = fieldName => typeDefinitionFile.properties[fieldName]
 
 	render(){
 		return(
@@ -105,7 +72,7 @@ class Metadata extends IndexParent {
 								this.formData.documentType = e.target.value
 							}}
 						>
-							{metadataTypes.types.map((value, index) => {
+							{typeDefinitionFile.types.map((value, index) => {
 								return <MenuItem key={index} value={index}>{value}</MenuItem>
 							})}
 						</Select>
@@ -114,8 +81,10 @@ class Metadata extends IndexParent {
 				<Paper className={styles.dataBlock}>
 					{this.conditionalField("author") && <PersonComboBox {...this.createFieldProps("author")}/>}
 					{this.conditionalField("author_role") && <StaticComboBox {...this.createFieldProps("author_role")}/>}
-					{this.conditionalField("other_authors") && <PersonComboBox {...this.createFieldProps("other_authors")}/>}
-					{this.conditionalField("other_authors_role") && <StaticComboBox {...this.createFieldProps("other_authors_role")}/>}
+					<Multiplier>
+						{this.conditionalField("other_authors") && <PersonComboBox {...this.createFieldProps("other_authors")}/>}
+						{this.conditionalField("other_authors_role") && <StaticComboBox {...this.createFieldProps("other_authors_role")}/>}
+					</Multiplier>
 					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
 					{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}
 					{this.conditionalField("language") && <StaticComboBox {...this.createFieldProps("language")}/>}
@@ -124,10 +93,10 @@ class Metadata extends IndexParent {
 					{this.conditionalField("publisher") && <CorporationComboBox {...this.createFieldProps("publisher")}/>}
 					{this.conditionalField("publishing_date") && <DateField {...this.createFieldProps("publishing_date")}/>}
 					{this.conditionalField("publishing_date_note") && <TextField  {...this.createFieldProps("publishing_date_note")}/>}
-					{this.conditionalField("publishing_date") && <div> { this.getTranslation("publishing_date_notAccurate") }
+					{this.conditionalField("publishing_date") && <div> { this.getTypeDefinition("publishing_date_notAccurate").label }
 						<Checkbox 
 							color="primary"
-							onChange = { e => this.handleCheckboxChange(e, this.getSchema("publishing_date_notAccurate")) }
+							onChange = { e => this.handleCheckboxChange(e, this.getTypeDefinition("publishing_date_notAccurate").schema) }
 						/>
 					</div>}
 				</Paper>
@@ -198,8 +167,8 @@ class Metadata extends IndexParent {
 					{this.conditionalField("description") && <TextField  {...this.createFieldProps("description")}/>}
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					{this.conditionalField("general_note") && <TextField multiline {...this.createFieldProps("general_note")}/>}
-					{this.conditionalField("editor_note") && <TextField  {...this.createFieldProps("editor_note")}/>}
+					{this.conditionalField("general_note") && <TextField {...this.createFieldProps("general_note")}/>}
+					{this.conditionalField("editor_note") && <TextField {...this.createFieldProps("editor_note")}/>}
 					{this.conditionalField("submitter") && <StaticOpenComboBox  {...this.createFieldProps("submitter")}/>}
 				</Paper>
 				</div>

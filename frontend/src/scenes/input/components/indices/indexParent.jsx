@@ -15,8 +15,38 @@ class IndexParent extends React.Component {
 		
 		window.debug = ()=>{return this.formData} // todo remove this line
 
-		this.formData = null	// abstract
-		this.indexURL = null	// abstract
+		this.formData = undefined	// abstract
+		this.indexURL = undefined	// abstract
+	}
+	
+	getTypeDefinition = () => {throw new Error("Calling abstract function")}
+
+	createFieldProps(name){
+		const definition = this.getTypeDefinition(name)
+
+		if(definition === undefined)
+			throw "createFieldProps: cannot find: [" + name + "]"
+
+		const toReturn = {
+			label:definition.label,
+			onChange:e=>{this.handleFormChange(e, definition.schema)},
+		}
+		if(definition.helper)
+			toReturn.InputProps = this.helperProp(definition.helper)
+	
+		if(definition.options)
+			toReturn.data = definition.options
+
+		if(definition.required)
+			toReturn.required = true
+			
+		if(definition.multiline)
+			toReturn.multiline = true
+			
+		if(definition.type)
+			toReturn.type = definition.type
+
+		return toReturn
 	}
 
 	getDataReady = (elements) => {

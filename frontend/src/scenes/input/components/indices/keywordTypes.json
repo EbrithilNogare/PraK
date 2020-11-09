@@ -1,0 +1,198 @@
+ { 
+ 	"properties":{
+		"other_source_name": {
+			"label": "Název",
+			"schema": "other_source.name",
+			"helper": "Název jiného zdroje."
+		},
+		"other_source_id": {
+			"label": "ID",
+			"schema": "other_source.id",
+			"helper": "ID cizího zdroje."
+		},
+		"other_source_identificator": {
+			"label": "Identifikátor hesla",
+			"schema": "other_source.identificator",
+			"helper": "ID dokumentu v cizím zdroji."
+		},
+		"name": {
+			"label": "Název",
+			"schema": "name",
+			"helper": "Název klíčového slova.",
+			"required": true
+		},
+		"synonyms": {
+			"label": "Synonyma",
+			"schema": "synonyms",
+			"helper": "Jiné označení jména."
+		},
+		"inverted_wordorder_terms": {
+			"label": "Termíny v invertovaném slovosledu",
+			"schema": "inverted_wordorder_terms",
+			"helper": "Termíny v invertovaném slovosledu."
+		},
+		"spelling_variants": {
+			"label": "Pravopisné varianty",
+			"schema": "spelling_variants",
+			"helper": "Jiné pravopisné varianty označení jména."
+		},
+		"foreign_language_descriptors": {
+			"label": "Cizojazyčné deskriptory",
+			"schema": "foreign_language_descriptors",
+			"helper": "Jinojazyčné varianty termínu."
+		},
+		"form_descriptors": {
+			"label": "Tvar deskriptorů v singuláru",
+			"schema": "form_descriptors",
+			"helper": "Uvedeme jednotné číslo hesla."
+		},
+		"other_name_form": {
+			"label": "Jiný tvar jména/označení",
+			"schema": "other_name_form",
+			"helper": "Jiné označení jména."
+		},
+		"main_part": {
+			"label": "Hlavní část",
+			"schema": "main_part",
+			"helper": "Odkaz na části názvu klíčového slova."
+		},
+		"other_part": {
+			"label": "Další část",
+			"schema": "other_part",
+			"helper": "Odkaz na části názvu klíčového slova."
+		},
+		"general_complement": {
+			"label": "Obecný doplněk",
+			"schema": "general_complement",
+			"helper": "Zpřesnění, obor - musí být uveden jako součást termínu; typicky se používá pro rozlišení homonym - v tomto případě musí být jako typ označení zapsáno: homonymum."
+		},
+		"clarification": {
+			"label": "Zpřesnění",
+			"schema": "clarification",
+			"helper": "Uvedeme obor."
+		},
+		"definition": {
+			"label": "Definice",
+			"schema": "definition",
+			"helper": "Popis pomocí výčtu všech jeho podřazených pojmů na základě jednoho dělícího kritéria.",
+			"multiline" : true
+		},
+		"manual": {
+			"label": "Pokyny k použití",
+			"schema": "manual",
+			"helper": "Bližší pokyny k použití hesla."
+		},
+		"history": {
+			"label": "Historie",
+			"schema": "history",
+			"helper": "Historie klíčového slova."
+		},
+		"electronical_location": {
+			"label": "Elektronické umístění",
+			"schema": "electronical_location",
+			"helper": "URL umístění."
+		},
+		"superordinate": {
+			"label": "Nadřazený",
+			"schema": "superordinate",
+			"helper": "Výběr z rejstříku klíčových slov."
+		},
+		"subordinate": {
+			"label": "Podřazený",
+			"schema": "subordinate",
+			"helper": "Výběr z rejstříku klíčových slov."
+		},
+		"associative": {
+			"label": "Asociativní",
+			"schema": "associative",
+			"helper": "Výběr z rejstříku klíčových slov."
+		},
+		"founding_person": {
+			"label": "Začátek",
+			"schema": "founding_person",
+			"helper": "Osoba v roli autora. Výběr z rejstříku osob."
+		},
+		"founding_corporation": {
+			"label": "Začátek",
+			"schema": "founding_corporation",
+			"helper": "Korporace v roli autora. Výběr z rejstříku korporací."
+		},
+		"founding_subject": {
+			"label": "Začátek",
+			"schema": "founding_subject",
+			"helper": "Dokument, který obecný pojem zavedl. Výběr z rejstříku dílo/výtvor."
+		},
+		"founding_event": {
+			"label": "Začátek",
+			"schema": "founding_event",
+			"helper": "Událost, která obecný pojem zavedla. Výběr z rejstříku událostí."
+		},
+		"founding_keyword": {
+			"label": "Začátek",
+			"schema": "founding_keyword",
+			"helper": "Propojení na následující obecný pojem. Výběr z rejstříku klíčových slov."
+		},
+		"founding_chronological_specification": {
+			"label": "Chronologické zpřesnění",
+			"schema": "founding_chronological_specification",
+			"helper": "Časové zpřesnění související s počátkem existence obecného pojmu."
+		},
+		"cancellation_person": {
+			"label": "Konec",
+			"schema": "cancellation_person",
+			"helper": "Osoba, která obecný pojem zrušila. Výběr z rejstříku osob."
+		},
+		"cancellation_corporation": {
+			"label": "Konec",
+			"schema": "cancellation_corporation",
+			"helper": "Korporace, která obecný pojem zrušila. Výběr z rejstříku korporací."
+		},
+		"cancellation_subject": {
+			"label": "Konec",
+			"schema": "cancellation_subject",
+			"helper": "Dokument, který obecný pojem zrušil. Výběr z rejstříku dílo/výtvor."
+		},
+		"cancellation_event": {
+			"label": "Konec",
+			"schema": "cancellation_event",
+			"helper": "Událost, která obecný pojem zrušila. Výběr z rejstříku událostí."
+		},
+		"cancellation_keyword": {
+			"label": "Konec",
+			"schema": "cancellation_keyword",
+			"helper": "Propojení na následující obecný pojem. Výběr z rejstříku klíčových slov."
+		},
+		"cancellation_chronological_specification": {
+			"label": "Chronologické zpřesnění",
+			"schema": "cancellation_chronological_specification",
+			"helper": "Časové zpřesnění související s koncem existence obecného pojmu."
+		},
+		"category": {
+			"label": "Kategorie",
+			"schema": "category",
+			"helper": "Upřesňuje podtřídu. Výběr z rejstříku klíčových slov."
+		},
+		"domain": {
+			"label": "Obor",
+			"schema": "domain",
+			"helper": "Výběr z rejstříku klíčových slov."
+		},
+		"idc": {
+			"label": "MDT",
+			"schema": "idc",
+			"helper": "Notace mezinárodního desetinného třídění. Nutné převzít ze Souboru národních autorit."
+		},
+		"notes": {
+			"label": "Poznámky",
+			"schema": "notes",
+			"helper": "Textová poznámka k heslu.",
+			"multiline" : true
+		},
+		"record_sources": {
+			"label": "Zdroje o heslu",
+			"schema": "record_sources",
+			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
+			"multiline" : true
+		}
+	}
+}

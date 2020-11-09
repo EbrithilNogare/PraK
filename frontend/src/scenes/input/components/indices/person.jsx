@@ -1,13 +1,11 @@
 import React from "react"
 import { withRouter } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
-
 import {
 	TextField,
 	Button,
 	Paper,
 } from '@material-ui/core'
-
 import {
 	CorporationComboBox,
 	CreationComboBox,
@@ -18,12 +16,10 @@ import {
 	FamilyComboBox,
 	StaticComboBox,
 } from '../comboBoxes'
-
 import DateField from '../validationTextFields/DateField'
-
 import IndexParent from "./indexParent"
-
 import styles from './parent.module.scss'
+import typeDefinitionFile from './personTypes.json'
 
 class Person extends IndexParent {
 	constructor(props){
@@ -34,6 +30,8 @@ class Person extends IndexParent {
 
 		this.indexURL = "person"
 	}
+
+	getTypeDefinition = fieldName => typeDefinitionFile.properties[fieldName]
 
 	render(){
 		return(
@@ -46,111 +44,79 @@ class Person extends IndexParent {
 					<h1>Nový záznam do Rejstříku osob</h1>
 				</Paper>
 				<div className={styles.body}>
-				<Paper className={styles.dataBlock}>
-					<h2>Jiný zdroj</h2>
-					<TextField label="Název" onChange={e=>{this.handleFormChange(e, "other_source.name")}}/>
-					<TextField label="ID" onChange={e=>{this.handleFormChange(e, "other_source.id")}}/>
-					<TextField label="Identifikátor hesla" onChange={e=>{this.handleFormChange(e, "other_source.identificator")}}/>
+				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
+					<TextField {...this.createFieldProps("other_source_name")}/>
+					<TextField {...this.createFieldProps("other_source_id")}/>
+					<TextField {...this.createFieldProps("other_source_identificator")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Biograficka data</h2>
-					<TextField required label="Jméno" onChange={e=>{this.handleFormChange(e, "name")}}/>
-					<TextField required label="Příjmení" onChange={e=>{this.handleFormChange(e, "surname")}}/>
-					<TextField label="Rok narození" onChange={e=>{this.handleFormChange(e, "born_year")}}/>
-					<TextField label="Rok úmrtí" onChange={e=>{this.handleFormChange(e, "death_year")}}/>
-					<TextField label="Rozpis iniciál" onChange={e=>{this.handleFormChange(e, "initials")}}/>
-					<TextField label="Obecný doplněk " onChange={e=>{this.handleFormChange(e, "general_complement")}}/>
-					<TextField label="Římské číslice" onChange={e=>{this.handleFormChange(e, "roman_numerals")}}/>
-					<TextField label="Geografický doplněk" onChange={e=>{this.handleFormChange(e, "geographical_complement")}}/>
+				<Paper className={styles.dataBlock}> <h2>Biograficka data</h2>
+					<TextField {...this.createFieldProps("name")}/>
+					<TextField {...this.createFieldProps("surname")}/>
+					<TextField {...this.createFieldProps("born_year")}/>
+					<TextField {...this.createFieldProps("death_year")}/>
+					<TextField {...this.createFieldProps("initials")}/>
+					<TextField {...this.createFieldProps("general_complement")}/>
+					<TextField {...this.createFieldProps("roman_numerals")}/>
+					<TextField {...this.createFieldProps("geographical_complement")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Variantní označení</h2>
-					<TextField label="Původní jméno" onChange={e=>{this.handleFormChange(e, "original_name")}}/>
-					<TextField label="Akronym/zkratka" onChange={e=>{this.handleFormChange(e, "acronym")}}/>
-					<TextField label="Autorská šifra/novinářská značka" onChange={e=>{this.handleFormChange(e, "cipher")}}/>
-					<TextField label="Církevní jméno" onChange={e=>{this.handleFormChange(e, "religious_name")}}/>
-					<TextField label="Jméno získané sňatkem" onChange={e=>{this.handleFormChange(e, "marriage_name")}}/>
-					<TextField label="Historická podoba jména" onChange={e=>{this.handleFormChange(e, "historical_name")}}/>
-					<TextField label="Přímé pořadí" onChange={e=>{this.handleFormChange(e, "straight_order")}}/>
-					<TextField label="Jiná forma " onChange={e=>{this.handleFormChange(e, "other_name_form")}}/>
-					<TextField label="Pseudonym" onChange={e=>{this.handleFormChange(e, "pseudonym")}}/>
+				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
+					<TextField {...this.createFieldProps("original_name")}/>
+					<TextField {...this.createFieldProps("acronym")}/>
+					<TextField {...this.createFieldProps("cipher")}/>
+					<TextField {...this.createFieldProps("religious_name")}/>
+					<TextField {...this.createFieldProps("marriage_name")}/>
+					<TextField {...this.createFieldProps("historical_name")}/>
+					<TextField {...this.createFieldProps("straight_order")}/>
+					<TextField {...this.createFieldProps("other_name_form")}/>
+					<TextField {...this.createFieldProps("pseudonym")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Tituly</h2>
-					<TextField label="Tituly" onChange={e=>{this.handleFormChange(e, "titles.title")}}/>
-					<DateField label="Datum" onChange={e=>{this.handleFormChange(e, "titles.date")}}/>
+				<Paper className={styles.dataBlock}> <h2>Tituly</h2>
+					<TextField {...this.createFieldProps("title")}/>
+					<DateField {...this.createFieldProps("date")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Biografická poznámka</h2>
-					<TextField required label="Biografická poznámka" onChange={e=>{this.handleFormChange(e, "bibliographical_note")}}/>
+				<Paper className={styles.dataBlock}> <h2>Biografická poznámka</h2>
+					<TextField {...this.createFieldProps("bibliographical_note")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Životopis</h2>
-					<TextField label="Životopis" onChange={e=>{this.handleFormChange(e, "cv")}}/>
+				<Paper className={styles.dataBlock}> <h2>Životopis</h2>
+					<TextField {...this.createFieldProps("cv")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Obor působnosti</h2>
-					<TextField required label="Obor působnosti" onChange={e=>{this.handleFormChange(e, "domain_branch")}}/>
+				<Paper className={styles.dataBlock}> <h2>Obor působnosti</h2>
+					<TextField {...this.createFieldProps("domain_branch")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Pohlaví</h2>
-					<StaticComboBox
-						required
-						label="Pohlaví"
-						onChange={e=>{this.handleFormChange(e, "gender")}}
-						data={["", "Neuvedeno", "Muž", "Žena"]}
-						/>
+				<Paper className={styles.dataBlock}> <h2>Pohlaví</h2>
+					<StaticComboBox {...this.createFieldProps("gender")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Příslušnost k zemi</h2>
-					<GeographicComboBox label="Příslušnost k zemi" onChange={e=>{this.handleFormChange(e, "country_membership")}}/>
-					<GeographicComboBox label="Místo narození" onChange={e=>{this.handleFormChange(e, "born_place")}}/>
-					<GeographicComboBox label="Místo skonu" onChange={e=>{this.handleFormChange(e, "death_place")}}/>
-					<GeographicComboBox required label="Související země" onChange={e=>{this.handleFormChange(e, "related_country")}}/>
+				<Paper className={styles.dataBlock}> <h2>Příslušnost k zemi</h2>
+					<GeographicComboBox {...this.createFieldProps("country_membership")}/>
+					<GeographicComboBox {...this.createFieldProps("born_place")}/>
+					<GeographicComboBox {...this.createFieldProps("death_place")}/>
+					<GeographicComboBox {...this.createFieldProps("related_country")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Určení jazykové oblasti</h2>
-					<StaticComboBox
-						required
-						label="Určení jazykové oblasti"
-						data={[
-							"Čeština",
-							"Latina",
-							"Němčina",
-							"Angličtina",
-							"Polština",
-							"Slovenština",
-							"Jiné",
-						]}
-						onChange={ e => { this.handleFormChange(e, "language_country") }}
-					/>
+				<Paper className={styles.dataBlock}> <h2>Určení jazykové oblasti</h2>
+					<StaticComboBox {...this.createFieldProps("language_country")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Vztahy a události</h2>
-					<PersonComboBox label="Rodiče" onChange={e=>{this.handleFormChange(e, "parents")}}/>
-					<PersonComboBox label="Sourozenci" onChange={e=>{this.handleFormChange(e, "siblings")}}/>
-					<FamilyComboBox label="Člen rodu/rodiny" onChange={e=>{this.handleFormChange(e, "family")}}/>
-					<CorporationComboBox label="Členství" onChange={e=>{this.handleFormChange(e, "membreship")}}/>
-					<KeywordComboBox label="Zaměstnání" onChange={e=>{this.handleFormChange(e, "employment")}}/>
-					<CorporationComboBox label="Afiliace" onChange={e=>{this.handleFormChange(e, "affiliation")}}/>
-					<CreationComboBox label="Významná díla" onChange={e=>{this.handleFormChange(e, "important_subject")}}/>
-					<SubjectComboBox label="Významné události" onChange={e=>{this.handleFormChange(e, "important_event")}}/>
-					<TextField label="Uzavření manželství" onChange={e=>{this.handleFormChange(e, "marriage_start")}}/>
-					<TextField label="Ukončení manželství" onChange={e=>{this.handleFormChange(e, "marriage_end")}}/>
-					<CorporationComboBox label="Studium" onChange={e=>{this.handleFormChange(e, "study")}}/>
+				<Paper className={styles.dataBlock}> <h2>Vztahy a události</h2>
+					<PersonComboBox {...this.createFieldProps("parents")}/>
+					<PersonComboBox {...this.createFieldProps("siblings")}/>
+					<FamilyComboBox {...this.createFieldProps("family")}/>
+					<CorporationComboBox {...this.createFieldProps("membreship")}/>
+					<KeywordComboBox {...this.createFieldProps("employment")}/>
+					<CorporationComboBox {...this.createFieldProps("affiliation")}/>
+					<CreationComboBox {...this.createFieldProps("important_subject")}/>
+					<SubjectComboBox {...this.createFieldProps("important_event")}/>
+					<TextField {...this.createFieldProps("marriage_start")}/>
+					<TextField {...this.createFieldProps("marriage_end")}/>
+					<CorporationComboBox {...this.createFieldProps("study")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Vyobrazení</h2>
-					<TextField label="Erby" onChange={e=>{this.handleFormChange(e, "arm")}}/>
-					<TextField label="Fotografie" onChange={e=>{this.handleFormChange(e, "photo")}}/>
+				<Paper className={styles.dataBlock}> <h2>Vyobrazení</h2>
+					<TextField {...this.createFieldProps("arm")}/>
+					<TextField {...this.createFieldProps("photo")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Poznámky</h2>
-					<TextField label="Poznámky" onChange={e=>{this.handleFormChange(e, "notes")}}/>
+				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
+					<TextField {...this.createFieldProps("notes")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					<h2>Zdroje o heslu</h2>
-					<TextField required label="Zdroje o heslu" onChange={e=>{this.handleFormChange(e, "record_sources")}}/>
+				<Paper className={styles.dataBlock}> <h2>Zdroje o heslu</h2>
+					<TextField {...this.createFieldProps("record_sources")}/>
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

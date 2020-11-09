@@ -1,0 +1,185 @@
+{ 
+	"properties":{
+	   "other_source_name": {
+		   "label": "Název",
+		   "schema": "other_source.name",
+		   "helper": "Název jiného zdroje."
+	   },
+	   "other_source_id": {
+		   "label": "ID",
+		   "schema": "other_source.id",
+		   "helper": "ID cizího zdroje."
+	   },
+	   "other_source_identificator": {
+		   "label": "Identifikátor hesla",
+		   "schema": "other_source.identificator",
+		   "helper": "ID dokumentu v cizím zdroji."
+	   },
+	   "name": {
+		   "label": "Název",
+		   "schema": "name",
+		   "helper": "Název události.",
+		   "required": true
+	   },
+	   "acronym": {
+		   "label": "Akronym/zkratka",
+		   "schema": "acronym",
+		   "helper": "Zkratka/akronym, pokud ji událost používá."
+	   },
+	   "other_name_form": {
+		   "label": "Jiný tvar jména/označení",
+		   "schema": "other_name_form",
+		   "helper": "Dřívejší jméno události."
+	   },
+	   "main_part": {
+		   "label": "Hlavní část",
+		   "schema": "main_part",
+		   "helper": "Odkaz na části názvu události."
+	   },
+	   "other_part": {
+		   "label": "Další část",
+		   "schema": "other_part",
+		   "helper": "Odkaz na části názvu události."
+	   },
+	   "general_complement": {
+		   "label": "Obecný doplněk",
+		   "schema": "general_complement",
+		   "helper": "Obsahuje upřesnění události, především pokud označení události není jednoznačné a připomíná označení osoby/bytosti, korporace nebo jiné události a rovněž v případě souborných záznamů, kdy nejsou uvedeny další doplňky."
+	   },
+	   "geographical_complement": {
+		   "label": "Geografický doplněk",
+		   "schema": "geographical_complement",
+		   "helper": "Obsahuje místo konání pokud je tato informace nevyhnutelná a smysluplná; v případě, že událost zasahuje do více míst, může se opakovat, přičemž se uvádí maximálně tři místa konání události; v ostatních případech se uvede jako místo konání širší oblast."
+	   },
+	   "chronological_complement": {
+		   "label": "Chronologický doplněk",
+		   "schema": "chronological_complement",
+		   "helper": "Obsahuje datum/rok konání nebo rozsah dat konání události, zpravidla se uvádí rok konání, pokud je pravděpodobné, že se událost může opakovat v rámci jednoho roku, uvede se úplné datum."
+	   },
+	   "event_order": {
+		   "label": "Pořadí údálosti",
+		   "schema": "event_order",
+		   "helper": "V případě opakovaných událostí, a to pouze pokud je pořadí součástí oficiálního označení; pokud se událost pořadovým číslem neoznačuje, používá se chronologický doplněk, doplněk se zapisuje arabskými číslicemi včetně tečky za číslicí."
+	   },
+	   "description": {
+		   "label": "Popis",
+		   "schema": "description",
+		   "helper": "Charakter a místo konání události v rozsahu jedné věty.",
+		   "required": true,
+		   "multiline" : true
+		   
+	   },
+	   "aggregate_event": {
+		   "label": "Souborná událost, celek",
+		   "schema": "aggregate_event",
+		   "helper": "Výběr z rejstříku událost."
+	   },
+	   "sub_event": {
+		   "label": "Podřazená událost",
+		   "schema": "sub_event",
+		   "helper": "Výběr z rejstříku událost."
+	   },
+	   "related_person": {
+		   "label": "Spojená entita",
+		   "schema": "related_person",
+		   "helper": "Výběr z rejstříku osob."
+	   },
+	   "related_subject": {
+		   "label": "Spojená entita",
+		   "schema": "related_subject",
+		   "helper": "Výběr z rejstříku dílo/výtvor."
+	   },
+	   "related_place": {
+		   "label": "Spojená entita",
+		   "schema": "related_place",
+		   "helper": "Výběr z geografického rejstříku."
+	   },
+	   "venue": {
+		   "label": "Místo konání",
+		   "schema": "venue",
+		   "helper": "Výběr z geografického rejstříku."
+	   },
+	   "organizator_person": {
+		   "label": "Organizátor, svolovatel",
+		   "schema": "organizator_person",
+		   "helper": "Výběr z rejstříku osob."
+	   },
+	   "organizator_corporation": {
+		   "label": "Organizátor, svolovatel",
+		   "schema": "organizator_corporation",
+		   "helper": "Výběr z rejstříku korporací."
+	   },
+	   "founding_person": {
+		   "label": "Vznik",
+		   "schema": "founding_person",
+		   "helper": "Výběr z rejstříku osob."
+	   },
+	   "founding_corporation": {
+		   "label": "Vznik",
+		   "schema": "founding_corporation",
+		   "helper": "Výběr z rejstříku korporací."
+	   },
+	   "founding_place": {
+		   "label": "První písemná zmínka",
+		   "schema": "founding_place",
+		   "helper": "Výběr z geografického rejstříku."
+	   },
+	   "first_mention": {
+		   "label": "První písemná zmínka",
+		   "schema": "first_mention",
+		   "helper": "Ustanovující dokument. Výběr z rejstříku dílo/výtvor."
+	   },
+	   "founding_chronological_specification": {
+		   "label": "Chronologické zpřesnění",
+		   "schema": "founding_chronological_specification",
+		   "helper": "Časové zpřesnění související s počátkem události."
+	   },
+	   "cancellation_person": {
+		   "label": "Zničení, zánik",
+		   "schema": "cancellation_person",
+		   "helper": "Výběr z rejstříku osob, pokud souvisela s ukončením události."
+	   },
+	   "cancellation_event": {
+		   "label": "Zničení, zánik",
+		   "schema": "cancellation_event",
+		   "helper": "Výběr z rejstříku korporací."
+	   },
+	   "cancellation_place": {
+		   "label": "Poslední písemná zmínka",
+		   "schema": "cancellation_place",
+		   "helper": "V roli místo (pro souborné záznamy událostí). Výběr z geografického rejstříku."
+	   },
+	   "last_mention": {
+		   "label": "Poslední písemná zmínka",
+		   "schema": "last_mention",
+		   "helper": "Související dokument. Výběr z rejstříku dílo/výtvor."
+	   },
+	   "cancellation_chronological_specification": {
+		   "label": "Chronologické zpřesnění",
+		   "schema": "cancellation_chronological_specification",
+		   "helper": "Časové zpřesnění související s koncem události."
+	   },
+	   "category": {
+		   "label": "Kategorie",
+		   "schema": "category",
+		   "helper": "Upřesňuje podtřídu klíčového slova. Výběr z rejstříku klíčových slov."
+	   },
+	   "topic": {
+		   "label": "Téma",
+		   "schema": "topic",
+		   "helper": "Téma charakteristické pro událost -  v případě, že je možné určit téma, charakteristické pro událost - především v případě odborných konferencí, seminářů apod. Výběr z rejstříku klíčových slov."
+	   },
+	   "notes": {
+		   "label": "Poznámky",
+		   "schema": "notes",
+		   "helper": "Textová poznámka k heslu.",
+		   "multiline" : true
+	   },
+	   "record_sources": {
+		   "label": "Zdroje o heslu",
+		   "schema": "record_sources",
+		   "helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
+		   "multiline" : true
+	   }
+   }
+}
