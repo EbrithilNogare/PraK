@@ -49,7 +49,7 @@ class Keyword extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Název</h2>
-					<TextField required {...this.createFieldProps("name")}/>
+					<TextField {...this.createFieldProps("name")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 					<Multiplier>

@@ -170,8 +170,7 @@
 		"category": {
 			"label": "Kategorie",
 			"schema": "category[%]",
-			"helper": "Upřesňuje podtřídu. Výběr z rejstříku klíčových slov.",
-			"required": true
+			"helper": "Upřesňuje podtřídu. Výběr z rejstříku klíčových slov."
 		},
 		"domain": {
 			"label": "Obor",

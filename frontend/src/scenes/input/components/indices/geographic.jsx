@@ -51,7 +51,7 @@ class Geographic extends IndexParent {
 						</Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Název</h2>
-						<TextField required {...this.createFieldProps("name")}/>
+						<TextField {...this.createFieldProps("name")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 						<Multiplier>
@@ -147,7 +147,7 @@ class Geographic extends IndexParent {
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
 						<Multiplier>
-							<KeywordComboBox required {...this.createFieldProps("category")}/>
+							<KeywordComboBox {...this.createFieldProps("category")}/>
 						</Multiplier>
 						<Multiplier>
 							<KeywordComboBox {...this.createFieldProps("characteristic")}/>

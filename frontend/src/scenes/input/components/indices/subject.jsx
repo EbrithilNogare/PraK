@@ -50,7 +50,7 @@ class Subject extends IndexParent {
 						</Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Název</h2>
-						<TextField required {...this.createFieldProps("name")}/>
+						<TextField {...this.createFieldProps("name")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 						<Multiplier>
@@ -73,7 +73,7 @@ class Subject extends IndexParent {
 						<TextField {...this.createFieldProps("event_order")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Popis</h2>
-						<TextField required {...this.createFieldProps("description")}/>
+						<TextField {...this.createFieldProps("description")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Vztahy</h2>
 						<Multiplier>
