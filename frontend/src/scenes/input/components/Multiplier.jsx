@@ -64,12 +64,14 @@ class Multiplier extends React.Component {
 						</Grid>
 					</Grid>
 				))}
-				<Button
-					onClick={this.handleAdd}
-					style={{height: "100%", width: "60px", float: "right"}}
-				>
-					<Add/>
-				</Button>	
+				<Grid container spacing={1}>
+					<Grid item xs></Grid>
+					<Grid item style={{width:"60px"}}>
+						<Button onClick={this.handleAdd}>
+							<Add/>
+						</Button>	
+					</Grid>
+				</Grid>
 				
 			</div>
 		)
