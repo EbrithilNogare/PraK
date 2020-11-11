@@ -15,11 +15,16 @@
 			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
-		"name": {
-			"label": "Název",
-			"schema": "name",
-			"helper": "Název geografického objektu.",
+		"name_main_part": {
+			"label": "Hlavní část názvu",
+			"schema": "name_main_part",
+			"helper": "Odkaz na části názvu geografické entity.",
 			"required": true
+		},
+		"name_other_part": {
+			"label": "Další část názvu",
+			"schema": "name_other_part",
+			"helper": "Odkaz na části názvu geografické entity."
 		},
 		"acronym": {
 			"label": "Akronym/zkratka",
@@ -35,16 +40,6 @@
 			"label": "Jiný tvar jména/označení",
 			"schema": "other_name_form[%]",
 			"helper": "Jiné označení, pod kterým je geografická entita známa."
-		},
-		"main_part": {
-			"label": "Hlavní část",
-			"schema": "main_part",
-			"helper": "Odkaz na části názvu geografické entity."
-		},
-		"other_part": {
-			"label": "Další část",
-			"schema": "other_part[%]",
-			"helper": "Odkaz na části názvu geografické entity."
 		},
 		"general_complement": {
 			"label": "Obecný doplněk",
