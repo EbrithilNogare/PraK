@@ -92,7 +92,7 @@ const schema = new mongoose.Schema({
 	}],
 	employment: [{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	affiliation: [{
 		type: mongoose.Types.ObjectId,

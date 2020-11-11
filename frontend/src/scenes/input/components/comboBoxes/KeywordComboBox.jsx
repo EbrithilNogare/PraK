@@ -1,7 +1,7 @@
 import ComboBox from "./ComboBox"
 
 class KeywordComboBox extends ComboBox {
-	getFetchURL = () => "/prak/api/KeywordIndex"
+	getFetchURL = () => "/prak/api/keywordIndex"
 	getNewFieldURL = () => "/prak/input/keyword"
 
 	labelPostfix = () => " (Rejstřík klíčových slov)"

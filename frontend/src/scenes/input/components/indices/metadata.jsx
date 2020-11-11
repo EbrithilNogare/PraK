@@ -25,6 +25,7 @@ import {
 } from '../comboBoxes'
 import ISBNField from '../validationTextFields/ISBNField'
 import DateField from '../validationTextFields/DateField'
+import RegExpField from '../validationTextFields/RegExpField'
 import DoubleSlider from '../DoubleSlider'
 import Multiplier from '../Multiplier'
 import IndexParent from "./indexParent"
@@ -96,7 +97,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("publish_place") && <GeographicComboBox {...this.createFieldProps("publish_place")}/>}
 					{this.conditionalField("publisher") && <CorporationComboBox {...this.createFieldProps("publisher")}/>}
 					<Multiplier>
-						{this.conditionalField("publishing_date") && <DateField {...this.createFieldProps("publishing_date")}/>}
+						{this.conditionalField("publishing_date") && <RegExpField {...this.createFieldProps("publishing_date")}/>}
 						{this.conditionalField("publishing_date_note") && <TextField  {...this.createFieldProps("publishing_date_note")}/>}
 						{this.conditionalField("publishing_date_notAccurate") && <LabeledCheckbox {...this.createFieldProps("publishing_date_notAccurate")}/>}
 					</Multiplier>

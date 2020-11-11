@@ -87,7 +87,9 @@
 			"label": "Datum vydání nebo vzniku",
 			"schema": "publishing_date[%].date",
 			"fields": [1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
-			"helper": "Výběr z nabídky. Název vydavatele/nakladatele/instituce nebo výrobce."
+			"helper": "Výběr z nabídky. Název vydavatele/nakladatele/instituce nebo výrobce.",
+			"regexp": "^(-\\d{4})$|^(\\d{4}-)$|^(\\d{4}-\\d{4})$|^(\\d{4})$|^(\\d{2}\\.\\d{4})$|^(\\d{2}\\.\\d{2}\\.\\d{4})$",
+			"errorMessage": "Zadejte ve formátu dd.mm.rrrr, mm.rrrr, rrrr, rrrr-, -rrrr, rrrr-rrrr"
 		},
 		"publishing_date_note": {
 			"label": "Poznámka k datu vydání",

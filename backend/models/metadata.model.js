@@ -35,7 +35,7 @@ const schema = new mongoose.Schema({
 	},
 	publishing_date: [{
 		date: {
-			type: Date,
+			type: String,
 			required: true,
 		},
 		notAccurate: Boolean,
@@ -109,7 +109,7 @@ const schema = new mongoose.Schema({
 	map_scale: String,
 	format: {
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	},
 	processing_level: String,
 	archival_aids: String,
@@ -142,7 +142,7 @@ const schema = new mongoose.Schema({
 	},
 	keywords: [{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	description: String,
 	general_note: String,

@@ -655,7 +655,7 @@
 				}
 			}
 		},
-		KeywordIndex:{
+		keywordIndex:{
 			info:{
 				info: "keywords collection",
 			},
@@ -960,7 +960,7 @@ const schema = {
 		},
 		publishing_date: [{
 			date: {
-				type: Date,
+				type: String,
 				required: true,
 			},
 			notAccurate: Boolean,
@@ -1034,7 +1034,7 @@ const schema = {
 		map_scale: String,
 		format: {
 			type: mongoose.Types.ObjectId,
-			ref: "KeywordIndex",
+			ref: "keywordIndex",
 		},
 		processing_level: String,
 		archival_aids: String,
@@ -1067,7 +1067,7 @@ const schema = {
 		},
 		keywords: [{
 			type: mongoose.Types.ObjectId,
-			ref: "KeywordIndex",
+			ref: "keywordIndex",
 		}],
 		description: String,
 		general_note: String,
@@ -1216,7 +1216,7 @@ const schema = {
 	}],
 	category: [{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	domain_scope: [{
 		type: mongoose.Types.ObjectId,
@@ -1224,11 +1224,11 @@ const schema = {
 	}],
 	geographical_scope: [{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	characteristic: [{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	logo: [String],
 	mark: [String],
@@ -1398,7 +1398,7 @@ const schema = {
 	
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 		required: true,
 	}],
 	
@@ -1595,12 +1595,12 @@ const schema = {
 
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 		required: true,
 	}],
 	characteristic:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	arm:[String],
 	logo:[String],
@@ -1642,15 +1642,15 @@ const schema = {
 	
 	superordinate:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	subordinate:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	associative:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 
 	founding_person:{
@@ -1671,7 +1671,7 @@ const schema = {
 	}],
 	founding_keyword:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	chronological_specification_beginning: String,
 
@@ -1694,17 +1694,17 @@ const schema = {
 	}],
 	cancellation_keyword:{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	},
 	chronological_specification_cancellation: String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	domain:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	idc:[String],
 
@@ -1812,11 +1812,11 @@ const schema = {
 	
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	topic:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 
 	notes:[String],
@@ -1925,11 +1925,11 @@ const schema = {
 	
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	topic:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 
 	notes:[String],

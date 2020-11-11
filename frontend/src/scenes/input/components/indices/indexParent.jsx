@@ -22,7 +22,7 @@ class IndexParent extends React.Component {
 	getTypeDefinition = () => {throw new Error("Calling abstract function")}
 
 	createFieldProps(name){
-		const definition = this.getTypeDefinition(name)
+		const {schema, fields, ...definition} = this.getTypeDefinition(name)
 
 		if(definition === undefined)
 			throw new Error("createFieldProps: cannot find: [" + name + "]")
@@ -31,21 +31,7 @@ class IndexParent extends React.Component {
 			label:definition.label,
 			onChange:(e,multiplierIndex)=>{this.handleFormChange(e, definition.schema, multiplierIndex)},
 		}
-		if(definition.helper)
-			toReturn.InputProps = this.helperProp(definition.helper)
-	
-		if(definition.options)
-			toReturn.data = definition.options
-
-		if(definition.required)
-			toReturn.required = true
-			
-		if(definition.multiline)
-			toReturn.multiline = true
-			
-		if(definition.type)
-			toReturn.type = definition.type
-
+		
 		return toReturn
 	}
 

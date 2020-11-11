@@ -31,15 +31,15 @@ const schema = new mongoose.Schema({
 	
 	superordinate:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	subordinate:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	associative:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 
 	founding_person:{
@@ -60,7 +60,7 @@ const schema = new mongoose.Schema({
 	}],
 	founding_keyword:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	chronological_specification_beginning: String,
 
@@ -83,17 +83,17 @@ const schema = new mongoose.Schema({
 	}],
 	cancellation_keyword:{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	},
 	chronological_specification_cancellation: String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	domain:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	idc:[String],
 
@@ -102,4 +102,4 @@ const schema = new mongoose.Schema({
 	record_sources:[String],
 })
 
-module.exports = mongoose.model('KeywordIndex', schema, 'KeywordIndex')
+module.exports = mongoose.model('keywordIndex', schema, 'keywordIndex')

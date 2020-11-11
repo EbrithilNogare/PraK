@@ -182,12 +182,12 @@ const schema = new mongoose.Schema({
 
 	category:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 		required: true,
 	}],
 	characteristic:[{
 		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
+		ref: "keywordIndex",
 	}],
 	arm:[String],
 	logo:[String],
