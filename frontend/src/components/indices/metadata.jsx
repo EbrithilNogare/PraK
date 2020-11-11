@@ -58,7 +58,10 @@ class Metadata extends IndexParent {
 				onKeyPress={event => { if (event.which === 13) event.preventDefault()}}
 			>
 				<Paper className={styles.header}>
-					<h1>Nový záznam do Rejstříku metadat</h1>
+					{this.props.defaults
+						? <h1>Editace záznamu v Rejstříku metadat</h1>
+						: <h1>Nový záznam do Rejstříku metadat</h1>
+					}
 				</Paper>
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}>

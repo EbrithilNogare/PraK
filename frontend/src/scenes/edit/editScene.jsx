@@ -4,6 +4,9 @@ import {
 	Switch,
 	Route,
 } from "react-router-dom"
+import { 
+	Paper,
+} from '@material-ui/core'
 
 import Metadata from '../../components/indices/metadata'
 import Corporation from '../../components/indices/corporation'
@@ -19,7 +22,7 @@ class EditScene extends React.Component {
 		super(props)
 		
 		this.state = {
-			record: undefined
+			record: null
 		}	
 	}
 
@@ -40,7 +43,7 @@ class EditScene extends React.Component {
 		})
 		.catch(err=>{
 			console.log(err)
-			this.setState({record:""})
+			this.setState({record:null})
 		})
 	}
 
@@ -49,15 +52,16 @@ class EditScene extends React.Component {
 			<div>
 				<Router>
 					<Switch>
-						<Route path="/prak/edit/metadata">		<Metadata defaults={this.state.record}/>		</Route>
+						<Route path="/prak/edit/metadata/:id">		<Metadata defaults={this.state.record}/>		</Route>
 						
-						<Route path="/prak/edit/corporation">	<Corporation defaults={this.state.record}/>	</Route>
-						<Route path="/prak/edit/creation">		<Creation defaults={this.state.record}/>		</Route>
-						<Route path="/prak/edit/family">		<Family defaults={this.state.record}/>			</Route>
-						<Route path="/prak/edit/geographic">	<Geographic defaults={this.state.record}/>		</Route>
-						<Route path="/prak/edit/keyword">		<Keyword defaults={this.state.record}/>		</Route>
-						<Route path="/prak/edit/person">		<Person defaults={this.state.record}/>			</Route>
-						<Route path="/prak/edit/subject">		<Subject defaults={this.state.record}/>		</Route>
+						<Route path="/prak/edit/corporation/:id">	<Corporation defaults={this.state.record}/>	</Route>
+						<Route path="/prak/edit/creation/:id">		<Creation defaults={this.state.record}/>		</Route>
+						<Route path="/prak/edit/family/:id">		<Family defaults={this.state.record}/>			</Route>
+						<Route path="/prak/edit/geographic/:id">	<Geographic defaults={this.state.record}/>		</Route>
+						<Route path="/prak/edit/keyword/:id">		<Keyword defaults={this.state.record}/>		</Route>
+						<Route path="/prak/edit/person/:id">		<Person defaults={this.state.record}/>			</Route>
+						<Route path="/prak/edit/subject/:id">		<Subject defaults={this.state.record}/>		</Route>
+						<Route path="/prak/edit"><Paper>You must choose what to edit</Paper></Route>
 					</Switch>
 				</Router>
 			</div>

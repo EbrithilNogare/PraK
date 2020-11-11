@@ -1,7 +1,6 @@
 import React from 'react'
-import {
-	withRouter,
-} from "react-router-dom"
+import { withRouter } from "react-router-dom"
+import { withSnackbar } from 'notistack'
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -134,4 +133,4 @@ class ShowScene extends React.Component {
 	}
 }
 
-export default withRouter(ShowScene)
+export default withSnackbar(withRouter(ShowScene))

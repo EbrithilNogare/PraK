@@ -40,7 +40,10 @@ class Corporation extends IndexParent {
 				onKeyPress={event => { if (event.which === 13) event.preventDefault() }}
 			>
 				<Paper className={styles.header}>
-					<h1>Nový záznam do Rejstříku korporací</h1>
+					{this.props.defaults
+						? <h1>Editace záznamu v Rejstříku korporací</h1>
+						: <h1>Nový záznam do Rejstříku korporací</h1>
+					}
 				</Paper>
 				<div className={styles.body}>			
 				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
