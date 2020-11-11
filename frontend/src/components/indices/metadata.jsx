@@ -38,7 +38,7 @@ class Metadata extends IndexParent {
 		super(props)
 
 		this.state = {
-			documentType: 0
+			documentType: this.props.documentType || 0
 		}
 
 		this.formData = {}

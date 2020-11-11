@@ -1,5 +1,7 @@
 import React from 'react'
-import { withSnackbar } from 'notistack'
+import {
+	withRouter,
+} from "react-router-dom"
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -80,9 +82,11 @@ class ShowScene extends React.Component {
 			})
 		} else {
 			return (<TreeItem key={nodes} nodeId={uniqueKey+"-"+0} label={nodes}/>)
-		}
-		
-		
+		}		
+	}
+
+	handleEdit = (e, type, id) => {
+		this.props.history.push(`/prak/edit/${type}/${id}`)
 	}
 
 	render(){
@@ -117,7 +121,7 @@ class ShowScene extends React.Component {
 									<Button
 										variant="contained" 
 										color="primary"
-										onClick={()=>this.props.enqueueSnackbar("Záznam je pouze pro čtení, pro editaci nemáte dostatečná oprávnění", { variant: "error", autoHideDuration: 6000 })}
+										onClick={ e => this.handleEdit(e, match.params.type, match.params.id) }
 									>Editovat záznam</Button>
 								</Grid>
 								</Grid>
@@ -130,4 +134,4 @@ class ShowScene extends React.Component {
 	}
 }
 
-export default withSnackbar(ShowScene)
+export default withRouter(ShowScene)

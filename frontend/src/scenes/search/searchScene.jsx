@@ -15,7 +15,7 @@ import {
 	KeywordComboBox,
 	PersonComboBox,
 	SubjectComboBox,
-} from '../input/components/comboBoxes'
+} from '../../components/comboBoxes'
 
 class ShowScene extends React.Component {
 	constructor(props){
