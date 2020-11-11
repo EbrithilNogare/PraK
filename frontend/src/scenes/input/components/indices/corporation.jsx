@@ -143,10 +143,10 @@ class Corporation extends IndexParent {
 						<KeywordComboBox {...this.createFieldProps("category")}/>
 					</Multiplier>
 					<Multiplier>
-						<GeographicComboBox {...this.createFieldProps("domain_scope")}/>
+						<KeywordComboBox {...this.createFieldProps("domain_scope")}/>
 					</Multiplier>
 					<Multiplier>
-						<KeywordComboBox {...this.createFieldProps("geographical_scope")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_scope")}/>
 					</Multiplier>
 					<Multiplier>
 						<KeywordComboBox {...this.createFieldProps("characteristic")}/>

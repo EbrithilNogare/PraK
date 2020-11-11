@@ -239,7 +239,7 @@
 			"helper": "Výběr z rejstříku klíčových slov."
 		},
 		"geographical_scope": {
-			"label": "Geografická působnosti",
+			"label": "Geografická působnost",
 			"schema": "geographical_scope[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
