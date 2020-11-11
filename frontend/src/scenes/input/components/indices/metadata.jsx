@@ -116,7 +116,7 @@ class Metadata extends IndexParent {
 						{this.conditionalField("periodicity") && <StaticComboBox  {...this.createFieldProps("periodicity")}/>}
 					</Multiplier>
 					{this.conditionalField("isbn") && <TextField  {...this.createFieldProps("isbn")}/>}
-					{this.conditionalField("source_document_name") && <TextField  {...this.createFieldProps("source_document_name")}/>}
+					{this.conditionalField("source_document_name") && <MetadataComboBox {...this.createFieldProps("source_document_name")}/>}
 					{this.conditionalField("year") && <TextField  {...this.createFieldProps("year")}/>}
 					{this.conditionalField("volume") && <TextField  {...this.createFieldProps("volume")}/>}
 					{this.conditionalField("number") && <TextField  {...this.createFieldProps("number")}/>}

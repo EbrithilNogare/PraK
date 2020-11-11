@@ -63,7 +63,10 @@ const schema = new mongoose.Schema({
 		periodicity: String,
 	}],
 	issn: String,
-	source_document_name: String,
+	source_document_name: {
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	},
 	copies:{
 		year: Number,
 		volume: Number,
