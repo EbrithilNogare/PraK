@@ -9,7 +9,6 @@
 			"label": "ID",
 			"schema": "other_source[%].id",
 			"helper": "ID cizího zdroje."
-
 		},
 		"other_source_identificator": {
 			"label": "Identifikátor hesla",
@@ -30,16 +29,23 @@
 		},
 		"born_year": {
 			"label": "Rok narození",
-			"schema": "born_year",
+			"schema": "born_year.year",
 			"helper": "Rok narození osoby.",
 			"type": "Number"
-
+		},
+		"born_year_notKnown": {
+			"label": "Datum není jisté",
+			"schema": "born_year.notKnown"
 		},
 		"death_year": {
 			"label": "Rok úmrtí",
-			"schema": "death_year",
+			"schema": "death_year.year",
 			"helper": "Rok úmrtí osoby.",
 			"type": "Number"
+		},
+		"death_year_notKnown": {
+			"label": "Datum není jisté",
+			"schema": "death_year.notKnown"
 		},
 		"initials": {
 			"label": "Rozpis iniciál",

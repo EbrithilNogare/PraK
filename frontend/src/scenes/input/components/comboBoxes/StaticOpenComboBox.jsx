@@ -23,14 +23,13 @@ class StaticOpenComboBox extends React.Component {
 	}
 
 	handleChange(e){
-
-		this.setState({value: e.target.value, menuList: e.target.value === "" ? this.props.data : []})
+		this.setState({value: e.target.value, menuList: e.target.value === "" ? this.props.options : []})
 
 		if(this.props.onChange) this.props.onChange(e)
 	}
 
 	handleClick = (e) => {
-		this.setState({menuList:this.props.data})
+		this.setState({menuList:this.props.options})
 	}
 
 	handleKeyUp = (e) => {

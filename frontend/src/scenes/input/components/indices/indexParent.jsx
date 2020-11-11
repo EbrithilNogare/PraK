@@ -22,17 +22,17 @@ class IndexParent extends React.Component {
 	getTypeDefinition = () => {throw new Error("Calling abstract function")}
 
 	createFieldProps(name){
-		const {schema, fields, ...definition} = this.getTypeDefinition(name)
-
+		const {helper, schema, fields, ...definition} = this.getTypeDefinition(name)
+		
 		if(definition === undefined)
 			throw new Error("createFieldProps: cannot find: [" + name + "]")
-
-		const toReturn = {
-			label:definition.label,
-			onChange:(e,multiplierIndex)=>{this.handleFormChange(e, definition.schema, multiplierIndex)},
-		}
 		
-		return toReturn
+		if(helper)
+			definition.InputProps = this.helperProp(helper)
+
+		definition.onChange = (e,multiplierIndex)=>{this.handleFormChange(e, schema, multiplierIndex)}
+
+		return definition
 	}
 
 	getDataReady = (elements) => {
@@ -40,7 +40,6 @@ class IndexParent extends React.Component {
 		for(let element of elements)
 		if(element.value !== "" && (element.getAttribute("aria-invalid")==="true" || element.getAttribute("dbnotsynced")==="true"))
 			{errors.push(`"${element.value}" is invalid value`)
-		console.log("here");
 		}
 		console.log(errors)
 		return {data:this.formData, errors}

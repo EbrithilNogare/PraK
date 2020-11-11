@@ -15,8 +15,14 @@ const schema = new mongoose.Schema({
 		type: [String],
 		required: true,
 	},
-	born_year: String,
-	death_year: String,
+	born_year: {
+		year: Number,
+		notKnown: Boolean,
+	},
+	death_year: {
+		year: Number,
+		notKnown: Boolean,
+	},
 	initials: [String],
 	general_complement: [String],
 	roman_numerals: [String],

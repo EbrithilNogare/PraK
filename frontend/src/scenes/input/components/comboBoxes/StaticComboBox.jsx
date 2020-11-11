@@ -12,7 +12,7 @@ class StaticComboBox extends React.Component {
 		super(props)
 		
 		this.state = {
-			value: this.props.data ? this.props.data[0] || "" : "",
+			value: this.props.options ? this.props.options[0] || "" : "",
 		}	
 
 		this.handleChange = this.handleChange.bind(this)
@@ -40,7 +40,7 @@ class StaticComboBox extends React.Component {
 					}}
 					endAdornment={this.props.InputProps && this.props.InputProps.endAdornment ? this.props.InputProps.endAdornment : undefined}
 					>
-					{ this.props.data !== undefined && this.props.data.map((value, key)=>(
+					{ this.props.options !== undefined && this.props.options.map((value, key)=>(
 						<MenuItem key={key} value={value}>
 							{value}
 						</MenuItem>

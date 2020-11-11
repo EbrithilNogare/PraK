@@ -21,6 +21,7 @@ import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
 import typeDefinitionFile from './personTypes.json'
 import Multiplier from '../Multiplier'
+import LabeledCheckbox from "../LabeledCheckbox"
 
 class Person extends IndexParent {
 	constructor(props){
@@ -60,7 +61,9 @@ class Person extends IndexParent {
 						<TextField {...this.createFieldProps("surname")}/>
 					</Multiplier>
 					<TextField {...this.createFieldProps("born_year")}/>
+					<LabeledCheckbox {...this.createFieldProps("born_year_notKnown")}/>
 					<TextField {...this.createFieldProps("death_year")}/>
+					<LabeledCheckbox {...this.createFieldProps("death_year_notKnown")}/>
 					<Multiplier>
 						<TextField {...this.createFieldProps("initials")}/>
 					</Multiplier>
