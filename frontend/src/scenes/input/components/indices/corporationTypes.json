@@ -15,11 +15,16 @@
 			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
-		"name": {
-			"label": "Název",
-			"schema": "name",
-			"helper": "Název v podobě, v jaké je korporace známa.",
+		"name_main_part": {
+			"label": "Hlavní část názvu",
+			"schema": "name_main_part",
+			"helper": "Odkaz na součásti korporace.",
 			"required": true
+		},
+		"name_other_part": {
+			"label": "Další část názvu",
+			"schema": "name_other_part",
+			"helper": "Odkaz na součásti korporace."
 		},
 		"acronym": {
 			"label": "Akronym/zkratka",
@@ -40,16 +45,6 @@
 			"label": "Následující forma jména",
 			"schema": "following_name[%]",
 			"helper": "Nový název korporace."
-		},
-		"main_part": {
-			"label": "Hlavní část",
-			"schema": "main_part",
-			"helper": "Odkaz na součásti korporace."
-		},
-		"side_part": {
-			"label": "Vedlejší část",
-			"schema": "side_part[%]",
-			"helper": "Odkaz na součásti korporace."
 		},
 		"general_complement": {
 			"label": "Obecný doplněk",

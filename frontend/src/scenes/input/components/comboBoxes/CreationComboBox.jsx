@@ -7,10 +7,10 @@ class CreationComboBox extends ComboBox {
 	labelPostfix = () => " (Rejstřík dílo/výtvor)"
 
 	generateObjectForMongooseFind = (value) => {
-		return { name: `/${value}/` }
+		return { name_main_part: `/${value}/` }
 	}
 	
-	parseReturnedObjectFromMongooseFind = (element) => element.name
+	parseReturnedObjectFromMongooseFind = (element) => element.name_main_part
 }
 
 export default CreationComboBox

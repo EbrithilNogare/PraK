@@ -23,7 +23,7 @@ router.route('/').post((req, res) => {
 		res.status(400).json({ message: "missing body" })
 		
 	// support for regexp search
-	for(let key of ["name"])
+	for(let key of ["name_main_part"])
 	if(
 		req.body[key] &&
 		typeof req.body[key] === "string" &&

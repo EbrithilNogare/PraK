@@ -6,11 +6,13 @@ const schema = new mongoose.Schema({
 		id: String,
 		identificator: String,
 	}],
-	name: {
+	
+	name_main_part: {
 		type: String,
 		required: true,
 		unique: true,
 	},
+	name_other_part: String,
 
 	synonyms:[String],
 	inverted_wordorder_terms:[String],
@@ -18,9 +20,6 @@ const schema = new mongoose.Schema({
 	foreign_language_descriptors:[String],
 	form_descriptors:[String],
 	other_name_form:[String],
-
-	main_part: String,
-	other_part:[String],
 
 	general_complement: String,
 	clarification: String,
@@ -91,7 +90,6 @@ const schema = new mongoose.Schema({
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "KeywordIndex",
-		required: true,
 	}],
 	domain:[{
 		type: mongoose.Types.ObjectId,

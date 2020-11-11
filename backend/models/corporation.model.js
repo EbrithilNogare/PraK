@@ -7,19 +7,17 @@ const schema = new mongoose.Schema({
 		identificator: String,
 	}],
 
-	name: {
+	name_main_part: {
 		type: String,
 		required: true,
 		unique: true,
 	},
+	name_other_part: String,
 
 	acronym: [String],
 	historical_name: [String],
 	other_name_form: [String],
 	following_name: [String],
-
-	main_part: String,
-	side_part: [String],
 
 	general_complement: String,
 	geographical_complement: String,

@@ -1084,19 +1084,17 @@ const schema = {
 		identificator: String,
 	}],
 
-	name: {
+	name_main_part: {
 		type: String,
 		required: true,
 		unique: true,
 	},
+	name_other_part: String,
 
 	acronym: [String],
 	historical_name: [String],
 	other_name_form: [String],
 	following_name: [String],
-
-	main_part: String,
-	side_part: [String],
 
 	general_complement: String,
 	geographical_complement: String,
@@ -1250,16 +1248,15 @@ const schema = {
 		identificator: String,
 	}],
 
-	name:{
+	name_main_part: {
 		type: String,
 		required: true,
 		unique: true,
 	},
+	name_other_part: String,
 
 	other_name_form: [String],
-		
-	main_part: String,
-	other_part:[String],
+	
 	numeric_tag: String,
 	cast:[String],
 	tone: String,
@@ -1622,11 +1619,13 @@ const schema = {
 		id: String,
 		identificator: String,
 	}],
-	name: {
+	
+	name_main_part: {
 		type: String,
 		required: true,
 		unique: true,
 	},
+	name_other_part: String,
 
 	synonyms:[String],
 	inverted_wordorder_terms:[String],
@@ -1634,9 +1633,6 @@ const schema = {
 	foreign_language_descriptors:[String],
 	form_descriptors:[String],
 	other_name_form:[String],
-
-	main_part: String,
-	other_part:[String],
 
 	general_complement: String,
 	clarification: String,
@@ -1707,7 +1703,6 @@ const schema = {
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "KeywordIndex",
-		required: true,
 	}],
 	domain:[{
 		type: mongoose.Types.ObjectId,
@@ -1720,126 +1715,115 @@ const schema = {
 	record_sources:[String],
 },
 	person: {
-	other_source:[{
+	other_source: [{
 		name: String,
 		id: String,
 		identificator: String,
 	}],
-
-	name:{
-		type: [String],
+	
+	name_main_part: {
+		type: String,
 		required: true,
+		unique: true,
 	},
-	surname:{
-		type: [String],
-		required: true,
-	},
-	born_year: String,
-	death_year: String,
-	initials: [String],
-	general_complement: [String],
-	roman_numerals: [String],
-	geographical_complement: [String],
+	name_other_part: String,
 
-	original_name: [String],
 	acronym: [String],
-	cipher: [String],
-	religious_name: [String],
-	marriage_name: [String],
-	historical_name: [String],
-	straight_order: String,
-	other_name_form: String,
-	pseudonym: String,
-	
-	titles:[{
-		title: String,
-		date: String,
-	}],
+	other_name_form: [String],
 
-	bibliographical_note:{
-		type: String,
-		required: true,
-	},
-	cv: String,
-	domain_branch:{
-		type: [String],
-		required: true,
-	},
-	gender:{
+	general_complement: String,
+	geographical_complement: String,
+	chronological_complement: String,
+	event_order: String,
+	
+	description:{
 		type: String,
 		required: true,
 	},
 
-	country_membership: [{
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	}],
-	born_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	death_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	related_country: {
-		type: [mongoose.Types.ObjectId],
-		required: true,
-		ref: "geographicIndex",
-	},
-
-	language_country:{
-		type: [String],
-		required: true,
-	},
-	
-	parents: [{
-		type: mongoose.Types.ObjectId,
-		ref: "personIndex",
-	}],
-	siblings: [{
-		type: mongoose.Types.ObjectId,
-		ref: "personIndex",
-	}],
-	family: [{
-		type: mongoose.Types.ObjectId,
-		ref: "familyIndex",
-	}],
-	membreship: [{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	}],
-	employment: [{
-		type: mongoose.Types.ObjectId,
-		ref: "KeywordIndex",
-	}],
-	affiliation: [{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	}],
-	important_subject: [{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	}],
-	important_event: [{
+	aggregate_event:[{
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	}],
-	marriage_start: [String],
-	marriage_end: [String],
-	study: [{
+	sub_event:[{
+		type: mongoose.Types.ObjectId,
+		ref: "subjectIndex",
+	}],
+	
+	related_person:[{
+		type: mongoose.Types.ObjectId,
+		ref: "personIndex",
+	}],
+	related_subject:[{
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	}],
+	related_place:[{
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	}],
+	venue:[{
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	}],
+	organizator_person:[{
+		type: mongoose.Types.ObjectId,
+		ref: "personIndex",
+	}],
+	organizator_corporation:[{
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	}],
 	
-	arm: [String],
-	photo: [String],
-
-	notes: [String],
-	record_sources:{
-		type: [String],
-		required: true,
+	founding_person: {
+		type: mongoose.Types.ObjectId,
+		ref: "personIndex",
 	},
+	founding_corporation: {
+		type: mongoose.Types.ObjectId,
+		ref: "corporationIndex",
+	},
+	founding_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	first_mention: {
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	},
+	founding_chronological_specification: String,
+
+
+	cancellation_person: {
+		type: mongoose.Types.ObjectId,
+		ref: "personIndex",
+	},
+	last_mention_event: {
+		type: mongoose.Types.ObjectId,
+		ref: "corporationIndex",
+	},
+	cancellation_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	last_mention: {
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	},
+	cancellation_chronological_specification: String,
+	
+	category:[{
+		type: mongoose.Types.ObjectId,
+		ref: "KeywordIndex",
+	}],
+	topic:[{
+		type: mongoose.Types.ObjectId,
+		ref: "KeywordIndex",
+	}],
+
+	notes:[String],
+
+	record_sources:[String],
 },
 	subject: {
 	other_source: [{

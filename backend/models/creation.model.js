@@ -7,16 +7,15 @@ const schema = new mongoose.Schema({
 		identificator: String,
 	}],
 
-	name:{
+	name_main_part: {
 		type: String,
 		required: true,
 		unique: true,
 	},
+	name_other_part: String,
 
 	other_name_form: [String],
-		
-	main_part: String,
-	other_part:[String],
+	
 	numeric_tag: String,
 	cast:[String],
 	tone: String,

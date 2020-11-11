@@ -7,10 +7,10 @@ class CorporationComboBox extends ComboBox {
 	labelPostfix = () => " (Rejstřík korporací)"
 
 	generateObjectForMongooseFind = (value) => {
-		return { name: `/${value}/` }
+		return { name_main_part: `/${value}/` }
 	}
 	
-	parseReturnedObjectFromMongooseFind = (element) => element.name
+	parseReturnedObjectFromMongooseFind = (element) => element.name_main_part
 }
 
 export default CorporationComboBox
