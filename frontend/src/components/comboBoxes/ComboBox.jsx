@@ -19,9 +19,9 @@ class ComboBox extends React.Component {
 		super(props)
 		
 		this.state = {
-			value: "",
+			value: this.props.defaultValue || "",
 			name: "",
-			ID: "",
+			ID: this.props.defaultValue ? 1 : "",
 			menuList: [],
 			loading: false,
 		}
@@ -103,7 +103,7 @@ class ComboBox extends React.Component {
 	}
 
 	render(){
-		const {...config} = this.props
+		const {defaultValue, ...config} = this.props
 		return(
 			<div>
 				<TextField {...config}

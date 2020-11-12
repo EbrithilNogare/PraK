@@ -21,7 +21,7 @@ class IndexParent extends React.Component {
 	
 	getTypeDefinition = () => {throw new Error("Calling abstract function")}
 
-	createFieldProps(name){
+	createFieldProps = (name) => {
 		const {helper, schema, fields, ...definition} = this.getTypeDefinition(name)
 		
 		if(definition === undefined)
@@ -29,10 +29,32 @@ class IndexParent extends React.Component {
 		
 		if(helper)
 			definition.InputProps = this.helperProp(helper)
-
-		definition.onChange = (e,multiplierIndex)=>{this.handleFormChange(e, schema, multiplierIndex)}
-
+		
+		if(this.props.defaults){
+			definition.defaultValue = this.deepValue(this.props.defaults, schema)
+		}
+		
+		definition.onChange = (e,multiplierIndex) => { this.handleFormChange(e, schema, multiplierIndex) }
 		return definition
+	}
+
+	deepValue = (obj, path) => {
+		const arrayPath = path.split("[%]")
+		for (let i=0, path = arrayPath[0].split('.'), len=path.length; i<len; i++){
+			obj = obj[path[i]]
+		}
+		if(arrayPath.length === 1){
+			return obj
+		}
+		
+		const toReturn = []
+		obj.forEach((value,key)=>{
+			for (let i = 1, path = arrayPath[1].split('.'), len = path.length; i < len; i++){
+				value = value[path[i]]
+			}
+			toReturn.push(value)
+		})
+		return toReturn[0] // todo remove [0]
 	}
 
 	getDataReady = (elements) => {
@@ -98,12 +120,6 @@ class IndexParent extends React.Component {
 	}
 	
 	handleFormChange = (e, a, multiplierIndex=0) => {
-		a=a.replace("[%]", `.${multiplierIndex}`);
-		a.split('.').reduce((o,p,i) =>
-			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || (isNaN(p)?[]:{}), this.formData)
-	}
-
-	handleCheckboxChange = (e, a, multiplierIndex=0) => {
 		a=a.replace("[%]", `.${multiplierIndex}`);
 		a.split('.').reduce((o,p,i) =>
 			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || (isNaN(p)?[]:{}), this.formData)
