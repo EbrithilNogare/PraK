@@ -9,6 +9,7 @@ router.route('/:id').get((req, res) => {
 		res.status(400).json({ message: "missing id" })
 
 	Model.findById(id)
+		.populate('founding_person', ['name', 'surname'])
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

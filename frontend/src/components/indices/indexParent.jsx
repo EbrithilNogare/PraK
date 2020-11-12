@@ -31,7 +31,13 @@ class IndexParent extends React.Component {
 			definition.InputProps = this.helperProp(helper)
 		
 		if(this.props.defaults){
-			definition.defaultValue = this.deepValue(this.props.defaults, schema)
+			if(Array.isArray(schema)){
+				const mapOfDefaluts = schema.map(value => this.deepValue(this.props.defaults, value))
+				if(mapOfDefaluts.every(value=>value!==undefined))
+					definition.defaultValue = mapOfDefaluts
+			}
+			else
+				definition.defaultValue = this.deepValue(this.props.defaults, schema)
 		}
 		
 		definition.onChange = (e,multiplierIndex) => { this.handleFormChange(e, schema, multiplierIndex) }
@@ -41,6 +47,7 @@ class IndexParent extends React.Component {
 	deepValue = (obj, path) => {
 		const arrayPath = path.split("[%]")
 		for (let i=0, path = arrayPath[0].split('.'), len=path.length; i<len; i++){
+			if(obj === undefined) return undefined
 			obj = obj[path[i]]
 		}
 		if(arrayPath.length === 1){

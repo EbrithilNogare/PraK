@@ -169,7 +169,6 @@ class Metadata extends IndexParent {
 					{this.conditionalField("chronological_content_specification") && <DoubleSlider {...this.createFieldProps("chronological_content_specification")}
 						BeginLabel="Začátek"
 						EndLabel="Konec"
-						defaultValue={[0,0]}
 						min={1900}
 						max={(new Date()).getFullYear()+10}
 						onChange={(e)=>{
