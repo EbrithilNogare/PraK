@@ -13,11 +13,10 @@ class DoubleSlider extends React.Component {
 		super(props)
 		
 		let defaultValue = this.props.defaultValue
-		if(defaultValue === undefined) defaultValue = [
-			Math.round(this.props.min+(this.props.max-this.props.min)/3),
-			Math.round(this.props.max-(this.props.max-this.props.min)/3),
+		if(!defaultValue.every(value=>value!==undefined)) defaultValue = [
+			this.props.min,
+			this.props.max,
 		]
-		if(defaultValue === undefined) defaultValue = [20,80]
 
 		this.state = {
 			value: defaultValue,

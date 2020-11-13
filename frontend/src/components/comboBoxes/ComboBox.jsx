@@ -18,14 +18,6 @@ class ComboBox extends React.Component {
 	constructor(props){
 		super(props)
 		
-		this.state = {
-			value: this.props.defaultValue || "",
-			name: "",
-			ID: this.props.defaultValue ? 1 : "",
-			menuList: [],
-			loading: false,
-		}
-
 		this.request_v = 0
 		this.newestRequest_v = 0
 	}

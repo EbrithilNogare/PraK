@@ -20,16 +20,18 @@ class Multiplier extends React.Component {
 		
 		// load default values
 		let dataWithDefaultValues  = []
-		if(Array.isArray(this.props.children))
-			if(this.props.children[0].props.defaultValue !== undefined){
-				this.props.children[0].props.defaultValue.forEach(child => {
+		if(Array.isArray(this.props.children)){
+			const notEmptyChild = this.props.children.find((child=>child.props !== undefined))
+			if(notEmptyChild && notEmptyChild.props && notEmptyChild.props.defaultValue !== undefined){
+				notEmptyChild.props.defaultValue.forEach(child => {
 					dataWithDefaultValues.push({key: this.maxKey++})
 				})
 			}
-		else
-			if(this.props.children.props.defaultValue !== undefined){
-				dataWithDefaultValues = [{key: this.maxKey++}]
+			else
+				if(this.props.children && this.props.children.props && this.props.children.props.defaultValue !== undefined){
+					dataWithDefaultValues = [{key: this.maxKey++}]
 			}
+		}
 				
 		this.state = {
 			data: dataWithDefaultValues.length !== 0
