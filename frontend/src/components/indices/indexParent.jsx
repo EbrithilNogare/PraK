@@ -109,11 +109,11 @@ class IndexParent extends React.Component {
 		})
 		.then(response => {
 			console.info("%cResponse:\n", "background: #222; color: #bada55", response)
-			this.props.enqueueSnackbar(`Sending succesfull\nID: ${(response.id || this.props.defaults._id)}`, { variant: "success", autoHideDuration: 6000 })
+			this.props.enqueueSnackbar(`Sending succesful\nID: ${(response.id || this.props.defaults._id)}`, { variant: "success", autoHideDuration: 6000 })
 			this.props.history.push(`/prak/show/${this.indexURL}/`+(response.id || this.props.defaults._id))
 		})
 		.catch((error) => {
-			console.error('Sending unsuccesfull:', error)
+			console.error('Sending unsuccesful:', error)
 
 			if(error.status && error.status === 500) error.json().then(errorMessage =>{
 				console.error("errorMessage from server:", errorMessage)
@@ -123,7 +123,7 @@ class IndexParent extends React.Component {
 					this.props.enqueueSnackbar(`duplicite error at: ${JSON.stringify(errorMessage.details.keyValue)}`, { variant: "error", autoHideDuration: 6000 })
 			})
 			else
-				this.props.enqueueSnackbar(`Sending unsuccesfull: ${error}`, { variant: "error", autoHideDuration: 6000 })
+				this.props.enqueueSnackbar(`Sending unsuccesful: ${error}`, { variant: "error", autoHideDuration: 6000 })
 		})
 
 	}

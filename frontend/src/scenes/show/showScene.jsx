@@ -88,6 +88,37 @@ class ShowScene extends React.Component {
 		this.props.history.push(`/prak/edit/${type}/${id}`)
 	}
 
+	handleRemove = (e, type, id) => {
+		console.info(`%cRemove record "${id}" from ${type} collection`, "background: #222; color: #bada55")
+
+		fetch(`/prak/api/${type}${type==="metadata"?"":"index"}/${id}`,{
+			method: "DELETE",
+		})
+		.then(response => {
+			if(response.status === 500)
+				throw response
+			return response.json()
+		})
+		.then(response => {
+			console.info("%cResponse:\n", "background: #222; color: #bada55", response)
+			this.props.enqueueSnackbar(`Removed succesfully\n`, { variant: "success", autoHideDuration: 6000 })
+			this.props.history.push(`/prak/show/${type}/${id}`)
+		})
+		.catch((error) => {
+			console.error('Removing unsuccesful:', error)
+
+			if(error.status && error.status === 500) error.json().then(errorMessage =>{
+				console.error("errorMessage from server:", errorMessage)
+				if(errorMessage.details.message)
+					this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error", autoHideDuration: 6000 })
+				if(errorMessage.details.code && (errorMessage.details.code === 11000 || errorMessage.details.code === 11001))
+					this.props.enqueueSnackbar(`duplicite error at: ${JSON.stringify(errorMessage.details.keyValue)}`, { variant: "error", autoHideDuration: 6000 })
+			})
+			else
+				this.props.enqueueSnackbar(`Removing unsuccesful: ${error}`, { variant: "error", autoHideDuration: 6000 })
+		})
+	}
+
 	render(){
 		return(
 			<div className={styles.ShowScene}>
@@ -113,7 +144,7 @@ class ShowScene extends React.Component {
 									<Button
 										variant="contained" 
 										color="primary"
-										onClick={()=>this.props.enqueueSnackbar("Nemáte požadovaná oprávnění pro mazání záznamů", { variant: "error", autoHideDuration: 6000 })}
+										onClick={ e => this.handleRemove(e, match.params.type, match.params.id) }
 									>Smazat záznam</Button>
 								</Grid>
 								<Grid item>
