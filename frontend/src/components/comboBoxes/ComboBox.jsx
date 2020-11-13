@@ -17,7 +17,7 @@ import {
 class ComboBox extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.request_v = 0
 		this.newestRequest_v = 0
 	}

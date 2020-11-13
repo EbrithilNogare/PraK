@@ -5,7 +5,7 @@ class MetadataComboBox extends ComboBox {
 		super(props)
 		
 		this.state = {
-			value: this.props.defaultValue ? this.parseReturnedObjectFromMongooseFind(this.props.defaultValue) : "",
+			value: this.props.defaultValue ? this.parseReturnedObjectFromMongooseFind(this.props.defaultValue) || "" : "",
 			name: "",
 			ID: this.props.defaultValue ? 1 : "",
 			menuList: [],
