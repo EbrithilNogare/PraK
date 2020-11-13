@@ -37,7 +37,7 @@ class Prak extends React.Component {
 	render(){
 		WebFont.load({
 			google: {
-				families: ["Roboto:400,700", "Balsamiq Sans:400"]
+				families: ["Roboto:400,700"]
 			}
 		});
 

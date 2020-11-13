@@ -2,6 +2,7 @@ import React from 'react'
 import {
 	withRouter,
 } from "react-router-dom"
+import { withSnackbar } from 'notistack'
 import {
 	Paper,
 } from '@material-ui/core'
@@ -32,12 +33,15 @@ class ShowScene extends React.Component {
 			this.props.history.push(`/prak/show/${type}/${e.target.value}`)
 	}
 
+	componentDidMount(){
+		this.props.enqueueSnackbar(`Vyberte rejstřík pro vyhledávání a vyplňte minimálně tři znaky`, { variant: "info", autoHideDuration: 6000 })
+	}
+
 	render(){
 		return(
 			<div className={styles.ShowScene}>
 				<Paper className={styles.header}>
 					<h1>Vyhledavátko</h1>
-					<p>Vyberte rejstřík pro vyhledávání a vyplňte minimálně tři znaky</p>
 				</Paper>
 				<Paper className={styles.body}>
 					<MetadataComboBox
@@ -86,4 +90,4 @@ class ShowScene extends React.Component {
 	}
 }
 
-export default withRouter(ShowScene)
+export default withSnackbar(withRouter(ShowScene))
