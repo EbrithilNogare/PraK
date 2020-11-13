@@ -925,7 +925,7 @@ const Boolean = "Boolean"
 const mongoose = { Types: { ObjectId: "ObjectId" } }
 
 const schema = {
-	metadata: {
+metadata: {
 		documentType: Number,
 		author: {
 			id: {
@@ -1080,7 +1080,7 @@ const schema = {
 			required: true,
 		},
 	},
-	corporation: {
+corporation: {
 	other_source: [{
 		name: String,
 		id: String,
@@ -1244,7 +1244,7 @@ const schema = {
 		required: true,
 	},
 },
-	creation: {
+creation: {
 	other_source: [{
 		name: String,
 		id: String,
@@ -1409,14 +1409,14 @@ const schema = {
 
 	record_sources:[String],
 },
-	family: {
+family: {
 		other_source: [{
 			name: String,
 			id: String,
 			identificator: String,
 		}],
 	},
-	geographic: {
+geographic: {
 	other_source: [{
 		name: String,
 		id: String,
@@ -1614,7 +1614,7 @@ const schema = {
 
 	record_sources:[String],
 },
-	keyword: {
+keyword: {
 	other_source: [{
 		name: String,
 		id: String,
@@ -1715,7 +1715,7 @@ const schema = {
 
 	record_sources:[String],
 },
-	person: {
+person: {
 	other_source: [{
 		name: String,
 		id: String,
@@ -1826,24 +1826,22 @@ const schema = {
 
 	record_sources:[String],
 },
-	subject: {
+subject: {
 	other_source: [{
 		name: String,
 		id: String,
 		identificator: String,
 	}],
-
-	name:{
+	
+	name_main_part: {
 		type: String,
 		required: true,
 		unique: true,
 	},
+	name_other_part: String,
 
 	acronym: [String],
 	other_name_form: [String],
-
-	main_part: String,
-	other_part: [String],
 
 	general_complement: String,
 	geographical_complement: String,
