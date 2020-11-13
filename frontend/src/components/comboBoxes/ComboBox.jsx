@@ -98,7 +98,7 @@ class ComboBox extends React.Component {
 
 	openNewFieldWindow = () => {
 		const url = this.getNewFieldURL()
-		console.log("Opening new window\n", url)
+		console.info("%cOpening new window\n", "background: #222; color: #bada55", url)
 		window.open(url)
 	}
 

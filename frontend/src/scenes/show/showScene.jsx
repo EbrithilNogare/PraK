@@ -41,7 +41,7 @@ class ShowScene extends React.Component {
 			this.setState({record:data})
 		})
 		.catch(err=>{
-			console.log(err)
+			console.error(err)
 			this.setState({record:""})
 		})
 	}

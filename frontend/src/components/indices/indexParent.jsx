@@ -33,8 +33,8 @@ class IndexParent extends React.Component {
 		if(this.props.defaults){
 			if(Array.isArray(schema)){
 				const mapOfDefaluts = schema.map(value => this.deepValue(this.props.defaults, value))
-				if(mapOfDefaluts.every(value=>value!==undefined))
-					definition.defaultValue = mapOfDefaluts
+				// if(mapOfDefaluts.every(value=>value!==undefined))
+				definition.defaultValue = mapOfDefaluts
 			}
 			else
 				definition.defaultValue = this.deepValue(this.props.defaults, schema)
@@ -43,7 +43,7 @@ class IndexParent extends React.Component {
 		definition.onChange = (e,multiplierIndex) => { this.handleFormChange(e, schema, multiplierIndex) }
 		return definition
 	}
-
+	
 	deepValue = (obj, path) => {
 		const arrayPath = path.split("[%]")
 		for (let i=0, path = arrayPath[0].split('.'), len=path.length; i<len; i++){
@@ -53,7 +53,7 @@ class IndexParent extends React.Component {
 		if(arrayPath.length === 1){
 			return obj
 		}
-		
+	
 		const toReturn = []
 		obj.forEach((value,key)=>{
 			for (let i = 1, path = arrayPath[1].split('.'), len = path.length; i < len; i++){
@@ -61,7 +61,7 @@ class IndexParent extends React.Component {
 			}
 			toReturn.push(value)
 		})
-		return toReturn[0] // todo remove [0]
+		return toReturn
 	}
 
 	getDataReady = (elements) => {
@@ -70,7 +70,6 @@ class IndexParent extends React.Component {
 		if(element.value !== "" && (element.getAttribute("aria-invalid")==="true" || element.getAttribute("dbnotsynced")==="true"))
 			{errors.push(`"${element.value}" is invalid value`)
 		}
-		console.log(errors)
 		return {data:this.formData, errors}
 	}
 	
@@ -91,10 +90,13 @@ class IndexParent extends React.Component {
 			return
 		}
 
-		console.log("Sending data:\n", data)
-				
-		fetch(`/prak/api/${this.indexURL}${this.indexURL==="metadata"?"":"index"}`,{
-			method: "PUT",
+		
+		const method = this.props.defaults ? "PATCH" : "PUT" 
+		
+		console.info(`%cSending data as ${method}:\n`, "background: #222; color: #bada55", data)
+		
+		fetch(`/prak/api/${this.indexURL}${this.indexURL==="metadata"?"":"index"}${method==="PATCH"?"/"+this.props.defaults._id:""}`,{
+			method,
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -106,9 +108,9 @@ class IndexParent extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			console.log("Response:\n",response)
-			this.props.enqueueSnackbar(`Sending succesfull\nID: ${response.id}`, { variant: "success", autoHideDuration: 6000 })
-			this.props.history.push(`/prak/show/${this.indexURL}/`+response.id)
+			console.info("%cResponse:\n", "background: #222; color: #bada55", response)
+			this.props.enqueueSnackbar(`Sending succesfull\nID: ${(response.id || this.props.defaults._id)}`, { variant: "success", autoHideDuration: 6000 })
+			this.props.history.push(`/prak/show/${this.indexURL}/`+(response.id || this.props.defaults._id))
 		})
 		.catch((error) => {
 			console.error('Sending unsuccesfull:', error)

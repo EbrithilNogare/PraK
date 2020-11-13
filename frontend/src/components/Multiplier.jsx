@@ -17,27 +17,42 @@ class Multiplier extends React.Component {
 		super(props)
 		
 		this.maxKey = 0
-
+		
+		// load default values
+		let dataWithDefaultValues  = []
+		if(Array.isArray(this.props.children))
+			if(this.props.children[0].props.defaultValue !== undefined){
+				this.props.children[0].props.defaultValue.forEach(child => {
+					dataWithDefaultValues.push({key: this.maxKey++})
+				})
+			}
+		else
+			if(this.props.children.props.defaultValue !== undefined){
+				dataWithDefaultValues = [{key: this.maxKey++}]
+			}
+				
 		this.state = {
-			value: undefined,
-			data: [{ key: this.maxKey++, value: undefined }],
+			data: dataWithDefaultValues.length !== 0
+				? dataWithDefaultValues
+				: [{ key: this.maxKey++ }],
 		}
 
 	}
 
-	handleRemove = (keyOfChipToDelete, childs) => {
-		const newState = {data: this.state.data.filter((chip) => chip.key !== keyOfChipToDelete)}
+	handleRemove = (keyToDelete, childs) => {
+		const newState = {data: this.state.data.filter((chip) => chip.key !== keyToDelete)}
 		childs.forEach((value, key)=>{
-			value.props.onChange({ target: { value:undefined } }, keyOfChipToDelete)
+			if(value.props.onChange)
+				value.props.onChange({ target: { value:undefined } }, keyToDelete)
 		})
 
-		if(newState.data.length === 0) newState.data = [{ key: this.maxKey++, value: undefined }]
+		if(newState.data.length === 0) newState.data = [{ key: this.maxKey++ }]
 		this.setState(newState)
 	}
 
 	handleAdd = () => {
 		const newData = this.state.data
-		newData.push({ key: this.maxKey++, value: undefined })
+		newData.push({ key: this.maxKey++ })
 		this.setState({data: newData})
 	}
 
@@ -51,7 +66,12 @@ class Multiplier extends React.Component {
 						<Grid item xs>
 							{propChildrens.map((child, childKey) => {
 								if(child === false) return null
-								return React.cloneElement(child, { style:{ width:"100%", ...child.props.style }, key: childKey, onChange:(e)=>{child.props.onChange(e,value.key)} })
+								return React.cloneElement(child, {
+									style:{ width:"100%", ...child.props.style },
+									key: childKey,
+									onChange:(e)=>{child.props.onChange(e,value.key)},
+									defaultValue: child.props.defaultValue ? child.props.defaultValue[value.key] || undefined : undefined,
+								})
 						})}
 						</Grid>
 						<Grid item style={{width:"60px"}}>
