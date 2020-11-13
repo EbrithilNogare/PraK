@@ -9,6 +9,22 @@ router.route('/:id').get((req, res) => {
 		res.status(400).json({ message: "missing id" })
 
 	Model.findById(id)
+		.populate("author.id", ['name', 'surname'])
+		.populate("other_authors.id", ['name', 'surname'])
+		.populate("publish_place", "name_other_part")
+		.populate("publisher", "name_other_part")
+		.populate("action_name", "name_other_part")
+		.populate("volume_content", "name_other_part")
+		.populate("source_document_name", "name_other_part")
+		.populate("corporation_name", "name_other_part")
+		.populate("location.institution", "name_other_part")
+		.populate("previous_name", "name_other_part")
+		.populate("following_name", "name_other_part")
+		.populate("format", "name_other_part")
+		//.populate("topic", "name_other_part") // todo fix dynamic ref populate
+		.populate("corporation_content_specification", "name_other_part")
+		.populate("geographical_content_specification", "name_other_part")
+		.populate("keywords", "name_other_part")
 		.exec()
 		.then(result => {
 			res.status(200).json(result)
