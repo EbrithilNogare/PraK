@@ -3,13 +3,15 @@ import { withRouter } from "react-router-dom"
 import { withSnackbar } from 'notistack'
 import {
 	BrowserRouter as Router,
-	Switch,
+	Switch as RouterSwitch,
 	Route,
 } from "react-router-dom"
 import {
 	Paper,
 	Grid,
 	Button,
+	Switch,
+	FormControlLabel,
 } from '@material-ui/core'
 import {
 	TreeView,
@@ -21,12 +23,23 @@ import {
 } from '@material-ui/icons';
 import styles from './showScene.module.scss'
 
+import corporationTypes from '../../components/indices/corporationTypes.json'
+import creationTypes from '../../components/indices/creationTypes.json'
+import familyTypes from '../../components/indices/familyTypes.json'
+import geographicTypes from '../../components/indices/geographicTypes.json'
+import keywordTypes from '../../components/indices/keywordTypes.json'
+import metadataTypes from '../../components/indices/metadataTypes.json'
+import personTypes from '../../components/indices/personTypes.json'
+import subjectTypes from '../../components/indices/subjectTypes.json'
+
 class ShowScene extends React.Component {
 	constructor(props){
 		super(props)
 		
 		this.state = {
-			record: null
+			record: null,
+			translatedRecord: null,
+			translated: true
 		}	
 		this.uniqueId = 0
 	}
@@ -38,12 +51,56 @@ class ShowScene extends React.Component {
 		fetch(`/prak/api/${type}${type==="metadata"?"":"index"}/${id}`)
 		.then(response => response.json())
 		.then(data => {
-			this.setState({record:data})
+			this.setState({record:data, translatedRecord: this.translateRecord(data, type)})
 		})
 		.catch(err=>{
 			console.error(err)
-			this.setState({record:""})
 		})
+	}
+
+	translateRecord = (record, type) => {
+		let types
+		switch(type){
+			case "corporation": types = corporationTypes; break
+			case "creation": types = creationTypes; break
+			case "family": types = familyTypes; break
+			case "geographic": types = geographicTypes; break
+			case "keyword": types = keywordTypes; break
+			case "metadata": types = metadataTypes; break
+			case "person": types = personTypes; break
+			case "subject": types = subjectTypes; break
+			default: console.error("incompatible type: ", type)
+		}
+
+		return this.translateSubRecord(record, types.properties, "")
+	}
+
+	translateSubRecord = (record, types, path) => {
+		if(record instanceof Array)
+			return record.map(value => this.translateSubRecord(value, types, path+"[%]."))
+
+		if(!(record instanceof Object))
+			return record
+
+		path = path[0] === "." ? path.substring(1) : path
+		const translatedRecord = {}
+		Object.entries(record).forEach(entry => {
+			const [key, value] = entry
+			const newKey = this.findBySchema(path + key + (value instanceof Array ? "[%]" : ""), types)
+			if(newKey){
+				if(translatedRecord[newKey.label])
+					newKey.label+=" "
+				translatedRecord[newKey.label] = this.translateSubRecord(value, types, path+"."+key)
+			}
+			else
+			translatedRecord[key] = value
+		})
+		return translatedRecord
+	}
+
+	findBySchema = (schema, types) => {
+		console.log(schema)
+		return Object.values(types).find(element => element.schema === schema)
 	}
 
 	componentDidMount(){
@@ -123,7 +180,7 @@ class ShowScene extends React.Component {
 		return(
 			<div className={styles.ShowScene}>
 				<Router>
-					<Switch>
+					<RouterSwitch>
 						<Route path="/prak/show/:type/:id" render={({match}) => (
 							<div>
 								<Paper className={styles.header}>
@@ -134,9 +191,18 @@ class ShowScene extends React.Component {
 										defaultCollapseIcon={<ExpandMore />}
 										defaultExpandIcon={<ChevronRight />}
 									>
-										{this.recursiveTreeItem(this.state.record, 0)}
+										{this.recursiveTreeItem(this.state.translated ? this.state.translatedRecord : this.state.record, 0)}
 									</TreeView>
 								</Paper>
+								<FormControlLabel
+									control={<Switch
+										checked={this.state.translated}
+										onChange={e=>this.setState({translated: e.target.checked})}
+										color="primary"
+									/>}
+									label="Překládat databázové názvy"
+								/>
+								
 								<Grid container spacing={10} justify="flex-end">
 								<Grid item>
 								</Grid>
@@ -157,7 +223,7 @@ class ShowScene extends React.Component {
 								</Grid>
 							</div>
 						)}/>
-					</Switch>
+					</RouterSwitch>
 				</Router>
 			</div>
 		)

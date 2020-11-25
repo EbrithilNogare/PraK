@@ -1,5 +1,10 @@
 {
 	"properties": {
+		"other_source": {
+			"label": "Další zdroje",
+			"schema": "other_source[%]",
+			"helper": "Další zdroje."
+		},
 		"other_source_name": {
 			"label": "Název",
 			"schema": "other_source[%].name",
@@ -27,6 +32,11 @@
 			"helper": "Příjmení.",
 			"required": true
 		},
+		"born_year-category": {
+			"label": "Rok narození",
+			"schema": "born_year",
+			"helper": "Rok narození osoby."
+		},
 		"born_year": {
 			"label": "Rok narození",
 			"schema": "born_year.year",
@@ -36,6 +46,11 @@
 		"born_year_notKnown": {
 			"label": "Datum není jisté",
 			"schema": "born_year.notKnown"
+		},
+		"death_year-category": {
+			"label": "Rok úmrtí",
+			"schema": "death_year",
+			"helper": "Rok úmrtí osoby."
 		},
 		"death_year": {
 			"label": "Rok úmrtí",

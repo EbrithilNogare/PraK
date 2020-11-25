@@ -4,7 +4,7 @@ import {
 	InputAdornment,
 	Tooltip,
 } from '@material-ui/core'
-
+import DeepValue from '../DeepValue.js'
 import {
 	HelpOutline
 } from '@material-ui/icons'
@@ -32,38 +32,18 @@ class IndexParent extends React.Component {
 		
 		if(this.props.defaults){
 			if(Array.isArray(schema)){
-				const mapOfDefaluts = schema.map(value => this.deepValue(this.props.defaults, value))
+				const mapOfDefaluts = schema.map(value => DeepValue(this.props.defaults, value))
 				// if(mapOfDefaluts.every(value=>value!==undefined))
 				definition.defaultValue = mapOfDefaluts
 			}
 			else
-				definition.defaultValue = this.deepValue(this.props.defaults, schema)
+				definition.defaultValue = DeepValue(this.props.defaults, schema)
 		}
 		
 		definition.onChange = (e,multiplierIndex) => { this.handleFormChange(e, schema, multiplierIndex) }
 		return definition
 	}
 	
-	deepValue = (obj, path) => {
-		const arrayPath = path.split("[%]")
-		for (let i=0, path = arrayPath[0].split('.'), len=path.length; i<len; i++){
-			if(obj === undefined) return undefined
-			obj = obj[path[i]]
-		}
-		if(arrayPath.length === 1){
-			return obj
-		}
-	
-		const toReturn = []
-		obj.forEach((value,key)=>{
-			for (let i = 1, path = arrayPath[1].split('.'), len = path.length; i < len; i++){
-				value = value[path[i]]
-			}
-			toReturn.push(value)
-		})
-		return toReturn
-	}
-
 	getDataReady = (elements) => {
 		const errors = []
 		for(let element of elements)

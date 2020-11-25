@@ -1,5 +1,10 @@
  { 
  	"properties":{
+		"other_source": {
+			"label": "Další zdroje",
+			"schema": "other_source[%]",
+			"helper": "Další zdroje."
+		},
 		"other_source_name": {
 			"label": "Název",
 			"schema": "other_source[%].name",
@@ -207,6 +212,11 @@
 			"label": "Změna nadřazené organizace",
 			"schema": "change_parent_organisation[%]",
 			"helper": "Výběr z rejstříku korporací."
+		},
+		"award-category": {
+			"label": "Ocenění",
+			"schema": "awards[%]",
+			"helper": "Ocenění"
 		},
 		"award": {
 			"label": "Ocenění",

@@ -1,5 +1,10 @@
  { 
  	"properties":{
+		"other_source": {
+			"label": "Další zdroje",
+			"schema": "other_source[%]",
+			"helper": "Další zdroje."
+		},
 		"other_source_name": {
 			"label": "Název",
 			"schema": "other_source[%].name",
@@ -94,6 +99,11 @@
 			"schema": "owner[%]",
 			"helper": "Výběr z rejstříku osob."
 		},
+		"corporation-category": {
+			"label": "Název",
+			"schema": "part_of[%]",
+			"helper": "Název"
+		},
 		"corporation_name": {
 			"label": "Název",
 			"schema": "part_of[%].corporation_name",
@@ -103,6 +113,11 @@
 			"label": "Majitel",
 			"schema": "part_of[%].corporation_owner",
 			"helper": "Výběr z rejstříku osob."
+		},
+		"related-category": {
+			"label": "Spojená entita",
+			"schema": "related_entity[%]",
+			"helper": "Spojená entita."
 		},
 		"related_person": {
 			"label": "Spojená entita",
@@ -248,6 +263,11 @@
 			"label": "Historické milníky",
 			"schema": "historical_milestones[%]",
 			"helper": "Událost související s historií geografické entity, např. požár, přidělení práva."
+		},
+		"award-category": {
+			"label": "Ocenění",
+			"schema": "awards",
+			"helper": "Ocenění"
 		},
 		"award": {
 			"label": "Ocenění",
