@@ -99,7 +99,6 @@ class ShowScene extends React.Component {
 	}
 
 	findBySchema = (schema, types) => {
-		console.log(schema)
 		return Object.values(types).find(element => element.schema === schema)
 	}
 
@@ -147,6 +146,11 @@ class ShowScene extends React.Component {
 
 	handleRemove = (e, type, id) => {
 		console.info(`%cRemove record "${id}" from ${type} collection`, "background: #222; color: #bada55")
+
+		if(!window.confirm("Opravdu chcete záznam smazat?")){
+			console.info("%cRemove canceled", "background: #222; color: #bada55")
+			return
+		}
 
 		fetch(`/prak/api/${type}${type==="metadata"?"":"index"}/${id}`,{
 			method: "DELETE",

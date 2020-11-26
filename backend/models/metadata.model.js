@@ -110,10 +110,7 @@ const schema = new mongoose.Schema({
 	range: String,
 	dimension: String,
 	map_scale: String,
-	format: {
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	},
+	format: String,
 	processing_level: String,
 	archival_aids: String,
 	source_citation: String,
@@ -121,11 +118,7 @@ const schema = new mongoose.Schema({
 	multiple_placement_url: String,
 	topic: {
 		type: mongoose.Types.ObjectId,
-		ref: "topicModel",
-	},
-	topicModel: {
-	  type: String,
-	  enum: ['subjectIndex', 'creationIndex']
+		ref: "keywordIndex",
 	},
 	corporation_content_specification: {
 		type: mongoose.Types.ObjectId,

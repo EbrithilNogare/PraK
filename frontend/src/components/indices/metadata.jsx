@@ -13,12 +13,12 @@ import {
 import {
 	MetadataComboBox,
 	CorporationComboBox,
-	CreationComboBox,
+//	CreationComboBox,
 //	FamilyComboBox,
 	GeographicComboBox,
 	KeywordComboBox,
 	PersonComboBox,
-	SubjectComboBox,
+//	SubjectComboBox,
 	StaticOpenComboBox,
 	StaticComboBox,
 	FormStaticComboBox,
@@ -26,7 +26,6 @@ import {
 import ISBNField from '../validationTextFields/ISBNField'
 import DateField from '../validationTextFields/DateField'
 import RegExpField from '../validationTextFields/RegExpField'
-import DoubleSlider from '../DoubleSlider'
 import Multiplier from '../Multiplier'
 import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
@@ -90,6 +89,9 @@ class Metadata extends IndexParent {
 						{this.conditionalField("other_authors_role") && <StaticComboBox {...this.createFieldProps("other_authors_role")}/>}
 					</Multiplier>
 					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
+					<Multiplier>
+						{this.conditionalField("author_responsibility") && <TextField {...this.createFieldProps("author_responsibility")}/>}
+					</Multiplier>					
 					<Multiplier>
 						{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}
 					</Multiplier>
@@ -155,27 +157,18 @@ class Metadata extends IndexParent {
 					{this.conditionalField("range") && <TextField  {...this.createFieldProps("range")}/>}
 					{this.conditionalField("dimension") && <TextField {...this.createFieldProps("dimension")}/>} 
 					{this.conditionalField("map_scale") && <TextField {...this.createFieldProps("map_scale")}/>} 
-					{this.conditionalField("format") && <KeywordComboBox  {...this.createFieldProps("format")}/>}
+					{this.conditionalField("format") && <TextField  {...this.createFieldProps("format")}/>}
 					{this.conditionalField("processing_level") && <StaticComboBox  {...this.createFieldProps("processing_level")}/>}
 					{this.conditionalField("description_level") && <StaticComboBox  {...this.createFieldProps("description_level")}/>}
 					{this.conditionalField("archival_aids") && <TextField {...this.createFieldProps("archival_aids")}/>} 
 					{this.conditionalField("source_citation") && <TextField {...this.createFieldProps("source_citation")}/>} 
 					{this.conditionalField("multiple_placement") && <TextField {...this.createFieldProps("multiple_placement")}/>} 
 					{this.conditionalField("multiple_placement_url") && <TextField {...this.createFieldProps("multiple_placement_url")}/>} 
-					{this.conditionalField("topic") && <SubjectComboBox {...this.createFieldProps("topic")}/>} 
-					{this.conditionalField("topic") && <CreationComboBox {...this.createFieldProps("topic")}/>} 
-					{this.conditionalField("corporation_content_specification") && <PersonComboBox {...this.createFieldProps("corporation_content_specification")}/>} 
-					{this.conditionalField("corporation_content_specification") && <CorporationComboBox {...this.createFieldProps("corporation_content_specification")}/>} 
-					{this.conditionalField("chronological_content_specification") && <DoubleSlider {...this.createFieldProps("chronological_content_specification")}
-						BeginLabel="Začátek"
-						EndLabel="Konec"
-						min={1900}
-						max={(new Date()).getFullYear()+10}
-						onChange={(e)=>{
-							this.handleFormChange({...e, target:{...e.target, value: e.target.value[0]}}, "chronological_content_specification.begin")
-							this.handleFormChange({...e, target:{...e.target, value: e.target.value[1]}}, "chronological_content_specification.end")
-						}}
-					/>}
+					{this.conditionalField("topic") && <KeywordComboBox {...this.createFieldProps("topic")}/>} 
+					{this.conditionalField("corporation_content_specification_person") && <PersonComboBox {...this.createFieldProps("corporation_content_specification_person")}/>} 
+					{this.conditionalField("corporation_content_specification_corporation") && <CorporationComboBox {...this.createFieldProps("corporation_content_specification_corporation")}/>} 
+					{this.conditionalField("chronological_content_specification_begin") && <TextField {...this.createFieldProps("chronological_content_specification_begin")}					/>}
+					{this.conditionalField("chronological_content_specification_end") && <TextField {...this.createFieldProps("chronological_content_specification_end")}					/>}
 					{this.conditionalField("geographical_content_specification") && <GeographicComboBox {...this.createFieldProps("geographical_content_specification")}/>}
 					<Multiplier>
 						{this.conditionalField("keywords") && <KeywordComboBox  {...this.createFieldProps("keywords")}/>}
