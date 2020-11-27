@@ -10,9 +10,8 @@ import {
 class StaticComboBox extends React.Component {
 	constructor(props){
 		super(props)
-		
 		this.state = {
-			value: this.props.options ? this.props.options[0] || "" : "",
+			value: this.props.defaultValue ? this.props.defaultValue : this.props.options ? this.props.options[0] || "" : "",
 		}	
 
 		this.handleChange = this.handleChange.bind(this)

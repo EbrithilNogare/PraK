@@ -37,8 +37,8 @@ class ShowScene extends React.Component {
 		super(props)
 		
 		this.state = {
-			record: null,
-			translatedRecord: null,
+			record: undefined,
+			translatedRecord: undefined,
 			translated: true
 		}	
 		this.uniqueId = 0
@@ -46,7 +46,7 @@ class ShowScene extends React.Component {
 
 
 	getRecord = (type, id) => {
-		if(this.state.record !== null) return
+		if(this.state.record !== undefined) return
 
 		fetch(`/prak/api/${type}${type==="metadata"?"":"index"}/${id}`)
 		.then(response => response.json())
@@ -163,7 +163,7 @@ class ShowScene extends React.Component {
 		.then(response => {
 			console.info("%cResponse:\n", "background: #222; color: #bada55", response)
 			this.props.enqueueSnackbar(`Removed succesfully\n`, { variant: "success", autoHideDuration: 6000 })
-			this.props.history.push(`/prak/show/${type}/${id}`)
+			this.setState({ record: null, translatedRecord: null })
 		})
 		.catch((error) => {
 			console.error('Removing unsuccesful:', error)
@@ -191,6 +191,7 @@ class ShowScene extends React.Component {
 									<h1>Záznam z rejstříku {match.params.type}</h1>
 								</Paper>
 								<Paper className={styles.body}>
+									{this.state.record===null && "Záznam nenalezen, nebo smazán"}
 									<TreeView
 										defaultCollapseIcon={<ExpandMore />}
 										defaultExpandIcon={<ChevronRight />}

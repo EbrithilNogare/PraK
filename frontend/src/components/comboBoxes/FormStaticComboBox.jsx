@@ -10,8 +10,9 @@ import {
 class FormStaticComboBox extends React.Component {
 	constructor(props){
 		super(props)
-		
+		console.log(this.props.defaultValue)
 		this.state = {
+			value: this.props.defaultValue ? this.props.defaultValue : this.props.options ? this.props.options[0] || "" : "",
 			value1: "",
 			value2: "",
 			value3: "",
@@ -25,7 +26,7 @@ class FormStaticComboBox extends React.Component {
 			value3: "",
 		})
 
-		if(this.props.onChange) this.props.onChange({...event, target:{...event.target, value:event.target.value}})
+		if(this.props.onChange) this.props.onChange(event)
 	}
 	handleChangeSecond = event => {
 		this.setState({
