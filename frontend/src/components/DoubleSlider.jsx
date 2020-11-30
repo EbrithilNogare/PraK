@@ -11,7 +11,7 @@ import {
 class DoubleSlider extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		let defaultValue = this.props.defaultValue
 		if(!defaultValue || !defaultValue.every(value=>value!==undefined)) defaultValue = [
 			this.props.min,
@@ -20,7 +20,7 @@ class DoubleSlider extends React.Component {
 
 		this.state = {
 			value: defaultValue,
-		}	
+		}
 
 		this.handleDoubleChange = this.handleDoubleChange.bind(this)
 		this.handleChangeBegin = this.handleChangeBegin.bind(this)
@@ -37,7 +37,7 @@ class DoubleSlider extends React.Component {
 			this.props.onChange({...e, target:{...e.target, value: value}})
 		} 
 	}
-	
+
 	handleChangeBegin(e){
 		this.setState({
 			value: [e.target.value-0, this.state.value[1]],
@@ -46,7 +46,7 @@ class DoubleSlider extends React.Component {
 		if(this.props.onChange){
 			this.props.onChange({...e, target:{...e.target, value: this.state}})
 		} 
-	}	
+	}
 
 	handleChangeEnd(e){
 		this.setState({
@@ -56,7 +56,7 @@ class DoubleSlider extends React.Component {
 		if(this.props.onChange){
 			this.props.onChange({...e, target:{...e.target, value: this.state}})
 		} 
-	}	
+	}
 
 	render(){
 		return(

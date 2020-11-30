@@ -15,6 +15,7 @@ import {
 	SubjectComboBox,
 	FamilyComboBox,
 	StaticComboBox,
+	StaticOpenComboBox,
 } from '../comboBoxes'
 import DateField from '../validationTextFields/DateField'
 import IndexParent from "./indexParent"
@@ -49,13 +50,6 @@ class Person extends IndexParent {
 					}
 				</Paper>
 				<div className={styles.body}>
-				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
-					<Multiplier>
-						<TextField {...this.createFieldProps("other_source_name")}/>
-						<TextField {...this.createFieldProps("other_source_id")}/>
-						<TextField {...this.createFieldProps("other_source_identificator")}/>
-					</Multiplier>
-				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Biograficka data</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("name")}/>
@@ -186,10 +180,18 @@ class Person extends IndexParent {
 						<TextField {...this.createFieldProps("notes")}/>
 					</Multiplier>
 				</Paper>
+				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
+					<Multiplier>
+						<TextField {...this.createFieldProps("other_source_name")}/>
+						<TextField {...this.createFieldProps("other_source_id")}/>
+						<TextField {...this.createFieldProps("other_source_identificator")}/>
+					</Multiplier>
+				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zdroje o heslu</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("record_sources")}/>
 					</Multiplier>
+					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

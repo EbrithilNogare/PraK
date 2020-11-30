@@ -1,12 +1,6 @@
 const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
-	other_source: [{
-		name: String,
-		id: String,
-		identificator: String,
-	}],
-	
 	name_main_part: {
 		type: String,
 		required: true,
@@ -21,7 +15,7 @@ const schema = new mongoose.Schema({
 	geographical_complement: String,
 	chronological_complement: String,
 	event_order: String,
-	
+
 	description:{
 		type: String,
 		required: true,
@@ -35,7 +29,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	}],
-	
+
 	related_person:[{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -60,7 +54,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	}],
-	
+
 	founding_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -97,7 +91,7 @@ const schema = new mongoose.Schema({
 		ref: "creationIndex",
 	},
 	cancellation_chronological_specification: String,
-	
+
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
@@ -109,7 +103,18 @@ const schema = new mongoose.Schema({
 
 	notes:[String],
 
+	other_source: [{
+		name: String,
+		id: String,
+		identificator: String,
+	}],
+
 	record_sources:[String],
+
+	submitter: {
+		type: String,
+		required: true,
+	},
 })
 
 module.exports = mongoose.model('subjectIndex', schema, 'subjectIndex')

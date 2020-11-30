@@ -1,7 +1,7 @@
 .navBar{
 	height: 50px;
 	width: 100%;
-	
+
 	font-size: 17px;
 
 	background-color: #424242;
@@ -20,17 +20,17 @@
 	line-height: 50px;
 	font-weight: bold;
 	margin-left: 15px;
-	
+
 	color: white;
 	text-decoration: none;
 }
 
 .navigation{
-	
+
 }
 
 .userNavigation{
-	
+
 }
 
 .userInfo{
@@ -39,7 +39,7 @@
 
 	border: solid 1px #ffffff;
 	border-radius: 3px;
-	
+
 	color: white;
 	text-decoration: none;
 }
@@ -62,7 +62,7 @@
 	li {
 		float: left;
 	}
-	
+
 	li a {
 		display: block;
 		color: white;
@@ -70,15 +70,15 @@
 		text-decoration: none;
 		padding: 0 20px;
 	}
-	
+
 	li a:hover {
 		background: #111;
 	}
-	
+
 	.active {
 		background: #0277bd;
 	}
-	
+
 	.active:hover {
 		background-color: #01579b;
 	}

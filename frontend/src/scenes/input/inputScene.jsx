@@ -23,7 +23,7 @@ class InputScene extends React.Component {
 			<div className={styles.InputScene}>
 					<Switch>
 						<Route path="/prak/input/metadata">		<Metadata/>		</Route>
-						
+
 						<Route path="/prak/input/corporation">	<Corporation/>	</Route>
 						<Route path="/prak/input/creation">		<Creation/>		</Route>
 						<Route path="/prak/input/family">		<Family/>		</Route>

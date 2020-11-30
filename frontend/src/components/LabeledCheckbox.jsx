@@ -8,10 +8,10 @@ import {
 class LabeledCheckbox extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {}
 	}
-	
+
 	handleChange = e => {this.props.onChange({...e, target:{...e.target, value: e.target.checked}})}
 
 	render(){

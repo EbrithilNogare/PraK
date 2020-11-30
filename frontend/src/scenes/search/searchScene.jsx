@@ -21,10 +21,10 @@ import {
 class ShowScene extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {
 			record: null
-		}	
+		}
 		this.uniqueId = 0
 	}
 

@@ -33,11 +33,11 @@ router.route('/:id').get((req, res) => {
 		})
 })
 
-router.route('/').post((req, res) => {	
+router.route('/').post((req, res) => {
 	const email = req.body.email
 	if (email === undefined)
 		res.status(400).json({ message: "missing email" })
-		
+
 	const password = req.body.password
 	if(password === undefined)
 		res.status(400).json({ message: "missing password" })
@@ -58,7 +58,7 @@ router.route('/').post((req, res) => {
 					status: "NOT_LOGGED_IN",
 					message: "wrong password",
 				})
-			
+
 			let newSessionExpiration = new Date()
 			newSessionExpiration.setTime(newSessionExpiration.getTime() + 12*60*60*1000)
 
@@ -67,7 +67,7 @@ router.route('/').post((req, res) => {
 				"session.id": newSessionID,
 				"session.expiration": newSessionExpiration,
 			}
-			return User.findOneAndUpdate(filter, update)				
+			return User.findOneAndUpdate(filter, update)
 		})
 		.then(result => {
 			res.status(200).json({
@@ -84,7 +84,7 @@ router.route('/:sessionID').delete((req, res) => {
 	const sessionID = req.params.sessionID
 	if(sessionID === undefined)
 		res.status(400).json({ message: "missing sessionID" })
-		
+
 	const filter = {"session.id": sessionID}
 	const update = {"session.expiration": new Date()}
 	User.findOneAndUpdate(filter, update)

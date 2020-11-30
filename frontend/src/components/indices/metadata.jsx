@@ -91,7 +91,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
 					<Multiplier>
 						{this.conditionalField("author_responsibility") && <TextField {...this.createFieldProps("author_responsibility")}/>}
-					</Multiplier>					
+					</Multiplier>
 					<Multiplier>
 						{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}
 					</Multiplier>
@@ -112,8 +112,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("edition_order") && <TextField  {...this.createFieldProps("edition_order")}/>}
 					{this.conditionalField("edition") && <TextField  {...this.createFieldProps("edition")}/>}
 					{this.conditionalField("action_name") && <CorporationComboBox  {...this.createFieldProps("action_name")}/>}
-					{this.conditionalField("volume_content") && <CorporationComboBox  {...this.createFieldProps("volume_content")}/>}
-					{this.conditionalField("volume_content") && <GeographicComboBox  {...this.createFieldProps("volume_content")}/>}
+					{this.conditionalField("volume_content") && <TextField  {...this.createFieldProps("volume_content")}/>}
 					<Multiplier>
 						{this.conditionalField("publishing_year_from") && <TextField {...this.createFieldProps("publishing_year_from")}/>}
 						{this.conditionalField("publishing_year_to") && <TextField  {...this.createFieldProps("publishing_year_to")}/>}
@@ -132,7 +131,7 @@ class Metadata extends IndexParent {
 					<Multiplier>
 						{this.conditionalField("access_conditions") && <StaticComboBox  {...this.createFieldProps("access_conditions")}/>}
 						{this.conditionalField("acces_note") && <TextField  {...this.createFieldProps("acces_note")}/>}
-						{this.conditionalField("location_in_institution") && <CorporationComboBox {...this.createFieldProps("location_in_institution")}/>}
+						{this.conditionalField("location_in_institution") && <TextField {...this.createFieldProps("location_in_institution")}/>}
 						{this.conditionalField("location_in_fund") && <TextField  {...this.createFieldProps("location_in_fund")}/>}
 						{this.conditionalField("location_note") && <TextField  {...this.createFieldProps("location_note")}/>}
 					</Multiplier>
@@ -160,7 +159,9 @@ class Metadata extends IndexParent {
 					{this.conditionalField("format") && <TextField  {...this.createFieldProps("format")}/>}
 					{this.conditionalField("processing_level") && <StaticComboBox  {...this.createFieldProps("processing_level")}/>}
 					{this.conditionalField("description_level") && <StaticComboBox  {...this.createFieldProps("description_level")}/>}
-					{this.conditionalField("archival_aids") && <TextField {...this.createFieldProps("archival_aids")}/>} 
+					<Multiplier>
+						{this.conditionalField("archival_aids") && <MetadataComboBox {...this.createFieldProps("archival_aids")}/>} 
+					</Multiplier>
 					{this.conditionalField("source_citation") && <TextField {...this.createFieldProps("source_citation")}/>} 
 					{this.conditionalField("multiple_placement") && <TextField {...this.createFieldProps("multiple_placement")}/>} 
 					{this.conditionalField("multiple_placement_url") && <TextField {...this.createFieldProps("multiple_placement_url")}/>} 

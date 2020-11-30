@@ -1,12 +1,6 @@
 const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
-	other_source: [{
-		name: String,
-		id: String,
-		identificator: String,
-	}],
-
 	name_main_part: {
 		type: String,
 		required: true,
@@ -15,32 +9,32 @@ const schema = new mongoose.Schema({
 	name_other_part: String,
 
 	other_name_form: [String],
-	
+
 	numeric_tag: String,
 	cast:[String],
 	tone: String,
 	arrangement:[String],
 	name_part:[String],
-	
+
 	general_complement: String,
 	geographical_complement: String,
 	chronological_complement: String,
 	author:[String],
 	language:[String],
 	source:[String],
-			
+
 	brief_characteristic: String,
 	description:{
 		type: String,
 		required: true,
 	},
 	geographical_description: String,
-	
+
 	history: String,
 	purpose:[String],
 
 	coordinates: String,
-	
+
 	hierarchical_relations:[{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
@@ -81,7 +75,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	}],
-	
+
 	founding_person:{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -107,7 +101,7 @@ const schema = new mongoose.Schema({
 		ref: "creationIndex",
 	},
 	chronological_specification_beginning: String,
-	
+
 	cancellation_person:{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -131,9 +125,9 @@ const schema = new mongoose.Schema({
 	last_realization_subject:{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
-	},	
+	},
 	chronological_specification_cancellation: String,
-	
+
 	document_change_person:[{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -154,16 +148,27 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	}],
-	
+
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 		required: true,
 	}],
-	
+
 	notes:[String],
 
+	other_source: [{
+		name: String,
+		id: String,
+		identificator: String,
+	}],
+
 	record_sources:[String],
+
+	submitter: {
+		type: String,
+		required: true,
+	},
 })
 
 module.exports = mongoose.model('creationIndex', schema, 'creationIndex')

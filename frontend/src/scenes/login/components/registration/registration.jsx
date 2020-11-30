@@ -14,7 +14,7 @@ import styles from './registration.module.scss'
 export default class registrationScene extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.state = { 
 			username: "",
 			email: "",
@@ -24,7 +24,7 @@ export default class registrationScene extends React.Component {
 			passwordCheck: "",
 			remember: false,
 			loginErrors: "",
-		}	
+		}
 
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -35,7 +35,7 @@ export default class registrationScene extends React.Component {
 			[event.target.name]: event.target[type]
 		})
 	}
-	
+
 	handleSubmit(event){
 		const { username, password, remember } = this.state
 		const url = "api/login"
@@ -61,9 +61,9 @@ export default class registrationScene extends React.Component {
 		})
 		.then(response => {
 			console.log(response)
-		})	
+		})
 
-		event.preventDefault()		
+		event.preventDefault()
 	}
 
 
@@ -77,7 +77,7 @@ export default class registrationScene extends React.Component {
 					label="username"
 					variant="outlined"
 					onChange={this.handleChange}
-					/>						
+					/>
 					<TextField
 						name="email"
 						label="email"
@@ -86,7 +86,7 @@ export default class registrationScene extends React.Component {
 						onChange={this.handleChange}
 					/>
 				</Pair>
-				
+
 				<Pair>
 					<TextField
 						name="firstName"
@@ -109,7 +109,7 @@ export default class registrationScene extends React.Component {
 						type="password"
 						variant="outlined"
 						onChange={this.handleChange}
-					/>				
+					/>
 					<TextField
 						name="passwordCheck"
 						label="password again"

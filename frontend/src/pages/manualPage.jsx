@@ -1210,7 +1210,7 @@ class ManualPage extends React.Component {
 				</p>
 				<br/>
 				<br/>
-	
+
 			</Paper>
 		)
 	}

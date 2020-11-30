@@ -48,14 +48,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
-	volume_content: {
-		type: mongoose.Types.ObjectId,
-		refPath: "volume_contentModel"
-	},
-	volume_contentModel:{
-		type: String,
-		enum: ["corporationIndex", "geographicIndex"]
-	},
+	volume_content: String,
 	publishing_year: [{
 		from: Number,
 		to: Number,
@@ -80,10 +73,7 @@ const schema = new mongoose.Schema({
 	location: [{
 		access_conditions: String,
 		acess_note: String,
-		institution: {
-			type: mongoose.Types.ObjectId,
-			ref: "corporationIndex",
-		},
+		institution: String,
 		fund: String,
 		note: String,
 	}],
@@ -112,7 +102,10 @@ const schema = new mongoose.Schema({
 	map_scale: String,
 	format: String,
 	processing_level: String,
-	archival_aids: String,
+	archival_aids: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
 	source_citation: String,
 	multiple_placement: String,
 	multiple_placement_url: String,

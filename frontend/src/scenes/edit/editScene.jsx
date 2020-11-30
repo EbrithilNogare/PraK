@@ -20,10 +20,10 @@ import Subject from '../../components/indices/subject'
 class EditScene extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {
 			record: null
-		}	
+		}
 	}
 
 	componentDidMount(){
@@ -50,20 +50,18 @@ class EditScene extends React.Component {
 	render(){
 		return(
 			<div>
-				{this.state.record !== null && <Router>
-					<Switch>
-						<Route path="/prak/edit/metadata/:id">		<Metadata defaults={this.state.record}/>		</Route>
-						
-						<Route path="/prak/edit/corporation/:id">	<Corporation defaults={this.state.record}/>		</Route>
-						<Route path="/prak/edit/creation/:id">		<Creation defaults={this.state.record}/>		</Route>
-						<Route path="/prak/edit/family/:id">		<Family defaults={this.state.record}/>			</Route>
-						<Route path="/prak/edit/geographic/:id">	<Geographic defaults={this.state.record}/>		</Route>
-						<Route path="/prak/edit/keyword/:id">		<Keyword defaults={this.state.record}/>			</Route>
-						<Route path="/prak/edit/person/:id">		<Person defaults={this.state.record}/>			</Route>
-						<Route path="/prak/edit/subject/:id">		<Subject defaults={this.state.record}/>			</Route>
-						<Route path="/prak/edit">					<Paper>You must choose what to edit</Paper>		</Route>
-					</Switch>
-				</Router>}
+				{this.state.record !== null && <Switch>
+					<Route path="/prak/edit/metadata/:id">		<Metadata defaults={this.state.record}/>		</Route>
+
+					<Route path="/prak/edit/corporation/:id">	<Corporation defaults={this.state.record}/>		</Route>
+					<Route path="/prak/edit/creation/:id">		<Creation defaults={this.state.record}/>		</Route>
+					<Route path="/prak/edit/family/:id">		<Family defaults={this.state.record}/>			</Route>
+					<Route path="/prak/edit/geographic/:id">	<Geographic defaults={this.state.record}/>		</Route>
+					<Route path="/prak/edit/keyword/:id">		<Keyword defaults={this.state.record}/>			</Route>
+					<Route path="/prak/edit/person/:id">		<Person defaults={this.state.record}/>			</Route>
+					<Route path="/prak/edit/subject/:id">		<Subject defaults={this.state.record}/>			</Route>
+					<Route path="/prak/edit">					<Paper>You must choose what to edit</Paper>		</Route>
+				</Switch>}
 			</div>
 		)
 	}

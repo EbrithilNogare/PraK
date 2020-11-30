@@ -1,12 +1,6 @@
 const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
-	other_source: [{
-		name: String,
-		id: String,
-		identificator: String,
-	}],
-
 	name_main_part: {
 		type: String,
 		required: true,
@@ -159,8 +153,18 @@ const schema = new mongoose.Schema({
 
 	notes: [String],
 
+	other_source: [{
+		name: String,
+		id: String,
+		identificator: String,
+	}],
+
 	record_sources: {
 		type: [String],
+		required: true,
+	},
+	submitter: {
+		type: String,
 		required: true,
 	},
 })

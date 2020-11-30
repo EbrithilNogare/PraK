@@ -24,7 +24,7 @@ export default class SearchScene extends React.Component {
 		super(props);
 		this.state = { 
 			counter: 0
-		};		
+		};
 	}
 	render(){ return(
 		<div className={styles.searchScene}>
@@ -37,14 +37,14 @@ export default class SearchScene extends React.Component {
 					>
 						<Button className={styles.searchButton} variant="contained">find</Button>
 					</TextField>
-					
+
 				</Paper>
 				<Paper>
 					<CardContent className={styles.gridFieldset}>
 						<TextField label="Type of document"/>
 						<TextField label="Title"/>
 						<TextField label="Author"/>
-						<TextField label="Location"/>	
+						<TextField label="Location"/>
 					</CardContent>
 				</Paper>
 				<Paper>
@@ -67,7 +67,7 @@ export default class SearchScene extends React.Component {
 				<Pair>
 
 				<Paper>
-					<CardContent className={styles.gridChips}>		
+					<CardContent className={styles.gridChips}>
 						<Typography>Keywords</Typography>
 						<TextField label="Add keyword"/>
 						<div>
@@ -86,14 +86,14 @@ export default class SearchScene extends React.Component {
 								variant="outlined"
 								onDelete={()=>{}}
 							/>
-						</div>			
+						</div>
 					</CardContent>
 				</Paper>
-						
+
 				<Paper>
-					<CardContent className={styles.gridChips}>	
+					<CardContent className={styles.gridChips}>
 						<Typography>Genre</Typography>
-						<TextField label="Add genre"/>	
+						<TextField label="Add genre"/>
 						<div>
 							<Chip
 								label="horror"
@@ -107,7 +107,7 @@ export default class SearchScene extends React.Component {
 								clickable
 								onDelete={()=>{}}
 							/>
-						</div>		
+						</div>
 					</CardContent>
 				</Paper>
 				</Pair>
@@ -139,20 +139,20 @@ export default class SearchScene extends React.Component {
 										<TableCell>Year</TableCell>
 									</TableRow>
 								</TableHead>
-								<TableBody>								
+								<TableBody>
 									<TableRow key={0}>
 										<TableCell>{}</TableCell>
 										<TableCell>{}</TableCell>
 										<TableCell>{}</TableCell>
 										<TableCell>{}</TableCell>
 										<TableCell>{}</TableCell>
-									</TableRow>								
+									</TableRow>
 								</TableBody>
 							</Table>
 						</TableContainer>
 					</CardContent>
 				</Paper>
-			</div>		
+			</div>
 		</div>
 	)}
 }

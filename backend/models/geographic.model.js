@@ -1,12 +1,6 @@
 const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
-	other_source: [{
-		name: String,
-		id: String,
-		identificator: String,
-	}],
-
 	name_main_part: {
 		type: String,
 		required: true,
@@ -72,29 +66,29 @@ const schema = new mongoose.Schema({
 	subordinate: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},	
+	},
 	country: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},	
+	},
 	region: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},	
+	},
 	district: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},	
+	},
 	municipality: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},	
+	},
 	municipality_part: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},	
-	
-	
+	},
+
+
 
 	founding_person: {
 		type: mongoose.Types.ObjectId,
@@ -196,7 +190,18 @@ const schema = new mongoose.Schema({
 
 	notes:[String],
 
+	other_source: [{
+		name: String,
+		id: String,
+		identificator: String,
+	}],
+
 	record_sources:[String],
+
+	submitter: {
+		type: String,
+		required: true,
+	},
 })
 
 module.exports = mongoose.model('geographicIndex', schema, 'geographicIndex')

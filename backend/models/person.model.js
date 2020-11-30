@@ -1,12 +1,6 @@
 const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
-	other_source:[{
-		name: String,
-		id: String,
-		identificator: String,
-	}],
-
 	name:{
 		type: [String],
 		required: true,
@@ -37,7 +31,7 @@ const schema = new mongoose.Schema({
 	straight_order: String,
 	other_name_form: String,
 	pseudonym: String,
-	
+
 	titles:[{
 		title: String,
 		date: String,
@@ -79,7 +73,7 @@ const schema = new mongoose.Schema({
 		type: [String],
 		required: true,
 	},
-	
+
 	parents: [{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -118,13 +112,25 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	}],
-	
+
 	arm: [String],
 	photo: [String],
 
 	notes: [String],
+	
+	other_source: [{
+		name: String,
+		id: String,
+		identificator: String,
+	}],
+
 	record_sources:{
 		type: [String],
+		required: true,
+	},
+
+	submitter: {
+		type: String,
 		required: true,
 	},
 })

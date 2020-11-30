@@ -21,7 +21,7 @@ class ComboBox extends React.Component {
 		this.request_v = 0
 		this.newestRequest_v = 0
 	}
-	
+
 	handleKeyUp = (e) => {
 		if(e.key === "Escape"){
 			this.setState({value: "", menuList:[]})
@@ -97,7 +97,7 @@ class ComboBox extends React.Component {
 	render(){
 		const {defaultValue, ...config} = this.props
 		return(
-			<div>
+			<div style={{overflow: "auto"}}>
 				<TextField {...config}
 					label={this.props.label && this.props.label.length !== 0 ? this.props.label[0].toUpperCase() + this.props.label.slice(1) + this.labelPostfix() : ""}
 					onChange={this.handleChange}

@@ -16,7 +16,7 @@ class FormStaticComboBox extends React.Component {
 			value1: "",
 			value2: "",
 			value3: "",
-		}	
+		}
 	}
 
 	handleChangeFirst = event => {

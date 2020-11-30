@@ -35,12 +35,12 @@ import subjectTypes from '../../components/indices/subjectTypes.json'
 class ShowScene extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {
 			record: undefined,
 			translatedRecord: undefined,
 			translated: true
-		}	
+		}
 		this.uniqueId = 0
 	}
 
@@ -137,7 +137,7 @@ class ShowScene extends React.Component {
 			})
 		} else {
 			return (<TreeItem key={nodes} nodeId={uniqueKey+"-"+0} label={nodes}/>)
-		}		
+		}
 	}
 
 	handleEdit = (e, type, id) => {
@@ -207,7 +207,7 @@ class ShowScene extends React.Component {
 									/>}
 									label="Překládat databázové názvy"
 								/>
-								
+
 								<Grid container spacing={10} justify="flex-end">
 								<Grid item>
 								</Grid>

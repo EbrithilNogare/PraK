@@ -14,14 +14,13 @@ router.route('/:id').get((req, res) => {
 		.populate("publish_place", "name_other_part")
 		.populate("publisher", "name_other_part")
 		.populate("action_name", "name_other_part")
-		.populate("volume_content", "name_other_part")
 		.populate("source_document_name", "name_other_part")
 		.populate("corporation_name", "name_other_part")
-		.populate("location.institution", "name_other_part")
 		.populate("previous_name", "name_other_part")
 		.populate("following_name", "name_other_part")
 		.populate("format", "name_other_part")
-		//.populate("topic", "name_other_part") // todo fix dynamic ref populate
+		.populate("archival_aids", "name_other_part")
+		//.populate("topic", "name_other_part") // todo fix dynamic ref populate (use third param)
 		.populate("corporation_content_specification", "name_other_part")
 		.populate("geographical_content_specification", "name_other_part")
 		.populate("keywords", "name_other_part")
@@ -35,9 +34,6 @@ router.route('/:id').get((req, res) => {
 })
 
 router.route('/').post((req, res) => {
-	if(Object.keys(req.body).length === 0)
-		res.status(400).json({ message: "missing body" })
-		
 	// support for regexp search
 	for(let key of ["name"])
 	if(
@@ -48,9 +44,12 @@ router.route('/').post((req, res) => {
 		req.body[key].slice(-1) == "/"
 	)
 		req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
-	
-	Model.find(req.body)
-		.limit(5)
+
+	// extract special attributes
+	const {_limit, ...body} = req.body
+
+	Model.find(body)
+		.limit(_limit | 5)
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

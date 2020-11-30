@@ -3,7 +3,7 @@ import ComboBox from "./ComboBox"
 class MetadataComboBox extends ComboBox {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {
 			value: this.props.defaultValue ? this.parseReturnedObjectFromMongooseFind(this.props.defaultValue) || "" : "",
 			name: "",
@@ -20,7 +20,7 @@ class MetadataComboBox extends ComboBox {
 	generateObjectForMongooseFind = (value) => {
 		return { name: `/${value}/` }
 	}
-	
+
 	parseReturnedObjectFromMongooseFind = (element) => element.name
 }
 

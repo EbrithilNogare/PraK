@@ -6,6 +6,11 @@ const schema = new mongoose.Schema({
 		id: String,
 		identificator: String,
 	}],
+
+	submitter: {
+		type: String,
+		required: true,
+	},
 })
 
 module.exports = mongoose.model('familyIndex', schema, 'familyIndex')

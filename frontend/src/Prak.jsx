@@ -48,14 +48,14 @@ class Prak extends React.Component {
 						<ScrollToTop/>
 						<NavBar/>
 						<Switch>
-							<Route path="/prak/login"><LoginScene variant="login"/></Route>						
+							<Route path="/prak/login"><LoginScene variant="login"/></Route>
 							<Route path="/prak/registration"><LoginScene variant="registration"/></Route>
-							
+
 							<Route path="/prak/input"><InputScene/></Route>
 							<Route path="/prak/edit"><EditScene/></Route>
 							<Route path="/prak/show"><ShowScene/></Route>
 							<Route path="/prak/search"><SearchScene/></Route>
-							
+
 							<Route path="/prak/about"><AboutPage/></Route>
 							<Route path="/prak/team"><TeamPage/></Route>
 							<Route path="/prak/ourwork"><OurWorkPage/></Route>
@@ -63,7 +63,7 @@ class Prak extends React.Component {
 							<Route path="/prak/contacts"><ContactsPage/></Route>
 
 							<Route path="/prak/manual"><ManualPage/></Route>
-							
+
 							<Route path="/prak"><MainPageScene/></Route>
 						</Switch>
 						<Footer/>

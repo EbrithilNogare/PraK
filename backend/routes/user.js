@@ -4,7 +4,7 @@ const randomstring = require("randomstring")
 const mongoose = require("mongoose")
 const md5 = require('md5')
 
-router.route('/:id').get((req, res) => {	
+router.route('/:id').get((req, res) => {
 	if(!req.params.id)
 		res.status(400).json({ message: "incorrect ID" })
 
@@ -21,7 +21,7 @@ router.route('/:id').get((req, res) => {
 router.route('/').post((req, res) => {
 	if(!req.body._id)
 		res.status(400).json({ message: "incorrect ID" })
-		
+
 	const id = req.body._id
 	const user = {}
 	const isOwner = true; // todo
@@ -31,7 +31,7 @@ router.route('/').post((req, res) => {
 		"firstName",
 		"secondName",
 	]
-	
+
 	for(const prop of unrequiredProps)
 		if(req.body.user[prop] !== undefined) 
 			user[prop] = req.body[prop]
@@ -47,8 +47,8 @@ router.route('/').post((req, res) => {
 		user.password = {
 			hashed: md5(req.body.user.password + passwordSalt),
 			salt: passwordSalt,
-		}		
-	}	
+		}
+	}
 
 	if(req.body.user.email){
 		if(!(isOwner || isAdmin)){
@@ -56,19 +56,19 @@ router.route('/').post((req, res) => {
 				message: "not permitted - only admin or owner can change email",
 			})
 		}
-		user.email = req.body.user.email		
-	}	
+		user.email = req.body.user.email
+	}
 
-	
+
 	if(req.body.user.role){
 		if(!isAdmin){
 			res.status(401).json({
 				message: "not permitted - only admin or owner can change role",
 			})
 		}
-		user.role = req.body.user.role		
-	}	
-	
+		user.role = req.body.user.role
+	}
+
 
 
 	User.findByIdAndUpdate(id,user)
@@ -83,7 +83,7 @@ router.route('/').post((req, res) => {
 	})
 })
 
-router.route('/').put((req, res) => {	
+router.route('/').put((req, res) => {
 	const passwordSalt = randomstring.generate(16)
 
 	const newUser = new User({
@@ -104,7 +104,7 @@ router.route('/').put((req, res) => {
 		"firstName",
 		"secondName",
 	]
-	
+
 	for(const prop of unrequiredProps)
 		if(req.body[prop] !== undefined) 
 			newUser[prop] = req.body[prop]
@@ -124,7 +124,7 @@ router.route('/').put((req, res) => {
 router.route('/:id').delete((req, res) => {
 	if(!req.params.id)
 		res.status(400).json({ message: "incorrect ID" })
-	
+
 	const id = req.params.id
 	const isOwner = true; // todo
 	const isAdmin = true; // todo

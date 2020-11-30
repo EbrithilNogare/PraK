@@ -4,7 +4,7 @@ import {
 } from "react-router-dom";
 import {withRouter} from 'react-router';
 
-import { 	
+import { 
 	Paper,
 } from '@material-ui/core'
 
@@ -24,13 +24,13 @@ class LoginScene extends React.Component {
 			<Paper className={styles.loginForm}>
 				<center><h1>{this.props.variant.toUpperCase()}</h1></center>
 				<center><img src="images/logo.png" alt="logo" className={ styles.logo }></img></center>
-				{ renderVariants[this.props.variant].render }	
+				{ renderVariants[this.props.variant].render }
 				<center>
 					{ renderVariants[this.props.variant].text }
 					<NavLink to={ renderVariants[this.props.variant].link }>
 					{ renderVariants[this.props.variant].linkText }
 					</NavLink>
-				</center>	
+				</center>
 			</Paper>
 		</div>
 	)}

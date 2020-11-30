@@ -288,6 +288,13 @@
 			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"multiline" : true
+		},
+		"submitter": {
+			"label": "Zadavatel",
+			"schema": "submitter",
+			"helper": "Výběr z nabídky. ",
+			"options": ["", "Petra Hoffmannová", "Kamila Brožová", "Kateřina Brožová", "Tamara Nováková", "🤖"],
+			"required": true
 		}
 	}
 }

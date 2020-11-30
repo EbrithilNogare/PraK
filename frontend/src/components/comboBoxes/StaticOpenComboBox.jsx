@@ -13,11 +13,11 @@ import {
 class StaticOpenComboBox extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {
-			value: "",
+			value: this.props.defaultValue ? this.props.defaultValue : this.props.options ? this.props.options[0] || "" : "",
 			menuList: [],
-		}	
+		}
 
 		this.handleChange = this.handleChange.bind(this)
 	}
@@ -48,7 +48,7 @@ class StaticOpenComboBox extends React.Component {
 
 	render(){
 		return(
-			<div>
+			<div style={{width: "100%"}}>
 				<TextField
 					name={this.props.name}
 					label={this.props.label[0].toUpperCase() + this.props.label.slice(1)}

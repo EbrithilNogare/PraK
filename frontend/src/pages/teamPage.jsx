@@ -63,7 +63,7 @@ class TeamPage extends React.Component {
 		return(
 			<Paper className={styles.root}>
 				<h1>Řešitelský tým</h1>
-				
+
 				<h2>Řešitelský tým Matematicko-fyzikální fakulty UK</h2>
 				<div className={styles.grid}>
 					{this.state.data.peopleMFF.map((value, key) => PersonCard({value, key}))}

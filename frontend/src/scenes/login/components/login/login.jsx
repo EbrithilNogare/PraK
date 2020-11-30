@@ -14,13 +14,13 @@ import styles from './login.module.scss'
 export default class LoginScene extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.state = { 
 			username: "",
 			password: "",
 			remember: false,
 			loginErrors: "",
-		}	
+		}
 
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.handleChange = this.handleChange.bind(this)
@@ -31,7 +31,7 @@ export default class LoginScene extends React.Component {
 			[event.target.name]: event.target[type]
 		})
 	}
-	
+
 	handleSubmit(event){
 		const { username, password, remember } = this.state
 		const url = "api/login"
@@ -57,9 +57,9 @@ export default class LoginScene extends React.Component {
 		})
 		.then(response => {
 			console.log(response)
-		})	
+		})
 
-		event.preventDefault()		
+		event.preventDefault()
 	}
 
 

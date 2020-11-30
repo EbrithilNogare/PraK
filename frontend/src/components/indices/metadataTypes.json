@@ -6,7 +6,7 @@
 		"Články",
 		"Elektronické zdroje",
 		"Formulář pro kapitoly",
-		"Obrázkový dokument",
+		"Obrazový dokument",
 		"Periodika",
 		"Svazek",
 		"3D objekt"
@@ -355,21 +355,21 @@
 			"schema": "processing_level",
 			"fields": [1, 1, 0, 0, 0, 0, 1, 1, 0, 1],
 			"helper": "Výběr z nabídky.",
-			"options": ["", "nezpracováno", "digitalizováno", "inventarizováno", "katalogizováno", "excerpováno", "vlastní", "jiné"]
+			"options": ["", "nezpracováno", "digitalizováno", "inventarizováno", "katalogizováno", "excerpováno", "jiné"]
 		},
 		"description_level": {
 			"label": "Úroveň popisu",
 			"schema": "description_level",
-			"fields": [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+			"fields": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 			"helper": "Výběr z nabídky.",
 			"options": ["", "část fondu", "série", "podsérie", "spis", "jednotlivina", "podsbírka", "jiné"]
 		},
 		"archival_aids": {
 			"label": "Archivní pomůcky",
-			"schema": "archival_aids",
+			"schema": "archival_aids[%]",
 			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1],
 			"helper": "Výběr z nabídky."
-		},		
+		},
 		"source_citation": {
 			"label": "Citace (zdroj)",
 			"schema": "source_citation",

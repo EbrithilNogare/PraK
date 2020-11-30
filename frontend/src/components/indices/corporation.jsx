@@ -13,6 +13,7 @@ import {
 	KeywordComboBox,
 	PersonComboBox,
 	SubjectComboBox,
+	StaticOpenComboBox,
 } from '../comboBoxes'
 import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
@@ -23,7 +24,7 @@ import Multiplier from '../Multiplier'
 class Corporation extends IndexParent {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {}
 		this.formData = {}
 
@@ -45,14 +46,7 @@ class Corporation extends IndexParent {
 						: <h1>Nový záznam do Rejstříku korporací</h1>
 					}
 				</Paper>
-				<div className={styles.body}>			
-				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
-				<Multiplier>
-					<TextField {...this.createFieldProps("other_source_name")}/>
-					<TextField {...this.createFieldProps("other_source_id")}/>
-					<TextField {...this.createFieldProps("other_source_identificator")}/>
-				</Multiplier>
-				</Paper>
+				<div className={styles.body}>
 				<Paper className={styles.dataBlock}> <h2>Název</h2>
 					<TextField {...this.createFieldProps("name_main_part")}/>
 					<TextField {...this.createFieldProps("name_other_part")}/>
@@ -140,7 +134,7 @@ class Corporation extends IndexParent {
 						<PersonComboBox {...this.createFieldProps("awarder_person")}/>
 						<CorporationComboBox {...this.createFieldProps("awarder_corporation")}/>
 					</Multiplier>
-				</Paper>				
+				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
 					<Multiplier>
 						<KeywordComboBox {...this.createFieldProps("category")}/>
@@ -169,11 +163,19 @@ class Corporation extends IndexParent {
 						<TextField {...this.createFieldProps("notes")}/>
 					</Multiplier>
 				</Paper>
+				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
+					<Multiplier>
+						<TextField {...this.createFieldProps("other_source_name")}/>
+						<TextField {...this.createFieldProps("other_source_id")}/>
+						<TextField {...this.createFieldProps("other_source_identificator")}/>
+					</Multiplier>
+				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zdroje o heslu</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("record_sources")}/>
 					</Multiplier>
-				</Paper>					
+					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
+				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
 			</form>

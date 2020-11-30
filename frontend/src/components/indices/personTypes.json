@@ -274,6 +274,13 @@
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"required": true,
 			"multiline" : true
+		},
+		"submitter": {
+			"label": "Zadavatel",
+			"schema": "submitter",
+			"helper": "Výběr z nabídky. ",
+			"options": ["", "Petra Hoffmannová", "Kamila Brožová", "Kateřina Brožová", "Tamara Nováková", "🤖"],
+			"required": true
 		}
 	}
 }

@@ -19,6 +19,13 @@
 			"label": "Identifikátor hesla",
 			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
+		},
+		"submitter": {
+			"label": "Zadavatel",
+			"schema": "submitter",
+			"helper": "Výběr z nabídky. ",
+			"options": ["", "Petra Hoffmannová", "Kamila Brožová", "Kateřina Brožová", "Tamara Nováková", "🤖"],
+			"required": true
 		}
 	}
 }

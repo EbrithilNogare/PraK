@@ -8,11 +8,11 @@ import {
 class RegExpField extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.state = {
 			value: "",
 			error: false,
-		}	
+		}
 
 		this.handleChange = this.handleChange.bind(this)
 	}
@@ -24,7 +24,7 @@ class RegExpField extends React.Component {
 		})
 
 		if(this.props.onChange) this.props.onChange(event)
-	}	
+	}
 
 	render(){
 		const {errorMessage, regexp, ...config} = this.props 
@@ -33,7 +33,7 @@ class RegExpField extends React.Component {
 				onChange={ this.handleChange }
 				error={ this.state.error }
 				helperText={ this.state.error ? errorMessage || "Not matching RegExp" : "" }
-			/>			
+			/>
 		)
 	}
 }

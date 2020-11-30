@@ -12,24 +12,24 @@ import {
 class IndexParent extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		window.debug = ()=>{return this.formData} // todo remove this line
 
 		this.formData = undefined	// abstract
 		this.indexURL = undefined	// abstract
 	}
-	
+
 	getTypeDefinition = () => {throw new Error("Calling abstract function")}
 
 	createFieldProps = (name) => {
 		const {helper, schema, fields, ...definition} = this.getTypeDefinition(name)
-		
+
 		if(definition === undefined)
 			throw new Error("createFieldProps: cannot find: [" + name + "]")
-		
+
 		if(helper)
 			definition.InputProps = this.helperProp(helper)
-		
+
 		if(this.props.defaults){
 			if(Array.isArray(schema)){
 				const mapOfDefaluts = schema.map(value => DeepValue(this.props.defaults, value))
@@ -39,11 +39,11 @@ class IndexParent extends React.Component {
 			else
 				definition.defaultValue = DeepValue(this.props.defaults, schema)
 		}
-		
+
 		definition.onChange = (e,multiplierIndex) => { this.handleFormChange(e, schema, multiplierIndex) }
 		return definition
 	}
-	
+
 	getDataReady = (elements) => {
 		const errors = []
 		for(let element of elements)
@@ -52,10 +52,10 @@ class IndexParent extends React.Component {
 		}
 		return {data:this.formData, errors}
 	}
-	
+
 	handleSubmit = event => {
 		event.preventDefault()
-		
+
 		const {data, errors} = this.getDataReady(event.target.elements)
 
 		if(errors.length > 0){
@@ -66,15 +66,15 @@ class IndexParent extends React.Component {
 
 			console.error(`Cannot send data, because of ${errors.length} errors`);
 			this.props.enqueueSnackbar(`Cannot send data, because of ${errors.length} errors`, { variant: "error", autoHideDuration: 6000 })
-			
+
 			return
 		}
 
-		
+
 		const method = this.props.defaults ? "PATCH" : "PUT" 
-		
+
 		console.info(`%cSending data as ${method}:\n`, "background: #222; color: #bada55", data)
-		
+
 		fetch(`/prak/api/${this.indexURL}${this.indexURL==="metadata"?"":"index"}${method==="PATCH"?"/"+this.props.defaults._id:""}`,{
 			method,
 			headers: {
@@ -107,7 +107,7 @@ class IndexParent extends React.Component {
 		})
 
 	}
-	
+
 	handleFormChange = (e, a, multiplierIndex=0) => {
 		a=a.replace("[%]", `.${multiplierIndex}`);
 		a.split('.').reduce((o,p,i) =>

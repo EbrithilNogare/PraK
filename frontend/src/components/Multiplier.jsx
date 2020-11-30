@@ -15,9 +15,9 @@ import {
 class Multiplier extends React.Component {
 	constructor(props){
 		super(props)
-		
+
 		this.maxKey = 0
-		
+
 		// load default values
 		let dataWithDefaultValues  = []
 		if(Array.isArray(this.props.children)){
@@ -32,7 +32,7 @@ class Multiplier extends React.Component {
 					dataWithDefaultValues = [{key: this.maxKey++}]
 			}
 		}
-				
+
 		this.state = {
 			data: dataWithDefaultValues.length !== 0
 				? dataWithDefaultValues
@@ -82,7 +82,7 @@ class Multiplier extends React.Component {
 								style={{height: "100%", width: "60px", color: "#949494"}}
 							>
 								<Remove/>
-							</Button>	
+							</Button>
 						</Grid>
 					</Grid>
 				))}
@@ -91,10 +91,10 @@ class Multiplier extends React.Component {
 					<Grid item style={{width:"60px"}}>
 						<Button onClick={this.handleAdd} style={{color: "#949494"}}>
 							<Add/>
-						</Button>	
+						</Button>
 					</Grid>
 				</Grid>
-				
+
 			</div>
 		)
 	}

@@ -13,6 +13,7 @@ import {
 //	KeywordComboBox,
 //	PersonComboBox,
 //	SubjectComboBox,
+	StaticOpenComboBox,
 } from '../comboBoxes'
 import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
@@ -51,6 +52,9 @@ class Family extends IndexParent {
 						<TextField {...this.createFieldProps("other_source_id")}/>
 						<TextField {...this.createFieldProps("other_source_identificator")}/>
 					</Multiplier>
+				</Paper>
+				<Paper className={styles.dataBlock}>
+					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
