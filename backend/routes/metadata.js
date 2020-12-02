@@ -46,10 +46,10 @@ router.route('/').post((req, res) => {
 		req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
 
 	// extract special attributes
-	const {_limit, ...body} = req.body
+	const {_limit, ...description} = req.body
 
-	Model.find(body)
-		.limit(_limit | 5)
+	Model.find(description)
+		.limit(_limit || 5)
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

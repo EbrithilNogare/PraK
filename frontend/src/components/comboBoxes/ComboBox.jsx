@@ -67,13 +67,10 @@ class ComboBox extends React.Component {
 						text: this.parseReturnedObjectFromMongooseFind(element),
 					})
 				})
-				this.setState({menuList: tempList})
+				this.setState({menuList: tempList, loading: false})
 			})
 			.catch((error) => {
 				console.error('Error:', error);
-			})
-			.finally(() => {
-				this.setState({loading: false})
 			})
 		}
 	}

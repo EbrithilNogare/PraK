@@ -19,14 +19,11 @@ router.route('/:id').get((req, res) => {
 })
 
 router.route('/').post((req, res) => {
-	if(Object.keys(req.body).length === 0)
-		res.status(400).json({ message: "missing body" })
-
 	// extract special attributes
 	const {_limit, ...body} = req.body
 
 	Model.find(body)
-		.limit(_limit | 5)
+		.limit(_limit || 5)
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

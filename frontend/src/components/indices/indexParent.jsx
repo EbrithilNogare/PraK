@@ -111,7 +111,7 @@ class IndexParent extends React.Component {
 	handleFormChange = (e, a, multiplierIndex=0) => {
 		a=a.replace("[%]", `.${multiplierIndex}`);
 		a.split('.').reduce((o,p,i) =>
-			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || (isNaN(p)?[]:{}), this.formData)
+			o[p] = a.split('.').length === ++i ? e.target.value : o[p] || (isNaN(p)?{}:[]), this.formData)
 	}
 
 	helperProp = (text) => {return{
