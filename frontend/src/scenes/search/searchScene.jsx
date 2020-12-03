@@ -43,13 +43,13 @@ class ShowScene extends React.Component {
 	}
 
 	componentDidMount(){
-		this.props.enqueueSnackbar(`Vyberte rejstřík pro vyhledávání a vyplňte minimálně tři znaky`, { variant: "info", autoHideDuration: 6000 })
+		this.props.enqueueSnackbar(`Vyberte rejstřík, vyplňte požadovaná pole, zmáčkněte vyhledat a poté klikněte na požadovaný záznam`, { variant: "info", autoHideDuration: 6000 })
 	}
 
 	search = () => {
 		const thisRequestVesion = this.request_v++
 		this.setState({loading: true})
-		fetch("api/" + this.state.indexer,{
+		fetch("api/" + this.state.indexer + (this.state.indexer === "metadata" ? "" : "Index"),{
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -63,7 +63,7 @@ class ShowScene extends React.Component {
 			return response.json()
 		})
 		.then(data => {
-			console.info("Found: ", data);
+			console.info("%cFound: ", "background: #222; color: #bada55", data);
 			this.setState({
 				records: data.map(a=>{return {id:a._id, ...a}}),
 				loading: false,
@@ -93,36 +93,37 @@ class ShowScene extends React.Component {
 										{field: "name", headerName: "Hlavní název", flex: 400},
 									]
 									break
-								case "corporationIndex":
-								case "creationIndex":
-								case "geographicIndex":
-								case "keywordIndex":
-								case "subjectIndex":
-								case "familyIndex": 
+								case "corporation":
+								case "creation":
+								case "geographic":
+								case "keyword":
+								case "subject":
+								case "family": 
 									template = [
 										{field: "name_main_part", headerName: "Název", flex: 400},
 									]
 									break
-								case "personIndex":
+								case "person":
 									template = [
 										{field: "name", headerName: "Název", flex: 400},
 										{field: "surname", headerName: "Příjmení", flex: 400},
 										{field: "born_year", headerName: "Rok narození", flex: 200, type: 'number'},
 									]
 									break
+								default:
 							}
 							this.setState({ indexer: e.target.value, template, records: null})
 							this.description = {}
 						} }
 					>
 						<MenuItem value={"metadata"}>Metadata</MenuItem>
-						<MenuItem value={"corporationIndex"}>Rejstřík korporací</MenuItem>
-						<MenuItem value={"creationIndex"}>Rejstřík dílo/výtvor</MenuItem>
-						<MenuItem value={"geographicIndex"}>Geografický rejstřík</MenuItem>
-						<MenuItem value={"keywordIndex"}>Rejstřík klíčových slov</MenuItem>
-						<MenuItem value={"personIndex"}>Rejstřík osob</MenuItem>
-						<MenuItem value={"subjectIndex"}>Rejstřík událostí</MenuItem>
-						<MenuItem value={"familyIndex"}>Rejstřík rodů</MenuItem>
+						<MenuItem value={"corporation"}>Rejstřík korporací</MenuItem>
+						<MenuItem value={"creation"}>Rejstřík dílo/výtvor</MenuItem>
+						<MenuItem value={"geographic"}>Geografický rejstřík</MenuItem>
+						<MenuItem value={"keyword"}>Rejstřík klíčových slov</MenuItem>
+						<MenuItem value={"person"}>Rejstřík osob</MenuItem>
+						<MenuItem value={"subject"}>Rejstřík událostí</MenuItem>
+						<MenuItem value={"family"}>Rejstřík rodů</MenuItem>
 					</Select>
 					<Button
 						variant="contained"
@@ -152,12 +153,12 @@ class ShowScene extends React.Component {
 					</div>}
 					
 					{(
-						this.state.indexer === "corporationIndex"
-						|| this.state.indexer === "creationIndex"
-						|| this.state.indexer === "geographicIndex"
-						|| this.state.indexer === "keywordIndex"
-						|| this.state.indexer === "subjectIndex"
-						|| this.state.indexer === "familyIndex"						
+						this.state.indexer === "corporation"
+						|| this.state.indexer === "creation"
+						|| this.state.indexer === "geographic"
+						|| this.state.indexer === "keyword"
+						|| this.state.indexer === "subject"
+						|| this.state.indexer === "family"						
 						) && <div>
 						<TextField
 							label = "Název"
@@ -167,7 +168,7 @@ class ShowScene extends React.Component {
 							/>
 					</div>}
 					
-					{this.state.indexer === "personIndex" && <div>
+					{this.state.indexer === "person" && <div>
 						<TextField
 							label = "Jméno"
 							variant = "outlined"
@@ -194,6 +195,10 @@ class ShowScene extends React.Component {
 						rows={this.state.records}
 						columns={this.state.template}
 						pageSize={5}
+						onRowClick = { e => {
+							console.info("%cShow: ", "background: #222; color: #bada55", e.data.id);
+							this.props.history.push(`/prak/show/${this.state.indexer}/${e.data.id}`)
+						} }
 					/>
 				</Paper> }
 			</div>
