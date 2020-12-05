@@ -216,6 +216,7 @@ class ShowScene extends React.Component {
 										variant="contained" 
 										color="primary"
 										onClick={ e => this.handleRemove(e, match.params.type, match.params.id) }
+										disabled={this.state.record===null}
 									>Smazat záznam</Button>
 								</Grid>
 								<Grid item>
@@ -223,6 +224,7 @@ class ShowScene extends React.Component {
 										variant="contained" 
 										color="primary"
 										onClick={ e => this.handleEdit(e, match.params.type, match.params.id) }
+										disabled={this.state.record===null}
 									>Editovat záznam</Button>
 								</Grid>
 								</Grid>

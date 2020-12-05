@@ -65,7 +65,6 @@
 			"label": "Popis",
 			"schema": "description",
 			"helper": "Charakter a místo konání události v rozsahu jedné věty.",
-			"required": true,
 			"multiline" : true
 
 		},

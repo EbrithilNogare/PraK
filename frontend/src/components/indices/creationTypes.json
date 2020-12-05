@@ -100,7 +100,6 @@
 			"label": "Popis",
 			"schema": "description",
 			"helper": "Delší narativní popis entity včetně jejích významných částí, pokud tyto nemají samostatné záznamy, popis stavebního nebo uměleckého vývoje jednotlivých částí.",
-			"required": true,
 			"multiline" : true
 		},
 		"geographical_description": {
@@ -274,8 +273,7 @@
 		"category": {
 			"label": "Zařazení",
 			"schema": "category[%]",
-			"helper": "Upřesňuje podtřídu obecného pojmu. Výběr z rejstříku klíčových slov.",
-			"required": true
+			"helper": "Upřesňuje podtřídu obecného pojmu. Výběr z rejstříku klíčových slov."
 		},
 		"notes": {
 			"label": "Poznámky",

@@ -93,6 +93,7 @@ class Keyword extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Počátek existence</h2>
+					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("founding_person")}/>
 					<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
 					<CreationComboBox {...this.createFieldProps("founding_subject")}/>
@@ -102,9 +103,9 @@ class Keyword extends IndexParent {
 					<Multiplier>
 						<KeywordComboBox {...this.createFieldProps("founding_keyword")}/>
 					</Multiplier>
-					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Konec existence</h2>
+					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 					<CorporationComboBox {...this.createFieldProps("cancellation_corporation")}/>
 					<CreationComboBox {...this.createFieldProps("cancellation_subject")}/>
@@ -112,7 +113,6 @@ class Keyword extends IndexParent {
 						<SubjectComboBox {...this.createFieldProps("cancellation_event")}/>
 					</Multiplier>
 					<KeywordComboBox {...this.createFieldProps("cancellation_keyword")}/>
-					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
 					<Multiplier>

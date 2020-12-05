@@ -126,8 +126,7 @@ class Metadata extends IndexParent {
 					{this.conditionalField("number") && <TextField  {...this.createFieldProps("number")}/>}
 					{this.conditionalField("date") && <DateField  {...this.createFieldProps("date")}/>}
 				</Paper>
-				<Paper className={styles.dataBlock}>
-					{this.conditionalField("corporation_name") && <CorporationComboBox {...this.createFieldProps("corporation_name")}/>}
+				<Paper className={styles.dataBlock}> <h2>Umístění</h2>
 					<Multiplier>
 						{this.conditionalField("access_conditions") && <StaticComboBox  {...this.createFieldProps("access_conditions")}/>}
 						{this.conditionalField("acces_note") && <TextField  {...this.createFieldProps("acces_note")}/>}
@@ -137,10 +136,13 @@ class Metadata extends IndexParent {
 					</Multiplier>
 					{this.conditionalField("digitized_document_url") && <TextField  {...this.createFieldProps("digitized_document_url")}/>}
 					<Multiplier>
-						{this.conditionalField("external_source_name") && <TextField  {...this.createFieldProps("external_source_name")}/>}
+						{this.conditionalField("external_source_name") && <MetadataComboBox  {...this.createFieldProps("external_source_name")}/>}
 						{this.conditionalField("external_source_url") && <TextField  {...this.createFieldProps("external_source_url")}/>}
 						{this.conditionalField("url_leading_to_document") && <TextField  {...this.createFieldProps("url_leading_to_document")}/>}
 					</Multiplier>
+				</Paper>
+				<Paper className={styles.dataBlock}>
+					{this.conditionalField("corporation_name") && <CorporationComboBox {...this.createFieldProps("corporation_name")}/>}
 					<Multiplier>
 						{this.conditionalField("attachment_name") && <TextField  {...this.createFieldProps("attachment_name")}/>}
 						{this.conditionalField("attachment_url") && <TextField  {...this.createFieldProps("attachment_url")}/>}
@@ -162,7 +164,9 @@ class Metadata extends IndexParent {
 					<Multiplier>
 						{this.conditionalField("archival_aids") && <MetadataComboBox {...this.createFieldProps("archival_aids")}/>} 
 					</Multiplier>
-					{this.conditionalField("source_citation") && <TextField {...this.createFieldProps("source_citation")}/>} 
+					<Multiplier>
+						{this.conditionalField("source_citation") && <TextField {...this.createFieldProps("source_citation")}/>} 
+					</Multiplier>
 					{this.conditionalField("multiple_placement") && <TextField {...this.createFieldProps("multiple_placement")}/>} 
 					{this.conditionalField("multiple_placement_url") && <TextField {...this.createFieldProps("multiple_placement_url")}/>} 
 					{this.conditionalField("topic") && <KeywordComboBox {...this.createFieldProps("topic")}/>} 

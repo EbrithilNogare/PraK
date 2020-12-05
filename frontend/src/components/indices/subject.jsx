@@ -94,18 +94,18 @@ class Subject extends IndexParent {
 						</Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Počátek existence</h2>
+						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 						<PersonComboBox {...this.createFieldProps("founding_person")}/>
 						<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
 						<GeographicComboBox {...this.createFieldProps("founding_place")}/>
 						<CreationComboBox {...this.createFieldProps("first_mention")}/>
-						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Konec existence</h2>
+						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 						<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 						<CorporationComboBox {...this.createFieldProps("cancellation_event")}/>
 						<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
 						<CreationComboBox {...this.createFieldProps("last_mention")}/>
-						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
 						<Multiplier>

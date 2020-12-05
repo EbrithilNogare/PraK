@@ -39,16 +39,13 @@ const schema = new mongoose.Schema({
 
 	bibliographical_note:{
 		type: String,
-		required: true,
 	},
 	cv: String,
 	domain_branch:{
 		type: [String],
-		required: true,
 	},
 	gender:{
 		type: String,
-		required: true,
 	},
 
 	country_membership: [{
@@ -65,13 +62,11 @@ const schema = new mongoose.Schema({
 	},
 	related_country: {
 		type: [mongoose.Types.ObjectId],
-		required: true,
 		ref: "geographicIndex",
 	},
 
 	language_country:{
 		type: [String],
-		required: true,
 	},
 
 	parents: [{
@@ -126,7 +121,6 @@ const schema = new mongoose.Schema({
 
 	record_sources:{
 		type: [String],
-		required: true,
 	},
 
 	submitter: {

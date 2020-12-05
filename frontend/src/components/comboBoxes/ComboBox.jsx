@@ -12,6 +12,7 @@ import {
 	Check, 
 	SyncDisabled,
 } from '@material-ui/icons';
+import styles from "./ComboBox.module.scss"
 
 
 class ComboBox extends React.Component {
@@ -94,7 +95,7 @@ class ComboBox extends React.Component {
 	render(){
 		const {defaultValue, ...config} = this.props
 		return(
-			<div style={{overflow: "auto"}}>
+			<div>
 				<TextField {...config}
 					label={this.props.label && this.props.label.length !== 0 ? this.props.label[0].toUpperCase() + this.props.label.slice(1) + this.labelPostfix() : ""}
 					onChange={this.handleChange}
@@ -123,7 +124,7 @@ class ComboBox extends React.Component {
 				{this.state.loading && <LinearProgress />}
 				<MenuList style={{"paddingTop": 0, "paddingBottom": 0, "boxShadow": "rgba(0, 0, 0, 0.2) 0px 2px 3px 0px"}}>
 					{this.state.menuList.map(value=>(
-						<MenuItem key={value.key} onClick={() => this.handleMenuItemClick(value)}>
+						<MenuItem key={value.key} onClick={() => this.handleMenuItemClick(value)} className={ [styles.menuItem, styles.minimalisticScrollbar].join(" ") }>
 							{value.text}
 						</MenuItem>
 					))}

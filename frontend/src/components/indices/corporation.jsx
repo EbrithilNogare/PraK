@@ -97,6 +97,7 @@ class Corporation extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Vznik/ počátek existence</h2>
+					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("founder")}/>
 					<CreationComboBox {...this.createFieldProps("founding_document")}/>
 					<GeographicComboBox {...this.createFieldProps("founding_place")}/>
@@ -105,15 +106,14 @@ class Corporation extends IndexParent {
 					<PersonComboBox {...this.createFieldProps("cleavage_person")}/>
 					<CreationComboBox {...this.createFieldProps("cleavage_document")}/>
 					<GeographicComboBox {...this.createFieldProps("cleavage_place")}/>
-					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Konec existence</h2>
+					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 					<CreationComboBox {...this.createFieldProps("cancellation_document")}/>
 					<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
 					<CreationComboBox {...this.createFieldProps("delete_from_evidence_subject")}/>
 					<SubjectComboBox {...this.createFieldProps("delete_from_evidence_event")}/>
-					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Událost</h2>
 					<Multiplier>

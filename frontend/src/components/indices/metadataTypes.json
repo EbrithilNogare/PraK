@@ -193,14 +193,14 @@
 		"year": {
 			"label": "rok",
 			"schema": "copies.year",
-			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+			"fields": [0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
 			"helper": "Rok vydání - periodika.",
 			"type": "Number"
 		},
 		"volume": {
 			"label": "ročník",
 			"schema": "copies.volume",
-			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+			"fields": [0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
 			"helper": "Ročník zdrojového objektu - periodika.",
 			"type": "Number"
 		},
@@ -261,7 +261,7 @@
 		"digitized_document_url": {
 			"label": "URL digitalizovaného dokumentu",
 			"schema": "digitized_document_url",
-			"fields": [1, 0, 1, 1, 0, 1, 1, 0, 0, 1],
+			"fields": [1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
 			"helper": "URL digitalizátu v našem repozitáři."
 		},
 		"external_source_name-category": {
@@ -372,9 +372,9 @@
 		},
 		"source_citation": {
 			"label": "Citace (zdroj)",
-			"schema": "source_citation",
+			"schema": "source_citation[%]",
 			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-			"helper": "Citace zdroje týkající se popisovaného objektu."
+			"helper": "Citace zdroje týkající se popisovaného objektu.."
 		},
 		"multiple_placement": {
 			"label": "Násobné umístění",

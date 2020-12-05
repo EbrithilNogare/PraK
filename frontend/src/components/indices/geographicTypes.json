@@ -292,8 +292,7 @@
 		"category": {
 			"label": "Kategorie",
 			"schema": "category[%]",
-			"helper": "Výběr z rejstříku klíčových slov.",
-			"required": true
+			"helper": "Výběr z rejstříku klíčových slov."
 		},
 		"characteristic": {
 			"label": "Charakteristika",

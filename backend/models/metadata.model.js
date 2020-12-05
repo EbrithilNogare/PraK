@@ -79,7 +79,10 @@ const schema = new mongoose.Schema({
 	}],
 	digitized_document_url: String,
 	external_source: [{
-		name: String,
+		name: {
+			type: mongoose.Types.ObjectId,
+			ref: "metadata",
+		},
 		url: String,
 		url_leading_to_document: String,
 	}],
@@ -106,7 +109,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "metadata",
 	}],
-	source_citation: String,
+	source_citation: [String],
 	multiple_placement: String,
 	multiple_placement_url: String,
 	topic: {

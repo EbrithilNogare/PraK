@@ -144,8 +144,7 @@
 		"bibliographical_note": {
 			"label": "Biografická poznámka",
 			"schema": "bibliographical_note",
-			"helper": "Stručná charakteristika charakterirujícící osobu, včetně místa a oboru působnosti.",
-			"required": true
+			"helper": "Stručná charakteristika charakterirujícící osobu, včetně místa a oboru působnosti."
 		},
 		"cv": {
 			"label": "Životopis",
@@ -155,14 +154,12 @@
 		"domain_branch": {
 			"label": "Obor působnosti",
 			"schema": "domain_branch[%]",
-			"helper": "Výběr z rejsříku klíčových slov.",
-			"required": true
+			"helper": "Výběr z rejsříku klíčových slov."
 		},
 		"gender": {
 			"label": "Pohlaví",
 			"schema": "gender",
 			"helper": "Výběr z nabídky.",
-			"required": true,
 			"options": ["","Neuvedeno", "Muž", "Žena"]
 		},
 		"country_membership": {
@@ -183,14 +180,12 @@
 		"related_country": {
 			"label": "Související země",
 			"schema": "related_country[%]",
-			"helper": "Výběr z geografického rejstříku.",
-			"required": true
+			"helper": "Výběr z geografického rejstříku."
 		},
 		"language_country": {
 			"label": "Určení jazykové oblasti",
 			"schema": "language_country[%]",
 			"helper": "Výběr z nabídky.",
-			"required": true,
 			"options": ["","Čeština", "Latina", "Němčina", "Angličtina", "Polština", "Slovenština", "Jiné"]
 		},
 		"parents": {
@@ -272,7 +267,6 @@
 			"label": "Zdroje o heslu",
 			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
-			"required": true,
 			"multiline" : true
 		},
 		"submitter": {

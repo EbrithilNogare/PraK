@@ -106,6 +106,7 @@ class Geographic extends IndexParent {
 						<GeographicComboBox {...this.createFieldProps("municipality_part")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Počátek existence</h2>
+						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 						<PersonComboBox {...this.createFieldProps("founding_person")}/>
 						<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
 						<CreationComboBox {...this.createFieldProps("founding_document")}/>
@@ -113,9 +114,9 @@ class Geographic extends IndexParent {
 						<SubjectComboBox {...this.createFieldProps("first_mention_event")}/>
 						<CreationComboBox {...this.createFieldProps("first_mention_subject")}/>
 						<GeographicComboBox {...this.createFieldProps("first_mention_place")}/>
-						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Konec existence</h2>
+						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 						<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 						<CorporationComboBox {...this.createFieldProps("cancellation_corporation")}/>
 						<CreationComboBox {...this.createFieldProps("cancellation_document")}/>
@@ -124,7 +125,6 @@ class Geographic extends IndexParent {
 						<CreationComboBox {...this.createFieldProps("last_mention_subject")}/>
 						<GeographicComboBox {...this.createFieldProps("last_mention_place")}/>
 						<GeographicComboBox {...this.createFieldProps("owner_change")}/>
-						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 						<Multiplier>
 							<TextField {...this.createFieldProps("historical_milestones")}/>
 						</Multiplier>

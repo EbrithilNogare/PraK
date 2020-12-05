@@ -126,22 +126,22 @@ class Creation extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Vznik/ počátek existence</h2>
+					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("founding_person")}/>
 					<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
 					<GeographicComboBox {...this.createFieldProps("first_mention_place")}/>
 					<CreationComboBox {...this.createFieldProps("first_mention_subject")}/>
 					<SubjectComboBox {...this.createFieldProps("first_realization_event")}/>
 					<CreationComboBox {...this.createFieldProps("first_realization_subject")}/>
-					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Konec existence</h2>
+					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 					<CorporationComboBox {...this.createFieldProps("cancellation_corporation")}/>
 					<GeographicComboBox {...this.createFieldProps("last_mention_place")}/>
 					<CreationComboBox {...this.createFieldProps("last_mention_subject")}/>
 					<SubjectComboBox {...this.createFieldProps("last_realization_event")}/>
 					<CreationComboBox {...this.createFieldProps("last_realization_subject")}/>
-					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Změna</h2>
 					<Multiplier>

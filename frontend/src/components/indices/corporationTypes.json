@@ -284,7 +284,6 @@
 			"label": "Zdroje o heslu",
 			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
-			"required": true,
 			"multiline" : true
 		},
 		"submitter": {

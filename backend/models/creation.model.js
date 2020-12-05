@@ -26,7 +26,6 @@ const schema = new mongoose.Schema({
 	brief_characteristic: String,
 	description:{
 		type: String,
-		required: true,
 	},
 	geographical_description: String,
 
@@ -152,7 +151,6 @@ const schema = new mongoose.Schema({
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
-		required: true,
 	}],
 
 	notes:[String],

@@ -177,7 +177,6 @@ const schema = new mongoose.Schema({
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
-		required: true,
 	}],
 	characteristic:[{
 		type: mongoose.Types.ObjectId,
