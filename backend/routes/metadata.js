@@ -18,7 +18,6 @@ router.route('/:id').get((req, res) => {
 		.populate("corporation_name", "name_other_part")
 		.populate("previous_name", "name_other_part")
 		.populate("following_name", "name_other_part")
-		.populate("format", "name_other_part")
 		.populate("archival_aids", "name_other_part")
 		//.populate("topic", "name_other_part") // todo fix dynamic ref populate (use third param)
 		.populate("corporation_content_specification", "name_other_part")
