@@ -1,25 +1,5 @@
  { 
  	"properties":{
-		"other_source": {
-			"label": "Další zdroje",
-			"schema": "other_source[%]",
-			"helper": "Další zdroje."
-		},
-		"other_source_name": {
-			"label": "Název",
-			"schema": "other_source[%].name",
-			"helper": "Název jiného zdroje."
-		},
-		"other_source_id": {
-			"label": "ID",
-			"schema": "other_source[%].id",
-			"helper": "ID cizího zdroje."
-		},
-		"other_source_identificator": {
-			"label": "Identifikátor hesla",
-			"schema": "other_source[%].identificator",
-			"helper": "ID dokumentu v cizím zdroji."
-		},
 		"name_main_part": {
 			"label": "Hlavní část názvu",
 			"schema": "name_main_part",
@@ -279,6 +259,24 @@
 			"schema": "notes[%]",
 			"helper": "Textová poznámka k heslu.",
 			"multiline" : true
+		},
+		"other_source-category": {
+			"schema": "other_source[%]"
+		},
+		"other_source_name": {
+			"label": "Název",
+			"schema": "other_source[%].name",
+			"helper": "Název jiného zdroje."
+		},
+		"other_source_id": {
+			"label": "ID",
+			"schema": "other_source[%].id",
+			"helper": "ID cizího zdroje."
+		},
+		"other_source_identificator": {
+			"label": "Identifikátor hesla",
+			"schema": "other_source[%].identificator",
+			"helper": "ID dokumentu v cizím zdroji."
 		},
 		"record_sources": {
 			"label": "Zdroje o heslu",
