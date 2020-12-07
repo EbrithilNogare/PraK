@@ -46,7 +46,7 @@ class ShowScene extends React.Component {
 		this.props.enqueueSnackbar(`Vyberte rejstřík, vyplňte požadovaná pole, zmáčkněte vyhledat a poté klikněte na požadovaný záznam`, { variant: "info", autoHideDuration: 6000 })
 	}
 
-	search = () => {
+	search = (fast = false) => {
 		const thisRequestVesion = this.request_v++
 		this.setState({loading: true})
 		fetch("api/" + this.state.indexer + (this.state.indexer === "metadata" ? "" : "Index"),{
@@ -54,7 +54,7 @@ class ShowScene extends React.Component {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({_limit: 100, ...this.description})
+			body: JSON.stringify({_limit: fast?5:100, ...this.description})
 		})
 		.then(response => {
 			if(thisRequestVesion < this.newestRequest_v)
@@ -128,7 +128,7 @@ class ShowScene extends React.Component {
 					<Button
 						variant="contained"
 						color="primary"
-						onClick = { this.search }
+						onClick = { ()=>this.search() }
 					>
 						Vyhledat
 					</Button>
@@ -136,18 +136,18 @@ class ShowScene extends React.Component {
 						<PersonComboBox
 							label = "Hlavní autor"
 							variant = "outlined"
-							onChange = { e => (this.description["author"] = e.target.value) }
+							onChange = { e => {(this.description["author"] = e.target.value); if(e.target.value !== undefined ) this.search(true)} }
 						/>
 						<TextField
 							label = "Hlavní název"
 							variant = "outlined"
-							onChange = { e => (this.description["name"] = `/${e.target.value}/`) }
+							onChange = { e => {(this.description["name"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
 						<DateField
 							label = "Datum vydání nebo vzniku"
 							variant = "outlined"
-							onChange = { e => (this.description["publishing_date"] = e.target.value) }
+							onChange = { e => {(this.description["publishing_date"] = e.target.value); this.search(true)} }
 							fullWidth
 						/>
 					</div>}
@@ -163,7 +163,7 @@ class ShowScene extends React.Component {
 						<TextField
 							label = "Název"
 							variant = "outlined"
-							onChange = { e => (this.description["name_main_part"] = `/${e.target.value}/`) }
+							onChange = { e => {(this.description["name_main_part"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 							/>
 					</div>}
@@ -172,23 +172,29 @@ class ShowScene extends React.Component {
 						<TextField
 							label = "Jméno"
 							variant = "outlined"
-							onChange = { e => (this.description["name"] = `/${e.target.value}/`) }
+							onChange = { e => {(this.description["name"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
 						<TextField
 							label = "Příjmení"
 							variant = "outlined"
-							onChange = { e => (this.description["surname"] = `/${e.target.value}/`) }
+							onChange = { e => {(this.description["surname"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
 						<TextField
 							label = "Rok narození"
 							variant = "outlined"
-							onChange = { e => (this.description["born_year"] = e.target.value) }
+							onChange = { e => {(this.description["born_year"] = e.target.value); this.search(true)} }
 							type="number"
 							fullWidth
 						/>
 					</div>}
+					<div>
+						<h3>Nápověda</h3>
+						<b>Vyhledání všech záznamů:</b> nechte všechna pole prázdná a klikněte na Vyhledat <br/> <br/>
+						<b>Interaktivní režim:</b> už během zadávání se ukáže 5 nejlepšich shod<br/> <br/>
+						<b>Zobrazení záznamu:</b> klikněte kamkoliv na příslušný záznam v tabulce níže
+					</div>
 				</Paper>
 				{ this.state.records !== null && <Paper style={{ height: 400, width: '100%' }}>
 					<DataGrid
