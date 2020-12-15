@@ -29,7 +29,6 @@ class Person extends IndexParent {
 		super(props)
 
 		this.state = {}
-		this.formData = {}
 
 		this.indexURL = "person"
 	}

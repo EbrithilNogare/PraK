@@ -25,7 +25,6 @@ class Subject extends IndexParent {
 		super(props)
 
 		this.state = {}
-		this.formData = {}
 
 		this.indexURL = "subject"
 	}

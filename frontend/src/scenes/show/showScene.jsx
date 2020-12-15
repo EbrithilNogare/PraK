@@ -51,6 +51,7 @@ class ShowScene extends React.Component {
 		fetch(`/prak/api/${type}${type==="metadata"?"":"index"}/${id}`)
 		.then(response => response.json())
 		.then(data => {
+			console.info(`%cReceived data:\n`, "background: #222; color: #bada55", data)
 			this.setState({record:data, translatedRecord: this.translateRecord(data, type)})
 		})
 		.catch(err=>{
@@ -124,7 +125,7 @@ class ShowScene extends React.Component {
 		}
 		else if(typeof nodes === 'object' && nodes !== null){
 			return Object.keys(nodes).map((value, key) => {
-				if(nodes[value].length === 0)
+				if(nodes[value] === null || nodes[value].length === 0)
 					return null
 				if(typeof nodes[value] === 'object' && nodes[value] !== null)
 				return (

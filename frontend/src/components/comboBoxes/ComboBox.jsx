@@ -43,37 +43,39 @@ class ComboBox extends React.Component {
 
 		if(this.props.onChange) this.props.onChange({target:{value:undefined}})
 
-		if(event.target.value.length > 2){
-			this.setState({loading: true})
+		if(event.target.value.length < 3) return
 
-			const thisRequestVesion = this.request_v++
-			fetch(this.getFetchURL(),{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(this.generateObjectForMongooseFind(event.target.value))
-			})
-			.then(response => {
-				if(thisRequestVesion < this.newestRequest_v)
-					Promise.reject(`Old request version: ${thisRequestVesion}`)
-				this.newestRequest_v = thisRequestVesion
-				return response.json()
-			})
-			.then(data => {
-				const tempList = []
-				data.forEach(element => {
-					tempList.push({
-						key: element._id,
-						text: this.parseReturnedObjectFromMongooseFind(element),
-					})
+
+		this.setState({loading: true})
+
+		const thisRequestVesion = this.request_v++
+		fetch(this.getFetchURL(),{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(this.generateObjectForMongooseFind(event.target.value))
+		})
+		.then(response => {
+			if(thisRequestVesion < this.newestRequest_v)
+				Promise.reject(`Old request version: ${thisRequestVesion}`)
+			this.newestRequest_v = thisRequestVesion
+			return response.json()
+		})
+		.then(data => {
+			const tempList = []
+			data.forEach(element => {
+				tempList.push({
+					key: element._id,
+					text: this.parseReturnedObjectFromMongooseFind(element),
 				})
-				this.setState({menuList: tempList, loading: false})
 			})
-			.catch((error) => {
-				console.error('Error:', error);
-			})
-		}
+			this.setState({menuList: tempList, loading: false})
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		})
+	
 	}
 
 	handleMenuItemClick = value => {

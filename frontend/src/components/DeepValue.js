@@ -9,6 +9,12 @@ const DeepValue = (obj, path) => {
 	}
 
 	const toReturn = []
+
+	if(!Array.isArray(obj)){
+		console.warn("failure in DeepValue(obj, path), obj is not array", obj, path)
+		return [];
+	}
+
 	obj.forEach((value,key)=>{
 		for (let i = 1, path = arrayPath[1].split('.'), len = path.length; i < len; i++){
 			value = value[path[i]]

@@ -26,7 +26,6 @@ class Creation extends IndexParent {
 		super(props)
 
 		this.state = {}
-		this.formData = {}
 
 		this.indexURL = "creation"
 	}

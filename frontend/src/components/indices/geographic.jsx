@@ -26,7 +26,6 @@ class Geographic extends IndexParent {
 		super(props)
 
 		this.state = {}
-		this.formData = {}
 
 		this.indexURL = "geographic"
 	}

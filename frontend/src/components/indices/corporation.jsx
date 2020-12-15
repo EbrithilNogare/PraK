@@ -26,7 +26,6 @@ class Corporation extends IndexParent {
 		super(props)
 
 		this.state = {}
-		this.formData = {}
 
 		this.indexURL = "corporation"
 	}

@@ -72,22 +72,25 @@
 			"helper": "Jazyk nebo jazyky v díle nebo archiválii užité. ",
 			"options": ["", "angličtina", "bulharština", "čeština", "dolnoněmčina", "francouzština", "italština", "jidiš", "judendeutsch", "latina", "němčina", "polština", "rumunština", "ruština", "slovenština", "španělština", "ukrajinština", "jiné"]
 		},
+		"publish-category":{
+			"schema": "publish[%]"
+		},
 		"publish_country": {
 			"label": "Země vydání nebo vzniku",
-			"schema": "publish_country",
+			"schema": "publish[%].publish_country",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"options": ["","Rakousko-Uhersko", "Československo 1918-1938", "Protektorát Čechy a Morava 1938-1945", "Československá republika 1945-1960", "Československá socialistická republika 1960-1990", "Česká a Slovenská federativní republika 1990-1992", "Česká republika 1993-", "Německo", "Německá říše", "Polsko", "Prusko"],
 			"helper": "Země vzniku díla nebo shromáždění archiválií. "
 		},
 		"publish_place": {
 			"label": "Místo vydání nebo vzniku",
-			"schema": "publish_place",
+			"schema": "publish[%].publish_place",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Místo vzniku díla nebo shromáždění archiválií. "
 		},
 		"publisher": {
 			"label": "Vydavatel",
-			"schema": "publisher",
+			"schema": "publish[%].publisher",
 			"fields": [0, 0, 1, 0, 1, 1, 1, 1, 1, 1],
 			"helper": "Název vydavatele/nakladatele/instituce nebo výrobce díla."
 		},
@@ -116,31 +119,31 @@
 		},
 		"isbn": {
 			"label": "ISBN",
-			"schema": "isbn",
+			"schema": "isbn[%]",
 			"fields": [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
 			"helper": "Uvádí se bez pomlček."
 		},
 		"edition_order": {
 			"label": "Pořadí vydání",
-			"schema": "edition_order",
+			"schema": "edition_order[%]",
 			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
 			"helper": "Uvádí se pořadí vydání ve tvaru uvedeném v díle."
 		},
 		"edition": {
 			"label": "Edice",
-			"schema": "edition",
+			"schema": "edition[%]",
 			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
 			"helper": "Uvádí se  Název edice. Svazek, číslo."
 		},
 		"action_name": {
 			"label": "Název akce",
-			"schema": "action_name",
+			"schema": "action_name[%]",
 			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
 			"helper": "Název konference nebo jiné akce, ze které dílo vzešlo. Trojúdolí, 3. ročník, Horní Maršov 2009. "
 		},
 		"volume_content": {
 			"label": "Obsah svazku",
-			"schema": "volume_content",
+			"schema": "volume_content[%]",
 			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
 			"helper": "Užívá se pro nedílné části svazků, které se nepopisují samostatně - např. obsah. Obsah svazku může být i jako příloha v pdf souboru. "
 		},
@@ -176,14 +179,16 @@
 		},
 		"issn": {
 			"label": "ISSN",
-			"schema": "isbn",
-			"fields": [0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
-			"helper": "Uvádí se bez pomlček."
+			"schema": "issn[%]",
+			"fields": [0, 0, 0, 1, 1, 0, 0, 1, 0, 0],
+			"helper": "Uvádí se bez pomlček.",
+			"regexp": "^\\d{4}-\\d{4}$",
+			"errorMessage": "4čísla-4čísla"
 		},
 		"source_document_name": {
 			"label": "Název zdrojového dokumentu",
 			"schema": "source_document_name",
-			"fields": [1, 0, 0, 1, 0, 1, 0, 0, 1, 1],
+			"fields": [1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
 			"helper": "Název zdrojové sbírky pro Archivní dokumenty, název zdrojového díla nebo periodika pro Kapitoly a Články. "
 		},
 		"copies-category": {
@@ -217,28 +222,31 @@
 			"fields": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
 			"helper": "Uveďte datum vydání novin, ve kterých byl článek uveřejněn."
 		},
+		"corporation-category": {
+			"schema": "corporation[%]"
+		},
 		"corporation_name": {
 			"label": "Název korporace",
-			"schema": "corporation_name",
+			"schema": "corporation[%].corporation_name",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Korporace (úložiště), ve které jsou dílo nebo shromážděné archiválie uloženy. "
 		},
-		"location-category": {
-			"label": "Přístup",
-			"schema": "location[%]"
-		},
 		"access_conditions": {
 			"label": "Podmínky přístupu",
-			"schema": "location[%].access_conditions",
+			"schema": "corporation[%].access_conditions",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Dostupnost díla. ",
 			"options": ["", "online", "prezenčně", "přístupné po domluvě soukromá sbírka", "přístupné po domluvě instituce", "nepřístupné", "dostupné online s omezením", "absenčně", "jiné"]
 		},
 		"acces_note": {
 			"label": "Poznámka k přístupu",
-			"schema": "location[%].acces_note",
+			"schema": "corporation[%].acces_note",
 			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
 			"helper": "Zpřesnění informace o dostupnosti díla nebo archiválií."
+		},
+		"location-category": {
+			"label": "Přístup",
+			"schema": "location[%]"
 		},
 		"location_in_institution": {
 			"label": "Umístění v instituci",
@@ -260,7 +268,7 @@
 		},
 		"digitized_document_url": {
 			"label": "URL digitalizovaného dokumentu",
-			"schema": "digitized_document_url",
+			"schema": "digitized_document_url[%]",
 			"fields": [1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
 			"helper": "Odkaz na Plný text díla nebo archiválie v našem úložišti. Vlastní digitalizát přístupný bez omezení."
 		},
@@ -322,7 +330,7 @@
 		},
 		"form": {
 			"label": "Forma",
-			"schema": "form",
+			"schema": "form[%]",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Zařazení díla nebo archiválie mezi typy pramenů. "
 		},
@@ -340,7 +348,7 @@
 		},
 		"map_scale": {
 			"label": "Měřítko",
-			"schema": "map_scale",
+			"schema": "map_scale[%]",
 			"fields": [1, 0, 0, 0, 1, 1, 1, 0, 0, 1],
 			"helper": "Uvádí se měřítko uvedené na mapě."
 		},
@@ -376,39 +384,40 @@
 			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
 			"helper": "Uvádí se zdroj, z nějž čerpal autor záznamu o archiváliích nebo sbírce."
 		},
+		"multiple_placement-category": {
+			"schema": "multiple_placement_category[%]"
+		},
 		"multiple_placement": {
 			"label": "Násobné umístění",
-			"schema": "multiple_placement",
+			"schema": "multiple_placement_category[%].multiple_placement",
 			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1],
 			"helper": "Název souborného katalogu, který uvádí ve svých záznamech další vlastníky zpracovávaného díla."
 		},
 		"multiple_placement_url": {
 			"label": "Násobné umístění url",
-			"schema": "multiple_placement_url",
+			"schema": "multiple_placement_category[%].multiple_placement_url",
 			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1],
 			"helper": "URI záznamu ze souborných katalogů."
 		},
 		"topic": {
 			"label": "Téma",
-			"schema": "topic",
+			"schema": "topic[%]",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Téma popisovaného díla nebo archiválií."
 		},
 		"corporation_content_specification_person": {
 			"label": "Osoba jako předmět obsahu dokumentu",
-			"schema": "corporation_content_specification",
+			"schema": "corporation_content_specification_person[%]",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Osoba nebo korporace, které se týká obsah díla nebo archiválií."
 		},
 		"corporation_content_specification_corporation": {
 			"label": "Korporace jako předmět obsahu dokumentu",
-			"schema": "corporation_content_specification",
+			"schema": "corporation_content_specification_corporation[%]",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 		},
 		"chronological_content_specification-category": {
-			"label": "Chronologické zpřesnění obsahu dokumentu",
-			"schema": "chronological_content_specification",
-			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+			"schema": "chronological_content_specification[%]"
 		},
 		"chronological_content_specification_begin": {
 			"label": "Chronologické zpřesnění obsahu dokumentu (začátek)",
@@ -425,7 +434,7 @@
 		},
 		"geographical_content_specification": {
 			"label": "Geografické zpřesnění obsahu dokumentu",
-			"schema": "geographical_content_specification",
+			"schema": "geographical_content_specification[%]",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Uvádí se místa kterých se týká obsah zpracovávaného dokumentu. "
 		},
@@ -437,19 +446,19 @@
 		},
 		"description": {
 			"label": "Abstrakt/Popis",
-			"schema": "description",
+			"schema": "description[%]",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Textový popis obsahu díla nebo archiválií."
 		},
 		"general_note": {
 			"label": "Poznámka obecná",
-			"schema": "general_note",
+			"schema": "general_note[%]",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Co se jinam nevešlo. "
 		},
 		"editor_note": {
 			"label": "Poznámka editora",
-			"schema": "editor_note",
+			"schema": "editor_note[%]",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Interní poznámka"
 		},

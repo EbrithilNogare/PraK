@@ -40,7 +40,6 @@ class Metadata extends IndexParent {
 			documentType: this.props.documentType || 0
 		}
 
-		this.formData = {}
 
 		this.indexURL = "metadata"
 	}
@@ -89,18 +88,14 @@ class Metadata extends IndexParent {
 						{this.conditionalField("other_authors_role") && <StaticComboBox {...this.createFieldProps("other_authors_role")}/>}
 					</Multiplier>
 					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
+					<Multiplier>{this.conditionalField("author_responsibility") && <TextField {...this.createFieldProps("author_responsibility")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("language") && <StaticComboBox {...this.createFieldProps("language")}/>}</Multiplier>
 					<Multiplier>
-						{this.conditionalField("author_responsibility") && <TextField {...this.createFieldProps("author_responsibility")}/>}
+						{this.conditionalField("publish_country") && <StaticComboBox{...this.createFieldProps("publish_country")}/>}
+						{this.conditionalField("publish_place") && <GeographicComboBox {...this.createFieldProps("publish_place")}/>}
+						{this.conditionalField("publisher") && <CorporationComboBox {...this.createFieldProps("publisher")}/>}
 					</Multiplier>
-					<Multiplier>
-						{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}
-					</Multiplier>
-					<Multiplier>
-						{this.conditionalField("language") && <StaticComboBox {...this.createFieldProps("language")}/>}
-					</Multiplier>
-					{this.conditionalField("publish_country") && <StaticComboBox{...this.createFieldProps("publish_country")}/>}
-					{this.conditionalField("publish_place") && <GeographicComboBox {...this.createFieldProps("publish_place")}/>}
-					{this.conditionalField("publisher") && <CorporationComboBox {...this.createFieldProps("publisher")}/>}
 					<Multiplier>
 						{this.conditionalField("publishing_date") && <RegExpField {...this.createFieldProps("publishing_date")}/>}
 						{this.conditionalField("publishing_date_note") && <TextField  {...this.createFieldProps("publishing_date_note")}/>}
@@ -108,33 +103,36 @@ class Metadata extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					{this.conditionalField("isbn") && <ISBNField {...this.createFieldProps("isbn")}/>}
-					{this.conditionalField("edition_order") && <TextField  {...this.createFieldProps("edition_order")}/>}
-					{this.conditionalField("edition") && <TextField  {...this.createFieldProps("edition")}/>}
-					{this.conditionalField("action_name") && <CorporationComboBox  {...this.createFieldProps("action_name")}/>}
-					{this.conditionalField("volume_content") && <TextField  {...this.createFieldProps("volume_content")}/>}
+					<Multiplier>{this.conditionalField("isbn") && <ISBNField {...this.createFieldProps("isbn")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("edition_order") && <TextField  {...this.createFieldProps("edition_order")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("edition") && <TextField  {...this.createFieldProps("edition")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("action_name") && <CorporationComboBox  {...this.createFieldProps("action_name")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("volume_content") && <TextField  {...this.createFieldProps("volume_content")}/>}</Multiplier>
 					<Multiplier>
 						{this.conditionalField("publishing_year_from") && <TextField {...this.createFieldProps("publishing_year_from")}/>}
 						{this.conditionalField("publishing_year_to") && <TextField  {...this.createFieldProps("publishing_year_to")}/>}
 						{this.conditionalField("publishing_year_note") && <TextField  {...this.createFieldProps("publishing_year_note")}/>}
 						{this.conditionalField("periodicity") && <StaticComboBox  {...this.createFieldProps("periodicity")}/>}
 					</Multiplier>
-					{this.conditionalField("isbn") && <TextField  {...this.createFieldProps("isbn")}/>}
+					<Multiplier>{this.conditionalField("issn") && <RegExpField  {...this.createFieldProps("issn")}/>}</Multiplier>
 					{this.conditionalField("source_document_name") && <MetadataComboBox {...this.createFieldProps("source_document_name")}/>}
 					{this.conditionalField("year") && <TextField  {...this.createFieldProps("year")}/>}
 					{this.conditionalField("volume") && <TextField  {...this.createFieldProps("volume")}/>}
 					{this.conditionalField("number") && <TextField  {...this.createFieldProps("number")}/>}
 					{this.conditionalField("date") && <DateField  {...this.createFieldProps("date")}/>}
+					<Multiplier>
+						{this.conditionalField("corporation_name") && <CorporationComboBox {...this.createFieldProps("corporation_name")}/>}
+						{this.conditionalField("access_conditions") && <StaticComboBox  {...this.createFieldProps("access_conditions")}/>}
+						{this.conditionalField("acces_note") && <TextField  {...this.createFieldProps("acces_note")}/>}
+					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Umístění</h2>
 					<Multiplier>
-						{this.conditionalField("access_conditions") && <StaticComboBox  {...this.createFieldProps("access_conditions")}/>}
-						{this.conditionalField("acces_note") && <TextField  {...this.createFieldProps("acces_note")}/>}
 						{this.conditionalField("location_in_institution") && <TextField {...this.createFieldProps("location_in_institution")}/>}
 						{this.conditionalField("location_in_fund") && <TextField  {...this.createFieldProps("location_in_fund")}/>}
 						{this.conditionalField("location_note") && <TextField  {...this.createFieldProps("location_note")}/>}
 					</Multiplier>
-					{this.conditionalField("digitized_document_url") && <TextField  {...this.createFieldProps("digitized_document_url")}/>}
+					<Multiplier>{this.conditionalField("digitized_document_url") && <TextField  {...this.createFieldProps("digitized_document_url")}/>}</Multiplier>
 					<Multiplier>
 						{this.conditionalField("external_source_name") && <MetadataComboBox  {...this.createFieldProps("external_source_name")}/>}
 						{this.conditionalField("external_source_url") && <TextField  {...this.createFieldProps("external_source_url")}/>}
@@ -142,47 +140,40 @@ class Metadata extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					{this.conditionalField("corporation_name") && <CorporationComboBox {...this.createFieldProps("corporation_name")}/>}
 					<Multiplier>
 						{this.conditionalField("attachment_name") && <TextField  {...this.createFieldProps("attachment_name")}/>}
 						{this.conditionalField("attachment_url") && <TextField  {...this.createFieldProps("attachment_url")}/>}
 					</Multiplier>
-					<Multiplier>
-						{this.conditionalField("described_object_citation") && <TextField  {...this.createFieldProps("described_object_citation")}/>}
-					</Multiplier>
+					<Multiplier>{this.conditionalField("described_object_citation") && <MetadataComboBox  {...this.createFieldProps("described_object_citation")}/>}</Multiplier>
 					{this.conditionalField("previous_name") && <MetadataComboBox  {...this.createFieldProps("previous_name")}/>}
 					{this.conditionalField("following_name") && <MetadataComboBox  {...this.createFieldProps("following_name")}/>}
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					{this.conditionalField("form") && <FormStaticComboBox  {...this.createFieldProps("form")}/>}
+					<Multiplier>{this.conditionalField("form") && <FormStaticComboBox  {...this.createFieldProps("form")}/>}</Multiplier>
 					{this.conditionalField("range") && <TextField  {...this.createFieldProps("range")}/>}
 					{this.conditionalField("dimension") && <TextField {...this.createFieldProps("dimension")}/>} 
-					{this.conditionalField("map_scale") && <TextField {...this.createFieldProps("map_scale")}/>} 
+					<Multiplier>{this.conditionalField("map_scale") && <TextField {...this.createFieldProps("map_scale")}/>}</Multiplier>
 					{this.conditionalField("format") && <TextField  {...this.createFieldProps("format")}/>}
 					{this.conditionalField("processing_level") && <StaticComboBox  {...this.createFieldProps("processing_level")}/>}
 					{this.conditionalField("description_level") && <StaticComboBox  {...this.createFieldProps("description_level")}/>}
+					<Multiplier>{this.conditionalField("archival_aids") && <MetadataComboBox {...this.createFieldProps("archival_aids")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("source_citation") && <MetadataComboBox {...this.createFieldProps("source_citation")}/>}</Multiplier>
 					<Multiplier>
-						{this.conditionalField("archival_aids") && <MetadataComboBox {...this.createFieldProps("archival_aids")}/>} 
+						{this.conditionalField("multiple_placement") && <CorporationComboBox {...this.createFieldProps("multiple_placement")}/>} 
+						{this.conditionalField("multiple_placement_url") && <TextField {...this.createFieldProps("multiple_placement_url")}/>} 
 					</Multiplier>
-					<Multiplier>
-						{this.conditionalField("source_citation") && <TextField {...this.createFieldProps("source_citation")}/>} 
-					</Multiplier>
-					{this.conditionalField("multiple_placement") && <TextField {...this.createFieldProps("multiple_placement")}/>} 
-					{this.conditionalField("multiple_placement_url") && <TextField {...this.createFieldProps("multiple_placement_url")}/>} 
-					{this.conditionalField("topic") && <KeywordComboBox {...this.createFieldProps("topic")}/>} 
-					{this.conditionalField("corporation_content_specification_person") && <PersonComboBox {...this.createFieldProps("corporation_content_specification_person")}/>} 
-					{this.conditionalField("corporation_content_specification_corporation") && <CorporationComboBox {...this.createFieldProps("corporation_content_specification_corporation")}/>} 
-					{this.conditionalField("chronological_content_specification_begin") && <TextField {...this.createFieldProps("chronological_content_specification_begin")}					/>}
-					{this.conditionalField("chronological_content_specification_end") && <TextField {...this.createFieldProps("chronological_content_specification_end")}					/>}
-					{this.conditionalField("geographical_content_specification") && <GeographicComboBox {...this.createFieldProps("geographical_content_specification")}/>}
-					<Multiplier>
-						{this.conditionalField("keywords") && <KeywordComboBox  {...this.createFieldProps("keywords")}/>}
-					</Multiplier>
-					{this.conditionalField("description") && <TextField  {...this.createFieldProps("description")}/>}
+					<Multiplier>{this.conditionalField("topic") && <KeywordComboBox {...this.createFieldProps("topic")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("corporation_content_specification_person") && <PersonComboBox {...this.createFieldProps("corporation_content_specification_person")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("corporation_content_specification_corporation") && <CorporationComboBox {...this.createFieldProps("corporation_content_specification_corporation")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("chronological_content_specification_begin") && <TextField {...this.createFieldProps("chronological_content_specification_begin")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("chronological_content_specification_end") && <TextField {...this.createFieldProps("chronological_content_specification_end")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("geographical_content_specification") && <GeographicComboBox {...this.createFieldProps("geographical_content_specification")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("keywords") && <KeywordComboBox  {...this.createFieldProps("keywords")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("description") && <TextField  {...this.createFieldProps("description")}/>}</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					{this.conditionalField("general_note") && <TextField {...this.createFieldProps("general_note")}/>}
-					{this.conditionalField("editor_note") && <TextField {...this.createFieldProps("editor_note")}/>}
+					<Multiplier>{this.conditionalField("general_note") && <TextField {...this.createFieldProps("general_note")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("editor_note") && <TextField {...this.createFieldProps("editor_note")}/>}</Multiplier>
 					{this.conditionalField("submitter") && <StaticOpenComboBox  {...this.createFieldProps("submitter")}/>}
 				</Paper>
 				</div>

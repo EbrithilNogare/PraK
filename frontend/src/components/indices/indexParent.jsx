@@ -1,5 +1,7 @@
 import React from "react"
 
+import lodashSet from "lodash.set"
+
 import { 
 	InputAdornment,
 	Tooltip,
@@ -15,8 +17,16 @@ class IndexParent extends React.Component {
 
 		window.debug = ()=>{return this.formData} // todo remove this line
 
-		this.formData = undefined	// abstract
 		this.indexURL = undefined	// abstract
+		
+		this.formData = {}
+		if(this.props.defaults){
+			Object.keys(this.props.defaults).forEach( key => {
+				const value = this.props.defaults[key]
+				if(Array.isArray(value) && value.length !== 0)
+					this.formData[key] = value
+			})
+		}
 	}
 
 	getTypeDefinition = () => {throw new Error("Calling abstract function")}
@@ -108,12 +118,9 @@ class IndexParent extends React.Component {
 
 	}
 
-	handleFormChange = (e, a, multiplierIndex=0) => {
-		a=a.replace("[%]", `.${multiplierIndex}`);
-		a.split('.').reduce((o,p,i) => {
-			p = isNaN(parseInt(p)) ? p : parseInt(p)
-			return o[p] = a.split('.').length === ++i ? e.target.value : o[p] || (typeof p === "number" ? {} : [])
-		}, this.formData)
+	handleFormChange = (value, path, multiplierIndex = 0) => {
+		path = path.replace("[%]", `[${multiplierIndex}]`)
+		lodashSet(this.formData, path, value.target.value)
 	}
 
 	helperProp = (text) => {return{
