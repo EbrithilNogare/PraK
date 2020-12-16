@@ -36,10 +36,11 @@ class Metadata extends IndexParent {
 	constructor(props){
 		super(props)
 
+		this.formData.documentType = this.props.defaults ? this.props.defaults.documentType : 0
+		
 		this.state = {
-			documentType: this.props.documentType || 0
+			documentType: this.formData.documentType,
 		}
-
 
 		this.indexURL = "metadata"
 	}
