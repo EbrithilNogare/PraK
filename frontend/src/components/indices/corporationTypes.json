@@ -141,7 +141,7 @@
 		"founding_chronological_specification": {
 			"label": "Chronologické zpřesnění",
 			"schema": "founding_chronological_specification",
-			"helper": "Časové zpřesnění související s počátkem existence korporace."
+			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
 		"cancellation_person": {
 			"label": "Zrušení, likvidace, rozpuštění",
@@ -171,7 +171,7 @@
 		"cancellation_chronological_specification": {
 			"label": "Chronologické zpřesnění",
 			"schema": "cancellation_chronological_specification",
-			"helper": "Časové zpřesnění související se zánikem existence korporace."
+			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
 		"owner_change": {
 			"label": "Změna majitele, držitele",

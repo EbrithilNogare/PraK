@@ -10,35 +10,30 @@ import {
 class FormStaticComboBox extends React.Component {
 	constructor(props){
 		super(props)
+
+		let defaultValue = this.props.defaultValue
+		if(!Array.isArray(defaultValue) || defaultValue.length !== 3)
+			defaultValue = ["","",""]
+
 		this.state = {
-			value: this.props.defaultValue ? this.props.defaultValue : this.props.options ? this.props.options[0] || "" : "",
-			value1: "",
-			value2: "",
-			value3: "",
+			value: defaultValue
 		}
 	}
 
 	handleChangeFirst = event => {
-		this.setState({
-			value1: event.target.value,
-			value2: "",
-			value3: "",
-		})
-
-		if(this.props.onChange) this.props.onChange(event)
+		const newValue = [event.target.value,"",""]
+		this.setState({value: newValue})
+		if(this.props.onChange) this.props.onChange({ target: { value: newValue } })
 	}
 	handleChangeSecond = event => {
-		this.setState({
-			value2: event.target.value,
-			value3: "",
-		})
-
-		if(this.props.onChange) this.props.onChange(event)
+		const newValue = [this.state.value[0], event.target.value,""]
+		this.setState({value: newValue})
+		if(this.props.onChange) this.props.onChange({ target: { value: newValue } })
 	}
 	handleChangeThird = event => {
-		this.setState({value3: event.target.value})
-
-		if(this.props.onChange) this.props.onChange(event)
+		const newValue = [this.state.value[0], this.state.value[1], event.target.value]
+		this.setState({value: newValue})
+		if(this.props.onChange) this.props.onChange({ target: { value: newValue } })
 	}
 
 	render(){
@@ -49,7 +44,7 @@ class FormStaticComboBox extends React.Component {
 					name={this.props.name}
 					labelId="select-label1"
 					onChange={this.handleChangeFirst}
-					value={this.state.value1}
+					value={this.state.value[0]}
 					required={this.props.required}
 					style={{width: "100%"}}
 					inputProps={{
@@ -62,13 +57,13 @@ class FormStaticComboBox extends React.Component {
 					))}
 				</Select>
 			</FormControl>
-			{ this.state.value1 !== "" && Array.isArray(formSpecificData[this.state.value1])===false && <FormControl style={{width: "100%"}}>
-				<InputLabel id="select-label2">{this.props.label[0].toUpperCase() + this.props.label.slice(1) + ": " + this.state.value1}</InputLabel>
+			{ this.state.value[0] !== "" && Array.isArray(formSpecificData[this.state.value[0]])===false && <FormControl style={{width: "100%"}}>
+				<InputLabel id="select-label2">{this.props.label[0].toUpperCase() + this.props.label.slice(1) + ": " + this.state.value[0]}</InputLabel>
 				<Select
 					name={this.props.name}
 					labelId="select-label2"
 					onChange={this.handleChangeSecond}
-					value={this.state.value2}
+					value={this.state.value[1]}
 					required={this.props.required}
 					style={{width: "100%"}}
 					inputProps={{
@@ -76,18 +71,18 @@ class FormStaticComboBox extends React.Component {
 					}}
 					endAdornment={this.props.InputProps && this.props.InputProps.endAdornment ? this.props.InputProps.endAdornment : undefined}
 					>
-					{Object.keys(formSpecificData[this.state.value1]).map((value, key)=>(
+					{Object.keys(formSpecificData[this.state.value[0]]).map((value, key)=>(
 						<MenuItem key={key} value={value}>{value}</MenuItem>
 					))}
 				</Select> 
 			</FormControl>}
-			{ this.state.value2 !== "" && Array.isArray(formSpecificData[this.state.value1][this.state.value2])===false && <FormControl style={{width: "100%"}}>
-				<InputLabel id="select-label3">{this.props.label[0].toUpperCase() + this.props.label.slice(1) + ": " + this.state.value2}</InputLabel>
+			{ this.state.value[1] !== "" && Array.isArray(formSpecificData[this.state.value[0]][this.state.value[1]])===false && <FormControl style={{width: "100%"}}>
+				<InputLabel id="select-label3">{this.props.label[0].toUpperCase() + this.props.label.slice(1) + ": " + this.state.value[1]}</InputLabel>
 				<Select
 					name={this.props.name}
 					labelId="select-label3"
 					onChange={this.handleChangeThird}
-					value={this.state.value3}
+					value={this.state.value[2]}
 					required={this.props.required}
 					style={{width: "100%"}}
 					inputProps={{
@@ -95,7 +90,7 @@ class FormStaticComboBox extends React.Component {
 					}}
 					endAdornment={this.props.InputProps && this.props.InputProps.endAdornment ? this.props.InputProps.endAdornment : undefined}
 					>
-					{Object.keys(formSpecificData[this.state.value1][this.state.value2]).map((value, key)=>(
+					{Object.keys(formSpecificData[this.state.value[0]][this.state.value[1]]).map((value, key)=>(
 						<MenuItem key={key} value={value}>{value}</MenuItem>
 					))}
 				</Select> 

@@ -192,7 +192,7 @@
 		"founding_chronological_specification": {
 			"label": "Chronologické zpřesnění",
 			"schema": "founding_chronological_specification",
-			"helper": "Časové zpřesnění související s počátkem existence geografické entity."
+			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
 		"cancellation_person": {
 			"label": "Zánik",
@@ -237,7 +237,7 @@
 		"cancellation_chronological_specification": {
 			"label": "Chronologické zpřesnění",
 			"schema": "cancellation_chronological_specification",
-			"helper": "Časové zpřesnění související se zánikem geografické entity."
+			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
 		"historical_milestones": {
 			"label": "Historické milníky",

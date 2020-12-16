@@ -3,6 +3,7 @@ import {
 	Switch,
 	Route,
 } from "react-router-dom"
+import { withSnackbar } from 'notistack'
 import { 
 	Paper,
 } from '@material-ui/core'
@@ -36,12 +37,17 @@ class EditScene extends React.Component {
 		if(this.state.record !== null) return
 
 		fetch(`/prak/api/${type}${type==="metadata"?"":"index"}/${id}`)
-		.then(response => response.json())
+		.then(response => {
+			if(response.status === 500)
+				throw response
+			return response.json()
+		})
 		.then(data => {
 			this.setState({record:data})
 		})
 		.catch(err=>{
 			console.error(err)
+			this.props.enqueueSnackbar(`Loading unsuccesful\n`, { variant: "error", autoHideDuration: 6000 })
 			this.setState({record:null})
 		})
 	}
@@ -66,4 +72,4 @@ class EditScene extends React.Component {
 	}
 }
 
-export default EditScene
+export default withSnackbar(EditScene)

@@ -73,6 +73,7 @@
 			"options": ["", "angličtina", "bulharština", "čeština", "dolnoněmčina", "francouzština", "italština", "jidiš", "judendeutsch", "latina", "němčina", "polština", "rumunština", "ruština", "slovenština", "španělština", "ukrajinština", "jiné"]
 		},
 		"publish-category":{
+			"label": "Země vydání nebo vzniku",
 			"schema": "publish[%]"
 		},
 		"publish_country": {
@@ -223,6 +224,7 @@
 			"helper": "Uveďte datum vydání novin, ve kterých byl článek uveřejněn."
 		},
 		"corporation-category": {
+			"label": "Korporace",
 			"schema": "corporation[%]"
 		},
 		"corporation_name": {
@@ -368,14 +370,14 @@
 		"description_level": {
 			"label": "Úroveň popisu",
 			"schema": "description_level",
-			"fields": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
 			"helper": "Detailnost zpracování archiválií a sbírek.",
 			"options": ["", "část fondu", "série", "podsérie", "spis", "jednotlivina", "podsbírka", "jiné"]
 		},
 		"archival_aids": {
 			"label": "Archivní pomůcky",
 			"schema": "archival_aids[%]",
-			"fields": [1, 0, 1, 0, 1, 0, 1, 1, 1, 1],
+			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
 			"helper": "Uvádí se Archivní pomůcky vázané na popisované archiválie."
 		},
 		"source_citation": {
@@ -385,6 +387,7 @@
 			"helper": "Uvádí se zdroj, z nějž čerpal autor záznamu o archiváliích nebo sbírce."
 		},
 		"multiple_placement-category": {
+			"label": "Násobné umístění",
 			"schema": "multiple_placement_category[%]"
 		},
 		"multiple_placement": {
@@ -417,6 +420,7 @@
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 		},
 		"chronological_content_specification-category": {
+			"label": "Chronologické zpřesnění obsahu dokumentu",
 			"schema": "chronological_content_specification[%]"
 		},
 		"chronological_content_specification_begin": {

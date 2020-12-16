@@ -20,17 +20,19 @@ class Multiplier extends React.Component {
 
 		// load default values
 		let dataWithDefaultValues  = []
-		if(Array.isArray(this.props.children)){
-			const notEmptyChild = this.props.children.find((child=>child.props !== undefined))
-			if(notEmptyChild && notEmptyChild.props && notEmptyChild.props.defaultValue !== undefined){
-				notEmptyChild.props.defaultValue.forEach(child => {
-					dataWithDefaultValues.push({key: this.maxKey++})
-				})
-			}
-			else
-				if(this.props.children && this.props.children.props && this.props.children.props.defaultValue !== undefined){
-					dataWithDefaultValues = [{key: this.maxKey++}]
-			}
+		
+		const propChildrens = Array.isArray(this.props.children) ? this.props.children : [this.props.children]
+		
+		const notEmptyChild = propChildrens.find((child=>child.props !== undefined))
+		
+		if(notEmptyChild && notEmptyChild.props && notEmptyChild.props.defaultValue !== undefined){
+			notEmptyChild.props.defaultValue.forEach(child => {
+				dataWithDefaultValues.push({key: this.maxKey++})
+			})
+		}
+		else
+			if(propChildrens && propChildrens.props && propChildrens.props.defaultValue !== undefined){
+				dataWithDefaultValues = [{key: this.maxKey++}]
 		}
 
 		this.state = {
@@ -44,7 +46,7 @@ class Multiplier extends React.Component {
 	handleRemove = (keyToDelete, childs) => {
 		const newState = {data: this.state.data.filter((chip) => chip.key !== keyToDelete)}
 		childs.forEach((value, key)=>{
-			if(value.props.onChange)
+			if(value.props && value.props.onChange)
 				value.props.onChange({ target: { value:undefined } }, keyToDelete)
 		})
 

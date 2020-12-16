@@ -88,11 +88,11 @@ class Metadata extends IndexParent {
 						{this.conditionalField("other_authors_role") && <StaticComboBox {...this.createFieldProps("other_authors_role")}/>}
 					</Multiplier>
 					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
-					<Multiplier>{this.conditionalField("author_responsibility") && <TextField {...this.createFieldProps("author_responsibility")}/>}</Multiplier>
+					{this.conditionalField("author_responsibility") && <TextField {...this.createFieldProps("author_responsibility")}/>}
 					<Multiplier>{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("language") && <StaticComboBox {...this.createFieldProps("language")}/>}</Multiplier>
 					<Multiplier>
-						{this.conditionalField("publish_country") && <StaticComboBox{...this.createFieldProps("publish_country")}/>}
+						{this.conditionalField("publish_country") && <StaticComboBox {...this.createFieldProps("publish_country")}/>}
 						{this.conditionalField("publish_place") && <GeographicComboBox {...this.createFieldProps("publish_place")}/>}
 						{this.conditionalField("publisher") && <CorporationComboBox {...this.createFieldProps("publisher")}/>}
 					</Multiplier>

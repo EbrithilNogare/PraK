@@ -21,7 +21,7 @@ const schema = new mongoose.Schema({
 		unique: true,
 		required: true,
 	},
-	author_responsibility: [String],
+	author_responsibility: String,
 	other_names: [String],
 	language: [String],
 	publish: [{	
@@ -106,12 +106,13 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "metadata"
 	},
-	form: [String],
+	form: [[String]],
 	range: String,
 	dimension: String,
 	map_scale: [String],
 	format: String,
 	processing_level: String,
+	description_level: String,
 	archival_aids: [{
 		type: mongoose.Types.ObjectId,
 		ref: "metadata",

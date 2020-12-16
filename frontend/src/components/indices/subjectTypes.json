@@ -111,7 +111,7 @@
 		"founding_chronological_specification": {
 			"label": "Chronologické zpřesnění",
 			"schema": "founding_chronological_specification",
-			"helper": "Časové zpřesnění související s počátkem události."
+			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
 		"cancellation_person": {
 			"label": "Zničení, zánik",
@@ -136,7 +136,7 @@
 		"cancellation_chronological_specification": {
 			"label": "Chronologické zpřesnění",
 			"schema": "cancellation_chronological_specification",
-			"helper": "Časové zpřesnění související s koncem události."
+			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
 		"category": {
 			"label": "Kategorie",
