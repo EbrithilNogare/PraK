@@ -40,6 +40,7 @@
     "jest-environment-jsdom-fourteen": "1.0.1",
     "jest-resolve": "24.9.0",
     "jest-watch-typeahead": "0.4.2",
+    "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "lorem-ipsum": "^2.0.3",
     "material-table": "^1.68.0",

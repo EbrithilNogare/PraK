@@ -926,7 +926,10 @@ const mongoose = { Types: { ObjectId: "ObjectId" } }
 
 const schema = {
 metadata: {
-	documentType: Number,
+	documentType: {
+		type: Number,
+		required: true,
+	},
 	author: {
 		id: {
 			type: mongoose.Types.ObjectId,
@@ -949,15 +952,17 @@ metadata: {
 	author_responsibility: String,
 	other_names: [String],
 	language: [String],
-	publish_country: String,
-	publish_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	publisher: {
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	},
+	publish: [{	
+		publish_country: String,
+		publish_place: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		publisher: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}
+	}],
 	publishing_date: [{
 		date: {
 			type: String,
@@ -966,21 +971,21 @@ metadata: {
 		notAccurate: Boolean,
 		note: String,
 	}],
-	isbn: String,
-	edition_order: String,
-	edition: String,
-	action_name: {
+	isbn: [String],
+	edition_order: [String],
+	edition: [String],
+	action_name: [{
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
-	},
-	volume_content: String,
+	}],
+	volume_content: [String],
 	publishing_year: [{
 		from: Number,
 		to: Number,
 		note: String,
 		periodicity: String,
 	}],
-	issn: String,
+	issn: [String],
 	source_document_name: {
 		type: mongoose.Types.ObjectId,
 		ref: "metadata",
@@ -991,18 +996,20 @@ metadata: {
 		number: Number,
 		date: Date,
 	},
-	corporation_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	},
-	location: [{
+	corporation: [{
+		corporation_name: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
 		access_conditions: String,
-		acess_note: String,
+		acces_note: String,
+	}],
+	location: [{
 		institution: String,
 		fund: String,
 		note: String,
 	}],
-	digitized_document_url: String,
+	digitized_document_url: [String],
 	external_source: [{
 		name: {
 			type: mongoose.Types.ObjectId,
@@ -1015,7 +1022,10 @@ metadata: {
 		name: String,
 		url: String,
 	}],
-	described_object_citation: [String],
+	described_object_citation: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata"
+	}],
 	previous_name: {
 		type: mongoose.Types.ObjectId,
 		ref: "metadata",
@@ -1024,46 +1034,55 @@ metadata: {
 		type: mongoose.Types.ObjectId,
 		ref: "metadata"
 	},
-	form: String,
+	form: [[String]],
 	range: String,
 	dimension: String,
-	map_scale: String,
+	map_scale: [String],
 	format: String,
 	processing_level: String,
+	description_level: String,
 	archival_aids: [{
 		type: mongoose.Types.ObjectId,
 		ref: "metadata",
 	}],
-	source_citation: [String],
-	multiple_placement: String,
-	multiple_placement_url: String,
-	topic: {
+	source_citation: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	multiple_placement_category: [{
+		multiple_placement: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		multiple_placement_url: String,
+	}],
+	topic: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
-	},
-	corporation_content_specification: {
+	}],
+	corporation_content_specification_person: [{
 		type: mongoose.Types.ObjectId,
-		refPath: "corporation_content_specificationModel",
-	},
-	corporation_content_specificationModel: {
-	  type: String,
-	  enum: ['personIndex', 'corporationIndex']
-	},
-	chronological_content_specification: {
+		ref: "personIndex",
+	}],
+	corporation_content_specification_corporation: [{
+		type: mongoose.Types.ObjectId,
+		ref: "corporationIndex",
+	}],
+	chronological_content_specification: [{
 		begin: Number,
 		end: Number,
-	},
-	geographical_content_specification: {
+	}],
+	geographical_content_specification: [{
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},
+	}],
 	keywords: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	description: String,
-	general_note: String,
-	editor_note: String,
+	description: [String],
+	general_note: [String],
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,

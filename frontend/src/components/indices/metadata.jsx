@@ -1,6 +1,8 @@
 import React from "react"
 import { withRouter } from 'react-router-dom'
 import { withSnackbar } from 'notistack'
+import lodashSet from "lodash.set"
+import lodashGet from "lodash.get"
 import {
 	Paper,
 	Select,
@@ -23,7 +25,6 @@ import {
 	StaticComboBox,
 	FormStaticComboBox,
 } from '../comboBoxes'
-import ISBNField from '../validationTextFields/ISBNField'
 import DateField from '../validationTextFields/DateField'
 import RegExpField from '../validationTextFields/RegExpField'
 import Multiplier from '../Multiplier'
@@ -73,6 +74,19 @@ class Metadata extends IndexParent {
 							onChange={(e) => {
 								this.setState({documentType: e.target.value})
 								this.formData.documentType = e.target.value
+								Object.entries(typeDefinitionFile.properties).forEach(([key, value]) => {
+									if(value.fields === undefined) return
+									if(value.fields[e.target.value] !== 0) return
+									let path = value.schema
+									if(path.includes("[%].")){
+										let shortPath = lodashGet(this.formData, path.split("[%].")[0]) || ""
+										for (let i = 0; i < shortPath.length; i++) {
+											lodashSet(this.formData, path.replace("[%].", `[${i}].`), undefined)
+										}
+									}else{
+										lodashSet(this.formData, path.replace("[%]", ""), undefined)
+									}
+								})
 							}}
 						>
 							{typeDefinitionFile.types.map((value, index) => {
@@ -100,11 +114,11 @@ class Metadata extends IndexParent {
 					<Multiplier>
 						{this.conditionalField("publishing_date") && <RegExpField {...this.createFieldProps("publishing_date")}/>}
 						{this.conditionalField("publishing_date_note") && <TextField  {...this.createFieldProps("publishing_date_note")}/>}
-						{this.conditionalField("publishing_date_notAccurate") && <LabeledCheckbox {...this.createFieldProps("publishing_date_notAccurate")}/>}
+						{this.conditionalField("publishing_date_notAccurate") && <LabeledCheckbox {...this.createFieldProps("publishing_date_notAccurate")} />}
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					<Multiplier>{this.conditionalField("isbn") && <ISBNField {...this.createFieldProps("isbn")}/>}</Multiplier>
+					<Multiplier>{this.conditionalField("isbn") && <RegExpField {...this.createFieldProps("isbn")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("edition_order") && <TextField  {...this.createFieldProps("edition_order")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("edition") && <TextField  {...this.createFieldProps("edition")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("action_name") && <CorporationComboBox  {...this.createFieldProps("action_name")}/>}</Multiplier>

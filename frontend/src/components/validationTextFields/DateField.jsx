@@ -53,12 +53,20 @@ class DateField extends React.Component {
 	}
 
 	render(){
-		const {errorMessage, ...config} = this.props 
+		const {errorMessage, defaultValue, ...config} = this.props 
+
+		let parsedDefaultValue = ""
+		if(defaultValue){
+			const parsedDate = new Date(defaultValue)
+			parsedDefaultValue = parsedDate.toLocaleDateString("cs-CZ", {day: 'numeric', month: 'numeric', year: 'numeric'}).split(" ").join("")
+		}
+
 		return(
 			<TextField {...config}
-				onChange={ this.handleChange }
-				error={ this.state.error }
-				helperText={ this.state.error ? errorMessage || "Invalid Date, use format dd.mm.yyyy or mm.yyyy or yyyy" : "" }
+				defaultValue = { parsedDefaultValue }
+				onChange = { this.handleChange }
+				error = { this.state.error }
+				helperText = { this.state.error ? errorMessage || "Invalid Date, use format dd.mm.yyyy or mm.yyyy or yyyy" : "" }
 			/>
 		)
 	}

@@ -23,7 +23,7 @@ router.route('/:id').get((req, res) => {
 		.populate("archival_aids", "name")
 		.populate("source_citation", "name")
 		.populate("multiple_placement_category.multiple_placement", "name_main_part")
-		//.populate("topic", "name_main_part") // todo fix dynamic ref populate (use third param)
+		.populate("topic", "name_main_part") // todo fix dynamic ref populate (use third param)
 		.populate("corporation_content_specification_person", ['name', 'surname'])
 		.populate("corporation_content_specification_corporation", "name_main_part")
 		.populate("geographical_content_specification", "name_main_part")

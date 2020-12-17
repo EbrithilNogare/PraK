@@ -122,7 +122,9 @@
 			"label": "ISBN",
 			"schema": "isbn[%]",
 			"fields": [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
-			"helper": "Uvádí se bez pomlček."
+			"helper": "Uvádí se bez pomlček.",
+			"regexp": "^(97(8|9))?\\d{9}(\\d|X)$",
+			"errorMessage": "chybné ISBN (formát: ???ddddddddd#)"
 		},
 		"edition_order": {
 			"label": "Pořadí vydání",
@@ -145,7 +147,7 @@
 		"volume_content": {
 			"label": "Obsah svazku",
 			"schema": "volume_content[%]",
-			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+			"fields": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
 			"helper": "Užívá se pro nedílné části svazků, které se nepopisují samostatně - např. obsah. Obsah svazku může být i jako příloha v pdf souboru. "
 		},
 		"publishing_year-category": {
@@ -243,7 +245,7 @@
 		"acces_note": {
 			"label": "Poznámka k přístupu",
 			"schema": "corporation[%].acces_note",
-			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+			"fields": [1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Zpřesnění informace o dostupnosti díla nebo archiválií."
 		},
 		"location-category": {
@@ -265,7 +267,7 @@
 		"location_note": {
 			"label": "Poznámka k umístění",
 			"schema": "location[%].note",
-			"fields": [1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Zpřesnění informace o umístění díla nebo archiválií."
 		},
 		"digitized_document_url": {
@@ -351,7 +353,7 @@
 		"map_scale": {
 			"label": "Měřítko",
 			"schema": "map_scale[%]",
-			"fields": [1, 0, 0, 0, 1, 1, 1, 0, 0, 1],
+			"fields": [1, 0, 0, 0, 1, 1, 1, 0, 0, 0],
 			"helper": "Uvádí se měřítko uvedené na mapě."
 		},
 		"format": {

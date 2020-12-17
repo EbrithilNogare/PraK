@@ -9,18 +9,23 @@ class LabeledCheckbox extends React.Component {
 	constructor(props){
 		super(props)
 
-		this.state = {}
+		this.state = {
+			checked: this.props.defaultValue || false
+		}
 	}
 
-	handleChange = e => {this.props.onChange({...e, target:{...e.target, value: e.target.checked}})}
+	handleChange = e => {
+		this.setState({ checked: e.target.checked })
+		this.props.onChange({...e, target:{...e.target, value: e.target.checked}})
+	}
 
 	render(){
-		const {onChange, label, ...config} = this.props
+		const {onChange, defaultValue, label, ...config} = this.props
 		return(
 			<Grid container direction="row" justify="flex-end" alignItems="center">
 				<Grid item xs style={{textAlign:"right"}}>{ label }</Grid>
 				<Grid item>
-					<Checkbox style={{width:"20px"}} color="primary" {...config} onChange={this.handleChange}/>
+					<Checkbox style={{width:"20px"}} color="primary" {...config} onChange={this.handleChange} checked={this.state.checked}/>
 				</Grid>
 			</Grid>
 		)

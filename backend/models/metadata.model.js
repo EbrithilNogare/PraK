@@ -77,7 +77,7 @@ const schema = new mongoose.Schema({
 			ref: "corporationIndex",
 		},
 		access_conditions: String,
-		acess_note: String,
+		acces_note: String,
 	}],
 	location: [{
 		institution: String,
