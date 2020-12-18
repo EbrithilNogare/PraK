@@ -21,7 +21,7 @@ const schema = new mongoose.Schema({
 	history: String,
 	electronical_location: [String],
 
-	coordinates: String,
+	coordinates: [String],
 
 	partner_object: [{
 		type: mongoose.Types.ObjectId,
@@ -182,10 +182,23 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	arm:[String],
-	logo:[String],
-	mark:[String],
-	flag:[String],
+	
+	arm:[{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	logo:[{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	mark:[{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	flag:[{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
 
 	notes:[String],
 
@@ -197,6 +210,7 @@ const schema = new mongoose.Schema({
 
 	record_sources:[String],
 
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,

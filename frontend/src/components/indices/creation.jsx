@@ -65,7 +65,7 @@ class Creation extends IndexParent {
 						<TextField {...this.createFieldProps("arrangement")}/>
 					</Multiplier>
 					<Multiplier>
-						<TextField {...this.createFieldProps("name_part")}/>
+						<TextField {...this.createFieldProps("preferred_name")}/>
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Doplňky označení</h2>
@@ -92,7 +92,7 @@ class Creation extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Souřadnice</h2>
-					<GPSField {...this.createFieldProps("coordinates")}/>
+					<Multiplier><GPSField {...this.createFieldProps("coordinates")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Vztahy</h2>
 					<Multiplier>
@@ -180,6 +180,7 @@ class Creation extends IndexParent {
 					<Multiplier>
 						<TextField {...this.createFieldProps("record_sources")}/>
 					</Multiplier>
+					<TextField {...this.createFieldProps("editor_note")}/>
 					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>

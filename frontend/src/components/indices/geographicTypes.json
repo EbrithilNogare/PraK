@@ -66,8 +66,9 @@
 		},
 		"coordinates": {
 			"label": "Souřadnice",
-			"schema": "coordinates",
-			"helper": "Souřadnice geografické entity. Nutno kopírovat z Google maps."
+			"schema": "coordinates[%]",
+			"helper": "Souřadnice geografické entity. Nutno kopírovat z Google maps.",
+			"errorMessage": "Chybný formát souřadnic"
 		},
 		"partner_object": {
 			"label": "Partnerský geografický objekt",
@@ -328,6 +329,11 @@
 			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"multiline" : true
+		},
+		"editor_note": {
+			"label": "Poznámka editora",
+			"schema": "editor_note[%]",
+			"helper": "Interní poznámka"
 		},
 		"submitter": {
 			"label": "Zadavatel",

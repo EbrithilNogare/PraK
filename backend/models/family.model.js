@@ -7,6 +7,7 @@ const schema = new mongoose.Schema({
 		identificator: String,
 	}],
 
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,

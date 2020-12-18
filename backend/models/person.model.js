@@ -108,8 +108,14 @@ const schema = new mongoose.Schema({
 		ref: "corporationIndex",
 	}],
 
-	arm: [String],
-	photo: [String],
+	arm: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	photo: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
 
 	notes: [String],
 	
@@ -123,6 +129,7 @@ const schema = new mongoose.Schema({
 		type: [String],
 	},
 
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,

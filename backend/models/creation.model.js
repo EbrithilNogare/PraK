@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
 	cast:[String],
 	tone: String,
 	arrangement:[String],
-	name_part:[String],
+	preferred_name:[String],
 
 	general_complement: String,
 	geographical_complement: String,
@@ -32,7 +32,7 @@ const schema = new mongoose.Schema({
 	history: String,
 	purpose:[String],
 
-	coordinates: String,
+	coordinates: [String],
 
 	hierarchical_relations:[{
 		type: mongoose.Types.ObjectId,
@@ -162,7 +162,7 @@ const schema = new mongoose.Schema({
 	}],
 
 	record_sources:[String],
-
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,

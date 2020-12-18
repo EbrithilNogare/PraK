@@ -25,6 +25,11 @@
 			"label": "Datum není jisté",
 			"schema": "born_year.notKnown"
 		},
+		"born_place": {
+			"label": "Místo narození",
+			"helper":"Výběr z geografického rejstříku.",
+			"schema": "born_place"
+		},
 		"death_year-category": {
 			"schema": "death_year"
 		},
@@ -37,6 +42,11 @@
 		"death_year_notKnown": {
 			"label": "Datum není jisté",
 			"schema": "death_year.notKnown"
+		},
+		"death_place": {
+			"label": "Místo úmrtí",
+			"helper": "Výběr z geografického rejstříku.",
+			"schema": "death_place"
 		},
 		"initials": {
 			"label": "Rozpis iniciál",
@@ -145,16 +155,6 @@
 			"label": "Příslušnost k zemi",
 			"schema": "country_membership[%]",
 			"helper":"Výběr z geografického rejstříku."
-		},
-		"born_place": {
-			"label": "Místo narození",
-			"helper":"Výběr z geografického rejstříku.",
-			"schema": "born_place"
-		},
-		"death_place": {
-			"label": "Místo skonu",
-			"helper": "Výběr z geografického rejstříku.",
-			"schema": "death_place"
 		},
 		"related_country": {
 			"label": "Související země",
@@ -265,6 +265,11 @@
 			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"multiline" : true
+		},
+		"editor_note": {
+			"label": "Poznámka editora",
+			"schema": "editor_note[%]",
+			"helper": "Interní poznámka"
 		},
 		"submitter": {
 			"label": "Zadavatel",

@@ -36,9 +36,9 @@
 			"schema": "arrangement[%]",
 			"helper": "Pro hudební díla."
 		},
-		"name_part": {
-			"label": "Název části díla/výtvoru",
-			"schema": "name_part[%]",
+		"preferred_name": {
+			"label": "Preferované označení",
+			"schema": "preferred_name[%]",
 			"helper": "Název části názvu díla/výtvoru."
 		},
 		"general_complement": {
@@ -102,7 +102,7 @@
 		},
 		"coordinates": {
 			"label": "Souřadnice",
-			"schema": "coordinates",
+			"schema": "coordinates[%]",
 			"helper": "Souřadnice díla/výtvoru. Nutno kopírovat z Google maps."
 		},
 		"hierarchical_relations": {
@@ -284,6 +284,11 @@
 			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"multiline" : true
+		},
+		"editor_note": {
+			"label": "Poznámka editora",
+			"schema": "editor_note[%]",
+			"helper": "Interní poznámka"
 		},
 		"submitter": {
 			"label": "Zadavatel",

@@ -178,6 +178,11 @@
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"multiline" : true
 		},
+		"editor_note": {
+			"label": "Poznámka editora",
+			"schema": "editor_note[%]",
+			"helper": "Interní poznámka"
+		},
 		"submitter": {
 			"label": "Zadavatel",
 			"schema": "submitter",

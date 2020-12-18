@@ -53,6 +53,7 @@ class Family extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}>
+					<TextField {...this.createFieldProps("editor_note")}/>
 					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>

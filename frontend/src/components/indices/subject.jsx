@@ -130,6 +130,7 @@ class Subject extends IndexParent {
 						<Multiplier>
 							<TextField {...this.createFieldProps("record_sources")}/>
 						</Multiplier>
+						<TextField {...this.createFieldProps("editor_note")}/>
 						<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 					</Paper>
 				</div>

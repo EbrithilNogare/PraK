@@ -45,6 +45,10 @@ router.route('/:id').get((req, res) => {
 		.populate("awards.awarder_corporation", "name_other_part")
 		.populate("category", "name_other_part")
 		.populate("characteristic", "name_other_part")
+		.populate("arm", "name")
+		.populate("logo", "name")
+		.populate("mark", "name")
+		.populate("flag", "name")
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

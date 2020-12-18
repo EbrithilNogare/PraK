@@ -22,7 +22,7 @@ const schema = new mongoose.Schema({
 	constitutive_standards: [String],
 	scope_standards: [String],
 
-	coordinates: String,
+	coordinates: [String],
 
 	parent_corporation: [{
 		type: mongoose.Types.ObjectId,
@@ -147,9 +147,19 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	logo: [String],
-	mark: [String],
-	flag: [String],
+
+	logo: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	mark: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	flag: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
 
 	notes: [String],
 
@@ -162,6 +172,7 @@ const schema = new mongoose.Schema({
 	record_sources: {
 		type: [String],
 	},
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,

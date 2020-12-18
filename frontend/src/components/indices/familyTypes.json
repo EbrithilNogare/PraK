@@ -20,6 +20,11 @@
 			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
+		"editor_note": {
+			"label": "Poznámka editora",
+			"schema": "editor_note[%]",
+			"helper": "Interní poznámka"
+		},
 		"submitter": {
 			"label": "Zadavatel",
 			"schema": "submitter",

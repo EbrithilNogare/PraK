@@ -20,6 +20,7 @@ import GPSField from "../validationTextFields/GPSField"
 import styles from './parent.module.scss'
 import typeDefinitionFile from './geographicTypes.json'
 import Multiplier from '../Multiplier'
+import MetadataComboBox from "components/comboBoxes/MetadataComboBox"
 
 class Geographic extends IndexParent {
 	constructor(props){
@@ -75,7 +76,7 @@ class Geographic extends IndexParent {
 						</Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Souřadnice</h2>
-						<GPSField errorMessage="Chybný formát souřadnic" {...this.createFieldProps("coordinates")}/>
+						<Multiplier><GPSField { ...this.createFieldProps("coordinates") } /></Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Vztahy</h2>
 						<Multiplier>
@@ -143,18 +144,12 @@ class Geographic extends IndexParent {
 						<Multiplier>
 							<KeywordComboBox {...this.createFieldProps("characteristic")}/>
 						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("arm")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("logo")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("mark")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("flag")}/>
-						</Multiplier>
+					</Paper>
+					<Paper className={styles.dataBlock}> <h2>Vyobrazení</h2>
+						<Multiplier><MetadataComboBox {...this.createFieldProps("arm")}/></Multiplier>
+						<Multiplier><MetadataComboBox {...this.createFieldProps("logo")}/></Multiplier>
+						<Multiplier><MetadataComboBox {...this.createFieldProps("mark")}/></Multiplier>
+						<Multiplier><MetadataComboBox {...this.createFieldProps("flag")}/></Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
 						<Multiplier>
@@ -172,6 +167,7 @@ class Geographic extends IndexParent {
 						<Multiplier>
 							<TextField {...this.createFieldProps("record_sources")}/>
 						</Multiplier>
+						<TextField {...this.createFieldProps("editor_note")}/>
 						<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 					</Paper>
 				</div>

@@ -38,6 +38,9 @@ router.route('/:id').get((req, res) => {
 		.populate("domain_scope", "name_main_part")
 		.populate("geographical_scope", "name_main_part")
 		.populate("characteristic", "name_main_part")
+		.populate("logo", "name")
+		.populate("mark", "name")
+		.populate("flag", "name")
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

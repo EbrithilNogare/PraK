@@ -75,7 +75,7 @@
 		},
 		"coordinates": {
 			"label": "Souřadnice",
-			"schema": "coordinates",
+			"schema": "coordinates[%]",
 			"helper": "Souřadnice sídla. Nutno kopírovat z Google maps."
 		},
 		"parent_corporation": {
@@ -246,8 +246,7 @@
 		"mark": {
 			"label": "Značka",
 			"schema": "mark[%]",
-			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku.",
-			"multiline" : true
+			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
 		},
 		"flag": {
 			"label": "Vlajka",
@@ -283,6 +282,11 @@
 			"schema": "record_sources[%]",
 			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
 			"multiline" : true
+		},
+		"editor_note": {
+			"label": "Poznámka editora",
+			"schema": "editor_note[%]",
+			"helper": "Interní poznámka"
 		},
 		"submitter": {
 			"label": "Zadavatel",

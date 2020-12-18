@@ -20,6 +20,7 @@ import styles from './parent.module.scss'
 import GPSField from "../validationTextFields/GPSField"
 import typeDefinitionFile from './corporationTypes.json'
 import Multiplier from '../Multiplier'
+import MetadataComboBox from "components/comboBoxes/MetadataComboBox"
 
 class Corporation extends IndexParent {
 	constructor(props){
@@ -79,7 +80,7 @@ class Corporation extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Souřadnice</h2>
-					<GPSField {...this.createFieldProps("coordinates")}/>
+					<Multiplier><GPSField {...this.createFieldProps("coordinates")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Vztahy</h2>
 					<Multiplier>
@@ -147,14 +148,16 @@ class Corporation extends IndexParent {
 					<Multiplier>
 						<KeywordComboBox {...this.createFieldProps("characteristic")}/>
 					</Multiplier>
+				</Paper>
+				<Paper className={styles.dataBlock}> <h2>Vyobrazení</h2>
 					<Multiplier>
-						<TextField {...this.createFieldProps("logo")}/>
+						<MetadataComboBox {...this.createFieldProps("logo")}/>
 					</Multiplier>
 					<Multiplier>
-						<TextField {...this.createFieldProps("mark")}/>
+						<MetadataComboBox {...this.createFieldProps("mark")}/>
 					</Multiplier>
 					<Multiplier>
-						<TextField {...this.createFieldProps("flag")}/>
+						<MetadataComboBox {...this.createFieldProps("flag")}/>
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
@@ -173,6 +176,7 @@ class Corporation extends IndexParent {
 					<Multiplier>
 						<TextField {...this.createFieldProps("record_sources")}/>
 					</Multiplier>
+					<TextField {...this.createFieldProps("editor_note")}/>
 					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>

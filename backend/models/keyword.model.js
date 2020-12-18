@@ -101,6 +101,7 @@ const schema = new mongoose.Schema({
 
 	record_sources:[String],
 
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,
