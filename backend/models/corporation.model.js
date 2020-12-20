@@ -97,40 +97,6 @@ const schema = new mongoose.Schema({
 	},
 	chronological_specification_cancellation : String,
 
-	owner_change: [{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	}],
-	place_change: [{
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	}],
-	organisation_inclusion: [{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	}],
-	change_parent_organisation: [{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	}],
-	awards: [{
-		award: {
-			type: mongoose.Types.ObjectId,
-			ref: "creationIndex",
-		},
-		event_award: {
-			type: mongoose.Types.ObjectId,
-			ref: "subjectIndex",
-		},
-		awarder_person: {
-			type: mongoose.Types.ObjectId,
-			ref: "personIndex",
-		},
-		awarder_corporation: {
-			type: mongoose.Types.ObjectId,
-			ref: "corporationIndex",
-		},
-	}],
 	category: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",

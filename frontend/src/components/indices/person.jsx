@@ -51,35 +51,42 @@ class Person extends IndexParent {
 				</Paper>
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}> <h2>Biograficka data</h2>
-					<Multiplier><TextField {...this.createFieldProps("name")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("surname")}/></Multiplier>
-					<TextField {...this.createFieldProps("born_year")}/>
-					<LabeledCheckbox {...this.createFieldProps("born_year_notKnown")}/>
+					<TextField {...this.createFieldProps("name")}/>
+					<TextField {...this.createFieldProps("surname")}/>
+					<TextField {...this.createFieldProps("born_year")}/><LabeledCheckbox {...this.createFieldProps("born_year_notKnown")}/>
+					<TextField {...this.createFieldProps("born_date")}/>
 					<GeographicComboBox {...this.createFieldProps("born_place")}/>
-					<TextField {...this.createFieldProps("death_year")}/>
-					<LabeledCheckbox {...this.createFieldProps("death_year_notKnown")}/>
+					<TextField {...this.createFieldProps("death_year")}/><LabeledCheckbox {...this.createFieldProps("death_year_notKnown")}/>
+					<TextField {...this.createFieldProps("death_date")}/>
 					<GeographicComboBox {...this.createFieldProps("death_place")}/>
-					<Multiplier><TextField {...this.createFieldProps("initials")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("general_complement")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("roman_numerals")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("geographical_complement")}/></Multiplier>
+					<TextField {...this.createFieldProps("initials")}/>
+					<TextField {...this.createFieldProps("roman_numerals")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
+					<Multiplier><TextField {...this.createFieldProps("other_language_name")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("original_name")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("acronym")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("cipher")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("religious_name")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("marriage_name")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("historical_name")}/></Multiplier>
-					<TextField {...this.createFieldProps("straight_order")}/>
-					<TextField {...this.createFieldProps("other_name_form")}/>
-					<TextField {...this.createFieldProps("pseudonym")}/>
+					<Multiplier><TextField {...this.createFieldProps("straight_order")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("other_name_form")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("pseudonym")}/></Multiplier>
+					<Multiplier>
+						<KeywordComboBox {...this.createFieldProps("general_complement")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement")}/>
+						<TextField {...this.createFieldProps("chronological_complement")}/>
+					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Tituly</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("title")}/>
 						<DateField {...this.createFieldProps("date")}/>
 					</Multiplier>
+				</Paper>
+				<Paper className={styles.dataBlock}> <h2>Pohlaví</h2>
+					<StaticComboBox {...this.createFieldProps("gender")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Biografická poznámka</h2>
 					<TextField {...this.createFieldProps("bibliographical_note")}/>
@@ -90,11 +97,7 @@ class Person extends IndexParent {
 				<Paper className={styles.dataBlock}> <h2>Obor působnosti</h2>
 					<Multiplier><TextField {...this.createFieldProps("domain_branch")}/></Multiplier>
 				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Pohlaví</h2>
-					<StaticComboBox {...this.createFieldProps("gender")}/>
-				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Příslušnost k zemi</h2>
-					<Multiplier><GeographicComboBox {...this.createFieldProps("country_membership")}/></Multiplier>
 					<Multiplier><GeographicComboBox {...this.createFieldProps("related_country")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Určení jazykové oblasti</h2>
@@ -118,7 +121,8 @@ class Person extends IndexParent {
 					<Multiplier><MetadataComboBox {...this.createFieldProps("photo")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
-					<Multiplier><TextField {...this.createFieldProps("notes")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("public_note")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("nonpublic_note")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
 					<Multiplier>
@@ -129,7 +133,7 @@ class Person extends IndexParent {
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zdroje o heslu</h2>
 					<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
-					<TextField {...this.createFieldProps("editor_note")}/>
+					<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
 					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>

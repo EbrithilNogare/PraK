@@ -2,13 +2,13 @@
 	"properties": {
 		"name": {
 			"label": "Jméno",
-			"schema": "name[%]",
+			"schema": "name",
 			"helper": "Křestní jméno.",
 			"required": true
 		},
 		"surname": {
 			"label": "Příjmení",
-			"schema": "surname[%]",
+			"schema": "surname",
 			"helper": "Příjmení.",
 			"required": true
 		},
@@ -24,6 +24,11 @@
 		"born_year_notKnown": {
 			"label": "Datum není jisté",
 			"schema": "born_year.notKnown"
+		},
+		"born_date": {
+			"label": "Datum narození",
+			"schema": "born_date",
+			"helper": ""
 		},
 		"born_place": {
 			"label": "Místo narození",
@@ -43,6 +48,11 @@
 			"label": "Datum není jisté",
 			"schema": "death_year.notKnown"
 		},
+		"death_date": {
+			"label": "Místo úmrtí",
+			"schema": "death_date",
+			"helper": ""
+		},
 		"death_place": {
 			"label": "Místo úmrtí",
 			"helper": "Výběr z geografického rejstříku.",
@@ -50,32 +60,26 @@
 		},
 		"initials": {
 			"label": "Rozpis iniciál",
-			"schema": "initials[%]",
+			"schema": "initials",
 			"helper": "Rozpis iniciál - uvedení celého jména."
-		},
-		"general_complement": {
-			"label": "Obecný doplněk",
-			"schema": "general_complement[%]",
-			"helper": "Doplněk ke jménu jako panovnický titul, funkce, st./ml. ...."
 		},
 		"roman_numerals": {
 			"label": "Římské číslice",
-			"schema": "roman_numerals[%]",
+			"schema": "roman_numerals",
 			"helper": "Římské číslice u označnení panovníků či papežů."
 		},
+		
 
-		"geographical_complement": {
-			"label": "Geografický doplněk",
-			"schema": "geographical_complement[%]",
-			"helper": "Zde pouze v generickém označení neznámého autora. (Např. neznámý malíř -  geografický doplněk krkonošský)."
+		"other_language_name": {
+			"label": "Jméno v jiném jazyce",
+			"schema": "other_language_name[%]",
+			"helper": "Uvádíme variantu jména v jiném jazyce."
 		},
-
 		"original_name": {
 			"label": "Původní jméno",
 			"schema": "original_name[%]",
 			"helper": "Uvádíme úřední/skutečné/světské jméno/jméno za svobodna."
 		},
-
 		"acronym": {
 			"label": "Akronym/zkratka",
 			"schema": "acronym[%]",
@@ -103,20 +107,38 @@
 		},
 		"straight_order": {
 			"label": "Přímé pořadí",
-			"schema": "straight_order",
+			"schema": "straight_order[%]",
 			"helper": "Jméno v podobě Jméno_Příjmení"
 		},
 		"other_name_form": {
 			"label": "Jiná forma jména",
-			"schema": "other_name_form",
+			"schema": "other_name_form[%]",
 			"helper": "Jiná forma jména."
 		},
-
 		"pseudonym": {
 			"label": "Pseudonym",
-			"schema": "pseudonym",
+			"schema": "pseudonym[%]",
 			"helper": "Pseudonym."
 		},
+		"_complement-category": {
+			"schema": "complement[%]"
+		},
+		"general_complement": {
+			"label": "Obecný doplněk",
+			"schema": "complement[%].general_complement",
+			"helper": "Doplněk ke jménu jako panovnický titul, funkce, st./ml. ...."
+		},
+		"geographical_complement": {
+			"label": "Geografický doplněk",
+			"schema": "complement[%].geographical_complement",
+			"helper": "Zde pouze v generickém označení neznámého autora. (Např. neznámý malíř -  geografický doplněk krkonošský)."
+		},
+		"chronological_complement": {
+			"label": "Chronologický doplněk",
+			"schema": "complement[%].chronological_complement",
+			"helper": ""
+		},
+
 		"title-category": {
 			"schema": "titles[%]"
 		},
@@ -130,43 +152,45 @@
 			"schema": "titles[%].date",
 			"helper": "Rok získání titulu."
 		},
-		"bibliographical_note": {
-			"label": "Biografická poznámka",
-			"schema": "bibliographical_note",
-			"helper": "Stručná charakteristika charakterirujícící osobu, včetně místa a oboru působnosti."
-		},
-		"cv": {
-			"label": "Životopis",
-			"schema": "cv",
-			"helper": "Nahrává se jako soubor."
-		},
-		"domain_branch": {
-			"label": "Obor působnosti",
-			"schema": "domain_branch[%]",
-			"helper": "Výběr z rejsříku klíčových slov."
-		},
+
 		"gender": {
 			"label": "Pohlaví",
 			"schema": "gender",
 			"helper": "Výběr z nabídky.",
 			"options": ["","Neuvedeno", "Muž", "Žena"]
 		},
-		"country_membership": {
-			"label": "Příslušnost k zemi",
-			"schema": "country_membership[%]",
-			"helper":"Výběr z geografického rejstříku."
+
+		"bibliographical_note": {
+			"label": "Biografická poznámka",
+			"schema": "bibliographical_note",
+			"helper": "Stručná charakteristika charakterirujícící osobu, včetně místa a oboru působnosti."
 		},
+
+		"cv": {
+			"label": "Životopis",
+			"schema": "cv",
+			"helper": "Nahrává se jako soubor."
+		},
+
+		"domain_branch": {
+			"label": "Obor působnosti",
+			"schema": "domain_branch[%]",
+			"helper": "Výběr z rejsříku klíčových slov."
+		},
+
 		"related_country": {
 			"label": "Související země",
 			"schema": "related_country[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
+
 		"language_country": {
 			"label": "Určení jazykové oblasti",
 			"schema": "language_country[%]",
 			"helper": "Výběr z nabídky.",
 			"options": ["","Čeština", "Latina", "Němčina", "Angličtina", "Polština", "Slovenština", "Jiné"]
 		},
+
 		"parents": {
 			"label": "Rodiče",
 			"schema": "parents[%]",
@@ -214,7 +238,6 @@
 			"helper": "Informace o uzavření manželství.",
 			"type": "Number"
 		},
-
 		"marriage_end": {
 			"label": "Ukončení manželství",
 			"schema": "marriage_end[%]",
@@ -226,6 +249,7 @@
 			"schema": "study[%]",
 			"helper": "Výběr z rejstříku korporací."
 		},
+
 		"arm": {
 			"label": "Erby",
 			"schema": "arm[%]",
@@ -236,12 +260,20 @@
 			"schema": "photo[%]",
 			"helper": "URL obrázku."
 		},
-		"notes": {
-			"label": "Poznámky",
-			"schema": "notes[%]",
+		
+		"public_note": {
+			"label": "Veřejná poznámka",
+			"schema": "public_note[%]",
 			"helper": "Textová poznámka k heslu.",
 			"multiline" : true
 		},
+		"nonpublic_note": {
+			"label": "Neveřejná poznámka",
+			"schema": "nonpublic_note[%]",
+			"helper": "",
+			"multiline" : true
+		},
+
 		"other_source-category": {
 			"schema": "other_source[%]"
 		},
@@ -260,6 +292,7 @@
 			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
+
 		"record_sources": {
 			"label": "Zdroje o heslu",
 			"schema": "record_sources[%]",

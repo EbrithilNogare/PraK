@@ -155,25 +155,6 @@ const schema = new mongoose.Schema({
 	chronological_specification_cancellation: String,
 	historical_milestones: [String],
 
-	awards: [{
-		award: {
-			type: mongoose.Types.ObjectId,
-			ref: "creationIndex",
-		},
-		event_award: {
-			type: mongoose.Types.ObjectId,
-			ref: "subjectIndex",
-		},
-		awarder_person: {
-			type: mongoose.Types.ObjectId,
-			ref: "personIndex",
-		},
-		awarder_corporation: {
-			type: mongoose.Types.ObjectId,
-			ref: "corporationIndex",
-		},
-	}],
-
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",

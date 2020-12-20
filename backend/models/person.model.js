@@ -2,72 +2,76 @@ const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
 	name:{
-		type: [String],
+		type: String,
 		required: true,
 	},
 	surname:{
-		type: [String],
+		type: String,
 		required: true,
 	},
 	born_year: {
 		year: Number,
 		notKnown: Boolean,
 	},
+	born_date: String,
+	born_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	death_year: {
 		year: Number,
 		notKnown: Boolean,
 	},
-	initials: [String],
-	general_complement: [String],
-	roman_numerals: [String],
-	geographical_complement: [String],
+	death_date: String,
+	death_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	initials: String,
+	roman_numerals: String,
 
+	other_language_name: [String],
 	original_name: [String],
 	acronym: [String],
 	cipher: [String],
 	religious_name: [String],
 	marriage_name: [String],
 	historical_name: [String],
-	straight_order: String,
-	other_name_form: String,
-	pseudonym: String,
+	straight_order: [String],
+	other_name_form: [String],
+	pseudonym: [String],
+	complement: [{
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
 
 	titles:[{
 		title: String,
 		date: String,
 	}],
+	
+	gender: String,
 
-	bibliographical_note:{
-		type: String,
-	},
+	bibliographical_note: String,
+
 	cv: String,
-	domain_branch:{
-		type: [String],
-	},
-	gender:{
-		type: String,
-	},
+	
+	domain_branch: [String],
 
-	country_membership: [{
+	related_country: [{
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	}],
-	born_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	death_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	related_country: {
-		type: [mongoose.Types.ObjectId],
-		ref: "geographicIndex",
-	},
 
-	language_country:{
-		type: [String],
-	},
+	language_country: [String],
+
 
 	parents: [{
 		type: mongoose.Types.ObjectId,
@@ -117,7 +121,8 @@ const schema = new mongoose.Schema({
 		ref: "metadata",
 	}],
 
-	notes: [String],
+	public_note: [String],
+	nonpublic_note: [String],
 	
 	other_source: [{
 		name: String,
@@ -125,10 +130,7 @@ const schema = new mongoose.Schema({
 		identificator: String,
 	}],
 
-	record_sources:{
-		type: [String],
-	},
-
+	record_sources: [String],
 	editor_note: [String],
 	submitter: {
 		type: String,

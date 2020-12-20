@@ -129,14 +129,6 @@ class Geographic extends IndexParent {
 							<TextField {...this.createFieldProps("historical_milestones")}/>
 						</Multiplier>
 					</Paper>
-					<Paper className={styles.dataBlock}> <h2>Událost</h2>
-						<Multiplier>
-							<CreationComboBox {...this.createFieldProps("award")}/>
-							<SubjectComboBox {...this.createFieldProps("event_award")}/>
-							<PersonComboBox {...this.createFieldProps("awarder_person")}/>
-							<CorporationComboBox {...this.createFieldProps("awarder_corporation")}/>
-						</Multiplier>
-					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
 						<Multiplier>
 							<KeywordComboBox {...this.createFieldProps("category")}/>

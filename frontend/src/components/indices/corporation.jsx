@@ -115,26 +115,6 @@ class Corporation extends IndexParent {
 					<CreationComboBox {...this.createFieldProps("delete_from_evidence_subject")}/>
 					<SubjectComboBox {...this.createFieldProps("delete_from_evidence_event")}/>
 				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Událost</h2>
-					<Multiplier>
-						<CorporationComboBox {...this.createFieldProps("owner_change")}/>
-					</Multiplier>
-					<Multiplier>
-						<GeographicComboBox {...this.createFieldProps("place_change")}/>
-					</Multiplier>
-					<Multiplier>
-						<CorporationComboBox {...this.createFieldProps("organisation_inclusion")}/>
-					</Multiplier>
-					<Multiplier>
-						<CorporationComboBox {...this.createFieldProps("change_parent_organisation")}/>
-					</Multiplier>
-					<Multiplier>
-						<CreationComboBox {...this.createFieldProps("award")}/>
-						<SubjectComboBox {...this.createFieldProps("event_award")}/>
-						<PersonComboBox {...this.createFieldProps("awarder_person")}/>
-						<CorporationComboBox {...this.createFieldProps("awarder_corporation")}/>
-					</Multiplier>
-				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
 					<Multiplier>
 						<KeywordComboBox {...this.createFieldProps("category")}/>

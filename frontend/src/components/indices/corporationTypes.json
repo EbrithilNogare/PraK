@@ -173,51 +173,6 @@
 			"schema": "cancellation_chronological_specification",
 			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
-		"owner_change": {
-			"label": "Změna majitele, držitele",
-			"schema": "owner_change[%]",
-			"helper": "Výběr z rejstříku korporací."
-		},
-		"place_change": {
-			"label": "Přesun na jiné místo",
-			"schema": "place_change[%]",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"organisation_inclusion": {
-			"label": "Organizační začlenění",
-			"schema": "organisation_inclusion[%]",
-			"helper": "Výběr z rejstříku korporací."
-		},
-		"change_parent_organisation": {
-			"label": "Změna nadřazené organizace",
-			"schema": "change_parent_organisation[%]",
-			"helper": "Výběr z rejstříku korporací."
-		},
-		"award-category": {
-			"label": "Ocenění",
-			"schema": "awards[%]",
-			"helper": "Ocenění"
-		},
-		"award": {
-			"label": "Ocenění",
-			"schema": "awards[%].award",
-			"helper": "Výběr z rejstříku dílo/výtvor."
-		},
-		"event_award": {
-			"label": "Udělení ocenění",
-			"schema": "awards[%].event_award",
-			"helper": "Výběr z rejstříku událost"
-		},
-		"awarder_person": {
-			"label": "Udělovatel",
-			"schema": "awards[%].awarder_person",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"awarder_corporation": {
-			"label": "Udělovatel",
-			"schema": "awards[%].awarder_corporation",
-			"helper": "Výběr z rejstříku korporací."
-		},
 		"category": {
 			"label": "Zařazení",
 			"schema": "category[%]",

@@ -245,31 +245,6 @@
 			"schema": "historical_milestones[%]",
 			"helper": "Událost související s historií geografické entity, např. požár, přidělení práva."
 		},
-		"award-category": {
-			"label": "Ocenění",
-			"schema": "awards",
-			"helper": "Ocenění"
-		},
-		"award": {
-			"label": "Ocenění",
-			"schema": "awards.award",
-			"helper": "Pokud korporace získala nějaké vyznamenání, cenu."
-		},
-		"event_award": {
-			"label": "Udělení ocenění",
-			"schema": "awards.event_award",
-			"helper": "Pokud není dostatečné jej uvést jednoduchým asociativním vztahem."
-		},
-		"awarder_person": {
-			"label": "Udělovatel",
-			"schema": "awards.awarder_person",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"awarder_corporation": {
-			"label": "Udělovatel",
-			"schema": "awards.awarder_corporation",
-			"helper": "Výběr z rejstříku korporací."
-		},
 		"category": {
 			"label": "Kategorie",
 			"schema": "category[%]",
