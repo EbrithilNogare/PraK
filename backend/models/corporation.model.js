@@ -6,23 +6,28 @@ const schema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
-	name_other_part: String,
+	name_other_part: [String],
+	jurisdiction: String,
+	general_complement: String,
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	chronological_complement: String,
 
+	other_language_name: [String],
 	acronym: [String],
 	historical_name: [String],
 	other_name_form: [String],
 	following_name: [String],
 
-	general_complement: String,
-	geographical_complement: String,
-	chronological_complement: String,
 	brief_characteristic: String,
 	history: String,
 	function: String,
 	constitutive_standards: [String],
 	scope_standards: [String],
 
-	coordinates: [String],
+	coordinates: String,
 
 	parent_corporation: [{
 		type: mongoose.Types.ObjectId,
@@ -45,18 +50,12 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	founding_document: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	founding_document: String,
 	founding_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	registration_subject: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	registration_subject: String,
 	registration_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
@@ -65,37 +64,28 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	cleavage_document: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	cleavage_document: String,
 	cleavage_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	chronological_specification_beginning: String,
+	founding_chronological_specification: String,
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	cancellation_document: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	cancellation_document: String,
 	cancellation_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	delete_from_evidence_subject: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	delete_from_evidence_subject: String,
 	delete_from_evidence_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	chronological_specification_cancellation : String,
+	cancellation_chronological_specification : String,
 
 	category: [{
 		type: mongoose.Types.ObjectId,
@@ -103,11 +93,11 @@ const schema = new mongoose.Schema({
 	}],
 	domain_scope: [{
 		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
+		ref: "keywordIndex",
 	}],
 	geographical_scope: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "geographicIndex",
 	}],
 	characteristic: [{
 		type: mongoose.Types.ObjectId,
@@ -127,7 +117,8 @@ const schema = new mongoose.Schema({
 		ref: "metadata",
 	}],
 
-	notes: [String],
+	public_note: [String],
+	nonpublic_note: [String],
 
 	other_source: [{
 		name: String,
@@ -135,9 +126,7 @@ const schema = new mongoose.Schema({
 		identificator: String,
 	}],
 
-	record_sources: {
-		type: [String],
-	},
+	record_sources: [String],
 	editor_note: [String],
 	submitter: {
 		type: String,

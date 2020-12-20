@@ -26,7 +26,7 @@ class PersonComboBox extends ComboBox {
 			console.warn("missing name in parseReturnedObjectFromMongooseFind(element)", element)
 			return ""
 		}
-		return `${element.surname.join(" ")} ${element.name.join(" ")}`
+		return `${element.surname} ${element.name}`
 	}
 }
 

@@ -8,8 +8,34 @@
 		},
 		"name_other_part": {
 			"label": "Další část názvu",
-			"schema": "name_other_part",
+			"schema": "name_other_part[%]",
 			"helper": "Odkaz na součásti korporace."
+		},
+		"jurisdiction": {
+			"label": "jurisdikce",
+			"schema": "jurisdiction",
+			"helper": ""
+		},
+		"general_complement": {
+			"label": "Obecný doplněk",
+			"schema": "general_complement",
+			"helper": "Zapisuje, pokud není z názvu jasné, že jde o korporaci - např. Vlk (firma)."
+		},
+		"geographical_complement": {
+			"label": "Geografický doplněk",
+			"schema": "geographical_complement",
+			"helper": "Zapisuje se pro rozlišení dvou korporací stejného jména.  - např. Vlk (Chrudim)."
+		},
+		"chronological_complement": {
+			"label": "Chronologický doplněk",
+			"schema": "chronological_complement",
+			"helper": "Zapisujeme v případě, že se zpracovává zvlášť historická etapa entity - např. Čedok (1918-1920)."
+		},
+
+		"other_language_name": {
+			"label": "Název v jiném jazyce",
+			"schema": "other_language_name[%]",
+			"helper": "Uvádíme variantu názvu v jiném jazyce."
 		},
 		"acronym": {
 			"label": "Akronym/zkratka",
@@ -31,21 +57,7 @@
 			"schema": "following_name[%]",
 			"helper": "Nový název korporace."
 		},
-		"general_complement": {
-			"label": "Obecný doplněk",
-			"schema": "general_complement",
-			"helper": "Zapisuje, pokud není z názvu jasné, že jde o korporaci - např. Vlk (firma)."
-		},
-		"geographical_complement": {
-			"label": "Geografický doplněk",
-			"schema": "geographical_complement",
-			"helper": "Zapisuje se pro rozlišení dvou korporací stejného jména.  - např. Vlk (Chrudim)."
-		},
-		"chronological_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "chronological_complement",
-			"helper": "Zapisujeme v případě, že se zpracovává zvlášť historická etapa entity - např. Čedok (1918-1920)."
-		},
+		
 		"brief_characteristic": {
 			"label": "Stručná charakteristika",
 			"schema": "brief_characteristic",
@@ -73,11 +85,13 @@
 			"schema": "scope_standards[%]",
 			"helper": "Výčet norem, které upravují působnost korporace."
 		},
+
 		"coordinates": {
 			"label": "Souřadnice",
-			"schema": "coordinates[%]",
+			"schema": "coordinates",
 			"helper": "Souřadnice sídla. Nutno kopírovat z Google maps."
 		},
+
 		"parent_corporation": {
 			"label": "Nadřízená korporace",
 			"schema": "parent_corporation[%]",
@@ -98,6 +112,7 @@
 			"schema": "related_country[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
+
 		"founder": {
 			"label": "Zřízení, založení zakladatel",
 			"schema": "founder",
@@ -141,8 +156,9 @@
 		"founding_chronological_specification": {
 			"label": "Chronologické zpřesnění",
 			"schema": "founding_chronological_specification",
-			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
+			"helper": "Časové zpřesnění související s odštěpením korporace."
 		},
+
 		"cancellation_person": {
 			"label": "Zrušení, likvidace, rozpuštění",
 			"schema": "cancellation_person",
@@ -173,6 +189,7 @@
 			"schema": "cancellation_chronological_specification",
 			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
+
 		"category": {
 			"label": "Zařazení",
 			"schema": "category[%]",
@@ -193,6 +210,7 @@
 			"schema": "characteristic[%]",
 			"helper": "Výběr z rejstříku klíčových slov."
 		},
+
 		"logo": {
 			"label": "Logo",
 			"schema": "logo[%]",
@@ -208,12 +226,20 @@
 			"schema": "flag[%]",
 			"helper": "URL do jiného zdroje."
 		},
-		"notes": {
-			"label": "Poznámky",
-			"schema": "notes[%]",
-			"helper": "Textová poznámka k heslu.",
+		
+		"public_note": {
+			"label": "Veřejná poznámka",
+			"schema": "public_note[%]",
+			"helper": "",
 			"multiline" : true
 		},
+		"nonpublic_note": {
+			"label": "Neveřejná poznámka",
+			"schema": "nonpublic_note[%]",
+			"helper": "",
+			"multiline" : true
+		},
+
 		"other_source-category": {
 			"schema": "other_source[%]"
 		},
@@ -232,6 +258,7 @@
 			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
+
 		"record_sources": {
 			"label": "Zdroje o heslu",
 			"schema": "record_sources[%]",
@@ -241,7 +268,8 @@
 		"editor_note": {
 			"label": "Poznámka editora",
 			"schema": "editor_note[%]",
-			"helper": "Interní poznámka"
+			"helper": "Interní poznámka",
+			"multiline" : true
 		},
 		"submitter": {
 			"label": "Zadavatel",
