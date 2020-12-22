@@ -8,23 +8,8 @@
 		},
 		"name_other_part": {
 			"label": "Další část názvu",
-			"schema": "name_other_part",
+			"schema": "name_other_part[%]",
 			"helper": "Odkaz na části názvu geografické entity."
-		},
-		"acronym": {
-			"label": "Akronym/zkratka",
-			"schema": "acronym[%]",
-			"helper": "Zkratka/akronym, pokud ji geografická entita používá."
-		},
-		"historical_name": {
-			"label": "Historická/dřívější forma jména",
-			"schema": "historical_name[%]",
-			"helper": "Dřívejší jméno geografické entity."
-		},
-		"other_name_form": {
-			"label": "Jiný tvar jména/označení",
-			"schema": "other_name_form[%]",
-			"helper": "Jiné označení, pod kterým je geografická entita známa."
 		},
 		"general_complement": {
 			"label": "Obecný doplněk",
@@ -41,6 +26,28 @@
 			"schema": "chronological_complement",
 			"helper": "V případě, že se zpracovává zvlášť historická etapa entity."
 		},
+		
+		"other_language_name": {
+			"label": "Název v jiném jazyce",
+			"schema": "other_language_name[%]",
+			"helper": "Uvádíme variantu názvu v jiném jazyce."
+		},
+		"acronym": {
+			"label": "Akronym/zkratka",
+			"schema": "acronym[%]",
+			"helper": "Zkratka/akronym, pokud ji geografická entita používá."
+		},
+		"historical_name": {
+			"label": "Historická/dřívější forma jména",
+			"schema": "historical_name[%]",
+			"helper": "Dřívejší jméno geografické entity."
+		},
+		"other_name_form": {
+			"label": "Jiný tvar jména/označení",
+			"schema": "other_name_form[%]",
+			"helper": "Jiné označení, pod kterým je geografická entita známa."
+		},
+
 		"brief_characteristic": {
 			"label": "Stručná charakteristika",
 			"schema": "brief_characteristic",
@@ -64,12 +71,14 @@
 			"schema": "electronical_location[%]",
 			"helper": "URL související s popisem geografického objektu."
 		},
+
 		"coordinates": {
 			"label": "Souřadnice",
 			"schema": "coordinates[%]",
 			"helper": "Souřadnice geografické entity. Nutno kopírovat z Google maps.",
 			"errorMessage": "Chybný formát souřadnic"
 		},
+
 		"partner_object": {
 			"label": "Partnerský geografický objekt",
 			"schema": "partner_object[%]",
@@ -95,66 +104,37 @@
 			"schema": "part_of[%].corporation_owner",
 			"helper": "Výběr z rejstříku osob."
 		},
-		"related-category": {
-			"label": "Spojená entita",
-			"schema": "related_entity[%]",
-			"helper": "Spojená entita."
-		},
 		"related_person": {
 			"label": "Spojená entita",
-			"schema": "related_entity[%].related_person",
+			"schema": "related_person[%]",
 			"helper": "Výběr z rejstříku osob."
 		},
 		"related_subject": {
 			"label": "Spojená entita",
-			"schema": "related_entity[%].related_subject",
+			"schema": "related_subject[%]",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"related_event": {
 			"label": "Spojená entita",
-			"schema": "related_entity[%].related_event",
+			"schema": "related_event[%]",
 			"helper": "Výběr z rejstříku událost."
 		},
 		"related_corporation": {
 			"label": "Spojená entita",
-			"schema": "related_entity[%].related_corporation",
+			"schema": "related_corporation[%]",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"superordinate": {
 			"label": "Nadřazený",
-			"schema": "superordinate",
+			"schema": "superordinate[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
 		"subordinate": {
 			"label": "Podřazený",
-			"schema": "subordinate",
+			"schema": "subordinate[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
-		"country": {
-			"label": "Země",
-			"schema": "country",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"region": {
-			"label": "Kraj",
-			"schema": "region",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"district": {
-			"label": "Okres",
-			"schema": "district",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"municipality": {
-			"label": "Obec",
-			"schema": "municipality",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"municipality_part": {
-			"label": "Část obce",
-			"schema": "municipality_part",
-			"helper": "Výběr z geografického rejstříku."
-		},
+
 		"founding_person": {
 			"label": "Vznik",
 			"schema": "founding_person",
@@ -195,6 +175,7 @@
 			"schema": "founding_chronological_specification",
 			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
+
 		"cancellation_person": {
 			"label": "Zánik",
 			"schema": "cancellation_person",
@@ -230,21 +211,48 @@
 			"schema": "last_mention_place",
 			"helper": "Výběr z geografického rejstříku."
 		},
-		"owner_change": {
-			"label": "Změna majitele, držitele",
-			"schema": "owner_change",
-			"helper": "Odkaz na předchozí entitu. Výběr z geografického rejstříku."
-		},
 		"cancellation_chronological_specification": {
 			"label": "Chronologické zpřesnění",
 			"schema": "cancellation_chronological_specification",
 			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
+		},
+		"owner_change": {
+			"label": "Změna majitele, držitele",
+			"schema": "owner_change",
+			"helper": "Odkaz na předchozí entitu. Výběr z geografického rejstříku."
 		},
 		"historical_milestones": {
 			"label": "Historické milníky",
 			"schema": "historical_milestones[%]",
 			"helper": "Událost související s historií geografické entity, např. požár, přidělení práva."
 		},
+		
+		"country": {
+			"label": "Země",
+			"schema": "country",
+			"helper": "Výběr z geografického rejstříku."
+		},
+		"region": {
+			"label": "Kraj",
+			"schema": "region",
+			"helper": "Výběr z geografického rejstříku."
+		},
+		"district": {
+			"label": "Okres",
+			"schema": "district",
+			"helper": "Výběr z geografického rejstříku."
+		},
+		"municipality": {
+			"label": "Obec",
+			"schema": "municipality",
+			"helper": "Výběr z geografického rejstříku."
+		},
+		"municipality_part": {
+			"label": "Část obce",
+			"schema": "municipality_part",
+			"helper": "Výběr z geografického rejstříku."
+		},
+
 		"category": {
 			"label": "Kategorie",
 			"schema": "category[%]",
@@ -255,11 +263,7 @@
 			"schema": "characteristic[%]",
 			"helper": "Výběr z rejstříku klíčových slov."
 		},
-		"arm": {
-			"label": "Erb",
-			"schema": "arm[%]",
-			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
-		},
+
 		"logo": {
 			"label": "Logo",
 			"schema": "logo[%]",
@@ -275,12 +279,25 @@
 			"schema": "flag[%]",
 			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
 		},
-		"notes": {
-			"label": "Poznámky",
-			"schema": "notes[%]",
+		"arm": {
+			"label": "Erb",
+			"schema": "arm[%]",
+			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
+		},
+		
+		"public_note": {
+			"label": "Veřejná poznámka",
+			"schema": "public_note[%]",
 			"helper": "Textová poznámka k heslu.",
 			"multiline" : true
 		},
+		"nonpublic_note": {
+			"label": "Neveřejná poznámka",
+			"schema": "nonpublic_note[%]",
+			"helper": "Textová poznámka k heslu.",
+			"multiline" : true
+		},
+
 		"other_source-category": {
 			"schema": "other_source[%]"
 		},
@@ -299,6 +316,7 @@
 			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
+		
 		"record_sources": {
 			"label": "Zdroje o heslu",
 			"schema": "record_sources[%]",
