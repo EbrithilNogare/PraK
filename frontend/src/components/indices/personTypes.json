@@ -70,74 +70,235 @@
 		},
 		
 
+
+
+
+		"other_language_name-category": {
+			"label": "Jméno v jiném jazyce",
+			"schema": "other_language_name[%]"
+		},
 		"other_language_name": {
 			"label": "Jméno v jiném jazyce",
-			"schema": "other_language_name[%]",
+			"schema": "other_language_name[%]other_language_name",
 			"helper": "Uvádíme variantu jména v jiném jazyce."
 		},
+		"general_complement_other": {
+			"label": "Obecný doplněk",
+			"schema": "other_language_name[%]general_complement"
+		},
+		"geographical_complement_other": {
+			"label": "Geografický doplněk",
+			"schema": "other_language_name[%]geographical_complement"
+		},
+		"chronological_complement_other": {
+			"label": "Chronologický doplněk",
+			"schema": "other_language_name[%]chronological_complement"
+		},
+
+		"original_name-category": {
+			"label": "původní jméno",
+			"schema": "other_language_name[%]"
+		},
 		"original_name": {
-			"label": "Původní jméno",
-			"schema": "original_name[%]",
+			"label": "původní jméno",
+			"schema": "original_name[%]other_language_name",
 			"helper": "Uvádíme úřední/skutečné/světské jméno/jméno za svobodna."
 		},
+		"general_complement_original_name": {
+			"label": "Obecný doplněk",
+			"schema": "original_name[%]general_complement"
+		},
+		"geographical_complement_original_name": {
+			"label": "Geografický doplněk",
+			"schema": "original_name[%]geographical_complement"
+		},
+		"chronological_complement_original_name": {
+			"label": "Chronologický doplněk",
+			"schema": "original_name[%]chronological_complement"
+		},
+
+		"acronym-category": {
+			"label": "akronym/zkratka",
+			"schema": "other_language_name[%]"
+		},
 		"acronym": {
-			"label": "Akronym/zkratka",
-			"schema": "acronym[%]",
+			"label": "akronym/zkratka",
+			"schema": "acronym[%]other_language_name",
 			"helper": "Akronym, který autor používá."
 		},
+		"general_complement_acronym": {
+			"label": "Obecný doplněk",
+			"schema": "acronym[%]general_complement"
+		},
+		"geographical_complement_acronym": {
+			"label": "Geografický doplněk",
+			"schema": "acronym[%]geographical_complement"
+		},
+		"chronological_complement_acronym": {
+			"label": "Chronologický doplněk",
+			"schema": "acronym[%]chronological_complement"
+		},
+
+		"cipher-category": {
+			"label": "autorská šifra/novinářská značka",
+			"schema": "other_language_name[%]"
+		},
 		"cipher": {
-			"label": "Autorská šifra/novinářská značka",
-			"schema": "cipher[%]",
+			"label": "autorská šifra/novinářská značka",
+			"schema": "cipher[%]other_language_name",
 			"helper": "Autorská šifra u novinářů."
 		},
+		"general_complement_cipher": {
+			"label": "Obecný doplněk",
+			"schema": "cipher[%]general_complement"
+		},
+		"geographical_complement_cipher": {
+			"label": "Geografický doplněk",
+			"schema": "cipher[%]geographical_complement"
+		},
+		"chronological_complement_cipher": {
+			"label": "Chronologický doplněk",
+			"schema": "cipher[%]chronological_complement"
+		},
+
+		"religious_name-category": {
+			"label": "církevní jméno",
+			"schema": "other_language_name[%]"
+		},
 		"religious_name": {
-			"label": "Církevní jméno",
-			"schema": "religious_name[%]",
+			"label": "církevní jméno",
+			"schema": "religious_name[%]other_language_name",
 			"helper": "Církevní jméno."
 		},
+		"general_complement_religious": {
+			"label": "Obecný doplněk",
+			"schema": "religious_name[%]general_complement"
+		},
+		"geographical_complement_religious": {
+			"label": "Geografický doplněk",
+			"schema": "religious_name[%]geographical_complement"
+		},
+		"chronological_complement_religious": {
+			"label": "Chronologický doplněk",
+			"schema": "religious_name[%]chronological_complement"
+		},
+
+		"marriage_name-category": {
+			"label": "jméno získané sňatkem",
+			"schema": "other_language_name[%]"
+		},
 		"marriage_name": {
-			"label": "Jméno získané sňatkem",
-			"schema": "marriage_name[%]",
+			"label": "jméno získané sňatkem",
+			"schema": "marriage_name[%]other_language_name",
 			"helper": "Jméno získané sňatkem."
 		},
+		"general_complement_marriage": {
+			"label": "Obecný doplněk",
+			"schema": "marriage_name[%]general_complement"
+		},
+		"geographical_complement_marriage": {
+			"label": "Geografický doplněk",
+			"schema": "marriage_name[%]geographical_complement"
+		},
+		"chronological_complement_marriage": {
+			"label": "Chronologický doplněk",
+			"schema": "marriage_name[%]chronological_complement"
+		},
+
+		"historical_name-category": {
+			"label": "historická podoba jména",
+			"schema": "other_language_name[%]"
+		},
 		"historical_name": {
-			"label": "Historická podoba jména",
-			"schema": "historical_name[%]",
+			"label": "historická podoba jména",
+			"schema": "historical_name[%]other_language_name",
 			"helper": "Historická podoba jména."
 		},
+		"general_complement_historical": {
+			"label": "Obecný doplněk",
+			"schema": "historical_name[%]general_complement"
+		},
+		"geographical_complement_historical": {
+			"label": "Geografický doplněk",
+			"schema": "historical_name[%]geographical_complement"
+		},
+		"chronological_complement_historical": {
+			"label": "Chronologický doplněk",
+			"schema": "historical_name[%]chronological_complement"
+		},
+
+		"straight_order-category": {
+			"label": "přímé pořadí",
+			"schema": "other_language_name[%]"
+		},
 		"straight_order": {
-			"label": "Přímé pořadí",
-			"schema": "straight_order[%]",
+			"label": "přímé pořadí",
+			"schema": "straight_order[%]other_language_name",
 			"helper": "Jméno v podobě Jméno_Příjmení"
 		},
+		"general_complement_order": {
+			"label": "Obecný doplněk",
+			"schema": "straight_order[%]general_complement"
+		},
+		"geographical_complement_order": {
+			"label": "Geografický doplněk",
+			"schema": "straight_order[%]geographical_complement"
+		},
+		"chronological_complement_order": {
+			"label": "Chronologický doplněk",
+			"schema": "straight_order[%]chronological_complement"
+		},
+
+		"other_name_form-category": {
+			"label": "jiná forma jména",
+			"schema": "other_language_name[%]"
+		},
 		"other_name_form": {
-			"label": "Jiná forma jména",
-			"schema": "other_name_form[%]",
+			"label": "jiná forma jména",
+			"schema": "other_name_form[%]other_language_name",
 			"helper": "Jiná forma jména."
 		},
+		"general_complement_form": {
+			"label": "Obecný doplněk",
+			"schema": "other_name_form[%]general_complement"
+		},
+		"geographical_complement_form": {
+			"label": "Geografický doplněk",
+			"schema": "other_name_form[%]geographical_complement"
+		},
+		"chronological_complement_form": {
+			"label": "Chronologický doplněk",
+			"schema": "other_name_form[%]chronological_complement"
+		},
+
+		"pseudonym-category": {
+			"label": "pseudonym",
+			"schema": "other_language_name[%]"
+		},
 		"pseudonym": {
-			"label": "Pseudonym",
-			"schema": "pseudonym[%]",
+			"label": "pseudonym",
+			"schema": "pseudonym[%]other_language_name",
 			"helper": "Pseudonym."
 		},
-		"_complement-category": {
-			"schema": "complement[%]"
-		},
-		"general_complement": {
+		"general_complement_pseudonym": {
 			"label": "Obecný doplněk",
-			"schema": "complement[%].general_complement",
-			"helper": "Doplněk ke jménu jako panovnický titul, funkce, st./ml. ...."
+			"schema": "pseudonym[%]general_complement"
 		},
-		"geographical_complement": {
+		"geographical_complement_pseudonym": {
 			"label": "Geografický doplněk",
-			"schema": "complement[%].geographical_complement",
-			"helper": "Zde pouze v generickém označení neznámého autora. (Např. neznámý malíř -  geografický doplněk krkonošský)."
+			"schema": "pseudonym[%]geographical_complement"
 		},
-		"chronological_complement": {
+		"chronological_complement_pseudonym": {
 			"label": "Chronologický doplněk",
-			"schema": "complement[%].chronological_complement",
-			"helper": ""
+			"schema": "pseudonym[%]chronological_complement"
 		},
+
+
+
+
+
+
+
 
 		"title-category": {
 			"schema": "titles[%]"

@@ -63,20 +63,65 @@ class Person extends IndexParent {
 					<TextField {...this.createFieldProps("roman_numerals")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
-					<Multiplier><TextField {...this.createFieldProps("other_language_name")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("original_name")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("acronym")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("cipher")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("religious_name")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("marriage_name")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("historical_name")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("straight_order")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("other_name_form")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("pseudonym")}/></Multiplier>
 					<Multiplier>
-						<KeywordComboBox {...this.createFieldProps("general_complement")}/>
-						<GeographicComboBox {...this.createFieldProps("geographical_complement")}/>
-						<TextField {...this.createFieldProps("chronological_complement")}/>
+						<TextField {...this.createFieldProps("other_language_name")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
+						<TextField {...this.createFieldProps("chronological_complement_other")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("original_name")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_original_name")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_original_name")}/>
+						<TextField {...this.createFieldProps("chronological_complement_original_name")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("acronym")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_acronym")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_acronym")}/>
+						<TextField {...this.createFieldProps("chronological_complement_acronym")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("cipher")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_cipher")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_cipher")}/>
+						<TextField {...this.createFieldProps("chronological_complement_cipher")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("religious_name")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_religious")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_religious")}/>
+						<TextField {...this.createFieldProps("chronological_complement_religious")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("marriage_name")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_marriage")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_marriage")}/>
+						<TextField {...this.createFieldProps("chronological_complement_marriage")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("historical_name")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_historical")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_historical")}/>
+						<TextField {...this.createFieldProps("chronological_complement_historical")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("straight_order")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_order")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_order")}/>
+						<TextField {...this.createFieldProps("chronological_complement_order")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("other_name_form")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_form")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_form")}/>
+						<TextField {...this.createFieldProps("chronological_complement_form")}/>
+					</Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("pseudonym")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_pseudonym")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_pseudonym")}/>
+						<TextField {...this.createFieldProps("chronological_complement_pseudonym")}/>
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Tituly</h2>
