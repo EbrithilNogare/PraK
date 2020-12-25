@@ -7,14 +7,67 @@ const schema = new mongoose.Schema({
 		unique: true,
 	},
 	name_other_part: [String],
-	general_complement: String,
-	geographical_complement: String,
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	chronological_complement: String,
 
-	other_language_name: [String],
-	acronym: [String],
-	historical_name: [String],
-	other_name_form: [String],
+
+
+	
+	other_language_name: [{
+		other_language_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	acronym: [{
+		acronym: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	historical_name: [{
+		historical_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	other_name_form: [{
+		other_name_form: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
 
 	brief_characteristic: String,
 	description: String,
@@ -57,14 +110,14 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	}],
-	superordinate: {
+	superordinate: [{
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},
-	subordinate: {
+	}],
+	subordinate: [{
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
-	},
+	}],
 	
 	founding_person: {
 		type: mongoose.Types.ObjectId,
