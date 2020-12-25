@@ -8,18 +8,81 @@ const schema = new mongoose.Schema({
 	},
 	name_other_part: [String],
 	jurisdiction: String,
-	general_complement: String,
-	geographical_complement: {
+	general_complement: {
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	},
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	chronological_complement: String,
 
-	other_language_name: [String],
-	acronym: [String],
-	historical_name: [String],
-	other_name_form: [String],
-	following_name: [String],
+	other_language_name: [{
+		other_language_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	acronym: [{
+		acronym: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	historical_name: [{
+		historical_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	other_name_form: [{
+		other_name_form: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	following_name: [{
+		following_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+
+
+
+
+
 
 	brief_characteristic: String,
 	history: String,
