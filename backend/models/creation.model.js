@@ -6,35 +6,91 @@ const schema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
-	name_other_part: String,
-
-	other_name_form: [String],
-
-	numeric_tag: String,
-	cast:[String],
-	tone: String,
-	arrangement:[String],
-	preferred_name:[String],
-
-	general_complement: String,
-	geographical_complement: String,
+	name_other_part: [String],
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	chronological_complement: String,
-	author:[String],
-	language:[String],
-	source:[String],
+
+	other_language_name: [{
+		other_language_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	other_name_form: [{
+		other_name_form: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	official_name: [{
+		official_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	former_name_form: [{
+		former_name_form: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	acronym: [{
+		acronym: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
 
 	brief_characteristic: String,
-	description:{
-		type: String,
-	},
+	description: String,
 	geographical_description: String,
-
 	history: String,
-	purpose:[String],
+	purpose: String,
 
 	coordinates: [String],
 
-	hierarchical_relations:[{
+	superordinate_relations:[{
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	}],
+	subordinate_relations:[{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	}],
@@ -87,19 +143,14 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	first_mention_subject:{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	first_mention_subject: String,
+	founding_chronological_specification: String,
 	first_realization_event:{
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	first_realization_subject:{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	chronological_specification_beginning: String,
+	first_realization_subject: String,
+	first_realization_chronological_specification: String,
 
 	cancellation_person:{
 		type: mongoose.Types.ObjectId,
@@ -113,19 +164,14 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	last_mention_subject:{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	last_mention_subject: String,
+	cancellation_chronological_specification: String,
 	last_realization_event:{
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	last_realization_subject:{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	chronological_specification_cancellation: String,
+	last_realization_subject: String,
+	last_realization_chronological_specification: String,
 
 	document_change_person:[{
 		type: mongoose.Types.ObjectId,
@@ -147,13 +193,23 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	}],
-
+	change_chronological_specification: [String],
+	
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
+	topic:[{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
+	characteristic:[{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
 
-	notes:[String],
+	public_note:[String],
+	nonpublic_note:[String],
 
 	other_source: [{
 		name: String,
