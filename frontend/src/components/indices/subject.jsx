@@ -46,78 +46,82 @@ class Subject extends IndexParent {
 				</Paper>
 				<div className={styles.body}>
 					<Paper className={styles.dataBlock}> <h2>Název</h2>
-					<TextField {...this.createFieldProps("name_main_part")} />
-					<TextField {...this.createFieldProps("name_other_part")}/>
-					</Paper>
-					<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
-						<Multiplier>
-							<TextField {...this.createFieldProps("acronym")}/><br/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("other_name_form")}/><br/>
-						</Multiplier>
-					</Paper>
-					<Paper className={styles.dataBlock}> <h2>Doplňky označení</h2>
+						<TextField {...this.createFieldProps("name_main_part")} />
+						<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
 						<TextField {...this.createFieldProps("general_complement")}/>
 						<TextField {...this.createFieldProps("geographical_complement")}/>
 						<TextField {...this.createFieldProps("chronological_complement")}/>
 						<TextField {...this.createFieldProps("event_order")}/>
 					</Paper>
+					<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
+						<Multiplier>
+							<TextField {...this.createFieldProps("other_language_name")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
+							<TextField {...this.createFieldProps("chronological_complement_other")}/>
+						</Multiplier>
+						<Multiplier>
+							<TextField {...this.createFieldProps("acronym")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_acronym")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_acronym")}/>
+							<TextField {...this.createFieldProps("chronological_complement_acronym")}/>
+						</Multiplier>
+						<Multiplier>
+							<TextField {...this.createFieldProps("other_name_form")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
+							<TextField {...this.createFieldProps("chronological_complement_other")}/>
+						</Multiplier>
+						<Multiplier>
+							<TextField {...this.createFieldProps("official_name")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_official")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_official")}/>
+							<TextField {...this.createFieldProps("chronological_complement_official")}/>
+						</Multiplier>
+						<Multiplier>
+							<TextField {...this.createFieldProps("other_name_form")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_historical")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_historical")}/>
+							<TextField {...this.createFieldProps("chronological_complement_historical")}/>
+						</Multiplier>
+					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Popis</h2>
-						<TextField {...this.createFieldProps("description")}/>
+						<TextField {...this.createFieldProps("brief_characteristic")}/>
+						<TextField {...this.createFieldProps("history")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Vztahy</h2>
-						<Multiplier>
-							<SubjectComboBox {...this.createFieldProps("aggregate_event")}/>
-						</Multiplier>
-						<Multiplier>
-							<SubjectComboBox {...this.createFieldProps("sub_event")}/>
-						</Multiplier>
-						<Multiplier>
-							<PersonComboBox {...this.createFieldProps("related_person")}/>
-						</Multiplier>
-						<Multiplier>
-							<CreationComboBox {...this.createFieldProps("related_subject")}/>
-						</Multiplier>
-						<Multiplier>
-							<GeographicComboBox {...this.createFieldProps("related_place")}/>
-						</Multiplier>
-						<Multiplier>
-							<GeographicComboBox {...this.createFieldProps("venue")}/>
-						</Multiplier>
-						<Multiplier>
-							<PersonComboBox {...this.createFieldProps("organizator_person")}/>
-						</Multiplier>
-						<Multiplier>
-							<CorporationComboBox {...this.createFieldProps("organizator_corporation")}/>
-						</Multiplier>
+						<Multiplier><SubjectComboBox {...this.createFieldProps("sup_event")}/></Multiplier>
+						<Multiplier><SubjectComboBox {...this.createFieldProps("sub_event")}/></Multiplier>
+						<Multiplier><PersonComboBox {...this.createFieldProps("related_person")}/></Multiplier>
+						<Multiplier><CreationComboBox {...this.createFieldProps("related_subject")}/></Multiplier>
+						<Multiplier><GeographicComboBox {...this.createFieldProps("related_place")}/></Multiplier>
+						<Multiplier><GeographicComboBox {...this.createFieldProps("venue")}/></Multiplier>
+						<Multiplier><PersonComboBox {...this.createFieldProps("organizator_person")}/></Multiplier>
+						<Multiplier><CorporationComboBox {...this.createFieldProps("organizator_corporation")}/></Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Počátek existence</h2>
-						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 						<PersonComboBox {...this.createFieldProps("founding_person")}/>
 						<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
 						<GeographicComboBox {...this.createFieldProps("founding_place")}/>
-						<CreationComboBox {...this.createFieldProps("first_mention")}/>
+						<TextField {...this.createFieldProps("first_mention")}/>
+						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
+						<TextField {...this.createFieldProps("first_mention_subject")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Konec existence</h2>
-						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 						<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 						<CorporationComboBox {...this.createFieldProps("cancellation_event")}/>
 						<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
-						<CreationComboBox {...this.createFieldProps("last_mention")}/>
+						<TextField {...this.createFieldProps("last_mention")}/>
+						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
+						<TextField {...this.createFieldProps("last_mention_subject")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
-						<Multiplier>
-							<KeywordComboBox {...this.createFieldProps("category")}/>
-						</Multiplier>
-						<Multiplier>
-							<KeywordComboBox {...this.createFieldProps("topic")}/>
-						</Multiplier>
+						<Multiplier><KeywordComboBox {...this.createFieldProps("category")}/></Multiplier>
+						<Multiplier><KeywordComboBox {...this.createFieldProps("characteristic")}/></Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
-						<Multiplier>
-							<TextField {...this.createFieldProps("notes")}/>
-						</Multiplier>
+						<Multiplier><TextField {...this.createFieldProps("public_note")}/></Multiplier>
+						<Multiplier><TextField {...this.createFieldProps("nonpublic_note")}/></Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
 						<Multiplier>
@@ -127,11 +131,9 @@ class Subject extends IndexParent {
 						</Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Zdroje o heslu</h2>
-						<Multiplier>
-							<TextField {...this.createFieldProps("record_sources")}/>
-						</Multiplier>
-						<TextField {...this.createFieldProps("editor_note")}/>
-						<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
+						<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
+						<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
+						<StaticOpenComboBox {...this.createFieldProps("submitter")}/>
 					</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

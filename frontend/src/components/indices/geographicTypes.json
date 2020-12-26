@@ -58,7 +58,7 @@
 		},
 		"acronym": {
 			"label": "akronym/zkratka",
-			"schema": "acronym[%].other_language_name",
+			"schema": "acronym[%].acronym",
 			"helper": "Zkratka/akronym, pokud ji geografická entita používá."
 		},
 		"general_complement_acronym": {
@@ -80,7 +80,7 @@
 		},
 		"historical_name": {
 			"label": "historická/dřívější forma jména",
-			"schema": "historical_name[%].other_language_name",
+			"schema": "historical_name[%].historical_name",
 			"helper": "Dřívejší jméno geografické entity."
 		},
 		"general_complement_historical": {
@@ -102,7 +102,7 @@
 		},
 		"other_name_form": {
 			"label": "jiný tvar jména/označení",
-			"schema": "other_name_form[%].other_language_name",
+			"schema": "other_name_form[%].other_name_form",
 			"helper": "Jiné označení, pod kterým je geografická entita známa."
 		},
 		"general_complement_other": {

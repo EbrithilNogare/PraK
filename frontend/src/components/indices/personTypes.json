@@ -101,7 +101,7 @@
 		},
 		"original_name": {
 			"label": "původní jméno",
-			"schema": "original_name[%].other_language_name",
+			"schema": "original_name[%].original_name",
 			"helper": "Uvádíme úřední/skutečné/světské jméno/jméno za svobodna."
 		},
 		"general_complement_original_name": {
@@ -123,7 +123,7 @@
 		},
 		"acronym": {
 			"label": "akronym/zkratka",
-			"schema": "acronym[%].other_language_name",
+			"schema": "acronym[%].acronym",
 			"helper": "Akronym, který autor používá."
 		},
 		"general_complement_acronym": {
@@ -145,7 +145,7 @@
 		},
 		"cipher": {
 			"label": "autorská šifra/novinářská značka",
-			"schema": "cipher[%].other_language_name",
+			"schema": "cipher[%].cipher",
 			"helper": "Autorská šifra u novinářů."
 		},
 		"general_complement_cipher": {
@@ -167,7 +167,7 @@
 		},
 		"religious_name": {
 			"label": "církevní jméno",
-			"schema": "religious_name[%].other_language_name",
+			"schema": "religious_name[%].religious_name",
 			"helper": "Církevní jméno."
 		},
 		"general_complement_religious": {
@@ -189,7 +189,7 @@
 		},
 		"marriage_name": {
 			"label": "jméno získané sňatkem",
-			"schema": "marriage_name[%].other_language_name",
+			"schema": "marriage_name[%].marriage_name",
 			"helper": "Jméno získané sňatkem."
 		},
 		"general_complement_marriage": {
@@ -211,7 +211,7 @@
 		},
 		"historical_name": {
 			"label": "historická podoba jména",
-			"schema": "historical_name[%].other_language_name",
+			"schema": "historical_name[%].historical_name",
 			"helper": "Historická podoba jména."
 		},
 		"general_complement_historical": {
@@ -233,7 +233,7 @@
 		},
 		"straight_order": {
 			"label": "přímé pořadí",
-			"schema": "straight_order[%].other_language_name",
+			"schema": "straight_order[%].straight_order",
 			"helper": "Jméno v podobě Jméno_Příjmení"
 		},
 		"general_complement_order": {
@@ -255,7 +255,7 @@
 		},
 		"other_name_form": {
 			"label": "jiná forma jména",
-			"schema": "other_name_form[%].other_language_name",
+			"schema": "other_name_form[%].other_name_form",
 			"helper": "Jiná forma jména."
 		},
 		"general_complement_form": {
@@ -277,7 +277,7 @@
 		},
 		"pseudonym": {
 			"label": "pseudonym",
-			"schema": "pseudonym[%].other_language_name",
+			"schema": "pseudonym[%].pseudonym",
 			"helper": "Pseudonym."
 		},
 		"general_complement_pseudonym": {

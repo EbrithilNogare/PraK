@@ -6,21 +6,77 @@ const schema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
-	name_other_part: String,
-
-	acronym: [String],
-	other_name_form: [String],
-
+	name_other_part: [String],
 	general_complement: String,
 	geographical_complement: String,
 	chronological_complement: String,
 	event_order: String,
 
-	description:{
-		type: String,
-	},
+	other_language_name: [{
+		other_language_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	acronym: [{
+		acronym: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	other_name_form: [{
+		other_name_form: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	official_name: [{
+		official_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	other_name_form: [{
+		other_name_form: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
 
-	aggregate_event:[{
+	brief_characteristic: [String],
+	history: [String],
+
+	sup_event:[{
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	}],
@@ -28,7 +84,6 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	}],
-
 	related_person:[{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -66,12 +121,9 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	first_mention: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	first_mention: String,
 	founding_chronological_specification: String,
-
+	first_mention_subject: String,
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
@@ -85,22 +137,21 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	last_mention: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	last_mention: String,
 	cancellation_chronological_specification: String,
+	last_mention_subject: String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	topic:[{
+	characteristic:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
 
-	notes:[String],
+	public_note: [String],
+	nonpublic_note: [String],
 
 	other_source: [{
 		name: String,
@@ -109,7 +160,6 @@ const schema = new mongoose.Schema({
 	}],
 
 	record_sources:[String],
-
 	editor_note: [String],
 	submitter: {
 		type: String,
