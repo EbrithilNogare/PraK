@@ -96,11 +96,11 @@
 		},
 
 		"original_name-category": {
-			"label": "původní jméno",
+			"label": "Původní jméno",
 			"schema": "original_name[%]"
 		},
 		"original_name": {
-			"label": "původní jméno",
+			"label": "Původní jméno",
 			"schema": "original_name[%].original_name",
 			"helper": "Uvádíme úřední/skutečné/světské jméno/jméno za svobodna."
 		},
@@ -118,11 +118,11 @@
 		},
 
 		"acronym-category": {
-			"label": "akronym/zkratka",
+			"label": "Akronym/zkratka",
 			"schema": "acronym[%]"
 		},
 		"acronym": {
-			"label": "akronym/zkratka",
+			"label": "Akronym/zkratka",
 			"schema": "acronym[%].acronym",
 			"helper": "Akronym, který autor používá."
 		},
@@ -140,11 +140,11 @@
 		},
 
 		"cipher-category": {
-			"label": "autorská šifra/novinářská značka",
+			"label": "Autorská šifra/novinářská značka",
 			"schema": "cipher[%]"
 		},
 		"cipher": {
-			"label": "autorská šifra/novinářská značka",
+			"label": "Autorská šifra/novinářská značka",
 			"schema": "cipher[%].cipher",
 			"helper": "Autorská šifra u novinářů."
 		},
@@ -162,11 +162,11 @@
 		},
 
 		"religious_name-category": {
-			"label": "církevní jméno",
+			"label": "Církevní jméno",
 			"schema": "religious_name[%]"
 		},
 		"religious_name": {
-			"label": "církevní jméno",
+			"label": "Církevní jméno",
 			"schema": "religious_name[%].religious_name",
 			"helper": "Církevní jméno."
 		},
@@ -184,11 +184,11 @@
 		},
 
 		"marriage_name-category": {
-			"label": "jméno získané sňatkem",
+			"label": "Jméno získané sňatkem",
 			"schema": "marriage_name[%]"
 		},
 		"marriage_name": {
-			"label": "jméno získané sňatkem",
+			"label": "Jméno získané sňatkem",
 			"schema": "marriage_name[%].marriage_name",
 			"helper": "Jméno získané sňatkem."
 		},
@@ -206,11 +206,11 @@
 		},
 
 		"historical_name-category": {
-			"label": "historická podoba jména",
+			"label": "Historická podoba jména",
 			"schema": "historical_name[%]"
 		},
 		"historical_name": {
-			"label": "historická podoba jména",
+			"label": "Historická podoba jména",
 			"schema": "historical_name[%].historical_name",
 			"helper": "Historická podoba jména."
 		},
@@ -228,11 +228,11 @@
 		},
 
 		"straight_order-category": {
-			"label": "přímé pořadí",
+			"label": "Přímé pořadí",
 			"schema": "straight_order[%]"
 		},
 		"straight_order": {
-			"label": "přímé pořadí",
+			"label": "Přímé pořadí",
 			"schema": "straight_order[%].straight_order",
 			"helper": "Jméno v podobě Jméno_Příjmení"
 		},
@@ -250,11 +250,11 @@
 		},
 
 		"other_name_form-category": {
-			"label": "jiná forma jména",
+			"label": "Jiná forma jména",
 			"schema": "other_name_form[%]"
 		},
 		"other_name_form": {
-			"label": "jiná forma jména",
+			"label": "Jiná forma jména",
 			"schema": "other_name_form[%].other_name_form",
 			"helper": "Jiná forma jména."
 		},
@@ -272,11 +272,11 @@
 		},
 
 		"pseudonym-category": {
-			"label": "pseudonym",
+			"label": "Pseudonym",
 			"schema": "pseudonym[%]"
 		},
 		"pseudonym": {
-			"label": "pseudonym",
+			"label": "Pseudonym",
 			"schema": "pseudonym[%].pseudonym",
 			"helper": "Pseudonym."
 		},

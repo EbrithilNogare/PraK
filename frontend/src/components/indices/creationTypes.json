@@ -49,11 +49,11 @@
 			"schema": "other_language_name[%].chronological_complement"
 		},
 		"other_name_form-category": {
-			"label": "jiné označení",
+			"label": "Jiné označení",
 			"schema": "other_name_form[%]"
 		},
 		"other_name_form": {
-			"label": "jiné označení",
+			"label": "Jiné označení",
 			"schema": "other_name_form[%].other_name_form",
 			"helper": "Jiné označení jména."
 		},
@@ -70,11 +70,11 @@
 			"schema": "other_name_form[%].chronological_complement"
 		},
 		"official_name-category": {
-			"label": "jméno úřední",
+			"label": "Jméno úřední",
 			"schema": "official_name[%]"
 		},
 		"official_name": {
-			"label": "jméno úřední",
+			"label": "Jméno úřední",
 			"schema": "official_name[%].official_name",
 			"helper": ""
 		},
@@ -91,11 +91,11 @@
 			"schema": "official_name[%].chronological_complement"
 		},
 		"former_name_form-category": {
-			"label": "historická/dřívější forma jména",
+			"label": "Historická/dřívější forma jména",
 			"schema": "former_name_form[%]"
 		},
 		"former_name_form": {
-			"label": "historická/dřívější forma jména",
+			"label": "Historická/dřívější forma jména",
 			"schema": "former_name_form[%].former_name_form",
 			"helper": ""
 		},
@@ -112,11 +112,11 @@
 			"schema": "former_name_form[%].chronological_complement"
 		},
 		"acronym-category": {
-			"label": "akronym/zkratka",
+			"label": "Akronym/zkratka",
 			"schema": "acronym[%]"
 		},
 		"acronym": {
-			"label": "akronym/zkratka",
+			"label": "Akronym/zkratka",
 			"schema": "acronym[%].acronym",
 			"helper": ""
 		},

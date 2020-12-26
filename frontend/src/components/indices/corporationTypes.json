@@ -12,7 +12,7 @@
 			"helper": "Odkaz na součásti korporace."
 		},
 		"jurisdiction": {
-			"label": "jurisdikce",
+			"label": "Jurisdikce",
 			"schema": "jurisdiction",
 			"helper": ""
 		},
@@ -64,7 +64,7 @@
 			"schema": "other_language_name[%].chronological_complement"
 		},
 		"acronym-category": {
-			"label": "akronym/zkratka",
+			"label": "Akronym/zkratka",
 			"schema": "other_language_name[%]"
 		},
 		"acronym": {
@@ -85,7 +85,7 @@
 			"schema": "acronym[%].chronological_complement"
 		},
 		"historical_name-category": {
-			"label": "historická/dřívější forma jména",
+			"label": "Historická/dřívější forma jména",
 			"schema": "other_language_name[%]"
 		},
 		"historical_name": {
@@ -106,7 +106,7 @@
 			"schema": "historical_name[%].chronological_complement"
 		},
 		"other_name_form-category": {
-			"label": "jiné označení",
+			"label": "Jiné označení",
 			"schema": "other_language_name[%]"
 		},
 		"other_name_form": {
@@ -127,7 +127,7 @@
 			"schema": "other_name_form[%].chronological_complement"
 		},
 		"following_name-category": {
-			"label": "následující forma jména",
+			"label": "Následující forma jména",
 			"schema": "other_language_name[%]"
 		},
 		"following_name": {

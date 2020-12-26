@@ -224,7 +224,7 @@
 			"helper": "Časové zpřesnění související s počátkem události."
 		},
 		"first_mention_subject": {
-			"label": "první písemná zmínka",
+			"label": "První písemná zmínka",
 			"schema": "first_mention",
 			"helper": ""
 		},
