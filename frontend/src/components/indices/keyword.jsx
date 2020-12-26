@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core'
 import {
 	CorporationComboBox,
-	CreationComboBox,
+//	CreationComboBox,
 	KeywordComboBox,
 	PersonComboBox,
 	SubjectComboBox,
@@ -46,88 +46,74 @@ class Keyword extends IndexParent {
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}> <h2>Název</h2>
 					<TextField {...this.createFieldProps("name_main_part")}/>
-					<TextField {...this.createFieldProps("name_other_part")}/>
+					<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
+					<KeywordComboBox {...this.createFieldProps("general_complement")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 					<Multiplier>
+						<TextField {...this.createFieldProps("other_language_name")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
+					</Multiplier>
+					<Multiplier>
 						<TextField {...this.createFieldProps("synonyms")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_synonyms")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("inverted_wordorder_terms")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_inverted")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("spelling_variants")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_variants")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("foreign_language_descriptors")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_foreign_descriptors")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("form_descriptors")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_form_descriptors")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_name_form")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
 					</Multiplier>
-				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Doplňky označení</h2>
-					<TextField {...this.createFieldProps("general_complement")}/>
-					<TextField {...this.createFieldProps("clarification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Popis</h2>
 					<TextField {...this.createFieldProps("definition")}/>
 					<TextField {...this.createFieldProps("manual")}/>
 					<TextField {...this.createFieldProps("history")}/>
-					<Multiplier>
-						<TextField {...this.createFieldProps("electronical_location")}/>
-					</Multiplier>
+					<TextField {...this.createFieldProps("electronical_location")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Vztahy</h2>
-					<Multiplier>
-						<KeywordComboBox {...this.createFieldProps("superordinate")}/>
-					</Multiplier>
-					<Multiplier>
-						<KeywordComboBox {...this.createFieldProps("subordinate")}/>
-					</Multiplier>
-					<Multiplier>
-						<KeywordComboBox {...this.createFieldProps("associative")}/>
-					</Multiplier>
+					<Multiplier><KeywordComboBox {...this.createFieldProps("superordinate")}/></Multiplier>
+					<Multiplier><KeywordComboBox {...this.createFieldProps("subordinate")}/></Multiplier>
+					<Multiplier><KeywordComboBox {...this.createFieldProps("associative")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Počátek existence</h2>
-					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("founding_person")}/>
 					<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
-					<CreationComboBox {...this.createFieldProps("founding_subject")}/>
-					<Multiplier>
-						<SubjectComboBox {...this.createFieldProps("founding_event")}/>
-					</Multiplier>
-					<Multiplier>
-						<KeywordComboBox {...this.createFieldProps("founding_keyword")}/>
-					</Multiplier>
+					<TextField {...this.createFieldProps("founding_subject")}/>
+					<SubjectComboBox {...this.createFieldProps("founding_event")}/>
+					<KeywordComboBox {...this.createFieldProps("founding_keyword")}/>
+					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Konec existence</h2>
-					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 					<CorporationComboBox {...this.createFieldProps("cancellation_corporation")}/>
-					<CreationComboBox {...this.createFieldProps("cancellation_subject")}/>
-					<Multiplier>
-						<SubjectComboBox {...this.createFieldProps("cancellation_event")}/>
-					</Multiplier>
+					<TextField {...this.createFieldProps("cancellation_subject")}/>
+					<SubjectComboBox {...this.createFieldProps("cancellation_event")}/>
 					<KeywordComboBox {...this.createFieldProps("cancellation_keyword")}/>
+					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zařazení</h2>
-					<Multiplier>
-						<KeywordComboBox {...this.createFieldProps("category")}/>
-					</Multiplier>
-					<Multiplier>
-						<KeywordComboBox {...this.createFieldProps("domain")}/>
-					</Multiplier>
-					<Multiplier>
-						<TextField {...this.createFieldProps("idc")}/>
-					</Multiplier>
+					<Multiplier><KeywordComboBox {...this.createFieldProps("category")}/></Multiplier>
+					<Multiplier><KeywordComboBox {...this.createFieldProps("domain")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("idc")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
-					<Multiplier>
-						<TextField {...this.createFieldProps("notes")}/>
-					</Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("public_note")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("nonpublic_note")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
 					<Multiplier>
@@ -137,10 +123,8 @@ class Keyword extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Zdroje o heslu</h2>
-					<Multiplier>
-						<TextField {...this.createFieldProps("record_sources")}/>
-					</Multiplier>
-					<TextField {...this.createFieldProps("editor_note")}/>
+					<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
 					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>

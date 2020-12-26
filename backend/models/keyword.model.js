@@ -6,92 +6,128 @@ const schema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
-	name_other_part: String,
-
-	synonyms:[String],
-	inverted_wordorder_terms:[String],
-	spelling_variants:[String],
-	foreign_language_descriptors:[String],
-	form_descriptors:[String],
-	other_name_form:[String],
-
+	name_other_part: [String],
 	general_complement: String,
-	clarification: String,
+
+	other_language_name: [{
+		other_language_name: String,
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+	}],
+	synonyms: [{
+		synonyms: String,
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+	}],
+	inverted_wordorder_terms: [{
+		inverted_wordorder_terms: String,
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+	}],
+	spelling_variants: [{
+		spelling_variants: String,
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+	}],
+	foreign_language_descriptors: [{
+		foreign_language_descriptors: String,
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+	}],
+	form_descriptors: [{
+		form_descriptors: String,
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+	}],
+	other_name_form: [{
+		other_name_form: String,
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+	}],
 
 	definition: String,
 	manual: String,
 	history: String,
-	electronical_location:[String],
+	electronical_location: String,
 
-	superordinate:[{
+	superordinate: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	subordinate:[{
+	subordinate: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	associative:[{
+	associative: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
 
-	founding_person:{
+	founding_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	founding_corporation:{
+	founding_corporation: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
-	founding_subject:{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	founding_event:[{
+	founding_subject: String,
+	founding_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
-	}],
-	founding_keyword:[{
+	},
+	founding_keyword: {
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
-	}],
-	chronological_specification_beginning: String,
+	},
+	founding_chronological_specification: String,
 
 
-	cancellation_person:{
+	cancellation_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	cancellation_corporation:{
+	cancellation_corporation: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
-	cancellation_subject:{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	cancellation_event:[{
+	cancellation_subject: String,
+	cancellation_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
-	}],
-	cancellation_keyword:{
+	},
+	cancellation_keyword: {
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	},
-	chronological_specification_cancellation: String,
+	cancellation_chronological_specification: String,
 
-	category:[{
+	category: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	domain:[{
+	domain: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	idc:[String],
+	idc: [String],
 
-	notes:[String],
+	public_note: [String],
+	nonpublic_note: [String],
 
 	other_source: [{
 		name: String,
@@ -99,8 +135,7 @@ const schema = new mongoose.Schema({
 		identificator: String,
 	}],
 
-	record_sources:[String],
-
+	record_sources: [String],
 	editor_note: [String],
 	submitter: {
 		type: String,
