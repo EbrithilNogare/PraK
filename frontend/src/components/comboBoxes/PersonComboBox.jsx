@@ -18,7 +18,7 @@ class PersonComboBox extends ComboBox {
 	labelPostfix = () => " (Rejstřík osob)"
 
 	generateObjectForMongooseFind = (value) => {
-		return {surname: `/${value}/`}
+		return { _nameAndSurname: value }
 	}
 
 	parseReturnedObjectFromMongooseFind = (element) => {

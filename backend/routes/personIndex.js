@@ -67,7 +67,15 @@ router.route('/').post((req, res) => {
 			req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
 
 	// extract special attributes
-	const {_limit, ...body} = req.body
+	let {_limit, _nameAndSurname, ...body} = req.body
+
+		if(_nameAndSurname){
+			body = {
+				$or: [
+				{ 'name': { $regex: _nameAndSurname, '$options' : 'i' } },
+				{ 'surname': { $regex: _nameAndSurname, '$options' : 'i' } }
+			  ]}
+		}
 
 	Model.find(body)
 		.limit(_limit || 5)

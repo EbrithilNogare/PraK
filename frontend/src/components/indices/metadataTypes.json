@@ -123,8 +123,8 @@
 			"schema": "isbn[%]",
 			"fields": [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
 			"helper": "Uvádí se bez pomlček.",
-			"regexp": "^(97(8|9))?\\d{9}(\\d|X)$",
-			"errorMessage": "chybné ISBN (formát: ???ddddddddd#)"
+			"regexp": "^(97(8|9))?(-?\\d){9}-?(\\d|X)$",
+			"errorMessage": "10 nebo 13 cislic, oddelene pomlckami nebo i bez nich, posledni znak muze byt X"
 		},
 		"edition_order": {
 			"label": "Pořadí vydání",
