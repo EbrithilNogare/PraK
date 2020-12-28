@@ -34,7 +34,7 @@ router.route('/:id').get((req, res) => {
 		.populate("founding_corporation", "name_main_part")
 		.populate("founding_place", "name_main_part")
 		.populate("cancellation_person", ['name', 'surname'])
-		.populate("last_mention_event", "name_main_part")
+		.populate("cancellation_event", "name_main_part")
 		.populate("cancellation_place", "name_main_part")
 		.populate("category", "name_main_part")
 		.populate("characteristic", "name_main_part")

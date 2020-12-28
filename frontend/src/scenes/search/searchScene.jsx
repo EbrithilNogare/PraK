@@ -65,7 +65,12 @@ class ShowScene extends React.Component {
 		.then(data => {
 			console.info("%cFound: ", "background: #222; color: #bada55", data);
 			this.setState({
-				records: data.map(a=>{return {id:a._id, ...a}}),
+				records: data.map(a => {
+					const toReturn = {...a}
+					toReturn.id = a._id
+					if(a.born_year) toReturn.born_year = a.born_year.year
+					return toReturn
+				}),
 				loading: false,
 			})
 		})
@@ -107,7 +112,7 @@ class ShowScene extends React.Component {
 									template = [
 										{field: "name", headerName: "Název", flex: 400},
 										{field: "surname", headerName: "Příjmení", flex: 400},
-										{field: "born_year", headerName: "Rok narození", flex: 200, type: 'number'},
+										{field: "born_year", headerName: "Rok narození", flex: 200},
 									]
 									break
 								default:

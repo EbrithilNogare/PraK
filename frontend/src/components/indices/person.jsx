@@ -18,6 +18,7 @@ import {
 	SubmitterComboBox,
 } from '../comboBoxes'
 import DateField from '../validationTextFields/DateField'
+import RegExpField from '../validationTextFields/RegExpField'
 import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
 import typeDefinitionFile from './personTypes.json'
@@ -54,13 +55,16 @@ class Person extends IndexParent {
 					<TextField {...this.createFieldProps("name")}/>
 					<TextField {...this.createFieldProps("surname")}/>
 					<TextField {...this.createFieldProps("born_year")}/><LabeledCheckbox {...this.createFieldProps("born_year_notKnown")}/>
-					<TextField {...this.createFieldProps("born_date")}/>
+					<RegExpField {...this.createFieldProps("born_date")}/><LabeledCheckbox {...this.createFieldProps("born_date_notKnown")}/>
 					<GeographicComboBox {...this.createFieldProps("born_place")}/>
 					<TextField {...this.createFieldProps("death_year")}/><LabeledCheckbox {...this.createFieldProps("death_year_notKnown")}/>
-					<TextField {...this.createFieldProps("death_date")}/>
+					<RegExpField {...this.createFieldProps("death_date")}/><LabeledCheckbox {...this.createFieldProps("death_date_notKnown")}/>
 					<GeographicComboBox {...this.createFieldProps("death_place")}/>
 					<TextField {...this.createFieldProps("initials")}/>
 					<TextField {...this.createFieldProps("roman_numerals")}/>
+					<KeywordComboBox {...this.createFieldProps("general_complement")}/>
+					<TextField {...this.createFieldProps("geographical_complement")}/>
+					<TextField {...this.createFieldProps("chronological_complement")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 					<Multiplier>
@@ -124,7 +128,7 @@ class Person extends IndexParent {
 						<TextField {...this.createFieldProps("chronological_complement_pseudonym")}/>
 					</Multiplier>
 				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Titul</h2>
+				<Paper className={styles.dataBlock}> <h2>Tituly</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("title")}/>
 						<DateField {...this.createFieldProps("date")}/>

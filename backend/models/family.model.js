@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
-	name_main_part: String,
+	name_main_part: {
+		type: String,
+		required: true,
+		unique: true,
+	},
 	name_other_part: [String],
 
 	public_note: [String],

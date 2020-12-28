@@ -52,7 +52,7 @@ class Keyword extends IndexParent {
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_language_name")}/>
-						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other_language")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("synonyms")}/>
@@ -76,7 +76,7 @@ class Keyword extends IndexParent {
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_name_form")}/>
-						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other_name")}/>
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Popis</h2>

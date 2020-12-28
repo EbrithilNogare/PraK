@@ -26,7 +26,7 @@
 			"schema": "other_language_name[%].other_language_name",
 			"helper": "Uvádíme variantu názvu v jiném jazyce."
 		},
-		"general_complement_other": {
+		"general_complement_other_language": {
 			"label": "Obecný doplněk",
 			"schema": "other_language_name[%].general_complement"
 		},
@@ -104,7 +104,7 @@
 			"schema": "other_name_form[%].other_name_form",
 			"helper": "Jiné označení jména."
 		},
-		"general_complement_other": {
+		"general_complement_other_name": {
 			"label": "Obecný doplněk",
 			"schema": "other_name_form[%].general_complement"
 		},
@@ -164,12 +164,12 @@
 		},
 		"founding_event": {
 			"label": "Zakládající událost",
-			"schema": "founding_event[%]",
+			"schema": "founding_event",
 			"helper": "Událost, která obecný pojem zavedla. Výběr z rejstříku událostí."
 		},
 		"founding_keyword": {
 			"label": "Zakládající klíčové slovo",
-			"schema": "founding_keyword[%]",
+			"schema": "founding_keyword",
 			"helper": "Propojení na následující obecný pojem. Výběr z rejstříku klíčových slov."
 		},
 		"founding_chronological_specification": {
@@ -195,7 +195,7 @@
 		},
 		"cancellation_event": {
 			"label": "Rušící událost",
-			"schema": "cancellation_event[%]",
+			"schema": "cancellation_event",
 			"helper": "Událost, která obecný pojem zrušila. Výběr z rejstříku událostí."
 		},
 		"cancellation_keyword": {

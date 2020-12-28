@@ -22,13 +22,19 @@
 			"type": "Number"
 		},
 		"born_year_notKnown": {
-			"label": "Datum není jisté",
+			"label": "Rok není jistý",
 			"schema": "born_year.notKnown"
 		},
 		"born_date": {
 			"label": "Datum narození",
-			"schema": "born_date",
-			"helper": ""
+			"schema": "born_date.date",
+			"helper": "",
+			"regexp": "^\\d{1,2}.\\d{1,2}$",
+			"errorMessage": "Zadejte ve formátu dd.mm"
+		},
+		"born_date_notKnown": {
+			"label": "Datum není jisté",
+			"schema": "born_date.notKnown"
 		},
 		"born_place": {
 			"label": "Místo narození",
@@ -45,13 +51,19 @@
 			"type": "Number"
 		},
 		"death_year_notKnown": {
-			"label": "Datum není jisté",
+			"label": "Rok není jistý",
 			"schema": "death_year.notKnown"
 		},
 		"death_date": {
 			"label": "Datum úmrtí",
-			"schema": "death_date",
-			"helper": ""
+			"schema": "death_date.date",
+			"helper": "",
+			"regexp": "^\\d{1,2}.\\d{1,2}$",
+			"errorMessage": "Zadejte ve formátu dd.mm"
+		},
+		"death_date_notKnown": {
+			"label": "Datum není jisté",
+			"schema": "death_date.notKnown"
 		},
 		"death_place": {
 			"label": "Místo úmrtí",
@@ -67,6 +79,21 @@
 			"label": "Římské číslice",
 			"schema": "roman_numerals",
 			"helper": "Římské číslice u označnení panovníků či papežů."
+		},
+		"general_complement": {
+			"label": "Obecný doplněk",
+			"schema": "general_complement",
+			"helper": "Doplněk ke jménu jako panovnický titul, funkce, st./ml. ...."
+		},
+		"geographical_complement": {
+			"label": "Geografický doplněk",
+			"schema": "geographical_complement",
+			"helper": ""
+		},
+		"chronological_complement": {
+			"label": "Chronologický doplněk",
+			"schema": "chronological_complement",
+			"helper": ""
 		},
 		
 
@@ -304,7 +331,7 @@
 			"schema": "titles[%]"
 		},
 		"title": {
-			"label": "Tituly",
+			"label": "Titul",
 			"schema": "titles[%].title",
 			"helper": "Získané akademické tituly."
 		},

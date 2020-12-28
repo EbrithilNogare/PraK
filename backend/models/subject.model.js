@@ -135,7 +135,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	last_mention_event: {
+	cancellation_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},

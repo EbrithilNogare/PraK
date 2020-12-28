@@ -19,6 +19,7 @@ class NavBar extends React.Component {
 					<li><NavLink to="/prak/ourwork">Výstupy</NavLink></li> 
 					<li><NavLink to="/prak/partners">Partneři</NavLink></li> 
 					<li><NavLink to="/prak/contacts">Kontakty</NavLink></li> 
+					<li><NavLink to="/prak/login">Účet</NavLink></li> 
 				</ul>
 				<Search className={styles.searchBar}/>
 			</nav>

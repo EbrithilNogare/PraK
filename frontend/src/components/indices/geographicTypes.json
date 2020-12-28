@@ -31,7 +31,7 @@
 
 
 		"other_language_name-category": {
-			"label": "Other_language_name v jiném jazyce",
+			"label": "Název v jiném jazyce",
 			"schema": "other_language_name[%]"
 		},
 		"other_language_name": {
@@ -40,15 +40,15 @@
 			"helper": "Uvádíme variantu názvu v jiném jazyce."
 		},
 		"general_complement_other_language": {
-			"label": "Other_language_name doplněk",
+			"label": "Obecný doplněk ",
 			"schema": "other_language_name[%].general_complement"
 		},
 		"geographical_complement_other_language": {
-			"label": "Other_language_name doplněk",
+			"label": "Geografický doplněk",
 			"schema": "other_language_name[%].geographical_complement"
 		},
 		"chronological_complement_other_language": {
-			"label": "Other_language_name doplněk",
+			"label": "Chronologický doplněk",
 			"schema": "other_language_name[%].chronological_complement"
 		},
 		
@@ -62,7 +62,7 @@
 			"helper": "Zkratka/akronym, pokud ji geografická entita používá."
 		},
 		"general_complement_acronym": {
-			"label": "Obecný doplněk",
+			"label": "Obecný doplněk ",
 			"schema": "acronym[%].general_complement"
 		},
 		"geographical_complement_acronym": {
@@ -84,7 +84,7 @@
 			"helper": "Dřívejší jméno geografické entity."
 		},
 		"general_complement_historical": {
-			"label": "Obecný doplněk",
+			"label": "Obecný doplněk ",
 			"schema": "historical_name[%].general_complement"
 		},
 		"geographical_complement_historical": {
@@ -106,7 +106,7 @@
 			"helper": "Jiné označení, pod kterým je geografická entita známa."
 		},
 		"general_complement_other_name": {
-			"label": "Obecný doplněk",
+			"label": "Obecný doplněk ",
 			"schema": "other_name_form[%].general_complement"
 		},
 		"geographical_complement_other_name": {

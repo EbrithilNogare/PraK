@@ -76,7 +76,7 @@ class Login extends React.Component {
 
 	render(){ 
 		return(
-		<div>
+		<div style={{width:"100%"}}>
 			<center><h1>Přihlášení</h1></center>
 			<center><img src="images/logo.png" alt="logo" className={ styles.logo }></img></center>
 			<form onSubmit={this.handleSubmit} className={styles.loginForm}>
@@ -94,7 +94,7 @@ class Login extends React.Component {
 					type="password"
 					variant="outlined"
 					onChange={this.handleChange}
-				/>
+					/>
 				<Button 
 					variant="contained" 
 					color="primary" 

@@ -53,6 +53,7 @@ class StaticOpenComboBox extends React.Component {
 					name={this.props.name}
 					label={this.props.label[0].toUpperCase() + this.props.label.slice(1)}
 					required={this.props.required}
+					disabled={this.props.disabled}
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}
@@ -62,7 +63,7 @@ class StaticOpenComboBox extends React.Component {
 					InputProps={{
 						...this.props.InputProps
 					}}
-					onClick={this.handleClick}
+					onClick={(e) => {if(!this.props.disabled) this.handleClick(e)}}
 					onKeyUp={this.handleKeyUp}
 				/>
 				<MenuList style={{
@@ -75,7 +76,7 @@ class StaticOpenComboBox extends React.Component {
 					{this.state.menuList.map((value, key)=>(
 						<MenuItem
 							key={key}
-							onClick={() => this.handleMenuItemClick(value)}
+							onClick={() => {this.handleMenuItemClick(value)}}
 						>
 							{value}
 						</MenuItem>

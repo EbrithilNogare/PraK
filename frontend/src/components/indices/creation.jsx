@@ -56,15 +56,15 @@ class Creation extends IndexParent {
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_language_name")}/>
-						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
-						<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
-						<TextField {...this.createFieldProps("chronological_complement_other")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other_language")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_other_language")}/>
+						<TextField {...this.createFieldProps("chronological_complement_other_language")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_name_form")}/>
-						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
-						<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
-						<TextField {...this.createFieldProps("chronological_complement_other")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other_name")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_other_name")}/>
+						<TextField {...this.createFieldProps("chronological_complement_other_name")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("official_name")}/>

@@ -60,9 +60,9 @@ class Corporation extends IndexParent {
 
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_language_name")}/>
-						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
-						<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
-						<TextField {...this.createFieldProps("chronological_complement_other")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other_language")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_other_language")}/>
+						<TextField {...this.createFieldProps("chronological_complement_other_language")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("acronym")}/>
@@ -78,9 +78,9 @@ class Corporation extends IndexParent {
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_name_form")}/>
-						<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
-						<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
-						<TextField {...this.createFieldProps("chronological_complement_other")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement_other_name")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement_other_name")}/>
+						<TextField {...this.createFieldProps("chronological_complement_other_name")}/>
 					</Multiplier>
 					<Multiplier>
 						<TextField {...this.createFieldProps("following_name")}/>
@@ -109,17 +109,20 @@ class Corporation extends IndexParent {
 					<PersonComboBox {...this.createFieldProps("founder")}/>
 					<TextField {...this.createFieldProps("founding_document")}/>
 					<GeographicComboBox {...this.createFieldProps("founding_place")}/>
+					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 					<TextField {...this.createFieldProps("registration_subject")}/>
 					<SubjectComboBox {...this.createFieldProps("registration_event")}/>
+					<TextField {...this.createFieldProps("registration_chronological_specification")}/>
 					<PersonComboBox {...this.createFieldProps("cleavage_person")}/>
 					<TextField {...this.createFieldProps("cleavage_document")}/>
 					<GeographicComboBox {...this.createFieldProps("cleavage_place")}/>
-					<TextField {...this.createFieldProps("founding_chronological_specification")}/>
+					<TextField {...this.createFieldProps("cleavage_chronological_specification")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Konec existence</h2>
 					<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 					<TextField {...this.createFieldProps("cancellation_document")}/>
 					<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
+					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 					<TextField {...this.createFieldProps("delete_from_evidence_subject")}/>
 					<SubjectComboBox {...this.createFieldProps("delete_from_evidence_event")}/>
 					<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>

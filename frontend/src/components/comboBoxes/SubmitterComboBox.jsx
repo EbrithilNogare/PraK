@@ -18,7 +18,7 @@ class SubmitterComboBox extends React.Component {
 	}
 	
 	render(){ return(
-			<StaticOpenComboBox defaultValue={this.defaultValue} {...this.props}/>
+			<StaticOpenComboBox defaultValue={this.defaultValue} {...this.props} disabled={!(this.props.cookies.get("permission") & 1)}/>
 		)}
 }
 

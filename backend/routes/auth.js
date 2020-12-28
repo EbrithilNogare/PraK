@@ -91,9 +91,11 @@ router.route('/:sessionID').delete((req, res) => {
 		.then(result => {
 			if(result === null){
 				res.status(400).json({ message: "wrong sessionID" })
+				return
 			}
 
 			res.status(200).json({})
+			return
 		})
 		.catch(err => {
 			if(res.statusCode < 400)

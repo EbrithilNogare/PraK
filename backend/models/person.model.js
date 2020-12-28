@@ -13,7 +13,10 @@ const schema = new mongoose.Schema({
 		year: Number,
 		notKnown: Boolean,
 	},
-	born_date: String,
+	born_date:  {
+		date: String,
+		notKnown: Boolean,
+	},
 	born_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
@@ -22,7 +25,10 @@ const schema = new mongoose.Schema({
 		year: Number,
 		notKnown: Boolean,
 	},
-	death_date: String,
+	death_date: {
+		date: String,
+		notKnown: Boolean,
+	},
 	death_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
@@ -33,10 +39,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	},
-	geographical_complement: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
+	geographical_complement: String,
 	chronological_complement: String,
 
 	other_language_name: [{
@@ -171,10 +174,10 @@ const schema = new mongoose.Schema({
 
 	cv: String,
 	
-	domain_branch: {
+	domain_branch: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
-	},
+	}],
 
 	related_country: [{
 		type: mongoose.Types.ObjectId,

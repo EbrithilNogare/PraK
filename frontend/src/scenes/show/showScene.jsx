@@ -182,6 +182,19 @@ class ShowScene extends React.Component {
 		})
 	}
 
+	translate(en){
+		switch(en){
+			case "metadata": return "Rejstříku Metadata"
+			case "corporation": return "Rejstříku korporací"
+			case "creation": return "Rejstříku dílo/výtvor"
+			case "geographic": return "Geografického rejstříku"
+			case "keyword": return "Rejstříku klíčových slov"
+			case "person": return "Rejstříku osob"
+			case "subject": return "Rejstříku událostí"
+			case "family": return "Rejstříku rodů"
+		}
+	}
+
 	render(){
 		return(
 			<div className={styles.ShowScene}>
@@ -190,7 +203,7 @@ class ShowScene extends React.Component {
 						<Route path="/prak/show/:type/:id" render={({match}) => (
 							<div>
 								<Paper className={styles.header}>
-									<h1>Záznam z rejstříku {match.params.type}</h1>
+									<h1>Záznam z {this.translate(match.params.type)}</h1>
 								</Paper>
 								<Paper className={styles.body}>
 									{this.state.record===null && "Záznam nenalezen, nebo smazán"}

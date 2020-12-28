@@ -118,11 +118,13 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
+	founding_chronological_specification: String,
 	registration_subject: String,
 	registration_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
+	registration_chronological_specification: String,
 	cleavage_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -132,7 +134,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	founding_chronological_specification: String,
+	cleavage_chronological_specification: String,
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
@@ -143,6 +145,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
+	cancellation_chronological_specification: String,
 	delete_from_evidence_subject: String,
 	delete_from_evidence_event: {
 		type: mongoose.Types.ObjectId,

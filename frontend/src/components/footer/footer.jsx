@@ -49,7 +49,7 @@ class Footer extends React.Component {
 				<div>
 					<h3>Vkládací rozhraní</h3>
 					<hr/>
-					<ul>
+					{(this.props.cookies.get("permission") & 2) > 0 && <ul>
 						<li> <NavLink to="/prak/input/metadata">Metadata</NavLink> </li>
 						<li> <NavLink to="/prak/input/corporation">Rejstřík korporací</NavLink> </li>
 						<li> <NavLink to="/prak/input/creation">Rejstřík dílo/výtvor</NavLink> </li>
@@ -58,7 +58,7 @@ class Footer extends React.Component {
 						<li> <NavLink to="/prak/input/person">Rejstřík osob</NavLink> </li>
 						<li> <NavLink to="/prak/input/subject">Rejstřík událostí</NavLink> </li>
 						<li> <NavLink to="/prak/input/family">Rejstřík rodů</NavLink> </li>
-					</ul>
+					</ul>}
 				</div>
 			</div>
 		)
