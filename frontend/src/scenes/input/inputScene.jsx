@@ -18,23 +18,21 @@ import Subject from '../../components/indices/subject'
 import styles from './inputScene.module.scss'
 
 class InputScene extends React.Component {
-	render(){
-		return(
-			<div className={styles.InputScene}>
-					<Switch>
-						<Route path="/prak/input/metadata">		<Metadata/>		</Route>
+	render(){ return(
+		<div className={styles.InputScene}>
+			<Switch>
+				<Route path="/prak/input/metadata">		<Metadata/>		</Route>
 
-						<Route path="/prak/input/corporation">	<Corporation/>	</Route>
-						<Route path="/prak/input/creation">		<Creation/>		</Route>
-						<Route path="/prak/input/family">		<Family/>		</Route>
-						<Route path="/prak/input/geographic">	<Geographic/>	</Route>
-						<Route path="/prak/input/keyword">		<Keyword/>		</Route>
-						<Route path="/prak/input/person">		<Person/>		</Route>
-						<Route path="/prak/input/subject">		<Subject/>		</Route>
-					</Switch>
-			</div>
-		)
-	}
+				<Route path="/prak/input/corporation">	<Corporation/>	</Route>
+				<Route path="/prak/input/creation">		<Creation/>		</Route>
+				<Route path="/prak/input/family">		<Family/>		</Route>
+				<Route path="/prak/input/geographic">	<Geographic/>	</Route>
+				<Route path="/prak/input/keyword">		<Keyword/>		</Route>
+				<Route path="/prak/input/person">		<Person/>		</Route>
+				<Route path="/prak/input/subject">		<Subject/>		</Route>
+			</Switch>
+		</div>
+	)}
 }
 
 export default InputScene

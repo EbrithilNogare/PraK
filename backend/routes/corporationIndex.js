@@ -2,12 +2,13 @@ const router = require('express').Router()
 const Model = require('../models/corporation.model')
 const mongoose = require("mongoose")
 mongoose.set('useFindAndModify', false)
+const auth = require('../auth.js')
 
 router.route('/:id').get((req, res) => {
 	const id = req.params.id
 	if(id === undefined)
 		res.status(400).json({ message: "missing id" })
-		
+	
 	Model.findById(id)
 		.populate("general_complement", "name_main_part")
 		.populate("geographical_complement", "name_main_part")
@@ -75,7 +76,7 @@ router.route('/').post((req, res) => {
 		})
 })
 
-router.route('/').put((req, res) => {
+router.route('/').put(auth("write"), (req, res) => {
 	const newModel = new Model({
 		_id: mongoose.Types.ObjectId(),
 		...req.body,
@@ -95,10 +96,12 @@ router.route('/').put((req, res) => {
 		})
 })
 
-router.route('/:id').patch((req, res) => {
+router.route('/:id').patch(auth("write"), (req, res) => {
 	const id = req.params.id
-	if(id === undefined)
+	if(id === undefined){
 		res.status(400).json({ message: "missing id" })
+		return
+	}
 
 	Model.findByIdAndUpdate(id,req.body,(err, result)=>{
 		if(err){
@@ -113,7 +116,7 @@ router.route('/:id').patch((req, res) => {
 	})
 })
 
-router.route('/:id').delete((req, res) => {
+router.route('/:id').delete(auth("write"), (req, res) => {
 	const id = req.params.id
 	if(id === undefined)
 		res.status(400).json({ message: "missing id" })

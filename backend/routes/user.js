@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const User = require('../models/user.model')
+const Model = require('../models/user.model')
 const randomstring = require("randomstring")
 const mongoose = require("mongoose")
 const md5 = require('md5')
@@ -8,9 +8,11 @@ router.route('/:id').get((req, res) => {
 	if(!req.params.id)
 		res.status(400).json({ message: "incorrect ID" })
 
-	User.find({_id: req.params.id})
+	Model.findById(req.params.id)
 		.exec()
 		.then(result => {
+			result.password = "******";
+			result.sessionID = "******";
 			res.status(200).json(result)
 		})
 		.catch(err => {
@@ -18,60 +20,97 @@ router.route('/:id').get((req, res) => {
 		})
 })
 
-router.route('/').post((req, res) => {
-	if(!req.body._id)
+router.route('/').put((req, res) => {
+	const email = req.body.email
+	if (!email)
+		res.status(400).json({ message: "missing email" })
+
+	const password = req.body.password
+	if(!password)
+		res.status(400).json({ message: "missing password" })
+
+	const role = !req.body.role ? {} : {
+		read: req.body.role.read || false,
+		write: req.body.role.write || false,
+		execute: req.body.role.execute || false,
+	}
+
+	const salt = randomstring.generate(16)
+	const sessionID = randomstring.generate(32)
+
+	const newModel = new Model({ email,
+		password: md5(password + salt),
+		salt,
+		role,
+		sessionID,
+		sessionExpiration: Date.now(),
+		firstName: req.body.firstName,
+		secondName: req.body.secondName,
+	})
+
+	newModel.save()
+		.then(result => {
+			res.status(200).json(result._id)
+		})
+		.catch(err => {
+			res.status(500).json({
+				message: "something went wrong",
+				details: err,
+			})
+		})
+})
+
+router.route('/:id').patch((req, res) => {
+	const id = req.params.id
+	if(!id)
 		res.status(400).json({ message: "incorrect ID" })
 
-	const id = req.body._id
 	const user = {}
 	const isOwner = true; // todo
 	const isAdmin = true; // todo
 
-	const unrequiredProps = [
-		"firstName",
-		"secondName",
-	]
+	if(req.body.password){
+		if(!(isOwner || isAdmin))
+			res.status(401).json({ message: "not permitted - only admin or owner can change password"})
 
-	for(const prop of unrequiredProps)
-		if(req.body.user[prop] !== undefined) 
-			user[prop] = req.body[prop]
-
-	if(req.body.user.password){
-		if(!(isOwner || isAdmin)){
-			res.status(401).json({
-				message: "not permitted - only admin or owner can change password",
-			})
-		}
-
-		const passwordSalt = randomstring.generate(16)
-		user.password = {
-			hashed: md5(req.body.user.password + passwordSalt),
-			salt: passwordSalt,
-		}
+		user.salt = randomstring.generate(16)
+		user.password = md5(req.body.password + user.salt)
 	}
 
-	if(req.body.user.email){
-		if(!(isOwner || isAdmin)){
-			res.status(401).json({
-				message: "not permitted - only admin or owner can change email",
-			})
-		}
-		user.email = req.body.user.email
+	if(req.body.email){
+		if(!(isOwner || isAdmin))
+			res.status(401).json({ message: "not permitted - only admin or owner can change email" })
+		
+		user.email = req.body.email
+	}
+
+	if(req.body.firstName){
+		if(!(isOwner || isAdmin))
+			res.status(401).json({ message: "not permitted - only admin or owner can change email" })
+		
+		user.firstName = req.body.firstName
+	}
+
+	if(req.body.secondName){
+		if(!(isOwner || isAdmin))
+			res.status(401).json({ message: "not permitted - only admin or owner can change email" })
+		
+		user.secondName = req.body.secondName
 	}
 
 
-	if(req.body.user.role){
+	if(req.body.role){
 		if(!isAdmin){
 			res.status(401).json({
 				message: "not permitted - only admin or owner can change role",
 			})
 		}
-		user.role = req.body.user.role
+		user.role = req.body.role
 	}
 
+	
 
-
-	User.findByIdAndUpdate(id,user)
+	Model.findByIdAndUpdate(id,user)
 	.then(() => {
 		res.status(200).json({})
 	})
@@ -83,49 +122,11 @@ router.route('/').post((req, res) => {
 	})
 })
 
-router.route('/').put((req, res) => {
-	const passwordSalt = randomstring.generate(16)
-
-	const newUser = new User({
-		_id: mongoose.Types.ObjectId(),
-		email: req.body.email,
-		password: {
-			hashed: md5(req.body.password + passwordSalt),
-			salt: passwordSalt,
-		},
-		role: "User",
-		session: {
-			id: randomstring.generate(32),
-			expiration: Date.now(), 
-		},
-	})
-
-	const unrequiredProps = [
-		"firstName",
-		"secondName",
-	]
-
-	for(const prop of unrequiredProps)
-		if(req.body[prop] !== undefined) 
-			newUser[prop] = req.body[prop]
-
-	newUser.save()
-		.then(result => {
-			res.status(200).json(result)
-		})
-		.catch(err => {
-			res.status(500).json({
-				message: "something went wrong",
-				details: err,
-			})
-		})
-})
-
 router.route('/:id').delete((req, res) => {
-	if(!req.params.id)
+	const id = req.params.id
+	if(!id)
 		res.status(400).json({ message: "incorrect ID" })
 
-	const id = req.params.id
 	const isOwner = true; // todo
 	const isAdmin = true; // todo
 
@@ -135,7 +136,7 @@ router.route('/:id').delete((req, res) => {
 		})
 	}
 
-	User.findByIdAndRemove(id)
+	Model.findByIdAndRemove(id)
 	.then(() => {
 		res.status(200).json({})
 	})

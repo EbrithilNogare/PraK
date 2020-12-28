@@ -2,17 +2,16 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
 
 const schema = mongoose.Schema({
-	_id: mongoose.Schema.Types.ObjectId,
-	email: {type: String, required: true, unique: true},
-	password: {
-		hashed: {type: String, required: true},
-		salt: {type: String},
-	},
-	role: {type: String, required: true},
-	session: {
-		id: String,
-		expiration: { type: Date, default: Date.now },
-	},
+	email: { type: String, required: true, unique: true },
+	password: { type: String, required: true },
+	salt: { type: String, required: true },
+	role: { 
+		read: { type: Boolean, default: false },
+		write: { type: Boolean, default: false },
+		execute: { type: Boolean, default: false },
+	 },
+	sessionID: String,
+	sessionExpiration: { type: Date, default: Date.now },
 	firstName: String,
 	secondName: String,
 })

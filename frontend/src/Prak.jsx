@@ -4,6 +4,7 @@ import {
 	Switch,
 	Route,
 } from "react-router-dom"
+import { withCookies, CookiesProvider } from "react-cookie";
 
 import {
 	SnackbarProvider,
@@ -34,6 +35,38 @@ import "./styles/colorScheme.scss"
 import styles from "./Prak.module.scss"
 
 class Prak extends React.Component {
+	componentDidMount(){
+		const sessionID = this.props.cookies.get("sessionID")
+		if(sessionID){
+			const url = "api/auth/"+sessionID
+
+			fetch(url, {
+				method: 'GET',
+			})
+			.then(response => {
+				if(!response.ok)
+					throw response
+				return response.json()
+			})
+			.then(response => {
+				const user = response.firstName || response.secondName ? response.firstName + " " + response.secondName : response.email
+				const permission = 4 * response.role.read + 2 * response.role.write + 1 * response.role.execute
+				console.info("%cLogged as: \n", "background: #222; color: #bada55", user)
+				this.props.cookies.set("userID", response._id, { path: "/", expires : new Date(response.sessionExpiration) }); 
+				this.props.cookies.set("user", user, { path: "/", expires : new Date(response.sessionExpiration) }); 
+				this.props.cookies.set("permission", permission, { path: "/", expires : new Date(response.sessionExpiration) }); 
+				this.props.cookies.set("sessionID", sessionID, { path: "/", expires : new Date(response.sessionExpiration) }); 
+			})
+			.catch((error) => {
+				console.error(error)
+				this.props.cookies.remove("userID", { path: "/" }); 
+				this.props.cookies.remove("user", { path: "/" }); 
+				this.props.cookies.remove("permission", { path: "/" }); 
+				this.props.cookies.remove("sessionID", { path: "/" }); 
+			})
+		}
+	}
+
 	render(){
 		WebFont.load({
 			google: {
@@ -43,36 +76,37 @@ class Prak extends React.Component {
 
 		return (
 			<div className={styles.prak}>
-				<SnackbarProvider>
-					<Router>
-						<ScrollToTop/>
-						<NavBar/>
-						<Switch>
-							<Route path="/prak/login"><LoginScene variant="login"/></Route>
-							<Route path="/prak/registration"><LoginScene variant="registration"/></Route>
+				<CookiesProvider>
+					<SnackbarProvider>
+						<Router>
+							<ScrollToTop/>
+							<NavBar/>
+							<Switch>
+								<Route path="/prak/login"><LoginScene variant="login"/></Route>
 
-							<Route path="/prak/input"><InputScene/></Route>
-							<Route path="/prak/edit"><EditScene/></Route>
-							<Route path="/prak/show"><ShowScene/></Route>
-							<Route path="/prak/search"><SearchScene/></Route>
+								<Route path="/prak/input"><InputScene/></Route>
+								<Route path="/prak/edit"><EditScene/></Route>
+								<Route path="/prak/show"><ShowScene/></Route>
+								<Route path="/prak/search"><SearchScene/></Route>
 
-							<Route path="/prak/about"><AboutPage/></Route>
-							<Route path="/prak/team"><TeamPage/></Route>
-							<Route path="/prak/ourwork"><OurWorkPage/></Route>
-							<Route path="/prak/partners"><PartnersPage/></Route>
-							<Route path="/prak/contacts"><ContactsPage/></Route>
+								<Route path="/prak/about"><AboutPage/></Route>
+								<Route path="/prak/team"><TeamPage/></Route>
+								<Route path="/prak/ourwork"><OurWorkPage/></Route>
+								<Route path="/prak/partners"><PartnersPage/></Route>
+								<Route path="/prak/contacts"><ContactsPage/></Route>
 
-							<Route path="/prak/manual"><ManualPage/></Route>
+								<Route path="/prak/manual"><ManualPage/></Route>
 
-							<Route path="/prak"><MainPageScene/></Route>
-						</Switch>
-						<Footer/>
-					</Router>
-				</SnackbarProvider>
+								<Route path="/prak"><MainPageScene/></Route>
+							</Switch>
+							<Footer/>
+						</Router>
+					</SnackbarProvider>
+				</CookiesProvider>
 			</div>
 		)
 	}
 }
 
 
-export default Prak
+export default withCookies(Prak)

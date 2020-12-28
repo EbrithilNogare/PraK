@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 
 mongoose.set('useNewUrlParser', true);
@@ -11,6 +12,7 @@ mongoose.set('useCreateIndex', true);
 require('dotenv').config()
 
 const app = express()
+app.use(cookieParser())
 app.use(cors())
 app.use(bodyParser.json())
 

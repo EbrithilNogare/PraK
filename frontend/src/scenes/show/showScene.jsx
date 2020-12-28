@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from "react-router-dom"
 import { withSnackbar } from 'notistack'
+import { withCookies } from "react-cookie";
 import {
 	BrowserRouter as Router,
 	Switch as RouterSwitch,
@@ -217,7 +218,7 @@ class ShowScene extends React.Component {
 										variant="contained" 
 										color="primary"
 										onClick={ e => this.handleRemove(e, match.params.type, match.params.id) }
-										disabled={this.state.record===null}
+										disabled={this.state.record===null || !(this.props.cookies.get("permission") & 2)}
 									>Smazat záznam</Button>
 								</Grid>
 								<Grid item>
@@ -225,7 +226,7 @@ class ShowScene extends React.Component {
 										variant="contained" 
 										color="primary"
 										onClick={ e => this.handleEdit(e, match.params.type, match.params.id) }
-										disabled={this.state.record===null}
+										disabled={this.state.record===null || !(this.props.cookies.get("permission") & 2)}
 									>Editovat záznam</Button>
 								</Grid>
 								</Grid>
@@ -238,4 +239,4 @@ class ShowScene extends React.Component {
 	}
 }
 
-export default withSnackbar(withRouter(ShowScene))
+export default withSnackbar(withRouter(withCookies(ShowScene)))

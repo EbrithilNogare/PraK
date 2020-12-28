@@ -32,7 +32,6 @@ class IndexParent extends React.Component {
 	getTypeDefinition = () => {throw new Error("Calling abstract function")}
 
 	createFieldProps = (name) => {
-		console.log(name);
 		const {helper, schema, fields, ...definition} = this.getTypeDefinition(name)
 
 		if(definition === undefined)
@@ -108,9 +107,9 @@ class IndexParent extends React.Component {
 
 			if(error.status && error.status === 500) error.json().then(errorMessage =>{
 				console.error("errorMessage from server:", errorMessage)
-				if(errorMessage.details.message)
+				if(errorMessage.details && errorMessage.details.message)
 					this.props.enqueueSnackbar(errorMessage.details.message, { variant: "error", autoHideDuration: 6000 })
-				if(errorMessage.details.code && (errorMessage.details.code === 11000 || errorMessage.details.code === 11001))
+				if(errorMessage.details && errorMessage.details.code && (errorMessage.details.code === 11000 || errorMessage.details.code === 11001))
 					this.props.enqueueSnackbar(`duplicite error at: ${JSON.stringify(errorMessage.details.keyValue)}`, { variant: "error", autoHideDuration: 6000 })
 			})
 			else

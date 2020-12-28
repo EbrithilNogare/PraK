@@ -1,4 +1,6 @@
 import React from "react"
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from "react-cookie";
 import {
 	NavLink
 } from "react-router-dom";
@@ -6,6 +8,10 @@ import {
 import styles from "./footer.module.scss"
 
 class Footer extends React.Component {
+	static propTypes = {
+	  cookies: instanceOf(Cookies).isRequired
+	}
+	
 	render(){
 		return(
 			<div className={styles.footer}>
@@ -13,6 +19,9 @@ class Footer extends React.Component {
 					<p>Financování: Projekt je financován Ministerstvem kultury ČR z Programu aplikovaného výzkumu a vývoje národní a kulturní identity (NAKI II)</p>
 					<p>Doba realizace: 2020-2022</p>
 					<p>Kód: DG20P02OVV010</p>
+					<ul><li><NavLink to="/prak/login">
+						Přihlášený uživatel: {this.props.cookies.get("user")}
+					</NavLink></li></ul>
 				</div>
 
 				<div>
@@ -56,4 +65,4 @@ class Footer extends React.Component {
 	}
 }
 
-export default Footer
+export default withCookies(Footer)
