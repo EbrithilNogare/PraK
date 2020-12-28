@@ -56,7 +56,7 @@ class Login extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			const user = response.firstName || response.secondName ? response.firstName + " " + response.secondName : response.email
+			const user = response.firstName || response.secondName ? (response.firstName || "") + " " + (response.secondName || "") : response.email
 			const permission = 4 * response.role.read + 2 * response.role.write + 1 * response.role.execute
 			console.info("%cLogin succesfull\n", "background: #222; color: #bada55", response)
 			this.props.cookies.set("userID", response._id, { path: "/", expires : new Date(response.sessionExpiration) }); 
