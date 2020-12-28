@@ -7,8 +7,14 @@ const schema = new mongoose.Schema({
 		unique: true,
 	},
 	name_other_part: [String],
-	general_complement: String,
-	geographical_complement: String,
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	chronological_complement: String,
 	event_order: String,
 
@@ -121,7 +127,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	first_mention: String,
+	founding_document: String,
 	founding_chronological_specification: String,
 	first_mention_subject: String,
 
@@ -137,7 +143,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	last_mention: String,
+	cancellation_document: String,
 	cancellation_chronological_specification: String,
 	last_mention_subject: String,
 

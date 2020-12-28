@@ -49,7 +49,7 @@
 			"schema": "death_year.notKnown"
 		},
 		"death_date": {
-			"label": "Místo úmrtí",
+			"label": "Datum úmrtí",
 			"schema": "death_date",
 			"helper": ""
 		},
@@ -393,15 +393,19 @@
 			"schema": "important_event[%]",
 			"helper": "Výběr z rejstříku události."
 		},
+		"marriage-category": {
+			"label": "Manželství",
+			"schema": "marriage[%]"
+		},
 		"marriage_start": {
 			"label": "Uzavření manželství",
-			"schema": "marriage_start[%]",
+			"schema": "marriage[%].marriage_start",
 			"helper": "Informace o uzavření manželství.",
 			"type": "Number"
 		},
 		"marriage_end": {
 			"label": "Ukončení manželství",
-			"schema": "marriage_end[%]",
+			"schema": "marriage[%].marriage_end",
 			"helper": "Informace o ukončení manželství.",
 			"type": "Number"
 		},

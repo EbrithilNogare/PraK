@@ -50,7 +50,7 @@ class Person extends IndexParent {
 					}
 				</Paper>
 				<div className={styles.body}>
-				<Paper className={styles.dataBlock}> <h2>Biograficka data</h2>
+				<Paper className={styles.dataBlock}> <h2>Preferované označení</h2>
 					<TextField {...this.createFieldProps("name")}/>
 					<TextField {...this.createFieldProps("surname")}/>
 					<TextField {...this.createFieldProps("born_year")}/><LabeledCheckbox {...this.createFieldProps("born_year_notKnown")}/>
@@ -124,7 +124,7 @@ class Person extends IndexParent {
 						<TextField {...this.createFieldProps("chronological_complement_pseudonym")}/>
 					</Multiplier>
 				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Tituly</h2>
+				<Paper className={styles.dataBlock}> <h2>Titul</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("title")}/>
 						<DateField {...this.createFieldProps("date")}/>
@@ -140,7 +140,7 @@ class Person extends IndexParent {
 					<TextField {...this.createFieldProps("cv")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Obor působnosti</h2>
-					<Multiplier><TextField {...this.createFieldProps("domain_branch")}/></Multiplier>
+					<Multiplier><KeywordComboBox {...this.createFieldProps("domain_branch")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Příslušnost k zemi</h2>
 					<Multiplier><GeographicComboBox {...this.createFieldProps("related_country")}/></Multiplier>
@@ -157,8 +157,10 @@ class Person extends IndexParent {
 					<Multiplier><CorporationComboBox {...this.createFieldProps("affiliation")}/></Multiplier>
 					<Multiplier><CreationComboBox {...this.createFieldProps("important_subject")}/></Multiplier>
 					<Multiplier><SubjectComboBox {...this.createFieldProps("important_event")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("marriage_start")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("marriage_end")}/></Multiplier>
+					<Multiplier>
+						<TextField {...this.createFieldProps("marriage_start")}/>
+						<TextField {...this.createFieldProps("marriage_end")}/>
+					</Multiplier>
 					<Multiplier><CorporationComboBox {...this.createFieldProps("study")}/></Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Vyobrazení</h2>

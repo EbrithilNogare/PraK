@@ -10,6 +10,8 @@ router.route('/:id').get((req, res) => {
 		res.status(400).json({ message: "missing id" })
 
 	Model.findById(id)
+		.populate("general_complement", "name_main_part")
+		.populate("geographical_complement", "name_main_part")
 		.populate("other_language_name.general_complement", "name_main_part")
 		.populate("other_language_name.geographical_complement", "name_main_part")
 		.populate("acronym.general_complement", "name_main_part")

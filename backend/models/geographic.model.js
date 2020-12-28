@@ -85,14 +85,14 @@ const schema = new mongoose.Schema({
 		ref: "personIndex",
 	}],
 	part_of: [{
-		corporation_name: [{
+		corporation_name: {
 			type: mongoose.Types.ObjectId,
 			ref: "corporationIndex",
-		}],
-		corporation_owner: [{
+		},
+		corporation_owner: {
 			type: mongoose.Types.ObjectId,
 			ref: "personIndex",
-		}],
+		},
 	}],
 	related_person: [{
 		type: mongoose.Types.ObjectId,

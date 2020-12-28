@@ -46,7 +46,7 @@ class Creation extends IndexParent {
 					}
 				</Paper>
 				<div className={styles.body}>
-				<Paper className={styles.dataBlock}> <h2>Název</h2>
+				<Paper className={styles.dataBlock}> <h2>Preferované označení</h2>
 					<TextField {...this.createFieldProps("name_main_part")}/>
 					<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
 					<KeywordComboBox {...this.createFieldProps("general_complement")}/>
@@ -100,6 +100,7 @@ class Creation extends IndexParent {
 					<Multiplier><CreationComboBox {...this.createFieldProps("subordinate_relations")}/></Multiplier>
 					<Multiplier><CreationComboBox {...this.createFieldProps("associative_relations")}/></Multiplier>
 					<Multiplier><GeographicComboBox {...this.createFieldProps("locality")}/></Multiplier>
+					<h3>Pojmenováno po</h3>
 					<Multiplier><PersonComboBox {...this.createFieldProps("related_person")}/></Multiplier>
 					<Multiplier><CorporationComboBox {...this.createFieldProps("related_corporation")}/></Multiplier>
 					<Multiplier><SubjectComboBox {...this.createFieldProps("related_event")}/></Multiplier>

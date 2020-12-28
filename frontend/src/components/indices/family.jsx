@@ -45,6 +45,14 @@ class Family extends IndexParent {
 					}
 				</Paper>
 				<div className={styles.body}>
+				<Paper className={styles.dataBlock}> <h2>Preferované označení</h2>
+					<TextField {...this.createFieldProps("name_main_part")}/>
+					<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
+				</Paper>
+				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
+					<Multiplier><TextField {...this.createFieldProps("public_note")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("nonpublic_note")}/></Multiplier>
+				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_source_name")}/>
@@ -53,7 +61,8 @@ class Family extends IndexParent {
 					</Multiplier>
 				</Paper>
 				<Paper className={styles.dataBlock}>
-					<TextField {...this.createFieldProps("editor_note")}/>
+					<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
+					<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
 					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>

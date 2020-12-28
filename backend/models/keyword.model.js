@@ -7,7 +7,10 @@ const schema = new mongoose.Schema({
 		unique: true,
 	},
 	name_other_part: [String],
-	general_complement: String,
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
 
 	other_language_name: [{
 		other_language_name: String,

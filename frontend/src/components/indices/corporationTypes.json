@@ -255,7 +255,7 @@
 			"helper": "Výběr z geografického rejstříku."
 		},
 		"founding_chronological_specification": {
-			"label": "Chronologické zpřesnění",
+			"label": "Chronologické zpřesnění založení",
 			"schema": "founding_chronological_specification",
 			"helper": "Časové zpřesnění související s odštěpením korporace."
 		},

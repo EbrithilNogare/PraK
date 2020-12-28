@@ -34,6 +34,7 @@ router.route('/:id').get((req, res) => {
 		.populate("other_name_form.geographical_complement", "name_main_part")
 		.populate("pseudonym.general_complement", "name_main_part")
 		.populate("pseudonym.geographical_complement", "name_main_part")
+		.populate("domain_branch", "name_main_part")
 		.populate("related_country", "name_main_part")
 		.populate("parents", ['name', 'surname'])
 		.populate("siblings", ['name', 'surname'])

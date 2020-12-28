@@ -171,7 +171,10 @@ const schema = new mongoose.Schema({
 
 	cv: String,
 	
-	domain_branch: [String],
+	domain_branch: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
 
 	related_country: [{
 		type: mongoose.Types.ObjectId,
@@ -213,8 +216,10 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	}],
-	marriage_start: [String],
-	marriage_end: [String],
+	marriage: [{
+		marriage_start: String,
+		marriage_end: String,
+	}],
 	study: [{
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",

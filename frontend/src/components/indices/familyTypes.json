@@ -1,5 +1,30 @@
  { 
  	"properties":{
+		"name_main_part": {
+			"label": "Hlavní část názvu",
+			"schema": "name_main_part",
+			"helper": "Odkaz na součásti korporace.",
+			"required": true
+		},
+		"name_other_part": {
+			"label": "Další část názvu",
+			"schema": "name_other_part[%]",
+			"helper": "Odkaz na součásti korporace."
+		},
+		
+		"public_note": {
+			"label": "Veřejná poznámka",
+			"schema": "public_note[%]",
+			"helper": "",
+			"multiline" : true
+		},
+		"nonpublic_note": {
+			"label": "Neveřejná poznámka",
+			"schema": "nonpublic_note[%]",
+			"helper": "",
+			"multiline" : true
+		},
+
 		"other_source": {
 			"label": "Další zdroje",
 			"schema": "other_source[%]",
@@ -20,10 +45,18 @@
 			"schema": "other_source[%].identificator",
 			"helper": "ID dokumentu v cizím zdroji."
 		},
+		
+		"record_sources": {
+			"label": "Zdroje o heslu",
+			"schema": "record_sources[%]",
+			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
+			"multiline" : true
+		},
 		"editor_note": {
 			"label": "Poznámka editora",
 			"schema": "editor_note[%]",
-			"helper": "Interní poznámka"
+			"helper": "Interní poznámka",
+			"multiline" : true
 		},
 		"submitter": {
 			"label": "Zadavatel",

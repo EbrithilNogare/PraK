@@ -190,32 +190,32 @@
 			"helper": "Lokalita díla/výtvoru."
 		},
 		"related_person": {
-			"label": "Pojmenováno po",
+			"label": "Pojmenováno po osobě",
 			"schema": "related_person[%]",
 			"helper": "Podle ní je objekt pojemenován. Výběr z rejstříku osob."
 		},
 		"related_corporation": {
-			"label": "Pojmenováno po",
+			"label": "Pojmenováno po korporaci",
 			"schema": "related_corporation[%]",
 			"helper": "Podle ní je objekt pojemenován. Výběr z rejstříku korporace."
 		},
 		"related_event": {
-			"label": "Pojmenováno po",
+			"label": "Pojmenováno po události",
 			"schema": "related_event[%]",
 			"helper": "Podle ní je objekt pojemenován. Výběr z rejstříku událostí."
 		},
 		"related_location": {
-			"label": "Pojmenováno po",
+			"label": "Pojmenováno po místě",
 			"schema": "related_location[%]",
 			"helper": "Podle ní je objekt pojemenován. Výběr z geografického rejstříku."
 		},
 		"owner_person": {
-			"label": "Majitelé",
+			"label": "Majitel - osoba",
 			"schema": "owner_person[%]",
 			"helper": "Držitelé, správci - pokud není nutné vyjádřit změnu vlastnictví pomocí události změna. Výběr z rejstříku osob."
 		},
 		"owner_corporation": {
-			"label": "Majitelé",
+			"label": "Majitel - korporace",
 			"schema": "owner_corporation[%]",
 			"helper": "Držitelé, správci - pokud není nutné vyjádřit změnu vlastnictví pomocí události změna. Výběr z rejstříku korporací."
 		},
@@ -226,83 +226,83 @@
 		},
 
 		"founding_person": {
-			"label": "Vznik",
+			"label": "Zakladatel",
 			"schema": "founding_person",
 			"helper": "Osoba v roli tvůrce. Výběr z rejstříku osob."
 		},
 		"founding_corporation": {
-			"label": "Vznik",
+			"label": "Zakládající korporace",
 			"schema": "founding_corporation",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"first_mention_place": {
-			"label": "První písemná zmínka",
+			"label": "První písemná zmínka - místo",
 			"schema": "first_mention_place",
 			"helper": "V roli místo počátku existence. Výběr z geografického rejstříku."
 		},
 		"first_mention_subject": {
-			"label": "První písemná zmínka",
+			"label": "První písemná zmínka - dokument",
 			"schema": "first_mention_subject",
 			"helper": "V čem se dílo/výtvor nachází. Výběr z rejstříku dílo/výtvor."
 		},
 		"founding_chronological_specification": {
-			"label": "Chronologické zpřesnění",
+			"label": "Chronologické zpřesnění založení",
 			"schema": "founding_chronological_specification",
 			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
 		"first_realization_event": {
-			"label": "První realizace",
+			"label": "První realizace - událost",
 			"schema": "first_realization_event",
 			"helper": "V roli předchůdce (předloha). Výběr z rejstříku událostí."
 		},
 		"first_realization_subject": {
-			"label": "První realizace",
+			"label": "První realizace - dokument",
 			"schema": "first_realization_subject",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"first_realization_chronological_specification": {
-			"label": "Chronologické zpřesnění",
+			"label": "Chronologické zpřesnění první realizace",
 			"schema": "first_realization_chronological_specification",
 			"helper": "Časové zpřesnění související s počátkem existence díla/výtvoru."
 		},
 
 		"cancellation_person": {
-			"label": "Zničení, zánik",
+			"label": "Rušitel",
 			"schema": "cancellation_person",
 			"helper": "Jméno korporace, pokud se podílela na ukončení entity. Výběr z rejstříku korporací."
 		},
 		"cancellation_corporation": {
-			"label": "Zničení, zánik",
+			"label": "Rušící korporace",
 			"schema": "cancellation_corporation",
 			"helper": "Jméno osoby, pokud se podílela na ukončení entity. Výběr z rejstříku osob."
 		},
 		"last_mention_place": {
-			"label": "Poslední zmínka",
+			"label": "Poslední písemná zmínka - místo",
 			"schema": "last_mention_place",
 			"helper": "Dokument s poslední zmínkou. Výběr z geografického rejstříku."
 		},
 		"last_mention_subject": {
-			"label": "Poslední zmínka",
+			"label": "Poslední písemná zmínka - dokument",
 			"schema": "last_mention_subject",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"cancellation_chronological_specification": {
-			"label": "Chronologické zpřesnění",
+			"label": "Chronologické zpřesnění zrušení",
 			"schema": "cancellation_chronological_specification",
 			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},
 		"last_realization_event": {
-			"label": "Poslední realizace",
+			"label": "Poslední realizace - událost",
 			"schema": "last_realization_event",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"last_realization_subject": {
-			"label": "Poslední realizace",
+			"label": "Poslední realizace - dokument",
 			"schema": "last_realization_subject",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"last_realization_chronological_specification": {
-			"label": "Chronologické zpřesnění",
+			"label": "Chronologické zpřesnění poslední realizace",
 			"schema": "last_realization_chronological_specification",
 			"helper": "Časové zpřesnění související s konem existence díla/výtvoru."
 		},

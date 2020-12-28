@@ -148,27 +148,27 @@
 		},
 
 		"founding_person": {
-			"label": "Začátek",
+			"label": "Zakladatel",
 			"schema": "founding_person",
 			"helper": "Osoba v roli autora. Výběr z rejstříku osob."
 		},
 		"founding_corporation": {
-			"label": "Začátek",
+			"label": "Zakládající korporace",
 			"schema": "founding_corporation",
 			"helper": "Korporace v roli autora. Výběr z rejstříku korporací."
 		},
 		"founding_subject": {
-			"label": "Začátek",
+			"label": "Zakládající dokument",
 			"schema": "founding_subject",
 			"helper": "Dokument, který obecný pojem zavedl. Výběr z rejstříku dílo/výtvor."
 		},
 		"founding_event": {
-			"label": "Začátek",
+			"label": "Zakládající událost",
 			"schema": "founding_event[%]",
 			"helper": "Událost, která obecný pojem zavedla. Výběr z rejstříku událostí."
 		},
 		"founding_keyword": {
-			"label": "Začátek",
+			"label": "Zakládající klíčové slovo",
 			"schema": "founding_keyword[%]",
 			"helper": "Propojení na následující obecný pojem. Výběr z rejstříku klíčových slov."
 		},
@@ -179,27 +179,27 @@
 		},
 
 		"cancellation_person": {
-			"label": "Konec",
+			"label": "Rušitel",
 			"schema": "cancellation_person",
 			"helper": "Osoba, která obecný pojem zrušila. Výběr z rejstříku osob."
 		},
 		"cancellation_corporation": {
-			"label": "Konec",
+			"label": "Rušící korporace",
 			"schema": "cancellation_corporation",
 			"helper": "Korporace, která obecný pojem zrušila. Výběr z rejstříku korporací."
 		},
 		"cancellation_subject": {
-			"label": "Konec",
+			"label": "Rušící dokument",
 			"schema": "cancellation_subject",
 			"helper": "Dokument, který obecný pojem zrušil. Výběr z rejstříku dílo/výtvor."
 		},
 		"cancellation_event": {
-			"label": "Konec",
+			"label": "Rušící událost",
 			"schema": "cancellation_event[%]",
 			"helper": "Událost, která obecný pojem zrušila. Výběr z rejstříku událostí."
 		},
 		"cancellation_keyword": {
-			"label": "Konec",
+			"label": "Rušící klíčové slovo",
 			"schema": "cancellation_keyword",
 			"helper": "Propojení na následující obecný pojem. Výběr z rejstříku klíčových slov."
 		},

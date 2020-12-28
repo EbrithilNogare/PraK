@@ -45,20 +45,20 @@ class Subject extends IndexParent {
 					}
 				</Paper>
 				<div className={styles.body}>
-					<Paper className={styles.dataBlock}> <h2>Název</h2>
+					<Paper className={styles.dataBlock}> <h2>Preferované označení</h2>
 						<TextField {...this.createFieldProps("name_main_part")} />
 						<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
-						<TextField {...this.createFieldProps("general_complement")}/>
-						<TextField {...this.createFieldProps("geographical_complement")}/>
+						<KeywordComboBox {...this.createFieldProps("general_complement")}/>
+						<GeographicComboBox {...this.createFieldProps("geographical_complement")}/>
 						<TextField {...this.createFieldProps("chronological_complement")}/>
 						<TextField {...this.createFieldProps("event_order")}/>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 						<Multiplier>
 							<TextField {...this.createFieldProps("other_language_name")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
-							<TextField {...this.createFieldProps("chronological_complement_other")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_other_language")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_other_language")}/>
+							<TextField {...this.createFieldProps("chronological_complement_other_language")}/>
 						</Multiplier>
 						<Multiplier>
 							<TextField {...this.createFieldProps("acronym")}/>
@@ -68,9 +68,9 @@ class Subject extends IndexParent {
 						</Multiplier>
 						<Multiplier>
 							<TextField {...this.createFieldProps("other_name_form")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
-							<TextField {...this.createFieldProps("chronological_complement_other")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_other_name")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_other_name")}/>
+							<TextField {...this.createFieldProps("chronological_complement_other_name")}/>
 						</Multiplier>
 						<Multiplier>
 							<TextField {...this.createFieldProps("official_name")}/>
@@ -103,7 +103,7 @@ class Subject extends IndexParent {
 						<PersonComboBox {...this.createFieldProps("founding_person")}/>
 						<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
 						<GeographicComboBox {...this.createFieldProps("founding_place")}/>
-						<TextField {...this.createFieldProps("first_mention")}/>
+						<TextField {...this.createFieldProps("founding_document")}/>
 						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 						<TextField {...this.createFieldProps("first_mention_subject")}/>
 					</Paper>
@@ -111,7 +111,7 @@ class Subject extends IndexParent {
 						<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
 						<CorporationComboBox {...this.createFieldProps("cancellation_event")}/>
 						<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
-						<TextField {...this.createFieldProps("last_mention")}/>
+						<TextField {...this.createFieldProps("cancellation_document")}/>
 						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 						<TextField {...this.createFieldProps("last_mention_subject")}/>
 					</Paper>

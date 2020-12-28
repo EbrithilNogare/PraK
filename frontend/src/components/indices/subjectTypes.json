@@ -36,34 +36,34 @@
 
 
 		"other_language_name-category": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Název v jiném jazyce",
 			"schema": "other_language_name[%]"
 		},
 		"other_language_name": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Název v jiném jazyce",
 			"schema": "other_language_name[%].other_language_name",
 			"helper": "Uvádíme variantu jména v jiném jazyce."
 		},
-		"general_complement_other": {
+		"general_complement_other_language": {
 			"label": "Obecný doplněk",
 			"schema": "other_language_name[%].general_complement"
 		},
-		"geographical_complement_other": {
+		"geographical_complement_other_language": {
 			"label": "Geografický doplněk",
 			"schema": "other_language_name[%].geographical_complement"
 		},
-		"chronological_complement_other": {
+		"chronological_complement_other_language": {
 			"label": "Chronologický doplněk",
 			"schema": "other_language_name[%].chronological_complement"
 		},
 		"acronym-category": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Akronym/zkratka",
 			"schema": "acronym[%]"
 		},
 		"acronym": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Akronym/zkratka",
 			"schema": "acronym[%].acronym",
-			"helper": "Uvádíme variantu jména v jiném jazyce."
+			"helper": "Zkratka/akronym, pokud ji událost používá."
 		},
 		"general_complement_acronym": {
 			"label": "Obecný doplněk",
@@ -78,34 +78,34 @@
 			"schema": "acronym[%].chronological_complement"
 		},
 		"other_name_form-category": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Jiné označení",
 			"schema": "other_name_form[%]"
 		},
 		"other_name_form": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Jiné označení",
 			"schema": "other_name_form[%].other_name_form",
-			"helper": "Uvádíme variantu jména v jiném jazyce."
+			"helper": "Dřívejší jméno události."
 		},
-		"general_complement_other": {
+		"general_complement_other_name": {
 			"label": "Obecný doplněk",
 			"schema": "other_name_form[%].general_complement"
 		},
-		"geographical_complement_other": {
+		"geographical_complement_other_name": {
 			"label": "Geografický doplněk",
 			"schema": "other_name_form[%].geographical_complement"
 		},
-		"chronological_complement_other": {
+		"chronological_complement_other_name": {
 			"label": "Chronologický doplněk",
 			"schema": "other_name_form[%].chronological_complement"
 		},
 		"official_name-category": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Jméno úřední",
 			"schema": "official_name[%]"
 		},
 		"official_name": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Jméno úřední",
 			"schema": "official_name[%].official_name",
-			"helper": "Uvádíme variantu jména v jiném jazyce."
+			"helper": ""
 		},
 		"general_complement_official": {
 			"label": "Obecný doplněk",
@@ -120,13 +120,13 @@
 			"schema": "official_name[%].chronological_complement"
 		},
 		"other_name_form-category": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Historická/dřívější forma jména",
 			"schema": "other_name_form[%]"
 		},
 		"other_name_form": {
-			"label": "Jméno v jiném jazyce",
+			"label": "Historická/dřívější forma jména",
 			"schema": "other_name_form[%].other_name_form",
-			"helper": "Uvádíme variantu jména v jiném jazyce."
+			"helper": ""
 		},
 		"general_complement_historical": {
 			"label": "Obecný doplněk",
@@ -158,7 +158,7 @@
 		},
 
 		"sup_event": {
-			"label": "Souborná událost, celek",
+			"label": "Nadřazená událost",
 			"schema": "sup_event[%]",
 			"helper": "Výběr z rejstříku událost."
 		},
@@ -168,22 +168,22 @@
 			"helper": "Výběr z rejstříku událost."
 		},
 		"related_person": {
-			"label": "Spojená entita",
+			"label": "Pojmenováno po osobě",
 			"schema": "related_person[%]",
 			"helper": "Výběr z rejstříku osob."
 		},
 		"related_subject": {
-			"label": "Spojená entita",
+			"label": "Pojmenováno po dílu/výtvoru",
 			"schema": "related_subject[%]",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"related_place": {
-			"label": "Spojená entita",
+			"label": "Pojmenováno po místu",
 			"schema": "related_place[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
 		"venue": {
-			"label": "Místo konání",
+			"label": "Místo konání události",
 			"schema": "venue[%]",
 			"helper": "Výběr z geografického rejstříku."
 		},
@@ -199,23 +199,23 @@
 		},
 
 		"founding_person": {
-			"label": "Začátek",
+			"label": "Zakladatel",
 			"schema": "founding_person",
 			"helper": "Výběr z rejstříku osob."
 		},
 		"founding_corporation": {
-			"label": "Začátek",
+			"label": "Zakládající korporace",
 			"schema": "founding_corporation",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"founding_place": {
-			"label": "Začátek",
+			"label": "Místo založení",
 			"schema": "founding_place",
 			"helper": "Výběr z geografického rejstříku."
 		},
-		"first_mention": {
-			"label": "Začátek",
-			"schema": "first_mention",
+		"founding_document": {
+			"label": "Zakládající dokument",
+			"schema": "founding_document",
 			"helper": "Ustanovující dokument. Výběr z rejstříku dílo/výtvor."
 		},
 		"founding_chronological_specification": {
@@ -225,28 +225,28 @@
 		},
 		"first_mention_subject": {
 			"label": "První písemná zmínka",
-			"schema": "first_mention",
+			"schema": "first_mention_subject",
 			"helper": ""
 		},
 
 		"cancellation_person": {
-			"label": "Zničení, zánik",
+			"label": "Rušitel",
 			"schema": "cancellation_person",
 			"helper": "Výběr z rejstříku osob, pokud souvisela s ukončením události."
 		},
 		"cancellation_event": {
-			"label": "Zničení, zánik",
+			"label": "Rušící korporace",
 			"schema": "cancellation_event",
 			"helper": "Výběr z rejstříku korporací."
 		},
 		"cancellation_place": {
-			"label": "Poslední písemná zmínka",
+			"label": "Místo zrušení",
 			"schema": "cancellation_place",
 			"helper": "V roli místo (pro souborné záznamy událostí). Výběr z geografického rejstříku."
 		},
-		"last_mention": {
-			"label": "Poslední písemná zmínka",
-			"schema": "last_mention",
+		"cancellation_document": {
+			"label": "Rušící dokument",
+			"schema": "cancellation_document",
 			"helper": "Související dokument. Výběr z rejstříku dílo/výtvor."
 		},
 		"cancellation_chronological_specification": {

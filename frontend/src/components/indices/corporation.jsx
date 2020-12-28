@@ -104,7 +104,7 @@ class Corporation extends IndexParent {
 					<Multiplier><CorporationComboBox {...this.createFieldProps("precedent_corporation")}/></Multiplier>
 					<Multiplier><GeographicComboBox {...this.createFieldProps("related_country")}/></Multiplier>
 				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Vznik/ počátek existence</h2>
+				<Paper className={styles.dataBlock}> <h2>Počátek existence</h2>
 					<PersonComboBox {...this.createFieldProps("founder")}/>
 					<TextField {...this.createFieldProps("founding_document")}/>
 					<GeographicComboBox {...this.createFieldProps("founding_place")}/>

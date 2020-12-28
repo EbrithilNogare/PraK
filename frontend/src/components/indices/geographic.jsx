@@ -47,7 +47,7 @@ class Geographic extends IndexParent {
 					}
 				</Paper>
 				<div className={styles.body}>
-					<Paper className={styles.dataBlock}> <h2>Název</h2>
+					<Paper className={styles.dataBlock}> <h2>Preferované označení</h2>
 						<TextField {...this.createFieldProps("name_main_part")}/>
 						<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
 						<KeywordComboBox {...this.createFieldProps("general_complement")}/>
@@ -57,9 +57,9 @@ class Geographic extends IndexParent {
 					<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>
 						<Multiplier>
 							<TextField {...this.createFieldProps("other_language_name")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
-							<TextField {...this.createFieldProps("chronological_complement_other")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_other_language")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_other_language")}/>
+							<TextField {...this.createFieldProps("chronological_complement_other_language")}/>
 						</Multiplier>
 						<Multiplier>
 							<TextField {...this.createFieldProps("acronym")}/>
@@ -75,9 +75,9 @@ class Geographic extends IndexParent {
 						</Multiplier>
 						<Multiplier>
 							<TextField {...this.createFieldProps("other_name_form")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_other")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_other")}/>
-							<TextField {...this.createFieldProps("chronological_complement_other")}/>
+							<KeywordComboBox {...this.createFieldProps("general_complement_other_name")}/>
+							<GeographicComboBox {...this.createFieldProps("geographical_complement_other_name")}/>
+							<TextField {...this.createFieldProps("chronological_complement_other_name")}/>
 						</Multiplier>
 					</Paper>
 					<Paper className={styles.dataBlock}> <h2>Popis</h2>
