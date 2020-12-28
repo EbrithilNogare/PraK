@@ -13,7 +13,8 @@ import {
 	KeywordComboBox,
 	PersonComboBox,
 	SubjectComboBox,
-	StaticOpenComboBox,
+//	StaticOpenComboBox,
+	SubmitterComboBox,
 } from '../comboBoxes'
 import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
@@ -148,7 +149,7 @@ class Corporation extends IndexParent {
 				<Paper className={styles.dataBlock}> <h2>Zdroje o heslu</h2>
 					<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
-					<StaticOpenComboBox  {...this.createFieldProps("submitter")}/>
+					<SubmitterComboBox {...this.createFieldProps("submitter")}/>
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

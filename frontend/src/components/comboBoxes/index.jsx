@@ -9,4 +9,5 @@ export {default as SubjectComboBox} from './SubjectComboBox'
 export {default as StaticOpenComboBox} from './StaticOpenComboBox'
 export {default as StaticComboBox} from './StaticComboBox'
 export {default as FormStaticComboBox} from './FormStaticComboBox'
+export {default as SubmitterComboBox} from './SubmitterComboBox'
 

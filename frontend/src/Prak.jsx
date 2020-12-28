@@ -38,7 +38,7 @@ class Prak extends React.Component {
 	componentDidMount(){
 		const sessionID = this.props.cookies.get("sessionID")
 		if(sessionID){
-			const url = "api/auth/"+sessionID
+			const url = "/prak/api/auth/"+sessionID
 
 			fetch(url, {
 				method: 'GET',
@@ -49,7 +49,7 @@ class Prak extends React.Component {
 				return response.json()
 			})
 			.then(response => {
-				const user = response.firstName || response.secondName ? response.firstName + " " + response.secondName : response.email
+				const user = response.firstName || response.secondName ? (response.firstName || "") + " " + (response.secondName || "") : response.email
 				const permission = 4 * response.role.read + 2 * response.role.write + 1 * response.role.execute
 				console.info("%cLogged as: \n", "background: #222; color: #bada55", user)
 				this.props.cookies.set("userID", response._id, { path: "/", expires : new Date(response.sessionExpiration) }); 

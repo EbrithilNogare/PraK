@@ -21,7 +21,7 @@ import {
 	KeywordComboBox,
 	PersonComboBox,
 //	SubjectComboBox,
-	StaticOpenComboBox,
+	SubmitterComboBox,
 	StaticComboBox,
 	FormStaticComboBox,
 } from '../comboBoxes'
@@ -189,7 +189,7 @@ class Metadata extends IndexParent {
 				<Paper className={styles.dataBlock}>
 					<Multiplier>{this.conditionalField("general_note") && <TextField {...this.createFieldProps("general_note")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("editor_note") && <TextField {...this.createFieldProps("editor_note")}/>}</Multiplier>
-					{this.conditionalField("submitter") && <StaticOpenComboBox  {...this.createFieldProps("submitter")}/>}
+					{this.conditionalField("submitter") && <SubmitterComboBox  {...this.createFieldProps("submitter")}/>}
 				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

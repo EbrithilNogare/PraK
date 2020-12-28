@@ -35,7 +35,7 @@ class Login extends React.Component {
 
 	handleSubmit(event){
 		const { email, password } = this.state
-		const url = "api/auth"
+		const url = "/prak/api/auth"
 		const data = {
 			email,
 			password,
