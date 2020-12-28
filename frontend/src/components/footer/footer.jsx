@@ -42,7 +42,6 @@ class Footer extends React.Component {
 					<hr/>
 					<ul>
 						<li> <NavLink to="/prak/search">Vyhledávací rozhraní</NavLink> </li>
-						<li> <NavLink to="/prak/edit">Editační rozhraní</NavLink> </li>
 					</ul>
 				</div>
 

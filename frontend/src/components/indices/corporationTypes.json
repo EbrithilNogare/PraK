@@ -271,17 +271,17 @@
 		},
 
 		"cancellation_person": {
-			"label": "Zrušení, likvidace, rozpuštění",
+			"label": "Rušitel",
 			"schema": "cancellation_person",
 			"helper": "Výběr z rejstříku osob."
 		},
 		"cancellation_document": {
-			"label": "Související dokument",
+			"label": "Rušící dokument",
 			"schema": "cancellation_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"cancellation_place": {
-			"label": "Geografický objekt jako následník",
+			"label": "Rušící geografický objekt",
 			"schema": "cancellation_place",
 			"helper": "Výběr z geografického rejstříku."
 		},
@@ -291,17 +291,17 @@
 			"helper": "Časové zpřesnění související se zánikem existence korporace."
 		},
 		"delete_from_evidence_subject": {
-			"label": "Výmaz z evidence dilo/vytvor",
+			"label": "Výmaz z evidence - dokument",
 			"schema": "delete_from_evidence_subject",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"delete_from_evidence_event": {
-			"label": "Událost",
+			"label": "Výmaz z evidence - událost",
 			"schema": "delete_from_evidence_event",
 			"helper": "Výběr z rejstříku událost"
 		},
 		"cancellation_chronological_specification": {
-			"label": "Chronologické zpřesnění",
+			"label": "Chronologické zpřesnění výmazu z existence",
 			"schema": "cancellation_chronological_specification",
 			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
 		},

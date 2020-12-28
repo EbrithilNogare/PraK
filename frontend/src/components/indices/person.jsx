@@ -63,7 +63,7 @@ class Person extends IndexParent {
 					<TextField {...this.createFieldProps("initials")}/>
 					<TextField {...this.createFieldProps("roman_numerals")}/>
 					<KeywordComboBox {...this.createFieldProps("general_complement")}/>
-					<TextField {...this.createFieldProps("geographical_complement")}/>
+					<GeographicComboBox {...this.createFieldProps("geographical_complement")}/>
 					<TextField {...this.createFieldProps("chronological_complement")}/>
 				</Paper>
 				<Paper className={styles.dataBlock}> <h2>Variantní označení</h2>

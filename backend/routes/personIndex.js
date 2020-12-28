@@ -13,6 +13,7 @@ router.route('/:id').get((req, res) => {
 		.populate("born_place", "name_main_part")
 		.populate("death_place", "name_main_part")
 		.populate("general_complement", "name_main_part")
+		.populate("geographical_complement", "name_main_part")
 		.populate("other_language_name.general_complement", "name_main_part")
 		.populate("other_language_name.geographical_complement", "name_main_part")
 		.populate("original_name.general_complement", "name_main_part")

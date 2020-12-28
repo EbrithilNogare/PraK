@@ -39,7 +39,10 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	},
-	geographical_complement: String,
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	chronological_complement: String,
 
 	other_language_name: [{

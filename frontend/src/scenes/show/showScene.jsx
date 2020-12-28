@@ -184,7 +184,7 @@ class ShowScene extends React.Component {
 
 	translate(en){
 		switch(en){
-			case "metadata": return "Rejstříku Metadata"
+			case "metadata": return "Rejstříku metadat"
 			case "corporation": return "Rejstříku korporací"
 			case "creation": return "Rejstříku dílo/výtvor"
 			case "geographic": return "Geografického rejstříku"
