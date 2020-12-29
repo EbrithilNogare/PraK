@@ -3,8 +3,8 @@ import { withCookies } from "react-cookie";
 
 
 import {
-	StaticOpenComboBox,
-} from '../comboBoxes'
+	TextField,
+} from '@material-ui/core'
 
 class SubmitterComboBox extends React.Component {
 	constructor(props){
@@ -17,8 +17,11 @@ class SubmitterComboBox extends React.Component {
 			this.props.onChange({target:{value:this.defaultValue}})
 	}
 	
-	render(){ return(
-			<StaticOpenComboBox defaultValue={this.defaultValue} {...this.props} disabled={!(this.props.cookies.get("permission") & 1)}/>
+	render(){ 
+		// eslint-disable-next-line no-unused-vars
+		const {allCookies, childProps} = {...this.props}
+		return(
+			<TextField defaultValue={this.defaultValue} {...childProps} disabled={!(this.props.cookies.get("permission") & 1)}/>
 		)}
 }
 

@@ -67,8 +67,11 @@ class ShowScene extends React.Component {
 			this.setState({
 				records: data.map(a => {
 					const toReturn = {...a}
+					toReturn.born_year = toReturn.author = toReturn.publishing_date = ""
 					toReturn.id = a._id
 					if(a.born_year) toReturn.born_year = a.born_year.year
+					if(a.author && a.author.id) toReturn.author = a.author.id.name + " " + a.author.id.surname
+					if(a.publishing_date && a.publishing_date[0] && a.publishing_date[0].date) toReturn.publishing_date = a.publishing_date[0].date
 					return toReturn
 				}),
 				loading: false,

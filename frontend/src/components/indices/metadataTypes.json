@@ -80,7 +80,7 @@
 			"label": "Země vydání nebo vzniku",
 			"schema": "publish[%].publish_country",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"options": ["","Rakousko-Uhersko", "Československo 1918-1938", "Protektorát Čechy a Morava 1938-1945", "Československá republika 1945-1960", "Československá socialistická republika 1960-1990", "Česká a Slovenská federativní republika 1990-1992", "Česká republika 1993-", "Německo", "Německá říše", "Polsko", "Prusko"],
+			"options": ["", "Rakousko-Uhersko", "Československo 1918-1938", "Československá republika 1945-1960", "Československá socialistická republika 1960-1990", "Česká a Slovenská federativní republika 1990-1992", "Česká republika 1993-", "Německo", "Německá říše", "Polsko", "jiné"],
 			"helper": "Země vzniku díla nebo shromáždění archiválií. "
 		},
 		"publish_place": {
@@ -245,7 +245,7 @@
 		"acces_note": {
 			"label": "Poznámka k přístupu",
 			"schema": "corporation[%].acces_note",
-			"fields": [1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Zpřesnění informace o dostupnosti díla nebo archiválií."
 		},
 		"location-category": {
@@ -427,14 +427,14 @@
 		},
 		"chronological_content_specification_begin": {
 			"label": "Chronologické zpřesnění obsahu dokumentu (začátek)",
-			"schema": "chronological_content_specification.begin",
+			"schema": "chronological_content_specification[%].begin",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"helper": "Uvádí se datum, data nebo období, kterého se dílo nebo archiválie týkají.",
 			"type": "Number"
 		},
 		"chronological_content_specification_end": {
 			"label": "Chronologické zpřesnění obsahu dokumentu (konec)",
-			"schema": "chronological_content_specification.end",
+			"schema": "chronological_content_specification[%].end",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"type": "Number"
 		},
@@ -472,8 +472,6 @@
 			"label": "Zadavatel",
 			"schema": "submitter",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": "Zadavatel záznamu",
-			"options": ["", "Petra Hoffmannová", "Kamila Brožová", "Kateřina Brožová", "Tamara Nováková", "🤖"],
 			"required": true
 		}
 	}

@@ -55,6 +55,7 @@ router.route('/').post((req, res) => {
 
 	Model.find(description)
 		.limit(_limit || 5)
+		.populate("author.id", ['name', 'surname'])
 		.exec()
 		.then(result => {
 			res.status(200).json(result)

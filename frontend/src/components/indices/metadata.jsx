@@ -180,8 +180,10 @@ class Metadata extends IndexParent {
 					<Multiplier>{this.conditionalField("topic") && <KeywordComboBox {...this.createFieldProps("topic")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("corporation_content_specification_person") && <PersonComboBox {...this.createFieldProps("corporation_content_specification_person")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("corporation_content_specification_corporation") && <CorporationComboBox {...this.createFieldProps("corporation_content_specification_corporation")}/>}</Multiplier>
-					<Multiplier>{this.conditionalField("chronological_content_specification_begin") && <TextField {...this.createFieldProps("chronological_content_specification_begin")}/>}</Multiplier>
-					<Multiplier>{this.conditionalField("chronological_content_specification_end") && <TextField {...this.createFieldProps("chronological_content_specification_end")}/>}</Multiplier>
+					<Multiplier>
+						{this.conditionalField("chronological_content_specification_begin") && <TextField {...this.createFieldProps("chronological_content_specification_begin")}/>}
+						{this.conditionalField("chronological_content_specification_end") && <TextField {...this.createFieldProps("chronological_content_specification_end")}/>}
+					</Multiplier>
 					<Multiplier>{this.conditionalField("geographical_content_specification") && <GeographicComboBox {...this.createFieldProps("geographical_content_specification")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("keywords") && <KeywordComboBox  {...this.createFieldProps("keywords")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("description") && <TextField  {...this.createFieldProps("description")}/>}</Multiplier>

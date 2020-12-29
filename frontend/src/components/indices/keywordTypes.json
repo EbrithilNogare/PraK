@@ -271,8 +271,6 @@
 		"submitter": {
 			"label": "Zadavatel",
 			"schema": "submitter",
-			"helper": "Výběr z nabídky. ",
-			"options": ["", "Petra Hoffmannová", "Kamila Brožová", "Kateřina Brožová", "Tamara Nováková", "🤖"],
 			"required": true
 		}
 	}

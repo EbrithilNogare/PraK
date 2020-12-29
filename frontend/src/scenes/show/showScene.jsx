@@ -192,6 +192,7 @@ class ShowScene extends React.Component {
 			case "person": return "Rejstříku osob"
 			case "subject": return "Rejstříku událostí"
 			case "family": return "Rejstříku rodů"
+			default: return en
 		}
 	}
 
