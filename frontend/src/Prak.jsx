@@ -12,6 +12,7 @@ import {
 
 import WebFont from 'webfontloader';
 
+import PrivateRoute from './components/PrivateRoute'
 
 import NavBar from "./components/navBar"
 import Footer from "./components/footer"
@@ -19,6 +20,7 @@ import ScrollToTop from "./components/ScrollToTop"
 
 import InputScene from "./scenes/input"
 import LoginScene from "./scenes/login"
+import AdminScene from "./scenes/admin"
 import EditScene from "./scenes/edit"
 import ShowScene from "./scenes/show"
 import SearchScene from "./scenes/search"
@@ -83,11 +85,12 @@ class Prak extends React.Component {
 							<NavBar/>
 							<Switch>
 								<Route path="/prak/login"><LoginScene variant="login"/></Route>
+								<PrivateRoute path="/prak/admin" privacyLevel="1"><AdminScene/></PrivateRoute>
 
-								<Route path="/prak/input"><InputScene/></Route>
-								<Route path="/prak/edit"><EditScene/></Route>
-								<Route path="/prak/show"><ShowScene/></Route>
-								<Route path="/prak/search"><SearchScene/></Route>
+								<PrivateRoute path="/prak/input" privacyLevel="2"><InputScene/></PrivateRoute>
+								<PrivateRoute path="/prak/edit" privacyLevel="2"><EditScene/></PrivateRoute>
+								<PrivateRoute path="/prak/show" privacyLevel="4"><ShowScene/></PrivateRoute>
+								<PrivateRoute path="/prak/search" privacyLevel="4"><SearchScene/></PrivateRoute>
 
 								<Route path="/prak/about"><AboutPage/></Route>
 								<Route path="/prak/team"><TeamPage/></Route>

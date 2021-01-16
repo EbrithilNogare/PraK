@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react"
 import { withRouter } from "react-router-dom"
-import { withSnackbar } from 'notistack'
-import { withCookies } from "react-cookie";
+import { withSnackbar } from "notistack"
+import { withCookies } from "react-cookie"
 import {
 	BrowserRouter as Router,
 	Switch as RouterSwitch,

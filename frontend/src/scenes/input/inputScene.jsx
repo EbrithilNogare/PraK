@@ -1,9 +1,5 @@
-import React from 'react'
-import {
-	Switch,
-	Route,
-} from "react-router-dom"
-
+import React from "react"
+import { Switch, Route } from "react-router-dom"
 
 import Metadata from '../../components/indices/metadata'
 import Corporation from '../../components/indices/corporation'
@@ -13,7 +9,6 @@ import Geographic from '../../components/indices/geographic'
 import Keyword from '../../components/indices/keyword'
 import Person from '../../components/indices/person'
 import Subject from '../../components/indices/subject'
-
 
 import styles from './inputScene.module.scss'
 

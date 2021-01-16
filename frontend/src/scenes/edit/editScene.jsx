@@ -1,12 +1,7 @@
 import React from "react"
-import {
-	Switch,
-	Route,
-} from "react-router-dom"
+import { Switch, Route } from "react-router-dom"
 import { withSnackbar } from 'notistack'
-import { 
-	Paper,
-} from '@material-ui/core'
+import { Paper } from '@material-ui/core'
 
 import Metadata from '../../components/indices/metadata'
 import Corporation from '../../components/indices/corporation'
