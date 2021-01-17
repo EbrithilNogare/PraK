@@ -1,8 +1,11 @@
 .adminScene{
 	display: grid;
-	align-items: center;
-	justify-items: center;
+	row-gap: 25px;
 
-	margin: 50px 50px;
-	padding: 60px;
+	margin: 50px;
+}
+
+.paper{
+	width: 100%;
+	padding: 20px;
 }

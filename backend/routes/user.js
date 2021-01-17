@@ -20,6 +20,36 @@ router.route('/:id').get((req, res) => {
 		})
 })
 
+router.route('/').post((req, res) => {
+	// support for regexp search
+	for(let key of ["email", "firstName", "secondnName"])
+	if(
+		req.body[key] &&
+		typeof req.body[key] === "string" &&
+		req.body[key].length > 1 &&
+		req.body[key][0] == "/" &&
+		req.body[key].slice(-1) == "/"
+	)
+		req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
+
+	// extract special attributes
+	const {_limit, ...body} = req.body
+
+	Model.find(body)
+	.limit(_limit || 5)
+		.exec()
+		.then(result => {
+			result.forEach(element => {
+				element.password = "******";
+				element.sessionID = "******";
+			})
+			res.status(200).json(result)
+		})
+		.catch(err => {
+			res.status(500).json({message: "something went wrong", details:err})
+		})
+})
+
 router.route('/').put((req, res) => {
 	const email = req.body.email
 	if (!email)

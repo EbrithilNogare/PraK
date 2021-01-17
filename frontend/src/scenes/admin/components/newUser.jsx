@@ -8,6 +8,8 @@ import {
 	Checkbox,
 } from '@material-ui/core'
 
+import styles from './newUser.module.scss'
+
 class NewUser extends React.Component {
 	constructor(props){
 		super(props)
@@ -74,23 +76,25 @@ class NewUser extends React.Component {
 	}
 
 	render(){ return(
-		<form onSubmit={this.handleSubmit}>
+		<form onSubmit={this.handleSubmit} className={styles.root}>
 			<h2>Add new User</h2>
-			<TextField
-				label="Email"
-				name="email"
-				value={this.state.email}
-				onChange={this.handleChange}
-				required
-			/>
-			<TextField
-				label="Password"
-				name="password"
-				value={this.state.password}
-				onChange={this.handleChange}
-				required
-			/>
-			<br/>
+			<div>
+				<TextField
+					label="Email"
+					name="email"
+					value={this.state.email}
+					onChange={this.handleChange}
+					required
+				/>
+				<br/>
+				<TextField
+					label="Password"
+					name="password"
+					value={this.state.password}
+					onChange={this.handleChange}
+					required
+				/>
+			</div>
 			<Button
 				variant="contained"
 				color="primary"
@@ -98,54 +102,58 @@ class NewUser extends React.Component {
 					this.setState({password: Math.random().toString(36).substring(2)})
 				}}
 			>Generate secure password</Button>
-			<br/>
-			<FormControlLabel
-				control={
-				<Checkbox
-					checked={this.state.roleRead}
-					onChange={this.handleChange}
-					name="roleRead"
-					color="primary"
+			<div>
+				<FormControlLabel
+					control={
+					<Checkbox
+						checked={this.state.roleRead}
+						onChange={this.handleChange}
+						name="roleRead"
+						color="primary"
+					/>
+					}
+					label="Read"
 				/>
-				}
-				label="Read"
-			/>
-			<FormControlLabel
-				control={
-				<Checkbox
-					checked={this.state.roleWrite}
-					onChange={this.handleChange}
-					name="roleWrite"
-					color="primary"
+				<br/>
+				<FormControlLabel
+					control={
+					<Checkbox
+						checked={this.state.roleWrite}
+						onChange={this.handleChange}
+						name="roleWrite"
+						color="primary"
+					/>
+					}
+					label="Write"
 				/>
-				}
-				label="Write"
-			/>
-			<FormControlLabel
-				control={
-				<Checkbox
-					checked={this.state.roleExecute}
-					onChange={this.handleChange}
-					name="roleExecute"
-					color="primary"
+				<br/>
+				<FormControlLabel
+					control={
+					<Checkbox
+						checked={this.state.roleExecute}
+						onChange={this.handleChange}
+						name="roleExecute"
+						color="primary"
+					/>
+					}
+					label="Execute (admin)"
 				/>
-				}
-				label="Execute (admin)"
-			/>
-			<br/>
-			<TextField
-				label="FirstName"
-				name="firstName"
-				value={this.state.firstName}
-				onChange={this.handleChange}
-			/>
-			<TextField
-				label="SecondName"
-				name="secondName"
-				value={this.state.secondName}
-				onChange={this.handleChange}
-			/>
-			<br/>
+			</div>
+			<div>
+				<TextField
+					label="FirstName"
+					name="firstName"
+					value={this.state.firstName}
+					onChange={this.handleChange}
+				/>
+				<br/>
+				<TextField
+					label="SecondName"
+					name="secondName"
+					value={this.state.secondName}
+					onChange={this.handleChange}
+				/>
+			</div>
 			<Button
 				variant="contained"
 				color="primary"

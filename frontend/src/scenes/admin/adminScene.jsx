@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core'
 
 import NewUser from "./components/newUser"
+import AllUsers from "./components/allUsers"
 
 import styles from './adminScene.module.scss'
 
@@ -15,10 +16,15 @@ class AdminScene extends React.Component {
 	}
 
 	render(){ return(
-		<Paper className={styles.adminScene}>
-			<NewUser/>
-			<h2>Users</h2>
-		</Paper>
+		<div className={styles.adminScene}>
+			<Paper className={styles.paper}>
+				<NewUser/>
+			</Paper>
+
+			<Paper className={styles.paper}>
+				<AllUsers/>
+			</Paper>
+		</div>
 	)}
 }
 
