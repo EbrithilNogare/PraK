@@ -11,6 +11,7 @@ import {
 } from 'notistack';
 
 import WebFont from 'webfontloader';
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import PrivateRoute from './components/PrivateRoute'
 
@@ -33,7 +34,6 @@ import PartnersPage from "./pages/partnersPage"
 import ContactsPage from "./pages/contactsPage"
 import ManualPage from "./pages/manualPage"
 
-import "./styles/colorScheme.scss"
 import styles from "./Prak.module.scss"
 
 class Prak extends React.Component {
@@ -74,36 +74,46 @@ class Prak extends React.Component {
 			google: {
 				families: ["Roboto:400,700"]
 			}
+		})
+
+		const theme = createMuiTheme({
+			palette: {
+				primary: { main: "#000" },
+				secondary: { main: "#FFF274" }, 
+				type: "light"
+			}
 		});
 
 		return (
 			<div className={styles.prak}>
 				<CookiesProvider>
 					<SnackbarProvider>
-						<Router>
-							<ScrollToTop/>
-							<NavBar/>
-							<Switch>
-								<Route path="/prak/login"><LoginScene variant="login"/></Route>
-								<PrivateRoute path="/prak/admin" privacyLevel="1"><AdminScene/></PrivateRoute>
+						<MuiThemeProvider theme={theme}>
+							<Router>
+								<ScrollToTop/>
+								<NavBar/>
+								<Switch>
+									<Route path="/prak/login"><LoginScene variant="login"/></Route>
+									<PrivateRoute path="/prak/admin" privacyLevel="1"><AdminScene/></PrivateRoute>
 
-								<PrivateRoute path="/prak/input" privacyLevel="2"><InputScene/></PrivateRoute>
-								<PrivateRoute path="/prak/edit" privacyLevel="2"><EditScene/></PrivateRoute>
-								<PrivateRoute path="/prak/show" privacyLevel="4"><ShowScene/></PrivateRoute>
-								<PrivateRoute path="/prak/search" privacyLevel="4"><SearchScene/></PrivateRoute>
+									<PrivateRoute path="/prak/input" privacyLevel="2"><InputScene/></PrivateRoute>
+									<PrivateRoute path="/prak/edit" privacyLevel="2"><EditScene/></PrivateRoute>
+									<PrivateRoute path="/prak/show" privacyLevel="4"><ShowScene/></PrivateRoute>
+									<PrivateRoute path="/prak/search" privacyLevel="4"><SearchScene/></PrivateRoute>
 
-								<Route path="/prak/about"><AboutPage/></Route>
-								<Route path="/prak/team"><TeamPage/></Route>
-								<Route path="/prak/ourwork"><OurWorkPage/></Route>
-								<Route path="/prak/partners"><PartnersPage/></Route>
-								<Route path="/prak/contacts"><ContactsPage/></Route>
+									<Route path="/prak/about"><AboutPage/></Route>
+									<Route path="/prak/team"><TeamPage/></Route>
+									<Route path="/prak/ourwork"><OurWorkPage/></Route>
+									<Route path="/prak/partners"><PartnersPage/></Route>
+									<Route path="/prak/contacts"><ContactsPage/></Route>
 
-								<Route path="/prak/manual"><ManualPage/></Route>
+									<Route path="/prak/manual"><ManualPage/></Route>
 
-								<Route path="/prak"><MainPageScene/></Route>
-							</Switch>
-							<Footer/>
-						</Router>
+									<Route path="/prak"><MainPageScene/></Route>
+								</Switch>
+								<Footer/>
+							</Router>
+						</MuiThemeProvider>
 					</SnackbarProvider>
 				</CookiesProvider>
 			</div>
