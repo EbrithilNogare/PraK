@@ -88,6 +88,11 @@ class OneUser extends React.Component {
 	}
 
 	removeUser = () => {
+		if(!window.confirm("Opravdu chcete uživatele smazat?")){
+			console.info("%cRemove canceled", "background: #222; color: #bada55")
+			return
+		}
+
 		const url = `/prak/api/user/${this.props.user._id}`
 
 		console.info(`%cremove user ${this.props.user._id}`, "background: #222; color: #bada55")
