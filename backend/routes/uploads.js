@@ -2,7 +2,7 @@ const router = require('express').Router()
 const auth = require('../auth.js')
 const fs = require('fs')
 
-router.route('/').put(/*auth("write"), */(req, res) => {
+router.route('/').put(auth("write"), (req, res) => {
 	try {
         if(!req.files) {
             res.send({
@@ -30,7 +30,7 @@ router.route('/').put(/*auth("write"), */(req, res) => {
     }
 })
 
-router.route('/:path').delete(/*auth("write"), */(req, res) => {
+router.route('/:path').delete(auth("write"), (req, res) => {
 	if(!req.params.path)
 		res.status(400).json({ message: "missing file name" })
 
