@@ -19,6 +19,7 @@ import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
 import typeDefinitionFile from './subjectTypes.json'
 import Multiplier from '../Multiplier'
+import FoldablePaper from "../../components/FoldablePaper"
 
 class Family extends IndexParent {
 	constructor(props){
@@ -45,26 +46,26 @@ class Family extends IndexParent {
 					}
 				</Paper>
 				<div className={styles.body}>
-				<Paper className={styles.dataBlock}> <h2>Preferované označení</h2>
+				<FoldablePaper className={styles.dataBlock}> <h2>Preferované označení</h2>
 					<TextField {...this.createFieldProps("name_main_part")}/>
 					<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
-				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Poznámky</h2>
 					<Multiplier><TextField {...this.createFieldProps("public_note")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("nonpublic_note")}/></Multiplier>
-				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
 					<Multiplier>
 						<TextField {...this.createFieldProps("other_source_name")}/>
 						<TextField {...this.createFieldProps("other_source_id")}/>
 						<TextField {...this.createFieldProps("other_source_identificator")}/>
 					</Multiplier>
-				</Paper>
-				<Paper className={styles.dataBlock}>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}>
 					<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
 					<SubmitterComboBox  {...this.createFieldProps("submitter")}/>
-				</Paper>
+				</FoldablePaper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
 			</form>

@@ -1,3 +1,4 @@
+const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 
 const schema = new mongoose.Schema({
@@ -6,16 +7,27 @@ const schema = new mongoose.Schema({
 		required: true,
 	},
 	author: {
+		author_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "personIndex",
+		},
+		author_corporation: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		author_role: String,
+	},
+	other_authors_person: [{
 		id: {
 			type: mongoose.Types.ObjectId,
 			ref: "personIndex",
 			},
 		role: String,
-	},
-	other_authors: [{
+	}],
+	other_authors_corporation: [{
 		id: {
 			type: mongoose.Types.ObjectId,
-			ref: "personIndex",
+			ref: "corporationIndex",
 			},
 		role: String,
 	}],
@@ -49,6 +61,7 @@ const schema = new mongoose.Schema({
 	isbn: [String],
 	edition_order: [String],
 	edition: [String],
+	edition_number: [String],
 	action_name: [{
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
@@ -131,10 +144,36 @@ const schema = new mongoose.Schema({
 		},
 		multiple_placement_url: String,
 	}],
-	topic: [{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	}],
+	topic: {
+		topic_person:[{
+			type: mongoose.Types.ObjectId,
+			ref: "personIndex",
+		}],
+		topic_corporation:[{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		topic_place:[{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		topic_event:[{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+		topic_creation:[{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		}],
+		topic_keyword:[{
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		}],
+		topic_family:[{
+			type: mongoose.Types.ObjectId,
+			ref: "familyIndex",
+		}],
+	},
 	corporation_content_specification_person: [{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -146,6 +185,7 @@ const schema = new mongoose.Schema({
 	chronological_content_specification: [{
 		begin: Number,
 		end: Number,
+		active: Boolean,
 	}],
 	geographical_content_specification: [{
 		type: mongoose.Types.ObjectId,
