@@ -42,11 +42,7 @@ class Footer extends React.Component {
 					<hr/>
 					<ul>
 						<li> <NavLink to="/prak/search">Vyhledávací rozhraní</NavLink> </li>
-					</ul>
-					<ul>
 						{(this.props.cookies.get("permission") & 2) > 0 && <li> <NavLink to="/prak/upload">Nahrát soubor</NavLink> </li>}
-					</ul>
-					<ul>
 						{(this.props.cookies.get("permission") & 1) > 0 && <li> <NavLink to="/prak/admin">Admin</NavLink> </li>}
 					</ul>
 				</div>
