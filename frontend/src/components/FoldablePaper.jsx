@@ -23,7 +23,7 @@ class FoldablePaper extends React.Component {
 			style={{
 				position: "relative",
 				overflowY: "hidden",
-				maxHeight: this.state.folded?"100px":"fit-content",
+				maxHeight: this.state.folded?"100px":"none",
 			}}
 		>
 			<IconButton
