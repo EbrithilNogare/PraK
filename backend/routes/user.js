@@ -3,6 +3,7 @@ const Model = require('../models/user.model')
 const randomstring = require("randomstring")
 const mongoose = require("mongoose")
 const md5 = require('md5')
+const auth = require('../auth.js')
 
 router.route('/:id').get((req, res) => {
 	if(!req.params.id)
@@ -50,7 +51,7 @@ router.route('/').post((req, res) => {
 		})
 })
 
-router.route('/').put((req, res) => {
+router.route('/').put(auth("execute"), (req, res) => {
 	const email = req.body.email
 	if (!email)
 		res.status(400).json({ message: "missing email" })
@@ -90,7 +91,7 @@ router.route('/').put((req, res) => {
 		})
 })
 
-router.route('/:id').patch((req, res) => {
+router.route('/:id').patch(auth("execute"), (req, res) => {
 	const id = req.params.id
 	if(!id)
 		res.status(400).json({ message: "incorrect ID" })
@@ -152,7 +153,7 @@ router.route('/:id').patch((req, res) => {
 	})
 })
 
-router.route('/:id').delete((req, res) => {
+router.route('/:id').delete(auth("execute"), (req, res) => {
 	const id = req.params.id
 	if(!id)
 		res.status(400).json({ message: "incorrect ID" })

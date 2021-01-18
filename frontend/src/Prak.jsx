@@ -19,6 +19,7 @@ import NavBar from "./components/navBar"
 import Footer from "./components/footer"
 import ScrollToTop from "./components/ScrollToTop"
 
+import UploadScene from "./scenes/upload"
 import InputScene from "./scenes/input"
 import LoginScene from "./scenes/login"
 import AdminScene from "./scenes/admin"
@@ -95,6 +96,8 @@ class Prak extends React.Component {
 								<Switch>
 									<Route path="/prak/login"><LoginScene variant="login"/></Route>
 									<PrivateRoute path="/prak/admin" privacyLevel="1"><AdminScene/></PrivateRoute>
+
+									<PrivateRoute path="/prak/upload" privacyLevel="2"><UploadScene/></PrivateRoute>
 
 									<PrivateRoute path="/prak/input" privacyLevel="2"><InputScene/></PrivateRoute>
 									<PrivateRoute path="/prak/edit" privacyLevel="2"><EditScene/></PrivateRoute>
