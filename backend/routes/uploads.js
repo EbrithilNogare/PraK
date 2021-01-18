@@ -30,6 +30,12 @@ router.route('/').put(auth("write"), (req, res) => {
     }
 })
 
+router.route('/').post((req, res) => {
+    fs.readdir("../uploads/", (err, files) => {
+        res.status(200).json(files.filter(item=>!(/(^|\/)\.[^\/\.]/g).test(item))) // remove hidden files
+    })
+})
+
 router.route('/:path').delete(auth("write"), (req, res) => {
 	if(!req.params.path)
 		res.status(400).json({ message: "missing file name" })
