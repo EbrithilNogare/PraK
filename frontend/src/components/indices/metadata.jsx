@@ -67,7 +67,7 @@ class Metadata extends IndexParent {
 					}
 				</Paper>
 				<div className={styles.body}>
-				<FoldablePaper className={styles.dataBlock}>
+				<Paper className={styles.dataBlock}>
 					<FormControl>
 						<InputLabel id="selectTypeLabel">Type</InputLabel>
 						<Select
@@ -97,8 +97,12 @@ class Metadata extends IndexParent {
 							})}
 						</Select>
 					</FormControl>
+				</Paper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Název</h2>
+					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
+					<Multiplier>{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}</Multiplier>
 				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}>
+				<FoldablePaper className={styles.dataBlock}> <h2>Autor</h2>
 					{this.conditionalField("author_person") && <PersonComboBox {...this.createFieldProps("author_person")}/>}
 					{this.conditionalField("author_corporation") && <CorporationComboBox {...this.createFieldProps("author_corporation")}/>}
 					{this.conditionalField("author_role") && <StaticComboBox {...this.createFieldProps("author_role")}/>}
@@ -110,10 +114,12 @@ class Metadata extends IndexParent {
 						{this.conditionalField("other_authors_corporation") && <CorporationComboBox {...this.createFieldProps("other_authors_corporation")}/>}
 						{this.conditionalField("other_authors_corporation_role") && <StaticComboBox {...this.createFieldProps("other_authors_corporation_role")}/>}
 					</Multiplier>
-					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
 					{this.conditionalField("author_responsibility") && <TextField {...this.createFieldProps("author_responsibility")}/>}
-					<Multiplier>{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}</Multiplier>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Jazyk</h2>
 					<Multiplier>{this.conditionalField("language") && <StaticComboBox {...this.createFieldProps("language")}/>}</Multiplier>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Nakladatelské údaje</h2>
 					<Multiplier>
 						{this.conditionalField("publish_country") && <StaticComboBox {...this.createFieldProps("publish_country")}/>}
 						{this.conditionalField("publish_place") && <GeographicComboBox {...this.createFieldProps("publish_place")}/>}
@@ -125,7 +131,7 @@ class Metadata extends IndexParent {
 						{this.conditionalField("publishing_date_notAccurate") && <LabeledCheckbox {...this.createFieldProps("publishing_date_notAccurate")} />}
 					</Multiplier>
 				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}>
+				<FoldablePaper className={styles.dataBlock}> <h2>Detaily</h2>
 					<Multiplier>{this.conditionalField("isbn") && <RegExpField {...this.createFieldProps("isbn")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("edition_order") && <TextField  {...this.createFieldProps("edition_order")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("edition") && <TextField  {...this.createFieldProps("edition")}/>}</Multiplier>
@@ -144,13 +150,19 @@ class Metadata extends IndexParent {
 					{this.conditionalField("volume") && <TextField  {...this.createFieldProps("volume")}/>}
 					{this.conditionalField("number") && <TextField  {...this.createFieldProps("number")}/>}
 					{this.conditionalField("date") && <DateField  {...this.createFieldProps("date")}/>}
+					{this.conditionalField("previous_name") && <MetadataComboBox  {...this.createFieldProps("previous_name")}/>}
+					{this.conditionalField("following_name") && <MetadataComboBox  {...this.createFieldProps("following_name")}/>}
+					<Multiplier>
+						{this.conditionalField("multiple_placement") && <CorporationComboBox {...this.createFieldProps("multiple_placement")}/>} 
+						{this.conditionalField("multiple_placement_url") && <TextField {...this.createFieldProps("multiple_placement_url")}/>} 
+					</Multiplier>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Umístění</h2>
 					<Multiplier>
 						{this.conditionalField("corporation_name") && <CorporationComboBox {...this.createFieldProps("corporation_name")}/>}
 						{this.conditionalField("access_conditions") && <StaticComboBox  {...this.createFieldProps("access_conditions")}/>}
 						{this.conditionalField("acces_note") && <TextField  {...this.createFieldProps("acces_note")}/>}
 					</Multiplier>
-				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}> <h2>Umístění</h2>
 					<Multiplier>
 						{this.conditionalField("location_in_institution") && <TextField {...this.createFieldProps("location_in_institution")}/>}
 						{this.conditionalField("location_in_fund") && <TextField  {...this.createFieldProps("location_in_fund")}/>}
@@ -162,16 +174,12 @@ class Metadata extends IndexParent {
 						{this.conditionalField("external_source_url") && <TextField  {...this.createFieldProps("external_source_url")}/>}
 						{this.conditionalField("url_leading_to_document") && <TextField  {...this.createFieldProps("url_leading_to_document")}/>}
 					</Multiplier>
-				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}>
 					<Multiplier>
 						{this.conditionalField("attachment_name") && <TextField  {...this.createFieldProps("attachment_name")}/>}
 						{this.conditionalField("attachment_url") && <TextField  {...this.createFieldProps("attachment_url")}/>}
 					</Multiplier>
-					{this.conditionalField("previous_name") && <MetadataComboBox  {...this.createFieldProps("previous_name")}/>}
-					{this.conditionalField("following_name") && <MetadataComboBox  {...this.createFieldProps("following_name")}/>}
 				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}>
+				<FoldablePaper className={styles.dataBlock}> <h2>Fyzický popis</h2>
 					<Multiplier>{this.conditionalField("form") && <FormStaticComboBox  {...this.createFieldProps("form")}/>}</Multiplier>
 					{this.conditionalField("range") && <TextField  {...this.createFieldProps("range")}/>}
 					{this.conditionalField("dimension") && <TextField {...this.createFieldProps("dimension")}/>} 
@@ -181,10 +189,8 @@ class Metadata extends IndexParent {
 					{this.conditionalField("description_level") && <StaticComboBox  {...this.createFieldProps("description_level")}/>}
 					<Multiplier>{this.conditionalField("archival_aids") && <MetadataComboBox {...this.createFieldProps("archival_aids")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("source_citation") && <MetadataComboBox {...this.createFieldProps("source_citation")}/>}</Multiplier>
-					<Multiplier>
-						{this.conditionalField("multiple_placement") && <CorporationComboBox {...this.createFieldProps("multiple_placement")}/>} 
-						{this.conditionalField("multiple_placement_url") && <TextField {...this.createFieldProps("multiple_placement_url")}/>} 
-					</Multiplier>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Obsahová charakteristika</h2>
 					<Multiplier>{this.conditionalField("described_object_citation") && <MetadataComboBox  {...this.createFieldProps("described_object_citation")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("topic_person") && <PersonComboBox {...this.createFieldProps("topic_person")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("topic_corporation") && <CorporationComboBox {...this.createFieldProps("topic_corporation")}/>}</Multiplier>
@@ -202,13 +208,15 @@ class Metadata extends IndexParent {
 					</Multiplier>
 					<Multiplier>{this.conditionalField("geographical_content_specification") && <GeographicComboBox {...this.createFieldProps("geographical_content_specification")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("keywords") && <KeywordComboBox  {...this.createFieldProps("keywords")}/>}</Multiplier>
-					<Multiplier>{this.conditionalField("description") && <TextField  {...this.createFieldProps("description")}/>}</Multiplier>
 				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}>
+				<Paper className={styles.dataBlock}> <h2>Popis</h2>
+					<Multiplier>{this.conditionalField("description") && <TextField  {...this.createFieldProps("description")}/>}</Multiplier>
+				</Paper>
+				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
 					<Multiplier>{this.conditionalField("general_note") && <TextField {...this.createFieldProps("general_note")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("editor_note") && <TextField {...this.createFieldProps("editor_note")}/>}</Multiplier>
 					{this.conditionalField("submitter") && <SubmitterComboBox  {...this.createFieldProps("submitter")}/>}
-				</FoldablePaper>
+				</Paper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
 			</form>
