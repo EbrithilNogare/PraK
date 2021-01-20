@@ -97,6 +97,8 @@ router.route('/:id').patch(auth("execute"), (req, res) => {
 	if(!id)
 		res.status(400).json({ message: "incorrect ID" })
 
+	const user = {}
+
 	if(req.body.password){
 		user.salt = randomstring.generate(16)
 		user.password = md5(req.body.password + user.salt)
