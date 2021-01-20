@@ -20,6 +20,7 @@ class NewUser extends React.Component {
 			roleRead: true,
 			roleWrite: false,
 			roleExecute: false,
+			roleCms: false,
 			firstName: "",
 			secondName: "",
 		}
@@ -43,6 +44,7 @@ class NewUser extends React.Component {
 				read: this.state.roleRead,
 				write: this.state.roleWrite,
 				execute: this.state.roleExecute,
+				cms: this.state.roleCms,
 			},
 			firstName: this.state.firstName === "" ? undefined : this.state.firstName,
 			secondName: this.state.secondName === "" ? undefined : this.state.secondName,
@@ -137,6 +139,18 @@ class NewUser extends React.Component {
 					/>
 					}
 					label="Execute (admin)"
+				/>
+				<br/>
+				<FormControlLabel
+					control={
+					<Checkbox
+						checked={this.state.roleCms}
+						onChange={this.handleChange}
+						name="roleCms"
+						color="primary"
+					/>
+					}
+					label="CMS"
 				/>
 			</div>
 			<div>

@@ -20,6 +20,7 @@ class OneUser extends React.Component {
 			roleRead: props.user.role.read,
 			roleWrite: props.user.role.write,
 			roleExecute: props.user.role.execute,
+			roleCms: props.user.role.cms,
 			changed: false,
 		}
 	}
@@ -31,14 +32,16 @@ class OneUser extends React.Component {
 		if(this.state.email !== this.props.user.email) d.email = this.state.email
 		if(this.state.password !== this.props.user.password) d.password = this.state.password
 		
-		if(this.state.roleRead !== this.props.user.role.read 
-			|| this.state.roleWrite !== this.props.user.role.write 
-			|| this.state.roleExecute !== this.props.user.role.execute 
+		if(this.state.roleRead !== this.props.user.role.read
+			|| this.state.roleWrite !== this.props.user.role.write
+			|| this.state.roleExecute !== this.props.user.role.execute
+			|| this.state.roleCms !== this.props.user.role.cms
 		)
 		d.role = {
 			read: this.state.roleRead,
 			write: this.state.roleWrite,
 			execute: this.state.roleExecute,
+			cms: this.state.roleCms,
 		}
 
 		return d
@@ -80,6 +83,7 @@ class OneUser extends React.Component {
 		.then(response => {
 			console.info("%cUser saving succesful\n", "background: #222; color: #bada55")
 			this.props.enqueueSnackbar("Změny uloženy", { variant: "success", autoHideDuration: 6000 })
+			this.setState({changed:false})
 		})
 		.catch((error) => {
 			console.info("%cUser saving unsuccesful\n", "background: #222; color: #bada55", error)
@@ -174,6 +178,17 @@ class OneUser extends React.Component {
 				/>
 				}
 				label="Execute (admin)"
+			/>
+			<FormControlLabel
+				control={
+				<Checkbox
+					checked={this.state.roleCms}
+					onChange={this.handleChange}
+					name="roleCms"
+					color="primary"
+				/>
+				}
+				label="CMS"
 			/>
 			<Button
 				variant="contained"

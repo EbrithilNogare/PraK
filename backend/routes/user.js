@@ -64,6 +64,7 @@ router.route('/').put(auth("execute"), (req, res) => {
 		read: req.body.role.read || false,
 		write: req.body.role.write || false,
 		execute: req.body.role.execute || false,
+		execute: req.body.role.cms || false,
 	}
 
 	const salt = randomstring.generate(16)
@@ -96,50 +97,26 @@ router.route('/:id').patch(auth("execute"), (req, res) => {
 	if(!id)
 		res.status(400).json({ message: "incorrect ID" })
 
-	const user = {}
-	const isOwner = true; // todo
-	const isAdmin = true; // todo
-
 	if(req.body.password){
-		if(!(isOwner || isAdmin))
-			res.status(401).json({ message: "not permitted - only admin or owner can change password"})
-
 		user.salt = randomstring.generate(16)
 		user.password = md5(req.body.password + user.salt)
 	}
 
 	if(req.body.email){
-		if(!(isOwner || isAdmin))
-			res.status(401).json({ message: "not permitted - only admin or owner can change email" })
-		
 		user.email = req.body.email
 	}
 
 	if(req.body.firstName){
-		if(!(isOwner || isAdmin))
-			res.status(401).json({ message: "not permitted - only admin or owner can change email" })
-		
 		user.firstName = req.body.firstName
 	}
 
 	if(req.body.secondName){
-		if(!(isOwner || isAdmin))
-			res.status(401).json({ message: "not permitted - only admin or owner can change email" })
-		
 		user.secondName = req.body.secondName
 	}
 
-
 	if(req.body.role){
-		if(!isAdmin){
-			res.status(401).json({
-				message: "not permitted - only admin or owner can change role",
-			})
-		}
 		user.role = req.body.role
 	}
-
-	
 
 	Model.findByIdAndUpdate(id,user)
 	.then(() => {

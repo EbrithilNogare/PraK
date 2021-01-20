@@ -31,6 +31,7 @@ app.get('/documentation', function(req, res) {
 })
 
 app.use('/uploads', require('./routes/uploads'))
+app.use('/pages', require('./routes/pages'))
 
 app.use('/user', require('./routes/user'))
 app.use('/auth', require('./routes/auth'))

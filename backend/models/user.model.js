@@ -9,6 +9,7 @@ const schema = mongoose.Schema({
 		read: { type: Boolean, default: false },
 		write: { type: Boolean, default: false },
 		execute: { type: Boolean, default: false },
+		cms: { type: Boolean, default: false },
 	 },
 	sessionID: String,
 	sessionExpiration: { type: Date, default: Date.now },
