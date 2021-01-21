@@ -44,7 +44,7 @@ class EditPage extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			const contentBlock = htmlToDraft(response.cs);
+			const contentBlock = htmlToDraft(response.cs || "");
 			const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
 			const editorState = EditorState.createWithContent(contentState);
 			this.setState({...response, editorState})
