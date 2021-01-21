@@ -126,9 +126,9 @@ class IndexParent extends React.Component {
 	helperProp = (text) => {return{
 		endAdornment: (
 			<InputAdornment position="end">
-				<Tooltip title={text}>
+				{this.state.helpersVisible && <Tooltip title={text}>
 					<HelpOutline style={{fontSize: 12, color: "#c5c5c5", cursor: "help"}} />
-				</Tooltip>
+				</Tooltip>}
 			</InputAdornment>
 	)}}
 }

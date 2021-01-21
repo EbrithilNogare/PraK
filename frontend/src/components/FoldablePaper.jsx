@@ -23,6 +23,7 @@ class FoldablePaper extends React.Component {
 			style={{
 				position: "relative",
 				overflowY: "hidden",
+				transform: "translateZ(0)",
 				maxHeight: this.state.folded?"100px":"none",
 			}}
 		>

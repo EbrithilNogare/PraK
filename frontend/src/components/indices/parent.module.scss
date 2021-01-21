@@ -16,6 +16,7 @@
 .header{
 	padding: 20px;
 	text-align: center;
+	position: relative;
 }
 
 .body{
@@ -27,4 +28,13 @@
 
 .footer{
 	width: calc(50% - 30px);
+}
+
+.allHelpers{
+	font-size: 9pt !important;
+	color: #c5c5c5;
+	cursor: pointer;
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
 }

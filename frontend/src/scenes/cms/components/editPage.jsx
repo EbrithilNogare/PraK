@@ -29,6 +29,7 @@ class EditPage extends React.Component {
 			cs: "",
 			en: "",
 			lastEdited: null,
+			lastAuthor: "",
 			editorState: EditorState.createEmpty(),
 		}
 	}
@@ -166,6 +167,7 @@ class EditPage extends React.Component {
 				<p>ID:<br/>{this.state._id}</p>
 				<p>Poslední editace:<br/>{new Date(this.state.lastEdited).toLocaleString()}</p>
 				<p>Aktuální stránka:<br/><NavLink to={`/prak/page/cs/${this.state.pageName}`}>{`/prak/page/cs/${this.state.pageName}`}</NavLink> </p>
+				<p>Poslední editor:<br/>{this.state.lastAuthor}</p>
 				<Button
 					variant="contained"
 					color="primary"

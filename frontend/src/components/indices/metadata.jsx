@@ -11,7 +11,12 @@ import {
 	MenuItem,
 	FormControl,
 	Paper,
+	Tooltip,
 } from '@material-ui/core'
+import {
+	HelpOutline
+} from '@material-ui/icons'
+
 import {
 	CorporationComboBox,
 	CreationComboBox,
@@ -42,6 +47,7 @@ class Metadata extends IndexParent {
 		
 		this.state = {
 			documentType: this.formData.documentType,
+			helpersVisible: false,
 		}
 
 		this.indexURL = "metadata"
@@ -65,6 +71,9 @@ class Metadata extends IndexParent {
 						? <h1>Editace záznamu v Rejstříku metadat</h1>
 						: <h1>Nový záznam do Rejstříku metadat</h1>
 					}
+					<Tooltip title={"Schovat nápovědy"}>
+						<HelpOutline className={styles.allHelpers} onClick={()=>this.setState({helpersVisible: !this.state.helpersVisible}) }/>
+					</Tooltip>
 				</Paper>
 				<div className={styles.body}>
 				<Paper className={styles.dataBlock}>
@@ -209,14 +218,14 @@ class Metadata extends IndexParent {
 					<Multiplier>{this.conditionalField("geographical_content_specification") && <GeographicComboBox {...this.createFieldProps("geographical_content_specification")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("keywords") && <KeywordComboBox  {...this.createFieldProps("keywords")}/>}</Multiplier>
 				</FoldablePaper>
-				<Paper className={styles.dataBlock}> <h2>Popis</h2>
+				<FoldablePaper className={styles.dataBlock}> <h2>Popis</h2>
 					<Multiplier>{this.conditionalField("description") && <TextField  {...this.createFieldProps("description")}/>}</Multiplier>
-				</Paper>
-				<Paper className={styles.dataBlock}> <h2>Poznámky</h2>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Poznámky</h2>
 					<Multiplier>{this.conditionalField("general_note") && <TextField {...this.createFieldProps("general_note")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("editor_note") && <TextField {...this.createFieldProps("editor_note")}/>}</Multiplier>
 					{this.conditionalField("submitter") && <SubmitterComboBox  {...this.createFieldProps("submitter")}/>}
-				</Paper>
+				</FoldablePaper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
 			</form>

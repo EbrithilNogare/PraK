@@ -5,7 +5,12 @@ import {
 	TextField,
 	Button,
 	Paper,
+	Tooltip,
 } from '@material-ui/core'
+import {
+	HelpOutline
+} from '@material-ui/icons'
+
 import {
 //	CorporationComboBox,
 //	CreationComboBox,
@@ -25,7 +30,9 @@ class Family extends IndexParent {
 	constructor(props){
 		super(props)
 
-		this.state = {}
+		this.state = {
+			helpersVisible: false,
+		}
 
 		this.indexURL = "family"
 	}
@@ -44,6 +51,9 @@ class Family extends IndexParent {
 						? <h1>Editace záznamu v Rejstříku rodů</h1>
 						: <h1>Nový záznam do Rejstříku rodů</h1>
 					}
+					<Tooltip title={"Schovat nápovědy"}>
+						<HelpOutline className={styles.allHelpers} onClick={()=>this.setState({helpersVisible: !this.state.helpersVisible}) }/>
+					</Tooltip>
 				</Paper>
 				<div className={styles.body}>
 				<FoldablePaper className={styles.dataBlock}> <h2>Preferované označení</h2>

@@ -17,6 +17,10 @@ const schema = new mongoose.Schema({
 		type: Date,
 		default: Date.now,
 	},
+	lastAuthor: {
+		type: String,
+		default: "Unknown",
+	},
 	removable: {
 		type: Boolean,
 		default: true,

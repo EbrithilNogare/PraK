@@ -78,7 +78,8 @@ router.route('/').post((req, res) => {
 })
 
 router.route('/').put(auth("cms"), (req, res) => {
-	const newModel = new Model({...req.body, lastEdited: new Date()})
+	const lastAuthor = req.cookies.user
+	const newModel = new Model({...req.body, lastAuthor, lastEdited: new Date()})
 
 	newModel.save()
 		.then(result => {
@@ -93,11 +94,12 @@ router.route('/').put(auth("cms"), (req, res) => {
 })
 
 router.route('/:pageName').patch(auth("cms"), (req, res) => {
+	const lastAuthor = req.cookies.user
 	const pageName = req.params.pageName
 	if(pageName === undefined)
 		res.status(400).json({ message: "missing pageName" })
 
-	Model.findOneAndUpdate({ pageName },{...req.body, lastEdited: new Date()},(err, result)=>{
+	Model.findOneAndUpdate({ pageName },{...req.body, lastAuthor, lastEdited: new Date()},(err, result)=>{
 		if(err){
             res.status(500).json({
 				message: err.message,
