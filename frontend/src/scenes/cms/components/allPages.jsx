@@ -46,8 +46,25 @@ class AllPages extends React.Component {
 
 	render(){ return(
 		<Paper className={styles.root}>
+			<h3>Systémové stránky</h3>
 			<div className={styles.flex}>
 			{this.state.pages
+				.filter(value => !value.removable)
+				.sort((a, b)=> (a.pageName > b.pageName) ? 1 : (a.pageName === b.pageName) ? 0 : -1 )
+				.map((value, key) =>
+				<NavLink 
+				key={key}
+				style={{ textDecoration: 'none' }}
+				to={`/prak/cms/${value.pageName}`}
+				>
+					<Button color="primary" variant="contained">{value.pageName}</Button>
+				</NavLink>
+			)}
+			</div>
+			<h3>Uživatelské stránky</h3>
+			<div className={styles.flex}>
+			{this.state.pages
+				.filter(value => value.removable)
 				.sort((a, b)=> (a.pageName > b.pageName) ? 1 : (a.pageName === b.pageName) ? 0 : -1 )
 				.map((value, key) =>
 				<NavLink 

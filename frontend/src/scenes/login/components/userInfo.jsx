@@ -51,10 +51,10 @@ class UserInfo extends React.Component {
 			<p><b>Přihlášený uživatel:</b> {this.props.cookies.get("user")}</p>
 			<p><b>Práva: </b> </p>
 			<ul>
-				<li>administrace: {this.props.cookies.get("permission") & 1 ? "true" : "false"}</li>
-				<li>zápis: {this.props.cookies.get("permission") & 2 ? "true" : "false"}</li>
-				<li>čtení: {this.props.cookies.get("permission") & 4 ? "true" : "false"}</li>
-				<li>cms: {this.props.cookies.get("permission") & 8 ? "true" : "false"}</li>
+				{this.props.cookies.get("permission") & 1 ? <li>Administrace</li> : <div/>}
+				{this.props.cookies.get("permission") & 2 ? <li>Práce s rejstříky</li> : <div/>}
+				{this.props.cookies.get("permission") & 4 ? <li>Prohlížení záznamů</li> : <div/>}
+				{this.props.cookies.get("permission") & 8 ? <li>Redakční systém</li> : <div/>}
 			</ul>
 			<p><b>SessionID:</b> {this.props.cookies.get("sessionID")}</p>
 			<Button 

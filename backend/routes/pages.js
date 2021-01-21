@@ -63,7 +63,7 @@ router.route('/en/:pageName').get((req, res) => {
 router.route('/').post((req, res) => {
 	const {_limit, ...body} = req.body
 
-	Model.find(body, "pageName lastEdited")
+	Model.find(body, "pageName lastEdited removable")
 		.limit(_limit || 5)
 		.exec()
 		.then(result => {
@@ -110,12 +110,14 @@ router.route('/:pageName').patch(auth("cms"), (req, res) => {
 	})
 })
 
-router.route('/:pageName').delete(auth("execute"), (req, res) => {
+router.route('/:pageName').delete(auth("cms"), (req, res) => {
 	const pageName = req.params.pageName
-	if(pageName === undefined)
+	if(pageName === undefined){
 		res.status(400).json({ message: "missing pageName" })
+		return	
+	}
 
-	Model.findOneAndDelete({pageName},(err, result)=>{
+	Model.findOneAndDelete({pageName, removable:true},(err, result)=>{
 		if(err){
             res.status(500).json({
 				message: err.message,

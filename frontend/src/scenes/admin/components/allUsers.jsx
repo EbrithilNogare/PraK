@@ -38,7 +38,9 @@ class AllUsers extends React.Component {
 	render(){ return(
 		<div>
 			<h2>All users</h2>
-			{this.state.users.map((value, key) =>
+			{this.state.users
+				.sort((a, b)=> (a.email > b.email) ? 1 : (a.email === b.email) ? 0 : -1 )
+				.map((value, key) =>
 				<OneUser
 					key={key}
 					user={value}

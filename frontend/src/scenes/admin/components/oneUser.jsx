@@ -22,6 +22,7 @@ class OneUser extends React.Component {
 			roleExecute: props.user.role.execute,
 			roleCms: props.user.role.cms,
 			changed: false,
+			removed: false,
 		}
 	}
 
@@ -112,6 +113,7 @@ class OneUser extends React.Component {
 		.then(response => {
 			console.info("%cUser removed succesful", "background: #222; color: #bada55")
 			this.props.enqueueSnackbar("Uživatel odstraněn", { variant: "success", autoHideDuration: 6000 })
+			this.setState({ removed: true })
 		})
 		.catch((error) => {
 			console.info("%cUser removed unsuccesful\n", "background: #222; color: #bada55", error)
@@ -119,7 +121,11 @@ class OneUser extends React.Component {
 		})
 	}
 
-	render(){ return(
+	render(){ 
+		if(this.state.removed)
+			return (<div/>)
+		
+		return(
 		<div style={{margin:"5px", display: "flex", columnGap: "10px"}}>
 			<TextField
 				label={"firstName"}

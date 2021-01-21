@@ -64,7 +64,7 @@ router.route('/').put(auth("execute"), (req, res) => {
 		read: req.body.role.read || false,
 		write: req.body.role.write || false,
 		execute: req.body.role.execute || false,
-		execute: req.body.role.cms || false,
+		cms: req.body.role.cms || false,
 	}
 
 	const salt = randomstring.generate(16)

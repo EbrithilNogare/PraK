@@ -1,7 +1,7 @@
 import React from "react"
-
 import {
-	NavLink
+	NavLink,
+	withRouter,
 } from "react-router-dom";
 
 import { withSnackbar } from 'notistack'
@@ -32,7 +32,7 @@ class EditPage extends React.Component {
 			editorState: EditorState.createEmpty(),
 		}
 	}
-
+	
 	componentDidMount(){
 		const url = `/prak/api/pages/${this.props.pageName}`
 
@@ -83,6 +83,33 @@ class EditPage extends React.Component {
 		.catch((error) => {
 			console.info("%cPages saving unsuccesful\n", "background: #222; color: #bada55", error)
 			this.props.enqueueSnackbar("Ukládání se nezdařilo", { variant: "error", autoHideDuration: 6000 })
+		})
+	}
+	
+	deleteContent = () => {
+		const url = `/prak/api/pages/${this.props.pageName}`
+
+		if(!window.confirm("Opravdu chcete stránku smazat?")){
+			console.info("%cRemove canceled", "background: #222; color: #bada55")
+			return
+		}
+
+		fetch(url, {
+			method: 'DELETE',
+		})
+		.then(response => {
+			if(!response.ok)
+				throw response
+			return response.json()
+		})
+		.then(response => {
+			console.info("%cPage removed succesfuly\n", "background: #222; color: #bada55", response)
+			this.props.enqueueSnackbar("Stránka smazána", { variant: "success", autoHideDuration: 6000 })
+			this.props.history.push(`/prak/cms`)
+		})
+		.catch((error) => {
+			console.info("%cPage remove unsuccesful\n", "background: #222; color: #bada55", error)
+			this.props.enqueueSnackbar("Smazání stránky se nezdařilo", { variant: "error", autoHideDuration: 6000 })
 		})
 	}
 
@@ -146,9 +173,17 @@ class EditPage extends React.Component {
 				>
 					Uložit změny
 				</Button>
+				{this.state.removable && <Button
+					variant="contained"
+					color="primary"
+					onClick={this.deleteContent}
+				>
+					Smazat záznam
+				</Button>}
+				
 			</Paper>
 		</div>
 	)}
 }
 
-export default withSnackbar(EditPage)
+export default withRouter(withSnackbar(EditPage))
