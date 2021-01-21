@@ -4,12 +4,12 @@ const mongoose = require("mongoose")
 mongoose.set('useFindAndModify', false)
 const auth = require('../auth.js')
 
-router.route('/:id').get((req, res) => {
-	const id = req.params.id
-	if(id === undefined)
-		res.status(400).json({ message: "missing id" })
+router.route('/:pageName').get((req, res) => {
+	const pageName = req.params.pageName
+	if(pageName === undefined)
+		res.status(400).json({ message: "missing pageName" })
 
-	Model.findById(id)
+	Model.findOne({ pageName })
 		.exec()
 		.then(result => {
 			res.status(200).json(result)
@@ -22,12 +22,12 @@ router.route('/:id').get((req, res) => {
 		})
 })
 
-router.route('/cs/:id').get((req, res) => {
-	const id = req.params.id
-	if(id === undefined)
-		res.status(400).json({ message: "missing id" })
+router.route('/cs/:pageName').get((req, res) => {
+	const pageName = req.params.pageName
+	if(pageName === undefined)
+		res.status(400).json({ message: "missing pageName" })
 
-	Model.findById(id, "cs")
+	Model.findOne({pageName}, "cs")
 		.exec()
 		.then(result => {
 			res.set('Cache-control', 'public, max-age=3600')
@@ -41,12 +41,12 @@ router.route('/cs/:id').get((req, res) => {
 		})
 })
 
-router.route('/en/:id').get((req, res) => {
-	const id = req.params.id
-	if(id === undefined)
-		res.status(400).json({ message: "missing id" })
+router.route('/en/:pageName').get((req, res) => {
+	const pageName = req.params.pageName
+	if(pageName === undefined)
+		res.status(400).json({ message: "missing pageName" })
 
-	Model.findById(id, "en")
+	Model.findOne({pageName}, "en")
 		.exec()
 		.then(result => {
 			res.set('Cache-control', 'public, max-age=3600')
@@ -77,7 +77,7 @@ router.route('/').post((req, res) => {
 		})
 })
 
-router.route('/').put(auth("execute"), (req, res) => {
+router.route('/').put(auth("cms"), (req, res) => {
 	const newModel = new Model({...req.body, lastEdited: new Date()})
 
 	newModel.save()
@@ -92,12 +92,12 @@ router.route('/').put(auth("execute"), (req, res) => {
 		})
 })
 
-router.route('/:id').patch(auth("cms"), (req, res) => {
-	const id = req.params.id
-	if(id === undefined)
-		res.status(400).json({ message: "missing id" })
+router.route('/:pageName').patch(auth("cms"), (req, res) => {
+	const pageName = req.params.pageName
+	if(pageName === undefined)
+		res.status(400).json({ message: "missing pageName" })
 
-	Model.findByIdAndUpdate(id,{...req.body, lastEdited: new Date()},(err, result)=>{
+	Model.findOneAndUpdate({ pageName },{...req.body, lastEdited: new Date()},(err, result)=>{
 		if(err){
             res.status(500).json({
 				message: err.message,

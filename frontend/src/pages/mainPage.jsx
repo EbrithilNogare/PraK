@@ -75,7 +75,7 @@ class MainPage extends React.Component {
 					<ul>
 						{this.state.data.output.map((value, key)=><li key={key}>{value}</li>)}
 					</ul>
-					<Button color="primary"><NavLink to="/prak/about">O projektu</NavLink></Button>
+					<Button color="primary"><NavLink to="/prak/page/cs/about">O projektu</NavLink></Button>
 				</div>
 				<div className={styles.grid}>
 					{this.state.data.news.map((value, key)=>NewsCard({key, value}))}

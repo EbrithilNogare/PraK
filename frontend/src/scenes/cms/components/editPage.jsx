@@ -30,7 +30,7 @@ class EditPage extends React.Component {
 	}
 
 	componentDidMount(){
-		const url = `/prak/api/pages/${this.props.pageId}`
+		const url = `/prak/api/pages/${this.props.pageName}`
 
 		fetch(url, {
 			method: 'GET',
@@ -58,7 +58,7 @@ class EditPage extends React.Component {
 
 	uploadContent = () => {
 		const data = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
-		const url = `/prak/api/pages/${this.props.pageId}`
+		const url = `/prak/api/pages/${this.props.pageName}`
 
 		fetch(url, {
 			method: 'PATCH',
@@ -82,6 +82,40 @@ class EditPage extends React.Component {
 		})
 	}
 
+	uploadCallback = file => {
+		if(!file)
+			return
+
+		if(file.size > this.maxSize){
+			console.info("%cUpload unsuccesful due to file size", "background: #222; color: #bada55", file.size, ">", this.maxSize)
+			this.props.enqueueSnackbar("Soubor je příliš veliký", { variant: "error", autoHideDuration: 6000 })
+			return
+		}
+
+		const formData = new FormData();
+		formData.append('file', file);
+		
+		return fetch('/prak/api/uploads', {
+			method: 'PUT',
+			body: formData,
+		})
+		.then(response => {
+			if(!response.ok)
+				throw response
+			return response.json()
+		})
+		.then(response => {
+			console.info("%cUpload succesful\n", "background: #222; color: #bada55", response)
+			this.props.enqueueSnackbar("Nahrávání úspěšné", { variant: "success", autoHideDuration: 6000 })
+
+			return ({ data: { link: response.data.path } })
+		})
+		.catch((error) => {
+			console.info("%cUpload unsuccesful\n", "background: #222; color: #bada55", error)
+			this.props.enqueueSnackbar("Nahrávání se nezdařilo", { variant: "error", autoHideDuration: 6000 })
+		})
+	}
+
 	render(){ return(
 		<div className={styles.root}>
 			<Paper className={styles.content}>
@@ -91,12 +125,15 @@ class EditPage extends React.Component {
 					wrapperClassName="wrapperClassName"
 					editorClassName="editorClassName"
 					onEditorStateChange={this.onEditorStateChange}
+					uploadCallback={this.uploadCallback}
+					previewImage={true}
+					editorStyle={{ padding: "20px" }}
 				/>
 			</Paper>
 			<Paper className={styles.rightPanel}>
 				<h4>Název:<br/>{this.state.pageName}</h4>
 				<p>ID:<br/>{this.state._id}</p>
-				<p>Poslední editace:<br/>{this.state.lastEdited}</p>
+				<p>Poslední editace:<br/>{new Date(this.state.lastEdited).toLocaleString()}</p>
 				<Button
 					variant="contained"
 					color="primary"

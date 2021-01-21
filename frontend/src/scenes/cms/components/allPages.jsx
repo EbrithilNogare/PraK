@@ -6,7 +6,10 @@ import {
 
 import { 
 	Paper,
+	Button,
 } from '@material-ui/core'
+
+import styles from './allPages.module.scss'
 
 class AllPages extends React.Component {
 	constructor(props){
@@ -42,9 +45,17 @@ class AllPages extends React.Component {
 	}
 
 	render(){ return(
-		<Paper component={"ul"}>
-			{this.state.pages.map((value, key) =>
-				<li key={key} ><NavLink to={`/prak/cms/${value._id}`}>{value.pageName}</NavLink></li>
+		<Paper className={styles.root}>
+			{this.state.pages
+				.sort((a, b)=> (a.pageName > b.pageName) ? 1 : (a.pageName === b.pageName) ? 0 : -1 )
+				.map((value, key) =>
+				<NavLink 
+					key={key}
+					style={{ textDecoration: 'none' }}
+					to={`/prak/cms/${value.pageName}`}
+				>
+					<Button color="primary" variant="contained">{value.pageName}</Button>
+				</NavLink>
 			)}
 		</Paper>
 	)}

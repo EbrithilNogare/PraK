@@ -16,8 +16,18 @@ class LoadPageFromDB extends React.Component {
 		}
 	}
 
+	componentDidUpdate(prevProps, prevState){
+		if(prevProps.pageName !== this.props.pageName){
+			this.loadPage(this.props.pageName)
+		}
+	}
+
 	componentDidMount(){
-		const url = `/prak/api/pages/cs/${this.props.pageID}`
+		this.loadPage(this.props.pageName)
+	}
+
+	loadPage = (pageName) => {
+		const url = `/prak/api/pages/cs/${pageName}`
 
 		fetch(url, {
 			method: 'GET',
@@ -32,6 +42,7 @@ class LoadPageFromDB extends React.Component {
 		})
 		.catch((error) => {
 			console.info("%cPages loading unsuccesful\n", "background: #222; color: #bada55", error)
+			this.setState({html: "Unable to load page"})
 		})
 	}
 

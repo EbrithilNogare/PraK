@@ -28,11 +28,11 @@ class Footer extends React.Component {
 					<h3>Statické stránky</h3>
 					<hr/>
 					<ul>
-						<li> <NavLink to="/prak/manual">Manuál</NavLink> </li>
-						<li> <NavLink to="/prak/about">O projektu</NavLink> </li>
-						<li> <NavLink to="/prak/team">Řesitelský tým</NavLink> </li>
-						<li> <NavLink to="/prak/ourwork">Výstupy projektu</NavLink> </li>
-						<li> <NavLink to="/prak/partners">Partneři</NavLink> </li>
+						<li> <NavLink to="/prak/page/cs/manual">Manuál</NavLink> </li>
+						<li> <NavLink to="/prak/page/cs/about">O projektu</NavLink> </li>
+						<li> <NavLink to="/prak/page/cs/team">Řesitelský tým</NavLink> </li>
+						<li> <NavLink to="/prak/page/cs/ourwork">Výstupy projektu</NavLink> </li>
+						<li> <NavLink to="/prak/page/cs/partners">Partneři</NavLink> </li>
 						<li> <NavLink to="/prak/contacts">Kontakty</NavLink> </li>
 					</ul>
 				</div>

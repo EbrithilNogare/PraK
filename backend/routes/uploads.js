@@ -19,7 +19,7 @@ router.route('/').put(auth("write"), (req, res) => {
                 message: 'File is uploaded',
                 data: {
 					name: file.name,
-					path: `/uploads/${random}-${file.name}`,
+					path: `/prak/uploads/${random}-${file.name}`,
                     mimetype: file.mimetype,
                     size: file.size
                 }

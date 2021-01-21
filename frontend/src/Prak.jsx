@@ -96,7 +96,7 @@ class Prak extends React.Component {
 									<PrivateRoute path="/prak/admin" privacyLevel="1"><AdminScene/></PrivateRoute>
 
 									<PrivateRoute path="/prak/upload" privacyLevel="2"><UploadScene/></PrivateRoute>
-									<PrivateRoute path="/prak/cms" privacyLevel="2"><CmsScene/></PrivateRoute>
+									<PrivateRoute path="/prak/cms" privacyLevel="8"><CmsScene/></PrivateRoute>
 
 									<PrivateRoute path="/prak/input" privacyLevel="2"><InputScene/></PrivateRoute>
 									<PrivateRoute path="/prak/edit" privacyLevel="2"><EditScene/></PrivateRoute>
@@ -105,18 +105,12 @@ class Prak extends React.Component {
 
 									<Route path="/prak/contacts"><ContactsPage/></Route>
 
-									{[
-										["/prak/mainPage", "60077c4a2157459fbbfe796c"],
-										["/prak/manual", "60077d1b10293a843fe06400"],
-										["/prak/about", "60079acd10293a843fe3b387"],
-										["/prak/team", "60079ad610293a843fe3b51d"],
-										["/prak/ourwork", "60079aee10293a843fe3b732"],
-										["/prak/partners", "60079aee10293a843fe3b733"],
-									].map((value, key)=>
-										<Route key={key} path={value[0]}><LoadPageFromDB pageID={value[1]}/></Route>
-									)}
+									<Route path="/prak/page/cs/:pageName"  render={({match}) =>
+										<LoadPageFromDB pageName={match.params.pageName}/>
+									}></Route>
+									
 
-									<Route path="/prak"><Redirect to="/prak/mainPage" /></Route>
+									<Route path="/prak"><Redirect to="/prak/page/cs/homepage" /></Route>
 								</Switch>
 								<Footer/>
 							</Router>

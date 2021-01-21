@@ -9,8 +9,9 @@ import {
 	Paper,
 } from '@material-ui/core'
 
-import AllPages from "./components/allPages"
 import EditPage from "./components/editPage"
+import AllPages from "./components/allPages"
+import NewPage from "./components/newPage"
 
 import styles from './cmsScene.module.scss'
 
@@ -38,10 +39,13 @@ class CmsScene extends React.Component {
 					<h1>Redakční systém</h1>
 				</Paper>
 				<RouterSwitch>
-					<Route path="/prak/cms/:pageId" render={({match}) => <EditPage pageId={match.params.pageId}/>}/>
-					<Route path="/prak/cms/"><AllPages/></Route>
+					<Route path="/prak/cms/:pageName" render={({match}) => <EditPage pageName={match.params.pageName}/>}/>
+					<Route path="/prak/cms/">
+						<AllPages/>
+						
+					</Route>
 				</RouterSwitch>
-			</div>	
+			</div>
 		)
 	}
 }
