@@ -38,7 +38,7 @@ class LoadPageFromDB extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			this.setState({html: response.cs})
+			this.setState({html: response.cs || "--- Empty Page ---"})
 		})
 		.catch((error) => {
 			console.info("%cPages loading unsuccesful\n", "background: #222; color: #bada55", error)
