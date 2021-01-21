@@ -42,7 +42,7 @@ class CmsScene extends React.Component {
 					<Route path="/prak/cms/:pageName" render={({match}) => <EditPage pageName={match.params.pageName}/>}/>
 					<Route path="/prak/cms/">
 						<AllPages/>
-						
+						<NewPage/>
 					</Route>
 				</RouterSwitch>
 			</div>

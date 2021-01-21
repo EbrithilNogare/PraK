@@ -1,5 +1,9 @@
 import React from "react"
 
+import {
+	NavLink
+} from "react-router-dom";
+
 import { withSnackbar } from 'notistack'
 
 import { 
@@ -134,6 +138,7 @@ class EditPage extends React.Component {
 				<h4>Název:<br/>{this.state.pageName}</h4>
 				<p>ID:<br/>{this.state._id}</p>
 				<p>Poslední editace:<br/>{new Date(this.state.lastEdited).toLocaleString()}</p>
+				<p>Aktuální stránka:<br/><NavLink to={`/prak/page/cs/${this.state.pageName}`}>{`/prak/page/cs/${this.state.pageName}`}</NavLink> </p>
 				<Button
 					variant="contained"
 					color="primary"

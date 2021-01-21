@@ -1,9 +1,6 @@
 import React from "react"
 import { withSnackbar } from 'notistack'
-import { withRouter } from "react-router"
-import {
-	Redirect,
-} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { 
 	Paper,
@@ -31,7 +28,6 @@ class NewPage extends React.Component {
 			this.props.enqueueSnackbar("Neplatné jméno stránky, použijte formát ^[a-zA-Z0-9_]+$", { variant: "error", autoHideDuration: 6000 })
 			return
 		}
-
 
 		fetch(url, {
 			method: 'PUT',

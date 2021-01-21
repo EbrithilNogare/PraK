@@ -46,17 +46,19 @@ class AllPages extends React.Component {
 
 	render(){ return(
 		<Paper className={styles.root}>
+			<div className={styles.flex}>
 			{this.state.pages
 				.sort((a, b)=> (a.pageName > b.pageName) ? 1 : (a.pageName === b.pageName) ? 0 : -1 )
 				.map((value, key) =>
 				<NavLink 
-					key={key}
-					style={{ textDecoration: 'none' }}
-					to={`/prak/cms/${value.pageName}`}
+				key={key}
+				style={{ textDecoration: 'none' }}
+				to={`/prak/cms/${value.pageName}`}
 				>
 					<Button color="primary" variant="contained">{value.pageName}</Button>
 				</NavLink>
 			)}
+			</div>
 		</Paper>
 	)}
 }
