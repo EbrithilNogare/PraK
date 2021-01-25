@@ -54,7 +54,7 @@ class ShowScene extends React.Component {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({_limit: fast?5:100, ...this.description})
+			body: JSON.stringify({_limit: fast?5:10000, ...this.description})
 		})
 		.then(response => {
 			if(thisRequestVesion < this.newestRequest_v)
@@ -113,7 +113,7 @@ class ShowScene extends React.Component {
 									break
 								case "person":
 									template = [
-										{field: "name", headerName: "Název", flex: 400},
+										{field: "name", headerName: "Jméno", flex: 400},
 										{field: "surname", headerName: "Příjmení", flex: 400},
 										{field: "born_year", headerName: "Rok narození", flex: 200},
 									]

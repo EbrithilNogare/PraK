@@ -43,9 +43,6 @@ class ComboBox extends React.Component {
 
 		if(this.props.onChange) this.props.onChange({target:{value:undefined}})
 
-		if(event.target.value.length < 3) return
-
-
 		this.setState({loading: true})
 
 		const thisRequestVesion = this.request_v++

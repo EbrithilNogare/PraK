@@ -28,6 +28,7 @@ import typeDefinitionFile from './corporationTypes.json'
 import Multiplier from '../Multiplier'
 import MetadataComboBox from "components/comboBoxes/MetadataComboBox"
 import FoldablePaper from "../../components/FoldablePaper"
+import UniqueTextField from "../../components/UniqueTextField"
 
 class Corporation extends IndexParent {
 	constructor(props){
@@ -60,7 +61,7 @@ class Corporation extends IndexParent {
 				</Paper>
 				<div className={styles.body}>
 				<FoldablePaper className={styles.dataBlock}> <h2>Preferované označení</h2>
-					<TextField {...this.createFieldProps("name_main_part")}/>
+					<UniqueTextField {...this.createFieldProps("name_main_part")} uniqueSource="CorporationIndex" uniqueField="name_main_part"/>
 					<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
 					<TextField {...this.createFieldProps("jurisdiction")}/>
 					<KeywordComboBox {...this.createFieldProps("general_complement")}/>

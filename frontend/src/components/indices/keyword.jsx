@@ -24,6 +24,7 @@ import styles from './parent.module.scss'
 import typeDefinitionFile from './keywordTypes.json'
 import Multiplier from '../Multiplier'
 import FoldablePaper from "../../components/FoldablePaper"
+import UniqueTextField from "../../components/UniqueTextField"
 
 class Keyword extends IndexParent {
 	constructor(props){
@@ -56,7 +57,7 @@ class Keyword extends IndexParent {
 				</Paper>
 				<div className={styles.body}>
 				<FoldablePaper className={styles.dataBlock}> <h2>Preferované označení</h2>
-					<TextField {...this.createFieldProps("name_main_part")}/>
+						<UniqueTextField {...this.createFieldProps("name_main_part")} uniqueSource="KeywordIndex" uniqueField="name_main_part"/>
 					<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
 					<KeywordComboBox {...this.createFieldProps("general_complement")}/>
 				</FoldablePaper>

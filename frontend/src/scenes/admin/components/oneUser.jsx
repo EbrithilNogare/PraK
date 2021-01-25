@@ -12,7 +12,7 @@ class OneUser extends React.Component {
 	constructor(props){
 		super(props)
 
-		this.state = {
+		this.defaultState = {
 			firstName: props.user.firstName,
 			secondName: props.user.secondName,
 			email: props.user.email,
@@ -21,6 +21,10 @@ class OneUser extends React.Component {
 			roleWrite: props.user.role.write,
 			roleExecute: props.user.role.execute,
 			roleCms: props.user.role.cms,
+		}
+
+		this.state = {
+			...this.defaultState,
 			changed: false,
 			removed: false,
 		}
@@ -28,15 +32,15 @@ class OneUser extends React.Component {
 
 	diff = () => {
 		const d = {}
-		if(this.state.firstName !== this.props.user.firstName) d.firstName = this.state.firstName
-		if(this.state.secondName !== this.props.user.secondName) d.secondName = this.state.secondName
-		if(this.state.email !== this.props.user.email) d.email = this.state.email
-		if(this.state.password !== this.props.user.password) d.password = this.state.password
+		if(this.state.firstName !== this.defaultState.firstName) d.firstName = this.state.firstName
+		if(this.state.secondName !== this.defaultState.secondName) d.secondName = this.state.secondName
+		if(this.state.email !== this.defaultState.email) d.email = this.state.email
+		if(this.state.password !== this.defaultState.password) d.password = this.state.password
 		
-		if(this.state.roleRead !== this.props.user.role.read
-			|| this.state.roleWrite !== this.props.user.role.write
-			|| this.state.roleExecute !== this.props.user.role.execute
-			|| this.state.roleCms !== this.props.user.role.cms
+		if(this.state.roleRead !== this.defaultState.roleRead
+			|| this.state.roleWrite !== this.defaultState.roleWrite
+			|| this.state.roleExecute !== this.defaultState.roleExecute
+			|| this.state.roleCms !== this.defaultState.roleCms
 		)
 		d.role = {
 			read: this.state.roleRead,
@@ -66,6 +70,7 @@ class OneUser extends React.Component {
 		if(Object.keys(diff).length === 0 && diff.constructor === Object){
 			console.error("nothing to save")
 			this.props.enqueueSnackbar("Nic nebylo změněno", { variant: "error", autoHideDuration: 6000 })
+			this.setState({changed:false})
 			return
 		}
 
@@ -82,12 +87,14 @@ class OneUser extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			console.info("%cUser saving succesful\n", "background: #222; color: #bada55")
+			console.info("%cUser saved succesfuly\n", "background: #222; color: #bada55")
 			this.props.enqueueSnackbar("Změny uloženy", { variant: "success", autoHideDuration: 6000 })
 			this.setState({changed:false})
+			let { changed, removed, ...defaultState } = this.state
+			this.defaultState = defaultState
 		})
 		.catch((error) => {
-			console.info("%cUser saving unsuccesful\n", "background: #222; color: #bada55", error)
+			console.info("%cUser was not saved\n", "background: #222; color: #bada55", error)
 			this.props.enqueueSnackbar("Ukládání neúspěšné", { variant: "error", autoHideDuration: 6000 })
 		})
 	}

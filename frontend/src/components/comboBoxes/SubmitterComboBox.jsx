@@ -18,10 +18,9 @@ class SubmitterComboBox extends React.Component {
 	}
 	
 	render(){ 
-		// eslint-disable-next-line no-unused-vars
-		const {allCookies, childProps} = {...this.props}
+		const {defaultValue, allCookies, ...childProps} = {...this.props}
 		return(
-			<TextField defaultValue={this.defaultValue} {...childProps} disabled={!(this.props.cookies.get("permission") & 1)}/>
+			<TextField {...childProps} defaultValue={defaultValue ? defaultValue : this.defaultValue} disabled={!(this.props.cookies.get("permission") & 1)}/>
 		)}
 }
 

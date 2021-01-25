@@ -38,6 +38,7 @@ import styles from './parent.module.scss'
 import typeDefinitionFile from './metadataTypes.json'
 import LabeledCheckbox from "../LabeledCheckbox"
 import FoldablePaper from "../../components/FoldablePaper"
+import UniqueTextField from "../../components/UniqueTextField"
 
 class Metadata extends IndexParent {
 	constructor(props){
@@ -108,7 +109,7 @@ class Metadata extends IndexParent {
 					</FormControl>
 				</Paper>
 				<FoldablePaper className={styles.dataBlock}> <h2>Název</h2>
-					{this.conditionalField("name") && <TextField {...this.createFieldProps("name")}/>}
+					{this.conditionalField("name") && <UniqueTextField {...this.createFieldProps("name")} uniqueSource="Metadata" uniqueField="name"/>}
 					<Multiplier>{this.conditionalField("other_names") && <TextField {...this.createFieldProps("other_names")}/>}</Multiplier>
 				</FoldablePaper>
 				<FoldablePaper className={styles.dataBlock}> <h2>Autor</h2>

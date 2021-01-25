@@ -26,6 +26,7 @@ import GPSField from "../validationTextFields/GPSField"
 import typeDefinitionFile from './creationTypes.json'
 import Multiplier from '../Multiplier'
 import FoldablePaper from "../../components/FoldablePaper"
+import UniqueTextField from "../../components/UniqueTextField"
 
 
 class Creation extends IndexParent {
@@ -59,7 +60,7 @@ class Creation extends IndexParent {
 				</Paper>
 				<div className={styles.body}>
 				<FoldablePaper className={styles.dataBlock}> <h2>Preferované označení</h2>
-					<TextField {...this.createFieldProps("name_main_part")}/>
+					<UniqueTextField {...this.createFieldProps("name_main_part")} uniqueSource="CreationIndex" uniqueField="name_main_part"/>
 					<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
 					<KeywordComboBox {...this.createFieldProps("general_complement")}/>
 					<GeographicComboBox {...this.createFieldProps("geographical_complement")}/>
