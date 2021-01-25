@@ -31,6 +31,7 @@ import Multiplier from '../Multiplier'
 import LabeledCheckbox from "../LabeledCheckbox"
 import MetadataComboBox from "components/comboBoxes/MetadataComboBox"
 import FoldablePaper from "../../components/FoldablePaper"
+import UploadFile from "../../components/UploadFile"
 
 class Person extends IndexParent {
 	constructor(props){
@@ -197,6 +198,12 @@ class Person extends IndexParent {
 					<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
 					<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
 					<SubmitterComboBox  {...this.createFieldProps("submitter")}/>
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Přílohy</h2>
+					<Multiplier>
+						<UploadFile {...this.createFieldProps("attachment_url")}/>
+						<TextField {...this.createFieldProps("attachment_description")}/>
+					</Multiplier>
 				</FoldablePaper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

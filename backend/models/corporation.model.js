@@ -198,6 +198,10 @@ const schema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	attachment: [{
+		url: String,
+		description: String,
+	}],
 })
 
 module.exports = mongoose.model('corporationIndex', schema, 'corporationIndex')

@@ -327,22 +327,6 @@
 			"fields": [1, 0, 1, 1, 0, 1, 1, 0, 1, 1],
 			"helper": "URL vedoucí přímo na digitalizát zpracovávaného díla nebo archiválie v externím Elektronickém zdroji."
 		},
-		"attachment-category": {
-			"label": "Příloha",
-			"schema": "attachment[%]"
-		},
-		"attachment_name": {
-			"label": "Název přílohy",
-			"schema": "attachment[%].name",
-			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": "Převzatý nebo vlastní název přílohy."
-		},
-		"attachment_url": {
-			"label": "URL přílohy",
-			"schema": "attachment[%].url",
-			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			"helper": "URL přílohy."
-		},
 		"described_object_citation": {
 			"label": "Citace (popisovaný objekt)",
 			"schema": "described_object_citation[%]",
@@ -540,6 +524,18 @@
 			"schema": "submitter",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			"required": true
+		},
+		"attachment-category": {
+			"label": "Přílohy",
+			"schema": "attachment[%]"
+		},
+		"attachment_url": {
+			"label": "Příloha",
+			"schema": "attachment[%].url"
+		},
+		"attachment_description": {
+			"label": "Popis",
+			"schema": "attachment[%].description"
 		}
 	}
 }

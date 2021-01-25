@@ -39,6 +39,7 @@ import typeDefinitionFile from './metadataTypes.json'
 import LabeledCheckbox from "../LabeledCheckbox"
 import FoldablePaper from "../../components/FoldablePaper"
 import UniqueTextField from "../../components/UniqueTextField"
+import UploadFile from "../../components/UploadFile"
 
 class Metadata extends IndexParent {
 	constructor(props){
@@ -184,10 +185,6 @@ class Metadata extends IndexParent {
 						{this.conditionalField("external_source_url") && <TextField  {...this.createFieldProps("external_source_url")}/>}
 						{this.conditionalField("url_leading_to_document") && <TextField  {...this.createFieldProps("url_leading_to_document")}/>}
 					</Multiplier>
-					<Multiplier>
-						{this.conditionalField("attachment_name") && <TextField  {...this.createFieldProps("attachment_name")}/>}
-						{this.conditionalField("attachment_url") && <TextField  {...this.createFieldProps("attachment_url")}/>}
-					</Multiplier>
 				</FoldablePaper>
 				<FoldablePaper className={styles.dataBlock}> <h2>Fyzický popis</h2>
 					<Multiplier>{this.conditionalField("form") && <FormStaticComboBox  {...this.createFieldProps("form")}/>}</Multiplier>
@@ -226,6 +223,12 @@ class Metadata extends IndexParent {
 					<Multiplier>{this.conditionalField("general_note") && <TextField {...this.createFieldProps("general_note")}/>}</Multiplier>
 					<Multiplier>{this.conditionalField("editor_note") && <TextField {...this.createFieldProps("editor_note")}/>}</Multiplier>
 					{this.conditionalField("submitter") && <SubmitterComboBox  {...this.createFieldProps("submitter")}/>}
+				</FoldablePaper>
+				<FoldablePaper className={styles.dataBlock}> <h2>Přílohy</h2>
+					<Multiplier>
+						<UploadFile {...this.createFieldProps("attachment_url")}/>
+						<TextField {...this.createFieldProps("attachment_description")}/>
+					</Multiplier>
 				</FoldablePaper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>

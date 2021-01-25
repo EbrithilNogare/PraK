@@ -391,6 +391,18 @@
 			"label": "Zadavatel",
 			"schema": "submitter",
 			"required": true
+		},
+		"attachment-category": {
+			"label": "Přílohy",
+			"schema": "attachment[%]"
+		},
+		"attachment_url": {
+			"label": "Příloha",
+			"schema": "attachment[%].url"
+		},
+		"attachment_description": {
+			"label": "Popis",
+			"schema": "attachment[%].description"
 		}
 	}
 }

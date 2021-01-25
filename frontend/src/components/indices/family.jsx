@@ -26,6 +26,7 @@ import typeDefinitionFile from './subjectTypes.json'
 import Multiplier from '../Multiplier'
 import FoldablePaper from "../../components/FoldablePaper"
 import UniqueTextField from "../../components/UniqueTextField"
+import UploadFile from "../../components/UploadFile"
 
 class Family extends IndexParent {
 	constructor(props){
@@ -57,26 +58,32 @@ class Family extends IndexParent {
 					</Tooltip>
 				</Paper>
 				<div className={styles.body}>
-				<FoldablePaper className={styles.dataBlock}> <h2>Preferované označení</h2>
-					<UniqueTextField {...this.createFieldProps("name_main_part")} uniqueSource="FamilyIndex" uniqueField="name_main_part"/>
-					<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
-				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}> <h2>Poznámky</h2>
-					<Multiplier><TextField {...this.createFieldProps("public_note")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("nonpublic_note")}/></Multiplier>
-				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
-					<Multiplier>
-						<TextField {...this.createFieldProps("other_source_name")}/>
-						<TextField {...this.createFieldProps("other_source_id")}/>
-						<TextField {...this.createFieldProps("other_source_identificator")}/>
-					</Multiplier>
-				</FoldablePaper>
-				<FoldablePaper className={styles.dataBlock}>
-					<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
-					<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
-					<SubmitterComboBox  {...this.createFieldProps("submitter")}/>
-				</FoldablePaper>
+					<FoldablePaper className={styles.dataBlock}> <h2>Preferované označení</h2>
+						<UniqueTextField {...this.createFieldProps("name_main_part")} uniqueSource="FamilyIndex" uniqueField="name_main_part"/>
+						<Multiplier><TextField {...this.createFieldProps("name_other_part")}/></Multiplier>
+					</FoldablePaper>
+					<FoldablePaper className={styles.dataBlock}> <h2>Poznámky</h2>
+						<Multiplier><TextField {...this.createFieldProps("public_note")}/></Multiplier>
+						<Multiplier><TextField {...this.createFieldProps("nonpublic_note")}/></Multiplier>
+					</FoldablePaper>
+					<FoldablePaper className={styles.dataBlock}> <h2>Jiný zdroj</h2>
+						<Multiplier>
+							<TextField {...this.createFieldProps("other_source_name")}/>
+							<TextField {...this.createFieldProps("other_source_id")}/>
+							<TextField {...this.createFieldProps("other_source_identificator")}/>
+						</Multiplier>
+					</FoldablePaper>
+					<FoldablePaper className={styles.dataBlock}>
+						<Multiplier><TextField {...this.createFieldProps("record_sources")}/></Multiplier>
+						<Multiplier><TextField {...this.createFieldProps("editor_note")}/></Multiplier>
+						<SubmitterComboBox  {...this.createFieldProps("submitter")}/>
+					</FoldablePaper>
+					<FoldablePaper className={styles.dataBlock}> <h2>Přílohy</h2>
+						<Multiplier>
+							<UploadFile {...this.createFieldProps("attachment_url")}/>
+							<TextField {...this.createFieldProps("attachment_description")}/>
+						</Multiplier>
+					</FoldablePaper>
 				</div>
 				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
 			</form>

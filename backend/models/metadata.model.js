@@ -106,10 +106,6 @@ const schema = new mongoose.Schema({
 		url: String,
 		url_leading_to_document: String,
 	}],
-	attachment: [{
-		name: String,
-		url: String,
-	}],
 	described_object_citation: [{
 		type: mongoose.Types.ObjectId,
 		ref: "metadata"
@@ -202,6 +198,10 @@ const schema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	attachment: [{
+		url: String,
+		description: String,
+	}],
 })
 
 module.exports = mongoose.model("metadata", schema, "metadata")

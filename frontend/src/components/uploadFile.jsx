@@ -3,17 +3,18 @@ import { withSnackbar } from 'notistack'
 
 import { 
 	Button,
+	TextField,
 } from '@material-ui/core'
+
+import PublishIcon from '@material-ui/icons/Publish'
 
 class UploadFile extends React.Component {
 	constructor(props){
 		super(props)
 
 		this.state = {
-			name: "",
 			path: "",
-			size: "",
-			mimetype: "",
+			value: this.props.defaultValue || "",
 		}
 
 		this.maxSize = 32 * 1024 * 1024 // 32MB
@@ -23,7 +24,17 @@ class UploadFile extends React.Component {
 
 	}
 
-	handleChange = e => {
+	handleChange = (e) => {
+		if(e.target.type === "checkbox")
+			this.setState({ value: e.target.checked })
+		else
+			this.setState({ value: e.target.value })
+
+		if(this.props.onChange)
+			this.props.onChange(e)
+	}
+	
+	handleUpload = e => {
 		if(!e.target.files[0])
 			return
 
@@ -48,9 +59,7 @@ class UploadFile extends React.Component {
 		.then(response => {
 			console.info("%cUpload succesful\n", "background: #222; color: #bada55", response)
 			this.props.enqueueSnackbar("Nahrávání úspěšné", { variant: "success", autoHideDuration: 6000 })
-
-			if(this.props.onChange)
-				this.props.onChange(response.data)
+			this.handleChange({ target: { value: response.data.path, type: "file", name: this.props.name } })
 		})
 		.catch((error) => {
 			console.info("%cUpload unsuccesful\n", "background: #222; color: #bada55", error)
@@ -59,19 +68,13 @@ class UploadFile extends React.Component {
 	}
 
 	render(){
+		const {enqueueSnackbar, closeSnackbar, onChange, defaultValue, ...props} = {...this.props}
 		return(
-			<div>
-				<Button
-					color="primary"
-					variant="contained"
-					component="label"
-				>
-					Upload File
-					<input
-						type="file"
-						hidden
-						onChange={this.handleChange}
-					/>
+			<div style={{display: "grid", gridTemplateColumns:"1fr auto"}}>
+				<TextField {...props} value={this.state.value} onChange={this.handleChange}/>
+				<Button component="label">
+					<PublishIcon/>
+					<input type="file" hidden onChange={this.handleUpload}/>
 				</Button>
 			</div>			
 		)
