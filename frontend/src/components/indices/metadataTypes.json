@@ -501,7 +501,7 @@
 			"type": "Number"
 		},
 		"chronological_content_specification_active": {
-			"label": "Chronologické zpřesnění obsahu dokumentu (stále probíhá)",
+			"label": "Stále probíhá",
 			"schema": "chronological_content_specification[%].active",
 			"fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 		},
