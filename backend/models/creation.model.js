@@ -79,7 +79,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	}],
-	related_document:[{
+	related_creation:[{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	}],

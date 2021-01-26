@@ -98,7 +98,7 @@ class Creation extends IndexParent {
 						<Multiplier><GeographicComboBox {...this.createFieldProps("related_location")}/></Multiplier>
 						<Multiplier><PersonComboBox {...this.createFieldProps("owner_person")}/></Multiplier>
 						<Multiplier><CorporationComboBox {...this.createFieldProps("owner_corporation")}/></Multiplier>
-						<Multiplier><CreationComboBox {...this.createFieldProps("related_document")}/></Multiplier>
+						<Multiplier><CreationComboBox {...this.createFieldProps("related_creation")}/></Multiplier>
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Vznik/ počátek existence</h2>
 						<PersonComboBox {...this.createFieldProps("founding_person")}/>

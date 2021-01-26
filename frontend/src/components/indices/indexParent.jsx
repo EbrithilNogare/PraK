@@ -32,10 +32,12 @@ class IndexParent extends React.Component {
 	getTypeDefinition = () => {throw new Error("Calling abstract function")}
 
 	createFieldProps = (name) => {
-		const {helper, schema, fields, ...definition} = this.getTypeDefinition(name)
+		const typeDefinition = this.getTypeDefinition(name)
 
-		if(definition === undefined)
+		if(typeDefinition === undefined)
 			throw new Error("createFieldProps: cannot find: [" + name + "]")
+
+		const {helper, schema, fields, ...definition} = typeDefinition
 
 		if(helper)
 			definition.InputProps = this.helperProp(helper)

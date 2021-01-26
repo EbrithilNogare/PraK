@@ -144,9 +144,9 @@
 			"schema": "owner_corporation[%]",
 			"helper": "Držitelé, správci - pokud není nutné vyjádřit změnu vlastnictví pomocí události změna. Výběr z rejstříku korporací."
 		},
-		"related_document": {
+		"related_creation": {
 			"label": "Související dokument",
-			"schema": "related_document[%]",
+			"schema": "related_creation[%]",
 			"helper": "Písemná zmínka, zmínka o existenci. Výběr z rejstříku dílo/výtvor."
 		},
 

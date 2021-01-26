@@ -84,7 +84,7 @@ class Subject extends IndexParent {
 						<Multiplier><SubjectComboBox {...this.createFieldProps("sup_event")}/></Multiplier>
 						<Multiplier><SubjectComboBox {...this.createFieldProps("sub_event")}/></Multiplier>
 						<Multiplier><PersonComboBox {...this.createFieldProps("related_person")}/></Multiplier>
-						<Multiplier><CreationComboBox {...this.createFieldProps("related_subject")}/></Multiplier>
+						<Multiplier><CreationComboBox {...this.createFieldProps("related_creation")}/></Multiplier>
 						<Multiplier><GeographicComboBox {...this.createFieldProps("related_place")}/></Multiplier>
 						<Multiplier><GeographicComboBox {...this.createFieldProps("venue")}/></Multiplier>
 						<Multiplier><PersonComboBox {...this.createFieldProps("organizator_person")}/></Multiplier>
@@ -92,19 +92,27 @@ class Subject extends IndexParent {
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Počátek existence</h2>
 						<PersonComboBox {...this.createFieldProps("founding_person")}/>
+						<TextField {...this.createFieldProps("founding_person_chrono_spec")}/>
 						<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
-						<GeographicComboBox {...this.createFieldProps("founding_place")}/>
+						<TextField {...this.createFieldProps("founding_corporation_chrono_spec")}/>
 						<TextField {...this.createFieldProps("founding_document")}/>
-						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
-						<TextField {...this.createFieldProps("first_mention_subject")}/>
+						<TextField {...this.createFieldProps("founding_document_chrono_spec")}/>
+						<GeographicComboBox {...this.createFieldProps("founding_place")}/>
+						<TextField {...this.createFieldProps("founding_place_chrono_spec")}/>
+						<TextField {...this.createFieldProps("first_mention_document")}/>
+						<TextField {...this.createFieldProps("first_mention_document_chrono_spec")}/>
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Konec existence</h2>
 						<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
-						<CorporationComboBox {...this.createFieldProps("cancellation_event")}/>
-						<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
+						<TextField {...this.createFieldProps("cancellation_person_chrono_spec")}/>
+						<CorporationComboBox {...this.createFieldProps("cancellation_corporation")}/>
+						<TextField {...this.createFieldProps("cancellation_corporation_chrono_spec")}/>
 						<TextField {...this.createFieldProps("cancellation_document")}/>
-						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
-						<TextField {...this.createFieldProps("last_mention_subject")}/>
+						<TextField {...this.createFieldProps("cancellation_document_chrono_spec")}/>
+						<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
+						<TextField {...this.createFieldProps("cancellation_place_chrono_spec")}/>
+						<TextField {...this.createFieldProps("last_mention_document")}/>
+						<TextField {...this.createFieldProps("last_mention_document_chrono_spec")}/>
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Zařazení</h2>
 						<Multiplier><KeywordComboBox {...this.createFieldProps("category")}/></Multiplier>

@@ -181,40 +181,70 @@
 			"schema": "founding_person",
 			"helper": "Výběr z rejstříku osob."
 		},
+		"founding_person_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - zakladatel",
+			"schema": "founding_person_chrono_spec",
+			"helper": ""
+		},
 		"founding_corporation": {
 			"label": "Zakládající korporace",
 			"schema": "founding_corporation",
 			"helper": "Výběr z rejstříku korporací."
+		},
+		"founding_corporation_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - zakládající korporace",
+			"schema": "founding_corporation_chrono_spec",
+			"helper": ""
 		},
 		"founding_document": {
 			"label": "Zakládající dokument",
 			"schema": "founding_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
+		"founding_document_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - zakládající dokument",
+			"schema": "founding_document_chrono_spec",
+			"helper": ""
+		},
 		"founding_place": {
 			"label": "Místo založení",
 			"schema": "founding_place",
 			"helper": "Výběr z geografického rejstříku."
 		},
-		"first_mention_event": {
+		"founding_place_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - místo založení",
+			"schema": "founding_place_chrono_spec",
+			"helper": ""
+		},
+		"founding_event": {
 			"label": "Zakládající událost",
-			"schema": "first_mention_event",
+			"schema": "founding_event",
 			"helper": "Výběr z rejstříku událost."
+		},
+		"founding_event_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - zakládající událost",
+			"schema": "founding_event_chrono_spec",
+			"helper": ""
 		},
 		"first_mention_document": {
 			"label": "První písemná zmínka - událost",
 			"schema": "first_mention_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
+		"first_mention_document_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - první písemná zmínka - událost",
+			"schema": "first_mention_document_chrono_spec",
+			"helper": ""
+		},
 		"first_mention_place": {
 			"label": "První písemná zmínka - místo",
 			"schema": "first_mention_place",
 			"helper": "Výběr z geografického rejstříku."
 		},
-		"founding_chronological_specification": {
-			"label": "Chronologické zpřesnění",
-			"schema": "founding_chronological_specification",
-			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
+		"first_mention_place_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - první písemná zmínka - místo",
+			"schema": "first_mention_place_chrono_spec",
+			"helper": ""
 		},
 
 		"cancellation_person": {
@@ -222,45 +252,80 @@
 			"schema": "cancellation_person",
 			"helper": "Výběr z rejstříku osob."
 		},
+		"cancellation_person_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - rušitel",
+			"schema": "cancellation_person_chrono_spec",
+			"helper": ""
+		},
 		"cancellation_corporation": {
 			"label": "Rušící korporace",
 			"schema": "cancellation_corporation",
 			"helper": "Výběr z rejstříku korporací."
+		},
+		"cancellation_corporation_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - rušící korporace",
+			"schema": "cancellation_corporation_chrono_spec",
+			"helper": ""
 		},
 		"cancellation_document": {
 			"label": "Rušící dokument",
 			"schema": "cancellation_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
+		"cancellation_document_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - rušící dokument",
+			"schema": "cancellation_document_chrono_spec",
+			"helper": ""
+		},
 		"cancellation_place": {
 			"label": "Místo zrušení",
 			"schema": "cancellation_place",
 			"helper": "Výběr z geografického rejstříku."
+		},
+		"cancellation_place_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - místo zrušení",
+			"schema": "cancellation_place_chrono_spec",
+			"helper": ""
 		},
 		"last_mention_event": {
 			"label": "Rušící událost",
 			"schema": "last_mention_event",
 			"helper": "Výběr z rejstříku událost."
 		},
+		"last_mention_event_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - rušící událost",
+			"schema": "last_mention_event_chrono_spec",
+			"helper": ""
+		},
 		"last_mention_document": {
 			"label": "Poslední písemná zmínka - událost",
 			"schema": "last_mention_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
+		},
+		"last_mention_document_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - poslední písemná zmínka - událost",
+			"schema": "last_mention_document_chrono_spec",
+			"helper": ""
 		},
 		"last_mention_place": {
 			"label": "Poslední písemná zmínka - místo",
 			"schema": "last_mention_place",
 			"helper": "Výběr z geografického rejstříku."
 		},
-		"cancellation_chronological_specification": {
-			"label": "Chronologické zpřesnění zrušení",
-			"schema": "cancellation_chronological_specification",
-			"helper": "Uvádí se rok nebo období let, kterého se dílo nebo archiválie týkají."
+		"last_mention_place_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - poslední písemná zmínka - místo",
+			"schema": "last_mention_place_chrono_spec",
+			"helper": ""
 		},
 		"owner_change": {
 			"label": "Změna majitele, držitele",
 			"schema": "owner_change",
 			"helper": "Odkaz na předchozí entitu. Výběr z geografického rejstříku."
+		},
+		"owner_change_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - změna majitele, držitele",
+			"schema": "owner_change_chrono_spec",
+			"helper": ""
 		},
 		"historical_milestones": {
 			"label": "Chronologické zpřesnění změny majitele",

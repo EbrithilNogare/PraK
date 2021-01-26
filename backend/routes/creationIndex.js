@@ -24,7 +24,7 @@ router.route('/:id').get((req, res) => {
 		.populate("related_location", "name_main_part")
 		.populate("owner_person", ['name', 'surname'])
 		.populate("owner_corporation", "name_main_part")
-		.populate("related_document", "name_main_part")
+		.populate("related_creation", "name_main_part")
 		.populate("founding_person", ['name', 'surname'])
 		.populate("founding_corporation", "name_main_part")
 		.populate("first_mention_place", "name_main_part")

@@ -89,9 +89,9 @@
 			"schema": "related_person[%]",
 			"helper": "Výběr z rejstříku osob."
 		},
-		"related_subject": {
+		"related_creation": {
 			"label": "Pojmenováno po dílu/výtvoru",
-			"schema": "related_subject[%]",
+			"schema": "related_creation[%]",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"related_place": {
@@ -120,60 +120,100 @@
 			"schema": "founding_person",
 			"helper": "Výběr z rejstříku osob."
 		},
+		"founding_person_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - zakladatel",
+			"schema": "founding_person_chrono_spec",
+			"helper": ""
+		},
 		"founding_corporation": {
 			"label": "Zakládající korporace",
 			"schema": "founding_corporation",
 			"helper": "Výběr z rejstříku korporací."
 		},
-		"founding_place": {
-			"label": "Místo založení",
-			"schema": "founding_place",
-			"helper": "Výběr z geografického rejstříku."
+		"founding_corporation_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - korporace",
+			"schema": "founding_corporation_chrono_spec",
+			"helper": ""
 		},
 		"founding_document": {
-			"label": "Zakládající dokument",
+			"label": "Místo založení",
 			"schema": "founding_document",
+			"helper": "Výběr z geografického rejstříku."
+		},
+		"founding_document_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - dokument",
+			"schema": "founding_document_chrono_spec",
+			"helper": ""
+		},
+		"founding_place": {
+			"label": "Zakládající dokument",
+			"schema": "founding_place",
 			"helper": "Ustanovující dokument. Výběr z rejstříku dílo/výtvor."
 		},
-		"founding_chronological_specification": {
-			"label": "Chronologické zpřesnění",
-			"schema": "founding_chronological_specification",
-			"helper": "Časové zpřesnění související s počátkem události."
+		"founding_place_chrono_spec": {
+			"label": "Chronologické zpřesnění založení - místo",
+			"schema": "founding_place_chrono_spec",
+			"helper": ""
 		},
-		"first_mention_subject": {
+		"first_mention_document": {
 			"label": "První písemná zmínka",
-			"schema": "first_mention_subject",
+			"schema": "first_mention_document",
+			"helper": ""
+		},
+		"first_mention_document_chrono_spec": {
+			"label": "Chronologické zpřesnění zmínky - dokument",
+			"schema": "first_mention_document_chrono_spec",
 			"helper": ""
 		},
 
 		"cancellation_person": {
 			"label": "Rušitel",
 			"schema": "cancellation_person",
-			"helper": "Výběr z rejstříku osob, pokud souvisela s ukončením události."
+			"helper": "Výběr z rejstříku osob."
 		},
-		"cancellation_event": {
+		"cancellation_person_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - rušitel",
+			"schema": "cancellation_person_chrono_spec",
+			"helper": ""
+		},
+		"cancellation_corporation": {
 			"label": "Rušící korporace",
-			"schema": "cancellation_event",
+			"schema": "cancellation_corporation",
 			"helper": "Výběr z rejstříku korporací."
 		},
-		"cancellation_place": {
-			"label": "Místo zrušení",
-			"schema": "cancellation_place",
-			"helper": "V roli místo (pro souborné záznamy událostí). Výběr z geografického rejstříku."
+		"cancellation_corporation_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - korporace",
+			"schema": "cancellation_corporation_chrono_spec",
+			"helper": ""
 		},
 		"cancellation_document": {
 			"label": "Rušící dokument",
 			"schema": "cancellation_document",
-			"helper": "Související dokument. Výběr z rejstříku dílo/výtvor."
+			"helper": ""
 		},
-		"cancellation_chronological_specification": {
-			"label": "Chronologické zpřesnění",
-			"schema": "cancellation_chronological_specification",
-			"helper": "Časové zpřesnění související s koncem události."
+		"cancellation_document_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - dokument",
+			"schema": "cancellation_document_chrono_spec",
+			"helper": ""
 		},
-		"last_mention_subject": {
-			"label": "Poslední písemná zmínka",
-			"schema": "last_mention_subject",
+		"cancellation_place": {
+			"label": "Místo zrušení",
+			"schema": "cancellation_place",
+			"helper": "Výběr z geografického rejstříku."
+		},
+		"cancellation_place_chrono_spec": {
+			"label": "Chronologické zpřesnění zrušení - místo",
+			"schema": "cancellation_place_chrono_spec",
+			"helper": ""
+		},
+		"last_mention_document": {
+			"label": "Poslední písemná zmínka - dokument",
+			"schema": "last_mention_document",
+			"helper": ""
+		},
+		"last_mention_document_chrono_spec": {
+			"label": "Chronologické zpřesnění zmínka - dokument",
+			"schema": "last_mention_document_chrono_spec",
 			"helper": ""
 		},
 

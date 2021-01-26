@@ -94,7 +94,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	}],
-	related_subject:[{
+	related_creation:[{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	}],
@@ -119,33 +119,41 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
+	founding_person_chrono_spec: String,
 	founding_corporation: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
-	founding_place: {
+	founding_corporation_chrono_spec: String,
+	founding_document: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	founding_document: String,
-	founding_chronological_specification: String,
-	first_mention_subject: String,
+	founding_document_chrono_spec: String,
+	founding_place: String,
+	founding_place_chrono_spec: String,
+	first_mention_document: String,
+	first_mention_document_chrono_spec: String,
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	cancellation_event: {
+	cancellation_person_chrono_spec: String,
+	cancellation_corporation: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
+	cancellation_corporation_chrono_spec: String,
+	cancellation_document: String,
+	cancellation_document_chrono_spec: String,
 	cancellation_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	cancellation_document: String,
-	cancellation_chronological_specification: String,
-	last_mention_subject: String,
+	cancellation_place_chrono_spec: String,
+	last_mention_document: String,
+	last_mention_document_chrono_spec: String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,

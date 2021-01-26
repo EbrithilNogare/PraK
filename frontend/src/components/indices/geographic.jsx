@@ -113,24 +113,37 @@ class Geographic extends IndexParent {
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Počátek existence</h2>
 						<PersonComboBox {...this.createFieldProps("founding_person")}/>
+						<TextField {...this.createFieldProps("founding_person_chrono_spec")}/>
 						<CorporationComboBox {...this.createFieldProps("founding_corporation")}/>
+						<TextField {...this.createFieldProps("founding_corporation_chrono_spec")}/>
 						<TextField {...this.createFieldProps("founding_document")}/>
+						<TextField {...this.createFieldProps("founding_document_chrono_spec")}/>
 						<GeographicComboBox {...this.createFieldProps("founding_place")}/>
-						<SubjectComboBox {...this.createFieldProps("first_mention_event")}/>
+						<TextField {...this.createFieldProps("founding_place_chrono_spec")}/>
+						<SubjectComboBox {...this.createFieldProps("founding_event")}/>
+						<TextField {...this.createFieldProps("founding_event_chrono_spec")}/>
 						<TextField {...this.createFieldProps("first_mention_document")}/>
+						<TextField {...this.createFieldProps("first_mention_document_chrono_spec")}/>
 						<GeographicComboBox {...this.createFieldProps("first_mention_place")}/>
-						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
+						<TextField {...this.createFieldProps("first_mention_place_chrono_spec")}/>
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Konec existence</h2>
 						<PersonComboBox {...this.createFieldProps("cancellation_person")}/>
+						<TextField {...this.createFieldProps("cancellation_person_chrono_spec")}/>
 						<CorporationComboBox {...this.createFieldProps("cancellation_corporation")}/>
+						<TextField {...this.createFieldProps("cancellation_corporation_chrono_spec")}/>
 						<TextField {...this.createFieldProps("cancellation_document")}/>
+						<TextField {...this.createFieldProps("cancellation_document_chrono_spec")}/>
 						<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
+						<TextField {...this.createFieldProps("cancellation_place_chrono_spec")}/>
 						<SubjectComboBox {...this.createFieldProps("last_mention_event")}/>
+						<TextField {...this.createFieldProps("last_mention_event_chrono_spec")}/>
 						<TextField {...this.createFieldProps("last_mention_document")}/>
+						<TextField {...this.createFieldProps("last_mention_document_chrono_spec")}/>
 						<GeographicComboBox {...this.createFieldProps("last_mention_place")}/>
-						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
+						<TextField {...this.createFieldProps("last_mention_place_chrono_spec")}/>
 						<GeographicComboBox {...this.createFieldProps("owner_change")}/>
+						<TextField {...this.createFieldProps("owner_change_chrono_spec")}/>
 						<Multiplier><TextField {...this.createFieldProps("historical_milestones")}/></Multiplier>
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Hierarchie</h2>
