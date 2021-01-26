@@ -32,133 +32,37 @@
 			"helper": "Zapisujeme v případě, že se zpracovává zvlášť historická etapa entity - např. Čedok (1918-1920)."
 		},
 
-		
-
-
-
-
-
-
-
-
-
-		"other_language_name-category": {
-			"label": "Název v jiném jazyce",
-			"schema": "other_language_name[%]"
+		"variant-category": {
+			"label": "Variantní označení",
+			"schema": "variant[%]"
 		},
-		"other_language_name": {
-			"label": "Název v jiném jazyce",
-			"schema": "other_language_name[%].other_language_name",
-			"helper": "Uvádíme variantu názvu v jiném jazyce."
+		"variant_type": {
+			"label": "Typ variantního označení",
+			"schema": "variant[%].variant_type",
+			"helper": "",
+			"options": ["", "Název v jiném jazyce", "Akronym/zkratka", "Historická/dřívější forma jména", "Jiné označení", "Následující forma jména", "Právní forma"]
 		},
-		"general_complement_other_language": {
-			"label": "Obecný doplněk",
-			"schema": "other_language_name[%].general_complement"
+		"variant_value": {
+			"label": "Variantní označení",
+			"schema": "variant[%].variant_value",
+			"helper": "Název v jiném jazyce -> Uvádíme variantu názvu v jiném jazyce. Akronym/zkratka -> Zkratka/akronym, pokud ji korporace používá. Historická/dřívější forma jména -> Dřívejší jméno korporace. Jiné označení -> Jiné označení, pod kterým je korporace známa. Následující forma jména -> Nový název korporace."
 		},
-		"geographical_complement_other_language": {
+		"variant_general_complement": {
 			"label": "Geografický doplněk",
-			"schema": "other_language_name[%].geographical_complement"
+			"schema": "variant[%].general_complement",
+			"helper": ""
 		},
-		"chronological_complement_other_language": {
+		"variant_geographical_complement": {
 			"label": "Chronologický doplněk",
-			"schema": "other_language_name[%].chronological_complement"
+			"schema": "variant[%].geographical_complement",
+			"helper": ""
 		},
-		"acronym-category": {
-			"label": "Akronym/zkratka",
-			"schema": "other_language_name[%]"
-		},
-		"acronym": {
-			"label": "Akronym/zkratka",
-			"schema": "acronym[%].acronym",
-			"helper": "Zkratka/akronym, pokud ji korporace používá."
-		},
-		"general_complement_acronym": {
-			"label": "Obecný doplněk",
-			"schema": "acronym[%].general_complement"
-		},
-		"geographical_complement_acronym": {
-			"label": "Geografický doplněk",
-			"schema": "acronym[%].geographical_complement"
-		},
-		"chronological_complement_acronym": {
+		"variant_chronological_complement": {
 			"label": "Chronologický doplněk",
-			"schema": "acronym[%].chronological_complement"
-		},
-		"historical_name-category": {
-			"label": "Historická/dřívější forma jména",
-			"schema": "other_language_name[%]"
-		},
-		"historical_name": {
-			"label": "Historická/dřívější forma jména",
-			"schema": "historical_name[%].historical_name",
-			"helper": "Dřívejší jméno korporace."
-		},
-		"general_complement_historical": {
-			"label": "Obecný doplněk",
-			"schema": "historical_name[%].general_complement"
-		},
-		"geographical_complement_historical": {
-			"label": "Geografický doplněk",
-			"schema": "historical_name[%].geographical_complement"
-		},
-		"chronological_complement_historical": {
-			"label": "Chronologický doplněk",
-			"schema": "historical_name[%].chronological_complement"
-		},
-		"other_name_form-category": {
-			"label": "Jiné označení",
-			"schema": "other_language_name[%]"
-		},
-		"other_name_form": {
-			"label": "Jiné označení",
-			"schema": "other_name_form[%].other_name_form",
-			"helper": "Jiné označení, pod kterým je korporace známa."
-		},
-		"general_complement_other_name": {
-			"label": "Obecný doplněk",
-			"schema": "other_name_form[%].general_complement"
-		},
-		"geographical_complement_other_name": {
-			"label": "Geografický doplněk",
-			"schema": "other_name_form[%].geographical_complement"
-		},
-		"chronological_complement_other_name": {
-			"label": "Chronologický doplněk",
-			"schema": "other_name_form[%].chronological_complement"
-		},
-		"following_name-category": {
-			"label": "Následující forma jména",
-			"schema": "other_language_name[%]"
-		},
-		"following_name": {
-			"label": "Následující forma jména",
-			"schema": "following_name[%].following_name",
-			"helper": "Nový název korporace."
-		},
-		"general_complement_following": {
-			"label": "Obecný doplněk",
-			"schema": "following_name[%].general_complement"
-		},
-		"geographical_complement_following": {
-			"label": "Geografický doplněk",
-			"schema": "following_name[%].geographical_complement"
-		},
-		"chronological_complement_following": {
-			"label": "Chronologický doplněk",
-			"schema": "following_name[%].chronological_complement"
+			"schema": "variant[%].chronological_complement",
+			"helper": ""
 		},
 
-
-
-
-
-
-
-
-
-
-
-		
 		"brief_characteristic": {
 			"label": "Stručná charakteristika",
 			"schema": "brief_characteristic",
@@ -234,9 +138,9 @@
 			"schema": "founding_chronological_specification",
 			"helper": "Časové zpřesnění související s počátkem existence korporace."
 		},
-		"registration_subject": {
+		"registration_document": {
 			"label": "Zapsání dílem",
-			"schema": "registration_subject",
+			"schema": "registration_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"registration_event": {
@@ -290,9 +194,9 @@
 			"schema": "cancellation_place",
 			"helper": "Časové zpřesnění související se zánikem existence korporace."
 		},
-		"delete_from_evidence_subject": {
+		"delete_from_evidence_document": {
 			"label": "Výmaz z evidence - dokument",
-			"schema": "delete_from_evidence_subject",
+			"schema": "delete_from_evidence_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"delete_from_evidence_event": {

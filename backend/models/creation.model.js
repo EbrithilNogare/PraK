@@ -17,56 +17,9 @@ const schema = new mongoose.Schema({
 	},
 	chronological_complement: String,
 
-	other_language_name: [{
-		other_language_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	other_name_form: [{
-		other_name_form: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	official_name: [{
-		official_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	former_name_form: [{
-		former_name_form: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	acronym: [{
-		acronym: String,	
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
 		general_complement: {
 			type: mongoose.Types.ObjectId,
 			ref: "keywordIndex",

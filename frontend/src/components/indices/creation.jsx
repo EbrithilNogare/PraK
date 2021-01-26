@@ -19,6 +19,7 @@ import {
 	PersonComboBox,
 	SubjectComboBox,
 	SubmitterComboBox,
+	StaticComboBox,
 } from '../comboBoxes'
 import IndexParent from "./indexParent"
 import styles from './parent.module.scss'
@@ -54,7 +55,7 @@ class Creation extends IndexParent {
 						? <h1>Editace záznamu v Rejstříku dílo/výtvor</h1>
 						: <h1>Nový záznam do Rejstříku dílo/výtvor</h1>
 					}
-					<Tooltip title={"Schovat nápovědy"}>
+					<Tooltip title={"Zobrazit / Schovat nápovědy"}>
 						<HelpOutline className={styles.allHelpers} onClick={()=>this.setState({helpersVisible: !this.state.helpersVisible}) }/>
 					</Tooltip>
 				</Paper>
@@ -68,34 +69,11 @@ class Creation extends IndexParent {
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Variantní označení</h2>
 						<Multiplier>
-							<TextField {...this.createFieldProps("other_language_name")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_other_language")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_other_language")}/>
-							<TextField {...this.createFieldProps("chronological_complement_other_language")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("other_name_form")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_other_name")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_other_name")}/>
-							<TextField {...this.createFieldProps("chronological_complement_other_name")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("official_name")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_official")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_official")}/>
-							<TextField {...this.createFieldProps("chronological_complement_official")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("former_name_form")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_historical")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_historical")}/>
-							<TextField {...this.createFieldProps("chronological_complement_historical")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("acronym")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_acronym")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_acronym")}/>
-							<TextField {...this.createFieldProps("chronological_complement_acronym")}/>
+							<StaticComboBox {...this.createFieldProps("variant_type")}/>
+							<TextField {...this.createFieldProps("variant_value")}/>
+							<KeywordComboBox {...this.createFieldProps("variant_general_complement")}/>
+							<GeographicComboBox {...this.createFieldProps("variant_geographical_complement")}/>
+							<TextField {...this.createFieldProps("variant_chronological_complement")}/>
 						</Multiplier>
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Popis</h2>

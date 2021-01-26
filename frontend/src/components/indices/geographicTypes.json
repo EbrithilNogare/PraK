@@ -27,103 +27,67 @@
 			"helper": "V případě, že se zpracovává zvlášť historická etapa entity."
 		},
 
-
-
-
-		"other_language_name-category": {
-			"label": "Název v jiném jazyce",
-			"schema": "other_language_name[%]"
+		"variant-category": {
+			"label": "Variantní označení",
+			"schema": "variant[%]"
 		},
-		"other_language_name": {
-			"label": "Název v jiném jazyce",
-			"schema": "other_language_name[%].other_language_name",
-			"helper": "Uvádíme variantu názvu v jiném jazyce."
+		"variant_type": {
+			"label": "Typ variantního označení",
+			"schema": "variant[%].variant_type",
+			"helper": "",
+			"options": ["", "Název v jiném jazyce", "Akronym/zkratka", "Historická/dřívější forma jména", "Jiný tvar jména/označení"]
 		},
-		"general_complement_other_language": {
-			"label": "Obecný doplněk ",
-			"schema": "other_language_name[%].general_complement"
+		"variant_value": {
+			"label": "Variantní označení",
+			"schema": "variant[%].variant_value",
+			"helper": "Název v jiném jazyce -> Uvádíme variantu názvu v jiném jazyce. Akronym/zkratka -> Zkratka/akronym, pokud ji korporace používá. Historická/dřívější forma jména -> Dřívejší jméno korporace. Jiný tvar jména/označení -> Jiné označení, pod kterým je geografická entita známa."
 		},
-		"geographical_complement_other_language": {
+		"variant_general_complement": {
 			"label": "Geografický doplněk",
-			"schema": "other_language_name[%].geographical_complement"
+			"schema": "variant[%].general_complement",
+			"helper": ""
 		},
-		"chronological_complement_other_language": {
+		"variant_geographical_complement": {
 			"label": "Chronologický doplněk",
-			"schema": "other_language_name[%].chronological_complement"
+			"schema": "variant[%].geographical_complement",
+			"helper": ""
 		},
-		
-		"acronym-category": {
-			"label": "Jméno v jiném jazyce",
-			"schema": "acronym[%]"
+		"variant_chronological_complement": {
+			"label": "Chronologický doplněk",
+			"schema": "variant[%].chronological_complement",
+			"helper": ""
 		},
-		"acronym": {
-			"label": "Akronym/zkratka",
-			"schema": "acronym[%].acronym",
-			"helper": "Zkratka/akronym, pokud ji geografická entita používá."
+
+		"complement_change-category": {
+			"label": "Změna doplňků",
+			"schema": "complement_change[%]"
 		},
-		"general_complement_acronym": {
-			"label": "Obecný doplněk ",
-			"schema": "acronym[%].general_complement"
+		"complement_change_type": {
+			"label": "Typ změny doplňku",
+			"schema": "complement_change[%].complement_change_type",
+			"helper": "",
+			"options": ["", "Změna statusu", "Změna nadřízené položky", "Změna chronologického odplňku"]
 		},
-		"geographical_complement_acronym": {
+		"complement_change_value": {
+			"label": "Změna doplňku",
+			"schema": "complement_change[%].complement_change_value",
+			"helper": ""
+		},
+		"complement_change_general_complement": {
 			"label": "Geografický doplněk",
-			"schema": "acronym[%].geographical_complement"
+			"schema": "complement_change[%].general_complement",
+			"helper": ""
 		},
-		"chronological_complement_acronym": {
+		"complement_change_geographical_complement": {
 			"label": "Chronologický doplněk",
-			"schema": "acronym[%].chronological_complement"
+			"schema": "complement_change[%].geographical_complement",
+			"helper": ""
 		},
-		
-		"historical_name-category": {
-			"label": "Jméno v jiném jazyce",
-			"schema": "historical_name[%]"
-		},
-		"historical_name": {
-			"label": "Historická/dřívější forma jména",
-			"schema": "historical_name[%].historical_name",
-			"helper": "Dřívejší jméno geografické entity."
-		},
-		"general_complement_historical": {
-			"label": "Obecný doplněk ",
-			"schema": "historical_name[%].general_complement"
-		},
-		"geographical_complement_historical": {
-			"label": "Geografický doplněk",
-			"schema": "historical_name[%].geographical_complement"
-		},
-		"chronological_complement_historical": {
+		"complement_change_chronological_complement": {
 			"label": "Chronologický doplněk",
-			"schema": "historical_name[%].chronological_complement"
+			"schema": "complement_change[%].chronological_complement",
+			"helper": ""
 		},
-		
-		"other_name_form-category": {
-			"label": "Jméno v jiném jazyce",
-			"schema": "other_name_form[%]"
-		},
-		"other_name_form": {
-			"label": "Jiný tvar jména/označení",
-			"schema": "other_name_form[%].other_name_form",
-			"helper": "Jiné označení, pod kterým je geografická entita známa."
-		},
-		"general_complement_other_name": {
-			"label": "Obecný doplněk ",
-			"schema": "other_name_form[%].general_complement"
-		},
-		"geographical_complement_other_name": {
-			"label": "Geografický doplněk",
-			"schema": "other_name_form[%].geographical_complement"
-		},
-		"chronological_complement_other_name": {
-			"label": "Chronologický doplněk",
-			"schema": "other_name_form[%].chronological_complement"
-		},
-
-
-
-
-
-
-
 
 		"brief_characteristic": {
 			"label": "Stručná charakteristika",
@@ -186,9 +150,9 @@
 			"schema": "related_person[%]",
 			"helper": "Výběr z rejstříku osob."
 		},
-		"related_subject": {
+		"related_creation": {
 			"label": "Pojmenováno po dílu/výtvoru",
-			"schema": "related_subject[%]",
+			"schema": "related_creation[%]",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"related_event": {
@@ -237,9 +201,9 @@
 			"schema": "first_mention_event",
 			"helper": "Výběr z rejstříku událost."
 		},
-		"first_mention_subject": {
+		"first_mention_document": {
 			"label": "První písemná zmínka - událost",
-			"schema": "first_mention_subject",
+			"schema": "first_mention_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"first_mention_place": {
@@ -278,9 +242,9 @@
 			"schema": "last_mention_event",
 			"helper": "Výběr z rejstříku událost."
 		},
-		"last_mention_subject": {
+		"last_mention_document": {
 			"label": "Poslední písemná zmínka - událost",
-			"schema": "last_mention_subject",
+			"schema": "last_mention_document",
 			"helper": "Výběr z rejstříku dílo/výtvor."
 		},
 		"last_mention_place": {

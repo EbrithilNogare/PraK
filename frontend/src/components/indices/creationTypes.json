@@ -27,110 +27,35 @@
 			"helper": "U hudebních a literárních děl, obvykle se označuje jako rok, resp. rozsah dat."
 		},
 
-		"other_language_name-category": {
-			"label": "Název v jiném jazyce",
-			"schema": "other_language_name[%]"
+		"variant-category": {
+			"label": "Variantní označení",
+			"schema": "variant[%]"
 		},
-		"other_language_name": {
-			"label": "Název v jiném jazyce",
-			"schema": "other_language_name[%].other_language_name",
-			"helper": "Uvádíme variantu názvu v jiném jazyce."
+		"variant_type": {
+			"label": "Typ variantního označení",
+			"schema": "variant[%].variant_type",
+			"helper": "",
+			"options": ["", "Název v jiném jazyce", "Jiné označení", "Jméno úřední", "Historická/dřívější forma jména",  "Akronym/zkratka"]
 		},
-		"general_complement_other_language": {
-			"label": "Obecný doplněk",
-			"schema": "other_language_name[%].general_complement"
+		"variant_value": {
+			"label": "Variantní označení",
+			"schema": "variant[%].variant_value",
+			"helper": "Název v jiném jazyce -> Uvádíme variantu názvu v jiném jazyce. Jiné označení -> Jiné označení jména."
 		},
-		"geographical_complement_other_language": {
+		"variant_general_complement": {
 			"label": "Geografický doplněk",
-			"schema": "other_language_name[%].geographical_complement"
-		},
-		"chronological_complement_other_language": {
-			"label": "Chronologický doplněk",
-			"schema": "other_language_name[%].chronological_complement"
-		},
-		"other_name_form-category": {
-			"label": "Jiné označení",
-			"schema": "other_name_form[%]"
-		},
-		"other_name_form": {
-			"label": "Jiné označení",
-			"schema": "other_name_form[%].other_name_form",
-			"helper": "Jiné označení jména."
-		},
-		"general_complement_other_name": {
-			"label": "Obecný doplněk",
-			"schema": "other_name_form[%].general_complement"
-		},
-		"geographical_complement_other_name": {
-			"label": "Geografický doplněk",
-			"schema": "other_name_form[%].geographical_complement"
-		},
-		"chronological_complement_other_name": {
-			"label": "Chronologický doplněk",
-			"schema": "other_name_form[%].chronological_complement"
-		},
-		"official_name-category": {
-			"label": "Jméno úřední",
-			"schema": "official_name[%]"
-		},
-		"official_name": {
-			"label": "Jméno úřední",
-			"schema": "official_name[%].official_name",
+			"schema": "variant[%].general_complement",
 			"helper": ""
 		},
-		"general_complement_official": {
-			"label": "Obecný doplněk",
-			"schema": "official_name[%].general_complement"
-		},
-		"geographical_complement_official": {
-			"label": "Geografický doplněk",
-			"schema": "official_name[%].geographical_complement"
-		},
-		"chronological_complement_official": {
+		"variant_geographical_complement": {
 			"label": "Chronologický doplněk",
-			"schema": "official_name[%].chronological_complement"
-		},
-		"former_name_form-category": {
-			"label": "Historická/dřívější forma jména",
-			"schema": "former_name_form[%]"
-		},
-		"former_name_form": {
-			"label": "Historická/dřívější forma jména",
-			"schema": "former_name_form[%].former_name_form",
+			"schema": "variant[%].geographical_complement",
 			"helper": ""
 		},
-		"general_complement_historical": {
-			"label": "Obecný doplněk",
-			"schema": "former_name_form[%].general_complement"
-		},
-		"geographical_complement_historical": {
-			"label": "Geografický doplněk",
-			"schema": "former_name_form[%].geographical_complement"
-		},
-		"chronological_complement_historical": {
+		"variant_chronological_complement": {
 			"label": "Chronologický doplněk",
-			"schema": "former_name_form[%].chronological_complement"
-		},
-		"acronym-category": {
-			"label": "Akronym/zkratka",
-			"schema": "acronym[%]"
-		},
-		"acronym": {
-			"label": "Akronym/zkratka",
-			"schema": "acronym[%].acronym",
+			"schema": "variant[%].chronological_complement",
 			"helper": ""
-		},
-		"general_complement_acronym": {
-			"label": "Obecný doplněk",
-			"schema": "acronym[%].general_complement"
-		},
-		"geographical_complement_acronym": {
-			"label": "Geografický doplněk",
-			"schema": "acronym[%].geographical_complement"
-		},
-		"chronological_complement_acronym": {
-			"label": "Chronologický doplněk",
-			"schema": "acronym[%].chronological_complement"
 		},
 
 		"brief_characteristic": {

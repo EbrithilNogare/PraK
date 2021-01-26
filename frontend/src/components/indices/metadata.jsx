@@ -73,7 +73,7 @@ class Metadata extends IndexParent {
 						? <h1>Editace záznamu v Rejstříku metadat</h1>
 						: <h1>Nový záznam do Rejstříku metadat</h1>
 					}
-					<Tooltip title={"Schovat nápovědy"}>
+					<Tooltip title={"Zobrazit / Schovat nápovědy"}>
 						<HelpOutline className={styles.allHelpers} onClick={()=>this.setState({helpersVisible: !this.state.helpersVisible}) }/>
 					</Tooltip>
 				</Paper>

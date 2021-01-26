@@ -45,116 +45,10 @@ const schema = new mongoose.Schema({
 	},
 	chronological_complement: String,
 
-	other_language_name: [{
-		other_language_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	original_name: [{
-		original_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	acronym: [{
-		acronym: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	cipher: [{
-		cipher: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	religious_name: [{
-		religious_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	marriage_name: [{
-		marriage_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	historical_name: [{
-		historical_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	straight_order: [{
-		straight_order: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	other_name_form: [{
-		other_name_form: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	pseudonym: [{
-		pseudonym: String,	
+
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
 		general_complement: {
 			type: mongoose.Types.ObjectId,
 			ref: "keywordIndex",
@@ -214,7 +108,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	}],
-	important_subject: [{
+	important_creation: [{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	}],

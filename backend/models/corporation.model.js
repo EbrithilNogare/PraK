@@ -18,8 +18,9 @@ const schema = new mongoose.Schema({
 	},
 	chronological_complement: String,
 
-	other_language_name: [{
-		other_language_name: String,	
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
 		general_complement: {
 			type: mongoose.Types.ObjectId,
 			ref: "keywordIndex",
@@ -30,59 +31,6 @@ const schema = new mongoose.Schema({
 		},
 		chronological_complement: String,
 	}],
-	acronym: [{
-		acronym: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	historical_name: [{
-		historical_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	other_name_form: [{
-		other_name_form: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	following_name: [{
-		following_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-
-
-
-
-
 
 	brief_characteristic: String,
 	history: String,
@@ -119,7 +67,7 @@ const schema = new mongoose.Schema({
 		ref: "geographicIndex",
 	},
 	founding_chronological_specification: String,
-	registration_subject: String,
+	registration_document: String,
 	registration_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
@@ -146,7 +94,7 @@ const schema = new mongoose.Schema({
 		ref: "geographicIndex",
 	},
 	cancellation_chronological_specification: String,
-	delete_from_evidence_subject: String,
+	delete_from_evidence_document: String,
 	delete_from_evidence_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",

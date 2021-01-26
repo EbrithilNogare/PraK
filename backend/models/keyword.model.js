@@ -11,55 +11,11 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	},
-
-	other_language_name: [{
-		other_language_name: String,
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-	}],
-	synonyms: [{
-		synonyms: String,
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-	}],
-	inverted_wordorder_terms: [{
-		inverted_wordorder_terms: String,
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-	}],
-	spelling_variants: [{
-		spelling_variants: String,
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-	}],
-	foreign_language_descriptors: [{
-		foreign_language_descriptors: String,
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-	}],
-	form_descriptors: [{
-		form_descriptors: String,
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-	}],
-	other_name_form: [{
-		other_name_form: String,
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
+	
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
+		chronological_complement: String,
 	}],
 
 	definition: String,

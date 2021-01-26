@@ -17,96 +17,25 @@
 			"helper": "Zpřesnění, obor - musí být uveden jako součást termínu; typicky se používá pro rozlišení homonym - v tomto případě musí být jako typ označení zapsáno: homonymum."
 		},
 
-		"other_language_name-category": {
-			"label": "Název v jiném jazyce",
-			"schema": "other_language_name[%]"
+		"variant-category": {
+			"label": "Variantní označení",
+			"schema": "variant[%]"
 		},
-		"other_language_name": {
-			"label": "Název v jiném jazyce",
-			"schema": "other_language_name[%].other_language_name",
-			"helper": "Uvádíme variantu názvu v jiném jazyce."
+		"variant_type": {
+			"label": "Typ variantního označení",
+			"schema": "variant[%].variant_type",
+			"helper": "",
+			"options": ["", "Název v jiném jazyce", "Synonyma", "Termíny v invertovaném slovosledu", "Pravopisné varianty", "Cizojazyčné deskriptory", "Tvar deskriptorů v singuláru", "Jiný tvar jména/označení"]
 		},
-		"general_complement_other_language": {
-			"label": "Obecný doplněk",
-			"schema": "other_language_name[%].general_complement"
+		"variant_value": {
+			"label": "Variantní označení",
+			"schema": "variant[%].variant_value",
+			"helper": "Název v jiném jazyce -> Uvádíme variantu názvu v jiném jazyce. Synonyma -> Jiné označení jména. Termíny v invertovaném slovosledu -> Termíny v invertovaném slovosledu. Pravopisné varianty -> Jiné pravopisné varianty označení jména. Cizojazyčné deskriptory -> Jinojazyčné varianty termínu. Tvar deskriptorů v singuláru -> Uvedeme jednotné číslo hesla. Jiný tvar jména/označení -> Jiné označení jména."
 		},
-		"synonyms-category": {
-			"label": "Synonyma",
-			"schema": "synonyms[%]"
-		},
-		"synonyms": {
-			"label": "Synonyma",
-			"schema": "synonyms[%].synonyms",
-			"helper": "Jiné označení jména."
-		},
-		"general_complement_synonyms": {
-			"label": "Obecný doplněk",
-			"schema": "synonyms[%].general_complement"
-		},
-		"inverted_wordorder_terms-category": {
-			"label": "Termíny v invertovaném slovosledu",
-			"schema": "inverted_wordorder_terms[%]"
-		},
-		"inverted_wordorder_terms": {
-			"label": "Termíny v invertovaném slovosledu",
-			"schema": "inverted_wordorder_terms[%].inverted_wordorder_terms",
-			"helper": "Termíny v invertovaném slovosledu."
-		},
-		"general_complement_inverted": {
-			"label": "Obecný doplněk",
-			"schema": "inverted_wordorder_terms[%].general_complement"
-		},
-		"spelling_variants-category": {
-			"label": "Pravopisné varianty ",
-			"schema": "spelling_variants[%]"
-		},
-		"spelling_variants": {
-			"label": "Pravopisné varianty ",
-			"schema": "spelling_variants[%].spelling_variants",
-			"helper": "Jiné pravopisné varianty označení jména."
-		},
-		"general_complement_variants": {
-			"label": "Obecný doplněk",
-			"schema": "spelling_variants[%].general_complement"
-		},
-		"foreign_language_descriptors-category": {
-			"label": "Cizojazyčné deskriptory",
-			"schema": "foreign_language_descriptors[%]"
-		},
-		"foreign_language_descriptors": {
-			"label": "Cizojazyčné deskriptory",
-			"schema": "foreign_language_descriptors[%].foreign_language_descriptors",
-			"helper": "Jinojazyčné varianty termínu."
-		},
-		"general_complement_foreign_descriptors": {
-			"label": "Obecný doplněk",
-			"schema": "foreign_language_descriptors[%].general_complement"
-		},
-		"form_descriptors-category": {
-			"label": "Tvar deskriptorů v singuláru",
-			"schema": "form_descriptors[%]"
-		},
-		"form_descriptors": {
-			"label": "Tvar deskriptorů v singuláru",
-			"schema": "form_descriptors[%].form_descriptors",
-			"helper": "Uvedeme jednotné číslo hesla."
-		},
-		"general_complement_form_descriptors": {
-			"label": "Obecný doplněk",
-			"schema": "form_descriptors[%].general_complement"
-		},
-		"other_name_form-category": {
-			"label": "Jiný tvar jména/označení",
-			"schema": "other_name_form[%]"
-		},
-		"other_name_form": {
-			"label": "Jiný tvar jména/označení",
-			"schema": "other_name_form[%].other_name_form",
-			"helper": "Jiné označení jména."
-		},
-		"general_complement_other_name": {
-			"label": "Obecný doplněk",
-			"schema": "other_name_form[%].general_complement"
+		"variant_chronological_complement": {
+			"label": "Chronologický doplněk",
+			"schema": "variant[%].chronological_complement",
+			"helper": ""
 		},
 
 		"definition": {

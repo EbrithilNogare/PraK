@@ -17,47 +17,23 @@ const schema = new mongoose.Schema({
 	},
 	chronological_complement: String,
 
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
 
-
-	
-	other_language_name: [{
-		other_language_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	acronym: [{
-		acronym: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	historical_name: [{
-		historical_name: String,	
-		general_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "keywordIndex",
-		},
-		geographical_complement: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
-		chronological_complement: String,
-	}],
-	other_name_form: [{
-		other_name_form: String,	
+	complement_change: [{
+		complement_change_type: String,
+		complement_change_value: String,	
 		general_complement: {
 			type: mongoose.Types.ObjectId,
 			ref: "keywordIndex",
@@ -98,7 +74,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	}],
-	related_subject: [{
+	related_creation: [{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	}],
@@ -136,7 +112,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	first_mention_subject: String,
+	first_mention_document: String,
 	first_mention_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
@@ -160,7 +136,7 @@ const schema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	last_mention_subject: String,
+	last_mention_document: String,
 	last_mention_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",

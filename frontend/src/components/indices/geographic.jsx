@@ -19,6 +19,7 @@ import {
 	PersonComboBox,
 	SubjectComboBox,
 	SubmitterComboBox,
+	StaticComboBox,
 } from '../comboBoxes'
 import IndexParent from "./indexParent"
 import GPSField from "../validationTextFields/GPSField"
@@ -55,7 +56,7 @@ class Geographic extends IndexParent {
 						? <h1>Editace záznamu v Geografického rejstříku</h1>
 						: <h1>Nový záznam do Geografického rejstříku</h1>
 					}
-					<Tooltip title={"Schovat nápovědy"}>
+					<Tooltip title={"Zobrazit / Schovat nápovědy"}>
 						<HelpOutline className={styles.allHelpers} onClick={()=>this.setState({helpersVisible: !this.state.helpersVisible}) }/>
 					</Tooltip>
 				</Paper>
@@ -69,28 +70,20 @@ class Geographic extends IndexParent {
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Variantní označení</h2>
 						<Multiplier>
-							<TextField {...this.createFieldProps("other_language_name")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_other_language")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_other_language")}/>
-							<TextField {...this.createFieldProps("chronological_complement_other_language")}/>
+							<StaticComboBox {...this.createFieldProps("variant_type")}/>
+							<TextField {...this.createFieldProps("variant_value")}/>
+							<KeywordComboBox {...this.createFieldProps("variant_general_complement")}/>
+							<GeographicComboBox {...this.createFieldProps("variant_geographical_complement")}/>
+							<TextField {...this.createFieldProps("variant_chronological_complement")}/>
 						</Multiplier>
+					</FoldablePaper>
+					<FoldablePaper className={styles.dataBlock}> <h2>Změna doplňků</h2>
 						<Multiplier>
-							<TextField {...this.createFieldProps("acronym")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_acronym")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_acronym")}/>
-							<TextField {...this.createFieldProps("chronological_complement_acronym")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("historical_name")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_historical")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_historical")}/>
-							<TextField {...this.createFieldProps("chronological_complement_historical")}/>
-						</Multiplier>
-						<Multiplier>
-							<TextField {...this.createFieldProps("other_name_form")}/>
-							<KeywordComboBox {...this.createFieldProps("general_complement_other_name")}/>
-							<GeographicComboBox {...this.createFieldProps("geographical_complement_other_name")}/>
-							<TextField {...this.createFieldProps("chronological_complement_other_name")}/>
+							<StaticComboBox {...this.createFieldProps("complement_change_type")}/>
+							<TextField {...this.createFieldProps("complement_change_value")}/>
+							<KeywordComboBox {...this.createFieldProps("complement_change_general_complement")}/>
+							<GeographicComboBox {...this.createFieldProps("complement_change_geographical_complement")}/>
+							<TextField {...this.createFieldProps("complement_change_chronological_complement")}/>
 						</Multiplier>
 					</FoldablePaper>
 					<FoldablePaper className={styles.dataBlock}> <h2>Popis</h2>
@@ -112,7 +105,7 @@ class Geographic extends IndexParent {
 							</Multiplier>
 						<h2>Pojmenováno po</h2>
 							<Multiplier><PersonComboBox {...this.createFieldProps("related_person")}/></Multiplier>
-							<Multiplier><CreationComboBox {...this.createFieldProps("related_subject")}/></Multiplier>
+							<Multiplier><CreationComboBox {...this.createFieldProps("related_creation")}/></Multiplier>
 							<Multiplier><SubjectComboBox {...this.createFieldProps("related_event")}/></Multiplier>
 							<Multiplier><CorporationComboBox {...this.createFieldProps("related_corporation")}/></Multiplier>
 							<Multiplier><GeographicComboBox {...this.createFieldProps("superordinate")}/></Multiplier>
@@ -124,7 +117,7 @@ class Geographic extends IndexParent {
 						<TextField {...this.createFieldProps("founding_document")}/>
 						<GeographicComboBox {...this.createFieldProps("founding_place")}/>
 						<SubjectComboBox {...this.createFieldProps("first_mention_event")}/>
-						<TextField {...this.createFieldProps("first_mention_subject")}/>
+						<TextField {...this.createFieldProps("first_mention_document")}/>
 						<GeographicComboBox {...this.createFieldProps("first_mention_place")}/>
 						<TextField {...this.createFieldProps("founding_chronological_specification")}/>
 					</FoldablePaper>
@@ -134,7 +127,7 @@ class Geographic extends IndexParent {
 						<TextField {...this.createFieldProps("cancellation_document")}/>
 						<GeographicComboBox {...this.createFieldProps("cancellation_place")}/>
 						<SubjectComboBox {...this.createFieldProps("last_mention_event")}/>
-						<TextField {...this.createFieldProps("last_mention_subject")}/>
+						<TextField {...this.createFieldProps("last_mention_document")}/>
 						<GeographicComboBox {...this.createFieldProps("last_mention_place")}/>
 						<TextField {...this.createFieldProps("cancellation_chronological_specification")}/>
 						<GeographicComboBox {...this.createFieldProps("owner_change")}/>
