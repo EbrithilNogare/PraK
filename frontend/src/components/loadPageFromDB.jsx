@@ -1,11 +1,7 @@
 import React from "react"
 import parse from 'html-react-parser'
 
-import {
-	Paper,
-} from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
 
 class LoadPageFromDB extends React.Component {
 	constructor(props){

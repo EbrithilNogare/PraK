@@ -3,7 +3,6 @@ import { withSnackbar } from 'notistack'
 import { withRouter } from "react-router-dom";
 
 import { 
-	Paper,
 	Button,
 	TextField,
 } from '@material-ui/core'

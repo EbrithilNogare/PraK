@@ -2,7 +2,6 @@ import React from "react"
 
 import {
 	Button,
-	Paper,
 	TextField,
 } from '@material-ui/core'
 

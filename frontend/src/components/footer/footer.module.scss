@@ -1,12 +1,19 @@
 .footer{
-	height: 100px;
-	padding: 0 30px;
-	display: flex;
-
 	background:  #F4E7BB;
+	padding: 30px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: 30px;
 	color: #000;
+	box-shadow: 0px -1px 4px 0px rgba(0, 0, 0, 0.14);
 
-	p{
-		align-self: flex-end;
+	ul {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		li a{
+			color: #000;
+			text-decoration: none;
+		}
 	}
 }

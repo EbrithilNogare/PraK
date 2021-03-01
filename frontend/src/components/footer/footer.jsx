@@ -11,14 +11,14 @@ class Footer extends React.Component {
 	static propTypes = {
 	  cookies: instanceOf(Cookies).isRequired
 	}
-
+	/*/
 	render(){return(
 		<div className={styles.footer}>
 			<p>Financování: Projekt je financován Ministerstvem kultury ČR z Programu aplikovaného výzkumu a vývoje národní a kulturní identity (NAKI II)</p>
 		</div>
 	)}
 
-	/*
+	/*/
 	render(){
 		return(
 			<div className={styles.footer}>
@@ -72,7 +72,7 @@ class Footer extends React.Component {
 			</div>
 		)
 	}
-	*/
+	/**/
 }
 
 export default withCookies(Footer)

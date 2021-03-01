@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 
 import { 
-	Paper,
 	Button,
 } from '@material-ui/core'
 
