@@ -56,19 +56,19 @@ class ContactsPage extends React.Component {
 
 	render(){
 		return(
-			<Paper
+			<div
 				className={styles.root}
 				component="form"
 				onSubmit={this.handleSubmit}
 			>
 				<h1>Kontakty</h1>
-				<p>Máte-li otázku, podnět či připomínku, kontaktujete nás prosím prostřednictvím kontaktního formuláře</p><br/>
-				<TextField required variant="outlined" label="Jméno" style={{width:"300px"}}/><br/><br/>
-				<TextField required variant="outlined" label="Email" style={{width:"300px"}}/><br/><br/>
+				<p>Máte-li otázku, podnět či připomínku, kontaktujete nás prosím prostřednictvím kontaktního formuláře.</p><br/>
+				<TextField required label="Jméno" style={{width:"100%"}}/><br/><br/>
+				<TextField required label="Email" style={{width:"100%"}}/><br/><br/>
 				<TextField required variant="outlined" style={{width:"100%"}} label="Zpráva" multiline rows={8}/><br/><br/>
-				<Button color="primary" variant="contained" type="submit" style={{width:"150px"}}>Odeslat</Button><br/><br/><br/><br/>
+				<Button color="primary" variant="contained" type="submit" style={{width:"300px", height:"60px"}}>Odeslat</Button><br/><br/><br/><br/>
 				Kontaktovat můžete také koordinátora projektu ({"kohoutek" + String.fromCharCode(64) + "hiu.cas.cz"}) či jednotlivé řešitele.
-			</Paper>
+			</div>
 		)
 	}
 }

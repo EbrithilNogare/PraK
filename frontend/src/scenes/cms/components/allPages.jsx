@@ -45,7 +45,7 @@ class AllPages extends React.Component {
 	}
 
 	render(){ return(
-		<Paper className={styles.root}>
+		<div className={styles.root}>
 			<h3>Systémové stránky</h3>
 			<div className={styles.flex}>
 			{this.state.pages
@@ -76,7 +76,7 @@ class AllPages extends React.Component {
 				</NavLink>
 			)}
 			</div>
-		</Paper>
+		</div>
 	)}
 }
 

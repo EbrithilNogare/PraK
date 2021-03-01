@@ -58,7 +58,7 @@ class NewPage extends React.Component {
 	}
 
 	render(){ return(
-		<Paper className={styles.root}>
+		<div className={styles.root}>
 			<TextField
 				label="pageName"
 				name="pageName"
@@ -72,7 +72,7 @@ class NewPage extends React.Component {
 			>
 				Vytvořit novou stránku
 			</Button>
-		</Paper>
+		</div>
 	)}
 }
 

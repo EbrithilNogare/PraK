@@ -48,12 +48,12 @@ class LoadPageFromDB extends React.Component {
 
 	render(){
 		return(
-			<Paper style={{ margin:"50px", padding:"20px" }}>
+			<div style={{ margin:"50px", padding:"20px" }}>
 				{ this.state.html === "" 
 					? <CircularProgress color="primary"/>
 					: parse(this.state.html)
 				}
-			</Paper>
+			</div>
 		)
 	}
 }
