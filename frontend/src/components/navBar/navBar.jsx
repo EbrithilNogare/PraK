@@ -54,8 +54,8 @@ class NavBar extends React.Component {
 					<NavLink to="/prak/page/cs/partners">Partneři</NavLink>
 					<NavLink to="/prak/contacts">Kontakty</NavLink>
 					<NavLink to="/prak/page/cs/coming_soon">Aktuality</NavLink>
-					<NavLink to="/prak/page/cs/coming_soon">Místopis Krkonoš</NavLink>
-					<NavLink to="/prak/page/cs/coming_soon">Střípky z Krkonoš</NavLink>
+					<NavLink to="/prak/page/cs/topography">Místopis Krkonoš</NavLink>
+					<NavLink to="/prak/page/cs/shards">Střípky z Krkonoš</NavLink>
 				</div>
 			</nav>
 		)
