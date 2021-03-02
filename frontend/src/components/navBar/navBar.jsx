@@ -42,13 +42,13 @@ class NavBar extends React.Component {
 					<div className={styles.dropdown}>
 						<NavLink to="/prak/page/cs/ourwork">Výstupy</NavLink>
 						<div className={styles.dropdownContent}>
-							<NavLink to="/prak/page/cs/coming_soon">Vědecká konference</NavLink>
-							<NavLink to="/prak/page/cs/coming_soon">Výstava Krkonoše v roce 1938</NavLink>
-							<NavLink to="/prak/page/cs/coming_soon">Kolektivní monografie</NavLink>
-							<NavLink to="/prak/page/cs/coming_soon">Odborné články</NavLink>
-							<NavLink to="/prak/page/cs/coming_soon">Mapy s odborným obsahem</NavLink>
-							<NavLink to="/prak/page/cs/coming_soon">Veřejná databáze Prameny Krkonoš</NavLink>
-							<NavLink to="/prak/page/cs/coming_soon">Software</NavLink>
+							<NavLink to="/prak/page/cs/scientific_conference">Vědecká konference</NavLink>
+							<NavLink to="/prak/page/cs/exhibition_of_the_giant_mountains_in_1938">Výstava Krkonoše v roce 1938</NavLink>
+							<NavLink to="/prak/page/cs/collective_monographs">Kolektivní monografie</NavLink>
+							<NavLink to="/prak/page/cs/expert_articles">Odborné články</NavLink>
+							<NavLink to="/prak/page/cs/maps_with_professional_content">Mapy s odborným obsahem</NavLink>
+							<NavLink to="/prak/page/cs/public_database_springs_of_the_giant_mountains">Veřejná databáze Prameny Krkonoš</NavLink>
+							<NavLink to="/prak/page/cs/software">Software</NavLink>
 						</div>
 					</div>
 					<NavLink to="/prak/page/cs/partners">Partneři</NavLink>

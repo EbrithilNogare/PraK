@@ -10,9 +10,10 @@
 
 .rightPanel {
 	padding: 20px;
-
 	display: grid;
 	row-gap: 10px;
 	grid-template-rows: repeat(10, auto) 1fr;
+	
+	word-break: break-all;
 }
 

@@ -30,23 +30,9 @@ class Footer extends React.Component {
 						Přihlášený uživatel: {this.props.cookies.get("user")}
 					</NavLink></li></ul>
 				</div>
-
-				<div>
-					<h3>Statické stránky</h3>
-					<hr/>
-					<ul>
-						<li> <NavLink to="/prak/page/cs/manual">Manuál</NavLink> </li>
-						<li> <NavLink to="/prak/page/cs/about">O projektu</NavLink> </li>
-						<li> <NavLink to="/prak/page/cs/team">Řesitelský tým</NavLink> </li>
-						<li> <NavLink to="/prak/page/cs/ourwork">Výstupy projektu</NavLink> </li>
-						<li> <NavLink to="/prak/page/cs/partners">Partneři</NavLink> </li>
-						<li> <NavLink to="/prak/contacts">Kontakty</NavLink> </li>
-					</ul>
-				</div>
-
+				
 				<div>
 					<h3>Scény</h3>
-					<hr/>
 					<ul>
 						<li> <NavLink to="/prak/search">Vyhledávací rozhraní</NavLink> </li>
 						{(this.props.cookies.get("permission") & 2) > 0 && <li> <NavLink to="/prak/upload">Nahrát soubor</NavLink> </li>}
@@ -57,7 +43,6 @@ class Footer extends React.Component {
 
 				<div>
 					<h3>Vkládací rozhraní</h3>
-					<hr/>
 					{(this.props.cookies.get("permission") & 2) > 0 && <ul>
 						<li> <NavLink to="/prak/input/metadata">Metadata</NavLink> </li>
 						<li> <NavLink to="/prak/input/corporation">Rejstřík korporací</NavLink> </li>
