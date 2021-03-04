@@ -68,6 +68,7 @@
     "react-dom": "^16.13.1",
     "react-draft-wysiwyg": "^1.14.5",
     "react-i18next": "^11.8.8",
+    "react-material-ui-carousel": "^2.2.1",
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.1.2",

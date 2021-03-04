@@ -17,6 +17,7 @@ import NavBar from "./components/navBar"
 import Footer from "./components/footer"
 import ScrollToTop from "./components/ScrollToTop"
 
+import Homepage from "./scenes/homepage"
 import UploadScene from "./scenes/upload"
 import CmsScene from "./scenes/cms"
 import InputScene from "./scenes/input"
@@ -95,6 +96,7 @@ class Prak extends React.Component {
 									<PrivateRoute path="/prak/upload" privacyLevel="2"><UploadScene/></PrivateRoute>
 									<PrivateRoute path="/prak/cms" privacyLevel="8"><CmsScene/></PrivateRoute>
 
+									<Route path="/prak/homepage"><Homepage/></Route>
 									<PrivateRoute path="/prak/input" privacyLevel="2"><InputScene/></PrivateRoute>
 									<PrivateRoute path="/prak/edit" privacyLevel="2"><EditScene/></PrivateRoute>
 									<PrivateRoute path="/prak/show" privacyLevel="4"><ShowScene/></PrivateRoute>
@@ -105,9 +107,8 @@ class Prak extends React.Component {
 									<Route path="/prak/page/cz/:pageName"  render={({match}) =>
 										<LoadPageFromDB pageName={match.params.pageName}/>
 									}></Route>
-									
 
-									<Route path="/prak"><Redirect to="/prak/page/cz/homepage" /></Route>
+									<Route path="/prak"><Redirect to="/prak/homepage" /></Route>
 								</Switch>
 								<Footer/>
 							</Router>
