@@ -42,27 +42,27 @@ function NavBar() {
 				<NavLink to="/prak/login"><Person/></NavLink>
 			</div>
 			<div className={styles.menu}>
-				<NavLink to="/prak/page/cs/news">{t("NavBar.news")}</NavLink>
+				<NavLink to="/prak/page/cz/news">{t("NavBar.news")}</NavLink>
 				<div className={styles.dropdown}>
-					<NavLink to="/prak/page/cs/about">{t("NavBar.about")}</NavLink>
+					<NavLink to="/prak/page/cz/about">{t("NavBar.about")}</NavLink>
 					<div className={styles.dropdownContent}>
-						<NavLink to="/prak/page/cs/team">{t("NavBar.team")}</NavLink>
-						<NavLink to="/prak/page/cs/ourwork">{t("NavBar.ourwork")}</NavLink>
+						<NavLink to="/prak/page/cz/team">{t("NavBar.team")}</NavLink>
+						<NavLink to="/prak/page/cz/ourwork">{t("NavBar.ourwork")}</NavLink>
 					</div>
 				</div>
-				<NavLink to="/prak/page/cs/partners">{t("NavBar.partners")}</NavLink>
+				<NavLink to="/prak/page/cz/partners">{t("NavBar.partners")}</NavLink>
 				<NavLink to="/prak/contacts">{t("NavBar.contacts")}</NavLink>
 				<div className={styles.dropdown}>
-					<NavLink to="/prak/page/cs/shards">{t("NavBar.shards")}</NavLink>
+					<NavLink to="/prak/page/cz/shards">{t("NavBar.shards")}</NavLink>
 					<div className={styles.dropdownContent}>
-						<NavLink to="/prak/page/cs/topography">{t("NavBar.topography")}</NavLink>
-						<NavLink to="/prak/page/cs/scientific_conference">Vědecká konference</NavLink>
-						<NavLink to="/prak/page/cs/exhibition_of_the_giant_mountains_in_1938">Výstava Krkonoše v roce 1938</NavLink>
-						<NavLink to="/prak/page/cs/collective_monographs">Kolektivní monografie</NavLink>
-						<NavLink to="/prak/page/cs/expert_articles">Odborné články</NavLink>
-						<NavLink to="/prak/page/cs/maps_with_professional_content">Mapy s odborným obsahem</NavLink>
-						<NavLink to="/prak/page/cs/public_database_springs_of_the_giant_mountains">Veřejná databáze Prameny Krkonoš</NavLink>
-						<NavLink to="/prak/page/cs/software">Software</NavLink>
+						<NavLink to="/prak/page/cz/topography">{t("NavBar.topography")}</NavLink>
+						<NavLink to="/prak/page/cz/scientific_conference">Vědecká konference</NavLink>
+						<NavLink to="/prak/page/cz/exhibition_of_the_giant_mountains_in_1938">Výstava Krkonoše v roce 1938</NavLink>
+						<NavLink to="/prak/page/cz/collective_monographs">Kolektivní monografie</NavLink>
+						<NavLink to="/prak/page/cz/expert_articles">Odborné články</NavLink>
+						<NavLink to="/prak/page/cz/maps_with_professional_content">Mapy s odborným obsahem</NavLink>
+						<NavLink to="/prak/page/cz/public_database_springs_of_the_giant_mountains">Veřejná databáze Prameny Krkonoš</NavLink>
+						<NavLink to="/prak/page/cz/software">Software</NavLink>
 					</div>
 				</div>
 			</div>

@@ -102,12 +102,12 @@ class Prak extends React.Component {
 
 									<Route path="/prak/contacts"><ContactsPage/></Route>
 
-									<Route path="/prak/page/cs/:pageName"  render={({match}) =>
+									<Route path="/prak/page/cz/:pageName"  render={({match}) =>
 										<LoadPageFromDB pageName={match.params.pageName}/>
 									}></Route>
 									
 
-									<Route path="/prak"><Redirect to="/prak/page/cs/homepage" /></Route>
+									<Route path="/prak"><Redirect to="/prak/page/cz/homepage" /></Route>
 								</Switch>
 								<Footer/>
 							</Router>

@@ -23,7 +23,7 @@ class LoadPageFromDB extends React.Component {
 	}
 
 	loadPage = (pageName) => {
-		const url = `/prak/api/pages/cs/${pageName}`
+		const url = `/prak/api/pages/cz/${pageName}`
 
 		fetch(url, {
 			method: 'GET',
@@ -34,7 +34,7 @@ class LoadPageFromDB extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			this.setState({html: response.cs || "--- Empty Page ---"})
+			this.setState({html: response.cz || "--- Empty Page ---"})
 		})
 		.catch((error) => {
 			console.info("%cPages loading unsuccesful\n", "background: #222; color: #bada55", error)

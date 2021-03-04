@@ -22,12 +22,12 @@ router.route('/:pageName').get((req, res) => {
 		})
 })
 
-router.route('/cs/:pageName').get((req, res) => {
+router.route('/cz/:pageName').get((req, res) => {
 	const pageName = req.params.pageName
 	if(pageName === undefined)
 		res.status(400).json({ message: "missing pageName" })
 
-	Model.findOne({pageName}, "cs")
+	Model.findOne({pageName}, "cz")
 		.exec()
 		.then(result => {
 			res.set('Cache-control', 'public, max-age=3600')

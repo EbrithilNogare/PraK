@@ -26,7 +26,7 @@ class EditPage extends React.Component {
 		this.state = {
 			_id: "",
 			pageName: "",
-			cs: "",
+			cz: "",
 			en: "",
 			lastEdited: null,
 			lastAuthor: "",
@@ -49,7 +49,7 @@ class EditPage extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			const contentBlock = htmlToDraft(response.cs || "");
+			const contentBlock = htmlToDraft(response.cz || "");
 			const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
 			const editorState = EditorState.createWithContent(contentState);
 			this.setState({...response, editorState})
@@ -70,7 +70,7 @@ class EditPage extends React.Component {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({cs: data})
+			body: JSON.stringify({cz: data})
 		})
 		.then(response => {
 			if(!response.ok)
@@ -167,7 +167,7 @@ class EditPage extends React.Component {
 				<p>ID:<br/>{this.state._id}</p>
 				<p>Poslední editace:<br/>{new Date(this.state.lastEdited).toLocaleString()}</p>
 				<p>Poslední editor:<br/>{this.state.lastAuthor}</p>
-				<p>Aktuální stránka:<br/><NavLink to={`/prak/page/cs/${this.state.pageName}`}>{`/prak/page/cs/${this.state.pageName}`}</NavLink> </p>
+				<p>Aktuální stránka:<br/><NavLink to={`/prak/page/cz/${this.state.pageName}`}>{`/prak/page/cz/${this.state.pageName}`}</NavLink> </p>
 				<Button
 					variant="contained"
 					color="primary"
