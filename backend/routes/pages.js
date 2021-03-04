@@ -22,31 +22,14 @@ router.route('/:pageName').get((req, res) => {
 		})
 })
 
-router.route('/cz/:pageName').get((req, res) => {
+router.route('/:language/:pageName').get((req, res) => {
 	const pageName = req.params.pageName
+	const language = req.params.language
+
 	if(pageName === undefined)
 		res.status(400).json({ message: "missing pageName" })
 
-	Model.findOne({pageName}, "cz")
-		.exec()
-		.then(result => {
-			res.set('Cache-control', 'public, max-age=3600')
-			res.status(200).json(result)
-		})
-		.catch(err => {
-			res.status(500).json({
-				message: "something went wrong",
-				details: err,
-			})
-		})
-})
-
-router.route('/en/:pageName').get((req, res) => {
-	const pageName = req.params.pageName
-	if(pageName === undefined)
-		res.status(400).json({ message: "missing pageName" })
-
-	Model.findOne({pageName}, "en")
+	Model.findOne({pageName}, language)
 		.exec()
 		.then(result => {
 			res.set('Cache-control', 'public, max-age=3600')

@@ -13,6 +13,10 @@ const schema = new mongoose.Schema({
 		type: String,
 		default: "",
 	},
+	de: {
+		type: String,
+		default: "",
+	},
 	lastEdited: {
 		type: Date,
 		default: Date.now,
