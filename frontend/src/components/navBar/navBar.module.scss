@@ -53,6 +53,9 @@
 			margin: auto;
 		}
 	}
+	span {
+		text-align: center;
+	}
 }
 
 .social{
@@ -92,6 +95,7 @@
 	display: none;
 	width: max-content;
 	position: absolute;
+	right: 0;
 	background-color: #F4E7BB;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	padding: 12px 16px;

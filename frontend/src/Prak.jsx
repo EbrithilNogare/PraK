@@ -5,14 +5,11 @@ import {
 	Route,
 	Redirect,
 } from "react-router-dom"
-import { withCookies, CookiesProvider } from "react-cookie";
-
-import {
-	SnackbarProvider,
-} from 'notistack';
-
+import { withCookies, CookiesProvider } from "react-cookie"
+import './i18n'
+import { SnackbarProvider } from 'notistack'
 import WebFont from 'webfontloader';
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
 import PrivateRoute from './components/PrivateRoute'
 
