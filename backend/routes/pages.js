@@ -22,34 +22,14 @@ router.route('/:pageName').get((req, res) => {
 		})
 })
 
-router.route('/:language/:pageName').get((req, res) => {
-	const pageName = req.params.pageName
-	const language = req.params.language
-
-	if(pageName === undefined)
-		res.status(400).json({ message: "missing pageName" })
-
-	Model.findOne({pageName}, language)
-		.exec()
-		.then(result => {
-			res.set('Cache-control', 'public, max-age=3600')
-			res.status(200).json(result)
-		})
-		.catch(err => {
-			res.status(500).json({
-				message: "something went wrong",
-				details: err,
-			})
-		})
-})
-
 router.route('/').post((req, res) => {
 	const {_limit, ...body} = req.body
 
-	Model.find(body, "pageName lastEdited removable")
+	Model.find(body, "title pageName category language description edits")
 		.limit(_limit || 5)
 		.exec()
 		.then(result => {
+			result.forEach(value => { value.edits = value.edits[value.edits.length - 1]})
 			res.status(200).json(result)
 		})
 		.catch(err => {
@@ -61,8 +41,9 @@ router.route('/').post((req, res) => {
 })
 
 router.route('/').put(auth("cms"), (req, res) => {
-	const lastAuthor = req.cookies.user
-	const newModel = new Model({...req.body, lastAuthor, lastEdited: new Date()})
+	const editor = req.cookies.user
+	const date = new Date()
+	const newModel = new Model({...req.body, edits:[{date, editor}]})
 
 	newModel.save()
 		.then(result => {
@@ -77,12 +58,14 @@ router.route('/').put(auth("cms"), (req, res) => {
 })
 
 router.route('/:pageName').patch(auth("cms"), (req, res) => {
-	const lastAuthor = req.cookies.user
+	const editor = req.cookies.user
+	const date = new Date()
 	const pageName = req.params.pageName
+
 	if(pageName === undefined)
 		res.status(400).json({ message: "missing pageName" })
 
-	Model.findOneAndUpdate({ pageName },{...req.body, lastAuthor, lastEdited: new Date()},(err, result)=>{
+	Model.findOneAndUpdate({ pageName },{...req.body, edits:[{date, editor}]},(err, result)=>{
 		if(err){
             res.status(500).json({
 				message: err.message,
@@ -102,7 +85,7 @@ router.route('/:pageName').delete(auth("cms"), (req, res) => {
 		return	
 	}
 
-	Model.findOneAndDelete({pageName, removable:true},(err, result)=>{
+	Model.findOneAndDelete({ pageName },(err, result)=>{
 		if(err){
             res.status(500).json({
 				message: err.message,

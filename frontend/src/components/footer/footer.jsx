@@ -1,9 +1,7 @@
 import React from "react"
 import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from "react-cookie";
-import {
-	NavLink
-} from "react-router-dom";
+import { withCookies, Cookies } from "react-cookie"
+import { NavLink } from "react-router-dom"
 
 import styles from "./footer.module.scss"
 

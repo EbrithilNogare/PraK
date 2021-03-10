@@ -9,6 +9,11 @@ import { withSnackbar } from 'notistack'
 import { 
 	Paper,
 	Button,
+	TextField,
+	Select,
+	MenuItem,
+	FormControl,
+	InputLabel,
 } from '@material-ui/core'
 
 import { Editor } from 'react-draft-wysiwyg'
@@ -26,10 +31,11 @@ class EditPage extends React.Component {
 		this.state = {
 			_id: "",
 			pageName: "",
-			cz: "",
-			en: "",
-			lastEdited: null,
-			lastAuthor: "",
+			title: "",
+			language: "",
+			description: "",
+			content: "",
+			category: "",
 			editorState: EditorState.createEmpty(),
 		}
 	}
@@ -49,7 +55,7 @@ class EditPage extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			const contentBlock = htmlToDraft(response.cz || "");
+			const contentBlock = htmlToDraft(response.content || "");
 			const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
 			const editorState = EditorState.createWithContent(contentState);
 			this.setState({...response, editorState})
@@ -62,7 +68,7 @@ class EditPage extends React.Component {
 	onEditorStateChange = editorState => { this.setState({editorState}) }
 
 	uploadContent = () => {
-		const data = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
+		const content = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
 		const url = `/prak/api/pages/${this.props.pageName}`
 
 		fetch(url, {
@@ -70,7 +76,13 @@ class EditPage extends React.Component {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({cz: data})
+			body: JSON.stringify({
+				title: this.state.title,
+				language: this.state.language,
+				description: this.state.description === "" ? undefined : this.state.description,
+				content,
+				category: this.state.category,
+			}),
 		})
 		.then(response => {
 			if(!response.ok)
@@ -148,6 +160,10 @@ class EditPage extends React.Component {
 		})
 	}
 
+	handleChange = (event) => {
+		this.setState({[event.target.name]: event.target.value})
+	}
+
 	render(){ return(
 		<div className={styles.root}>
 			<Paper className={styles.content}>
@@ -162,12 +178,58 @@ class EditPage extends React.Component {
 					editorStyle={{ padding: "20px" }}
 				/>
 			</Paper>
-			<Paper className={styles.rightPanel}>
-				<h4>Název:<br/>{this.state.pageName}</h4>
-				<p>ID:<br/>{this.state._id}</p>
-				<p>Poslední editace:<br/>{new Date(this.state.lastEdited).toLocaleString()}</p>
-				<p>Poslední editor:<br/>{this.state.lastAuthor}</p>
-				<p>Aktuální stránka:<br/><NavLink to={`/prak/page/cz/${this.state.pageName}`}>{`/prak/page/cz/${this.state.pageName}`}</NavLink> </p>
+			<div className={styles.rightPanel}>
+				<TextField 
+					label={"Titulek"}
+					variant="outlined"
+					name="title"
+					onChange={this.handleChange}
+					value={this.state.title}
+				/>
+				<FormControl>
+					<InputLabel id="languageLabel">Jazyk</InputLabel>
+					<Select
+						labelId="languageLabel"
+						variant="outlined"
+						name="language"
+						onChange={this.handleChange}
+						value={this.state.language}
+					>
+						<MenuItem value={"cz"}>Čeština</MenuItem>
+						<MenuItem value={"en"}>Angličtina</MenuItem>
+						<MenuItem value={"de"}>Němčina</MenuItem>
+					</Select>
+				</FormControl>
+				<TextField 
+					label={"Popis"}
+					variant="outlined"
+					name="description"
+					onChange={this.handleChange}
+					value={this.state.description}
+					multiline
+				/>
+				<FormControl>
+					<InputLabel id="categoryLabel">Kategorie</InputLabel>
+					<Select
+						labelId="categoryLabel"
+						variant="outlined"
+						name="category"
+						onChange={this.handleChange}
+						value={this.state.category}
+						label="Kategorie"
+					>
+						<MenuItem value={""}></MenuItem>
+						<MenuItem value={"page"}>Stránka</MenuItem>
+						<MenuItem value={"main page"}>Nesmazatelná stránka</MenuItem>
+						<MenuItem value={"news"}>Aktualita</MenuItem>
+						<MenuItem value={"post"}>Článek</MenuItem>
+						<MenuItem value={"shards"}>Střípky z Krkonoš</MenuItem>
+					</Select>
+				</FormControl>
+
+				<strong>Aktuální stránka:</strong>
+				<NavLink to={`/prak/page/${this.state.pageName}`}>{`/prak/page/${this.state.pageName}`}</NavLink>
+
 				<Button
 					variant="contained"
 					color="primary"
@@ -175,7 +237,7 @@ class EditPage extends React.Component {
 				>
 					Uložit změny
 				</Button>
-				{this.state.removable && <Button
+				{this.state.category !== "main page" && <Button
 					variant="contained"
 					color="primary"
 					onClick={this.deleteContent}
@@ -183,7 +245,7 @@ class EditPage extends React.Component {
 					Smazat záznam
 				</Button>}
 				
-			</Paper>
+			</div>
 		</div>
 	)}
 }

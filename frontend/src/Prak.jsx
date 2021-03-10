@@ -16,6 +16,8 @@ import PrivateRoute from './components/PrivateRoute'
 import NavBar from "./components/navBar"
 import Footer from "./components/footer"
 import ScrollToTop from "./components/ScrollToTop"
+import { NewsList } from "./components/news"
+import { ShardsList } from "./components/shards"
 
 import Homepage from "./scenes/homepage"
 import UploadScene from "./scenes/upload"
@@ -102,9 +104,11 @@ class Prak extends React.Component {
 									<PrivateRoute path="/prak/show" privacyLevel="4"><ShowScene/></PrivateRoute>
 									<PrivateRoute path="/prak/search" privacyLevel="4"><SearchScene/></PrivateRoute>
 
+									<Route path="/prak/news"><NewsList/></Route>
+									<Route path="/prak/shards"><ShardsList/></Route>
 									<Route path="/prak/contacts"><ContactsPage/></Route>
 
-									<Route path="/prak/page/cz/:pageName"  render={({match}) =>
+									<Route path="/prak/page/:pageName"  render={({match}) =>
 										<LoadPageFromDB pageName={match.params.pageName}/>
 									}></Route>
 

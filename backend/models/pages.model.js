@@ -4,31 +4,35 @@ const schema = new mongoose.Schema({
 	pageName: {
 		type: String,
 		required: true,
+		unique: true,
 	},
-	cz: {
+	title: {
+		type: String,
+		required: true,
+	},
+	language: {
+		type: String,
+		default: "cz",
+	},
+	description: String,
+	content: {
 		type: String,
 		default: "",
 	},
-	en: {
+	category: {
 		type: String,
 		default: "",
 	},
-	de: {
-		type: String,
-		default: "",
-	},
-	lastEdited: {
-		type: Date,
-		default: Date.now,
-	},
-	lastAuthor: {
-		type: String,
-		default: "Unknown",
-	},
-	removable: {
-		type: Boolean,
-		default: true,
-	},
+	edits: [{
+		date: {
+			type: Date,
+			default: Date.now,
+		},
+		editor: {
+			type: String,
+			default: "Unknown",
+		},
+	}],
 })
 
 module.exports = mongoose.model('pages', schema, 'pages')

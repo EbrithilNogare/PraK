@@ -5,10 +5,6 @@ import {
 	Route,
 } from "react-router-dom"
 
-import { 
-	Paper,
-} from '@material-ui/core'
-
 import EditPage from "./components/editPage"
 import AllPages from "./components/allPages"
 import NewPage from "./components/newPage"
@@ -19,25 +15,15 @@ class CmsScene extends React.Component {
 	constructor(props){
 		super(props)
 
-		this.state = {
-			editorState:"",
-		}
-	}
-
-	onEditorStateChange = (editorState) => {
-		this.setState({editorState})
-	}
-
-	uploadContent = () => {
-		console.log("A");
+		this.state = {}
 	}
 
 	render(){
 		return(
 			<div className={styles.root}>
-				<Paper className={styles.title}>
+				<div className={styles.title}>
 					<h1>Redakční systém</h1>
-				</Paper>
+				</div>
 				<RouterSwitch>
 					<Route path="/prak/cms/:pageName" render={({match}) => <EditPage pageName={match.params.pageName}/>}/>
 					<Route path="/prak/cms/">

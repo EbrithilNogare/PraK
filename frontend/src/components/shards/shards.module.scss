@@ -1,0 +1,25 @@
+.ShardsBlock {
+	width: 100%;
+	padding: 20px 10%;
+}
+
+.ShardsBlockItem {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	column-gap: 20px;
+}
+
+.ShardsList {
+	margin: 50px;
+	padding: 20px;
+}
+
+.ShardsView {
+	padding: 10px 20px;
+	min-height: 100px;
+	cursor: pointer;
+}
+
+.ShardsView:hover {
+	background: #eee;
+}

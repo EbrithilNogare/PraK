@@ -1,4 +1,4 @@
-import React, { Suspense } from "react"
+import React, { Suspense, useState, useEffect } from "react"
 import {
 	NavLink
 } from "react-router-dom";
@@ -15,6 +15,35 @@ function NavBar() {
 	const changeLanguage = (lng) => {
 		i18n.changeLanguage(lng)
 	}
+	const [state, setState] = useState({ shards: [] })
+	
+	useEffect(() => { loadShards() }, [])
+
+	const loadShards = () => {
+		const url = "/prak/api/pages"
+		const body = { category: "shards", language: "cz" }
+
+		fetch(url, {
+			method: 'POST',
+			headers: {
+			  'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ ...body, _limit: 50 })
+		})
+		.then(response => {
+			if(!response.ok)
+				throw response
+			return response.json()
+		})
+		.then(response => {
+			setState({ shards: response })
+			console.log(response);
+		})
+		.catch((error) => {
+			console.info("%cPages loading unsuccesful\n", "background: #222; color: #bada55", error)
+		})
+	}
+
 	return(
 		<nav className={styles.navBar}>
 			<NavLink exact={true} to="/prak" className={styles.logo}>
@@ -42,27 +71,22 @@ function NavBar() {
 				<NavLink to="/prak/login"><Person/></NavLink>
 			</div>
 			<div className={styles.menu}>
-				<NavLink to="/prak/page/cz/news">{t("NavBar.news")}</NavLink>
+				<NavLink to="/prak/news">{t("NavBar.news")}</NavLink>
 				<div className={styles.dropdown}>
-					<NavLink to="/prak/page/cz/about">{t("NavBar.about")}</NavLink>
+					<NavLink to="/prak/page/about">{t("NavBar.about")}</NavLink>
 					<div className={styles.dropdownContent}>
-						<NavLink to="/prak/page/cz/team">{t("NavBar.team")}</NavLink>
-						<NavLink to="/prak/page/cz/ourwork">{t("NavBar.ourwork")}</NavLink>
+						<NavLink to="/prak/page/team">{t("NavBar.team")}</NavLink>
+						<NavLink to="/prak/page/ourwork">{t("NavBar.ourwork")}</NavLink>
 					</div>
 				</div>
-				<NavLink to="/prak/page/cz/partners">{t("NavBar.partners")}</NavLink>
+				<NavLink to="/prak/page/partners">{t("NavBar.partners")}</NavLink>
 				<NavLink to="/prak/contacts">{t("NavBar.contacts")}</NavLink>
 				<div className={styles.dropdown}>
-					<NavLink to="/prak/page/cz/shards">{t("NavBar.shards")}</NavLink>
+					<NavLink to="/prak/shards">{t("NavBar.shards")}</NavLink>
 					<div className={styles.dropdownContent}>
-						<NavLink to="/prak/page/cz/topography">{t("NavBar.topography")}</NavLink>
-						<NavLink to="/prak/page/cz/scientific_conference">Vědecká konference</NavLink>
-						<NavLink to="/prak/page/cz/exhibition_of_the_giant_mountains_in_1938">Výstava Krkonoše v roce 1938</NavLink>
-						<NavLink to="/prak/page/cz/collective_monographs">Kolektivní monografie</NavLink>
-						<NavLink to="/prak/page/cz/expert_articles">Odborné články</NavLink>
-						<NavLink to="/prak/page/cz/maps_with_professional_content">Mapy s odborným obsahem</NavLink>
-						<NavLink to="/prak/page/cz/public_database_springs_of_the_giant_mountains">Veřejná databáze Prameny Krkonoš</NavLink>
-						<NavLink to="/prak/page/cz/software">Software</NavLink>
+						{state.shards.map((value, key) => (
+							<NavLink key={key} to={`/prak/page/${value.pageName}`}>{value.title}</NavLink>
+						))}
 					</div>
 				</div>
 			</div>

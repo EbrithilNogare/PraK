@@ -1,23 +1,23 @@
 import React from "react"
 
-import styles from "./news.module.scss"
-import { NewsView } from "./"
+import styles from "./shards.module.scss"
+import { ShardsView } from "."
 
-class NewsList extends React.Component {
+class ShardsList extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			news: []
+			shards: []
 		}
 	}
 
 	componentDidMount(){
-		this.loadNews()
+		this.loadShards()
 	}
 
-	loadNews = () => {
+	loadShards = () => {
 		const url = "/prak/api/pages"
-		const body = { category: "news", language: "cz" }
+		const body = { category: "shards", language: "cz" }
 
 		fetch(url, {
 			method: 'POST',
@@ -32,7 +32,7 @@ class NewsList extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			this.setState({ news: response })
+			this.setState({ shards: response })
 			console.log(response);
 		})
 		.catch((error) => {
@@ -42,12 +42,12 @@ class NewsList extends React.Component {
 
 	render(){
 		return(
-			<div className={styles.NewsList}>
-				<h1><center>Aktuality</center></h1>
-				{this.state.news.map((value, key) => (<NewsView key={key} data={value}/>))}
+			<div className={styles.ShardsList}>
+				<h1><center>Střípky z Krkonoš</center></h1>
+				{this.state.shards.map((value, key) => (<ShardsView key={key} data={value}/>))}
 			</div>
 		)
 	}
 }
 
-export default NewsList
+export default ShardsList

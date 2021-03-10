@@ -4,9 +4,7 @@ import {
 	NavLink
 } from "react-router-dom";
 
-import { 
-	Button,
-} from '@material-ui/core'
+import { Visibility, Edit } from '@material-ui/icons/';
 
 import styles from './allPages.module.scss'
 
@@ -15,7 +13,7 @@ class AllPages extends React.Component {
 		super(props)
 
 		this.state = {
-			pages: []
+			pages: {}
 		}
 	}
 
@@ -36,45 +34,46 @@ class AllPages extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			this.setState({pages: response})
+			this.parsePagers(response)
 		})
 		.catch((error) => {
 			console.info("%cPages loading unsuccesful\n", "background: #222; color: #bada55", error)
 		})
 	}
 
+	parsePagers = response => {
+		const pages = {}
+
+		response
+		.sort((a, b)=> (a.pageName.toLowerCase() > b.pageName.toLowerCase()) ? 1 : (a.pageName.toLowerCase() === b.pageName.toLowerCase()) ? 0 : -1 )
+		.forEach((value, index)=>{
+			if(!pages[value.category])
+			pages[value.category] = []
+
+			pages[value.category].push({ title: value.title, pageName: value.pageName, language: value.language })
+		})
+
+		this.setState({pages})
+	}
+
 	render(){ return(
 		<div className={styles.root}>
-			<h3>Systémové stránky</h3>
-			<div className={styles.flex}>
-			{this.state.pages
-				.filter(value => !value.removable)
-				.sort((a, b)=> (a.pageName > b.pageName) ? 1 : (a.pageName === b.pageName) ? 0 : -1 )
-				.map((value, key) =>
-				<NavLink 
-				key={key}
-				style={{ textDecoration: 'none' }}
-				to={`/prak/cms/${value.pageName}`}
-				>
-					<Button color="primary" variant="contained">{value.pageName}</Button>
-				</NavLink>
-			)}
-			</div>
-			<h3>Uživatelské stránky</h3>
-			<div className={styles.flex}>
-			{this.state.pages
-				.filter(value => value.removable)
-				.sort((a, b)=> (a.pageName > b.pageName) ? 1 : (a.pageName === b.pageName) ? 0 : -1 )
-				.map((value, key) =>
-				<NavLink 
-				key={key}
-				style={{ textDecoration: 'none' }}
-				to={`/prak/cms/${value.pageName}`}
-				>
-					<Button color="primary" variant="contained">{value.pageName}</Button>
-				</NavLink>
-			)}
-			</div>
+			{Object.keys(this.state.pages).map((value, key)=>(
+				<div key={key}>
+					<h3>{value.toUpperCase()}</h3>
+					<div style={{display:"grid"}}>
+						{this.state.pages[value].map((value, key)=>(
+							<div key={key} style={{ marginLeft: "30px", height:"40px", lineHeight:"40px", display: "grid", gridTemplateColumns: "1fr auto auto auto", columnGap:"50px" }}>
+								<span>{value.title}</span>
+								<span>{value.language}</span>
+								<NavLink to={`/prak/page/${value.pageName}`}><Visibility style={{ height: "100%", color: "black" }}/></NavLink>
+								<NavLink to={`/prak/cms/${value.pageName}`}><Edit style={{ height: "100%", color: "black" }}/></NavLink>
+							</div>
+						))}
+					</div>
+				</div>
+			))}
+		
 		</div>
 	)}
 }

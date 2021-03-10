@@ -1,7 +1,10 @@
 import React from "react"
 import parse from 'html-react-parser'
+import { NavLink } from "react-router-dom"
+import { withCookies } from "react-cookie"
 
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { Edit } from '@material-ui/icons/';
 
 class LoadPageFromDB extends React.Component {
 	constructor(props){
@@ -23,7 +26,7 @@ class LoadPageFromDB extends React.Component {
 	}
 
 	loadPage = (pageName) => {
-		const url = `/prak/api/pages/cz/${pageName}`
+		const url = `/prak/api/pages/${pageName}`
 
 		fetch(url, {
 			method: 'GET',
@@ -34,7 +37,7 @@ class LoadPageFromDB extends React.Component {
 			return response.json()
 		})
 		.then(response => {
-			this.setState({html: response.cz || "--- Empty Page ---"})
+			this.setState({html: response.content || "--- Empty Page ---"})
 		})
 		.catch((error) => {
 			console.info("%cPages loading unsuccesful\n", "background: #222; color: #bada55", error)
@@ -44,7 +47,15 @@ class LoadPageFromDB extends React.Component {
 
 	render(){
 		return(
-			<div style={{ margin:"50px", padding:"20px" }}>
+			<div style={{ margin:"50px", padding:"20px", position: "relative" }}>
+				{(this.props.cookies.get("permission") & 8) > 0 &&
+					<NavLink
+						style={{ position: "absolute", right: 0, top: 0, color: "#555" }}
+						to={`/prak/cms/${this.props.pageName}`}
+					>
+						<Edit/>
+					</NavLink>
+				}
 				{ this.state.html === "" 
 					? <CircularProgress color="primary"/>
 					: parse(this.state.html)
@@ -54,4 +65,4 @@ class LoadPageFromDB extends React.Component {
 	}
 }
 
-export default LoadPageFromDB
+export default withCookies(LoadPageFromDB)
