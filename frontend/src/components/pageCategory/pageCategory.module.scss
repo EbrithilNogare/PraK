@@ -1,25 +1,25 @@
-.ShardsBlock {
+.PageCategoryBlock {
 	width: 100%;
 	padding: 20px 10%;
 }
 
-.ShardsBlockItem {
+.PageCategoryBlockItem {
 	display: grid;
 	grid-template-columns: auto 1fr;
 	column-gap: 20px;
 }
 
-.ShardsList {
+.PageCategoryList {
 	margin: 50px;
 	padding: 20px;
 }
 
-.ShardsView {
+.PageCategoryView {
 	padding: 10px 20px;
 	min-height: 100px;
 	cursor: pointer;
 }
 
-.ShardsView:hover {
+.PageCategoryView:hover {
 	background: #eee;
 }

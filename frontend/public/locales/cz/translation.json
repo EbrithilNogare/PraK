@@ -1,12 +1,22 @@
 {
 	"NavBar": {
+		"news": "Aktualita",
 		"about": "O projektu",
 		"team": "Řešitelský tým",
 		"ourwork": "Výstupy",
 		"partners": "Partneři",
 		"contacts": "Kontakty",
-		"news": "Aktuality",
 		"topography": "Místopis Krkonoš",
-		"shards": "Střípky z Krkonoš"
+		"shards": "Střípky z Krkonoš",
+		"from_history": "Z dějin Krkonoš",
+		"attractions": "Zajímavosti"
+	},
+	"pageCategory": {
+		"page": "Stránka",
+		"main": "Nesmazatelná stránka",
+		"news": "Aktualita",
+		"post": "Článek",
+		"ourwork": "Výstupy",
+		"topography": "Místopis Krkonoš"
 	}
-  }
+}

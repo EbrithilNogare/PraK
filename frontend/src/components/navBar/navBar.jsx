@@ -21,7 +21,7 @@ function NavBar() {
 
 	const loadShards = () => {
 		const url = "/prak/api/pages"
-		const body = { category: "shards", language: "cz" }
+		const body = { category: "ourwork", language: "cz" }
 
 		fetch(url, {
 			method: 'POST',
@@ -37,7 +37,6 @@ function NavBar() {
 		})
 		.then(response => {
 			setState({ shards: response })
-			console.log(response);
 		})
 		.catch((error) => {
 			console.info("%cPages loading unsuccesful\n", "background: #222; color: #bada55", error)
@@ -59,34 +58,41 @@ function NavBar() {
 				<a href="https://www.instagram.com/pramenykrkonos/">
 					<img src="/prak/images/instagram.svg" alt="instagram"/>
 				</a>
-				<span style={{cursor: "pointer"}} onClick={() => changeLanguage('cz')}>
+				<span style={{cursor: "pointer", textAlign: "center"}} onClick={() => changeLanguage('cz')}>
 					CZ
 				</span>
-				<span style={{cursor: "pointer"}} onClick={() => changeLanguage('de')}>
+				<span style={{cursor: "pointer", textAlign: "center"}} onClick={() => changeLanguage('de')}>
 					DE
 				</span>
-				<span style={{cursor: "pointer"}} onClick={() => changeLanguage('en')}>
+				<span style={{cursor: "pointer", textAlign: "center"}} onClick={() => changeLanguage('en')}>
 					EN
 				</span>
 				<NavLink to="/prak/login"><Person/></NavLink>
 			</div>
 			<div className={styles.menu}>
-				<NavLink to="/prak/news">{t("NavBar.news")}</NavLink>
+				<NavLink to="/prak/pageCategory/news">{t("NavBar.news")}</NavLink>
 				<div className={styles.dropdown}>
 					<NavLink to="/prak/page/about">{t("NavBar.about")}</NavLink>
 					<div className={styles.dropdownContent}>
 						<NavLink to="/prak/page/team">{t("NavBar.team")}</NavLink>
-						<NavLink to="/prak/page/ourwork">{t("NavBar.ourwork")}</NavLink>
+						<div className={styles.dropdown}>
+							<NavLink to="/prak/pageCategory/ourwork">{t("NavBar.ourwork")}</NavLink>
+							<div className={styles.dropdownContent}>
+								{state.shards.map((value, key) => (
+									<NavLink key={key} to={`/prak/page/${value.pageName}`}>{value.title}</NavLink>
+								))}
+							</div>
+						</div>
 					</div>
 				</div>
 				<NavLink to="/prak/page/partners">{t("NavBar.partners")}</NavLink>
 				<NavLink to="/prak/contacts">{t("NavBar.contacts")}</NavLink>
 				<div className={styles.dropdown}>
-					<NavLink to="/prak/shards">{t("NavBar.shards")}</NavLink>
+					<NavLink to="/prak/page/shards">{t("NavBar.shards")}</NavLink>
 					<div className={styles.dropdownContent}>
-						{state.shards.map((value, key) => (
-							<NavLink key={key} to={`/prak/page/${value.pageName}`}>{value.title}</NavLink>
-						))}
+						<NavLink to="/prak/pageCategory/topography">{t("NavBar.topography")}</NavLink>
+						<NavLink to="/prak/page/from_history">{t("NavBar.from_history")}</NavLink>
+						<NavLink to="/prak/page/attractions">{t("NavBar.attractions")}</NavLink>
 					</div>
 				</div>
 			</div>

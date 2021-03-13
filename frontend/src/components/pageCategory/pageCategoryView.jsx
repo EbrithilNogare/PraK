@@ -1,11 +1,11 @@
 import React from "react"
 
-import styles from "./news.module.scss"
+import styles from "./pageCategory.module.scss"
 import {
 	NavLink
 } from "react-router-dom";
 
-class NewsView extends React.Component {
+class PageCategoryView extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {}
@@ -14,7 +14,7 @@ class NewsView extends React.Component {
 	render(){
 		return(
 			<NavLink to={`/prak/page/${this.props.data.pageName}`} style={{ textDecoration: "none", color: "black" }}>
-			<div className={styles.NewsView}>
+			<div className={styles.PageCategoryView}>
 				<h3>{this.props.data.title}</h3>
 				<p style={{fontSize: "small"}}>{(new Date(this.props.data.edits[0].date)).toLocaleDateString()}</p>
 				{this.props.data.description}
@@ -25,4 +25,4 @@ class NewsView extends React.Component {
 	}
 }
 
-export default NewsView
+export default PageCategoryView

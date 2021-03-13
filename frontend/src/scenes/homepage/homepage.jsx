@@ -1,6 +1,6 @@
 import React from "react"
 
-import { NewsBlock } from "../../components/news"
+import NewsBlock from "../../components/NewsBlock"
 import LoadPageFromDB from "../../components/loadPageFromDB"
 
 import styles from './homepage.module.scss'

@@ -4,8 +4,6 @@ import { NavLink } from "react-router-dom"
 import Carousel from 'react-material-ui-carousel'
 import { Paper } from '@material-ui/core'
 
-import styles from "./news.module.scss"
-
 class NewsBlock extends React.Component {
 	constructor(props){
 		super(props)
@@ -36,7 +34,6 @@ class NewsBlock extends React.Component {
 		})
 		.then(response => {
 			this.setState({ news: response })
-			console.log(response);
 		})
 		.catch((error) => {
 			console.info("%cPages loading unsuccesful\n", "background: #222; color: #bada55", error)
@@ -45,7 +42,7 @@ class NewsBlock extends React.Component {
 
 	render(){
 		return(
-			<div className={styles.NewsBlock}>
+			<div style={{ width: "100%", padding: "20px 10%", background: "#eee" }}>
 				<Carousel
 					autoPlay={false}
 					interval={7000}
@@ -62,7 +59,7 @@ class NewsBlock extends React.Component {
 function Item(props)
 {
     return (
-        <Paper className={styles.NewsBlockItem}>
+        <Paper style={{ width: "calc(100% - 150px)", margin: "auto", padding: "0 20px", background: "#fff"}}> 
 			<NavLink
 				to={`/prak/page/${props.item.pageName}`}
 				style={{ color: "black", textDecoration: "none", margin: "0 30px" }}>

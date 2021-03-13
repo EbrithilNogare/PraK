@@ -223,7 +223,8 @@ class EditPage extends React.Component {
 						<MenuItem value={"main page"}>Nesmazatelná stránka</MenuItem>
 						<MenuItem value={"news"}>Aktualita</MenuItem>
 						<MenuItem value={"post"}>Článek</MenuItem>
-						<MenuItem value={"shards"}>Střípky z Krkonoš</MenuItem>
+						<MenuItem value={"ourwork"}>Výstupy</MenuItem>
+						<MenuItem value={"topography"}>Místopis Krkonoš</MenuItem>
 					</Select>
 				</FormControl>
 

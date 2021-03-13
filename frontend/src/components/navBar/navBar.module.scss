@@ -102,6 +102,6 @@
 	z-index: 1;
 }
   
-.dropdown:hover .dropdownContent {
+.dropdown:hover>.dropdownContent {
 	display: block;
 }
