@@ -1,4 +1,5 @@
 import React from "react"
+import { withTranslation } from 'react-i18next'
 
 import styles from "./pageCategory.module.scss"
 import { PageCategoryView } from "."
@@ -46,13 +47,19 @@ class PageCategoryList extends React.Component {
 	}
 
 	render(){
+		const { t } = this.props
 		return(
 			<div className={styles.PageCategoryList}>
-				<h1><center>Kategorie {this.props.pageCategoryName}</center></h1>
+				<h1><center>{t("pageCategory.category")} - {t(`pageCategory.${this.props.pageCategoryName}`)}</center></h1>
 				{this.state.pageCategory.map((value, key) => (<PageCategoryView key={key} data={value}/>))}
 			</div>
 		)
 	}
 }
 
-export default PageCategoryList
+const WithHooks = withTranslation()(PageCategoryList)
+export default function TranslatedComponent(props) { return (
+	<React.Suspense fallback="loading">
+		<WithHooks {...props}/>
+	</React.Suspense>
+)}

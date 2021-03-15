@@ -1,4 +1,5 @@
 import React from "react"
+import { withTranslation } from 'react-i18next'
 import { withSnackbar } from 'notistack'
 
 import { 
@@ -77,12 +78,14 @@ class NewUser extends React.Component {
 		e.preventDefault()
 	}
 
-	render(){ return(
+	render(){
+	const { t } = this.props
+	return(
 		<form onSubmit={this.handleSubmit} className={styles.root}>
-			<h2>Add new User</h2>
+			<h2>{t("admin.addNewUser")}</h2>
 			<div>
 				<TextField
-					label="Email"
+					label={t("admin.email")}
 					name="email"
 					value={this.state.email}
 					onChange={this.handleChange}
@@ -90,7 +93,7 @@ class NewUser extends React.Component {
 				/>
 				<br/>
 				<TextField
-					label="Password"
+					label={t("admin.password")}
 					name="password"
 					value={this.state.password}
 					onChange={this.handleChange}
@@ -103,7 +106,7 @@ class NewUser extends React.Component {
 				onClick={()=>{
 					this.setState({password: Math.random().toString(36).substring(2)})
 				}}
-			>Generate secure password</Button>
+			>{t("admin.generatePassword")}</Button>
 			<div>
 				<FormControlLabel
 					control={
@@ -114,7 +117,7 @@ class NewUser extends React.Component {
 						color="primary"
 					/>
 					}
-					label="Read"
+					label={t("admin.generatePassword")}
 				/>
 				<br/>
 				<FormControlLabel
@@ -126,7 +129,7 @@ class NewUser extends React.Component {
 						color="primary"
 					/>
 					}
-					label="Write"
+					label={t("admin.read")}
 				/>
 				<br/>
 				<FormControlLabel
@@ -138,7 +141,7 @@ class NewUser extends React.Component {
 						color="primary"
 					/>
 					}
-					label="Execute (admin)"
+					label={t("admin.write")}
 				/>
 				<br/>
 				<FormControlLabel
@@ -150,19 +153,19 @@ class NewUser extends React.Component {
 						color="primary"
 					/>
 					}
-					label="CMS"
+					label={t("admin.cms")}
 				/>
 			</div>
 			<div>
 				<TextField
-					label="FirstName"
+					label={t("admin.firstName")}
 					name="firstName"
 					value={this.state.firstName}
 					onChange={this.handleChange}
 				/>
 				<br/>
 				<TextField
-					label="SecondName"
+					label={t("admin.secondName")}
 					name="secondName"
 					value={this.state.secondName}
 					onChange={this.handleChange}
@@ -172,9 +175,14 @@ class NewUser extends React.Component {
 				variant="contained"
 				color="primary"
 				type="submit"
-			>Create new user</Button>
+			>{t("admin.createNewUser")}</Button>
 		</form>
 	)}
 }
 
-export default withSnackbar(NewUser);
+const WithHooks = withSnackbar(withTranslation()(NewUser))
+export default function TranslatedComponent(props) { return (
+	<React.Suspense fallback="loading">
+		<WithHooks {...props}/>
+	</React.Suspense>
+)}

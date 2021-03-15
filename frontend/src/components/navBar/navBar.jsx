@@ -6,12 +6,11 @@ import {
 	Person
 } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next'
-import i18n from '../../i18n';
 
 import styles from "./navBar.module.scss"
 
 function NavBar() {
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 	const changeLanguage = (lng) => {
 		i18n.changeLanguage(lng)
 	}
@@ -87,21 +86,19 @@ function NavBar() {
 				</div>
 				<NavLink to="/prak/page/partners">{t("NavBar.partners")}</NavLink>
 				<NavLink to="/prak/contacts">{t("NavBar.contacts")}</NavLink>
-				<div className={styles.dropdown}>
+				{ i18n.language === "cz" && <div className={styles.dropdown}>
 					<NavLink to="/prak/page/shards">{t("NavBar.shards")}</NavLink>
 					<div className={styles.dropdownContent}>
 						<NavLink to="/prak/pageCategory/topography">{t("NavBar.topography")}</NavLink>
 						<NavLink to="/prak/page/from_history">{t("NavBar.from_history")}</NavLink>
 						<NavLink to="/prak/page/attractions">{t("NavBar.attractions")}</NavLink>
 					</div>
-				</div>
+				</div>}
 			</div>
 		</nav>
 	)
 }
 
-// i18n translations might still be loaded by the http backend
-// use react's Suspense
 export default function TranslatedComponent() {
 	return (
 	  <Suspense fallback="loading">

@@ -1,4 +1,5 @@
 import React from "react"
+import { withTranslation } from 'react-i18next'
 
 import {
 	Button,
@@ -54,22 +55,28 @@ class ContactsPage extends React.Component {
 	}
 
 	render(){
+		const { t } = this.props
 		return(
 			<div
 				className={styles.root}
 				component="form"
 				onSubmit={this.handleSubmit}
 			>
-				<h1>Kontakty</h1>
-				<p>Máte-li otázku, podnět či připomínku, kontaktujete nás prosím prostřednictvím kontaktního formuláře.</p><br/>
-				<TextField required label="Jméno" style={{width:"100%"}}/><br/><br/>
-				<TextField required label="Email" style={{width:"100%"}}/><br/><br/>
-				<TextField required variant="outlined" style={{width:"100%"}} label="Zpráva" multiline rows={8}/><br/><br/>
-				<Button color="primary" variant="contained" type="submit" style={{width:"300px", height:"60px"}}>Odeslat</Button><br/><br/><br/><br/>
-				Kontaktovat můžete také koordinátora projektu ({"kohoutek" + String.fromCharCode(64) + "hiu.cas.cz"}) či jednotlivé řešitele.
+				<h1>{t("contactPage.contacts")}</h1>
+				<p>{t("contactPage.questions")}</p><br/>
+				<TextField required label={t("contactPage.name")} style={{width:"100%"}}/><br/><br/>
+				<TextField required label={t("contactPage.mail")} style={{width:"100%"}}/><br/><br/>
+				<TextField required variant="outlined" style={{width:"100%"}} label={t("contactPage.message")} multiline rows={8}/><br/><br/>
+				<Button color="primary" variant="contained" type="submit" style={{width:"300px", height:"60px"}}>{t("contactPage.send")}</Button><br/><br/><br/><br/>
+				{t("contactPage.coordinator")}
 			</div>
 		)
 	}
 }
 
-export default ContactsPage
+const WithHooks = withTranslation()(ContactsPage)
+export default function TranslatedComponent(props) { return (
+	<React.Suspense fallback="loading">
+		<WithHooks {...props}/>
+	</React.Suspense>
+)}

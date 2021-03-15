@@ -1,4 +1,5 @@
 import React from "react"
+import { Trans } from 'react-i18next'
 
 import { 
 	TextField,
@@ -132,7 +133,7 @@ class ComboBox extends React.Component {
 						(!this.state.loading)&&
 						this.state.ID === "" &&
 						<MenuItem key="add_new_field" onClick={this.openNewFieldWindow} style={{background: "#a9dc39"}}>
-							+ Přidat nový záznam
+							<Trans>comboBoxes.addNewRecord</Trans>
 						</MenuItem>
 					}
 				</MenuList>

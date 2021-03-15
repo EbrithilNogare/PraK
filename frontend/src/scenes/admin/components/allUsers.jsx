@@ -1,4 +1,5 @@
 import React from "react"
+import { withTranslation } from 'react-i18next'
 
 import OneUser from "./oneUser"
 
@@ -35,9 +36,11 @@ class AllUsers extends React.Component {
 		})
 	}
 
-	render(){ return(
+	render(){ 
+		const { t } = this.props
+		return(
 		<div>
-			<h2>All users</h2>
+			<h2>{t("admin.allUsers")}</h2>
 			{this.state.users
 				.sort((a, b)=> (a.email > b.email) ? 1 : (a.email === b.email) ? 0 : -1 )
 				.map((value, key) =>
@@ -50,4 +53,9 @@ class AllUsers extends React.Component {
 	)}
 }
 
-export default AllUsers;
+const WithHooks = withTranslation()(AllUsers)
+export default function TranslatedComponent(props) { return (
+	<React.Suspense fallback="loading">
+		<WithHooks {...props}/>
+	</React.Suspense>
+)}

@@ -1,4 +1,5 @@
 import React from "react"
+import { withTranslation } from 'react-i18next'
 import { withSnackbar } from 'notistack'
 
 import { 
@@ -129,32 +130,33 @@ class OneUser extends React.Component {
 	}
 
 	render(){ 
+		const { t } = this.props
 		if(this.state.removed)
 			return (<div/>)
 		
 		return(
 		<div style={{margin:"5px", display: "flex", columnGap: "10px"}}>
 			<TextField
-				label={"firstName"}
+				label={t("admin.firstName")}
 				name="firstName"
 				value={this.state.firstName}
 				onChange={this.handleChange}
 			/>
 			<TextField
-				label={"secondName"}
+				label={t("admin.secondName")}
 				name="secondName"
 				value={this.state.secondName}
 				onChange={this.handleChange}
 			/>
 			<TextField
-				label={"email"}
+				label={t("admin.email")}
 				name="email"
 				value={this.state.email}
 				onChange={this.handleChange}
 				style={{width:"300px"}}
 			/>
 			<TextField
-				label={"password"}
+				label={t("admin.password")}
 				name="password"
 				value={this.state.password}
 				onChange={this.handleChange}
@@ -168,7 +170,7 @@ class OneUser extends React.Component {
 					color="primary"
 				/>
 				}
-				label="Read"
+				label={t("admin.read")}
 			/>
 			<FormControlLabel
 				control={
@@ -179,7 +181,7 @@ class OneUser extends React.Component {
 					color="primary"
 				/>
 				}
-				label="Write"
+				label={t("admin.write")}
 			/>
 			<FormControlLabel
 				control={
@@ -190,7 +192,7 @@ class OneUser extends React.Component {
 					color="primary"
 				/>
 				}
-				label="Execute (admin)"
+				label={t("admin.execute")}
 			/>
 			<FormControlLabel
 				control={
@@ -201,7 +203,7 @@ class OneUser extends React.Component {
 					color="primary"
 				/>
 				}
-				label="CMS"
+				label={t("admin.cms")}
 			/>
 			<Button
 				variant="contained"
@@ -209,15 +211,20 @@ class OneUser extends React.Component {
 				type="submit"
 				disabled={!this.state.changed}
 				onClick={this.saveUser}
-			>Save changes</Button>
+			>{t("admin.save")}</Button>
 			<Button
 				variant="contained"
 				color="primary"
 				type="submit"
 				onClick={this.removeUser}
-			>Remove user</Button>
+			>{t("admin.remove")}</Button>
 		</div>
 	)}
 }
 
-export default withSnackbar(OneUser);
+const WithHooks = withTranslation()(withSnackbar(OneUser))
+export default function TranslatedComponent(props) { return (
+	<React.Suspense fallback="loading">
+		<WithHooks {...props}/>
+	</React.Suspense>
+)}

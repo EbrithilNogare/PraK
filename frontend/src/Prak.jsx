@@ -6,7 +6,8 @@ import {
 	Redirect,
 } from "react-router-dom"
 import { withCookies, CookiesProvider } from "react-cookie"
-import './i18n'
+import i18n from './i18n'
+import { I18nextProvider } from 'react-i18next';
 import { SnackbarProvider } from 'notistack'
 import WebFont from 'webfontloader';
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
@@ -80,38 +81,40 @@ class Prak extends React.Component {
 				secondary: { main: "#FFF274" }, 
 				type: "light"
 			}
-		});
+		})
 
 		return (
 			<div className={styles.prak}>
 				<CookiesProvider>
 					<SnackbarProvider>
 						<MuiThemeProvider theme={theme}>
-							<Router>
-								<ScrollToTop/>
-								<NavBar/>
-								<Switch>
-									<Route path="/prak/login"><LoginScene variant="login"/></Route>
-									<PrivateRoute path="/prak/admin" privacyLevel="1"><AdminScene/></PrivateRoute>
+							<I18nextProvider i18n={i18n}>
+								<Router>
+									<ScrollToTop/>
+									<NavBar/>
+									<Switch>
+										<Route path="/prak/login"><LoginScene variant="login"/></Route>
+										<PrivateRoute path="/prak/admin" privacyLevel="1"><AdminScene/></PrivateRoute>
 
-									<PrivateRoute path="/prak/upload" privacyLevel="2"><UploadScene/></PrivateRoute>
-									<PrivateRoute path="/prak/cms" privacyLevel="8"><CmsScene/></PrivateRoute>
+										<PrivateRoute path="/prak/upload" privacyLevel="2"><UploadScene/></PrivateRoute>
+										<PrivateRoute path="/prak/cms" privacyLevel="8"><CmsScene/></PrivateRoute>
 
-									<Route path="/prak/homepage"><Homepage/></Route>
-									<PrivateRoute path="/prak/input" privacyLevel="2"><InputScene/></PrivateRoute>
-									<PrivateRoute path="/prak/edit" privacyLevel="2"><EditScene/></PrivateRoute>
-									<PrivateRoute path="/prak/show" privacyLevel="4"><ShowScene/></PrivateRoute>
-									<PrivateRoute path="/prak/search" privacyLevel="4"><SearchScene/></PrivateRoute>
+										<Route path="/prak/homepage"><Homepage/></Route>
+										<PrivateRoute path="/prak/input" privacyLevel="2"><InputScene/></PrivateRoute>
+										<PrivateRoute path="/prak/edit" privacyLevel="2"><EditScene/></PrivateRoute>
+										<PrivateRoute path="/prak/show" privacyLevel="4"><ShowScene/></PrivateRoute>
+										<PrivateRoute path="/prak/search" privacyLevel="4"><SearchScene/></PrivateRoute>
 
-									<Route path="/prak/contacts"><ContactsPage/></Route>
+										<Route path="/prak/contacts"><ContactsPage/></Route>
 
-									<Route path="/prak/page/:pageName" render={({match}) => <LoadPageFromDB pageName={match.params.pageName}/>}></Route>
-									<Route path="/prak/pageCategory/:categoryName" render={({match}) => <PageCategoryList pageCategoryName={match.params.categoryName}/>}></Route>
+										<Route path="/prak/page/:pageName" render={({match}) => <LoadPageFromDB pageName={match.params.pageName}/>}></Route>
+										<Route path="/prak/pageCategory/:categoryName" render={({match}) => <PageCategoryList pageCategoryName={match.params.categoryName}/>}></Route>
 
-									<Route path="/prak"><Redirect to="/prak/homepage" /></Route>
-								</Switch>
-								<Footer/>
-							</Router>
+										<Route path="/prak"><Redirect to="/prak/homepage" /></Route>
+									</Switch>
+									<Footer/>
+								</Router>
+							</I18nextProvider>
 						</MuiThemeProvider>
 					</SnackbarProvider>
 				</CookiesProvider>
