@@ -40,7 +40,7 @@ function init() {
 
 	// texture
 	const textureLoader = new THREE.TextureLoader( manager )
-	const texture = textureLoader.load( 'models/ColorGrid.png' )
+	const texture = textureLoader.load( 'models/tank1.jpg' )
 	// model
 
 	function onProgress( xhr ) {
@@ -53,7 +53,7 @@ function init() {
 	function onError() {}
 
 	const loader = new OBJLoader( manager )
-	loader.load( 'models/suzane.obj', function ( obj ) {
+	loader.load( 'models/T72.obj', function ( obj ) {
 		object = obj
 	}, onProgress, onError )
 
@@ -64,7 +64,7 @@ function init() {
 	container.appendChild(renderer.domElement)
 	effect = new PeppersGhostEffect(renderer)
 	effect.setSize(window.innerWidth, window.innerHeight)
-	effect.cameraDistance = 5
+	effect.cameraDistance = 1000
 	window.addEventListener('resize', onWindowResize)
 }
 
