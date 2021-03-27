@@ -52,10 +52,12 @@ function init() {
 
 	function onError() {}
 
-	const loader = new OBJLoader( manager )
-	loader.load( 'models/T72.obj', function ( obj ) {
+	function onLoad(obj) {
 		object = obj
-	}, onProgress, onError )
+	}
+
+	const loader = new OBJLoader( manager )
+	loader.load( 'models/T72.obj', onLoad, onProgress, onError )
 
 	
 	// Renderer
