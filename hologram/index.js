@@ -41,8 +41,9 @@ function init() {
 	// texture
 	const textureLoader = new THREE.TextureLoader( manager )
 	const texture = textureLoader.load( 'models/tank1.jpg' )
-	// model
+	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
+	// model
 	function onProgress( xhr ) {
 		if ( xhr.lengthComputable ) {
 			const percentComplete = xhr.loaded / xhr.total * 100
