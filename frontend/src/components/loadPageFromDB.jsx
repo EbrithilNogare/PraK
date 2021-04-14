@@ -6,6 +6,8 @@ import { withCookies } from "react-cookie"
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { Edit } from '@material-ui/icons/';
 
+import styles from './loadPageFromDB.module.scss'
+
 class LoadPageFromDB extends React.Component {
 	constructor(props){
 		super(props)
@@ -44,10 +46,10 @@ class LoadPageFromDB extends React.Component {
 			this.setState({html: "Unable to load page"})
 		})
 	}
-
+    
 	render(){
 		return(
-			<div style={{ margin:"50px", padding:"20px", position: "relative" }}>
+			<div className={styles.main}>
 				{(this.props.cookies.get("permission") & 8) > 0 &&
 					<NavLink
 						style={{ position: "absolute", right: 0, top: 0, color: "#555" }}

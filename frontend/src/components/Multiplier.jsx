@@ -10,8 +10,6 @@ import {
 	Remove, 
 } from '@material-ui/icons';
 
-//import styles from './multiplier.module.scss'
-
 class Multiplier extends React.Component {
 	constructor(props){
 		super(props)
