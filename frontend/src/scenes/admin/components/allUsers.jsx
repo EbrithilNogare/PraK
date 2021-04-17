@@ -55,7 +55,7 @@ class AllUsers extends React.Component {
 
 const WithHooks = withTranslation()(AllUsers)
 export default function TranslatedComponent(props) { return (
-	<React.Suspense fallback="loading">
+	<React.Suspense fallback="">
 		<WithHooks {...props}/>
 	</React.Suspense>
 )}

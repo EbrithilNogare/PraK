@@ -107,12 +107,12 @@ class ComboBox extends React.Component {
 					InputProps={{
 						startAdornment: this.state.ID ? (
 							<InputAdornment position="start">
-								<Tooltip title="synced with DB">
+								<Tooltip title={(<Trans>comboBoxes.syncedWithDB</Trans>)}>
 									<Check style={{color: "#090", fontSize: 20, cursor: "help"}}/>
 								</Tooltip>
 							</InputAdornment>) : this.state.value !== "" ? (
 								<InputAdornment position="start">
-									<Tooltip title="not synced with DB">
+									<Tooltip title={(<Trans>comboBoxes.notSyncedWithDB</Trans>)}>
 										<SyncDisabled style={{color: "#d00", fontSize: 20, cursor: "help"}}/>
 									</Tooltip>
 								</InputAdornment>

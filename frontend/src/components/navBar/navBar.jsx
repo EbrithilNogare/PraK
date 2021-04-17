@@ -101,7 +101,7 @@ function NavBar() {
 
 export default function TranslatedComponent() {
 	return (
-	  <Suspense fallback="loading">
+	  <Suspense fallback="">
 		<NavBar />
 	  </Suspense>
 	)

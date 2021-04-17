@@ -58,7 +58,7 @@ class Footer extends React.Component {
 
 const WithHooks = withCookies(withTranslation()(Footer))
 export default function TranslatedComponent() { return (
-	<React.Suspense fallback="loading">
+	<React.Suspense fallback="">
 		<WithHooks />
 	</React.Suspense>
 )}

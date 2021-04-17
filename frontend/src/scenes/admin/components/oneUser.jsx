@@ -224,7 +224,7 @@ class OneUser extends React.Component {
 
 const WithHooks = withTranslation()(withSnackbar(OneUser))
 export default function TranslatedComponent(props) { return (
-	<React.Suspense fallback="loading">
+	<React.Suspense fallback="">
 		<WithHooks {...props}/>
 	</React.Suspense>
 )}

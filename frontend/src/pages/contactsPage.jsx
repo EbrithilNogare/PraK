@@ -76,7 +76,7 @@ class ContactsPage extends React.Component {
 
 const WithHooks = withTranslation()(ContactsPage)
 export default function TranslatedComponent(props) { return (
-	<React.Suspense fallback="loading">
+	<React.Suspense fallback="">
 		<WithHooks {...props}/>
 	</React.Suspense>
 )}

@@ -12,7 +12,9 @@
 		"attractions": "Zajímavosti"
 	},
 	"comboBoxes": {
-		"addNewRecord": "+ Přidat nový záznam"
+		"addNewRecord": "+ Přidat nový záznam",
+		"syncedWithDB": "hodnota je synchronizována se záznamem v databázi",
+		"notSyncedWithDB": "hodnota není synchronizována s žádným záznamem v databázi"
 	},
 	"footer": {
 		"finance": "Financování: Projekt je financován Ministerstvem kultury ČR z Programu aplikovaného výzkumu a vývoje národní a kulturní identity (NAKI II)",

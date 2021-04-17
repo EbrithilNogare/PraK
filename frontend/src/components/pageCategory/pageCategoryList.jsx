@@ -59,7 +59,7 @@ class PageCategoryList extends React.Component {
 
 const WithHooks = withTranslation()(PageCategoryList)
 export default function TranslatedComponent(props) { return (
-	<React.Suspense fallback="loading">
+	<React.Suspense fallback="">
 		<WithHooks {...props}/>
 	</React.Suspense>
 )}

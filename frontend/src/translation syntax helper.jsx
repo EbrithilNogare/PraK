@@ -4,7 +4,7 @@ const { t } = this.props
 
 const WithHooks = withTranslation()(XXXXXX)
 export default function TranslatedComponent(props) { return (
-	<React.Suspense fallback="loading">
+	<React.Suspense fallback="">
 		<WithHooks {...props}/>
 	</React.Suspense>
 )}

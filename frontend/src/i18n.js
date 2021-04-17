@@ -21,7 +21,7 @@ i18n
   .init({
   lng: "cz",
 	fallbackLng: 'cz',
-	debug: true,
+	debug: false,
 
   ns: ["translation"],
 
