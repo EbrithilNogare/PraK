@@ -14,14 +14,14 @@ function auth (permission) {
 			.exec()
 			.then(result => {
 				if(result === null){
-					res.status(500).json({
+					res.status(401).json({
 						message: "sessionID not found",
 					})
 					resolve()
 				}
 				
 				if(result.sessionExpiration < new Date()){
-					res.status(500).json({
+					res.status(401).json({
 						message: "session expirated",
 					})
 					resolve()
@@ -30,7 +30,7 @@ function auth (permission) {
 				if(result.role[permission])
 					next()
 				else{
-					res.status(500).json({
+					res.status(401).json({
 						message: "permission denied",
 					})
 					resolve()
