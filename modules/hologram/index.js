@@ -1,8 +1,8 @@
-import * as THREE from 'https://unpkg.com/three/build/three.module.js'
+import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js'
 import {
 	PeppersGhostEffect
-} from 'https://unpkg.com/three/examples/jsm/effects/PeppersGhostEffect.js'
-import { OBJLoader } from 'https://unpkg.com/three/examples/jsm/loaders/OBJLoader.js'
+} from 'https://unpkg.com/three@0.127.0/examples/jsm/effects/PeppersGhostEffect.js'
+import { OBJLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/OBJLoader.js'
 
 let container
 
