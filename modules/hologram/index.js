@@ -10,14 +10,13 @@ let camera, scene, renderer, effect
 let group
 let object
 
-/**/
-let modelFile = "models/jezek.obj"
-let modelTexture = "models/jezek.png"
-/*/
-let modelFile = "models/T72.obj"
-let modelTexture = "models/tank1.jpg"
-/**/
 
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+const model = urlParams.get("model") || "T72" 
+
+let modelFile = `models/${model}.obj`
+let modelTexture = `models/${model}.png`
 
 init()
 animate()
@@ -76,7 +75,7 @@ function init() {
 	container.appendChild(renderer.domElement)
 	effect = new PeppersGhostEffect(renderer)
 	effect.setSize(window.innerWidth, window.innerHeight)
-	effect.cameraDistance = 2.1
+	effect.cameraDistance = 1
 	window.addEventListener('resize', onWindowResize)
 }
 
@@ -92,6 +91,6 @@ function animate() {
 }
 
 function render() {
-	group.rotation.y += 0.01
+	group.rotation.y += 0.007
 	effect.render(scene, camera)
 }
