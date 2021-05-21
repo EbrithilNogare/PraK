@@ -10,13 +10,22 @@ let camera, scene, renderer, effect
 let group
 let object
 
+/**/
+let modelFile = "models/jezek.obj"
+let modelTexture = "models/jezek.png"
+/*/
+let modelFile = "models/T72.obj"
+let modelTexture = "models/tank1.jpg"
+/**/
+
+
 init()
 animate()
 
 function init() {
 	container = document.createElement('div')
 	document.body.appendChild(container)
-	camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 100000)
+	camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000)
 	scene = new THREE.Scene()
 	group = new THREE.Group()
 	scene.add(group)
@@ -40,7 +49,7 @@ function init() {
 
 	// texture
 	const textureLoader = new THREE.TextureLoader( manager )
-	const texture = textureLoader.load( 'models/tank1.jpg' )
+	const texture = textureLoader.load(modelTexture)
 	texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
 	// model
@@ -58,7 +67,7 @@ function init() {
 	}
 
 	const loader = new OBJLoader( manager )
-	loader.load( 'models/T72.obj', onLoad, onProgress, onError )
+	loader.load( modelFile, onLoad, onProgress, onError )
 
 	
 	// Renderer
@@ -67,7 +76,7 @@ function init() {
 	container.appendChild(renderer.domElement)
 	effect = new PeppersGhostEffect(renderer)
 	effect.setSize(window.innerWidth, window.innerHeight)
-	effect.cameraDistance = 1000
+	effect.cameraDistance = 2.1
 	window.addEventListener('resize', onWindowResize)
 }
 
