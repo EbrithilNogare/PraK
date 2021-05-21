@@ -1,11 +1,36 @@
 \chapter{implementace backendu}
+Backend je cast softwaru, ktera je umistena na serveru a uzivatel
+z ni vidi jen vystup, jez dostane. Slouzi pro prijimani pozadavku od
+klienta a odesilani pripadne odpovedi nebo provedeni nejake cinosti bez vystupu. 
+\\
+Soucasti backendu by melo byt API, ktere slouzi jako toto spojeni mezi
+serverem a klientem. Dale casto obsahuje CRON table, ktery periodicky
+vykonava nejaky script.
 
 \section{server}
+Stroj na kterem bezi aktualni verze systemu bezi pod systemem Linux (presneji Ubuntu).
+Na virtual machine poskytnute matematicko-fyzikalni fakultou.
+\\
+Databaze je pak umistena na serveru u Googlu, kvuli snazsi konfiguraci.
+Neni vsak problem kdykoliv tuto DB presunout na stejny stroj, na kterem bezi
+zbytek backendu a zvysit tim prodlevu zpusobenou praci s databazi.
 
 
 \section{knihovny}
+Pro rychly zacatek vyvoje byla pouzita knihovna Express.js, ktera
+umoznuje praci s http requesty potrebnymi pro fungovani API a to 
+bez vetsiho mnozstvi konfigurace ze zacatku.
+\\
+Pro praci s databazi byla pouzita knihovna mongoose, ktera po rychle konfiguraci
+umoznuje praci s databazi typu MongoDB.
+\\
+Dalsimi mensimi pomocnymy knihovnami, jsou
+\textbf{cors} (Cross-Origin Resource Sharing) napomahajici s nastavenim hlavicky u API requestu,
+\textbf{md5} pro sifrovani hesel a hashovani dat a nakonec
+\textbf{cookie-parser} zjednodusujici praci s cookies.
 
 \subsection{Express.js}
+
 
 \subsubsection{nadstavba pro nahravani souboru}
 
