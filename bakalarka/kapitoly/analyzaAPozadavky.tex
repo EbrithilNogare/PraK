@@ -1,0 +1,51 @@
+\chapter{Analýza a požadavky}
+ Vybíráme jen z open source produktů, abychom mohli nahlédnout
+do jejich kódu a lepe porozumět implementaci jejich komponent.
+Lépe se pro takový systém vyvíjejí nezávisle moduly a
+obvykle mají o dost větší komunitu vývojářů a přispěvatelů.
+
+
+\section{Požadavky na systém}
+Systém bude přístupný jako webová aplikace skrze moderní webové prohlížeče.
+Zadavatel bude moci přidávat, prohlížet, měnit a mazat metadata a k nim příslušné indexy.
+Redaktor bude moci přidávat a měnit články a novinky na webu.
+Uživatel bude moci vyhledat záznam podle několika různých kritérií a poté jej zobrazit,
+též bude moci zobrazit příspěvky na webu, včetně novinek.
+Externí programátoři budou moci k systému přistupovat přes API a získávat nebo měnit data. 
+
+
+\section{Pro koho je systém určen}
+Systém bude sloužit pro historiky jako úložiště dat a pro veřejnost jako jejich zdroj.
+
+
+\section{Existující produkty}
+\subsection{KOHA}
+\includegraphics[width=.25\textwidth]{img/KOHA_Logo.png}\\
+url: http://www.koha.cz/\\
+Koha je nejrozšířenější open source systém s širokou komunitou.
+Byla vyvinuta na Novém Zélandu roku 2000.
+Ale je stále udržovaná a stále rozšiřovaná
+(nejnovější update je z konce roku 2020)
+\\
+Používá SQL databázi.
+Je psaná v Perlu, na frontendu využívající javascript (ale není jej tolik).
+
+\subsection{Evergreen}
+\includegraphics[width=.25\textwidth]{img/Evergreen_Logo.png}\\
+url: https://eg-wiki.osvobozena-knihovna.cz\\
+Další z řady knihovních systému.
+Používán např Pedagogickou a Teologickou Fakultou v Praze.\\
+Používá sql databázi, vykreslovaní probíhá na serveru a nemá uživatelsky přivětivé prostředí.
+
+\subsection{SLIMS}
+\includegraphics[width=.25\textwidth]{img/Slims_Logo.png}\\
+url: https://slims.web.id/\\
+Systém se základní funkcionalitou a přivětivým vzhledem.
+Není v češtině. Není primárně určen jako knihovní systém, spíš je to univerzální
+systém na cokoliv, proto není až tak efektivní a jeho nastavovaní
+by zabralo mnoho času.
+
+\subsection{Souhrn}
+Evergreen a SLIMS jsou systémy, které potřebují silně vyškolenou osobu,
+aby se o systém starala, narozdíl od KOHY, která je intuitivnější a
+pro nové uživatele přívětivější. Pri zachovaní stejné, možná i lepši funkcionality.\\

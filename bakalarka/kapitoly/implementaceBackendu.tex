@@ -1,54 +1,54 @@
-\chapter{implementace backendu}
-Backend je cast softwaru, ktera je umistena na serveru a uzivatel
-z ni vidi jen vystup, jez dostane. Slouzi pro prijimani pozadavku od
-klienta a odesilani pripadne odpovedi nebo provedeni nejake cinosti bez vystupu. 
+\chapter{Implementace backendu}
+Backend je část softwaru, která je umístěna na serveru a uživatel
+z ní vidí jen výstup, jež dostane. Slouží pro přijímaní požadavku od
+klienta a odesílaní případné odpovědi nebo provedení nějaké činnosti bez výstupu. 
 \\
-Soucasti backendu by melo byt API, ktere slouzi jako toto spojeni mezi
-serverem a klientem. Dale casto obsahuje CRON table, ktery periodicky
-vykonava nejaky script.
+Součástí backendu by mělo být API, které slouží jako toto spojení mezi
+serverem a klientem. Dále často obsahuje CRON tabulku, která periodicky
+vykonává nějaký script.
 
-\section{server}
-Stroj na kterem bezi aktualni verze systemu bezi pod systemem Linux (presneji Ubuntu).
-Na virtual machine poskytnute matematicko-fyzikalni fakultou.
+\section{Server}
+Stroj na kterém běží aktuální verze systému běží pod systémem Linux (přesněji Ubuntu).
+Na virtual machine poskytnuté matematicko-fyzikální fakultou UK.
 \\
-Databaze je pak umistena na serveru u Googlu, kvuli snazsi konfiguraci.
-Neni vsak problem kdykoliv tuto DB presunout na stejny stroj, na kterem bezi
-zbytek backendu a zvysit tim prodlevu zpusobenou praci s databazi.
+Databáze je pak umístěna na serveru u Googlu, kvůli snazší konfiguraci.
+Není však problém kdykoliv tuto DB přesunout na stejný stroj, na kterém běží
+zbytek backendu a snížit tím prodlevu způsobenou prací s databází.
 
 
-\section{knihovny}
-Pro rychly zacatek vyvoje byla pouzita knihovna Express.js, ktera
-umoznuje praci s http requesty potrebnymi pro fungovani API a to 
-bez vetsiho mnozstvi konfigurace ze zacatku.
+\section{Knihovny}
+Pro rychlý začátek vývoje byla použita knihovna Express.js, která
+umožňuje práci s http requesty potřebnými pro fungovaní API a to 
+bez většího množství konfigurace ze začátku.
 \\
-Pro praci s databazi byla pouzita knihovna mongoose, ktera po rychle konfiguraci
-umoznuje praci s databazi typu MongoDB.
+Pro práci s databází byla použita knihovna mongoose, která po rychle konfiguraci
+umožňuje práci s databází typu MongoDB.
 \\
-Dalsimi mensimi pomocnymy knihovnami, jsou
-\textbf{cors} (Cross-Origin Resource Sharing) napomahajici s nastavenim hlavicky u API requestu,
-\textbf{md5} pro sifrovani hesel a hashovani dat a nakonec
-\textbf{cookie-parser} zjednodusujici praci s cookies.
+Dalšími menšími pomocnými knihovnami, jsou
+\textbf{cors} (Cross-Origin Resource Sharing) napomáhající s nastavením hlavičky u API requestu,
+\textbf{md5} pro šifrovaní hesel a hašovaní dat a nakonec
+\textbf{cookie-parser} zjednodušující práci s cookies.
 
-\subsection{Express.js}
-
-
-\subsubsection{nadstavba pro nahravani souboru}
-
-\subsection{mongoose}
+\subsection{Knihovna express.js}
 
 
-\section{dokumentace}
+\subsubsection{Nadstavba pro nahravaní souborů}
+
+\subsection{Knihovna mongoose}
+
+
+\section{Dokumentace API}
 /api/documentation
-\subsection{vlastni mini knihovna pro dokumentaci}
+\subsection{Vlastní mini knihovna pro dokumentaci}
 
-\section{routes}
-\subsection{uzivatel}
-\subsection{autorizace}
-\subsection{zaznam}
-\subsection{stranka}
-\subsection{nahravani souboru}
+\section{Routes}
+\subsection{Uživatel}
+\subsection{Autorizace}
+\subsection{Záznam}
+\subsection{Stránka}
+\subsection{Nahrávaní souborů}
 
-\section{models}
-\subsection{zaznam}
-\subsection{stranka}
-\subsection{uzivatel}
+\section{Modely}
+\subsection{Záznam}
+\subsection{Stránka}
+\subsection{Uživatel}
