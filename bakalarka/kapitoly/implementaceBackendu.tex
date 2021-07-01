@@ -21,7 +21,7 @@ Pro rychlý začátek vývoje byla použita knihovna Express.js, která
 umožňuje práci s http requesty potřebnými pro fungovaní API a to 
 bez většího množství konfigurace ze začátku.
 \\
-Pro práci s databází byla použita knihovna mongoose, která po rychle konfiguraci
+Pro práci s databází byla použita knihovna mongoose, která po rychlé konfiguraci
 umožňuje práci s databází typu MongoDB.
 \\
 Dalšími menšími pomocnými knihovnami, jsou
@@ -30,15 +30,37 @@ Dalšími menšími pomocnými knihovnami, jsou
 \textbf{cookie-parser} zjednodušující práci s cookies.
 
 \subsection{Knihovna express.js}
-
+Jedná se o minimalistickou a zároveň velmi silnou knihovnu poskytující všestranné prostředky pro web.
+Obsahuje funkce pro jednoduchou správu HTTP metod a díky tomu je vytváření i větších API jednoduché a přehledné.
+Má velmi dobrý výkon, který se sice nedá srovnávat s knihovnami psanými v jazyce C, ale
+z JS knihoven je jeden z nejrychlejších.
 
 \subsubsection{Nadstavba pro nahravaní souborů}
+Nadstavba \textbf{express-fileupload} umožňuje v těle requestu rozeznat a zpracovat soubor, který
+se následně pomocí knihovny \textbf{fs} ukládá na server, specificky do složky uploads.
 
 \subsection{Knihovna mongoose}
-
+Ideální knihovna pro práci s databází typu MongoDB.
+Poskytuje funkce pro snadné připojení k databázi a komunikaci s ní.
+Hlavní výhodou této knihovny jsou modely, validace a vestavěné přetypování
+(javascript je dynamicky typovaný jazyk). 
+S modely se pracuje pomocí tkz. \textbf{promise}, která umožňuje řadit
+akce za sebe, ve stylu:
+\begin{lstlisting}[language=JavaScript]
+Model.find(body)
+     .limit(_limit || 5)
+     .exec()
+     .then(result => { res.status(200).json(result) })
+     .catch(err => { res.status(500).json("something went wrong") })
+\end{lstlisting}
 
 \section{Dokumentace API}
+
 /api/documentation
+
+
+
+
 \subsection{Vlastní mini knihovna pro dokumentaci}
 
 \section{Routes}
