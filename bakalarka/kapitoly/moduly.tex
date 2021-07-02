@@ -1,15 +1,39 @@
 \chapter{Moduly}
 
-\section{obecne pridavani modulu}
+\section{Přidávání nových modulů}
 
-\section{aktualni moduly}
-
-\subsection{hologram}
+\section{Aktuálně nasazené moduly}
 
 
-\subsubsection{nacitani modulu}
-Tento modul obsahuje velkou knihovnu a tudiz neni efektivni jej mit v defaultni aplikaci.
-Protoze by se tyto knihovny nacitaly, i kdyz by uzivatel s timto modulem nemel v planu pracovat.
-Coz vetsinu casu nebude chtit a tudiz by to pouze vedlo k zpomaleni systemu.
-Systemem LAZY loading je tedy cely modul odriznut a nacita se az explicitne pri jeho pouziti.
 
+\subsection{Modul hologram}
+
+\subsubsection{Načítání modulu}
+Tento modul obsahuje velkou knihovnu a tudíž není efektivní jej mít v primární aplikaci.
+Protože by se tyto knihovny načítaly, i když by uživatel s tímto modulem neměl v plánu pracovat.
+Což většinu času nebude chtít a tudíž by to pouze vedlo ke zpomalení systému.
+Systémem LAZY načítání je tedy celý modul odříznut a načítá se až explicitně pri jeho použití.
+
+\subsubsection{Grafický engine}
+Pro vykreslování 3D modelu na webu slouží WebGL, grafická knihovna podobná staré verzi OpenGL.
+Reálně jsou dostupné dvě propracované knihovny pro práci ve WebGL.
+ThreeJS, které se zaměřuje na statické vykreslování a předvádění.
+BabylonJS, která naopak napodobuje známe programy jako unity a má podporu
+fyziky a dalších podknihoven užitečných pro tvorbu her.
+Pokud pomineme možnost naprogramovat vše od základu, nejvhodnější knihovnou 
+je \textbf{ThreeJS}.\\
+Z této knihovny využijeme moduly pro načítání modelu a textury, jejich spárování a
+efektu Peppers Ghost, který je implementován pomocí 4 nezávislých kamer.
+
+
+\subsubsection{Peppers Ghost Effect}
+\includegraphics[width=.5\textwidth]{img/Peppers_Ghost.jpg}souce: Wikipedia\\
+Jedná se divadelní trik, jež skládá pozorovateli dva obrazy přes sebe a vytváří iluzi
+hologramu nebo ducha. Původně byl vyvinut pro divadelní představení, v moderní
+době však dokáže simulovat i hologram, který známe ze sci-fi.
+
+\subsubsection{Modely a textury}
+Modely jsou z webu https://3dwarehouse.sketchup.com a
+textury z webu https://www.textures.com/ a https://texturehaven.com/.\\
+V programu blender pak byly tyto textury namapovány na objekt a bylo do nich
+zapečeno ambient oclusion (stíny vytvořené stísněným prostorem).
