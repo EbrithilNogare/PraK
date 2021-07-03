@@ -21,10 +21,15 @@ class UploadScene extends React.Component {
 
 	render(){
 		return(
-			<Paper className={styles.root}>
+			<div className={styles.root}>
+				<div className={styles.title}>
+					<h1>Nahrávnání souborů</h1>
+				</div>
+
 				<UploadFile onChange={this.handleChange}/>
+				{this.state.path != "" && <a href={this.state.path}>Show saved file</a>}
 				<img src={this.state.path} alt=""/>
-			</Paper>	
+			</div>	
 		)
 	}
 }

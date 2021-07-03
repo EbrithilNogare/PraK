@@ -32,6 +32,8 @@ class Footer extends React.Component {
 				
 				<div>
 					<ul>
+						<b>{t("footer.titleTools")}</b><hr/>
+						<li> <NavLink to="/prak/search">{t("footer.search")}</NavLink> </li>
 						{(this.props.cookies.get("permission") & 2) > 0 && <li> <NavLink to="/prak/upload">{t("footer.upload")}</NavLink> </li>}
 						{(this.props.cookies.get("permission") & 8) > 0 && <li> <NavLink to="/prak/cms">{t("footer.cms")}</NavLink> </li>}
 						{(this.props.cookies.get("permission") & 1) > 0 && <li> <NavLink to="/prak/admin">{t("footer.admin")}</NavLink> </li>}
@@ -40,6 +42,7 @@ class Footer extends React.Component {
 
 				<div>
 					{(this.props.cookies.get("permission") & 2) > 0 && <ul>
+						<b>{t("footer.titleCreate")}</b><hr/>
 						<li> <NavLink to="/prak/input/metadata">{t("footer.metadata")}</NavLink> </li>
 						<li> <NavLink to="/prak/input/corporation">{t("footer.corporation")}</NavLink> </li>
 						<li> <NavLink to="/prak/input/creation">{t("footer.creation")}</NavLink> </li>

@@ -117,7 +117,7 @@ class NewUser extends React.Component {
 						color="primary"
 					/>
 					}
-					label={t("admin.generatePassword")}
+					label={t("admin.read")}
 				/>
 				<br/>
 				<FormControlLabel
@@ -129,7 +129,7 @@ class NewUser extends React.Component {
 						color="primary"
 					/>
 					}
-					label={t("admin.read")}
+					label={t("admin.write")}
 				/>
 				<br/>
 				<FormControlLabel

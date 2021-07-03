@@ -31,7 +31,10 @@
 		"keyword": "Rejstřík klíčových",
 		"person": "Rejstřík osob",
 		"subject": "Rejstřík událostí",
-		"family": "Rejstřík rodů"
+		"family": "Rejstřík rodů",
+		"titleTools": "Nástroje",
+		"titleCreate": "Založení nového záznamu",
+		"search": "Vyhledávátko"
 	},
 	"indices": {
 
