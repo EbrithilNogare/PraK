@@ -1,0 +1,46 @@
+.root {
+	margin: 50px;
+	padding: 20px;
+}
+
+.title {
+	text-align: center;
+}
+
+.root img {
+	width: 100%;
+}
+
+.imgContainer{
+	border: solid 10px #ffdf8f;
+	border-radius: 10px;
+	position: relative;
+	min-height: 62px;
+}
+
+.loadingTitle{
+	width: 100%;
+	text-align: center;
+	height: 40px;
+}
+
+.helper{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	height: 30px;
+	width: 30px;
+	background-color: #673ab700;
+	color: black;
+	transition: all .5s linear;
+	overflow: hidden;
+}
+
+.helper:hover{
+	height: 100px;
+	width: 325px;
+	color: white;
+	background-color: #673ab7db;
+	padding: 10px;
+	border-radius: 20px 0 20px 20px;
+}
