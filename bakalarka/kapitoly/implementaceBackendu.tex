@@ -111,9 +111,21 @@ Model nebo též schéma je popis záznamu v databázi, obsahuje datový typ, fo
 referenční cestu. Vpodstatě se jedná o převodní tabulku, aby se Javascript a MongoDB schodli na datovém typu a
 struktuře (především pro případ reference, nebo pole dat). Část která je pro uživatele nejvíce viditelná je 
 požadavek na unikátní hodnotu pole, nebo požadavek aby hodnota byla nenulová.
-\subsection{Záznam}
+\subsection{Záznam} 
 Každý záznam má přesný popis v online dokumentaci API v pravém sloupci, kde je pravidelně aktualizován.
 \subsection{Stránka}
 Záznam stránky obsahuje název, jazyk, krátký popis, kategorii a obsah samotný.
 Pro možnost sledování změn je zde i automaticky generovaný seznam editorů a časů jejich editace.
 \subsection{Uživatel}
+Každý uživatel se přihlašuje emailem a heslem, s tím že heslo není uloženov tkz. raw formátu, ale
+je výsledkem spojení hesla a soli (termín pro náhodný text pro zvýšení bezpečnosti proti bruteforce útoku) a
+výsledný hash (metodou md5) se uloží do databáze. Při přihlášení pak stačí porovna hash soli a hesla s údaji v databázi.
+Pro ověřování práv ale neslouží heslo, ale sessionID, které je unikátní pro každého uživatele a časem nebo
+manuálně může expirovat a je nutné se přihlásit znovu. V záznamu uživatele je uloženo i jméno a přijmení pro případ, že
+by bylo potřeba zjisti kdo např. psal jaký článek a zároveň nebyl prozrazen email. Každý uživatel má určitá práva a to v libovolné kombinaci z:
+\begin{itemize}
+     \item read - právo pro čtení, nahlížení do záznamů a jejich vyhledávaní (toto právo má i nepřihlášený uživatel).
+     \item write - právo pro zápis v rejstříkách, umožňuje editovat, vytvářet a mazat záznamy. Dále má navíc právo ukládat na server obrázky a dokumenty.
+     \item execute - administrátorské právo, umožňuje vytváření uživatelských účtů a zmenu hesla uživatele, stejně jako jeho údaje.
+     \item cms - práva pro editační změny co se týče obsahu stránek, jako jsou novinky a příspěvky.
+\end{itemize}
