@@ -62,16 +62,48 @@ Zároveň nám umožňuje používat formát \textbf{SCSS}, což je nadstavba na
 rozpoznávají prohlížeče a dovoluje nám takto vytvářet \textbf{stylovací moduly}.
 
 \section{Rozhraní}
+Jelikož se jedná o složitější systém a všechno nemůže být naházené v jediném souboru, tak 
+je použita hierarchie která vypadá násldovně:
+\begin{itemize}
+	\item Hlavní soubor celého webu - provádí routing a obaluje celou aplikaci pomocnými wrapery
+		(např. i18n překladač, Mui pro jednotný styl, SnackbarProvider
+		pro vyskakovací toasty a CookiesProvider pro jednotný přístup ke cookies)
+	\item Scény - Stránky diametrálních vlastností a funkcionalit
+	\item Komponenty - malé na sobě nezávislé \uv{černé krabičky} poskytující určitou funkcionalitu
+\end{itemize}
 \subsection{Scény}
 \subsubsection{Admin}
+\begin{wrapfigure}{r}{6cm}
+	\includegraphics[width=6cm]{img/adminScene.png}
+\end{wrapfigure} 
+Administrační rozhranní je přístupné pouze s oprávněním \uv{execute}.
+Zde může administrátor nebo správce uživatelů konfigurovat vytvořené účty nebo
+účty přidávat.
+
 \subsubsection{CMS}
+\includegraphics[width=.5\textwidth]{img/cmsScene.png}
+
 \subsubsection{Domovská stránka}
+\includegraphics[width=.5\textwidth]{img/homeScene.png}
+
 \subsubsection{Zobrazeni stránky}
+\includegraphics[width=.5\textwidth]{img/pageScene.png}
+
 \subsubsection{Přihlašování}
+\includegraphics[width=.5\textwidth]{img/loginSceneB.png}
+\includegraphics[width=.5\textwidth]{img/loginSceneA.png}
+
 \subsubsection{Kontaktní formulář}
+\includegraphics[width=.5\textwidth]{img/contactScene.png}
+
 \subsubsection{Vyhledávátko}
+\includegraphics[width=.5\textwidth]{img/searchScene.png}
+
 \subsubsection{Zobrazovávátko}
+\includegraphics[width=.5\textwidth]{img/showScene.png}
+
 \subsubsection{Upravovátko}
+\includegraphics[width=.5\textwidth]{img/editScene.png}
 
 \subsection{Komponenty}
 \subsubsection{ComboBox}
