@@ -2,10 +2,9 @@ import React from "react"
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from "react-cookie";
 import { withSnackbar } from 'notistack'
+import { Button } from '@material-ui/core'
 
-import { 
-	Button,
-} from '@material-ui/core'
+import styles from './login.module.scss'
 
 class UserInfo extends React.Component {
 	static propTypes = {
@@ -56,7 +55,7 @@ class UserInfo extends React.Component {
 				{this.props.cookies.get("permission") & 4 ? <li>Prohlížení záznamů</li> : <div/>}
 				{this.props.cookies.get("permission") & 8 ? <li>Redakční systém</li> : <div/>}
 			</ul>
-			<p><b>SessionID:</b> {this.props.cookies.get("sessionID")}</p>
+			<p><b>SessionID:</b> <span className={styles.hiddenText}>{this.props.cookies.get("sessionID")}</span></p>
 			<Button 
 				variant="contained" 
 				color="primary" 

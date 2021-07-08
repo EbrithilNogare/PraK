@@ -10,3 +10,15 @@
 	width: 150px;
 	height: 150px;
 }
+
+.hiddenText{
+	background-color: black;
+	color: black;
+	user-select: none;
+}
+
+
+.hiddenText:hover{
+	transition-delay: 1s;
+	background-color: white;
+}
