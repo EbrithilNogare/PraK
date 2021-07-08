@@ -343,6 +343,7 @@ class ShowScene extends React.Component {
 				</Paper>
 				{ this.state.records !== null && <Paper style={{ height: 400, width: '100%' }}>
 					<DataGrid
+						className={styles.cursorPoiter}
 						rows={this.state.records}
 						columns={this.state.template}
 						pageSize={5}
