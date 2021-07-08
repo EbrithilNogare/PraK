@@ -8,88 +8,88 @@ být připisovány další věci, se nachází na webu
 Dokumentace je rozdělena na dvě části.
 \\
 \\
-\textbf{Prvni cast} popisuje volani API. 
-Kazda metoda (GET, POST atd.) ma svuj vlastni ucel
-jez je popsan uvnitr, url, na kterou se dotazovat a mozne parametry.
-Spolu s formatem requestu je i zde format odpovedi.
-Podle kodu zjistime, jak uspesny byl nas pozadavek.
-Kody jsou standartni podle "http status codes".
+\textbf{První část} popisuje volání API. 
+Každá metoda (GET, POST atd.) má svůj vlastní účel
+jež je popsán uvnitř url a další možné parametry.
+Spolu s formátem requestu je zde i formát odpovědi.
+Podle kódu zjistíme, jestli byl náš požadavek úspěšný.
+Kódy jsou standardní podle "http status codes".
 \begin{itemize}
-	\item \textbf{2xx} Vsechno dopadlo dobre
-	\item \textbf{4xx} Chyba je na strane klienta
-	\item \textbf{5xx} Chyba je na strane serveru
+	\item \textbf{2xx} Všechno dopadlo dobře
+	\item \textbf{4xx} Chyba je na straně klienta
+	\item \textbf{5xx} Chyba je na straně serveru
 \end{itemize}
-V pripade uspechu (kod 200 - OK) se odesle odpoved na dotaz, nebo
-nic pokud request nemel za funkci neco vracet. 
-V pripade neuspechu pak v odpovedi najdeme zpravu o chybe ktera nastala.
-Obvykle to u kodu 400 byva, ze odesilame duplicitni zaznam.
+V případe úspěchu (kód 200 - OK) se odešle odpověď na dotaz, nebo
+nic pokud request neměl za funkci něco vracet. 
+V případe neúspěchu pak v odpovědi najdeme zprávu o chybě která nastala.
+Obvykle to u kódu 400 bývá odeslání duplicitního záznamu.
 \\
 \\
-\textbf{Druha cast} popisuje strukturu schemat jednotlivych modelu\\
-Jelikoz databaze ma datove formaty, zatimco JSON soubor ne (nebo alespon ne tak rozsahle)
-musi i odesilana data mit spravny format, nebo alespon byt validni po automatickem
-pretypovani.
-Schema tvori JSON objekt popisujici schema.
-pokud je datovy typ polozky objekt, bud se opravdu jedna o objekt, nebo
-se jedna pouze o upresneni datoveho typu.
-Klicovimy slovy jsou:
+\textbf{Druhá část} popisuje strukturu schémat jednotlivých modelů\\
+Jelikož databáze má datové formáty, zatímco JSON soubor ne (nebo alespoň ne tak rozsáhlé)
+musí i odesílaná data mít správný formát, nebo alespoň být validní po automatickém
+přetypovaní.
+Schéma tvoří JSON objekt jež toto schéma popisuje.
+Pokud je datový typ položky objekt, buď se opravdu jedná o objekt, nebo
+se jedna pouze o upřesněni datového typu.
+Klíčovými slovy jsou:
 \begin{itemize}
-	\item \textbf{type}: datovy typ
-	\item \textbf{required}: true, pokud je tato polozka povinna
-	\item \textbf{unique}: true, pokud se zadana hodnota, nesmi schodovat s jiz existujici polozkou v DB
-	\item \textbf{ref}: nazev schematu, na ktery se ID odkazuje
-	\item \textbf{refPath}: specialni ref, umoznujici uzivateli zadat i nazev schematu, vuci kteremu se odkazuje
+	\item \textbf{type}: datový typ
+	\item \textbf{required}: true, pokud je tato položka povinná
+	\item \textbf{unique}: true, pokud se zadaná hodnota nesmí schodovat s již existující položkou v DB
+	\item \textbf{ref}: název schematu, na který se ID odkazuje
+	\item \textbf{refPath}: speciální ref, umožnující uživateli zadat i název schématu, vůči kterému se odkazuje
 \end{itemize}
-Pokud je hodnota pouze string, pak je tato hodnota datovym typem.
+Pokud je hodnota pouze string, pak je tato hodnota datovým typem.
 
-\subsection{sowtware na online dokumentaci}
-Pro moznost stazeni dokumentace a prohlizeni offline, je vse zabaleno do jednoho html souboru.
-Uvnitr je zdrojovy kod programu, jez vykresluje stranku a zaroven data dokumentace samotne.
+\subsection{Software pro online dokumentaci}
+Pro možnost staženi dokumentace a prohlíženi offline, je vše zabaleno do jediného html souboru.
+Uvnitř je zdrojový kód programu, jež vykresluje stránku a zároveň data dokumentace.
 \\
-Program vykresluje veskere polozky s daty dokumentace.
-Bloky zdrojovych kodu jsou vysazeny monospacem a obarveny, aby uzivateli
-poskytly rychlejsi orientaci v kodu.
+Program vykresluje veškeré položky s daty dokumentace.
+Bloky zdrojových kódu jsou vysazeny fontem monospace a obarveny, aby uživateli
+poskytly rychlejší orientaci v kódu.
 \\\\
 \includegraphics[width=\textwidth]{img/documentationPreview.PNG}
 
 
 \section{Backend}
-Na backendu je spusteny express server (bezici pod nodejs), ktery
-zachytava requesty s url ...prak/api/... .
-podle cesty, jez je uvedena za /api se request predava
-prislosnemu routeru. Vyjimku tvori adresa .../api/documentation, ktera
-rovnou preposila soubor s dokumentaci a neni tedy pro ziskani dokumentace
-trba rozumet systemu hloubeji.
+Na backendu je spuštěny express server (bežící pod nodejs), který
+zachytává requesty s url ...prak/api/... .
+podle cesty, jež je uvedena za /api se request předává
+příslušnému routeru. Výjimku tvoří adresa .../api/documentation, která
+rovnou přeposílá soubor s dokumentaci a není tedy pro získaní dokumentace
+třeba rozumět systému requestů hlouběji.
 \\
 \\
-Pri prevzeti requestu jednim z mnoha routeru, se porovnava
-typ requestu (POST, PUT atd.) a pripadne detaily cesty v url.
-Pri plne nalezeni schody se provede overeni prav pokud je potreba.
-Pokud request ma pozadovana opravneni je provedena prislusna funkce
-a uzivateli je vracena odpoved / potvrzeni o uspechu.
-V pripade ze request nema prislusna opravneni, je vracen kod 401.
-V pripade ze se na serveru neco pokazi vrati se kod 400, nebo 500, podle typu problemu.
+Při převzetí requestu jedním z mnoha routerů, se porovnává
+typ requestu (POST, PUT atd.) a případné detaily cesty v url.
+Při plném nalezeni shody se provede ověřeni práv, pokud je to potřeba.
+Pokud request má požadovaná oprávnění je provedena příslušná funkce
+a uživateli je vrácena odpověď případně potvrzeni o úspěchu.
+V případe že request nemá příslušná oprávnění, je vrácen kód 401.
+V případe že se na serveru něco pokazí vrátí se kód 400, nebo 500, podle typu problému.
 
 \section{API}
-dostupne na adrese quest.ms.mff.cuni.cz/prak/api/
+API je přístupné na adrese quest.ms.mff.cuni.cz/prak/api/... .
 
 \subsection{Autentifikace}
-S kazym requestem prichazi v hlavicce i cookies.
-Pro autentifikaci pouzivam cookie se jmenem "sessionID".
-Podle nej se najde prislusny uzivatel a porovnaji se jeho predava a
-prava potrebna pro vykonani funkce. Pokud jsou prava nedostatecna, 
-vrati se odpoved 401, v pripade spravneho opravneni, router vykona funkci
-jez danemu requestu prislusi a pokud se nepokazi nic jineho, vrati validni odpoved.
+S každým requestem přichází v hlavičce i cookie, ten pro
+autentifikaci se jmenuje "sessionID".
+Podle něj se najde příslušný uživatel a porovnají se jeho práva a
+práva potřebná pro vykonaní požadované funkce. Pokud jsou pravá nedostatečná, 
+vrátí se odpověď s kódem 401, v případe správného oprávněni, router vykoná funkci
+jež danému requestu přísluší a pokud se nepokazí nic jiného, vráti validní odpověď.
 
-\section{Frontend a volani API}
-Jelikoz je cely projek zamyslen jako webova aplikace, nejstandartnejsi pouziti
-je volani API pomoci JS funkce fetch(), coz je pouze zastita pro XMLHttpRequest.
-Ale je mozne jej volat jakkoliv jinak, dokud to bude validni http request.
+\section{Frontend a volaní API}
+Jelikož je cely projekt zamyšlen jako webová aplikace, nejstandardnější použiti
+je volání API pomoci JS funkce \textit{fetch()}, což je pouze technický alias pro XMLHttpRequest.
+Ale je možné jej volat jakkoliv jinak, dokud to bude validní http request.
 
 \subsection{Fetch}
 Dokumentace metody: \href{https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API}{mozilla}
 \\
-Priklad pouziti:
+Příklad použiti:
 \\
 \begin{lstlisting}[language=JavaScript]
 	const url = "/prak/api/metadata" 
@@ -110,8 +110,8 @@ Priklad pouziti:
 	})
 \end{lstlisting}
 
-\subsection{Existujici programy pro praci a testovani APi}
-Priklad volani pomoci programu Insomnia:
+\subsection{Existující programy pro práci a testovaní APi}
+Příklad volaní pomoci programu Insomnia:
 \\
 \includegraphics[width=\textwidth]{img/InsomniaExample.PNG}
 

@@ -58,7 +58,8 @@
 \usepackage{xcolor}         % barevná sazba
 
 
-\usepackage{wrapfig}         % text vedle obrázku
+\usepackage{wrapfig}         % obrazek plujici vedle textu
+\usepackage{multicol}         % sloupecky
 \usepackage{listings}		 % highlighting kódu
 \hyphenpenalty 5000
 \exhyphenpenalty 5000
@@ -101,22 +102,24 @@
 % Nepovinné poděkování (vedoucímu práce, konzultantovi, tomu, kdo
 % zapůjčil software, literaturu apod.)
 \def\Podekovani{
-TODO Podekovani:\\
+TODO Poděkovaní:\\
 Petra Hoffmannová\\
 Kateřina Macková\\
+Anička Yaghobová\\
+Monika Bošániová\\
 }
 
 % Abstrakt (doporučený rozsah cca 80-200 slov; nejedná se o zadání práce)
 \def\Abstrakt{%
-Za pouziti modernich webovych a databazovych technologii modernizujeme
-zastarale knihovni systemy. Snizime naroky na vykon serveru a sitoveho rozhrani. 
-Uzivateli techto systemu poskytneme intuitivni a rychlou webovou aplikaci.
-Navstevnikovi pak poskytneme nejen onen knihovni system, ale cely
-balicek ruznych objektuod novinek az po 3D modely historickych objektu.
-Vyvojari a automatizovane systemy budou mit pristup k API, jez
-bude poskytovat uchovavana data. Zaroven bude slouzit i jako
-prostredek pri komunikaci modulu systemu s databazi, napr pro umozneni
-vyhledavani pomoci neuronove site.
+Za použití moderních webových a databázových technologií zmodernizujeme
+zastaralé knihovní systémy. Snížíme nároky na výkon serveru a síťového rozhraní. 
+Uživateli těchto systémů poskytneme intuitivní a rychlou webovou aplikaci.
+Návštěvníkovi pak poskytneme nejen onen knihovní systém, ale celý
+balíček různých objektů, od novinek až po 3D modely historických objektu.
+Vývojáři a automatizované systémy budou mít přístup k API, jež
+bude poskytovat uchovávaná data. Zároveň bude sloužit i jako
+prostředek při komunikaci modulů systému s databází, např. pro umožnění
+vyhledávaní pomoci neuronové sítě.
 }
 \def\AbstraktEN{%
 TODO Abstrakt en
@@ -124,7 +127,7 @@ TODO Abstrakt en
 
 % 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
 \def\KlicovaSlova{%
-{digitální archiv} {web} {databáze}
+{digitální archiv}, {web}, {databáze}
 }
 \def\KlicovaSlovaEN{%
 {digital archive} {web} {database}
