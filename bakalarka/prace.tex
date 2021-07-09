@@ -63,7 +63,13 @@
 \usepackage{listings}		 % highlighting kódu
 \hyphenpenalty 5000
 \exhyphenpenalty 5000
+\usepackage[font=scriptsize, skip=1pt]{caption}		% pro seznam obrázku a tabulek
+\DeclareCaptionLabelSeparator{bar}{\space\textbar\space}
+\captionsetup{labelsep=bar}
+\addto\captionsczech{\renewcommand{\figurename}{Obr.}}
+
 \usepackage[light,scaled=0.85]{roboto-mono}
+
 
 %%% Údaje o práci
 
@@ -89,7 +95,7 @@
 \def\TypPracovisteEN{Department}
 
 % Vedoucí práce: Jméno a příjmení s~tituly
-\def\Vedouci{Mgr. Macková Kateřina}
+\def\Vedouci{Mgr. Kateřina Macková}
 
 % Pracoviště vedoucího (opět dle Organizační struktury MFF)
 \def\KatedraVedouciho{Ústav formální a aplikované lingvistiky}
@@ -111,15 +117,14 @@ Monika Bošániová\\
 
 % Abstrakt (doporučený rozsah cca 80-200 slov; nejedná se o zadání práce)
 \def\Abstrakt{%
-Za použití moderních webových a databázových technologií zmodernizujeme
-zastaralé knihovní systémy. Snížíme nároky na výkon serveru a síťového rozhraní. 
-Uživateli těchto systémů poskytneme intuitivní a rychlou webovou aplikaci.
-Návštěvníkovi pak poskytneme nejen onen knihovní systém, ale celý
-balíček různých objektů, od novinek až po 3D modely historických objektu.
-Vývojáři a automatizované systémy budou mít přístup k API, jež
-bude poskytovat uchovávaná data. Zároveň bude sloužit i jako
-prostředek při komunikaci modulů systému s databází, např. pro umožnění
-vyhledávaní pomoci neuronové sítě.
+Za použití moderních webových a databázových technologií byla vyvynuta aplikace
+jako náhrada za zastaralé knihovní systémy. 
+Byly snížemy požadavky na výkon serveru a síťového rozhraní. 
+Uživatel tak má intuitivní rychlou webovou aplikaci,
+jež kombinuje knihovní a redakční systém a další moduly, jež
+nějakým způsobem zobrazují historické objekty, jako jsou mapy nebo 3D modely.
+Vývojáři a automatizované systémy pak mají přístup k uchovávaným datům
+přes jednoduché a rychle API a umožní jim tak data napojit na své systémy.
 }
 \def\AbstraktEN{%
 TODO Abstrakt en

@@ -1,7 +1,7 @@
 \chapter{Analýza a požadavky}
- Vybíráme jen z open source produktů, abychom mohli nahlédnout
-do jejich kódu a lepe porozumět implementaci jejich komponent.
-Lépe se pro takový systém vyvíjejí nezávisle moduly a
+Vybíráme jen z open source produktů, abychom mohli nahlédnout
+do jejich kódu a lépe porozumět implementaci jejich komponent.
+Lépe se pro takový systém vyvíjejí externí moduly, protože
 obvykle mají o dost větší komunitu vývojářů a přispěvatelů.
 
 
@@ -15,13 +15,22 @@ Externí programátoři budou moci k systému přistupovat přes API a získáva
 
 
 \section{Pro koho je systém určen}
-Systém bude sloužit pro historiky jako úložiště dat a pro veřejnost jako jejich zdroj.
+Systém bude sloužit pro pracovníky historického ústavu jakožto pro zadavatele
+a redaktory stránek této aplikace a bude uchovávat historická data z oblasti Krkonoš,
+tak aby si je návštěvník případně vědecký pracovník mohl přehledně
+zobrazit na jednom místě a případně si data i automaticky stahovat přes připravené API.
+Zároveň systém obsahuje interaktivní moduly, jež budou k dispozici
+návštěvníkům výstavy Pramenů Krkonoš, jako je hologram 3D modelu nebo
+prohlížeč historických map.
 
-
+\clearpage
 \section{Existující produkty}
 \subsection{KOHA}
-\includegraphics[width=.25\textwidth]{img/KOHA_Logo.png}\\
-url: http://www.koha.cz/\\
+\begin{wrapfigure}[7]{r}{0.25\textwidth}
+	\includegraphics[width=\linewidth]{img/KOHA_Logo.png}\\
+	\caption[LOGO systému koha ze stránky \url{https://www.mainelibit.org/node/77}]{LOGO systému koha}
+\end{wrapfigure}
+Domovská stránka aplikace: \url{http://www.koha.cz/}\\
 Koha je nejrozšířenější open source systém s širokou komunitou.
 Byla vyvinuta na Novém Zélandu roku 2000.
 Ale je stále udržovaná a stále rozšiřovaná
@@ -31,21 +40,28 @@ Používá SQL databázi.
 Je psaná v Perlu, na frontendu využívající javascript (ale není jej tolik).
 
 \subsection{Evergreen}
-\includegraphics[width=.25\textwidth]{img/Evergreen_Logo.png}\\
-url: https://eg-wiki.osvobozena-knihovna.cz\\
+\begin{wrapfigure}[3]{r}{0.3\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{img/Evergreen_Logo.png}\\
+	\caption[LOGO systému Evergreen ze stránky \url{https://eg-wiki.osvobozena-knihovna.cz/}]{LOGO systému Evergreen}
+\end{wrapfigure}
+Domovská stránka aplikace: \\\url{https://eg-wiki.osvobozena-knihovna.cz}\\
 Další z řady knihovních systému.
 Používán např Pedagogickou a Teologickou Fakultou v Praze.\\
 Používá sql databázi, vykreslovaní probíhá na serveru a nemá uživatelsky přivětivé prostředí.
 
 \subsection{SLIMS}
-\includegraphics[width=.25\textwidth]{img/Slims_Logo.png}\\
-url: https://slims.web.id/\\
+\begin{wrapfigure}[5]{r}{0.15\textwidth}
+	\includegraphics[width=\linewidth]{img/Slims_Logo.png}\\
+	\caption[LOGO systému SLIMS ze stránky \url{https://slims.web.id/}]{LOGO systému SLIMS}
+\end{wrapfigure}
+Domovská stránka aplikace: \url{https://slims.web.id/}\\
 Systém se základní funkcionalitou a přivětivým vzhledem.
 Není v češtině. Není primárně určen jako knihovní systém, spíš je to univerzální
 systém na cokoliv, proto není až tak efektivní a jeho nastavovaní
 by zabralo mnoho času.
 
-\subsection{Souhrn}
+\subsection{Porovnání existujících systémů}
 Evergreen a SLIMS jsou systémy, které potřebují silně vyškolenou osobu,
-aby se o systém starala, narozdíl od KOHY, která je intuitivnější a
-pro nové uživatele přívětivější. Pri zachovaní stejné, možná i lepši funkcionality.\\
+aby se o systém starala, narozdíl od systému KOHA, která je intuitivnější a
+pro nové uživatele přívětivější, při zachovaní stejné, možná i lepši funkcionality.\\
