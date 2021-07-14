@@ -10,7 +10,7 @@ import i18n from './i18n'
 import { I18nextProvider } from 'react-i18next';
 import { SnackbarProvider } from 'notistack'
 import WebFont from 'webfontloader';
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { MuiThemeProvider, createTheme } from "@material-ui/core/styles"
 
 import PrivateRoute from './components/PrivateRoute'
 
@@ -76,7 +76,7 @@ class Prak extends React.Component {
 			}
 		})
 
-		const theme = createMuiTheme({
+		const theme = createTheme({
 			palette: {
 				primary: { main: "#000" },
 				secondary: { main: "#FFF274" }, 
