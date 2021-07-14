@@ -57,12 +57,12 @@
 \usepackage{paralist}       % lepší enumerate a itemize
 \usepackage{xcolor}         % barevná sazba
 
+\usepackage{float}			% umístění figure bloků
+\usepackage{wrapfig}        % obrázek plující vedle textu
+\usepackage{multicol}       % sloupečky
+\usepackage{listings}		% highlighting kódu
 
-\usepackage{wrapfig}         % obrázek plující vedle textu
-\usepackage{multicol}        % sloupečky
-\usepackage{listings}		 % highlighting kódu
-\hyphenpenalty 5000
-\exhyphenpenalty 5000
+
 \usepackage[font=scriptsize, skip=1pt]{caption}		% pro seznam obrázku a tabulek
 \DeclareCaptionLabelSeparator{bar}{\space\textbar\space}
 \captionsetup{labelsep=bar}
@@ -99,8 +99,8 @@
 \def\Vedouci{Mgr. Kateřina Macková}
 
 % Pracoviště vedoucího (opět dle Organizační struktury MFF)
-\def\KatedraVedouciho{Ústav formální a aplikované lingvistiky}
-\def\KatedraVedoucihoEN{Institute of Formal and Applied Linguistics}
+\def\KatedraVedouciho{Katedra teoretické informatiky a matematické logiky}
+\def\KatedraVedoucihoEN{Department of Theoretical Computer Science and Mathematical Logic}
 
 % Studijní program a obor
 \def\StudijniProgram{Informatika (B1801)}
@@ -110,7 +110,6 @@
 % zapůjčil software, literaturu apod.)
 \def\Podekovani{
 TODO Poděkovaní:\\
-Petra Hoffmannová\\
 Kateřina Macková\\
 Anička Yaghobová\\
 Monika Bošániová\\
@@ -133,10 +132,10 @@ TODO Abstrakt en
 
 % 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
 \def\KlicovaSlova{%
-{digitální archiv}, {web}, {databáze}
+{digitální archiv}, {webová aplikace}, {databáze}
 }
 \def\KlicovaSlovaEN{%
-{digital archive} {web} {database}
+{digital archive}, {web application}, {database}
 }
 
 %% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
@@ -177,11 +176,16 @@ TODO Abstrakt en
 
 %%% Tabulky v bakalářské práci (opět nemusí být nutné uvádět)
 %%% U matematických prací může být lepší přemístit seznam tabulek na začátek práce.
-\listoftables
+% \listoftables
 
 %%% Použité zkratky v bakalářské práci (opět nemusí být nutné uvádět)
 %%% U matematických prací může být lepší přemístit seznam zkratek na začátek práce.
 \chapwithtoc{Seznam použitých zkratek}
+\begin{tabular}{c | c}
+	MK ČŘ - NAKI & ministerstvo kultury - národní kulturní identita \\
+	ČUZK & Státní správa zeměměřictví a katastru \\
+	
+\end{tabular}
 
 %%% Přílohy k bakalářské práci, existují-li. Každá příloha musí být alespoň jednou
 %%% odkazována z vlastního textu práce. Přílohy se číslují.
@@ -194,9 +198,9 @@ TODO Abstrakt en
 %%% je také do práce vložit na CD/DVD. Povolené formáty souborů specifikuje
 %%% opatření rektora č. 72/2017.
 \appendix
-\chapter{Přílohy}
+%\chapter{Přílohy}
 
-\section{První příloha}
+%\section{První příloha}
 
 \openright
 \end{document}

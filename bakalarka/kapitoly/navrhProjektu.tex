@@ -13,11 +13,11 @@ implementována a přizpůsobena s důrazem na plynulost a rychlost aplikace.
 \subsubsection{Single page aplication}
 Single page aplication je technologie umožnující vykreslení jiné stránky,
 bez nutnosti, posílaní requestu na server.
-Uživatel si při prvním spuštěni webu stáhne celý baliček webu a 
+Uživatel si při prvním spuštění webu stáhne celý balíček webu a 
 při opětovném načtení vetšinou sahá jen do své lokální cache.
-Javascriptová knihovna (v tomto případě React)
+JavaScriptová knihovna (v tomto případě React)
 poté stránku překresluje při uživatelské interakci.
-V případě nutnosti staženi / posílaní dat mezi serverem a uživatelem
+V případě nutnosti stažení / posílaní dat mezi serverem a uživatelem
 (např. editace záznamu, nebo načtení existujícího záznamu)
 se volá pouze request k API webové služby a tělo requestu obsahuje pouze
 užitečné (ne-redundantní) informace. 
@@ -48,7 +48,7 @@ pouze minimalisticky posílá požadované informace.
 Mít single page aplikaci na frontendu znamená, že na backendu musí existovat API,
 od kterého bude frontend čerpat data.
 Navíc zde potřebujeme i systém pro statické odesílaní balíku celé webové stránky.
-V rámci udržitelnosti byl použit stejný jazyk Javascript jaký je na frontendu.
+V rámci udržitelnosti byl použit stejný jazyk JavaScript, jaký je na frontendu.
 Knihovnou, která by umožňovala komplexní správu requestů a zároveň by byla
 i na robustnějších projektech programátorsky přehledná, byla zvolena Express.js.
 
@@ -56,29 +56,32 @@ i na robustnějších projektech programátorsky přehledná, byla zvolena Expre
 Express.js poskytuje nejen odesílaní statických stránek,
 což je potřeba při odesílání balíku s aplikací React, ale umí i
 custom requesty, potřebné pro rozmanité API a také odesílaní a
-lokální ukládaní statických souborů jako jsou obrázky a word nebo pdf dokumenty.
+lokální ukládaní statických souborů, jako jsou obrázky a word nebo pdf dokumenty.
 
 \subsubsection{MongoDB}
-MongoDB je databázový system typu non-sql.
-Což primárně znamená, že data neuchovává v tabulkách, ale v tkz. schématech.
-Což má mnoho výhod, největší je, že nekompletní záznamy nezabírají
-svými nevyplněnými daty místo v DB a ukládá se opravdu jen to co je potřeba.
-Další výhodou, je styl ukládaní dat a komunikace s DB.
+MongoDB je databázový systém typu non-SQL.
+Což primárně znamená, že data neuchovává v tabulkách, ale v tzv. schématech.
+Což má mnoho výhod, z nichž největší je, že nekompletní záznamy nezabírají
+svými nevyplněnými daty místo v DB a ukládá se opravdu jen to, co je potřeba.
+Další výhodou je styl ukládaní dat a komunikace s DB.
 Databáze si data uchovává ve formátu BSON (binární JSON rozšířený o datové typy).
 O data si aplikace žádá pomoci query,
-která je zcela odlišná od těch u sql-like databází,
+která je zcela odlišná od těch u SQL databází,
 primárně se zde neposílá query ve formátu string ale jako JSON objekt,
-díky čemuž např. nenastane známa SQL injection.
+díky čemuž např. nenastane známá SQL injection.
 Znovu ve formátu JSON poté data vrací aplikaci.
 
 \subsubsection{Další možné technologie}
 Díky odděleni frontendu a backendu (narozdíl od např. WordPressu) je možné
-na backend nasadit téměř cokoliv co umi posílat requesty.
-Příkladem tomu můžou byt scripty v jazycích PHP, C\#, Python, nebo Perl.
+na backend nasadit téměř cokoliv co umí posílat requesty.
+Příkladem toho můžou být scripty v jazycích PHP, C\#, Python, nebo Perl.
 Ale vzhledem k tomu, že jedním z modulů bude neuronová síť na pokročilé vyhledávaní,
-vybíral jsem mezi Pythonem a JavaScriptem, jakožto 2mi jazyky, které
+vybírali jsme mezi jazyky Python a JavaScript, jakožto dvěma jazyky, které
 mají velmi dobré knihovny pro práci s neuronovými sítěmi.
 
 \section{Diagram systému}
-\noindent
-\includegraphics[angle=-90,origin=c,width=\linewidth]{img/diagram.png}
+\begin{figure}[H]
+	\centering
+	\includegraphics[angle=-90,origin=c,width=\linewidth]{img/diagram.png}
+	\caption{Diagram systému}
+\end{figure}
