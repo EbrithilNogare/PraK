@@ -15,61 +15,71 @@ class ContactsPage extends React.Component {
 
 		this.state = {
 			isLoaded: false,
-			data: {}
+			name: "",
+			mail: "",
+			message: "",
 		}
 	}
 
-	handleSubmit(event){
-		/*eslint-disable */
+	handleSubmit = (event) => {
 		event.preventDefault()
-		return
-		
-		const url = "/prak/api/mail"
-		const data = {}
+		const adminMail = "d@nogare.cz"
+		window.open(`mailto:${encodeURIComponent(adminMail)}?subject=${encodeURIComponent("Message from " + this.state.name)}&body=${encodeURIComponent(this.state.message)}%0A%0AReply%20to:%20${encodeURIComponent(this.state.mail)}`)
+	}
 
-		console.info("%cMail sending\n", "background: #222; color: #bada55", data)
-
-		fetch(url, {
-			method: 'POST',
-			headers: {
-			  'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(data)
+	
+	handleChange = (event, type = "value") => {
+		this.setState({
+			[event.target.name]: event.target[type]
 		})
-		.then(response => {
-			if(!response.ok)
-				throw response
-			return response.json()
-		})
-		.then(response => {
-			console.info("%cMail sent succesfull\n", "background: #222; color: #bada55", response)
-			this.props.enqueueSnackbar("Přihlašování úspěšné", { variant: "success", autoHideDuration: 6000 })
-		})
-		.catch((error) => {
-			console.info("%cMail sent unsuccesful\n", "background: #222; color: #bada55", error)
-			this.props.enqueueSnackbar("Přihlašování se nezdařilo", { variant: "error", autoHideDuration: 6000 })
-		})
-
-		event.preventDefault()
-		/*eslint-enable */
 	}
 
 	render(){
 		const { t } = this.props
 		return(
-			<div
+			<form
 				className={styles.root}
 				component="form"
 				onSubmit={this.handleSubmit}
 			>
 				<h1>{t("contactPage.contacts")}</h1>
 				<p>{t("contactPage.questions")}</p><br/>
-				<TextField required label={t("contactPage.name")} style={{width:"100%"}}/><br/><br/>
-				<TextField required label={t("contactPage.mail")} style={{width:"100%"}}/><br/><br/>
-				<TextField required variant="outlined" style={{width:"100%"}} label={t("contactPage.message")} multiline rows={8}/><br/><br/>
+				<TextField 
+					required
+					label={t("contactPage.name")}
+					style={{width:"100%"}}
+					value={ this.state.name }
+					name="name"
+					onChange={this.handleChange}	
+				/>
+				<br/>
+				<br/>
+				<TextField
+					required
+					label={t("contactPage.mail")}
+					style={{width:"100%"}}
+					value={ this.state.mail }
+					name="mail"
+					onChange={this.handleChange}	
+				/>
+				<br/>
+				<br/>
+				<TextField
+					required
+					variant="outlined"
+					style={{width:"100%"}}
+					label={t("contactPage.message")}
+					multiline
+					rows={8}
+					value={ this.state.message }
+					name="message"
+					onChange={this.handleChange}	
+				/>
+				<br/>
+				<br/>
 				<Button color="primary" variant="contained" type="submit" style={{width:"300px", height:"60px"}}>{t("contactPage.send")}</Button><br/><br/><br/><br/>
 				{t("contactPage.coordinator")}
-			</div>
+			</form>
 		)
 	}
 }
