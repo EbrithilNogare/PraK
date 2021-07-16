@@ -1,5 +1,57 @@
 \chapter{Řešení}
 
+
 \section{Výsledný web}
+Funkční web je možné si zobrazit na adrese \url{http://quest.ms.mff.cuni.cz/prak/homepage}.
+Nezapomínejte, že pro zobrazení většiny stránek jsou potřeba vyšší oprávnění,
+než má nepřihlášený uživatel.
 
 \section{Uživatelská dokumentace}
+\subsection{Návštěvník (nepřihlášený uživatel)}
+Při prvním příchodu se návštěvník dostává na hlavní webovou stránku,
+na které si může přečíst hlavní informace o projektu nebo
+navrhované aktuality.\\
+Ačkoliv je obsah stránky převážně v češtině, lze přepnout jazyk ovládacích prvků
+pomocí tlačítek \texttt{CZ}, \texttt{DE} a \texttt{EN} pravo nahoře.
+Pro zobrazení záznamů slouží ikonka lupy v pravém horním rohu, která sméřuje na
+vyhledávací rozhraní ve kterém lze záznamy vyhledat (systém podporuje i regexp výrazy),
+setřídit pomocí kliknutí na záhlaví požadovaného sloupce a následně požadovaný záznam i 
+zobrazit v jeho detailní podobě.\\
+V hlavním menu najdeme i několik odkazů na stránky s relativními informacemi a
+rubriky jako jsou \textit{novinky}, nebo \textit{střípky z Krkonoš}.\\
+Trochu schované jsou pak odkazy na moduly:
+\begin{itemize}
+	\item 3D model hologram \\
+		\url{http://quest.ms.mff.cuni.cz/prak/modules/hologram/}
+	\item 2D mapa Krkonoš 19. století \\
+		\url{http://quest.ms.mff.cuni.cz/prak/maps/1.jpg}
+\end{itemize}
+
+\subsection{Zadavatel}
+Stejně jako uživatel se dokáže dostat k zobrazení detailu záznamu, navíc zde má
+ale i tlačítko pro editaci záznamu, jež jej přesune do editačního rozhraní.
+Zde může vyplňovat pole a následně záznam uložit. Specifikace atipických polí
+je v kapitole 5.3.2.\\
+K vytvoření nového záznamu má zadavatel v patičce webu připraveny odkazy do
+scény \textit{Zadávátka}, které je identické se vzhledem editačního prostředí.\\
+V případě potřeby může zadavatel nahrát soubor na server pomocí opět odkazu v
+patičce webu s názvem \textit{Nahrát soubor}. Po kliknutí na tlačítko
+s ikonkou šipky se mu zobrazí okno pro zvolení souboru a po jeho vybrání se
+soubor odešle na server a uživateli se zobrazí přímý odkaz na nahrátý soubor, který
+může začít ihned používat.
+
+\subsection{Redaktor}
+Pro přístup do redakčního systému stránky stačí v jejím pravém rohu kliknou 
+na ikonku tužky viz \textit{Obr. 5.4} nebo použít odkaz \textit{Redakční systém}
+v zápatí stránky, kde se mu zobrazí veškeré stránky webu a odtud si může vybrat,
+kterou chce editovat. po kliknutí na ikonku oka stránku zobrazí, případně po
+kliknutí na ikonku tužky ji začne editovat. Měnit lze vše kromě již existující
+url. Více o redakčním systému v \textit{kapitole 5.3.1 - CMS}
+
+
+\subsection{Admin}
+Veškerá správa uživatelů, jejich informací a oprávnění spadá pod administrační rozhraní,
+přístupné přes odkaz \textit{Admin} v zápatí stránky.\\
+Nového uživatele lze přidat v horní části administračního rozhraní, kam se
+zadají potřebné údaje a uživatel se uloží. Níže pak nalezneme seznam uživatelů a
+informace o nich, včetně možnosti změny jejich údajů a nebo smazání jejich účtů.

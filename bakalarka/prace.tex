@@ -61,6 +61,7 @@
 \usepackage{wrapfig}        % obrázek plující vedle textu
 \usepackage{multicol}       % sloupečky
 \usepackage{listings}		% highlighting kódu
+\usepackage{makecell}		% víceřádková buňka v tabulce
 
 
 \usepackage[font=scriptsize, skip=1pt]{caption}		% pro seznam obrázku a tabulek
@@ -69,8 +70,14 @@
 \addto\captionsczech{\renewcommand{\figurename}{Obr.}}
 
 
-\usepackage[light,scaled=0.85]{roboto-mono}
+%\usepackage[light,scaled=0.85]{roboto-mono}
 
+
+
+
+% Zapne černé "slimáky" na koncích řádků, které přetekly, abychom si
+% jich lépe všimli.
+\overfullrule=3mm % vypnout pro produkci TODO
 
 %%% Údaje o práci
 
@@ -109,33 +116,34 @@
 % Nepovinné poděkování (vedoucímu práce, konzultantovi, tomu, kdo
 % zapůjčil software, literaturu apod.)
 \def\Podekovani{
-TODO Poděkovaní:\\
-Kateřina Macková\\
-Anička Yaghobová\\
-Monika Bošániová\\
+	\section*{Poděkování}
+	Chtěl bych poděkovat paní Mgr. Kateřině Mackové za odborné vedení práce a
+	cenné rady, které mi pomohly tuto práci zkompletovat.
+	Anně Yaghobové a Monice Bošániové za pomoc a rady při zpracování této práce.
+	A mnoha dalším jenž mi pomáhali a to i kdyby jen jako \uv{gumové kachničky}.
 }
 
 % Abstrakt (doporučený rozsah cca 80-200 slov; nejedná se o zadání práce)
 \def\Abstrakt{%
-Za použití moderních webových a databázových technologií byla vyvynuta aplikace
-jako náhrada za zastaralé knihovní systémy. 
-Byly snížemy požadavky na výkon serveru a síťového rozhraní. 
-Uživatel tak má intuitivní rychlou webovou aplikaci,
-jež kombinuje knihovní a redakční systém a další moduly, jež
-nějakým způsobem zobrazují historické objekty, jako jsou mapy nebo 3D modely.
-Vývojáři a automatizované systémy pak mají přístup k uchovávaným datům
-přes jednoduché a rychle API a umožní jim tak data napojit na své systémy.
+	Za použití moderních webových a databázových technologií byla vyvynuta aplikace
+	jako náhrada za zastaralé knihovní systémy. 
+	Byly sníženy požadavky na výkon serveru a síťového rozhraní. 
+	Uživatel tak má intuitivní rychlou webovou aplikaci,
+	jež kombinuje knihovní a redakční systém a další moduly, jež
+	nějakým způsobem zobrazují historické objekty, jako jsou mapy nebo 3D modely.
+	Vývojáři a automatizované systémy pak mají přístup k uchovávaným datům
+	přes jednoduché a rychle API a umožní jim tak data napojit na své systémy.
 }
 \def\AbstraktEN{%
-TODO Abstrakt en
+	TODO Abstrakt en
 }
 
 % 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
 \def\KlicovaSlova{%
-{digitální archiv}, {webová aplikace}, {databáze}
+	{digitální archiv}, {webová aplikace}, {databáze}
 }
 \def\KlicovaSlovaEN{%
-{digital archive}, {web application}, {database}
+	{digital archive}, {web application}, {database}
 }
 
 %% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
@@ -181,13 +189,25 @@ TODO Abstrakt en
 %%% Použité zkratky v bakalářské práci (opět nemusí být nutné uvádět)
 %%% U matematických prací může být lepší přemístit seznam zkratek na začátek práce.
 \chapwithtoc{Seznam použitých zkratek}
-\begin{tabular}{c | c}
-	\textbf{Administrativní}\\
-	MK ČŘ - NAKI & ministerstvo kultury - národní kulturní identita \\
-	ČUZK & Státní správa zeměměřictví a katastru \\
-	\textbf{Programátorské}\\
-	API & Application Programming Interface \\
-	
+
+\subsection*{Administrativní}
+\begin{tabular}{| c | c |}
+	\hline
+		MK ČŘ - NAKI & ministerstvo kultury - národní kulturní identita \\
+	\hline
+		ČUZK & Státní správa zeměměřictví a katastru \\
+	\hline
+\end{tabular}
+
+\subsection*{Programátorské}
+\begin{tabular}{| c | c |}
+	\hline
+		API & Application Programming Interface \\
+	\hline
+		Regexp & \makecell{Regular expression, více zde: \\ \url{https://en.wikipedia.org/wiki/Regular_expression}} \\
+	\hline
+		DB & Databáze \\
+	\hline
 \end{tabular}
 
 %%% Přílohy k bakalářské práci, existují-li. Každá příloha musí být alespoň jednou
