@@ -224,7 +224,7 @@ class ShowScene extends React.Component {
 									label="Překládat databázové názvy"
 								/>
 
-								<Grid container spacing={10} justify="flex-end">
+								<Grid container spacing={10} justifyContent="flex-end">
 								<Grid item>
 								</Grid>
 								<Grid item>

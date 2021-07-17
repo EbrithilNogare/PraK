@@ -27,7 +27,7 @@ class ShowScene extends React.Component {
 
 		this.state = {
 			indexer: "metadata",
-			records: null,
+			records: [] ,
 			template: [
 				{field: "author", headerName: "Hlavní autor", flex: 400},
 				{field: "name", headerName: "Hlavní název", flex: 400},
@@ -312,12 +312,11 @@ class ShowScene extends React.Component {
 				</Paper>
 				<Paper className={styles.body}>
 					<Select
-						labelId="simple-select-label"
 						value = { this.state.indexer }
 						variant = "outlined"
 						onChange = { e => {
 							const dataSource = this.dataSources[e.target.value]
-							this.setState({ indexer: e.target.value, template: dataSource.template, records: null})
+							this.setState({ indexer: e.target.value, template: dataSource.template, records: []})
 							this.description = {}
 						} }
 					>
@@ -341,18 +340,20 @@ class ShowScene extends React.Component {
 						<b>Zobrazení záznamu:</b> klikněte kamkoliv na příslušný záznam v tabulce níže
 					</div>
 				</Paper>
-				{ this.state.records !== null && <Paper style={{ height: 400, width: '100%' }}>
+				<Paper style={{ height: 400, width: '100%' }}>
+					{console.log("records", this.state.records)}
+					{console.log("template", this.state.template)}
 					<DataGrid
 						className={styles.cursorPoiter}
 						rows={this.state.records}
 						columns={this.state.template}
 						pageSize={5}
 						onRowClick = { e => {
-							console.info("%cShow: ", "background: #222; color: #bada55", e.data.id);
-							this.props.history.push(`/prak/show/${this.dataSources[this.state.indexer].url}/${e.data.id}`)
+							console.info("%cShow: ", "background: #222; color: #bada55", e.id)
+							this.props.history.push(`/prak/show/${this.dataSources[this.state.indexer].url}/${e.id}`)
 						} }
 					/>
-				</Paper> }
+				</Paper>
 			</div>
 		)
 	}
