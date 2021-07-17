@@ -137,14 +137,9 @@ router.route('/:id').delete(auth("execute"), (req, res) => {
 	if(!id)
 		res.status(400).json({ message: "incorrect ID" })
 
-	const isOwner = true; // todo
-	const isAdmin = true; // todo
-
-	if(!(isOwner || isAdmin)){
-		res.status(401).json({
-			message: "not permitted - only admin or owner can remove account",
-		})
-	}
+	res.status(401).json({
+		message: "not permitted - only admin or owner can remove account",
+	})
 
 	Model.findByIdAndRemove(id)
 	.then(() => {

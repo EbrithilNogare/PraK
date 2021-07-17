@@ -15,8 +15,6 @@ class IndexParent extends React.Component {
 	constructor(props){
 		super(props)
 
-		window.debug = ()=>{return this.formData} // todo remove this line
-
 		this.indexURL = undefined	// abstract
 		
 		this.formData = {}
