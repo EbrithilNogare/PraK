@@ -87,7 +87,7 @@ function NavBar() {
 				<NavLink to="/prak/page/partners">{t("NavBar.partners")}</NavLink>
 				<NavLink to="/prak/contacts">{t("NavBar.contacts")}</NavLink>
 				{ i18n.language === "cz" && <div className={styles.dropdown}>
-					<NavLink to="/prak/page/shards">{t("NavBar.shards")}</NavLink>
+					<span style={{cursor: "pointer"}}>{t("NavBar.shards")}</span>
 					<div className={styles.dropdownContent}>
 						<NavLink to="/prak/pageCategory/topography">{t("NavBar.topography")}</NavLink>
 						<NavLink to="/prak/page/from_history">{t("NavBar.from_history")}</NavLink>
