@@ -86,6 +86,7 @@ class Login extends React.Component {
 					label="Email"
 					variant="outlined"
 					onChange={this.handleChange}
+					inputRef={input => input && input.focus()}
 				/>
 				<TextField
 					value={ this.state.password }
