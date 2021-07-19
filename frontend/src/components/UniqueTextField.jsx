@@ -1,10 +1,12 @@
 import React from "react"
-
 import { 
 	TextField,
 } from '@material-ui/core'
 
-class LabeledCheckbox extends React.Component {
+/**
+ * Textfield that checks that value is unique against API
+ */
+class UniqueTextField extends React.Component {
 	constructor(props){
 		super(props)
 
@@ -65,5 +67,5 @@ class LabeledCheckbox extends React.Component {
 	}
 }
 
-export default LabeledCheckbox
+export default UniqueTextField
 

@@ -22,6 +22,10 @@ class PageCategoryList extends React.Component {
 		this.loadpageCategory(this.props.pageCategoryName)
 	}
 
+	/**
+	 * Loads list of pages with specific category
+	 * @param  {String} category Category name
+	 */
 	loadpageCategory = (category) => {
 		const url = "/prak/api/pages"
 		const body = { category, language: "cz" }

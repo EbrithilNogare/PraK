@@ -10,19 +10,15 @@ import {
 import {
 	HelpOutline
 } from '@material-ui/icons'
-
 import {
 	CorporationComboBox,
-//	CreationComboBox,
 	GeographicComboBox,
 	KeywordComboBox,
 	PersonComboBox,
 	SubjectComboBox,
-//	StaticOpenComboBox,
 	SubmitterComboBox,
 } from '../comboBoxes'
 import IndexParent from "./indexParent"
-import styles from './parent.module.scss'
 import GPSField from "../validationTextFields/GPSField"
 import typeDefinitionFile from './corporationTypes.json'
 import Multiplier from '../Multiplier'
@@ -31,6 +27,8 @@ import FoldablePaper from "../../components/FoldablePaper"
 import UniqueTextField from "../../components/UniqueTextField"
 import UploadFile from "../../components/UploadFile"
 import StaticComboBox from "components/comboBoxes/StaticComboBox"
+
+import styles from './parent.module.scss'
 
 class Corporation extends IndexParent {
 	constructor(props){

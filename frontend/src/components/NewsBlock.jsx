@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom"
 import Carousel from 'react-material-ui-carousel'
 import { Paper } from '@material-ui/core'
 
+/**
+ * Show block with News, downloaded from API
+ */
 class NewsBlock extends React.Component {
 	constructor(props){
 		super(props)

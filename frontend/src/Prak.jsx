@@ -38,35 +38,46 @@ import styles from "./Prak.module.scss"
 
 class Prak extends React.Component {
 	componentDidMount(){
-		const sessionID = this.props.cookies.get("sessionID")
-		if(sessionID){
-			const url = "/prak/api/auth/"+sessionID
+		this.checkLoginData()
+	}
 
-			fetch(url, {
-				method: 'GET',
-			})
-			.then(response => {
-				if(!response.ok)
-					throw response
-				return response.json()
-			})
-			.then(response => {
-				const user = response.firstName || response.secondName ? (response.firstName || "") + " " + (response.secondName || "") : response.email
-				const permission = 8 * response.role.cms + 4 * response.role.read + 2 * response.role.write + 1 * response.role.execute
-				console.info("%cLogged as: \n", "background: #222; color: #bada55", user)
-				this.props.cookies.set("userID", response._id, { path: "/", expires : new Date(response.sessionExpiration) }); 
-				this.props.cookies.set("user", user, { path: "/", expires : new Date(response.sessionExpiration) }); 
-				this.props.cookies.set("permission", permission, { path: "/", expires : new Date(response.sessionExpiration) }); 
-				this.props.cookies.set("sessionID", sessionID, { path: "/", expires : new Date(response.sessionExpiration) }); 
-			})
-			.catch((error) => {
-				console.error(error)
-				this.props.cookies.remove("userID", { path: "/" }); 
-				this.props.cookies.remove("user", { path: "/" }); 
-				this.props.cookies.remove("permission", { path: "/" }); 
-				this.props.cookies.remove("sessionID", { path: "/" }); 
-			})
-		}
+	checkLoginData = () => {
+		const sessionID = this.props.cookies.get("sessionID")
+		if(!sessionID)
+			return
+
+		const url = "/prak/api/auth/"+sessionID
+
+		fetch(url, {
+			method: 'GET',
+		})
+		.then(response => {
+			if(!response.ok)
+				throw response
+			return response.json()
+		})
+		.then(data => this.setLoginCookies(sessionID, data))
+		.catch((error) => {
+			console.error(error)
+			this.removeLoginCookies()
+		})
+	}
+
+	setLoginCookies = (sessionID, data) => {
+		const user = data.firstName || data.secondName ? (data.firstName || "") + " " + (data.secondName || "") : data.email
+		const permission = 8 * data.role.cms + 4 * data.role.read + 2 * data.role.write + 1 * data.role.execute
+		console.info("%cLogged as: \n", "background: #222; color: #bada55", user)
+		this.props.cookies.set("userID", data._id, { path: "/", expires : new Date(data.sessionExpiration) }); 
+		this.props.cookies.set("user", user, { path: "/", expires : new Date(data.sessionExpiration) }); 
+		this.props.cookies.set("permission", permission, { path: "/", expires : new Date(data.sessionExpiration) }); 
+		this.props.cookies.set("sessionID", sessionID, { path: "/", expires : new Date(data.sessionExpiration) }); 
+	}
+
+	removeLoginCookies = () => {
+		this.props.cookies.remove("userID", { path: "/" }); 
+		this.props.cookies.remove("user", { path: "/" }); 
+		this.props.cookies.remove("permission", { path: "/" }); 
+		this.props.cookies.remove("sessionID", { path: "/" }); 
 	}
 
 	render(){

@@ -10,6 +10,9 @@ import {
 	Remove, 
 } from '@material-ui/icons';
 
+/**
+ * Multiply everything inside by enabling to add or remove items
+ */
 class Multiplier extends React.Component {
 	constructor(props){
 		super(props)

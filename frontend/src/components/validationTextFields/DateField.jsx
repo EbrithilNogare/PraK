@@ -4,7 +4,9 @@ import {
 	TextField,
 } from '@material-ui/core'
 
-
+/**
+ * TextField parsing date to standartizet format
+ */
 class DateField extends React.Component {
 	constructor(props){
 		super(props)
@@ -17,6 +19,11 @@ class DateField extends React.Component {
 		this.handleChange = this.handleChange.bind(this)
 	}
 
+	
+	/**
+	 * Runs automatic validation
+	 * @param  {String} category Category name
+	 */
 	handleChange(event){
 		const value = event.target.value
 		const regex = /^(?:\d{1,2}\.){0,2}\d{4}$/
@@ -34,6 +41,7 @@ class DateField extends React.Component {
 			return;
 		}
 
+		// parse czech date format of various length 
 		const sd = value.split('.')
 		switch(sd.length){
 			case 1: newDate = new Date(value); break;

@@ -1,13 +1,14 @@
 import React from "react"
 import { withSnackbar } from 'notistack'
-
 import { 
 	Button,
 	TextField,
 } from '@material-ui/core'
-
 import PublishIcon from '@material-ui/icons/Publish'
 
+/**
+ * File input
+ */
 class UploadFile extends React.Component {
 	constructor(props){
 		super(props)

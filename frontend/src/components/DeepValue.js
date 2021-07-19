@@ -1,3 +1,9 @@
+/**
+ * Dive into object by given path
+ * @param	{Object}	obj
+ * @param	{String}	path
+ * @returns	value at the location defined by path
+ */
 const DeepValue = (obj, path) => {
 	const arrayPath = path.split("[%]")
 	for (let i=0, path = arrayPath[0].split('.'), len=path.length; i<len; i++){

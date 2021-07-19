@@ -2,12 +2,14 @@ import React from "react"
 import parse from 'html-react-parser'
 import { NavLink } from "react-router-dom"
 import { withCookies } from "react-cookie"
-
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { Edit } from '@material-ui/icons/';
 
 import styles from './loadPageFromDB.module.scss'
 
+/**
+ * Component showing saved html page by downloading it from API
+ */
 class LoadPageFromDB extends React.Component {
 	constructor(props){
 		super(props)
@@ -27,6 +29,11 @@ class LoadPageFromDB extends React.Component {
 		this.loadPage(this.props.pageName)
 	}
 
+		
+	/**
+	 * Loads page data from API
+	 * @param {String} pageName name of page to load  
+	 */
 	loadPage = (pageName) => {
 		const url = `/prak/api/pages/${pageName}`
 

@@ -5,6 +5,9 @@ import {
 	Grid,
 } from '@material-ui/core'
 
+/**
+ * Checkbox with label
+ */
 class LabeledCheckbox extends React.Component {
 	constructor(props){
 		super(props)

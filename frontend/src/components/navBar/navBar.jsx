@@ -18,6 +18,9 @@ function NavBar() {
 	
 	useEffect(() => { loadShards() }, [])
 
+	/**
+	 * Loads list of pages with category "shards"
+	 */
 	const loadShards = () => {
 		const url = "/prak/api/pages"
 		const body = { category: "ourwork", language: "cz" }

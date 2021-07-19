@@ -4,7 +4,9 @@ import {
 	TextField,
 } from '@material-ui/core'
 
-
+/**
+ * TextField with validation by RegEx
+ */
 class RegExpField extends React.Component {
 	constructor(props){
 		super(props)

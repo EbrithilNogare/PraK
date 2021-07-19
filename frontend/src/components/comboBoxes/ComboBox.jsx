@@ -1,6 +1,5 @@
 import React from "react"
 import { Trans } from 'react-i18next'
-
 import { 
 	TextField,
 	MenuList,
@@ -13,9 +12,12 @@ import {
 	Check, 
 	SyncDisabled,
 } from '@material-ui/icons';
+
 import styles from "./ComboBox.module.scss"
 
-
+/**
+ * TextField that realtime shows seach search results in menu and user cas click on them
+ */
 class ComboBox extends React.Component {
 	constructor(props){
 		super(props)
@@ -30,12 +32,17 @@ class ComboBox extends React.Component {
 		}
 	}
 
+	// Abstract functions definitions
 	getFetchURL = () => {throw new Error("Calling abstract function")}
 	getNewFieldURL = () => {throw new Error("Calling abstract function")}
 	labelPostfix = () => ""
 	generateObjectForMongooseFind = value => {throw new Error("Calling abstract function")}
 	parseReturnedObjectFromMongooseFind = element => {throw new Error("Calling abstract function")}
 
+	/**
+	 * Send request to db and show results
+	 * @param	{Event}	event 	
+	 */
 	handleChange = event => {
 		this.setState({
 			value: event.target.value,
@@ -76,6 +83,10 @@ class ComboBox extends React.Component {
 	
 	}
 
+	/**
+	 * Save internal state by ID of clicked item
+	 * @param	{Object}	value 	
+	 */
 	handleMenuItemClick = value => {
 		this.setState({
 			value: value.text,
@@ -86,6 +97,10 @@ class ComboBox extends React.Component {
 		if(this.props.onChange) this.props.onChange({target:{value:value.key}})
 	}
 
+	/**
+	 * Opens new window for user to create new record
+	 * @param	{Object}	value 	
+	 */
 	openNewFieldWindow = () => {
 		const url = this.getNewFieldURL()
 		console.info("%cOpening new window\n", "background: #222; color: #bada55", url)

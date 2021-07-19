@@ -6,6 +6,9 @@ import {
 import RemoveIcon from '@material-ui/icons/Remove'
 import CropSquareIcon from '@material-ui/icons/CropSquare'
 
+/**
+ * Paper block that can fold and unfold
+ */
 class FoldablePaper extends React.Component {
 	constructor(props){
 		super(props)

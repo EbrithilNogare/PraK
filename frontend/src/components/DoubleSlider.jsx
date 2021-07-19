@@ -7,7 +7,9 @@ import {
 	Slider,
 } from '@material-ui/core'
 
-
+/**
+ * Slider, but with two slider defining from and to value
+ */
 class DoubleSlider extends React.Component {
 	constructor(props){
 		super(props)

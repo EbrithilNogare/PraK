@@ -4,7 +4,9 @@ import {
 	TextField,
 } from '@material-ui/core'
 
-
+/**
+ * TextField with validation of GPS format
+ */
 class GPSField extends React.Component {
 	constructor(props){
 		super(props)
@@ -17,6 +19,7 @@ class GPSField extends React.Component {
 		this.handleChange = this.handleChange.bind(this)
 	}
 
+	// validate GPS format
 	handleChange(event){
 		const regex = /^([SNsn][\s]*)?((?:[+-]?[0-9]*[.,][0-9]+)|(?:[+-]?[0-9]+))(?:(?:[^ms'′"″,.\dNEWnew]?)|(?:[^ms'′"″,.\dNEWnew]+((?:[+-]?[0-9]*[.,][0-9]+)|(?:[+-]?[0-9]+))(?:(?:[^ds°"″,.\dNEWnew]?)|(?:[^ds°"″,.\dNEWnew]+((?:[+-]?[0-9]*[.,][0-9]+)|(?:[+-]?[0-9]+))[^dm°'′,.\dNEWnew]*))))([SNsn]?)[^\dSNsnEWew]+([EWew][\s]*)?((?:[+-]?[0-9]*[.,][0-9]+)|(?:[+-]?[0-9]+))(?:(?:[^ms'′"″,.\dNEWnew]?)|(?:[^ms'′"″,.\dNEWnew]+((?:[+-]?[0-9]*[.,][0-9]+)|(?:[+-]?[0-9]+))(?:(?:[^ds°"″,.\dNEWnew]?)|(?:[^ds°"″,.\dNEWnew]+((?:[+-]?[0-9]*[.,][0-9]+)|(?:[+-]?[0-9]+))[^dm°'′,.\dNEWnew]*))))([EWew]?)$/
 

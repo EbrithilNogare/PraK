@@ -2,6 +2,9 @@ import React from "react"
 import { withRouter, Route, Redirect } from "react-router-dom"
 import { useCookies } from "react-cookie"
 
+/**
+ * Makes route unaccesible without right permissions
+ */
 function PrivateRoute ({ children, ...rest }) {
 	const [cookies] = useCookies(['permission'])
 	const { privacyLevel, ...restProps } = { ...rest }

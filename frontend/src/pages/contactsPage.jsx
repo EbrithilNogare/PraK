@@ -8,7 +8,9 @@ import {
 
 import styles from "./contactsPage.module.scss"
 
-
+/**
+ * Scene with contact form
+ */
 class ContactsPage extends React.Component {
 	constructor(props){
 		super(props)
