@@ -1,7 +1,35 @@
 \chapter{Úvod}
-Cílem této práce bylo vytvoření webové aplikace pro správu historických
-objektů jako jsou elektronické záznamy, odborné články, 3D modely a mapy
-z oblasti Krkonoš. \\
-Systém by měl být vytvořen tak, aby splnil požadavky ze
-strany historického ústavu, který poskytl data a zároveň byl efektivnější
-a rychlejší než stávající knihovní systémy.\\
+Knihovní systémy dlouhodobě uchovávají data o naší historii a je důležité abychom
+tyto informace uchovali i pro další generace a tudíž tyto systémy stagnují v
+zastaralých verzích. Čím méně změn tyto systémy prodělají tím spíše budou zpětně
+kompatibilní a uchovaná data se zachovají v co možná nejméně pozměněné verzi.
+Takovýto způsob je mezi programátory docela známý pod příslovím
+\uv{dokud to funguje, tak na to nešahej}, což na jednu stranu funguje, ale
+je důležité si uvědomit, že změna může přinést
+zvýšení efektivnosti pracovníků a pohodlí při práci.
+\\
+
+Hlavním cílem je tedy nashromáždit nejnovější trendy v oblasti webových
+aplikací a zakomponovat je do fungující aplikace, principiálně podobné
+soudobým knihovním systémům. Nový systém chceme udělat řádově rychlejší,
+tak aby si frontend na většinu aktivit vystačil sám a nemusel se dotazovat
+na server, což je jeden z typických problému zastaralých systémů.
+K datům uložených v databázi musí přistupovat efektivně a to přes
+dobře zdokumentované API, nasazené na serveru tak aby zbytečně
+neplýtvalo výkonem. Server by tak měl zvládnout pracovat na
+aktuálním hardware a zároveň obsluhovat požadavky rychleji a
+zvládnout jich větší množství, než soudobé knihovní systémy.
+\\
+
+Dalším cílem je zakomponování designového jazyka, takového
+který byl vyvinut pro přehlednost dat a efektivitu práce.
+S dobrým popisem funkčnosti a který je pro uživatele 
+intuitivní a vnese do aplikace přehlednost a nadčasový vzhled.
+Uživatel se tak odprostí od jednotvárného a \uv{nahňácaného} vzhledu,
+ve kterém se špatně orientuje.
+\\
+
+Aby se dal systém dále rozvíjet i mimo hlavní projekt, musí
+podporovat systém modulů, které budou moci čerpat společná data přes
+API a přidat tak do systému novou funkcionalitu.
+
