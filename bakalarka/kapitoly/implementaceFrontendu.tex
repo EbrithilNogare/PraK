@@ -1,6 +1,6 @@
 \chapter{Implementace frontendu}
 Frontend byl vyvíjen jako single-page application pomocí programovacího jazyku JavaScript a knihovny React.
-A byl navržen tak, aby byl jednoduše ovladatelný přehledný a především velmi rychlý.
+A byl navržen tak, aby byl jednoduše ovladatelný, přehledný a především velmi rychlý.
 
 \section{Hostující server}
 Celá aplikace frontendu je uložena na serveru, včetně zdrojových kódů.
@@ -8,11 +8,11 @@ Uživatel si ale stahuje pouze zkompilovanou aplikaci a případné externí zdr
 \subsection{Kompilace}
 Ačkoliv je JavaScript skriptovací jazyk a kompilaci provádí až za běhu, tak je možné
 jej zkompilovat předem. Při této kompilaci knihovny \textbf{webpack} a
-\textbf{babel} provedou několik zásadních kroků, z nichž nejdůležitějšími jsou
+\textbf{babel} provedou několik zásadních kroků. Nejdůležitější z nich jsou
 převedení kódu na ECMAScript 5 (kvůli zpětné kompatibilitě), přetřídění a sloučení
 knihoven do jednoho zdrojového souboru (JavaScript se k uživateli dostane při prvním dotazu na server) a
 minifikace výsledného souboru, jež dokáže inteligentně projít kód a optimalizovat jeho textovou délku,
-čím výrazně sníží čas potřebný k načtení stránky.
+čímž výrazně sníží čas potřebný k načtení stránky.
 
 \subsection{NPM}
 Celá aplikace má strukturu balíčku NPM (node package manager), tudíž ji lze snadno
@@ -25,7 +25,7 @@ Aplikace se skládá z více než tisíce knihoven a modulů, tudíž se podív�
 pouze na ty největší a nejdůležitější z nich.
 
 \subsection{React}
-Tato JavaScriptová knihovna je vyvinuta společností Facebook a slouží pro tvorbu uživatelského rozhraní.\\
+Tato JavaScriptová knihovna byla vyvinuta společností Facebook a slouží pro tvorbu uživatelského rozhraní.\\
 Jejím základem je vykreslování pomocí technologie \textit{single-page application} a je vhodná zejména pro aplikace, kde se často mění data.
 Využívá pozměněné JavaScriptové syntaxe známe jako JSX (JavaScript XML), která umožňuje
 pracovat s HTML tagy uvnitř JavaScriptového kódu, bez nutnosti práce s DOM objektem.\\
@@ -38,14 +38,14 @@ Společnost Google (aktuálně Alphabet Inc.) se v roce 2014 rozhodla sjednotit 
 vyvinula designový jazyk, jež se stal příručkou jak vytvářet uživatelsky přívětivé aplikace
 (nejen na webu, ale třeba i v aplikaci na mobilním telefonu nebo tabletu).
 Základem tohoto stylu je realistická práce se světlem a uživatelskou interakcí.
-Vše odlehčené a intuitivní. Součástí tohoto grafického jazyka jsou i
-lehce čitelné fonty (Roboto), pochopitelné ikonky a systém barev a jejich kombinací.
+Design je to odlehčený a intuitivní. Součástí tohoto grafického jazyka jsou i
+lehce čitelné fonty (například Roboto), pochopitelné ikonky a systém barev a jejich kombinací.
 
-\subsection{i18n}
+\subsection{i18n (internacionalizační knihovna)}
 Jelikož je projekt mířen i na nečeské uživatele, vyskytla se potřeba rozhraní překládat.
 Jednoduchým přístupem by bylo zkompilovat několik aplikací, každou pro jiný jazyk, tudíž
-by se překlad odehrával na straně serveru. Bohužel to není optimální řešení a
-tudíž byla využita knihovna \textit{i18n}, jež funguje na podobném principu jako single-page aplication a
+by se překlad odehrával na straně serveru. Bohužel to není optimální řešení, a
+tudíž byla využita knihovna \textit{i18n}, jež funguje na podobném principu jako single-page application a
 to sice, že dokáže měnit překlad stránky bez nutnosti stránku přenačíst, a zároveň hlavní aplikace
 neobsahuje všechny jazyky při prvním načtení. Jazyky se postupně dostahují dle preference uživatele
 (vše samozřejmě na pozadí bez uživatelského zásahu).\\
@@ -59,21 +59,22 @@ ES5 (EcmaScipt v5, neboli JavaScript v5).
 Tímto převodem získáme zpětnou kompatibilitu pro starší JavaScriptové enginy.
 
 \subsection{Webpack}
-Aby se z tak obrovského množství knihoven a souborů stal jediný spustitelný soubor pomůže nám
+Aby se z tak obrovského množství knihoven a souborů stal jediný spustitelný soubor, pomůže nám
 knihovna Webpack, která dokáže kód zkomprimovat a sjednotit. Touto optimalizací si ušetříme
 množství dotazů, jež bude muset náš server přijmout (a ekvivalentně s tím uživatel odeslat).\\
 Zároveň nám umožňuje používat formát \textbf{SCSS}, což je nadstavba nad klasickým CSS, jež 
-rozpoznávají prohlížeče a dovoluje nám takto vytvářet \textbf{stylovací moduly}.
+rozpoznávají prohlížeče, a dovoluje nám takto vytvářet \textbf{stylovací moduly}.
 
 \section{Rozhraní}
-Jelikož se jedná o složitější systém a všechno nemůže být \uv{naházené} v jediném souboru, tak 
+Jelikož se jedná o složitější systém a všechno nemůže být \uv{naházené} v jediném souboru, 
 je použita hierarchie o třech hlavních úrovních. Nejvýše je \textbf{hlavní soubor celého webu}, který
 provádí routing (směrování) a obaluje celou aplikaci pomocnými wrapery (např. \textit{i18n}
 překladač, \textit{Mui} pro jednotný styl, \textit{SnackbarProvider} pro vyskakovací
 toasty a \textit{CookiesProvider} pro jednotný přístup ke cookies). Pod ním jsou jednotlivé
 \textbf{scény} neboli stránky diametrálně rozdílných vlastností a funkcionalit používající poslední
-úroveň, jež jsou \textbf{komponenty}, malé na sobě nezávislé \uv{černé krabičky}
-poskytující určitou funkcionalitu
+úroveň, jež jsou \textbf{komponenty}, malé na sobě nezávislé černé krabičky\footnote{černa krabička -
+metoda u které není znám přesný algoritmus pro převod vstupních dat na výstupní}
+poskytující určitou funkcionalitu.
 
 
 \subsection{Scény}
@@ -84,7 +85,7 @@ pojmenování scén podle účelu jako je \uv{Vyhledávátko}, \uv{Zobrazovátko
 Administrační rozhraní je přístupné pouze s oprávněním \uv{execute}.
 Zde může administrátor nebo správce uživatelů vytvářet nové účty nebo
 konfigurovat stávající.\\
-Jelikož se hesla v databázi ukládají zahešovaná, tak je nelze zobrazit ani administrátorovi.
+Protože se hesla v databázi ukládají zahešovaná, tak je nelze zobrazit ani administrátorovi.
 Dala by se přidat funkcionalita pro jejich crackovaní, aby se nalezli uživatelé se
 slabými hesly, ale to by bylo zbytečné plýtvání serverovými prostředky.
 \begin{figure}[H]
@@ -96,7 +97,7 @@ slabými hesly, ale to by bylo zbytečné plýtvání serverovými prostředky.
 \subsubsection{CMS}
 Vytváření a editace obsahu stránek se provádí v redakčním systému (Content Management System, zkráceně CMS).
 Do něj se uživatel dostane pouze po přihlášení a s platnými právy pro redakční systém.\\
-Úpravy redaktor provádí v prostředí WYSIWYG (What you see is what you get, neboli co vidíš, to dostaneš).
+Úpravy redaktor provádí v prostředí WYSIWYG (a anglického \uv{What you see is what you get}, přeloženo \uv{Co vidíš, to dostaneš}).
 V pravém panelu pak zadá název, případně krátký popis, který se hodí např. pro aktuality a kategorii.\\
 WYSIWYG editor podporuje velkou škálu stylování a formátování. Velkou výhodou je možnost nahrávání obrázků,
 kdy se po přetažení automaticky uloží na server do složky \textit{uploads} a jejich odkaz se vloží do stránky.
@@ -109,7 +110,7 @@ kdy se po přetažení automaticky uloží na server do složky \textit{uploads}
 \subsubsection{Domovská stránka}
 Výchozí stránka, na kterou se uživatel dostane, pokud nezadá přesnější cestu v url, je domovská stránka.\\
 Na této stránce uživatel najde dynamické zobrazování novinek a krátkého popisu v hormím panelu a stránku
-s názvem \uv{homepage}, což je obyčejná stránka editovatelná v redakčním systému a dovoluje tedy
+s názvem \uv{homepage}, což je obyčejná stránka editovatelná v redakčním systému, a dovoluje tedy
 redaktorům měnit i domovskou stránku.
 \begin{figure}[H]
 	\centering
@@ -117,7 +118,7 @@ redaktorům měnit i domovskou stránku.
 	\caption{Frontend hlavní stránky aplikace}
 \end{figure}
 
-\subsubsection{Zobrazeni stránky}
+\subsubsection{Zobrazení stránky}
 Každá stránka vytvořená v redakčním systému je přístupná na url adrese \texttt{.../prak/page/\#jmenoStranky}.
 Zde si ji mohou uživatelé zobrazit. Pokud má uživatel i právo pro redakční systém,
 tak se mu v pravém horním rohu zobrazí ikonka pro editaci, díky které se snadno dostane do
@@ -128,18 +129,6 @@ redakčního systému pro danou stránku.
 	\caption{Zobrazení normální informativní stránky}
 \end{figure}
 
-\subsubsection{Přihlašování}
-Pokud uživatel klikne na ikonku postavičky vpravo v hlavičce, nebo se pokusí dostat
-na stránku, ke které nemá oprávnění, je přesměrován do přihlašovacího prostředí.
-Pokud se na této stránce přihlásí, nebo již přihlášen byl, zobrazí se mu podrobnosti o jeho účtu,
-včetně dostupných oprávnění.\\
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.49\linewidth]{img/loginSceneB.png}
-	\includegraphics[width=.5\linewidth]{img/loginSceneA.png}
-	\caption{Přihlašovací stránka vlevo a stránka s informacemi o přihlášeném uživateli vpravo}
-\end{figure}
-
 \subsubsection{Kontaktní formulář}
 Pro zpětnou vazbu či otázky k projektu, mohou návštěvníci využít kontaktní formulář.
 \begin{figure}[H]
@@ -148,6 +137,7 @@ Pro zpětnou vazbu či otázky k projektu, mohou návštěvníci využít kontak
 	\caption{Kontaktní formulář}
 \end{figure}
 
+\pagebreak
 \subsubsection{Vyhledávátko}
 Pomocí ikonky lupy v hlavičce se dostaneme do vyhledávacího prostředí.\\
 Po výběru, kde chceme hledat, se nám načtou políčka k vyplnění. Uživatel do nich může zadat
@@ -163,6 +153,7 @@ Po kliknutí na záznam se otevře editační prostředí pro vybraný záznam.
 	\caption{Frontend Vyhledávátka}
 \end{figure}
 
+\pagebreak
 \subsubsection{Zobrazovátko}
 Záznam uložený v databázi si je možné zobrazit přes toto rozhraní, poté co
 se k němu dostaneme přes vyhledávací rozhraní nebo pomocí unikátního
@@ -175,9 +166,23 @@ přesune do editačního rozhraní s aktuálním záznamem (samozřejmě jen pok
 má dostatečná oprávnění).
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\linewidth]{img/showScene.png}
+	\includegraphics[width=.7\linewidth]{img/showScene.png}
 	\caption{Frontend Zobrazovátka}
 \end{figure}
+
+
+\subsubsection{Přihlašování}
+Pokud uživatel klikne na ikonku postavičky vpravo v hlavičce, nebo se pokusí dostat
+na stránku, ke které nemá oprávnění, je přesměrován do přihlašovacího prostředí.
+Pokud se na této stránce přihlásí, nebo již přihlášen byl, zobrazí se mu podrobnosti o jeho účtu,
+včetně dostupných oprávnění.\\
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.49\linewidth]{img/loginSceneB.png}
+	\includegraphics[width=.5\linewidth]{img/loginSceneA.png}
+	\caption{Přihlašovací stránka vlevo a stránka s informacemi o přihlášeném uživateli vpravo}
+\end{figure}
+
 
 \subsubsection{Upravovátko}
 V tomto prostředí je možné záznam upravovat a jedná se o nejkomplikovanější scénu tohoto projektu.\\
@@ -186,7 +191,7 @@ Ty, které umožňují mít více hodnot, mají vpravo od sebe tlačítka plus a
 jehož vertikální velikost určuje velikost bloku, jež je jedním celkem. Plusové tlačítko přidává
 další datové pole, zatímco mínus datové pole vyprázdní a poté odebere z náhledu.
 \\
-Datová pole jsou roztříděna do menších bloků, jež lze tlačítkem minimalizovat
+Datová pole jsou roztříděna do menších bloků a lze tlačítkem minimalizovat
 (vyplněná data se nezahodí, ale pouze skryjí), aby uživateli usnadnily orientaci.
 Po minimalizaci, resp. maximalizaci, bloku může dojít k převážení
 sloupců a některé bloky tak mohou střídat levý a pravý sloupec, tak aby celková stránka byla co nejkratší
@@ -194,7 +199,7 @@ a prázdného místa bylo co nejméně.\\
 Některé záznamy mají možnost nahrát přílohu, ta se aktivuje po kliknutí na tlačítko uploadu, s ikonkou šipky
 směrem nahoru. Nahraný soubor se ihned přenáší na server a do příslušného pole automaticky 
 zaznamená aktuální url nahrávaného souboru.\\
-Po kliknutí nahrát se buď objeví červené vyskakovací okno s chybou, proč záznam nelze uložit
+Po kliknutí na tlačítko Nahrát se buď objeví červené vyskakovací okno s chybou, proč záznam nelze uložit
 (většinou zapříčiněný zadáním unikátního názvu, jež již je v databázi uložen).
 Nebo se stránka znovu přepne do \textit{Zobrazovátka} a vyskočí zelené potvrzovací okénko.
 \begin{figure}[H]
@@ -203,10 +208,11 @@ Nebo se stránka znovu přepne do \textit{Zobrazovátka} a vyskočí zelené pot
 	\caption{Frontend Upravovátka}
 \end{figure}
 
-
+\pagebreak
 \subsection{Komponenty}
 Komponenty jsou vlastně zapouzdřené třídy, které se dají použít vícekrát.
-Každá komponenta je vhodná pro React systém a většinou je psaná bez tzv. hooků.
+Každá komponenta je vhodná pro React systém a většinou je psaná bez tzv. hooků
+(alternativní přístup k proměnným u komponent typu funkce, namísto typu třída).
 
 \subsubsection{ComboBox}
 \begin{wrapfigure}{r}{0.4\linewidth}
@@ -219,8 +225,8 @@ které zobrazuje ve formě nabídky pod tímto textovým vstupem. Po kliknutí n
 do pole vyplní hodnota a na pozadí se do pole uloží ID záznamu (to se poté odesílá na server).
 Dokud uživatel některý ze záznamů nevybere, pole není v konzistentním stavu a nemá možnost se
 odeslat na server, což značí ikonka
-\includegraphics[height=\fontcharht\font`\B]{img/notSynced.png},
-v případě že pole má přiřazené ID záznamu a zobrazuje název, rozsvítí se ikonka
+\includegraphics[height=\fontcharht\font`\B]{img/notSynced.png}.
+V případě, že pole má přiřazené ID záznamu a zobrazuje název, rozsvítí se ikonka
 \includegraphics[height=\fontcharht\font`\B]{img/synced.png},
 která značí že data z tohoto pole se při uložení správně odešlou na server.
 Popisky často bývají dlouhé, a proto je zde i miniaturní posuvník, se kterým se
@@ -228,14 +234,14 @@ dá pohodlně pracovat pomocí najetí myši na políčko, přidržení klávesy
 točením kolečka na myši.
 
 \subsubsection{Zápatí}
-Jako každá správná stránka i v tomto projektu najdeme zápatí, jež obsahuje povinné údaje o projektu a
+Jako každá správná stránka i tato má zápatí, jež obsahuje povinné údaje o projektu a
 rychlé odkazy.\\
 Jelikož se jedná o projekt MK ČR - NAKI, nalezneme zde povinné údaje, kód projektu a
 loga sponzora, zadavatelů a vývojářů.
 Níže je ukazatel aktuálně přihlášeného uživatele.
 V pravé části jsou pak rychlé odkazy, které se zobrazují v závislosti na právech přihlášeného uživatele.
 Nepřihlášený uživatel tudíž v této části uvidí pouze jedno menu \uv{Nástroje} s jedinou
-položkou \uv{Vyhledávátko} a po přihlášení se viz obrázek 5.11 menu rozroste o další rychlé odkazy.
+položkou \uv{Vyhledávátko} a po přihlášení se (viz obrázek 5.11) menu rozroste o další rychlé odkazy.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\linewidth]{img/zapati.png}
@@ -246,7 +252,7 @@ položkou \uv{Vyhledávátko} a po přihlášení se viz obrázek 5.11 menu rozr
 V navigačním menu nalezneme rychlé odkazy na Vyhledávátko (tlačítko s ikonkou lupy),
 Facebook a Instagram projektu Prameny Krkonoš a přihlašovací stránku. Tlačítka pro
 přepínání mezi třemi jazyky. Níže pak důležité stránky projektu a některé kategorie
-(např. kategorie aktuality).
+(např. kategorie Aktuality).
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\linewidth]{img/navigationBar.png}

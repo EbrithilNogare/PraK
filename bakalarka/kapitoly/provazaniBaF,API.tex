@@ -8,9 +8,9 @@ být připisovány další věci, se nachází na webu
 Dokumentace je rozdělena na dvě části.
 \\
 \\
-\textbf{První část} popisuje volání API.\\
-Každá metoda (GET, POST atd.) má svůj vlastní účel,
-jež je popsán uvnitř url, a další možné parametry.
+\textbf{Levá část} popisuje volání API.\\
+Každá sekce tu má příslušné http metody (GET, POST atd.),
+jejichž účel a formát je popsána uvnitř bloku, spolu s dalšími možnými parametry.
 Spolu s formátem requestu je zde i formát odpovědi.
 Podle kódu zjistíme, jestli byl náš požadavek úspěšný.
 Kódy jsou standardní podle "http status codes".
@@ -25,9 +25,9 @@ V případě neúspěchu pak v odpovědi najdeme zprávu o chybě, která nastal
 Obvykle to u kódu 500 bývá odeslání duplicitního záznamu.
 \\
 \\
-\textbf{Druhá část} popisuje strukturu schémat jednotlivých modelů.\\
+\textbf{Pravá část} popisuje strukturu schémat jednotlivých modelů.\\
 Jelikož databáze má datové formáty, zatímco JSON soubor ne (nebo alespoň ne tak rozsáhlé),
-musí i odesílaná data mít správný formát, nebo alespoň být validní po automatickém
+musí i odesílaná data mít správný formát nebo alespoň být validní po automatickém
 přetypovaní.
 Schéma tvoří JSON objekt, jež toto schéma popisuje.
 Pokud je datový typ položky objekt buď se opravdu jedná o objekt, nebo
@@ -47,7 +47,7 @@ Pro možnost stažení dokumentace a prohlížení offline, je vše zabaleno do 
 Uvnitř je zdrojový kód programu, jež vykresluje stránku a zároveň data dokumentace.
 \\
 Program vykresluje veškeré položky s daty dokumentace.
-Bloky zdrojových kódu jsou vysázený fontem monospace a obarvený, aby uživateli
+Bloky zdrojových kódu jsou vysázený fontem monospace a obarveny, aby uživateli
 poskytly rychlejší orientaci v kódu.
 \\
 \begin{figure}[H]
@@ -60,13 +60,13 @@ poskytly rychlejší orientaci v kódu.
 \section{Backend}
 Na backendu je spuštěný express server (bežící pod nodejs), který
 zachytává requesty s url \texttt{...prak/api/...} .
-Podle cesty, jež je uvedena za /api se request předává
+Podle cesty, jež je uvedena za /api, se request předává
 příslušnému routeru. Výjimku tvoří adresa .../api/documentation, která
 rovnou přeposílá soubor s dokumentaci a není tedy pro získaní dokumentace
 třeba rozumět systému requestů hlouběji.
 \\
 \\
-Při převzetí requestu jedním z mnoha routerů, se porovnává
+Při převzetí requestu jedním z mnoha routerů se porovnává
 typ requestu (POST, PUT atd.) a případné detaily cesty v url.
 Při plném nalezení shody se provede ověření práv, pokud je to potřeba.
 Pokud request má požadovaná oprávnění, je provedena příslušná funkce
@@ -83,7 +83,7 @@ autentifikaci se jmenuje "sessionID".
 Podle něj se najde příslušný uživatel a porovnají se jeho práva a
 práva potřebná pro vykonání požadované funkce. Pokud jsou práva nedostatečná,
 vrátí se odpověď s kódem 401, v případě správného oprávnění router vykoná funkci,
-jež danému requestu přísluší a pokud se nepokazí nic jiného, vrátí validní odpověď.
+jež danému requestu přísluší, a pokud se nepokazí nic jiného, vrátí validní odpověď.
 
 \section{Frontend a volaní API}
 Jelikož je celý projekt zamýšlen jako webová aplikace, nejstandardnější použití
@@ -115,9 +115,8 @@ Příklad použití:
 \end{lstlisting}
 
 \subsection{Existující programy pro práci a testovaní API}
-Příklad volání pomocí programu Insomnia:
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{img/InsomniaExample.PNG}
-	\caption{Program insomnia s vyplněným dotazem pro odeslání požadavku na API}
+	\includegraphics[width=.9\linewidth]{img/InsomniaExample.PNG}
+	\caption{Program Insomnia s vyplněným dotazem pro odeslání požadavku na API}
 \end{figure}

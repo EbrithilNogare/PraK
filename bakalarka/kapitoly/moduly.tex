@@ -11,12 +11,14 @@ maximálně s interakcí s API.
 \section{Aktuálně nasazené moduly}
 
 \subsection{Modul hologram}
+Tento modul bude sloužit na výstavě Pramenů Krkonoš k zobrazování 3D objektů ve formě hologramu,
+který se bude pomalu otáčet a ukáže se tak návštěvníkovi ze všech stran.
 
 \subsubsection{Načítání modulu}
 Tento modul obsahuje velkou knihovnu, a tudíž není efektivní jej mít v primární aplikaci.
 Protože by se tyto knihovny načítaly, i když by uživatel s tímto modulem neměl v plánu pracovat.
 Což většinu času nebude chtít, a tudíž by to pouze vedlo ke zpomalení systému.
-Systémem LAZY načítání je tedy celý modul odříznut a načítá se až explicitně při jeho použití.
+Systémem \textit{Lazy} načítání je tedy celý modul odříznut a načítá se až explicitně při jeho použití.
 
 \subsubsection{Grafický engine}
 Pro vykreslování 3D modelu na webu slouží WebGL, grafická knihovna podobná staré verzi OpenGL.
@@ -50,11 +52,12 @@ zapečeno ambient oclusion (stíny vytvořené stísněným prostorem).
 
 
 \subsection{Prohlížeč map}
-Dalším historickým prvkem, který bychom návštěvníkům této aplikace poskytly jsou
+Dalším historickým prvkem, který bychom návštěvníkům této aplikace poskytli, jsou
 2D mapy z 19. století. Uživatel si může vybrat mapu a tu si velmi podrobně
 prohlížet pomocí přibližování a posouvání.
 
 \subsubsection{Zdroj map}
 Mapy byly získány od ČUZK výměnou za jejich kompletaci.
 Mapu jsme totiž dostali ve formě \uv{tady máš puzzle a poslepujte si to sami}.
-Každá mapa je tedy pečlivě zrekonstruovaná, při zachování všech detailů.
+Každou mapa jsme tedy pečlivě zrekonstruovali, při zachování všech detailů a
+historických přesností a bez jejich upravování či umělého přidávání.
