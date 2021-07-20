@@ -243,7 +243,7 @@
 		},
 		CorporationIndex:{
 			info:{
-				info: "http://quest.ms.mff.cuni.cz/prak/api/corporation",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/corporationIndex",
 			},
 			post:{
 				info: "get match by body content",
@@ -307,7 +307,7 @@
 		},
 		CreationIndex:{
 			info:{
-				info: "http://quest.ms.mff.cuni.cz/prak/api/creation",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/creationIndex",
 			},
 			post:{
 				info: "get match by body content",
@@ -371,7 +371,7 @@
 		},
 		FamilyIndex:{
 			info:{
-				info: "http://quest.ms.mff.cuni.cz/prak/api/family",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/familyIndex",
 			},
 			post:{
 				info: "get match by body content",
@@ -435,7 +435,7 @@
 		},
 		GeographicIndex:{
 			info:{
-				info: "http://quest.ms.mff.cuni.cz/prak/api/geographic",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/geographicIndex",
 			},
 			post:{
 				info: "get match by body content",
@@ -499,7 +499,7 @@
 		},
 		KeywordIndex:{
 			info:{
-				info: "http://quest.ms.mff.cuni.cz/prak/api/keywords",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/keywordsIndex",
 			},
 			post:{
 				info: "get match by body content",
@@ -563,7 +563,7 @@
 		},
 		PersonIndex:{
 			info:{
-				info: "http://quest.ms.mff.cuni.cz/prak/api/person",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/personIndex",
 			},
 			post:{
 				info: "get match by body content \n name, surname is RegExp-able",
@@ -627,7 +627,7 @@
 		},
 		SubjectIndex:{
 			info:{
-				info: "http://quest.ms.mff.cuni.cz/prak/api/subject",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/subjectIndex",
 			},
 			post:{
 				info: "get match by body content",
@@ -2415,9 +2415,9 @@ user: {
 		padding: 20px;
 		box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 3px 0px;
 
-		display: grid;
+		display: flex;
+		flex-wrap: wrap;
 		align-items: start;
-		grid-template-columns: repeat(4, 1fr);
 		column-gap: 30px;
 		row-gap: 30px;
 	}
@@ -2446,6 +2446,7 @@ user: {
 		cursor: pointer;
 		grid-column: span 4;
 		font-size: 35px;
+		width: 100%;
 	}
 
 	.routeTitle:after {
@@ -2508,6 +2509,7 @@ user: {
 
 	.information {
 		grid-column: span 4;
+		width: 100%;
 	}
 
 	.methodInfo {
