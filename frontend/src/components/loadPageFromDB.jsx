@@ -46,6 +46,7 @@ class LoadPageFromDB extends React.Component {
 			return response.json()
 		})
 		.then(response => {
+			console.log(response)
 			this.setState({html: response.content || "--- Empty Page ---"})
 		})
 		.catch((error) => {

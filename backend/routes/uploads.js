@@ -4,36 +4,41 @@ const fs = require('fs')
 
 router.route('/').put(auth("write"), (req, res) => {
 	try {
-        if(!req.files) {
-            res.send({
-                status: false,
-                message: 'No file uploaded'
-            })
-        } else {
+		if(!req.files) {
+			res.send({
+				status: false,
+				message: 'No file uploaded'
+			})
+		} else {
 			const file = req.files.file
 			const random = Math.random().toString(36).substring(2)
-            file.mv(`../uploads/${random}-${file.name}`)
+			file.mv(`../uploads/${random}-${file.name}`)
 
-            res.send({
-                status: true,
-                message: 'File is uploaded',
-                data: {
+			res.send({
+				status: true,
+				message: 'File is uploaded',
+				data: {
 					name: file.name,
 					path: `/prak/uploads/${random}-${file.name}`,
-                    mimetype: file.mimetype,
-                    size: file.size
-                }
-            })
-        }
-    } catch (err) {
-        res.status(500).send(err)
-    }
+					mimetype: file.mimetype,
+					size: file.size
+				}
+			})
+		}
+	} catch (err) {
+		res.status(500).json({ message: "something went wrong", details: err })
+	}
 })
 
 router.route('/').post((req, res) => {
-    fs.readdir("../uploads/", (err, files) => {
-        res.status(200).json(files.filter(item=>!(/(^|\/)\.[^\/\.]/g).test(item))) // remove hidden files
-    })
+	fs.readdir("../uploads/", (err, files) => {
+		if (err) {
+			res.status(500).json({ message: "something went wrong", details: err })
+			return
+		}
+		// remove hidden files
+		res.status(200).json(files.filter(item=>!(/(^|\/)\.[^\/\.]/g).test(item)))
+	})
 })
 
 router.route('/:path').delete(auth("write"), (req, res) => {
@@ -42,7 +47,7 @@ router.route('/:path').delete(auth("write"), (req, res) => {
 
 	fs.unlink("../uploads/" + req.params.path, (err) => {
 		if (err) {
-			res.status(400).json({ message: "something went wrong", error: err })
+			res.status(500).json({ message: "something went wrong", details: err })
 			return
 		}
 		else

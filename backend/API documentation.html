@@ -165,176 +165,18 @@
 			})
 		}
 	}
+
+	// mongoose model variables to string convert
+	const String = "String"
+	const Number = "Number"
+	const Date = "Date"
+	const Object = "Object"
+	const Boolean = "Boolean"
+	const mongoose = { Types: { ObjectId: "ObjectId" } }
 </script>
 
 <script>
 	const data = {
-		User: {
-			info: {
-				info: "users collection",
-			},
-			get: {
-				info: `get info about user
-
-				only owner can access to password and session`,
-				url: "/id",
-				output: {
-					200: {
-						_id: "ObjectId",
-						email: "String",
-						password: {
-							hashed: "String",
-							salt: "String",
-						},
-						role: "String",
-						session: {
-							id: "String",
-							expiration: "Date",
-						},
-						firstName: "? String",
-						secondName: "? String",
-						"__v": "Number",
-					},
-					400: {
-						message: "String"
-					},
-					500: {
-						message: "String",
-						details: "Object"
-					},
-				}
-			},
-			post: {
-				info: `update existing user
-
-					permissions:
-					email -> admin, owner
-					password -> admin, owner
-					role -> admin`,
-				input: {
-					id: "ObjectId",
-					data: {
-						email: "? String",
-						password: "? String",
-						firstName: "? String",
-						secondName: "? String",
-						role: "? String",
-					}
-				},
-				output: {
-					200: {},
-					400: {
-						message: "String"
-					},
-					401: {
-						message: "String"
-					},
-					500: {
-						message: "String",
-						details: "Object"
-					},
-				}
-			},
-			put: {
-				info: "register new user",
-				input: {
-					email: "String",
-					password: "String",
-					firstName: "? String",
-					secondName: "? String",
-				},
-				output: {
-					200: {},
-					400: {
-						message: "String"
-					},
-					401: {
-						message: "String"
-					},
-					500: {
-						message: "String",
-						details: "Object"
-					},
-				}
-			},
-			delete: {
-				info: `remove account
-
-				only owner or admin can remove account`,
-				url: "/id",
-				output: {
-					200: {},
-					400: {
-						message: "String"
-					},
-					401: {
-						message: "String"
-					},
-					500: {
-						message: "String",
-						details: "Object"
-					},
-				}
-			}
-		},
-		Auth: {
-			info: {
-				info: "user authentification",
-			},
-			get: {
-				info: "check if user is logged in",
-				input: "sessionID={sessionID}",
-				output: {
-					200: {
-						status: "LOGGED_IN | SESSION_EXPIRED | NOT_LOGGED_IN",
-						userID: "? ObjectId",
-					},
-					400: {
-						message: "String",
-					},
-					500: {
-						message: "String",
-						details: "Object",
-					},
-				}
-			},
-			post: {
-				info: "login",
-				input: {
-					email: "String",
-					password: "String",
-				},
-				output: {
-					200: {
-						status: "LOGGED_IN | NOT_LOGGED_IN",
-						message: "? String",
-						sessionID: "? String",
-					},
-					400: {
-						message: "String"
-					},
-					500: {
-						message: "String",
-						details: "Object",
-					},
-				}
-			},
-			delete: {
-				info: "logout",
-				input: "sessionID={sessionID}",
-				output: {
-					200: {},
-					400: {
-						message: "String"
-					},
-					500: {
-						message: "String",
-						details: "Object",
-					},
-				}
-			}
-		},
-
 		Metadata: {
 			info: {
 				info: "http://quest.ms.mff.cuni.cz/prak/api/metadata",
@@ -655,7 +497,7 @@
 				}
 			}
 		},
-		keywordIndex:{
+		KeywordIndex:{
 			info:{
 				info: "http://quest.ms.mff.cuni.cz/prak/api/keywords",
 			},
@@ -719,7 +561,7 @@
 				}
 			}
 		},
-		personIndex:{
+		PersonIndex:{
 			info:{
 				info: "http://quest.ms.mff.cuni.cz/prak/api/person",
 			},
@@ -847,7 +689,319 @@
 				}
 			}
 		},
+		
+		Pages: {
+			info: {
+				info: "pages collection",
+			},
+			get: {
+				info: `get page HTML from DB`,
+				url: "/pageName",
+				output: {
+					200: "page schema",
+					400: {
+						message: String
+					},
+					500: {
+						message: String,
+						details: Object
+					},
+				}
+			},
+			post: {
+				info: `get list of pages`,
+				input: "page schema",
+				output: {
+					200: ["page schema"],
+					500: {
+						message: String,
+						details: Object
+					},
+				}
+			},
+			put: {
+				info: `create new page
 
+					CMS permission needed`,
+				input: "page schema",
+				output: {
+					201: {},
+					400: {
+						message: String
+					},
+					500: {
+						message: String,
+						details: Object
+					},
+				}
+			},
+			patch: {
+				info: `edit page
+
+					CMS permission needed`,
+				url: "/pageName",
+				input: "page schema",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete: {
+				info: `remove page
+
+					CMS permission needed`,
+				url: "/pageName",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		User: {
+			info: {
+				info: "users collection",
+			},
+			get: {
+				info: `get info about user
+
+				only owner can access to password and session`,
+				url: "/id",
+				output: {
+					200: {
+						_id: "ObjectId",
+						email: "String",
+						password: {
+							hashed: "String",
+							salt: "String",
+						},
+						role: "String",
+						session: {
+							id: "String",
+							expiration: "Date",
+						},
+						firstName: "? String",
+						secondName: "? String",
+						"__v": "Number",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			post: {
+				info: `update existing user
+
+					permissions:
+					email -> admin, owner
+					password -> admin, owner
+					role -> admin`,
+				input: {
+					id: "ObjectId",
+					data: {
+						email: "? String",
+						password: "? String",
+						firstName: "? String",
+						secondName: "? String",
+						role: "? String",
+					}
+				},
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					401: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			put: {
+				info: "register new user",
+				input: {
+					email: "String",
+					password: "String",
+					firstName: "? String",
+					secondName: "? String",
+				},
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					401: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			},
+			delete: {
+				info: `remove account
+
+				only owner or admin can remove account`,
+				url: "/id",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					401: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object"
+					},
+				}
+			}
+		},
+		Auth: {
+			info: {
+				info: "user authentification",
+			},
+			get: {
+				info: "check if user is logged in",
+				input: "sessionID={sessionID}",
+				output: {
+					200: {
+						status: "LOGGED_IN | SESSION_EXPIRED | NOT_LOGGED_IN",
+						userID: "? ObjectId",
+					},
+					400: {
+						message: "String",
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
+				}
+			},
+			post: {
+				info: "login",
+				input: {
+					email: "String",
+					password: "String",
+				},
+				output: {
+					200: {
+						status: "LOGGED_IN | NOT_LOGGED_IN",
+						message: "? String",
+						sessionID: "? String",
+					},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
+				}
+			},
+			delete: {
+				info: "logout",
+				input: "sessionID={sessionID}",
+				output: {
+					200: {},
+					400: {
+						message: "String"
+					},
+					500: {
+						message: "String",
+						details: "Object",
+					},
+				}
+			}
+		},
+		Uploads: {
+			info: {
+				info: "get document from folder Uploads",
+			},
+			get: {
+				info: `get file`,
+				url: "/fileName",
+				output: {
+					200: "File.something",
+					404: "File not found",
+				}
+			},
+			post: {
+				info: `get list of files in folder Uploads`,
+				output: {
+					200: [String],
+					500: {
+						message: String,
+						details: Object
+					},
+				}
+			},
+			put: {
+				info: `upload new file to folder Uploads
+
+					WRITE permision needed`,
+				input: "File.something",
+				output: {
+					200: {
+						status: Boolean,
+						message: String,
+						data: {
+							name: String,
+							path: String,
+							mimetype: String,
+							size: Number
+						}
+					},
+					400: {
+						message: String
+					},
+					401: {
+						message: String
+					},
+					500: {
+						message: String,
+						details: Object
+					},
+				}
+			},
+			delete: {
+				info: `remove account
+
+					WRITE permision needed`,
+				url: "/path",
+				output: {
+					200: {},
+					400: {
+						message: String
+					},
+					500: {
+						message: String,
+						details: Object
+					},
+				}
+			}
+		},
+		
 		/*
 		Template:{
 			info:{
@@ -917,13 +1071,6 @@
 </script>
 
 <script>
-// mongoose model variables to string convert
-const String = "String"
-const Number = "Number"
-const Date = "Date"
-const Boolean = "Boolean"
-const mongoose = { Types: { ObjectId: "ObjectId" } }
-
 const schema = {
 metadata: {
 	documentType: {
@@ -931,16 +1078,27 @@ metadata: {
 		required: true,
 	},
 	author: {
+		author_person: {
+			type: mongoose.Types.ObjectId,
+			ref: "personIndex",
+		},
+		author_corporation: {
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		},
+		author_role: String,
+	},
+	other_authors_person: [{
 		id: {
 			type: mongoose.Types.ObjectId,
 			ref: "personIndex",
 			},
 		role: String,
-	},
-	other_authors: [{
+	}],
+	other_authors_corporation: [{
 		id: {
 			type: mongoose.Types.ObjectId,
-			ref: "personIndex",
+			ref: "corporationIndex",
 			},
 		role: String,
 	}],
@@ -974,6 +1132,7 @@ metadata: {
 	isbn: [String],
 	edition_order: [String],
 	edition: [String],
+	edition_number: [String],
 	action_name: [{
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
@@ -1018,10 +1177,6 @@ metadata: {
 		url: String,
 		url_leading_to_document: String,
 	}],
-	attachment: [{
-		name: String,
-		url: String,
-	}],
 	described_object_citation: [{
 		type: mongoose.Types.ObjectId,
 		ref: "metadata"
@@ -1056,10 +1211,36 @@ metadata: {
 		},
 		multiple_placement_url: String,
 	}],
-	topic: [{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	}],
+	topic: {
+		topic_person:[{
+			type: mongoose.Types.ObjectId,
+			ref: "personIndex",
+		}],
+		topic_corporation:[{
+			type: mongoose.Types.ObjectId,
+			ref: "corporationIndex",
+		}],
+		topic_place:[{
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		}],
+		topic_event:[{
+			type: mongoose.Types.ObjectId,
+			ref: "subjectIndex",
+		}],
+		topic_creation:[{
+			type: mongoose.Types.ObjectId,
+			ref: "creationIndex",
+		}],
+		topic_keyword:[{
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		}],
+		topic_family:[{
+			type: mongoose.Types.ObjectId,
+			ref: "familyIndex",
+		}],
+	},
 	corporation_content_specification_person: [{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
@@ -1071,6 +1252,7 @@ metadata: {
 	chronological_content_specification: [{
 		begin: Number,
 		end: Number,
+		active: Boolean,
 	}],
 	geographical_content_specification: [{
 		type: mongoose.Types.ObjectId,
@@ -1087,6 +1269,10 @@ metadata: {
 		type: String,
 		required: true,
 	},
+	attachment: [{
+		url: String,
+		description: String,
+	}],
 },
 corporation: {
 	name_main_part: {
@@ -1094,16 +1280,32 @@ corporation: {
 		required: true,
 		unique: true,
 	},
-	name_other_part: String,
-
-	acronym: [String],
-	historical_name: [String],
-	other_name_form: [String],
-	following_name: [String],
-
-	general_complement: String,
-	geographical_complement: String,
+	name_other_part: [String],
+	jurisdiction: String,
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	chronological_complement: String,
+
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+
 	brief_characteristic: String,
 	history: String,
 	function: String,
@@ -1133,113 +1335,78 @@ corporation: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	founding_document: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	founding_document: String,
 	founding_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	registration_subject: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	founding_chronological_specification: String,
+	registration_document: String,
 	registration_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
+	registration_chronological_specification: String,
 	cleavage_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	cleavage_document: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	cleavage_document: String,
 	cleavage_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	chronological_specification_beginning: String,
+	cleavage_chronological_specification: String,
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	cancellation_document: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	cancellation_document: String,
 	cancellation_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	delete_from_evidence_subject: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
+	cancellation_chronological_specification: String,
+	delete_from_evidence_document: String,
 	delete_from_evidence_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	chronological_specification_cancellation : String,
+	cancellation_chronological_specification : String,
 
-	owner_change: [{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	}],
-	place_change: [{
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	}],
-	organisation_inclusion: [{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	}],
-	change_parent_organisation: [{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	}],
-	awards: [{
-		award: {
-			type: mongoose.Types.ObjectId,
-			ref: "creationIndex",
-		},
-		event_award: {
-			type: mongoose.Types.ObjectId,
-			ref: "subjectIndex",
-		},
-		awarder_person: {
-			type: mongoose.Types.ObjectId,
-			ref: "personIndex",
-		},
-		awarder_corporation: {
-			type: mongoose.Types.ObjectId,
-			ref: "corporationIndex",
-		},
-	}],
 	category: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
 	domain_scope: [{
 		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
+		ref: "keywordIndex",
 	}],
 	geographical_scope: [{
 		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+		ref: "geographicIndex",
 	}],
 	characteristic: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	logo: [String],
-	mark: [String],
-	flag: [String],
 
-	notes: [String],
+	logo: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	mark: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	flag: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+
+	public_note: [String],
+	nonpublic_note: [String],
 
 	other_source: [{
 		name: String,
@@ -1247,14 +1414,16 @@ corporation: {
 		identificator: String,
 	}],
 
-	record_sources: {
-		type: [String],
-		required: true,
-	},
+	record_sources: [String],
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,
 	},
+	attachment: [{
+		url: String,
+		description: String,
+	}],
 },
 creation: {
 	name_main_part: {
@@ -1427,16 +1596,32 @@ creation: {
 	},
 },
 family: {
+	name_main_part: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+	name_other_part: [String],
+
+	public_note: [String],
+	nonpublic_note: [String],
+
 	other_source: [{
 		name: String,
 		id: String,
 		identificator: String,
 	}],
 
+	record_sources: [String],
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,
 	},
+	attachment: [{
+		url: String,
+		description: String,
+	}],
 },
 geographic: {
 	name_main_part: {
@@ -1444,22 +1629,51 @@ geographic: {
 		required: true,
 		unique: true,
 	},
-	name_other_part: String,
-
-	acronym: [String],
-	historical_name: [String],
-	other_name_form: [String],
-
-	general_complement: String,
-	geographical_complement: String,
+	name_other_part: [String],
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	chronological_complement: String,
+
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+
+	complement_change: [{
+		complement_change_type: String,
+		complement_change_value: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
 
 	brief_characteristic: String,
 	description: String,
 	history: String,
 	electronical_location: [String],
 
-	coordinates: String,
+	coordinates: [String],
 
 	partner_object: [{
 		type: mongoose.Types.ObjectId,
@@ -1470,41 +1684,107 @@ geographic: {
 		ref: "personIndex",
 	}],
 	part_of: [{
-		corporation_name: [{
+		corporation_name: {
 			type: mongoose.Types.ObjectId,
 			ref: "corporationIndex",
-		}],
-		corporation_owner: [{
+		},
+		corporation_owner: {
 			type: mongoose.Types.ObjectId,
 			ref: "personIndex",
-		}],
+		},
 	}],
-	related_entity: [{
-		related_person: [{
-			type: mongoose.Types.ObjectId,
-			ref: "personIndex",
-		}],
-		related_subject: [{
-			type: mongoose.Types.ObjectId,
-			ref: "creationIndex",
-		}],
-		related_event: [{
-			type: mongoose.Types.ObjectId,
-			ref: "subjectIndex",
-		}],
-		related_corporation: [{
-			type: mongoose.Types.ObjectId,
-			ref: "corporationIndex",
-		}],
+	related_person: [{
+		type: mongoose.Types.ObjectId,
+		ref: "personIndex",
 	}],
-	superordinate: {
+	related_creation: [{
+		type: mongoose.Types.ObjectId,
+		ref: "creationIndex",
+	}],
+	related_event: [{
+		type: mongoose.Types.ObjectId,
+		ref: "subjectIndex",
+	}],
+	related_corporation: [{
+		type: mongoose.Types.ObjectId,
+		ref: "corporationIndex",
+	}],
+	superordinate: [{
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	}],
+	subordinate: [{
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	}],
+	
+	founding_person: {
+		type: mongoose.Types.ObjectId,
+		ref: "personIndex",
+	},
+	founding_person_chrono_spec: String,
+	founding_corporation: {
+		type: mongoose.Types.ObjectId,
+		ref: "corporationIndex",
+	},
+	founding_corporation_chrono_spec: String,
+	founding_document: String,
+	founding_document_chrono_spec: String,
+	founding_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	subordinate: {
+	founding_place_chrono_spec: String,
+	founding_event: {
+		type: mongoose.Types.ObjectId,
+		ref: "subjectIndex",
+	},
+	founding_event_chrono_spec: String,
+	first_mention_document: String,
+	first_mention_document_chrono_spec: String,
+	first_mention_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
+	first_mention_place_chrono_spec: String,
+
+	cancellation_person: {
+		type: mongoose.Types.ObjectId,
+		ref: "personIndex",
+	},
+	cancellation_person_chrono_spec: String,
+	cancellation_corporation: {
+		type: mongoose.Types.ObjectId,
+		ref: "corporationIndex",
+	},
+	cancellation_corporation_chrono_spec: String,
+	cancellation_document: String,
+	cancellation_document_chrono_spec: String,
+	cancellation_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	cancellation_place_chrono_spec: String,
+	last_mention_event: {
+		type: mongoose.Types.ObjectId,
+		ref: "subjectIndex",
+	},
+	last_mention_event_chrono_spec: String,
+	last_mention_document: String,
+	last_mention_document_chrono_spec: String,
+	last_mention_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	last_mention_place_chrono_spec: String,
+	owner_change: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
+	owner_change_chrono_spec: String,
+	historical_milestones: [String],
+
+	
 	country: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
@@ -1527,6 +1807,87 @@ geographic: {
 	},
 
 
+	category:[{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
+	characteristic:[{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
+	
+	logo:[{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	mark:[{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	flag:[{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	arm:[{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+
+	public_note:[String],
+	nonpublic_note:[String],
+
+	other_source: [{
+		name: String,
+		id: String,
+		identificator: String,
+	}],
+
+	record_sources:[String],
+	editor_note: [String],
+	submitter: {
+		type: String,
+		required: true,
+	},
+	attachment: [{
+		url: String,
+		description: String,
+	}],
+},
+keyword: {
+	name_main_part: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+	name_other_part: [String],
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
+		chronological_complement: String,
+	}],
+
+	definition: String,
+	manual: String,
+	history: String,
+	electronical_location: String,
+
+	superordinate: [{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
+	subordinate: [{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
+	associative: [{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
 
 	founding_person: {
 		type: mongoose.Types.ObjectId,
@@ -1536,27 +1897,17 @@ geographic: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
-	founding_document: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	founding_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	first_mention_event: {
+	founding_subject: String,
+	founding_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	first_mention_subject: {
+	founding_keyword: {
 		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
+		ref: "keywordIndex",
 	},
-	first_mention_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	chronological_specification_beginning: String,
+	founding_chronological_specification: String,
+
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
@@ -1566,67 +1917,29 @@ geographic: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
-	cancellation_document: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	cancellation_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	last_mention_event: {
+	cancellation_subject: String,
+	cancellation_event: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	},
-	last_mention_subject: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	last_mention_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	owner_change: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
-	},
-	chronological_specification_cancellation: String,
-	historical_milestones: [String],
-
-	awards: [{
-		award: {
-			type: mongoose.Types.ObjectId,
-			ref: "creationIndex",
-		},
-		event_award: {
-			type: mongoose.Types.ObjectId,
-			ref: "subjectIndex",
-		},
-		awarder_person: {
-			type: mongoose.Types.ObjectId,
-			ref: "personIndex",
-		},
-		awarder_corporation: {
-			type: mongoose.Types.ObjectId,
-			ref: "corporationIndex",
-		},
-	}],
-
-	category:[{
+	cancellation_keyword: {
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
-		required: true,
-	}],
-	characteristic:[{
+	},
+	cancellation_chronological_specification: String,
+
+	category: [{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	arm:[String],
-	logo:[String],
-	mark:[String],
-	flag:[String],
+	domain: [{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
+	idc: [String],
 
-	notes:[String],
+	public_note: [String],
+	nonpublic_note: [String],
 
 	other_source: [{
 		name: String,
@@ -1634,188 +1947,100 @@ geographic: {
 		identificator: String,
 	}],
 
-	record_sources:[String],
-
+	record_sources: [String],
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,
 	},
-},
-keyword: {
-	name_main_part: {
-		type: String,
-		required: true,
-		unique: true,
-	},
-	name_other_part: String,
-
-	synonyms:[String],
-	inverted_wordorder_terms:[String],
-	spelling_variants:[String],
-	foreign_language_descriptors:[String],
-	form_descriptors:[String],
-	other_name_form:[String],
-
-	general_complement: String,
-	clarification: String,
-
-	definition: String,
-	manual: String,
-	history: String,
-	electronical_location:[String],
-
-	superordinate:[{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
+	attachment: [{
+		url: String,
+		description: String,
 	}],
-	subordinate:[{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	}],
-	associative:[{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	}],
-
-	founding_person:{
-		type: mongoose.Types.ObjectId,
-		ref: "personIndex",
-	},
-	founding_corporation:{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	},
-	founding_subject:{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	founding_event:[{
-		type: mongoose.Types.ObjectId,
-		ref: "subjectIndex",
-	}],
-	founding_keyword:[{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	}],
-	chronological_specification_beginning: String,
-
-
-	cancellation_person:{
-		type: mongoose.Types.ObjectId,
-		ref: "personIndex",
-	},
-	cancellation_corporation:{
-		type: mongoose.Types.ObjectId,
-		ref: "corporationIndex",
-	},
-	cancellation_subject:{
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	cancellation_event:[{
-		type: mongoose.Types.ObjectId,
-		ref: "subjectIndex",
-	}],
-	cancellation_keyword:{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	},
-	chronological_specification_cancellation: String,
-
-	category:[{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	}],
-	domain:[{
-		type: mongoose.Types.ObjectId,
-		ref: "keywordIndex",
-	}],
-	idc:[String],
-
-	notes:[String],
-
-	other_source: [{
-		name: String,
-		id: String,
-		identificator: String,
-	}],
-
-	record_sources:[String],
-
-	submitter: {
-		type: String,
-		required: true,
-	},
 },
 person: {
 	name:{
-		type: [String],
+		type: String,
 		required: true,
 	},
 	surname:{
-		type: [String],
+		type: String,
 		required: true,
 	},
 	born_year: {
 		year: Number,
 		notKnown: Boolean,
 	},
+	born_date:  {
+		date: String,
+		notKnown: Boolean,
+	},
+	born_place: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	death_year: {
 		year: Number,
 		notKnown: Boolean,
 	},
-	initials: [String],
-	general_complement: [String],
-	roman_numerals: [String],
-	geographical_complement: [String],
-
-	original_name: [String],
-	acronym: [String],
-	cipher: [String],
-	religious_name: [String],
-	marriage_name: [String],
-	historical_name: [String],
-	straight_order: String,
-	other_name_form: String,
-	pseudonym: String,
-
-	titles:[{
-		title: String,
+	death_date: {
 		date: String,
-	}],
-
-	bibliographical_note:{
-		type: String,
-		required: true,
-	},
-	cv: String,
-	domain_branch:{
-		type: [String],
-		required: true,
-	},
-	gender:{
-		type: String,
-		required: true,
-	},
-
-	born_place: {
-		type: mongoose.Types.ObjectId,
-		ref: "geographicIndex",
+		notKnown: Boolean,
 	},
 	death_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	related_country: {
-		type: [mongoose.Types.ObjectId],
-		required: true,
+	initials: String,
+	roman_numerals: String,
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
+	chronological_complement: String,
 
-	language_country:{
-		type: [String],
-		required: true,
-	},
+
+	variant: [{
+		variant_type: String,
+		variant_value: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+
+	titles:[{
+		title: String,
+		date: String,
+	}],
+	
+	gender: String,
+
+	bibliographical_note: String,
+
+	cv: String,
+	
+	domain_branch: [{
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	}],
+
+	related_country: [{
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	}],
+
+	language_country: [String],
+
 
 	parents: [{
 		type: mongoose.Types.ObjectId,
@@ -1841,7 +2066,7 @@ person: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	}],
-	important_subject: [{
+	important_creation: [{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	}],
@@ -1849,17 +2074,26 @@ person: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	}],
-	marriage_start: [String],
-	marriage_end: [String],
+	marriage: [{
+		marriage_start: String,
+		marriage_end: String,
+	}],
 	study: [{
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	}],
 
-	arm: [String],
-	photo: [String],
+	arm: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
+	photo: [{
+		type: mongoose.Types.ObjectId,
+		ref: "metadata",
+	}],
 
-	notes: [String],
+	public_note: [String],
+	nonpublic_note: [String],
 	
 	other_source: [{
 		name: String,
@@ -1867,15 +2101,16 @@ person: {
 		identificator: String,
 	}],
 
-	record_sources:{
-		type: [String],
-		required: true,
-	},
-
+	record_sources: [String],
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,
 	},
+	attachment: [{
+		url: String,
+		description: String,
+	}],
 },
 subject: {
 	name_main_part: {
@@ -1883,22 +2118,83 @@ subject: {
 		required: true,
 		unique: true,
 	},
-	name_other_part: String,
-
-	acronym: [String],
-	other_name_form: [String],
-
-	general_complement: String,
-	geographical_complement: String,
+	name_other_part: [String],
+	general_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "keywordIndex",
+	},
+	geographical_complement: {
+		type: mongoose.Types.ObjectId,
+		ref: "geographicIndex",
+	},
 	chronological_complement: String,
 	event_order: String,
 
-	description:{
-		type: String,
-		required: true,
-	},
+	other_language_name: [{
+		other_language_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	acronym: [{
+		acronym: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	other_name_form: [{
+		other_name_form: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	official_name: [{
+		official_name: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
+	other_name_form: [{
+		other_name_form: String,	
+		general_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "keywordIndex",
+		},
+		geographical_complement: {
+			type: mongoose.Types.ObjectId,
+			ref: "geographicIndex",
+		},
+		chronological_complement: String,
+	}],
 
-	aggregate_event:[{
+	brief_characteristic: [String],
+	history: [String],
+
+	sup_event:[{
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	}],
@@ -1906,12 +2202,11 @@ subject: {
 		type: mongoose.Types.ObjectId,
 		ref: "subjectIndex",
 	}],
-
 	related_person:[{
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	}],
-	related_subject:[{
+	related_creation:[{
 		type: mongoose.Types.ObjectId,
 		ref: "creationIndex",
 	}],
@@ -1936,49 +2231,53 @@ subject: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
+	founding_person_chrono_spec: String,
 	founding_corporation: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
-	founding_place: {
+	founding_corporation_chrono_spec: String,
+	founding_document: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	first_mention: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	founding_chronological_specification: String,
-
+	founding_document_chrono_spec: String,
+	founding_place: String,
+	founding_place_chrono_spec: String,
+	first_mention_document: String,
+	first_mention_document_chrono_spec: String,
 
 	cancellation_person: {
 		type: mongoose.Types.ObjectId,
 		ref: "personIndex",
 	},
-	last_mention_event: {
+	cancellation_person_chrono_spec: String,
+	cancellation_corporation: {
 		type: mongoose.Types.ObjectId,
 		ref: "corporationIndex",
 	},
+	cancellation_corporation_chrono_spec: String,
+	cancellation_document: String,
+	cancellation_document_chrono_spec: String,
 	cancellation_place: {
 		type: mongoose.Types.ObjectId,
 		ref: "geographicIndex",
 	},
-	last_mention: {
-		type: mongoose.Types.ObjectId,
-		ref: "creationIndex",
-	},
-	cancellation_chronological_specification: String,
+	cancellation_place_chrono_spec: String,
+	last_mention_document: String,
+	last_mention_document_chrono_spec: String,
 
 	category:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
-	topic:[{
+	characteristic:[{
 		type: mongoose.Types.ObjectId,
 		ref: "keywordIndex",
 	}],
 
-	notes:[String],
+	public_note: [String],
+	nonpublic_note: [String],
 
 	other_source: [{
 		name: String,
@@ -1987,11 +2286,64 @@ subject: {
 	}],
 
 	record_sources:[String],
-
+	editor_note: [String],
 	submitter: {
 		type: String,
 		required: true,
 	},
+	attachment: [{
+		url: String,
+		description: String,
+	}],
+},
+pages: {
+	pageName: {
+		type: String,
+		required: true,
+		unique: true,
+	},
+	title: {
+		type: String,
+		default: "",
+	},
+	language: {
+		type: String,
+		default: "cz",
+	},
+	description: String,
+	content: {
+		type: String,
+		default: "",
+	},
+	category: {
+		type: String,
+		default: "",
+	},
+	edits: [{
+		date: {
+			type: Date,
+			default: Date.now,
+		},
+		editor: {
+			type: String,
+			default: "Unknown",
+		},
+	}],
+},
+user: {
+	email: { type: String, required: true, unique: true },
+	password: { type: String, required: true },
+	salt: { type: String, required: true },
+	role: { 
+		read: { type: Boolean, default: false },
+		write: { type: Boolean, default: false },
+		execute: { type: Boolean, default: false },
+		cms: { type: Boolean, default: false },
+	 },
+	sessionID: String,
+	sessionExpiration: { type: Date, default: "Date.now" },
+	firstName: String,
+	secondName: String,
 },
 }
 </script>
