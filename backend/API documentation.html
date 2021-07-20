@@ -692,7 +692,7 @@
 		
 		Pages: {
 			info: {
-				info: "pages collection",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/pages",
 			},
 			get: {
 				info: `get page HTML from DB`,
@@ -771,7 +771,7 @@
 		},
 		User: {
 			info: {
-				info: "users collection",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/user",
 			},
 			get: {
 				info: `get info about user
@@ -879,7 +879,7 @@
 		},
 		Auth: {
 			info: {
-				info: "user authentification",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/auth",
 			},
 			get: {
 				info: "check if user is logged in",
@@ -936,11 +936,11 @@
 		},
 		Uploads: {
 			info: {
-				info: "get document from folder Uploads",
+				info: "http://quest.ms.mff.cuni.cz/prak/api/uploads",
 			},
 			get: {
-				info: `get file`,
-				url: "/fileName",
+				info: `get file (!!! warning url does not have api !!!)`,
+				url: "http://quest.ms.mff.cuni.cz/prak/uploads/fileName",
 				output: {
 					200: "File.something",
 					404: "File not found",
