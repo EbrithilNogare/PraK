@@ -1,6 +1,6 @@
 \chapter{Implementace backendu}
 Backend je software, který je umístěn na serveru a uživatel má přístup jen
-k výstupu, jež dostane. Slouží pro přijímaní požadavků od klienta a odesílaní
+k výstupu, jež dostane. Slouží pro přijímaní požadavků od klienta a odesílání
 případné odpovědi nebo provedení nějaké činnosti bez výstupu.
 \\
 Součástí backendu je i API, které slouží jako toto spojení mezi serverem a
@@ -27,7 +27,7 @@ umožňuje práci s databází typu MongoDB.
 \\
 Dalšími menšími pomocnými knihovnami jsou
 \textbf{cors} (Cross-Origin Resource Sharing) napomáhající s nastavením hlavičky u API requestu,
-\textbf{md5} pro šifrovaní hesel a hašovaní dat a nakonec
+\textbf{md5} pro šifrování hesel a hašování dat a nakonec
 \textbf{cookie-parser} zjednodušující práci s cookies.
 
 \subsection{Knihovna express.js}
@@ -127,7 +127,7 @@ požadavek na unikátní hodnotu pole nebo požadavek, aby hodnota byla nenulov�
 \subsection{Záznam} 
 Každý záznam má přesný popis v online dokumentaci API, přesněji v pravé části, kde je pravidelně aktualizován.
 \subsection{Stránka}
-Záznam stránky obsahuje název, jazyka, krátký popis obsahu, kategorii a obsah samotný.
+Záznam stránky obsahuje název, jazyk, krátký popis obsahu, kategorii a obsah samotný.
 Pro možnost sledování změn je zde i automaticky generovaný seznam editorů a časů jejich editace.
 \subsection{Uživatel}
 Každý uživatel se přihlašuje e-mailem a heslem, s tím, že heslo není uloženo v
