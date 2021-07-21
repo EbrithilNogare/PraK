@@ -1,5 +1,10 @@
 const Model = require('./models/user.model')
 
+/**
+ * Permission checker
+ * @param {String} permission 
+ * @returns function that succeed if permissions are met
+ */
 function auth (permission) {
     return function (req, res, next) {
 		const sessionID = req.cookies.sessionID;

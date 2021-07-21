@@ -76,16 +76,15 @@ jsou uloženy na GitHubu \url{https://github.com/EbrithilNogare/PraK}
 \section{Instalace}
 Ve složce se zdrojovými soubory spustíme následující příkazy:
 \begin{lstlisting}[language=bash]
-	#####   backend npm install
-	cd backend
-	pnpm install
-	cd ..
-
 	#####   frontend npm install
 	cd frontend
-	pnpm install
+	npm install
 
 	#####   frontend build
 	npm run build
+	
+	#####   backend npm install
+	cd ../backend
+	npm install
+	node server
 \end{lstlisting}
-

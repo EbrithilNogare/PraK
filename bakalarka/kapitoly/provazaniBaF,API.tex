@@ -100,7 +100,10 @@ Příklad použití:
 	fetch(url, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ "name": "..." }),
+		body: JSON.stringify({
+			"_limit" : 100, // max returned count by default is 5 
+			"name"   : "..."
+		}),
 	})
 	.then(response => {
 		if(!response.ok) throw response
@@ -117,6 +120,6 @@ Příklad použití:
 \subsection{Existující programy pro práci a testovaní API}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.9\linewidth]{img/InsomniaExample.PNG}
+	\includegraphics[angle=90,width=.87\linewidth]{img/InsomniaExample.PNG}
 	\caption{Program Insomnia s vyplněným dotazem pro odeslání požadavku na API}
 \end{figure}
