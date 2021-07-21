@@ -23,6 +23,19 @@ app.use(fileUpload({
 	},
 }))
 
+if(!process.env.DBUsername){
+	console.log("Missing process.env.DBUsername")
+	return
+}
+if(!process.env.DBPassword){
+	console.log("Missing process.env.DBPassword")
+	return
+}
+if(!process.env.DBName){
+	console.log("Missing process.env.DBName")
+	return
+}
+
 mongoose.connect(`mongodb+srv://${process.env.DBUsername}:${process.env.DBPassword}@prak.oew3t.gcp.mongodb.net/${process.env.DBName}?retryWrites=true&w=majority`)
 
 // routes
@@ -45,7 +58,7 @@ app.use('/keywordIndex', require('./routes/keywordIndex'))
 app.use('/personIndex', require('./routes/personIndex'))
 app.use('/subjectIndex', require('./routes/subjectIndex'))
 
-
-app.listen(process.env.PORT, () => {
-	console.log(`Server is running on port: ${process.env.PORT}`)
+const port = process.env.PORT || 50081 
+app.listen(port, () => {
+	console.log(`Server is running on port: ${port}`)
 })
