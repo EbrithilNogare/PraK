@@ -1,5 +1,6 @@
-# Blender v2.90.1 OBJ File: 'betonovyJezek.blend'
+# Blender v2.82 (sub 7) OBJ File: 'betonovyJezek.blend'
 # www.blender.org
+mtllib betonovyJezek.mtl
 o skpA485
 v -0.085002 0.073379 -0.062421
 v 0.011625 0.073379 0.104941
@@ -206,6 +207,7 @@ vn 0.8180 0.3273 0.4731
 vn -0.0013 0.3272 -0.9450
 vn -0.8187 0.3266 0.4723
 vn 0.0001 -1.0000 -0.0003
+usemtl <auto>
 s off
 f 1/1/1 36/2/1 35/3/1
 f 36/2/2 1/1/2 34/4/2
