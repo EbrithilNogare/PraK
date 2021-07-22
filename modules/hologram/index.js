@@ -8,14 +8,15 @@ let scene, group, renderer, stats, clock
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const modelName = urlParams.get("model") || "T72" 
+const modelScale = urlParams.get("scale") || 300 
 
 const modelList = ["betonovyJezek", "jezek", "T72"]
 
 let modelOBJ = `models/${modelName}.obj`
 let modelMTL = `models/${modelName}.mtl`
 
-let windowWidth = window.innerWidth
-let windowHeight = window.innerHeight
+let windowWidth = Math.min(window.innerWidth, window.innerHeight)
+let windowHeight = Math.min(window.innerWidth, window.innerHeight)
 
 const views = [{
 		left: 0,
@@ -51,17 +52,17 @@ function init() {
 	stats = new Stats()
 	stats.showPanel(0)
 	stats.dom.style.display = "none"
-	stats.dom.childNodes.forEach(node => node.style.display = "block")
+	stats.dom.id = "status"
 	document.body.appendChild(stats.dom)
 
 	renderer = new THREE.WebGLRenderer()
-	renderer.setSize(window.innerWidth, window.innerHeight)
+	renderer.setSize(windowWidth, windowHeight)
 	renderer.setScissorTest(true)
 	renderer.setClearColor(0,0,0,1)
 	document.body.appendChild(renderer.domElement)
 
 	group = new THREE.Group()
-	group.scale.set(300,300,300)
+	group.scale.set(modelScale,modelScale,modelScale)
 	group.position.set(0,-30,0)
 	scene.add(group)
 
@@ -127,14 +128,13 @@ function addCameras(){
 
 window.addEventListener('resize', onWindowResize, false)
 function onWindowResize() {
-	windowWidth = window.innerWidth
-	windowHeight = window.innerHeight
+	windowWidth = windowHeight = Math.min(window.innerWidth, window.innerHeight)
 	for(let view of views) {
 		var camera = view.camera
 		camera.aspect = windowWidth / windowHeight
 		camera.updateProjectionMatrix()
 	}
-	renderer.setSize(window.innerWidth, window.innerHeight)
+	renderer.setSize(windowWidth, windowHeight)
 }
 
 
