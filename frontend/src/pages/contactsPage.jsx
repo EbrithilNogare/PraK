@@ -53,7 +53,6 @@ class ContactsPage extends React.Component {
 					value={ this.state.name }
 					name="name"
 					onChange={this.handleChange}
-					inputRef={input => input && input.focus()}
 				/>
 				<br/>
 				<br/>
