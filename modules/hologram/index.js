@@ -9,6 +9,7 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const modelName = urlParams.get("model") || "T72" 
 const modelScale = urlParams.get("scale") || 300 
+const lightPower = urlParams.get("light") || 5 
 
 const modelList = ["betonovyJezek", "jezek", "T72"]
 
@@ -55,7 +56,7 @@ function init() {
 	stats.dom.id = "status"
 	document.body.appendChild(stats.dom)
 
-	renderer = new THREE.WebGLRenderer()
+	renderer = new THREE.WebGLRenderer({antialias: true})
 	renderer.setSize(windowWidth, windowHeight)
 	renderer.setScissorTest(true)
 	renderer.setClearColor(0,0,0,1)
@@ -77,7 +78,7 @@ function buttonClicked(){
 }
 
 function setLights(){
-	const ambient = new THREE.AmbientLight(0xffffff, 1.0)
+	const ambient = new THREE.AmbientLight(0xffffff, lightPower)
 	scene.add(ambient)
 }
 
