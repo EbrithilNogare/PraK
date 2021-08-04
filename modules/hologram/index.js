@@ -3,18 +3,16 @@ import { OBJLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/
 import { MTLLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/MTLLoader.js'
 import Stats from 'https://unpkg.com/three@0.127.0/examples/jsm/libs/stats.module'
 
-let scene, group, renderer, stats, clock
-
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
-const modelName = urlParams.get("model") || "T72" 
-const modelScale = urlParams.get("scale") || 300 
-const lightPower = urlParams.get("light") || 5 
+const modelName = urlParams.get("model") || "jezek"
+const modelScale = urlParams.get("scale") || 300
+const lightPower = urlParams.get("light") || 3
 
-const modelList = ["betonovyJezek", "jezek", "T72"]
+const modelOBJ = `models/${modelName}.obj`
+const modelMTL = `models/${modelName}.mtl`
 
-let modelOBJ = `models/${modelName}.obj`
-let modelMTL = `models/${modelName}.mtl`
+let scene, group, renderer, stats, clock
 
 let windowWidth = Math.min(window.innerWidth, window.innerHeight)
 let windowHeight = Math.min(window.innerWidth, window.innerHeight)
@@ -75,10 +73,33 @@ function init() {
 document.getElementById("button").addEventListener("click", buttonClicked)
 function buttonClicked(){
 	stats.dom.style.display = stats.dom.style.display === "none" ? "block" : "none"
+	document.getElementById("controlMenu").style.visibility = document.getElementById("controlMenu").style.visibility === "hidden" ? "visible" : "hidden"
 }
+
+document.getElementById("controlLightPlus").addEventListener("click", () => {
+	scene.getObjectByName("light").intensity -= -.5
+	console.log("intensity: ", scene.getObjectByName("light").intensity)
+})
+document.getElementById("controlLightMinus").addEventListener("click", () => {
+	scene.getObjectByName("light").intensity -= .5
+	console.log("intensity: ", scene.getObjectByName("light").intensity)
+})
+document.getElementById("controlSizePlus").addEventListener("click", () => {
+	const newValue = group.scale.x * 1.2
+	group.scale.set(newValue,newValue,newValue)
+	console.log("size: ", newValue)
+})
+document.getElementById("controlSizeMinus").addEventListener("click", () => {
+	const newValue = group.scale.x / 1.2
+	group.scale.set(newValue,newValue,newValue)
+	console.log("size: ", newValue)
+})
+
+
 
 function setLights(){
 	const ambient = new THREE.AmbientLight(0xffffff, lightPower)
+	ambient.name = "light"
 	scene.add(ambient)
 }
 

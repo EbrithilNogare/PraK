@@ -15,11 +15,13 @@
 			background-color: black;
 			overflow: hidden;
 		}
-		#button{
-			position: absolute;
-			color: #ffc800;
+		button{
 			background-color: #00000000;
 			border: solid 0;
+			color: #ffc800;
+		}
+		#button{
+			position: absolute;
 			z-index: 100;
 			left: 50%;
 			top: 50%;
@@ -43,11 +45,34 @@
 			height: 48px;
     		width: 80px;
 		}
+		#controlMenu{
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			color: white;
+			display: grid;
+			grid-template-columns: auto auto auto;
+			z-index: 100;
+			font-size: 300%;
+		}
+		#controlMenu button{
+			width: 50px;
+			height: 50px;
+		}
 	</style>
 </head>
 
 <body>
 	<button id="button">+</button>
+	<div id="controlMenu" style="visibility: hidden">
+		<span>Light</span>
+		<button id="controlLightPlus">+</button>
+		<button id="controlLightMinus">-</button>
+		
+		<span>Size</span>
+		<button id="controlSizePlus">+</button>
+		<button id="controlSizeMinus">-</button>
+	</div>
 </body>
 
 </html>
