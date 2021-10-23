@@ -44,3 +44,14 @@
 	padding: 10px;
 	border-radius: 20px 0 20px 20px;
 }
+
+.selectMapGrid{
+	display: flex;
+	column-gap: 10px;
+	row-gap: 10px;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	a{
+		text-decoration: none;
+	}
+}

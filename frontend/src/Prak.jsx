@@ -22,6 +22,7 @@ import { PageCategoryList } from "./components/pageCategory"
 import Homepage from "./scenes/homepage"
 import UploadScene from "./scenes/upload"
 import MapsScene from "./scenes/maps"
+import MapSelector from "./scenes/maps/mapSelector"
 import CmsScene from "./scenes/cms"
 import InputScene from "./scenes/input"
 import LoginScene from "./scenes/login"
@@ -119,8 +120,8 @@ class Prak extends React.Component {
 
 										<Route path="/prak/contacts"><ContactsPage/></Route>
 
-										<Route path="/prak/maps" render={() => <MapsScene mapID="1.jpg"/>} />
 										<Route path="/prak/maps/:mapID" render={({match}) => <MapsScene mapID={match.params.mapID}/>}></Route>
+										<Route path="/prak/maps" render={() => <MapSelector/>} />
 										<Route path="/prak/page/:pageName" render={({match}) => <LoadPageFromDB pageName={match.params.pageName}/>}></Route>
 										<Route path="/prak/pageCategory/:categoryName" render={({match}) => <PageCategoryList pageCategoryName={match.params.categoryName}/>}></Route>
 
