@@ -44,7 +44,7 @@ class MapsScene extends React.Component {
 				<div className={styles.twoSidedButtons}>
 					<NavLink style={{textDecoration: "none"}} to="/prak/maps"><Button><ArrowBackIos/>Vyhledávání map</Button></NavLink>
 					<div/>
-					<NavLink style={{textDecoration: "none"}} to={"/prak/uploads/maps/"+this.props.mapID}><Button>RAW image</Button></NavLink>
+					<a style={{textDecoration: "none"}} href={this.defaultPath + this.props.mapID}><Button>RAW image</Button></a>
 				</div>
 				<div className={styles.loadingTitle}>{this.state.loading && "Loading image, please wait"}</div>
 				<div className={styles.imgContainer}>
