@@ -1,6 +1,9 @@
 import { HelpOutline } from "@material-ui/icons"
 import React from "react"
+import { Button } from '@material-ui/core'
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
+import { NavLink } from "react-router-dom"
+import ArrowBackIos from '@material-ui/icons/ArrowBackIos'
 
 import styles from './mapsScene.module.scss'
 
@@ -38,11 +41,16 @@ class MapsScene extends React.Component {
 				<div className={styles.title}>
 					<h1>Zobrazení map</h1>
 				</div>
+				<div className={styles.twoSidedButtons}>
+					<NavLink style={{textDecoration: "none"}} to="/prak/maps"><Button><ArrowBackIos/>Vyhledávání map</Button></NavLink>
+					<div/>
+					<NavLink style={{textDecoration: "none"}} to={"/prak/uploads/maps/"+this.props.mapID}><Button>RAW image</Button></NavLink>
+				</div>
 				<div className={styles.loadingTitle}>{this.state.loading && "Loading image, please wait"}</div>
 				<div className={styles.imgContainer}>
-					<TransformWrapper >
+					<TransformWrapper>
 						<TransformComponent>
-							<img onLoad={this.imageLoaded} src={this.state.path} alt="large map" style={{display: this.state.loading ? "none" : "block"}}/>
+							<img onLoad={this.imageLoaded} src={this.state.path} decoding="async" alt="large map"/>
 						</TransformComponent>
 					</TransformWrapper>
 					<div className={styles.helper}>
