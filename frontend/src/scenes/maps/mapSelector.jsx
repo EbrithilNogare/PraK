@@ -3,6 +3,7 @@ import {
 	Button,
 	TextField
 } from '@material-ui/core'
+import { NavLink } from "react-router-dom"
 
 import mapsData from "./maps.json"
 
@@ -41,11 +42,11 @@ class MapSelector extends React.Component {
 							.filter(item=>{return item.name.match(this.state.searchField)})
 							.sort((a, b)=> (a.name > b.name) ? 1 : (a.name === b.name) ? 0 : -1 )
 							.map(map=>(
-								<a key={map.id} href={"maps/"+map.url}>
+								<NavLink key={map.id} to={"/prak/maps/"+map.url}>
 									<Button variant="contained" color="primary">
 										{map.name}
 									</Button>
-								</a>
+								</NavLink>
 					))}
 					
 				</div>
