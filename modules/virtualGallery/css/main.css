@@ -1,0 +1,17 @@
+body {
+	margin: 0;
+}
+
+.mainCanvas{
+
+}
+
+#minimap{
+	position:absolute;
+	top:0px;
+	right:0px;
+	height:25%;
+	width:auto;
+	opacity:0.8;
+	background-color: rgb(33, 201, 11);
+}

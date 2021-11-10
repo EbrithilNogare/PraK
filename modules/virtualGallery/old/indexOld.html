@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Wolfenstein 3D remake</title>
+        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta charset="UTF-8">
+        <style>
+            body { margin: 0; }
+        </style>
+    </head>
+    <body onkeydown="keyDown(event,1)" onkeyup="keyDown(event,0)" onresize="resize();">
+
+        <canvas id="hud" style="position: fixed; left:0px; bottom:0px; height:17%; width:100%;" width="384" height="40"></canvas>
+        <img id="block" style="position:fixed; bottom:0px; right:0px; height:0px;width:0px;" src="textures/walls/1.png"/>
+
+        <canvas id="minimap" style="position:absolute;top:0px;right:0px;height:25%;width:auto;opacity:0.8; visibility:hidden;" height="640" width="640">no canvas</canvas>
+
+        <div id="layout" style="opacity: 0;">
+            <div style="position:absolute; left: 0%;  top: 0%;  height: 33%; width: 25%; background: #ef9610;" ontouchstart="nextWeapon('+');" ontouchend=""></div>
+            <div style="position:absolute; left: 25%; top: 0%;  height: 33%; width: 18%; background: #ffde3a;" ontouchstart="changeLayout();" ontouchend=""></div>
+            <div style="position:absolute; left: 0%;  top: 33%; height: 67%; width: 43%; background: #b0ff39;" ontouchstart="shoot();" ontouchend=""></div>
+
+            <div style="position:absolute; left: 43%; top: 0%;  height: 33%; width: 19%; background: #4d31d8;" ontouchstart="touchbar(0,0,1);" ontouchend="touchbar(0,0,0);"></div>
+            <div style="position:absolute; left: 43%; top: 33%; height: 34%; width: 19%; background: #c73ae0;" ontouchstart="touchbar(0,1,1);" ontouchend="touchbar(0,1,0);"></div>
+            <div style="position:absolute; left: 43%; top: 67%; height: 33%; width: 19%; background: #4d31d8;" ontouchstart="touchbar(0,2,1);" ontouchend="touchbar(0,2,0);"></div>
+            <div style="position:absolute; left: 62%; top: 0%;  height: 33%; width: 19%; background: #c73ae0;" ontouchstart="touchbar(1,0,1);" ontouchend="touchbar(1,0,0);"></div>
+            <div style="position:absolute; left: 62%; top: 33%; height: 34%; width: 19%; background: #d8315d;" ontouchstart="doorOpen();" ontouchend=""></div>
+            <div style="position:absolute; left: 62%; top: 67%; height: 33%; width: 19%; background: #c73ae0;" ontouchstart="touchbar(1,2,1);" ontouchend="touchbar(1,2,0);"></div>
+            <div style="position:absolute; left: 81%; top: 0%;  height: 33%; width: 19%; background: #4d31d8;" ontouchstart="touchbar(2,0,1);" ontouchend="touchbar(2,0,0);"></div>
+            <div style="position:absolute; left: 81%; top: 33%; height: 34%; width: 19%; background: #c73ae0;" ontouchstart="touchbar(2,1,1);" ontouchend="touchbar(2,1,0);"></div>
+            <div style="position:absolute; left: 81%; top: 67%; height: 33%; width: 19%; background: #4d31d8;" ontouchstart="touchbar(2,2,1);" ontouchend="touchbar(2,2,0);"></div>
+        </div>
+
+
+
+
+
+        <!--
+        <div style="position:absolute; left:0px; bottom: 0px; height: 50%; width: 30%;" ontouchstart="shoot();"></div>
+        <div style="position:absolute; left:0px; top: 0px; height: 50%; width: 30%;" ontouchstart="nextWeapon('+');"></div>
+        <div style="position:absolute; right: 0px; bottom: 0px; height: 30%; width: 40%;" ontouchstart="controls.s = 1" ontouchend="controls.s = 0"></div>
+        <div style="position:absolute; right: 20%; bottom: 30%; height: 40%; width: 20%;" ontouchstart="controls.j = 1" ontouchend="controls.j = 0"></div>
+        <div style="position:absolute; right: 0px; bottom: 30%; height: 40%; width: 20%;" ontouchstart="controls.l = 1" ontouchend="controls.l = 0"></div>
+        <div style="position:absolute; right: 0px; bottom: 70%; height: 30%; width: 40%;" ontouchstart="controls.w = 1" ontouchend="controls.w = 0"></div>
+        <div style="position:absolute; left: 30%; top: 0px; height: 50%; width: 30%;" ontouchstart="doorOpen();"></div>
+        <div style="position:absolute; left: 30%; bottom: 0px; height: 50%; width: 30%;" ontouchstart="" ontouchend=""></div>
+        <div style="position:absolute; left: 30%; bottom: 0px; height: 50%; width: 30%;" ontouchstart="" ontouchend=""></div>
+        <div style="position:absolute; left: 30%; bottom: 0px; height: 50%; width: 30%;" ontouchstart="" ontouchend=""></div>
+        <div style="position:absolute; left: 30%; bottom: 0px; height: 50%; width: 30%;" ontouchstart="" ontouchend=""></div>
+        <div style="position:absolute; left: 30%; bottom: 0px; height: 50%; width: 30%;" ontouchstart="" ontouchend=""></div>
+        -->
+        <script src="three.js" type="text/javascript"></script>
+        <script src="maps.js" type="text/javascript"></script>
+        <script src="engine.js" type="text/javascript"></script>
+    </body>
+</html>
