@@ -62,7 +62,7 @@ export default class Map {
 
 	createFloor(){
 		let PlaneGeometry = new THREE.PlaneGeometry(this.mapSize.x, this.mapSize.z, this.mapSize.x, this.mapSize.z);
-		let materialFloor = new THREE.MeshBasicMaterial({color: 0x888888, side: THREE.BackSide});
+		let materialFloor = new THREE.MeshBasicMaterial({color: 0x000000, side: THREE.BackSide});
 		
 		this.floor = new THREE.Mesh(PlaneGeometry, materialFloor);
 		this.floor.rotation.x = Math.PI * 0.5;

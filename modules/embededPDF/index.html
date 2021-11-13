@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>pdf viewr</title>
+
+	<style>
+		body {
+			margin:0;
+		}
+		#navBar{
+			width: 100%;
+			height: 40px;
+			display: flex;
+			margin: 0;
+			padding: 0;
+			background: #103d12;
+			column-gap: 2px;
+		}
+		button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			cursor: pointer;
+			width: inherit;
+			font-size: x-large;
+		}
+		button:hover {
+			background-color: #247026; /* Green */
+		}
+		.active{
+			background-color: #2e7a30; /* Green */
+		}
+
+
+	</style>
+</head>
+
+<body>
+	
+	<div id="navBar">
+
+	</div>
+	<iframe id="iframeElement" src="" width="640" height="480" allow="autoplay"></iframe>
+
+	<script>
+		const data = [
+			{ id: 0, name: "Paula Schramm", url: "https://drive.google.com/file/d/1upVIp-BQxPd-RW41pg1FevcE3YRS8EIU/preview" },
+			{ id: 1, name: "Sklenářovice Glassendorf", url: "https://drive.google.com/file/d/1vSnFvuSUvCjUAi--LoTZJRem-3HxENdZ/preview" },
+			{ id: 2, name: "Vzpomínky Pauly Schramm", url: "https://drive.google.com/file/d/1gEbuedYK7fQBxF79xeC611ptT8jqXYZQ/preview" },
+		]
+
+		window.addEventListener('resize', resizeWindow);
+		resizeWindow();
+		addButtons();
+		loadDocument(0);
+
+
+		function addButtons(){
+			let navBar = document.getElementById("navBar");
+			for (let i = 0; i < data.length; i++) {
+				const element = data[i];
+				const para = document.createElement("button");
+				para.innerHTML = element.name;
+				para.id = "button_" + element.id;
+				para.addEventListener("click", () => loadDocument(element.id));
+				navBar.appendChild(para);
+			}
+		}
+
+		function loadDocument(id){
+			element = data[id];
+			document.getElementById("iframeElement").src = element.url;
+			let actives = document.getElementsByClassName("active");
+			for(let child of actives) {
+				child.classList.remove('active');
+			};
+			let navBarActiveitem = document.getElementById("button_" + element.id);
+			navBarActiveitem.classList.add('active');
+
+		}
+		
+		function resizeWindow (){
+			document.getElementById("iframeElement").width=window.innerWidth-5;
+			document.getElementById("iframeElement").height=window.innerHeight-50;
+		}
+
+
+
+
+
+
+	</script>
+
+</body>
+
+</html>
