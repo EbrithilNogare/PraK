@@ -1,21 +1,25 @@
 import * as THREE from './threejs/three.module.js'
 
 export default class Player {
-    MOVESPEED = 0.005
-    TURNSPEED = Math.PI / 112
-    PLAYERHEIGHT = 1.7
+	raycaster = new THREE.Raycaster();
+
+    MOVESPEED = 0.005;
+    TURNSPEED = Math.PI / 112;
+    PLAYERHEIGHT = 1.7;
 	
+
 	camera
+	
+    editMap = true
 
-	wallHack = false
-    editMap = false
-
-	constructor(camera) {
+	constructor(camera) {		
 		this.camera = camera
+
 		this.setupHandlers()
 	}
 
 	tick(delta, map, controls){
+		/******** movePlayer *********/
 		if(controls.isLocked !== true)
 			return
 			
@@ -27,6 +31,27 @@ export default class Player {
 		controls.getObject().position.y = this.PLAYERHEIGHT;
 		controls.moveForward( direction.z * this.MOVESPEED * delta );
 		controls.moveRight( direction.x * this.MOVESPEED * delta );
+		
+		/******** Raytrace GodMode *********/
+		if(this.editMap){
+			this.raycaster.layers.set( 1 );
+			this.raycaster.setFromCamera( new THREE.Vector2(0,0), this.camera );
+			const intersects = this.raycaster.intersectObjects( map.scene.children );
+
+			if(intersects.length > 0){
+				map.debugHoverRectangle.visible = true;
+				map.debugHoverRectangle.position.set(
+					Math.round(intersects[0].point.x/map.WALLTHICKNESS)*map.WALLTHICKNESS-map.WALLTHICKNESS/2,
+					0,
+					Math.round(intersects[0].point.z/map.WALLTHICKNESS)*map.WALLTHICKNESS-map.WALLTHICKNESS/2)
+			}else{
+				map.debugHoverRectangle.visible = false;
+			}
+		}else{
+			map.debugHoverRectangle.visible = false;
+		}
+		map.debugFloor.visible = this.editMap;
+
 	}
 
 	controlKeys = {
@@ -36,13 +61,19 @@ export default class Player {
 		d: 0,
 	}
 
-	pointerLockCallback(){
-		
-	}
+	toggleEditMap(){
+		this.editMap = !this.editMap;
+	} 
 	
 	setupHandlers(){
 		document.addEventListener('keydown', e => {
-			this.controlKeys[e.key] = 1
+			switch(e.key){
+				case 'p':
+					this.toggleEditMap(); 
+					break;
+				default:
+					this.controlKeys[e.key] = 1
+			}
 		})
 
 		document.addEventListener('keyup', e => {
