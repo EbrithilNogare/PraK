@@ -2,86 +2,128 @@ import * as THREE from './threejs/three.module.js'
 
 export default class Player {
 	raycaster = new THREE.Raycaster();
+	raycasterHits = []
 
     MOVESPEED = 0.005;
+    CROUCHSPEED = 0.001;
     TURNSPEED = Math.PI / 112;
     PLAYERHEIGHT = 1.7;
 	
-
-	camera
 	
-    editMap = true
+	camera
+	map
+	
+    editMap = false
 
-	constructor(camera) {		
-		this.camera = camera
 
-		this.setupHandlers()
+	constructor(camera, map) {		
+		this.camera = camera;
+		this.map = map;
+
+		this.setupHandlers();
 	}
 
-	tick(delta, map, controls){
+	tick(delta, controls){
 		/******** movePlayer *********/
 		if(controls.isLocked !== true)
-			return
+			return;
 			
 		let direction = new THREE.Vector3();
-		direction.z = this.controlKeys.w - this.controlKeys.s;
-		direction.x = this.controlKeys.d - this.controlKeys.a;
+		direction.z = this.moveControls.forward - this.moveControls.back;
+		direction.x = this.moveControls.right - this.moveControls.left;
 		direction.normalize(); // this ensures consistent movements in all directions
+		
+		direction.x *= (this.moveControls.crouch ? this.CROUCHSPEED : this.MOVESPEED) * delta;
+		direction.z *= (this.moveControls.crouch ? this.CROUCHSPEED : this.MOVESPEED) * delta;
 
 		controls.getObject().position.y = this.PLAYERHEIGHT;
-		controls.moveForward( direction.z * this.MOVESPEED * delta );
-		controls.moveRight( direction.x * this.MOVESPEED * delta );
+		controls.moveForward( direction.z );
+		controls.moveRight( direction.x );
+
+		for(let wall of this.map.walls){
+			if(
+				Math.min(wall.collisionBox.x1, wall.collisionBox.x2) <= this.camera.position.x &&
+				Math.max(wall.collisionBox.x1, wall.collisionBox.x2) >= this.camera.position.x &&
+				Math.min(wall.collisionBox.z1, wall.collisionBox.z2) <= this.camera.position.z &&
+				Math.max(wall.collisionBox.z1, wall.collisionBox.z2) >= this.camera.position.z
+			){
+				controls.moveForward( - direction.z * (1-this.editMap * .2));
+				controls.moveRight( - direction.x * (1-this.editMap * .2));
+				break;
+			}
+		}
 		
 		/******** Raytrace GodMode *********/
 		if(this.editMap){
 			this.raycaster.layers.set( 1 );
 			this.raycaster.setFromCamera( new THREE.Vector2(0,0), this.camera );
-			const intersects = this.raycaster.intersectObjects( map.scene.children );
+			this.raycasterHits = this.raycaster.intersectObjects( this.map.scene.children );
 
-			if(intersects.length > 0){
-				map.debugHoverRectangle.visible = true;
-				map.debugHoverRectangle.position.set(
-					Math.round(intersects[0].point.x/map.WALLTHICKNESS)*map.WALLTHICKNESS-map.WALLTHICKNESS/2,
+			if(this.raycasterHits.length > 0 && this.raycasterHits[0].object.name === "floor"){
+				this.map.debugCube.visible = true;
+				this.map.debugCube.position.set(
+					Math.floor(this.raycasterHits[0].point.x/this.map.WALLTHICKNESS-this.map.WALLTHICKNESS/2)*this.map.WALLTHICKNESS+this.map.WALLTHICKNESS/2,
 					0,
-					Math.round(intersects[0].point.z/map.WALLTHICKNESS)*map.WALLTHICKNESS-map.WALLTHICKNESS/2)
+					Math.floor(this.raycasterHits[0].point.z/this.map.WALLTHICKNESS-this.map.WALLTHICKNESS/2)*this.map.WALLTHICKNESS+this.map.WALLTHICKNESS/2
+				)
 			}else{
-				map.debugHoverRectangle.visible = false;
+				this.map.debugCube.visible = false;
 			}
 		}else{
-			map.debugHoverRectangle.visible = false;
+			this.map.debugCube.visible = false;
 		}
-		map.debugFloor.visible = this.editMap;
+		this.map.floorGrid.visible = this.editMap;
 
 	}
 
-	controlKeys = {
-		w: 0,
-		a: 0,
-		s: 0,
-		d: 0,
+	moveControls = {
+		forward: 0,
+		back: 0,
+		left: 0,
+		right: 0,
+		crouch: 0,
 	}
 
 	toggleEditMap(){
 		this.editMap = !this.editMap;
 	} 
-	
+
 	setupHandlers(){
 		document.addEventListener('keydown', e => {
-			switch(e.key){
-				case 'p':
-					this.toggleEditMap(); 
-					break;
-				default:
-					this.controlKeys[e.key] = 1
+			switch(e.key.toLowerCase()){
+				case 'p': this.toggleEditMap();
+				case 'w': this.moveControls.forward = 1; break;
+				case 'a': this.moveControls.left = 1; break;
+				case 's': this.moveControls.back = 1; break;
+				case 'd': this.moveControls.right = 1; break;
+				case 'shift': this.moveControls.crouch = 1; break;
 			}
 		})
 
 		document.addEventListener('keyup', e => {
-			this.controlKeys[e.key] = 0
+			switch(e.key.toLowerCase()){
+				case 'w': this.moveControls.forward = 0; break;
+				case 'a': this.moveControls.left = 0; break;
+				case 's': this.moveControls.back = 0; break;
+				case 'd': this.moveControls.right = 0; break;
+				case 'shift': this.moveControls.crouch = 0; break;
+			}
 		})
 
 		document.addEventListener('pointerlockchange', this.pointerLockCallback, false);
         document.addEventListener('mozpointerlockchange', this.pointerLockCallback, false);
         document.addEventListener('webkitpointerlockchange', this.pointerLockCallback, false);
+
+        document.addEventListener('click', e => {
+			if(e.button !== 0 || !this.editMap || this.raycasterHits.length == 0)
+				return;
+
+			if(this.raycasterHits[0].object.name === "floor"){
+				this.map.floorClicked(this.raycasterHits[0].point);
+			}
+
+				
+
+		});
 	}
 }

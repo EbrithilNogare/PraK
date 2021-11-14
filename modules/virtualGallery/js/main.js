@@ -1,21 +1,19 @@
 import * as THREE from './threejs/three.module.js';
 import { PointerLockControls } from './threejs/PointerLockControls.js';
 import Player from './player.js';
-import Stats from './stats.js';
+import Stats from './threejs/stats.js';
 import Map from './map.js';
 
-let camera, scene, renderer, stats, player, input, map, controls, prevTime;
+let camera, scene, renderer, lights, stats, player, input, map, controls, prevTime;
 
 
 
 init()
 
 function init() {
-	camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 100);
-	camera.position.set(0,2,0);
-
 	scene = new THREE.Scene();
-	//scene.fog = new THREE.Fog(0x000000, .1, 100);
+
+	camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 100);
 
 	renderer = new THREE.WebGLRenderer({ antialias: true });
 	renderer.setSize(window.innerWidth, window.innerHeight);
@@ -23,23 +21,23 @@ function init() {
 	renderer.domElement.className = "mainCanvas";
 
 	const light = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
-	light.position.set( 0.5, 1, 0.75 );
-	scene.add( light );
+	lights = [light];
+	lights[0].position.set( 0.5, 1, 0.75 );
+	scene.add( lights[0] );
 	
 	controls = new PointerLockControls( camera, document.body );
-	controls.addEventListener( 'change', render ); // use this only if there is no animation loop
-	controls.enableZoom = false;
+	controls.enableZoom = true;
 	controls.enablePan = false;
-	renderer.domElement.addEventListener( 'click', () => {controls.lock()} );
+	renderer.domElement.addEventListener( 'click', () => { controls.lock(); } );
 	scene.add( controls.getObject() );
 
 	window.addEventListener("resize", onWindowResize);
 
-
-
-	player = new Player(camera);
 	map = new Map(scene);
 	map.loadScene();
+	
+	player = new Player(camera, map);
+	camera.position.set(0, player.PLAYERHEIGHT,0);
 
 	stats = createStats();
 	document.body.appendChild(stats.domElement);
@@ -57,7 +55,7 @@ function animation(time) {
 
 function tick(delta) {
 	map.tick(delta);
-	player.tick(delta, map, controls);
+	player.tick(delta, controls);
 }
 
 function render() {
