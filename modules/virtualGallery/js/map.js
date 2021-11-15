@@ -12,11 +12,11 @@ export default class Map {
 	mapSize = {x:20, z:20, max:20, min:20};
 	mat = {
 		floor: new THREE.MeshPhongMaterial({name: "floorMaterial", color: 0x000}),
+		grass: new THREE.MeshPhongMaterial({name: "grassMaterial", color: 0x009900}),
 		debugCube: new THREE.MeshPhongMaterial( {name: "debugCubeMaterial", color: 0x009900, opacity: .5, transparent: true} ),
 		wall: new THREE.MeshPhongMaterial( {name: "wallMaterial", color: 0x222222} ),
-		wallSelected: new THREE.MeshPhongMaterial( {name: "wallSelectedMaterial", color: 0xff3333} ),
-		poster: new THREE.MeshPhongMaterial( {name: "posterMaterial", color: 0xffff00} ),
-		posterSelected: new THREE.MeshPhongMaterial( {name: "posterSelectedMaterial", color: 0x999900} ),
+		wallSelected: new THREE.MeshPhongMaterial( {name: "wallSelectedMaterial", color: 0xff1111} ),
+		poster: new THREE.MeshPhongMaterial( {name: "posterMaterial", color: 0x999900} ),
 		skyBox: new THREE.MeshBasicMaterial({name: "skyBoxMaterial", color: 0x000088, side: THREE.BackSide}),
 	}
 	
@@ -49,7 +49,7 @@ export default class Map {
 	}
 
 	createFloorGrid(){
-		this.floorGrid = new THREE.GridHelper(this.mapSize.min, this.mapSize.min/this.WALLTHICKNESS, 0xffffff, 0xbbbbbb);
+		this.floorGrid = new THREE.GridHelper(this.mapSize.max, this.mapSize.max, 0xffffff, 0xbbbbbb);
 		this.floorGrid.visible = false;
 		this.scene.add(this.floorGrid);
 	}
@@ -61,9 +61,16 @@ export default class Map {
 	}
 
 	createSkyBox(){
-		let skyboxGeo = new THREE.BoxGeometry(50, 50, 50);
-		this.skybox = new THREE.Mesh(skyboxGeo, this.mat.skyBox);
-		this.scene.add(this.skybox);
+		this.scene.background = new THREE.CubeTextureLoader()
+		.setPath( 'img/textures/skybox/' )
+		.load( [
+			'front.jpg',
+			'back.jpg',
+			'up.jpg',
+			'down.jpg',
+			'left.jpg',
+			'right.jpg',
+		] );
 	}
 
 	createFloor(){
@@ -76,6 +83,15 @@ export default class Map {
 		this.floor.position.set(0, 0, 0);
 		this.floor.layers.enable( 1 );
 		this.scene.add(this.floor);
+
+		/****** grass *******/
+		let grassGeometry = new THREE.PlaneGeometry(1000, 1000, 1, 1);
+		let grass = new THREE.Mesh(grassGeometry, this.mat.grass);
+		grass.name = "grass";
+		grass.receiveShadow = true;
+		grass.rotation.x = - Math.PI * 0.5;
+		grass.position.set(0, -.05, 0);
+		this.scene.add(grass);
 	}
 
 	loadTextures(){
@@ -89,11 +105,41 @@ export default class Map {
 			}
 		);
 		this.mat.wall.map = this.mat.wallSelected.map = this.loader.load(
-			'img/textures/wood1/diff.jpg',
+			'img/textures/wall1/diff.jpg',
 			texture => {
 				texture.wrapS = THREE.RepeatWrapping;
 				texture.wrapT = THREE.RepeatWrapping;
 				this.mat.wall.color.set(0xffffff);
+			}
+		);
+		this.mat.grass.map = this.loader.load(
+			'img/textures/grass/diff.jpg',
+			texture => {
+				texture.repeat.set(400, 400);
+				texture.rotation = 1;
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
+				this.mat.grass.color.set(0xffffff);
+			}
+		);
+	}
+
+	loadHDTextures(){
+		this.mat.wall.normalMap = this.loader.load(
+			'img/textures/wall1/normal.jpg',
+			texture => {
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
+				this.mat.wall.needsUpdate = true;
+			}
+		);
+		this.mat.floor.normalMap = this.loader.load(
+			'img/textures/brickFloor/normal.jpg',
+			texture => {
+				texture.repeat.set(this.mapSize.x / this.WALLTHICKNESS / 21, this.mapSize.z / this.WALLTHICKNESS / 22);
+				texture.wrapS = THREE.RepeatWrapping;
+				texture.wrapT = THREE.RepeatWrapping;
+				this.mat.floor.needsUpdate = true;
 			}
 		);
 	}
@@ -111,7 +157,7 @@ export default class Map {
 
 	wallClicked(objectClicked){
 		let angle = new THREE.Vector3(0, .5 * Math.PI * objectClicked.face.normal.x + (objectClicked.face.normal.z < 0 ? Math.PI : 0), 0);
-		let testImgSource = "http://127.0.0.1:5500/PraK/modules/virtualGallery/img/posters/bart.png" //todo
+		let testImgSource = "http://127.0.0.1:5500/PraK/modules/virtualGallery/img/posters/0.jpg" //todo
 		let newPosition = objectClicked.point.addScaledVector(objectClicked.face.normal,.01);
 		if(objectClicked.face.normal.z !== 0)
 			newPosition.x = this.roundCoor(newPosition.x);
@@ -225,6 +271,7 @@ class Poster{
 		const geometry = new THREE.PlaneGeometry( .841, 1.189 );
 		this.object = new THREE.Mesh( geometry, map.mat.poster.clone() );
 		this.object.name = "poster";
+		this.object.receiveShadow = true;
 		if(imgSource.slice(-3) === "png"){
 			this.object.material.transparent = true;
 		}

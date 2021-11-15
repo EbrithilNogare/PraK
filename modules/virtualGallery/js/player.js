@@ -15,7 +15,8 @@ export default class Player {
 	map
 	
     editMap = false
-
+	jumpVelocity = 0
+	canJump = true
 
 	constructor(camera, map) {		
 		this.camera = camera;
@@ -37,20 +38,51 @@ export default class Player {
 		direction.x *= (this.moveControls.crouch ? this.CROUCHSPEED : this.MOVESPEED) * delta;
 		direction.z *= (this.moveControls.crouch ? this.CROUCHSPEED : this.MOVESPEED) * delta;
 
-		controls.getObject().position.y = this.moveControls.crouch ? this.PLAYERCROUCHHEIGHT : this.PLAYERHEIGHT;
+		if ( this.moveControls.jump &&  this.canJump === true){
+			this.jumpVelocity += 200;
+			this.canJump = false;	
+		}
+		
+		controls.getObject().position.y += this.jumpVelocity * delta / 20000;
+		if(controls.getObject().position.y > (this.moveControls.crouch ? this.PLAYERCROUCHHEIGHT : this.PLAYERHEIGHT)){
+			this.jumpVelocity -= 9.8 * 80.0 * delta / 1000;
+		} else {
+			controls.getObject().position.y = this.moveControls.crouch ? this.PLAYERCROUCHHEIGHT : this.PLAYERHEIGHT;
+			this.jumpVelocity = 0;
+			this.canJump = true;	
+		}
+
+		let oldPosX = this.camera.position.x;
+		let oldPosZ = this.camera.position.z;
+
 		controls.moveForward( direction.z );
 		controls.moveRight( direction.x );
 
-		for(let wall of this.map.walls){
-			if(
-				Math.min(wall.collisionBox.x1, wall.collisionBox.x2) <= this.camera.position.x &&
-				Math.max(wall.collisionBox.x1, wall.collisionBox.x2) >= this.camera.position.x &&
-				Math.min(wall.collisionBox.z1, wall.collisionBox.z2) <= this.camera.position.z &&
-				Math.max(wall.collisionBox.z1, wall.collisionBox.z2) >= this.camera.position.z
-			){
-				controls.moveForward( - direction.z * (1-this.editMap * .2));
-				controls.moveRight( - direction.x * (1-this.editMap * .2));
-				break;
+		let newPosX = this.camera.position.x;
+		let newPosZ = this.camera.position.z;
+
+		if(!this.editMap){
+			for(let wall of this.map.walls){
+				if(
+					Math.min(wall.collisionBox.x1, wall.collisionBox.x2) <= newPosX &&
+					Math.max(wall.collisionBox.x1, wall.collisionBox.x2) >= newPosX &&
+					Math.min(wall.collisionBox.z1, wall.collisionBox.z2) <= oldPosZ &&
+					Math.max(wall.collisionBox.z1, wall.collisionBox.z2) >= oldPosZ
+				){
+					this.camera.position.x = oldPosX;
+					break;
+				}
+			}
+			for(let wall of this.map.walls){
+				if(
+					Math.min(wall.collisionBox.x1, wall.collisionBox.x2) <= oldPosX &&
+					Math.max(wall.collisionBox.x1, wall.collisionBox.x2) >= oldPosX &&
+					Math.min(wall.collisionBox.z1, wall.collisionBox.z2) <= newPosZ &&
+					Math.max(wall.collisionBox.z1, wall.collisionBox.z2) >= newPosZ
+				){
+					this.camera.position.z = oldPosZ;
+					break;
+				}
 			}
 		}
 		
@@ -122,6 +154,7 @@ export default class Player {
 		left: 0,
 		right: 0,
 		crouch: 0,
+		jump: 0,
 	}
 
 	toggleEditMap(){
@@ -137,6 +170,7 @@ export default class Player {
 				case 'a': this.moveControls.left = 1; break;
 				case 's': this.moveControls.back = 1; break;
 				case 'd': this.moveControls.right = 1; break;
+				case ' ': this.moveControls.jump = 1; break;
 				case 'shift': this.moveControls.crouch = 1; break;
 			}
 		})
@@ -147,6 +181,7 @@ export default class Player {
 				case 'a': this.moveControls.left = 0; break;
 				case 's': this.moveControls.back = 0; break;
 				case 'd': this.moveControls.right = 0; break;
+				case ' ': this.moveControls.jump = 0; break;
 				case 'shift': this.moveControls.crouch = 0; break;
 			}
 		})

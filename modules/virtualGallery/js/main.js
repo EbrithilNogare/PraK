@@ -30,16 +30,16 @@ function init() {
 	renderer.domElement.className = "mainCanvas";
 
 	lights = {};
-	const sun = new THREE.HemisphereLight( 0xeeeeff, 0x777788, 1 );
+	const sun = new THREE.HemisphereLight( 0xffffff, 0xccccff, .8 );
 	sun.position.set( 0, 20, 0 );
 	lights["sun"] = sun
 	scene.add( lights["sun"] );
 	
 	lights["spotlights"] = []
 
-	let dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+	let dirLight = new THREE.DirectionalLight( 0xffffcc, .6 );
 	dirLight.name = 'dirLight';
-	dirLight.position.set( 10, 10, 5 );
+	dirLight.position.set( -10, 10, 4 );
 	dirLight.castShadow = true;
 	dirLight.shadow.camera.near = 1;
 	dirLight.shadow.camera.far = 50;
@@ -53,7 +53,6 @@ function init() {
 	lights["dirLight"] = dirLight
 	
 	//scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) );
-
 	
 	controls = new PointerLockControls( camera, document.body );
 	controls.enableZoom = true;
@@ -62,10 +61,11 @@ function init() {
 	scene.add( controls.getObject() );
 
 	window.addEventListener("resize", onWindowResize);
-
+	
 	map = new Map(scene);
 	map.loadScene();
-	
+	document.getElementById("HDButton").addEventListener("click", e => { map.loadHDTextures(); })
+
 	player = new Player(camera, map);
 	camera.position.set(0, player.PLAYERHEIGHT,0);
 
@@ -109,8 +109,8 @@ function renderMiniMap(){
 	for(let wall of map.walls){
 		minimap.ctx.beginPath();
 		minimap.ctx.rect(
-			(Math.min(wall.x1, wall.x2)+map.mapSize.x/2)/map.WALLTHICKNESS * minimap.scale,
-			(Math.min(wall.z1, wall.z2)+map.mapSize.z/2)/map.WALLTHICKNESS * minimap.scale,
+			(Math.min(wall.x1, wall.x2)+map.mapSize.x/2-map.WALLTHICKNESS/2)/map.WALLTHICKNESS * minimap.scale,
+			(Math.min(wall.z1, wall.z2)+map.mapSize.z/2-map.WALLTHICKNESS/2)/map.WALLTHICKNESS * minimap.scale,
 			(Math.abs(wall.x1-wall.x2)/map.WALLTHICKNESS+1) * minimap.scale,
 			(Math.abs(wall.z1-wall.z2)/map.WALLTHICKNESS+1) * minimap.scale
 		);

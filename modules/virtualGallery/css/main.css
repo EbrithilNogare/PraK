@@ -10,8 +10,27 @@ body {
 	position:absolute;
 	top:0px;
 	right:0px;
-	height:25%;
-	width:auto;
-	opacity:0.8;
+	width: 250px;
+	height: auto;
+	opacity: 0.8;
 	background-color: rgba(102, 102, 102, 0.39);
+}
+
+#HDButton{
+	position: absolute;
+	top: 0;
+	right: 250px;
+}
+
+button {	
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 15px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #347936;
 }
