@@ -157,7 +157,7 @@ export default class Map {
 
 	wallClicked(objectClicked){
 		let angle = new THREE.Vector3(0, .5 * Math.PI * objectClicked.face.normal.x + (objectClicked.face.normal.z < 0 ? Math.PI : 0), 0);
-		let testImgSource = "http://127.0.0.1:5500/PraK/modules/virtualGallery/img/posters/0.jpg" //todo
+		let testImgSource = "img/posters/0.jpg" //todo
 		let newPosition = objectClicked.point.addScaledVector(objectClicked.face.normal,.01);
 		if(objectClicked.face.normal.z !== 0)
 			newPosition.x = this.roundCoor(newPosition.x);
