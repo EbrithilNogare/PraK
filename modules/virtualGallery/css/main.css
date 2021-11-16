@@ -16,21 +16,17 @@ body {
 	background-color: rgba(102, 102, 102, 0.39);
 }
 
-#HDButton{
+#infoBlock{
 	position: absolute;
 	top: 0;
 	right: 250px;
 }
 
 button {	
-	background-color: #4CAF50;
+	background: #000;
 	border: none;
 	color: white;
 	padding: 15px 15px;
 	font-size: 16px;
 	cursor: pointer;
-}
-
-button:hover {
-	background-color: #347936;
 }

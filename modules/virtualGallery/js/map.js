@@ -14,7 +14,7 @@ export default class Map {
 		floor: new THREE.MeshPhongMaterial({name: "floorMaterial", color: 0x000}),
 		grass: new THREE.MeshPhongMaterial({name: "grassMaterial", color: 0x009900}),
 		debugCube: new THREE.MeshPhongMaterial( {name: "debugCubeMaterial", color: 0x009900, opacity: .5, transparent: true} ),
-		wall: new THREE.MeshPhongMaterial( {name: "wallMaterial", color: 0x222222} ),
+		wall: new THREE.MeshPhongMaterial( {name: "wallMaterial", color: 0x444444} ),
 		wallSelected: new THREE.MeshPhongMaterial( {name: "wallSelectedMaterial", color: 0xff1111} ),
 		poster: new THREE.MeshPhongMaterial( {name: "posterMaterial", color: 0x999900} ),
 		skyBox: new THREE.MeshBasicMaterial({name: "skyBoxMaterial", color: 0x000088, side: THREE.BackSide}),
@@ -122,15 +122,11 @@ export default class Map {
 				this.mat.grass.color.set(0xffffff);
 			}
 		);
-	}
-
-	loadHDTextures(){
 		this.mat.wall.normalMap = this.loader.load(
 			'img/textures/wall1/normal.jpg',
 			texture => {
 				texture.wrapS = THREE.RepeatWrapping;
 				texture.wrapT = THREE.RepeatWrapping;
-				this.mat.wall.needsUpdate = true;
 			}
 		);
 		this.mat.floor.normalMap = this.loader.load(
@@ -139,9 +135,12 @@ export default class Map {
 				texture.repeat.set(this.mapSize.x / this.WALLTHICKNESS / 21, this.mapSize.z / this.WALLTHICKNESS / 22);
 				texture.wrapS = THREE.RepeatWrapping;
 				texture.wrapT = THREE.RepeatWrapping;
-				this.mat.floor.needsUpdate = true;
 			}
 		);
+	}
+
+	loadHDTextures(){
+
 	}
 
 	floorClicked(point){
@@ -196,6 +195,8 @@ export default class Map {
 			toReturn.posters.push({ position: poster.position, rotation: poster.rotation, imgSource: poster.imgSource });
 
 		console.log(toReturn);
+		console.log("exported map: ", JSON.stringify(toReturn));
+		navigator.clipboard.writeText(JSON.stringify(toReturn))
 		return(toReturn)
 	}
 	
@@ -272,7 +273,7 @@ class Poster{
 		this.object = new THREE.Mesh( geometry, map.mat.poster.clone() );
 		this.object.name = "poster";
 		this.object.receiveShadow = true;
-		if(imgSource.slice(-3) === "png"){
+		if(imgSource.slice(-3).toLowerCase() === "png"){
 			this.object.material.transparent = true;
 		}
 

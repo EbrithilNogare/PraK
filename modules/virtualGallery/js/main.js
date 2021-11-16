@@ -64,10 +64,10 @@ function init() {
 	
 	map = new Map(scene);
 	map.loadScene();
-	document.getElementById("HDButton").addEventListener("click", e => { map.loadHDTextures(); })
-
+	
 	player = new Player(camera, map);
 	camera.position.set(0, player.PLAYERHEIGHT,0);
+	document.getElementById("infoBlock").addEventListener("click", e => { player.toggleEditMap(); });
 
 	stats = createStats();
 	document.body.appendChild(stats.domElement);
@@ -147,10 +147,8 @@ function createStats() {
 }
 
 function onWindowResize() {
-
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
 
 	renderer.setSize( window.innerWidth, window.innerHeight );
-
 }

@@ -14,7 +14,7 @@ export default class Player {
 	camera
 	map
 	
-    editMap = false
+    editMap = 0 // 0: visitor, 1: walls, 2: posters, 3: models
 	jumpVelocity = 0
 	canJump = true
 
@@ -27,7 +27,7 @@ export default class Player {
 
 	tick(delta, controls){
 		/******** movePlayer *********/
-		if(controls.isLocked !== true)
+		if(!controls.isLocked)
 			return;
 			
 		let direction = new THREE.Vector3();
@@ -61,7 +61,7 @@ export default class Player {
 		let newPosX = this.camera.position.x;
 		let newPosZ = this.camera.position.z;
 
-		if(!this.editMap){
+		if(this.editMap === 0){
 			for(let wall of this.map.walls){
 				if(
 					Math.min(wall.collisionBox.x1, wall.collisionBox.x2) <= newPosX &&
@@ -97,7 +97,7 @@ export default class Player {
 			if(wall.object.material.name !== "wallMaterial")					
 				wall.object.material = this.map.mat.wall;
 
-		if(this.editMap){
+		if(this.editMap > 0){
 			if(this.raycasterHits.length > 0){ 
 				let hit = this.raycasterHits[0];
 				/******* Floor *******/
@@ -144,7 +144,7 @@ export default class Player {
 		} else {
 			this.map.debugCube.visible = false;
 		}
-		this.map.floorGrid.visible = this.editMap;
+		this.map.floorGrid.visible = this.editMap > 0;
 
 	}
 
@@ -157,32 +157,52 @@ export default class Player {
 		jump: 0,
 	}
 
-	toggleEditMap(){
-		this.editMap = !this.editMap;
+	toggleEditMap(toMode = undefined){
+		this.editMap = toMode | (this.editMap + 1) % 4;
+		console.log("edit mode: " + this.editMap);
+		const modes = [ 
+			{name: "Visitor", color: "#000000"},
+			{name: "Walls", color: "#aa0000"},
+			{name: "Posters", color: "#aaaa00"},
+			{name: "Models", color: "#0000aa"},
+		];
+		document.getElementById("infoBlock").textContent = modes[this.editMap].name;
+		document.getElementById("infoBlock").style.background = modes[this.editMap].color;
+		this.map.mat.debugCube.color.set(modes[this.editMap].color);
 	} 
 
 	setupHandlers(){
 		document.addEventListener('keydown', e => {
-			switch(e.key.toLowerCase()){
-				case 'p': this.toggleEditMap(); break;
-				case 'm': console.log("exported map: ", JSON.stringify(this.map.exportMap(this))); break;
-				case 'w': this.moveControls.forward = 1; break;
-				case 'a': this.moveControls.left = 1; break;
-				case 's': this.moveControls.back = 1; break;
-				case 'd': this.moveControls.right = 1; break;
-				case ' ': this.moveControls.jump = 1; break;
-				case 'shift': this.moveControls.crouch = 1; break;
+			switch(e.code){
+				case 'KeyP': this.toggleEditMap(); break;
+				case 'KeyM': this.map.exportMap(this); break;
+				case 'ArrowUp':
+				case 'KeyW': this.moveControls.forward = 1; break;
+				case 'ArrowLeft':
+				case 'KeyA': this.moveControls.left = 1; break;
+				case 'ArrowDown':
+				case 'KeyS': this.moveControls.back = 1; break;
+				case 'ArrowRight':
+				case 'KeyD': this.moveControls.right = 1; break;
+				case 'Space': this.moveControls.jump = 1; break;
+				case 'ShiftRight':
+				case 'ShiftLeft': this.moveControls.crouch = 1; break;
 			}
 		})
 
 		document.addEventListener('keyup', e => {
-			switch(e.key.toLowerCase()){
-				case 'w': this.moveControls.forward = 0; break;
-				case 'a': this.moveControls.left = 0; break;
-				case 's': this.moveControls.back = 0; break;
-				case 'd': this.moveControls.right = 0; break;
-				case ' ': this.moveControls.jump = 0; break;
-				case 'shift': this.moveControls.crouch = 0; break;
+			switch(e.code){
+				case 'ArrowUp':
+				case 'KeyW': this.moveControls.forward = 0; break;
+				case 'ArrowLeft':
+				case 'KeyA': this.moveControls.left = 0; break;
+				case 'ArrowDown':
+				case 'KeyS': this.moveControls.back = 0; break;
+				case 'ArrowRight':
+				case 'KeyD': this.moveControls.right = 0; break;
+				case 'Space': this.moveControls.jump = 0; break;
+				case 'ShiftRight':
+				case 'ShiftLeft': this.moveControls.crouch = 0; break;
 			}
 		})
 
@@ -191,7 +211,7 @@ export default class Player {
         document.addEventListener('webkitpointerlockchange', this.pointerLockCallback, false);
 
         document.addEventListener('click', e => { // left click
-			if(e.button !== 0 || !this.editMap || this.raycasterHits.length == 0)
+			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0)
 				return;
 			if(this.raycasterHits[0].object.name === "floor"){
 				this.map.floorClicked(this.raycasterHits[0].point);
@@ -205,7 +225,7 @@ export default class Player {
 		});
 		
         document.addEventListener('click', e => { // right click
-			if(e.button !== 2 || !this.editMap || this.raycasterHits.length == 0)
+			if(e.button !== 2 || this.editMap === 0 || this.raycasterHits.length === 0)
 				return;
 			if(this.raycasterHits[0].object.name === "wall"){
 				this.map.walls = this.map.walls.filter(wall => wall.object.uuid !== this.raycasterHits[0].object.uuid);
@@ -222,5 +242,14 @@ export default class Player {
 			this.camera.fov = newFov;
 			this.camera.updateProjectionMatrix();
 		});
+
+		document.addEventListener('paste', (event) => {
+			let paste = (event.clipboardData || window.clipboardData).getData('text');
+
+			console.log(paste);
+
+			event.preventDefault();
+		});
+
 	}
 }
