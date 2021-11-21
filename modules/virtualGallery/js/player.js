@@ -13,21 +13,23 @@ export default class Player {
 	
 	camera
 	map
+	controls
 	
     editMap = 0 // 0: visitor, 1: walls, 2: posters, 3: models
 	jumpVelocity = 0
 	canJump = true
 
-	constructor(camera, map) {		
+	constructor(camera, map, controls) {		
 		this.camera = camera;
 		this.map = map;
+		this.controls = controls;
 
 		this.setupHandlers();
 	}
 
-	tick(delta, controls){
+	tick(delta){
 		/******** movePlayer *********/
-		if(!controls.isLocked)
+		if(!this.controls.isLocked)
 			return;
 			
 		let direction = new THREE.Vector3();
@@ -43,11 +45,11 @@ export default class Player {
 			this.canJump = false;	
 		}
 		
-		controls.getObject().position.y += this.jumpVelocity * delta / 20000;
-		if(controls.getObject().position.y > (this.moveControls.crouch ? this.PLAYERCROUCHHEIGHT : this.PLAYERHEIGHT)){
+		this.controls.getObject().position.y += this.jumpVelocity * delta / 20000;
+		if(this.controls.getObject().position.y > (this.moveControls.crouch ? this.PLAYERCROUCHHEIGHT : this.PLAYERHEIGHT)){
 			this.jumpVelocity -= 9.8 * 80.0 * delta / 1000;
 		} else {
-			controls.getObject().position.y = this.moveControls.crouch ? this.PLAYERCROUCHHEIGHT : this.PLAYERHEIGHT;
+			this.controls.getObject().position.y = this.moveControls.crouch ? this.PLAYERCROUCHHEIGHT : this.PLAYERHEIGHT;
 			this.jumpVelocity = 0;
 			this.canJump = true;	
 		}
@@ -55,8 +57,8 @@ export default class Player {
 		let oldPosX = this.camera.position.x;
 		let oldPosZ = this.camera.position.z;
 
-		controls.moveForward( direction.z );
-		controls.moveRight( direction.x );
+		this.controls.moveForward( direction.z );
+		this.controls.moveRight( direction.x );
 
 		let newPosX = this.camera.position.x;
 		let newPosZ = this.camera.position.z;
@@ -87,9 +89,10 @@ export default class Player {
 		}
 		
 		/******** Raytrace *********/
-		this.raycaster.layers.set( 1 );
-		this.raycaster.layers.enable( 2 );
-		this.raycaster.layers.enable( 3 );
+		this.raycaster.layers.set( 1 );    // floor
+		this.raycaster.layers.enable( 2 ); // wall
+		this.raycaster.layers.enable( 3 ); // poster
+		this.raycaster.layers.enable( 4 ); // item
 		this.raycaster.setFromCamera( new THREE.Vector2(0,0), this.camera );
 		this.raycasterHits = this.raycaster.intersectObjects( this.map.scene.children );
 		
@@ -97,53 +100,71 @@ export default class Player {
 			if(wall.object.material.name !== "wallMaterial")					
 				wall.object.material = this.map.mat.wall;
 
-		if(this.editMap > 0){
-			if(this.raycasterHits.length > 0){ 
-				let hit = this.raycasterHits[0];
-				/******* Floor *******/
-				if(hit.object.name === "floor"){
-					this.map.debugCube.visible = true;
-					let hitPointRoundedX = this.map.roundCoor(hit.point.x);
-					let hitPointRoundedZ = this.map.roundCoor(hit.point.z);
-					
-					if(this.map.debugWallFirstPoint === null){
-						/******* Show position *******/
-						this.map.debugCube.scale.set(1,1,1);
-						this.map.debugCube.position.set(
-							hitPointRoundedX,
-							0,
-							hitPointRoundedZ
-						)
-					} else {
-						/******* Show wall *******/
-						this.map.debugCube.scale.set(
-							(Math.abs(hitPointRoundedX - this.map.debugWallFirstPoint.x) + this.map.WALLTHICKNESS) / this.map.WALLTHICKNESS,
-							1,
-							(Math.abs(hitPointRoundedZ - this.map.debugWallFirstPoint.z) + this.map.WALLTHICKNESS) / this.map.WALLTHICKNESS
-						);
-						this.map.debugCube.position.set(
-							(hitPointRoundedX + this.map.debugWallFirstPoint.x) / 2,
-							0,
-							(hitPointRoundedZ + this.map.debugWallFirstPoint.z) / 2,
-						)
-					}
-				} else {
-					this.map.debugCube.visible = false;
-				}
-				/******* Wall *******/
-				if(hit.object.name === "wall"){
-					hit.object.material = this.map.mat.wallSelected;
-				} 
-				/******* Poster *******/
-				if(hit.object.name === "poster"){
-					//hit.object.material = this.map.mat.posterSelected;
-				} 
+		this.map.debugCube.visible = false;
+		
+		let hit = this.raycasterHits.length > 0 ? this.raycasterHits[0] : null;
+		/******* Wall editor *******/
+		if(this.editMap === 1 && this.raycasterHits.length > 0 && hit.object.name === "floor"){
+			this.map.debugCube.visible = true;
+			let hitPointRoundedX = this.map.roundCoor(hit.point.x);
+			let hitPointRoundedZ = this.map.roundCoor(hit.point.z);
+			
+			if(this.map.debugWallFirstPoint === null){
+				/******* Show position *******/
+				this.map.debugCube.scale.set(1,1,1);
+				this.map.debugCube.position.set(
+					hitPointRoundedX,
+					0,
+					hitPointRoundedZ
+				)
 			} else {
-				this.map.debugCube.visible = false;
+				/******* Show wall *******/
+				this.map.debugCube.scale.set(
+					(Math.abs(hitPointRoundedX - this.map.debugWallFirstPoint.x) + this.map.WALLTHICKNESS) / this.map.WALLTHICKNESS,
+					1,
+					(Math.abs(hitPointRoundedZ - this.map.debugWallFirstPoint.z) + this.map.WALLTHICKNESS) / this.map.WALLTHICKNESS
+				);
+				this.map.debugCube.position.set(
+					(hitPointRoundedX + this.map.debugWallFirstPoint.x) / 2,
+					0,
+					(hitPointRoundedZ + this.map.debugWallFirstPoint.z) / 2,
+				)
 			}
-		} else {
-			this.map.debugCube.visible = false;
 		}
+		
+		/******* Poster editor *******/
+		if(this.editMap === 1 && this.raycasterHits.length > 0 && hit.object.name === "wall"){
+			hit.object.material = this.map.mat.wallSelected;
+		}
+		if(this.editMap === 2 && this.raycasterHits.length > 0 && hit.object.name === "wall"){
+			this.map.debugCube.visible = true;
+			this.map.debugCube.scale.set(5*.841, 5*1.189, .1); // todo resize
+			let angle = new THREE.Vector3(0, .5 * Math.PI * hit.face.normal.x + (hit.face.normal.z < 0 ? Math.PI : 0), 0);
+			
+			let newPosition = hit.point.addScaledVector(hit.face.normal,.01);
+			if(hit.face.normal.z !== 0)
+				newPosition.x = this.map.roundCoor(newPosition.x);
+			else
+				newPosition.z = this.map.roundCoor(newPosition.z);
+
+			this.map.debugCube.position.set(newPosition.x, 1.5, newPosition.z);
+
+			this.map.debugCube.rotation.set(angle.x, angle.y, angle.z);
+
+		}		
+		if(this.editMap === 2 && this.raycasterHits.length > 0 && hit.object.name === "poster"){
+
+		}	
+		/******* Items editor *******/
+		/*	
+		if(this.editMap === 3 && hit.object.name === "poster"){
+	
+		}
+		if(this.editMap === 3 && hit.object.name === "poster"){
+	
+		}
+		*/
+
 		this.map.floorGrid.visible = this.editMap > 0;
 
 	}
@@ -188,6 +209,10 @@ export default class Player {
 				case 'ShiftRight':
 				case 'ShiftLeft': this.moveControls.crouch = 1; break;
 			}
+			if(e.code === "KeyS" && e.ctrlKey){
+				this.map.exportMap(this);
+				e.preventDefault();
+			}
 		})
 
 		document.addEventListener('keyup', e => {
@@ -211,29 +236,29 @@ export default class Player {
         document.addEventListener('webkitpointerlockchange', this.pointerLockCallback, false);
 
         document.addEventListener('click', e => { // left click
-			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0)
+			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
 				return;
+
 			if(this.raycasterHits[0].object.name === "floor"){
-				this.map.floorClicked(this.raycasterHits[0].point);
+				this.map.floorClicked(this.raycasterHits[0], this.editMap, "left");
 			}
 			if(this.raycasterHits[0].object.name === "wall"){
-				this.map.wallClicked(this.raycasterHits[0]);
+				this.map.wallClicked(this.raycasterHits[0], this.editMap, "left");
 			}
 			if(this.raycasterHits[0].object.name === "poster"){
-				this.map.posterClicked(this.raycasterHits[0].point);
+				this.map.posterClicked(this.raycasterHits[0], this.editMap, "left");
 			}
 		});
 		
         document.addEventListener('click', e => { // right click
 			if(e.button !== 2 || this.editMap === 0 || this.raycasterHits.length === 0)
 				return;
+
 			if(this.raycasterHits[0].object.name === "wall"){
-				this.map.walls = this.map.walls.filter(wall => wall.object.uuid !== this.raycasterHits[0].object.uuid);
-				this.map.scene.remove(this.raycasterHits[0].object);
+				this.map.wallClicked(this.raycasterHits[0], this.editMap, "right");
 			}
 			if(this.raycasterHits[0].object.name === "poster"){
-				this.map.posters = this.map.posters.filter(poster => poster.object.uuid !== this.raycasterHits[0].object.uuid);
-				this.map.scene.remove(this.raycasterHits[0].object);
+				this.map.posterClicked(this.raycasterHits[0], this.editMap, "right");
 			}
 		});
 
@@ -244,11 +269,20 @@ export default class Player {
 		});
 
 		document.addEventListener('paste', (event) => {
-			let paste = (event.clipboardData || window.clipboardData).getData('text');
-
-			console.log(paste);
-
 			event.preventDefault();
+
+			let paste = (event.clipboardData || window.clipboardData).getData('text');
+			let JSONPaste;
+			try {
+				JSONPaste = JSON.parse(paste);
+			} catch (e) {
+				JSONPaste = {};
+			}
+
+			if(JSONPaste.isMapForVirtualGallery){
+				this.map.clearMap();
+				this.map.importMap(JSONPaste);
+			}
 		});
 
 	}

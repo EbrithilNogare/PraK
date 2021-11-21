@@ -19,6 +19,9 @@ export default class Map {
 		poster: new THREE.MeshPhongMaterial( {name: "posterMaterial", color: 0x999900} ),
 		skyBox: new THREE.MeshBasicMaterial({name: "skyBoxMaterial", color: 0x000088, side: THREE.BackSide}),
 	}
+	textures = {
+
+	}
 	
 	skybox = null;
 	floor = null;
@@ -55,7 +58,7 @@ export default class Map {
 	}
 
 	createDebugCube(){
-		const geometry = new THREE.BoxGeometry( this.WALLTHICKNESS, .1, this.WALLTHICKNESS );
+		const geometry = new THREE.BoxGeometry( this.WALLTHICKNESS, this.WALLTHICKNESS, this.WALLTHICKNESS );
 		this.debugCube = new THREE.Mesh( geometry, this.mat.debugCube );
 		this.scene.add( this.debugCube );
 	}
@@ -143,30 +146,54 @@ export default class Map {
 
 	}
 
-	floorClicked(point){
-		point.x = this.roundCoor(point.x);
-		point.z = this.roundCoor(point.z);
-		if(this.debugWallFirstPoint === null)
-			this.debugWallFirstPoint = new THREE.Vector3(point.x, point.y, point.z);
-		else{
-			this.createWall(this.debugWallFirstPoint, point);
-			this.debugWallFirstPoint = null;
+	floorClicked(objectClicked, editMap, button){
+		if(editMap == 1 && button === "left"){ // editWalls
+			let point = objectClicked.point;
+			point.x = this.roundCoor(point.x);
+			point.z = this.roundCoor(point.z);
+			if(this.debugWallFirstPoint === null)
+				this.debugWallFirstPoint = new THREE.Vector3(point.x, point.y, point.z);
+			else{
+				this.createWall(this.debugWallFirstPoint, point);
+				this.debugWallFirstPoint = null;
+			}
 		}
 	}
 
-	wallClicked(objectClicked){
-		let angle = new THREE.Vector3(0, .5 * Math.PI * objectClicked.face.normal.x + (objectClicked.face.normal.z < 0 ? Math.PI : 0), 0);
-		let testImgSource = "img/posters/0.jpg" //todo
-		let newPosition = objectClicked.point.addScaledVector(objectClicked.face.normal,.01);
-		if(objectClicked.face.normal.z !== 0)
-			newPosition.x = this.roundCoor(newPosition.x);
-		else
-			newPosition.z = this.roundCoor(newPosition.z);
-		this.createPoster(newPosition, angle, testImgSource);
+	wallClicked(objectClicked, editMap, button){
+		if(editMap == 1 && button === "right"){ // editWalls
+			this.walls = this.walls.filter(wall => wall.object.uuid !== objectClicked.object.uuid);
+			this.scene.remove(objectClicked.object);
+		}
+
+		if(editMap == 2 && button === "left"){ // editPosters
+			let angle = new THREE.Vector3(0, .5 * Math.PI * objectClicked.face.normal.x + (objectClicked.face.normal.z < 0 ? Math.PI : 0), 0);
+			let testImgSource = "img/posters/00.jpg" //todo
+			let newPosition = objectClicked.point.addScaledVector(objectClicked.face.normal,.01);
+			if(objectClicked.face.normal.z !== 0)
+				newPosition.x = this.roundCoor(newPosition.x);
+			else
+				newPosition.z = this.roundCoor(newPosition.z);
+			this.createPoster(newPosition, angle, testImgSource);
+		}
 	}
 
-	posterClicked(point){
+	posterClicked(objectClicked, editMap, button){
+		if(editMap == 2 && button === "left"){ // editPosters
+			let poster = this.posters.find(poster => poster.object == objectClicked.object);
+			let oldImgSource = poster.imgSource;
+			let newImgSource = prompt(`enter new imahe source (default: ${oldImgSource})`, oldImgSource);
 
+			if(newImgSource !== null){
+				this.loadTextureToPoster(newImgSource, objectClicked.object);
+				poster.imgSource = newImgSource;
+			}
+		}
+
+		if(editMap == 2 && button === "right"){ // editPosters
+			this.posters = this.posters.filter(poster => poster.object.uuid !== objectClicked.object.uuid);
+			this.scene.remove(objectClicked.object);
+		}
 	}
 
 	roundCoor(coor){
@@ -183,6 +210,7 @@ export default class Map {
 
 	exportMap(player){
 		let toReturn = {
+			isMapForVirtualGallery: true,
 			player: { position: player.camera.position, rotation: {x: player.camera.rotation.x, y: player.camera.rotation.y, z: player.camera.rotation.z} },
 			walls: [],
 			posters: [],
@@ -199,6 +227,18 @@ export default class Map {
 		navigator.clipboard.writeText(JSON.stringify(toReturn))
 		return(toReturn)
 	}
+
+	clearMap(){
+		while(this.walls.length != 0){
+			this.scene.remove(this.walls[0].object);
+			this.walls.shift();
+		}
+		
+		while(this.posters.length != 0){
+			this.scene.remove(this.posters[0].object);
+			this.posters.shift();
+		}
+	}
 	
 	importMap(mapData){
 		this.scene.getObjectByName("camera").position.set(mapData.player.position.x, mapData.player.position.y, mapData.player.position.z);
@@ -210,6 +250,44 @@ export default class Map {
 		for(let poster of mapData.posters)
 			this.createPoster(poster.position, poster.rotation, poster.imgSource, this);
 	
+	}
+	
+	loadTextureToPoster(newImgSource, myObject){
+		if (newImgSource in this.textures){
+			myObject.scale.set(
+				this.textures[newImgSource].image.width / this.textures[newImgSource].image.height,
+				1,
+				this.textures[newImgSource].image.width / this.textures[newImgSource].image.height
+			);
+
+			if(newImgSource.slice(-3).toLowerCase() === "png"){
+				myObject.material.transparent = true;
+			}
+
+			myObject.material.color.set(0xffffff);
+			myObject.material.map = this.textures[newImgSource];
+			myObject.material.needsUpdate = true;
+			
+			return;
+		}
+
+		this.loader.loadAsync( newImgSource )
+		.then(texture => {
+			myObject.scale.set(
+				texture.image.width / texture.image.height,
+				1,
+				texture.image.width / texture.image.height
+			);
+
+			if(newImgSource.slice(-3).toLowerCase() === "png"){
+				myObject.material.transparent = true;
+			}
+
+			myObject.material.color.set(0xffffff);
+			myObject.material.map = texture;
+			myObject.material.needsUpdate = true;
+			this.textures[newImgSource] = texture;
+		})
 	}
 
 }
@@ -269,24 +347,16 @@ class Poster{
 		this.rotation = rotation;
 		this.imgSource = imgSource;
 		
-		const geometry = new THREE.PlaneGeometry( .841, 1.189 );
+		const geometry = new THREE.PlaneGeometry( 1.189, 1.189 );
 		this.object = new THREE.Mesh( geometry, map.mat.poster.clone() );
 		this.object.name = "poster";
 		this.object.receiveShadow = true;
-		if(imgSource.slice(-3).toLowerCase() === "png"){
-			this.object.material.transparent = true;
-		}
 
 		this.object.layers.enable( 3 );
 		this.object.position.set(position.x, 1.5, position.z)
 		this.object.rotation.set(rotation.x, rotation.y, rotation.z)
 		map.scene.add( this.object );
 
-		map.loader.loadAsync( imgSource )
-		.then(texture => {
-			this.object.material.color.set(0xffffff);
-			this.object.material.map = texture;
-			this.object.material.needsUpdate = true;
-		})
+		map.loadTextureToPoster(imgSource, this.object)
 	}
 }

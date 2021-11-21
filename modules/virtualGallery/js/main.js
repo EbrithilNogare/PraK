@@ -65,7 +65,7 @@ function init() {
 	map = new Map(scene);
 	map.loadScene();
 	
-	player = new Player(camera, map);
+	player = new Player(camera, map, controls);
 	camera.position.set(0, player.PLAYERHEIGHT,0);
 	document.getElementById("infoBlock").addEventListener("click", e => { player.toggleEditMap(); });
 
@@ -95,7 +95,7 @@ function animation(time) {
 
 function tick(delta) {
 	map.tick(delta);
-	player.tick(delta, controls);
+	player.tick(delta);
 }
 
 function render() {
