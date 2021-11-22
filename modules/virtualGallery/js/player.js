@@ -101,6 +101,8 @@ export default class Player {
 				wall.object.material = this.map.mat.wall;
 
 		this.map.debugCube.visible = false;
+		this.map.debugCube.rotation.set(0,0,0);
+
 		
 		let hit = this.raycasterHits.length > 0 ? this.raycasterHits[0] : null;
 		/******* Wall editor *******/
