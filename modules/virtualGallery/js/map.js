@@ -28,8 +28,8 @@ export default class Map {
 	floorGrid = null;
 	debugCube = null;
 	debugWallFirstPoint = null;
-	walls = []
-	posters = []
+	walls = [];
+	posters = [];
 
 	constructor(scene, importMap = null){
 		this.scene = scene;
@@ -60,6 +60,7 @@ export default class Map {
 	createDebugCube(){
 		const geometry = new THREE.BoxGeometry( this.WALLTHICKNESS, this.WALLTHICKNESS, this.WALLTHICKNESS );
 		this.debugCube = new THREE.Mesh( geometry, this.mat.debugCube );
+		this.debugCube.visible = false;
 		this.scene.add( this.debugCube );
 	}
 
@@ -306,14 +307,14 @@ class Wall{
 		this.x2 = x2;
 		this.z2 = z2;
 		this.collisionBox = {
-			x1: Math.min(x1,x2)-map.WALLTHICKNESS,
-			z1: Math.min(z1,z2)-map.WALLTHICKNESS,
-			x2: Math.max(x1,x2)+map.WALLTHICKNESS,
-			z2: Math.max(z1,z2)+map.WALLTHICKNESS,
+			x1: Math.min(x1,x2) - map.WALLTHICKNESS,
+			z1: Math.min(z1,z2) - map.WALLTHICKNESS,
+			x2: Math.max(x1,x2) + map.WALLTHICKNESS,
+			z2: Math.max(z1,z2) + map.WALLTHICKNESS,
 		}
 		
 		const geometry = new THREE.BoxGeometry( Math.abs(x1-x2)+map.WALLTHICKNESS, map.WALLHEIGHT, Math.abs(z1-z2)+map.WALLTHICKNESS );
-		this.assignUVs(geometry, Math.abs(x1-x2)+1, Math.abs(z1-z2)+1, map.WALLHEIGHT);
+		this.assignUVs(geometry, Math.abs(x1-x2)+map.WALLTHICKNESS, Math.abs(z1-z2)+map.WALLTHICKNESS, map.WALLHEIGHT);
 		this.object = new THREE.Mesh( geometry, map.mat.wall );
 		this.object.name = "wall";
 		this.object.layers.enable( 2 );

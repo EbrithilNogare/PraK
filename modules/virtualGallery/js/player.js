@@ -265,7 +265,7 @@ export default class Player {
 		});
 
 		document.addEventListener('wheel', e => {
-			let newFov = Math.min(Math.max(this.camera.fov + e.deltaY * .04, 10), 70);
+			let newFov = Math.min(Math.max(this.camera.fov + e.deltaY * .07, 10), 70);
 			this.camera.fov = newFov;
 			this.camera.updateProjectionMatrix();
 		});

@@ -17,6 +17,8 @@ let camera, scene, renderer, lights, stats, player, input, map, controls, prevTi
 init()
 
 function init() {
+	THREE.Cache.enabled = true;
+
 	scene = new THREE.Scene();
 	scene.background = new THREE.Color("black");
 
