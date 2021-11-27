@@ -105,6 +105,7 @@ export default class Map {
 				texture.repeat.set(this.mapSize.x / this.WALLTHICKNESS / 21, this.mapSize.z / this.WALLTHICKNESS / 22);
 				texture.wrapS = THREE.RepeatWrapping;
 				texture.wrapT = THREE.RepeatWrapping;
+				texture.anisotropy = 16;
 				this.mat.floor.color.set(0xffffff);
 			}
 		);
@@ -210,22 +211,57 @@ export default class Map {
 	}
 
 	exportMap(player){
+		const FD = 3; // fixed digits
+
 		let toReturn = {
 			isMapForVirtualGallery: true,
-			player: { position: player.camera.position, rotation: {x: player.camera.rotation.x, y: player.camera.rotation.y, z: player.camera.rotation.z} },
+			player: {
+				position: {
+					x: +player.camera.position.x.toFixed(FD),
+					y: +player.camera.position.y.toFixed(FD),
+					z: +player.camera.position.z.toFixed(FD)
+				},
+				rotation: {
+					x: +player.camera.rotation.x.toFixed(FD),
+					y: +player.camera.rotation.y.toFixed(FD),
+					z: +player.camera.rotation.z.toFixed(FD)
+				}
+			},
 			walls: [],
 			posters: [],
 		}
 
 		for(let wall of this.walls)
-			toReturn.walls.push({ x1:wall.x1, z1:wall.z1, x2:wall.x2, z2:wall.z2 });
+			toReturn.walls.push({ 
+				x1: +wall.x1.toFixed(FD),
+				z1: +wall.z1.toFixed(FD),
+				x2: +wall.x2.toFixed(FD),
+				z2: +wall.z2.toFixed(FD)
+			});
 
 		for(let poster of this.posters)
-			toReturn.posters.push({ position: poster.position, rotation: poster.rotation, imgSource: poster.imgSource });
+			toReturn.posters.push({ 
+				position: {
+					x: +poster.position.x.toFixed(FD),
+					y: +poster.position.y.toFixed(FD),
+					z: +poster.position.z.toFixed(FD)
+				},
+				rotation: {
+					x: +poster.rotation.x.toFixed(FD),
+					y: +poster.rotation.y.toFixed(FD),
+					z: +poster.rotation.z.toFixed(FD)
+				},
+				imgSource: poster.imgSource
+			});
 
-		console.log(toReturn);
-		console.log("exported map: ", JSON.stringify(toReturn));
-		navigator.clipboard.writeText(JSON.stringify(toReturn))
+		console.log("exported map: ", toReturn);
+		
+		let json = JSON.stringify(toReturn);
+		console.log("exported map JSON: ", json);
+		navigator.clipboard.writeText(json);
+
+		console.log("exported map URI: ", window.location.href.split('?')[0] + "?rawMap=" + encodeURI(json));
+		
 		return(toReturn)
 	}
 
@@ -242,6 +278,7 @@ export default class Map {
 	}
 	
 	importMap(mapData){
+		console.log();
 		this.scene.getObjectByName("camera").position.set(mapData.player.position.x, mapData.player.position.y, mapData.player.position.z);
 		this.scene.getObjectByName("camera").rotation.set(mapData.player.rotation.x, mapData.player.rotation.y, mapData.player.rotation.z);
 
@@ -314,7 +351,7 @@ class Wall{
 		}
 		
 		const geometry = new THREE.BoxGeometry( Math.abs(x1-x2)+map.WALLTHICKNESS, map.WALLHEIGHT, Math.abs(z1-z2)+map.WALLTHICKNESS );
-		this.assignUVs(geometry, Math.abs(x1-x2)+map.WALLTHICKNESS, Math.abs(z1-z2)+map.WALLTHICKNESS, map.WALLHEIGHT);
+		this.assignUVs(geometry, Math.abs(x1-x2)+map.WALLTHICKNESS, Math.abs(z1-z2)+map.WALLTHICKNESS, map.WALLHEIGHT, x1, z1);
 		this.object = new THREE.Mesh( geometry, map.mat.wall );
 		this.object.name = "wall";
 		this.object.layers.enable( 2 );
@@ -324,13 +361,14 @@ class Wall{
 		map.scene.add( this.object );
 	}
 	
-	assignUVs(geometry, width, depth, WALLHEIGHT) {
-	
-		let uvs = geometry.getAttribute("uv");
+	assignUVs(geometry, width, depth, WALLHEIGHT, positionX, positionZ) {
 
+		let uvs = geometry.getAttribute("uv");
+		const motion = positionX + positionZ;
 		for (let i = 0; i < uvs.array.length-1; i+=2) {
 			if(i%2==1) continue;
 			uvs.array[i] *= i > 16 ? width / WALLHEIGHT : depth / WALLHEIGHT;
+			uvs.array[i] += motion;
 		}
 		
 		geometry.uvsNeedUpdate = true;

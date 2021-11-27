@@ -196,6 +196,12 @@ export default class Player {
 
 	setupHandlers(){
 		document.addEventListener('keydown', e => {
+			if(e.code === "KeyS" && e.ctrlKey){
+				this.map.exportMap(this);
+				e.preventDefault();
+				return;
+			}
+
 			switch(e.code){
 				case 'KeyP': this.toggleEditMap(); break;
 				case 'KeyM': this.map.exportMap(this); break;
@@ -210,10 +216,6 @@ export default class Player {
 				case 'Space': this.moveControls.jump = 1; break;
 				case 'ShiftRight':
 				case 'ShiftLeft': this.moveControls.crouch = 1; break;
-			}
-			if(e.code === "KeyS" && e.ctrlKey){
-				this.map.exportMap(this);
-				e.preventDefault();
 			}
 		})
 

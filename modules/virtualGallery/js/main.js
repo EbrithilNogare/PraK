@@ -83,7 +83,17 @@ function init() {
 	minimapCavnas.width = map.mapSize.x / map.WALLTHICKNESS * minimap.scale;
 	minimapCavnas.height = map.mapSize.z / map.WALLTHICKNESS * minimap.scale;
 
-	map.importMap(Maps.debugMap);
+	/* Load map */
+	const urlParams = new URLSearchParams(window.location.search);
+	let mapToImport = urlParams.get('map');
+	let rawMapToImport = urlParams.get('rawMap');
+	if(mapToImport !== null)
+		map.importMap(Maps[mapToImport]);
+	else if(rawMapToImport !== null)
+		map.importMap(JSON.parse(decodeURI(rawMapToImport)));
+	else 
+		map.importMap(Maps["empty"]);
+	
 	renderer.setAnimationLoop(animation);
 }
 
