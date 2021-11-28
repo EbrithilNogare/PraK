@@ -69,7 +69,6 @@ function init() {
 	
 	player = new Player(camera, map, controls);
 	camera.position.set(0, player.PLAYERHEIGHT,0);
-	document.getElementById("infoBlock").addEventListener("click", e => { player.toggleEditMap(); });
 
 	stats = createStats();
 	document.body.appendChild(stats.domElement);
@@ -82,6 +81,17 @@ function init() {
 	};
 	minimapCavnas.width = map.mapSize.x / map.WALLTHICKNESS * minimap.scale;
 	minimapCavnas.height = map.mapSize.z / map.WALLTHICKNESS * minimap.scale;
+
+
+	document.getElementById("infoBlock").addEventListener("click", e => { 
+		document.getElementById("infoBlock").classList.toggle("visible");
+		const domElement = document.getElementById("infoBlockClose");
+		if(domElement.innerHTML === "Zobrazit nápovědu")
+			domElement.innerHTML = "Skrýt nápovědu (x)";
+		else
+			domElement.innerHTML = "Zobrazit nápovědu";
+
+	});
 
 	/* Load map */
 	const urlParams = new URLSearchParams(window.location.search);
@@ -126,7 +136,7 @@ function renderMiniMap(){
 			(Math.abs(wall.x1-wall.x2)/map.WALLTHICKNESS+1) * minimap.scale,
 			(Math.abs(wall.z1-wall.z2)/map.WALLTHICKNESS+1) * minimap.scale
 		);
-		minimap.ctx.fillStyle = 'black';
+		minimap.ctx.fillStyle = '#000000';
 		minimap.ctx.fill();
 	}
 	
@@ -135,15 +145,15 @@ function renderMiniMap(){
 		let posterPosZ = (poster.position.z + map.mapSize.z/2)/map.WALLTHICKNESS * minimap.scale;
 		minimap.ctx.beginPath();
 		minimap.ctx.arc(posterPosX, posterPosZ, 1*minimap.scale, 0, 2 * Math.PI);
-		minimap.ctx.fillStyle = 'yellow';
+		minimap.ctx.fillStyle = '#ff9900';
 		minimap.ctx.fill();
 	}
 
 	let playerPosX = (camera.position.x + map.mapSize.x/2)/map.WALLTHICKNESS * minimap.scale;
 	let playerPosZ = (camera.position.z + map.mapSize.z/2)/map.WALLTHICKNESS * minimap.scale;
 	minimap.ctx.beginPath();
-	minimap.ctx.arc(playerPosX, playerPosZ, 1*minimap.scale, 0, 2 * Math.PI);
-	minimap.ctx.fillStyle = 'green';
+	minimap.ctx.arc(playerPosX, playerPosZ, 2*minimap.scale, 0, 2 * Math.PI);
+	minimap.ctx.fillStyle = '#880000';
 	minimap.ctx.fill();
 }
 

@@ -14,20 +14,38 @@ body {
 	width: 250px;
 	height: auto;
 	opacity: 0.8;
-	background-color: rgba(102, 102, 102, 0.39);
+	background: #00000066;
 }
 
 #infoBlock{
 	position: absolute;
-	top: 0;
-	right: 250px;
+	top: 250px;
+	right: 0px;
+	width: 250px;
+	
+	box-sizing: border-box;
+	overflow-y: hidden;
+	background: #00000066;
+	cursor: pointer;
+	
+	font-family: roboto, sans-serif;
+	color: white;
+	font-size: 15px;
+	line-height: 20px;
+	text-align: center;
+	
+	display: grid;
 }
 
-button {	
-	background: #000;
-	border: none;
-	color: white;
-	padding: 15px 15px;
-	font-size: 16px;
-	cursor: pointer;
+#infoBlock.visible{
+	height: 21px;
 }
+
+#infoBlock img{
+	width: 100%;
+}
+
+#infoBlockClose{
+	height: 14px;
+}
+

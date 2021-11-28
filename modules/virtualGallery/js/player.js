@@ -31,6 +31,9 @@ export default class Player {
 		/******** movePlayer *********/
 		if(!this.controls.isLocked)
 			return;
+
+		if(delta > 500)
+			return;
 			
 		let direction = new THREE.Vector3();
 		direction.z = this.moveControls.forward - this.moveControls.back;
@@ -184,13 +187,28 @@ export default class Player {
 		this.editMap = toMode | (this.editMap + 1) % 4;
 		console.log("edit mode: " + this.editMap);
 		const modes = [ 
-			{name: "Visitor", color: "#000000"},
-			{name: "Walls", color: "#aa0000"},
-			{name: "Posters", color: "#aaaa00"},
-			{name: "Models", color: "#0000aa"},
+			{name: "Visitor", color: "#000000", innerHTML: ""},
+			{name: "Walls", color: "#aa0000", innerHTML: `
+				Kliknutím na zem se začne tvořit zeď <br/>
+				Druhé kliknutí zeď dokončí <br/>
+				Pravým kliknutím na zeď se zničí <br/>
+			`},
+			{name: "Posters", color: "#aaaa00", innerHTML: `
+			Kliknutím na stěnu se umístí plakát <br/>
+			Kliknutí na plakát změní url obrázku <br/>
+			Pravým kliknutím na plakát se zničí <br/>
+		`},
+			{name: "Models", color: "#0000aa", innerHTML: ``},
 		];
-		document.getElementById("infoBlock").textContent = modes[this.editMap].name;
-		document.getElementById("infoBlock").style.background = modes[this.editMap].color;
+
+		let textToShow = `
+			CTRL + S uloží mapu do clipboardu<br/>
+			CTRL + V načte mapu z clipboardu<br/><br/>
+		`
+		textToShow += modes[this.editMap].innerHTML;
+		document.getElementById("infoBlockMode").innerHTML = this.editMap !== 0 ? textToShow : "";
+		document.getElementById("infoBlockMode").style.background = modes[this.editMap].color+"55";
+
 		this.map.mat.debugCube.color.set(modes[this.editMap].color);
 	} 
 
@@ -214,8 +232,10 @@ export default class Player {
 				case 'ArrowRight':
 				case 'KeyD': this.moveControls.right = 1; break;
 				case 'Space': this.moveControls.jump = 1; break;
+				case 'KeyC':
 				case 'ShiftRight':
 				case 'ShiftLeft': this.moveControls.crouch = 1; break;
+				case 'KeyX': document.getElementById("infoBlock").click();
 			}
 		})
 
@@ -230,6 +250,7 @@ export default class Player {
 				case 'ArrowRight':
 				case 'KeyD': this.moveControls.right = 0; break;
 				case 'Space': this.moveControls.jump = 0; break;
+				case 'KeyC':
 				case 'ShiftRight':
 				case 'ShiftLeft': this.moveControls.crouch = 0; break;
 			}

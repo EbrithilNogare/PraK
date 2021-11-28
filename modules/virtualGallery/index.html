@@ -8,7 +8,23 @@
     <body>
         <canvas id="minimap" height="200" width="200">no canvas</canvas>
         <div style="width:2px; height:2px; position:absolute; top:calc(50% - 1px); left:calc(50% - 1px); background:#a00;"></div>
-        <button id="infoBlock">Visitor</button>
+        <div id="infoBlock"> 
+            <div id="infoBlockClose">
+                Skrýt nápovědu (x)
+            </div>
+            <hr style="width: 95%;">
+            <div id="infoBlockCommon">
+                <img src="img/inputs.png" alt="">
+                Ovládání pomocí <b>WASD</b> <br>
+                <b>Myš</b> po kliknutí slouží k rozhlížení <br>
+                <b>Kolečkem</b> se přibližuje a oddaluje <br/>
+                Klávesa <b>ESC</b> uvolní kurzor  <br>
+                Klávesa <b>P</b> přepíná mezi režimy
+            </div>
+            <hr style="width: 95%;">
+            <div id="infoBlockMode"></div>
+            
+        </div>
 
         <script src="js/main.js" type="module"></script>
     </body>
