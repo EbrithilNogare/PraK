@@ -202,6 +202,8 @@ export default class Player {
 		];
 
 		let textToShow = `
+			${modes[this.editMap].name} mode
+			<br/>
 			CTRL + S uloží mapu do clipboardu<br/>
 			CTRL + V načte mapu z clipboardu<br/><br/>
 		`
