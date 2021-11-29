@@ -174,8 +174,8 @@ export default class Player {
 				hitPointRoundedZ
 			)
 		}
-		if(this.editMap === 3 && this.raycasterHits.length > 0 && hit.object.name === "model"){
-	
+		if(this.editMap === 3 && this.raycasterHits.length > 0 && hit.object.name === "modelComponent"){
+			//console.log(hit.object.parent)
 		}
 		
 
@@ -203,11 +203,15 @@ export default class Player {
 				Pravým kliknutím na zeď se zničí <br/>
 			`},
 			{name: "Posters", color: "#aaaa00", innerHTML: `
-			Kliknutím na stěnu se umístí plakát <br/>
-			Kliknutí na plakát změní url obrázku <br/>
-			Pravým kliknutím na plakát se zničí <br/>
-		`},
-			{name: "Models", color: "#0000aa", innerHTML: ``},
+				Kliknutím na stěnu se umístí plakát <br/>
+				Kliknutí na plakát změní url obrázku <br/>
+				Pravým kliknutím na plakát se zničí <br/>
+			`},
+			{name: "Models", color: "#0000aa", innerHTML: `
+				Kliknutím na zem se umístí model <br/>
+				Kliknutí na model změní data modelu <br/>
+				Pravým kliknutím na model se zničí <br/>
+			`},
 		];
 
 		let textToShow = `
@@ -284,6 +288,9 @@ export default class Player {
 			if(this.raycasterHits[0].object.name === "poster"){
 				this.map.posterClicked(this.raycasterHits[0], this.editMap, "left");
 			}
+			if(this.raycasterHits[0].object.name === "modelComponent"){
+				this.map.modelClicked(this.raycasterHits[0], this.editMap, "left");
+			}
 		});
 		
         document.addEventListener('click', e => { // right click
@@ -295,6 +302,9 @@ export default class Player {
 			}
 			if(this.raycasterHits[0].object.name === "poster"){
 				this.map.posterClicked(this.raycasterHits[0], this.editMap, "right");
+			}
+			if(this.raycasterHits[0].object.name === "modelComponent"){
+				this.map.modelClicked(this.raycasterHits[0], this.editMap, "right");
 			}
 		});
 

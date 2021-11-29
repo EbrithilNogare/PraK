@@ -148,6 +148,15 @@ function renderMiniMap(){
 		minimap.ctx.fillStyle = '#ff9900';
 		minimap.ctx.fill();
 	}
+	
+	for(let model of map.models){
+		let modelPosX = (model.position.x + map.mapSize.x/2)/map.WALLTHICKNESS * minimap.scale;
+		let modelPosZ = (model.position.z + map.mapSize.z/2)/map.WALLTHICKNESS * minimap.scale;
+		minimap.ctx.beginPath();
+		minimap.ctx.arc(modelPosX, modelPosZ, 2*minimap.scale, 0, 2 * Math.PI);
+		minimap.ctx.fillStyle = '#000099';
+		minimap.ctx.fill();
+	}
 
 	let playerPosX = (camera.position.x + map.mapSize.x/2)/map.WALLTHICKNESS * minimap.scale;
 	let playerPosZ = (camera.position.z + map.mapSize.z/2)/map.WALLTHICKNESS * minimap.scale;

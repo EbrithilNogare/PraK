@@ -169,7 +169,7 @@ export default class Map {
 			let point = objectClicked.point;
 			point.x = this.roundCoor(point.x);
 			point.z = this.roundCoor(point.z);
-			this.createModel(point);
+			this.createModel(point, new THREE.Vector3(), 1.5, "models/jezek/jezek.obj", "models/jezek/jezek.mtl");
 		}
 	}
 
@@ -209,6 +209,15 @@ export default class Map {
 		}
 	}
 
+	modelClicked(objectClicked, editMap, button){
+		if(editMap == 3 && button === "right"){ // editPosters
+			let parent = objectClicked.object.parent;
+			console.log(parent);
+			this.models = this.models.filter(model => model.object.uuid !== parent.uuid);
+			this.scene.remove(parent);
+		}
+	}
+
 	roundCoor(coor){
 		return Math.floor(coor/this.WALLTHICKNESS-this.WALLTHICKNESS/2)*this.WALLTHICKNESS+this.WALLTHICKNESS/2
 	}
@@ -221,8 +230,8 @@ export default class Map {
 		this.posters.push(new Poster(position, rotation, imgSource, this))
 	}
 
-	createModel(position, rotation, modelOBJ, modelMTL){ //todo
-		this.models.push(new Model(position, rotation, 1.5, "models/jezek/jezek.obj", "models/jezek/jezek.mtl", this))
+	createModel(position, rotation, size, modelOBJ, modelMTL){ //todo
+		this.models.push(new Model(position, rotation, size, modelOBJ, modelMTL, this))
 	}
 
 	exportMap(player){
@@ -244,6 +253,7 @@ export default class Map {
 			},
 			walls: [],
 			posters: [],
+			models: [],
 		}
 
 		for(let wall of this.walls)
@@ -254,7 +264,7 @@ export default class Map {
 				z2: +wall.z2.toFixed(FD)
 			});
 
-		for(let poster of this.posters)
+			for(let poster of this.posters)
 			toReturn.posters.push({ 
 				position: {
 					x: +poster.position.x.toFixed(FD),
@@ -268,6 +278,23 @@ export default class Map {
 				},
 				imgSource: poster.imgSource
 			});
+
+			for(let model of this.models)
+				toReturn.models.push({ 
+					position: {
+						x: +model.position.x.toFixed(FD),
+						y: +model.position.y.toFixed(FD),
+						z: +model.position.z.toFixed(FD)
+					},
+					rotation: {
+						x: +model.rotation.x.toFixed(FD),
+						y: +model.rotation.y.toFixed(FD),
+						z: +model.rotation.z.toFixed(FD)
+					},
+					size: model.size,
+					sourceOBJ: model.sourceOBJ,
+					sourceMTL: model.sourceMTL
+				});
 
 		console.log("exported map: ", toReturn);
 		
@@ -301,7 +328,10 @@ export default class Map {
 			this.createWall({ x:wall.x1, z:wall.z1 }, { x:wall.x2, z:wall.z2 });
 		
 		for(let poster of mapData.posters)
-			this.createPoster(poster.position, poster.rotation, poster.imgSource, this);
+			this.createPoster(poster.position, poster.rotation, poster.imgSource);
+			
+		for(let model of mapData.models)
+			this.createModel(model.position, model.rotation, model.size, model.sourceOBJ, model.sourceMTL);
 	
 	}
 	
@@ -418,13 +448,17 @@ class Poster{
 class Model{
 	position
 	rotation
-	scale
+	size
+	sourceOBJ
+	sourceMTL
 	object
 
 	constructor(position, rotation, size, sourceOBJ, sourceMTL, map){
 		this.position = position;
 		this.rotation = rotation;
 		this.size = size; // 1 is 1 meter
+		this.sourceOBJ = sourceOBJ;
+		this.sourceMTL = sourceMTL;
 
 		this.loadModel(sourceOBJ, sourceMTL, map);
 	}
@@ -440,24 +474,30 @@ class Model{
 				object => {
 					const boundingBox = new THREE.Box3().setFromObject(object);
 
-					object.layers.enable(4);
 					object.name = "model";
 					object.children.forEach(mesh => {
+						mesh.name = "modelComponent";
+						mesh.castShadow = true
 						mesh.receiveShadow = true
+						mesh.layers.enable(4);
+						mesh.material.metalness = 0;
+						mesh.material.roughness = 1;
 					});
+					console.log(object);
 
+					let maxSide = Math.max(boundingBox.max.x - boundingBox.min.x, Math.max(boundingBox.max.y - boundingBox.min.y, boundingBox.max.z - boundingBox.min.z));
 					object.scale.set(
-						this.size/(boundingBox.max.x - boundingBox.min.x),
-						this.size/(boundingBox.max.y - boundingBox.min.y),
-						this.size/(boundingBox.max.z - boundingBox.min.z)
+						this.size/maxSide,
+						this.size/maxSide,
+						this.size/maxSide
 					);
-					object.position.set(this.position.x,-this.size*boundingBox.min.y/(boundingBox.max.y - boundingBox.min.y),this.position.z);
+					object.position.set(this.position.x,-this.size*boundingBox.min.y/maxSide,this.position.z);
 					
-					const boundingBoxHelper = new THREE.BoxHelper( object, 0xffff00 );
+					//const boundingBoxHelper = new THREE.BoxHelper( object, 0xffff00 );
+					//map.scene.add(boundingBoxHelper);
 					
 					this.object = object;
 					map.scene.add(object);
-					map.scene.add(boundingBoxHelper);
 				},
 				xhr => { 
 					console.log( modelOBJ + " " + Math.round( xhr.loaded / xhr.total * 100, 2 ) + '% downloaded' )
