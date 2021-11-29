@@ -1,4 +1,4 @@
-import * as THREE from './threejs/three.module.js'
+import * as THREE from 'https://cdn.skypack.dev/three@0.135.0'
 
 export default class Player {
 	raycaster = new THREE.Raycaster();
@@ -95,7 +95,7 @@ export default class Player {
 		this.raycaster.layers.set( 1 );    // floor
 		this.raycaster.layers.enable( 2 ); // wall
 		this.raycaster.layers.enable( 3 ); // poster
-		this.raycaster.layers.enable( 4 ); // item
+		this.raycaster.layers.enable( 4 ); // model
 		this.raycaster.setFromCamera( new THREE.Vector2(0,0), this.camera );
 		this.raycasterHits = this.raycaster.intersectObjects( this.map.scene.children );
 		
@@ -161,14 +161,23 @@ export default class Player {
 
 		}	
 		/******* Items editor *******/
-		/*	
-		if(this.editMap === 3 && hit.object.name === "poster"){
+		
+		if(this.editMap === 3 && this.raycasterHits.length > 0 && hit.object.name === "floor"){
+			this.map.debugCube.visible = true;
+			let hitPointRoundedX = this.map.roundCoor(hit.point.x);
+			let hitPointRoundedZ = this.map.roundCoor(hit.point.z);
+
+			this.map.debugCube.scale.set(5,1,5);
+			this.map.debugCube.position.set(
+				hitPointRoundedX,
+				0,
+				hitPointRoundedZ
+			)
+		}
+		if(this.editMap === 3 && this.raycasterHits.length > 0 && hit.object.name === "model"){
 	
 		}
-		if(this.editMap === 3 && hit.object.name === "poster"){
-	
-		}
-		*/
+		
 
 		this.map.floorGrid.visible = this.editMap > 0;
 

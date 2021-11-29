@@ -1,9 +1,13 @@
 import Player from './player.js';
-import * as THREE from './threejs/three.module.js'
+import * as THREE from 'https://cdn.skypack.dev/three@0.135.0'
+import { OBJLoader } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/loaders/OBJLoader.js';
+import { MTLLoader } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/loaders/MTLLoader.js'
 
 
 export default class Map {
-	loader = new THREE.TextureLoader();
+	textureLoader = new THREE.TextureLoader();
+	objLoader = new OBJLoader();
+	mtlLoader = new MTLLoader();
 	scene
 	
 	WALLHEIGHT = 2.2;
@@ -30,6 +34,7 @@ export default class Map {
 	debugWallFirstPoint = null;
 	walls = [];
 	posters = [];
+	models = [];
 
 	constructor(scene, importMap = null){
 		this.scene = scene;
@@ -99,7 +104,7 @@ export default class Map {
 	}
 
 	loadTextures(){
-		this.mat.floor.map = this.loader.load(
+		this.mat.floor.map = this.textureLoader.load(
 			'img/textures/brickFloor/diff.jpg',
 			texture => {
 				texture.repeat.set(this.mapSize.x / this.WALLTHICKNESS / 21, this.mapSize.z / this.WALLTHICKNESS / 22);
@@ -109,7 +114,7 @@ export default class Map {
 				this.mat.floor.color.set(0xffffff);
 			}
 		);
-		this.mat.wall.map = this.mat.wallSelected.map = this.loader.load(
+		this.mat.wall.map = this.mat.wallSelected.map = this.textureLoader.load(
 			'img/textures/wall1/diff.jpg',
 			texture => {
 				texture.wrapS = THREE.RepeatWrapping;
@@ -117,7 +122,7 @@ export default class Map {
 				this.mat.wall.color.set(0xffffff);
 			}
 		);
-		this.mat.grass.map = this.loader.load(
+		this.mat.grass.map = this.textureLoader.load(
 			'img/textures/grass/diff.jpg',
 			texture => {
 				texture.repeat.set(400, 400);
@@ -127,14 +132,14 @@ export default class Map {
 				this.mat.grass.color.set(0xffffff);
 			}
 		);
-		this.mat.wall.normalMap = this.loader.load(
+		this.mat.wall.normalMap = this.textureLoader.load(
 			'img/textures/wall1/normal.jpg',
 			texture => {
 				texture.wrapS = THREE.RepeatWrapping;
 				texture.wrapT = THREE.RepeatWrapping;
 			}
 		);
-		this.mat.floor.normalMap = this.loader.load(
+		this.mat.floor.normalMap = this.textureLoader.load(
 			'img/textures/brickFloor/normal.jpg',
 			texture => {
 				texture.repeat.set(this.mapSize.x / this.WALLTHICKNESS / 21, this.mapSize.z / this.WALLTHICKNESS / 22);
@@ -159,6 +164,12 @@ export default class Map {
 				this.createWall(this.debugWallFirstPoint, point);
 				this.debugWallFirstPoint = null;
 			}
+		}
+		if(editMap == 3 && button === "left"){ // editWalls
+			let point = objectClicked.point;
+			point.x = this.roundCoor(point.x);
+			point.z = this.roundCoor(point.z);
+			this.createModel(point);
 		}
 	}
 
@@ -208,6 +219,10 @@ export default class Map {
 
 	createPoster(position, rotation, imgSource){
 		this.posters.push(new Poster(position, rotation, imgSource, this))
+	}
+
+	createModel(position, rotation, modelOBJ, modelMTL){ //todo
+		this.models.push(new Model(position, rotation, 1.5, "models/jezek/jezek.obj", "models/jezek/jezek.mtl", this))
 	}
 
 	exportMap(player){
@@ -309,7 +324,7 @@ export default class Map {
 			return;
 		}
 
-		this.loader.loadAsync( newImgSource )
+		this.textureLoader.loadAsync( newImgSource )
 		.then(texture => {
 			myObject.scale.set(
 				texture.image.width / texture.image.height,
@@ -397,5 +412,64 @@ class Poster{
 		map.scene.add( this.object );
 
 		map.loadTextureToPoster(imgSource, this.object)
+	}
+}
+
+class Model{
+	position
+	rotation
+	scale
+	object
+
+	constructor(position, rotation, size, sourceOBJ, sourceMTL, map){
+		this.position = position;
+		this.rotation = rotation;
+		this.size = size; // 1 is 1 meter
+
+		this.loadModel(sourceOBJ, sourceMTL, map);
+	}
+	
+	loadModel(modelOBJ, modelMTL, map){
+		map.mtlLoader.loadAsync(modelMTL)
+		.then(mtl => {
+			mtl.preload()
+			//mtl.materials.Material.side = THREE.DoubleSide
+			map.objLoader.setMaterials(mtl)
+			map.objLoader.load(
+				modelOBJ, 
+				object => {
+					const boundingBox = new THREE.Box3().setFromObject(object);
+
+					object.layers.enable(4);
+					object.name = "model";
+					object.children.forEach(mesh => {
+						mesh.receiveShadow = true
+					});
+
+					object.scale.set(
+						this.size/(boundingBox.max.x - boundingBox.min.x),
+						this.size/(boundingBox.max.y - boundingBox.min.y),
+						this.size/(boundingBox.max.z - boundingBox.min.z)
+					);
+					object.position.set(this.position.x,-this.size*boundingBox.min.y/(boundingBox.max.y - boundingBox.min.y),this.position.z);
+					
+					const boundingBoxHelper = new THREE.BoxHelper( object, 0xffff00 );
+					
+					this.object = object;
+					map.scene.add(object);
+					map.scene.add(boundingBoxHelper);
+				},
+				xhr => { 
+					console.log( modelOBJ + " " + Math.round( xhr.loaded / xhr.total * 100, 2 ) + '% downloaded' )
+				},
+				err => { // onError
+					console.warn("Error when loading " + modelOBJ, err)
+				}
+			)
+		})
+		.catch(
+			err => { // onError
+				console.warn("Error when loading " + modelMTL, err)
+		})
 	}
 }

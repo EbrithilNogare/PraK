@@ -1,7 +1,7 @@
-import * as THREE from './threejs/three.module.js';
-import { PointerLockControls } from './threejs/PointerLockControls.js';
+import * as THREE from 'https://cdn.skypack.dev/three@0.135.0';
+import { PointerLockControls } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/controls/PointerLockControls.js';
 import Player from './player.js';
-import Stats from './threejs/stats.js';
+import Stats from 'https://cdn.skypack.dev/stats.js';
 import Map from './map.js';
 import Maps from './maps.js';
 
