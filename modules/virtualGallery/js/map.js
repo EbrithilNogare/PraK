@@ -1,8 +1,8 @@
-import Player from './player.js';
 import * as THREE from 'https://cdn.skypack.dev/three@0.135.0'
 import { OBJLoader } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/loaders/MTLLoader.js'
 
+import Player from './player.js';
 
 export default class Map {
 	textureLoader = new THREE.TextureLoader();
@@ -18,6 +18,7 @@ export default class Map {
 		floor: new THREE.MeshPhongMaterial({name: "floorMaterial", color: 0x000}),
 		grass: new THREE.MeshPhongMaterial({name: "grassMaterial", color: 0x009900}),
 		debugCube: new THREE.MeshPhongMaterial( {name: "debugCubeMaterial", color: 0x009900, opacity: .5, transparent: true} ),
+		selectorCube: new THREE.MeshPhongMaterial( {name: "selectorCubeMaterial", color: 0xffff00, wireframe: true} ),
 		wall: new THREE.MeshPhongMaterial( {name: "wallMaterial", color: 0x444444} ),
 		wallSelected: new THREE.MeshPhongMaterial( {name: "wallSelectedMaterial", color: 0xff1111} ),
 		poster: new THREE.MeshPhongMaterial( {name: "posterMaterial", color: 0x999900} ),
@@ -31,6 +32,7 @@ export default class Map {
 	floor = null;
 	floorGrid = null;
 	debugCube = null;
+	selectorCube = null;
 	debugWallFirstPoint = null;
 	walls = [];
 	posters = [];
@@ -44,10 +46,11 @@ export default class Map {
 	}
 
 	loadScene(){
-		this.createSkyBox();
+		this.createDebugCube();
+		this.createSelectorCube();
 		this.createFloor();
 		this.createFloorGrid();
-		this.createDebugCube();
+		this.createSkyBox();
 		this.loadTextures();
 	}
 
@@ -67,6 +70,13 @@ export default class Map {
 		this.debugCube = new THREE.Mesh( geometry, this.mat.debugCube );
 		this.debugCube.visible = false;
 		this.scene.add( this.debugCube );
+	}
+	
+	createSelectorCube(){
+		const geometry = new THREE.BoxGeometry( 1,1,1,3,3,3 );
+		this.selectorCube = new THREE.Mesh( geometry, this.mat.selectorCube );
+		this.selectorCube.visible = false;
+		this.scene.add( this.selectorCube );
 	}
 
 	createSkyBox(){
@@ -153,19 +163,25 @@ export default class Map {
 
 	}
 
-	floorClicked(objectClicked, editMap, button){
-		if(editMap == 1 && button === "left"){ // editWalls
+	floorClicked(objectClicked, editMap, button, down = true){
+		if(editMap == 1 && button === "left" && down){ // editWalls
+			let point = objectClicked.point;
+			point.x = this.roundCoor(point.x);
+			point.z = this.roundCoor(point.z);
+			this.debugWallFirstPoint = new THREE.Vector3(point.x, point.y, point.z);
+		}
+		if(editMap == 1 && button === "left" && !down){ // editWalls
 			let point = objectClicked.point;
 			point.x = this.roundCoor(point.x);
 			point.z = this.roundCoor(point.z);
 			if(this.debugWallFirstPoint === null)
-				this.debugWallFirstPoint = new THREE.Vector3(point.x, point.y, point.z);
+				return;
 			else{
 				this.createWall(this.debugWallFirstPoint, point);
 				this.debugWallFirstPoint = null;
 			}
 		}
-		if(editMap == 3 && button === "left"){ // editWalls
+		if(editMap == 3 && button === "left" && down){ // editModels
 			let point = objectClicked.point;
 			point.x = this.roundCoor(point.x);
 			point.z = this.roundCoor(point.z);
@@ -187,22 +203,12 @@ export default class Map {
 				newPosition.x = this.roundCoor(newPosition.x);
 			else
 				newPosition.z = this.roundCoor(newPosition.z);
+				newPosition.y = 1.5;
 			this.createPoster(newPosition, angle, testImgSource);
 		}
 	}
 
 	posterClicked(objectClicked, editMap, button){
-		if(editMap == 2 && button === "left"){ // editPosters
-			let poster = this.posters.find(poster => poster.object == objectClicked.object);
-			let oldImgSource = poster.imgSource;
-			let newImgSource = prompt(`enter new imahe source (default: ${oldImgSource})`, oldImgSource);
-
-			if(newImgSource !== null){
-				this.loadTextureToPoster(newImgSource, objectClicked.object);
-				poster.imgSource = newImgSource;
-			}
-		}
-
 		if(editMap == 2 && button === "right"){ // editPosters
 			this.posters = this.posters.filter(poster => poster.object.uuid !== objectClicked.object.uuid);
 			this.scene.remove(objectClicked.object);
@@ -212,7 +218,6 @@ export default class Map {
 	modelClicked(objectClicked, editMap, button){
 		if(editMap == 3 && button === "right"){ // editPosters
 			let parent = objectClicked.object.parent;
-			console.log(parent);
 			this.models = this.models.filter(model => model.object.uuid !== parent.uuid);
 			this.scene.remove(parent);
 		}
@@ -317,10 +322,15 @@ export default class Map {
 			this.scene.remove(this.posters[0].object);
 			this.posters.shift();
 		}
+		
+		while(this.models.length != 0){
+			this.scene.remove(this.models[0].object);
+			this.models.shift();
+		}
 	}
 	
 	importMap(mapData){
-		console.log();
+
 		this.scene.getObjectByName("camera").position.set(mapData.player.position.x, mapData.player.position.y, mapData.player.position.z);
 		this.scene.getObjectByName("camera").rotation.set(mapData.player.rotation.x, mapData.player.rotation.y, mapData.player.rotation.z);
 
@@ -402,8 +412,15 @@ class Wall{
 		this.object.layers.enable( 2 );
 		this.object.castShadow = true;
 		this.object.receiveShadow = true;
-		this.object.position.set((x1+x2)/2, map.WALLHEIGHT/2, (z1+z2)/2)
+		this.object.position.set((x1+x2)/2, map.WALLHEIGHT/2, (z1+z2)/2);
+
+		this.object.userData.class = this;
+
 		map.scene.add( this.object );
+	}
+
+	setupDatGui(datGui, selectorCube){
+	// datGui.selectorFolderControlers.push(datGui.gui.selectorFolder.add(this, 'x1', -20, 20, 1)); //todo change material
 	}
 	
 	assignUVs(geometry, width, depth, WALLHEIGHT, positionX, positionZ) {
@@ -425,11 +442,13 @@ class Poster{
 	rotation
 	object
 	imgSource
+	map
 
 	constructor(position, rotation, imgSource, map){
 		this.position = position;
 		this.rotation = rotation;
 		this.imgSource = imgSource;
+		this.map = map;
 		
 		const geometry = new THREE.PlaneGeometry( 1.189, 1.189 );
 		this.object = new THREE.Mesh( geometry, map.mat.poster.clone() );
@@ -437,11 +456,28 @@ class Poster{
 		this.object.receiveShadow = true;
 
 		this.object.layers.enable( 3 );
-		this.object.position.set(position.x, 1.5, position.z)
+		this.object.position.set(position.x, position.y, position.z)
 		this.object.rotation.set(rotation.x, rotation.y, rotation.z)
+
+		this.object.userData.class = this;
+
 		map.scene.add( this.object );
 
 		map.loadTextureToPoster(imgSource, this.object)
+	}
+
+	setupDatGui(datGui, selectorCube){
+		console.log(this.object)
+		selectorCube.position.set(this.position.x, this.position.y, this.position.z);
+		selectorCube.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
+		selectorCube.scale.set(this.object.scale.x,this.object.scale.y, .1);
+		selectorCube.scale.multiplyScalar(1.189 + .05)
+
+
+		let imgSourceControler = datGui.gui.selectorFolder.add(this, 'imgSource').onFinishChange(value => {
+			this.map.loadTextureToPoster(value, this.object);
+		});
+		datGui.selectorFolderControlers.push(imgSourceControler);
 	}
 }
 
@@ -452,6 +488,8 @@ class Model{
 	sourceOBJ
 	sourceMTL
 	object
+	map
+	maxSide
 
 	constructor(position, rotation, size, sourceOBJ, sourceMTL, map){
 		this.position = position;
@@ -459,19 +497,57 @@ class Model{
 		this.size = size; // 1 is 1 meter
 		this.sourceOBJ = sourceOBJ;
 		this.sourceMTL = sourceMTL;
+		this.map = map;
 
 		this.loadModel(sourceOBJ, sourceMTL, map);
 	}
+
+	setupDatGui(datGui, selectorCube){
+		selectorCube.position.set(this.position.x, this.position.y, this.position.z);
+		selectorCube.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
+		selectorCube.scale.set(this.size,this.size,this.size);
+
+		let buttons = {
+			loadModel: () => {
+				this.map.scene.remove( this.object );
+				this.loadModel(this.sourceOBJ, this.sourceMTL, this.map);
+			},
+		}
+
+		let sizeControler = datGui.gui.selectorFolder.add(this, 'size', 0, 10, .1).name("Velikost").onChange(value => {
+			this.object.scale.set(
+				this.size/this.maxSide,
+				this.size/this.maxSide,
+				this.size/this.maxSide
+			);
+		});
+		datGui.selectorFolderControlers.push(sizeControler);
+		
+		let rotationControler = datGui.gui.selectorFolder.add(this.rotation, 'y', 0, Math.PI*2, Math.PI/16).name("Rotace").onChange(value => {
+			this.object.rotation.set(this.rotation.x,this.rotation.y,this.rotation.z);
+		});
+		datGui.selectorFolderControlers.push(rotationControler);
+
+		let sourceOBJControler = datGui.gui.selectorFolder.add(this, 'sourceOBJ')
+		datGui.selectorFolderControlers.push(sourceOBJControler);
+
+		let sourceMTLControler = datGui.gui.selectorFolder.add(this, 'sourceMTL')
+		datGui.selectorFolderControlers.push(sourceMTLControler);
+
+		let loadModelControler = datGui.gui.selectorFolder.add(buttons, 'loadModel').name("Načíst model");
+
+		datGui.selectorFolderControlers.push(loadModelControler);
+	}
 	
 	loadModel(modelOBJ, modelMTL, map){
+		let objLoader = new OBJLoader();
 		map.mtlLoader.loadAsync(modelMTL)
 		.then(mtl => {
-			mtl.preload()
-			//mtl.materials.Material.side = THREE.DoubleSide
-			map.objLoader.setMaterials(mtl)
-			map.objLoader.load(
-				modelOBJ, 
-				object => {
+			//mtl.preload()
+			//mtl.side = THREE.DoubleSide
+			objLoader.setMaterials(mtl)
+			objLoader.loadAsync(modelOBJ) 
+			.then(object => {
 					const boundingBox = new THREE.Box3().setFromObject(object);
 
 					object.name = "model";
@@ -482,30 +558,33 @@ class Model{
 						mesh.layers.enable(4);
 						mesh.material.metalness = 0;
 						mesh.material.roughness = 1;
+						mesh.userData.class = this;
 					});
-					console.log(object);
 
-					let maxSide = Math.max(boundingBox.max.x - boundingBox.min.x, Math.max(boundingBox.max.y - boundingBox.min.y, boundingBox.max.z - boundingBox.min.z));
+					this.maxSide = Math.max(boundingBox.max.x - boundingBox.min.x, Math.max(boundingBox.max.y - boundingBox.min.y, boundingBox.max.z - boundingBox.min.z));
 					object.scale.set(
-						this.size/maxSide,
-						this.size/maxSide,
-						this.size/maxSide
+						this.size/this.maxSide,
+						this.size/this.maxSide,
+						this.size/this.maxSide
 					);
-					object.position.set(this.position.x,-this.size*boundingBox.min.y/maxSide,this.position.z);
+
+					this.position.y = - this.size * boundingBox.min.y / this.maxSide;
+					object.position.set(this.position.x, this.position.y, this.position.z);
+					
+					object.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
 					
 					//const boundingBoxHelper = new THREE.BoxHelper( object, 0xffff00 );
 					//map.scene.add(boundingBoxHelper);
 					
 					this.object = object;
+
+					this.object.userData.class = this;
+
 					map.scene.add(object);
-				},
-				xhr => { 
-					console.log( modelOBJ + " " + Math.round( xhr.loaded / xhr.total * 100, 2 ) + '% downloaded' )
-				},
-				err => { // onError
+				})
+				.catch( err => { // onError
 					console.warn("Error when loading " + modelOBJ, err)
-				}
-			)
+				})
 		})
 		.catch(
 			err => { // onError

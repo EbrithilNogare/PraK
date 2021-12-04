@@ -33,7 +33,7 @@ function init() {
 
 	lights = {};
 	const sun = new THREE.HemisphereLight( 0xffffff, 0xccccff, .8 );
-	sun.position.set( 0, 20, 0 );
+	sun.position.set( 0, 100, 0 );
 	lights["sun"] = sun
 	scene.add( lights["sun"] );
 	
@@ -43,8 +43,8 @@ function init() {
 	dirLight.name = 'dirLight';
 	dirLight.position.set( -10, 10, 4 );
 	dirLight.castShadow = true;
-	dirLight.shadow.camera.near = 1;
-	dirLight.shadow.camera.far = 50;
+	dirLight.shadow.camera.near = 3;
+	dirLight.shadow.camera.far = 27;
 	dirLight.shadow.camera.right = 15;
 	dirLight.shadow.camera.left = -15;
 	dirLight.shadow.camera.top	= 15;
@@ -172,7 +172,8 @@ function createStats() {
 
 	stats.domElement.style.position = 'absolute';
 	stats.domElement.style.left = '0';
-	stats.domElement.style.top = '0';
+	stats.domElement.style.bottom = '0';
+	stats.domElement.style.removeProperty("top");
 
 	return stats;
 }

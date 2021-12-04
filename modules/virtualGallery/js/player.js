@@ -1,29 +1,51 @@
+import { GUI } from 'https://cdn.skypack.dev/dat.gui@0.7.7';
 import * as THREE from 'https://cdn.skypack.dev/three@0.135.0'
 
 export default class Player {
-	raycaster = new THREE.Raycaster();
-	raycasterHits = []
-
     MOVESPEED = 0.005;
     CROUCHSPEED = 0.001;
     TURNSPEED = Math.PI / 112;
     PLAYERHEIGHT = 1.7;
     PLAYERCROUCHHEIGHT = 1.2;
 	
-	
+	raycaster = new THREE.Raycaster();
+	raycasterHits = []
+
 	camera
 	map
 	controls
+	datGui = {
+		gui: null,
+		selectedObject: null,
+		selectorFolder: null,
+		selectorFolderControlers: [],
+		emptySelectorFolder: () => {
+			while(this.datGui.selectorFolderControlers.length !== 0){
+				this.datGui.selectorFolderControlers[0].remove();
+				this.datGui.selectorFolderControlers.shift();
+			}
+		},
+	}
 	
     editMap = 0 // 0: visitor, 1: walls, 2: posters, 3: models
 	jumpVelocity = 0
 	canJump = true
+
+	moveControls = {
+		forward: 0,
+		back: 0,
+		left: 0,
+		right: 0,
+		crouch: 0,
+		jump: 0,
+	}
 
 	constructor(camera, map, controls) {		
 		this.camera = camera;
 		this.map = map;
 		this.controls = controls;
 
+		this.createDatGui();
 		this.setupHandlers();
 	}
 
@@ -106,6 +128,12 @@ export default class Player {
 		this.map.debugCube.visible = false;
 		this.map.debugCube.rotation.set(0,0,0);
 
+		if(this.datGui.selectedObject === null){
+			this.map.selectorCube.visible = false;
+		}else{
+			this.map.selectorCube.visible = true;
+			//todo
+		}
 		
 		let hit = this.raycasterHits.length > 0 ? this.raycasterHits[0] : null;
 		/******* Wall editor *******/
@@ -183,13 +211,20 @@ export default class Player {
 
 	}
 
-	moveControls = {
-		forward: 0,
-		back: 0,
-		left: 0,
-		right: 0,
-		crouch: 0,
-		jump: 0,
+	
+
+	createDatGui(){
+		this.datGui.gui = new GUI({closed: false, closeOnTop: false, width: 300});
+		this.datGui.gui.domElement.id = "datGui";
+
+		const buttons = {
+			exportMap: () => {this.map.exportMap(this);},
+		};
+
+		this.datGui.gui.add(buttons,'exportMap').name("Uložit mapu / Save");
+
+		this.datGui.gui.selectorFolder = this.datGui.gui.addFolder('SelectorFolder');
+		this.datGui.gui.selectorFolder.open();
 	}
 
 	toggleEditMap(toMode = undefined){
@@ -279,17 +314,47 @@ export default class Player {
 			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
 				return;
 
-			if(this.raycasterHits[0].object.name === "floor"){
-				this.map.floorClicked(this.raycasterHits[0], this.editMap, "left");
-			}
 			if(this.raycasterHits[0].object.name === "wall"){
 				this.map.wallClicked(this.raycasterHits[0], this.editMap, "left");
+				if(this.editMap == 1){
+					this.datGui.selectedObject = this.raycasterHits[0].object.userData.class;
+					this.datGui.emptySelectorFolder();
+					this.datGui.selectedObject.setupDatGui(this.datGui, this.map.selectorCube);
+				}
 			}
 			if(this.raycasterHits[0].object.name === "poster"){
 				this.map.posterClicked(this.raycasterHits[0], this.editMap, "left");
+				if(this.editMap == 2){
+					this.datGui.selectedObject = this.raycasterHits[0].object.userData.class;
+					this.datGui.emptySelectorFolder();
+					this.datGui.selectedObject.setupDatGui(this.datGui, this.map.selectorCube);
+				}
 			}
 			if(this.raycasterHits[0].object.name === "modelComponent"){
 				this.map.modelClicked(this.raycasterHits[0], this.editMap, "left");
+				if(this.editMap == 3){
+					this.datGui.selectedObject = this.raycasterHits[0].object.userData.class;
+					this.datGui.emptySelectorFolder();
+					this.datGui.selectedObject.setupDatGui(this.datGui, this.map.selectorCube);
+				}
+			}
+		});
+		
+        document.addEventListener('mousedown', e => { // left click
+			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
+				return;
+				
+			if(this.raycasterHits[0].object.name === "floor"){
+				this.map.floorClicked(this.raycasterHits[0], this.editMap, "left");
+			}
+		});
+		
+        document.addEventListener('mouseup', e => { // left click
+			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
+				return;
+				
+			if(this.raycasterHits[0].object.name === "floor"){
+				this.map.floorClicked(this.raycasterHits[0], this.editMap, "left", false);
 			}
 		});
 		
