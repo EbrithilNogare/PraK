@@ -1,7 +1,3 @@
-# modely
-rozsochace v zivotni velikosti  
-maly modely letadel  
-
 # prostredi
 zkusit sehnat snezku  
 zkusit udelat strop  
