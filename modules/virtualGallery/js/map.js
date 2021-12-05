@@ -185,7 +185,7 @@ export default class Map {
 			let point = objectClicked.point;
 			point.x = this.roundCoor(point.x);
 			point.z = this.roundCoor(point.z);
-			this.createModel(point, new THREE.Vector3(), 1.5, "models/jezek/jezek.obj", "models/jezek/jezek.mtl");
+			this.models.push(new Model(point, new THREE.Vector3(), 1.5, "models/jezek/jezek.obj", "models/jezek/jezek.mtl", this, true))
 		}
 	}
 
@@ -233,10 +233,6 @@ export default class Map {
 
 	createPoster(position, rotation, imgSource){
 		this.posters.push(new Poster(position, rotation, imgSource, this))
-	}
-
-	createModel(position, rotation, size, modelOBJ, modelMTL){ //todo
-		this.models.push(new Model(position, rotation, size, modelOBJ, modelMTL, this))
 	}
 
 	exportMap(player){
@@ -341,7 +337,7 @@ export default class Map {
 			this.createPoster(poster.position, poster.rotation, poster.imgSource);
 			
 		for(let model of mapData.models)
-			this.createModel(model.position, model.rotation, model.size, model.sourceOBJ, model.sourceMTL);
+			this.models.push(new Model(model.position, model.rotation, model.size, model.sourceOBJ, model.sourceMTL, this, false))
 	
 	}
 	
@@ -467,13 +463,6 @@ class Poster{
 	}
 
 	setupDatGui(datGui, selectorCube){
-		console.log(this.object)
-		selectorCube.position.set(this.position.x, this.position.y, this.position.z);
-		selectorCube.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
-		selectorCube.scale.set(this.object.scale.x,this.object.scale.y, .1);
-		selectorCube.scale.multiplyScalar(1.189 + .05)
-
-
 		let imgSourceControler = datGui.gui.selectorFolder.add(this, 'imgSource').onFinishChange(value => {
 			this.map.loadTextureToPoster(value, this.object);
 		});
@@ -491,7 +480,7 @@ class Model{
 	map
 	maxSide
 
-	constructor(position, rotation, size, sourceOBJ, sourceMTL, map){
+	constructor(position, rotation, size, sourceOBJ, sourceMTL, map, autoAltitude){
 		this.position = position;
 		this.rotation = rotation;
 		this.size = size; // 1 is 1 meter
@@ -499,7 +488,7 @@ class Model{
 		this.sourceMTL = sourceMTL;
 		this.map = map;
 
-		this.loadModel(sourceOBJ, sourceMTL, map);
+		this.loadModel(sourceOBJ, sourceMTL, map, autoAltitude);
 	}
 
 	setupDatGui(datGui, selectorCube){
@@ -510,11 +499,51 @@ class Model{
 		let buttons = {
 			loadModel: () => {
 				this.map.scene.remove( this.object );
-				this.loadModel(this.sourceOBJ, this.sourceMTL, this.map);
+				this.loadModel(this.sourceOBJ, this.sourceMTL, this.map, true);
+			},
+			restartHeight: () => {
+				const boundingBox = new THREE.Box3().setFromObject(this.object);
+				this.position.y -= boundingBox.min.y;
+				this.object.position.set(this.position.x,this.position.y,this.position.z);
 			},
 		}
 
-		let sizeControler = datGui.gui.selectorFolder.add(this, 'size', 0, 10, .1).name("Velikost").onChange(value => {
+		// position
+		let positionControlerX = datGui.gui.selectorFolder
+			.add(this.position, 'x', -20, 20, .1)
+			.listen()
+			.name("Pozice X")
+			.onChange(value => {
+				this.object.position.set(this.position.x,this.position.y,this.position.z);
+			});
+		datGui.selectorFolderControlers.push(positionControlerX);
+
+		let positionControlerZ = datGui.gui.selectorFolder
+			.add(this.position, 'z', -20, 20, .1)
+			.listen()
+			.name("Pozice Z")
+			.onChange(value => {
+				this.object.position.set(this.position.x,this.position.y,this.position.z);
+			});
+		datGui.selectorFolderControlers.push(positionControlerZ);
+		
+		let positionControlerY = datGui.gui.selectorFolder
+			.add(this.position, 'y', 0, 5, .01)
+			.listen()
+			.name("Pozice horizontálně")
+			.onChange(value => {
+				this.object.position.set(this.position.x,this.position.y,this.position.z);
+			});
+		datGui.selectorFolderControlers.push(positionControlerY);
+		
+		let positionControlerYReset = datGui.gui.selectorFolder
+			.add(buttons, 'restartHeight')
+			.name("Posadit na zem");
+		datGui.selectorFolderControlers.push(positionControlerYReset);
+		
+
+		// size
+		let sizeControler = datGui.gui.selectorFolder.add(this, 'size', 0, 10, .1).name("Velikost (metry)").onChange(value => {
 			this.object.scale.set(
 				this.size/this.maxSide,
 				this.size/this.maxSide,
@@ -523,23 +552,28 @@ class Model{
 		});
 		datGui.selectorFolderControlers.push(sizeControler);
 		
-		let rotationControler = datGui.gui.selectorFolder.add(this.rotation, 'y', 0, Math.PI*2, Math.PI/16).name("Rotace").onChange(value => {
-			this.object.rotation.set(this.rotation.x,this.rotation.y,this.rotation.z);
-		});
+		// rotation
+		let rotationControler = datGui.gui.selectorFolder.add(this.rotation, 'y', 0, Math.PI*2, Math.PI/16)
+			.listen()
+			.name("Rotace")
+			.onChange(value => {
+				this.object.rotation.set(this.rotation.x,this.rotation.y,this.rotation.z);
+			});
 		datGui.selectorFolderControlers.push(rotationControler);
 
+		// surce data
 		let sourceOBJControler = datGui.gui.selectorFolder.add(this, 'sourceOBJ')
 		datGui.selectorFolderControlers.push(sourceOBJControler);
 
 		let sourceMTLControler = datGui.gui.selectorFolder.add(this, 'sourceMTL')
 		datGui.selectorFolderControlers.push(sourceMTLControler);
 
-		let loadModelControler = datGui.gui.selectorFolder.add(buttons, 'loadModel').name("Načíst model");
-
+		let loadModelControler = datGui.gui.selectorFolder.add(buttons, 'loadModel')
+			.name("Načíst model");
 		datGui.selectorFolderControlers.push(loadModelControler);
 	}
 	
-	loadModel(modelOBJ, modelMTL, map){
+	loadModel(modelOBJ, modelMTL, map, autoAltitude = true){
 		let objLoader = new OBJLoader();
 		map.mtlLoader.loadAsync(modelMTL)
 		.then(mtl => {
@@ -568,8 +602,10 @@ class Model{
 						this.size/this.maxSide
 					);
 
-					this.position.y = - this.size * boundingBox.min.y / this.maxSide;
-					object.position.set(this.position.x, this.position.y, this.position.z);
+					if(autoAltitude)
+						this.position.y = - this.size * boundingBox.min.y / this.maxSide;
+					
+						object.position.set(this.position.x, this.position.y, this.position.z);
 					
 					object.rotation.set(this.rotation.x, this.rotation.y, this.rotation.z);
 					

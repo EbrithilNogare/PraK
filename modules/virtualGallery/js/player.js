@@ -16,6 +16,7 @@ export default class Player {
 	controls
 	datGui = {
 		gui: null,
+		selectorCube: null,
 		selectedObject: null,
 		selectorFolder: null,
 		selectorFolderControlers: [],
@@ -24,6 +25,22 @@ export default class Player {
 				this.datGui.selectorFolderControlers[0].remove();
 				this.datGui.selectorFolderControlers.shift();
 			}
+		},
+		updateSelectorCube: () => {
+			const selectedObject = this.datGui.selectedObject;
+			const selectorCube = this.datGui.selectorCube;
+			const boundingBox = new THREE.Box3().setFromObject(selectedObject.object);
+			selectorCube.position.set(
+				(boundingBox.max.x + boundingBox.min.x) / 2,
+				(boundingBox.max.y + boundingBox.min.y) / 2,
+				(boundingBox.max.z + boundingBox.min.z) / 2
+			);
+			selectorCube.rotation.set(0,0,0);
+			selectorCube.scale.set(
+				boundingBox.max.x - boundingBox.min.x,
+				boundingBox.max.y - boundingBox.min.y,
+				boundingBox.max.z - boundingBox.min.z
+			);
 		},
 	}
 	
@@ -44,12 +61,27 @@ export default class Player {
 		this.camera = camera;
 		this.map = map;
 		this.controls = controls;
+		this.datGui.selectorCube = map.selectorCube;
 
 		this.createDatGui();
 		this.setupHandlers();
 	}
 
 	tick(delta){
+
+		if(this.editMap === 0){
+			this.datGui.gui.hide();
+		}else{
+			this.datGui.gui.show();
+		}
+
+		if(this.datGui.selectedObject === null || this.editMap === 0){
+			this.map.selectorCube.visible = false;
+		}else{
+			this.map.selectorCube.visible = true;
+			this.datGui.updateSelectorCube();
+		}
+		
 		/******** movePlayer *********/
 		if(!this.controls.isLocked)
 			return;
@@ -127,13 +159,6 @@ export default class Player {
 
 		this.map.debugCube.visible = false;
 		this.map.debugCube.rotation.set(0,0,0);
-
-		if(this.datGui.selectedObject === null){
-			this.map.selectorCube.visible = false;
-		}else{
-			this.map.selectorCube.visible = true;
-			//todo
-		}
 		
 		let hit = this.raycasterHits.length > 0 ? this.raycasterHits[0] : null;
 		/******* Wall editor *******/
@@ -211,7 +236,6 @@ export default class Player {
 
 	}
 
-	
 
 	createDatGui(){
 		this.datGui.gui = new GUI({closed: false, closeOnTop: false, width: 300});
@@ -219,12 +243,17 @@ export default class Player {
 
 		const buttons = {
 			exportMap: () => {this.map.exportMap(this);},
+			unbindSelected: () => {
+				this.datGui.selectedObject = null;
+				this.datGui.emptySelectorFolder();
+			},
 		};
 
 		this.datGui.gui.add(buttons,'exportMap').name("Uložit mapu / Save");
 
 		this.datGui.gui.selectorFolder = this.datGui.gui.addFolder('SelectorFolder');
 		this.datGui.gui.selectorFolder.open();
+		this.datGui.gui.add(buttons, 'unbindSelected').name("Odznačit");
 	}
 
 	toggleEditMap(toMode = undefined){
@@ -234,7 +263,7 @@ export default class Player {
 			{name: "Visitor", color: "#000000", innerHTML: ""},
 			{name: "Walls", color: "#aa0000", innerHTML: `
 				Kliknutím na zem se začne tvořit zeď <br/>
-				Druhé kliknutí zeď dokončí <br/>
+				Odkliknutím se zeď dokončí <br/>
 				Pravým kliknutím na zeď se zničí <br/>
 			`},
 			{name: "Posters", color: "#aaaa00", innerHTML: `
@@ -310,7 +339,7 @@ export default class Player {
         document.addEventListener('mozpointerlockchange', this.pointerLockCallback, false);
         document.addEventListener('webkitpointerlockchange', this.pointerLockCallback, false);
 
-        document.addEventListener('click', e => { // left click
+        document.addEventListener('mousedown', e => { // left click
 			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
 				return;
 
@@ -338,12 +367,6 @@ export default class Player {
 					this.datGui.selectedObject.setupDatGui(this.datGui, this.map.selectorCube);
 				}
 			}
-		});
-		
-        document.addEventListener('mousedown', e => { // left click
-			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
-				return;
-				
 			if(this.raycasterHits[0].object.name === "floor"){
 				this.map.floorClicked(this.raycasterHits[0], this.editMap, "left");
 			}
@@ -358,9 +381,12 @@ export default class Player {
 			}
 		});
 		
-        document.addEventListener('click', e => { // right click
+        document.addEventListener('mousedown', e => { // right click
 			if(e.button !== 2 || this.editMap === 0 || this.raycasterHits.length === 0)
 				return;
+			
+			this.datGui.selectedObject = null;
+			this.datGui.emptySelectorFolder();
 
 			if(this.raycasterHits[0].object.name === "wall"){
 				this.map.wallClicked(this.raycasterHits[0], this.editMap, "right");
