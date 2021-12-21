@@ -1,0 +1,89 @@
+body{
+	margin: 0;
+	background: #F4E7BB;
+}
+
+#root{
+	margin: 5vh auto;
+	width: calc(90vh * 1.4142);
+	height: 90vh;
+	background: #eee;
+	position: relative;
+}
+
+.button{
+	position: absolute;
+	top: 0;
+	width: 150px;
+	height: 100vh;
+}
+
+.button#leftButton{
+	left: 0;
+}
+
+.button#rightButton{
+	right: 0;
+}
+
+.page{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	width: 50%;
+	height: 100%;
+	border: 10px solid #000;
+	transition: left 2s cubic-bezier(0.46, 0.03, 0.52, 0.96);
+	/*transition: transform 2s cubic-bezier(0.46, 0.03, 0.52, 0.96);*/
+}
+
+
+.page#prevL{
+	background: red;	
+	position: absolute;
+	left: 0;
+	top: 0;
+
+}
+
+.page#prevR{
+	background: green;		
+	position: absolute;
+	left: 0;
+	top: 0;
+
+}
+
+.page#curnL{
+	background: blue;	
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+
+}
+
+.page#curnR{
+	background: yellow;	
+	position: absolute;
+	left:50%;
+	top: 0;	
+	z-index: 1;
+
+}
+
+.page#nextL{
+	background: gray;	
+	position: absolute;
+	left: 50%;
+	top: 0;
+	
+}
+
+.page#nextR{
+	background: aqua;
+	position: absolute;
+	left: 50%;
+	top: 0;
+	
+}
