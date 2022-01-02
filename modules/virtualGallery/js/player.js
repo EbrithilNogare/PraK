@@ -340,7 +340,7 @@ export default class Player {
         document.addEventListener('webkitpointerlockchange', this.pointerLockCallback, false);
 
         document.addEventListener('mousedown', e => { // left click
-			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
+			if(e.button !== 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
 				return;
 
 			if(this.raycasterHits[0].object.name === "wall"){

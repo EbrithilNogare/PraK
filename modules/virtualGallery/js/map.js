@@ -213,6 +213,16 @@ export default class Map {
 			this.posters = this.posters.filter(poster => poster.object.uuid !== objectClicked.object.uuid);
 			this.scene.remove(objectClicked.object);
 		}
+		
+		if(editMap == 0 && button === "left"){ // visitor
+			console.log(objectClicked.object.userData.class)
+			window.windowObjectReference = window.open(
+				objectClicked.object.userData.class.imgSource,
+				"Poster preview",
+				"width="+screen.availWidth+", height="+screen.availHeight
+			)
+			window.windowObjectReference.moveTo(0,0)
+		}
 	}
 
 	modelClicked(objectClicked, editMap, button){
