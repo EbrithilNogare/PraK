@@ -66,6 +66,7 @@ body{
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	background: #fff;
+	cursor: pointer;
 }
 
 

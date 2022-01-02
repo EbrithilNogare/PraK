@@ -4,7 +4,7 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.135.0'
 export default class Player {
     MOVESPEED = 0.005;
     CROUCHSPEED = 0.001;
-    TURNSPEED = Math.PI / 112;
+    TURNSPEED = Math.PI / 180; //! todo doesnt work 
     PLAYERHEIGHT = 1.7;
     PLAYERCROUCHHEIGHT = 1.2;
 	

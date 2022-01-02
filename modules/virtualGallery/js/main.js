@@ -102,7 +102,7 @@ function init() {
 	else if(rawMapToImport !== null)
 		map.importMap(JSON.parse(decodeURI(rawMapToImport)));
 	else 
-		map.importMap(Maps["empty"]);
+		map.importMap(Maps["default"]);
 	
 	renderer.setAnimationLoop(animation);
 }
