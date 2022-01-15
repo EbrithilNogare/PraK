@@ -25,8 +25,11 @@ export default class Map {
 		skyBox: new THREE.MeshBasicMaterial({name: "skyBoxMaterial", color: 0x000088, side: THREE.BackSide}),
 	}
 	textures = {
-
+		
 	}
+
+	DEFAULT_POSTER_TEXTURE = "img/special/defaultPoster.jpg";
+	MISSING_POSTER_TEXTURE = "img/special/defaultPoster.jpg";
 	
 	skybox = null;
 	floor = null;
@@ -197,7 +200,7 @@ export default class Map {
 
 		if(editMap == 2 && button === "left"){ // editPosters
 			let angle = new THREE.Vector3(0, .5 * Math.PI * objectClicked.face.normal.x + (objectClicked.face.normal.z < 0 ? Math.PI : 0), 0);
-			let testImgSource = "img/posters/00.jpg" //todo
+			let testImgSource = this.DEFAULT_POSTER_TEXTURE;
 			let newPosition = objectClicked.point.addScaledVector(objectClicked.face.normal,.01);
 			if(objectClicked.face.normal.z !== 0)
 				newPosition.x = this.roundCoor(newPosition.x);

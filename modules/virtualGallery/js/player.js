@@ -299,6 +299,9 @@ export default class Player {
 				return;
 			}
 
+			if(!this.controls.isLocked)
+				return;
+
 			switch(e.code){
 				case 'KeyP': this.toggleEditMap(); break;
 				case 'KeyM': this.map.exportMap(this); break;
@@ -319,6 +322,9 @@ export default class Player {
 		})
 
 		document.addEventListener('keyup', e => {
+			if(!this.controls.isLocked)
+				return;
+
 			switch(e.code){
 				case 'ArrowUp':
 				case 'KeyW': this.moveControls.forward = 0; break;
@@ -340,6 +346,9 @@ export default class Player {
         document.addEventListener('webkitpointerlockchange', this.pointerLockCallback, false);
 
         document.addEventListener('mousedown', e => { // left click
+			if(!this.controls.isLocked)
+				return;
+	
 			if(e.button !== 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
 				return;
 
@@ -373,6 +382,9 @@ export default class Player {
 		});
 		
         document.addEventListener('mouseup', e => { // left click
+			if(!this.controls.isLocked)
+				return;
+	
 			if(e.button !== 0 || this.editMap === 0 || this.raycasterHits.length === 0 || !this.controls.isLocked)
 				return;
 				
@@ -382,6 +394,9 @@ export default class Player {
 		});
 		
         document.addEventListener('mousedown', e => { // right click
+			if(!this.controls.isLocked)
+				return;
+	
 			if(e.button !== 2 || this.editMap === 0 || this.raycasterHits.length === 0)
 				return;
 			
@@ -400,12 +415,18 @@ export default class Player {
 		});
 
 		document.addEventListener('wheel', e => {
+			if(!this.controls.isLocked)
+				return;
+	
 			let newFov = Math.min(Math.max(this.camera.fov + e.deltaY * .07, 10), 70);
 			this.camera.fov = newFov;
 			this.camera.updateProjectionMatrix();
 		});
 
 		document.addEventListener('paste', (event) => {
+			if(!this.controls.isLocked)
+				return;
+	
 			event.preventDefault();
 
 			let paste = (event.clipboardData || window.clipboardData).getData('text');
