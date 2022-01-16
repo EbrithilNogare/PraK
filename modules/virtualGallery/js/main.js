@@ -52,13 +52,15 @@ function init() {
 	dirLight.shadow.mapSize.width = 1024;
 	dirLight.shadow.mapSize.height = 1024;
 	scene.add( dirLight );
-	lights["dirLight"] = dirLight
+	lights["dirLight"] = dirLight;
 	
 	//scene.add( new THREE.CameraHelper( dirLight.shadow.camera ) );
 	
 	controls = new PointerLockControls( camera, document.body );
 	controls.enableZoom = true;
 	controls.enablePan = false;
+	controls.maxPolarAngle = Math.PI * .95;
+	controls.minPolarAngle = Math.PI * .3;
 	renderer.domElement.addEventListener( 'click', () => { controls.lock(); } );
 	scene.add( controls.getObject() );
 
