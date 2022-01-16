@@ -15,4 +15,3 @@ youtube a mp4 lokal (low low priority)
 
 # ovladani
 udelat overlay "kliknete pro spusteni"
-pridat zapamatovani posledniho posteru
