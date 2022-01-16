@@ -39,7 +39,7 @@ function init() {
 	
 	lights["spotlights"] = []
 
-	let dirLight = new THREE.DirectionalLight( 0xffffcc, .6 );
+	let dirLight = new THREE.DirectionalLight( 0xffffcc, .4 );
 	dirLight.name = 'dirLight';
 	dirLight.position.set( -10, 10, 4 );
 	dirLight.castShadow = true;
