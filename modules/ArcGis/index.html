@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mapy Krkonoš</title>
+
+	<link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.23/"></script>
+
+    <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="muiCustomization.css">
+	<script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="viewDiv" id="viewDiv">
+			<div id="seasons-filter" class="esri-widget">
+				<div class="season-item visible-season" data-season="SOH">Hostinné</div>
+				<div class="season-item visible-season" data-season="SOM">Maršov</div>
+				<div class="season-item visible-season" data-season="SOT">Trutnov</div>
+				<div class="season-item visible-season" data-season="SOJ">Jilemnice</div>
+				<div class="season-item visible-season" data-season="SOR">Rokytnice</div>
+				<div class="season-item visible-season" data-season="SOS">Vysoké n.J.</div>
+				<div class="season-item visible-season" data-season="SOV">Vrchlabí</div>
+				<div class="season-item visible-season" data-season="SOZ">Žacléř</div>
+			</div>
+		</div>
+		
+		<div class="controlTab mui--z4" id="titleDiv">
+			<h2>Mapy Prameny Krkonoš</h2>
+			<h4>Interaktivní mapa obyvatelstva Prameny Krkonoš </h4>
+
+			<div  class="mui-panel" id="uzemiRok">
+				<div class="titleLabel">
+					<span>Okresy</span>
+					<span id="yearLabel" for="rokyRange">2021</span>
+				</div>
+				<div class="rangeWithButtons">
+					<button type="button" class="mui-btn mui-btn--primary" onclick="changeYearDelta(-1)">&lt;&lt;</button>
+					<div class="inputWithDatalist">
+						<input type="range" id="rokyRange" min="0" max="10" list="yearsDatalist" value="10" onchange="changeYear(value)">
+						<datalist id="yearsDatalist">
+							<option value="0" label="1921"></option>
+							<option value="1" hidden label="1931"></option>
+							<option value="2" hidden label="1941"></option>
+							<option value="3" hidden label="1951"></option>
+							<option value="4" hidden label="1961"></option>
+							<option value="5" label="1971"></option>
+							<option value="6" hidden label="1981"></option>
+							<option value="7" hidden label="1991"></option>
+							<option value="8" hidden label="2001"></option>
+							<option value="9" hidden label="2011"></option>
+							<option value="10" label="2021"></option>
+						</datalist>
+					</div>
+					<button type="button" onclick="changeYearDelta(+1)" class="mui-btn mui-btn--primary">&gt;&gt;</button>
+				</div>
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Vrstvy</div>
+
+				<div class="mui-checkbox">
+					<label>
+						<input type="checkbox" id="streetsLayer" checked>
+						streetsLayer
+					</label>
+				</div>
+				<div class="mui-checkbox">
+					<label>
+						<input type="checkbox" id="pointLayer" checked>
+						pointLayer
+					</label>
+				</div>
+			</div>
+			
+			<div class="mui-panel">Sektor hospodářství (I - III), v které je zaměstnáno nejvíce osob</div>
+
+			<div class="mui-panel">
+				<div class="mui-select">
+					<label>Modul</label>
+					<select id="modulSelect">
+						<option value="0">Demografická struktura</option>
+						<option value="1">Národnost</option>
+						<option value="2">Majetek</option>
+						<option value="3">Rozloha</option>
+						<option value="4">Rozmístění obyvatelstva</option>
+						<option value="5">Rodinný stav</option>
+						<option value="6">Vzdělání</option>
+					</select>
+				</div>
+			</div>
+			<div class="mui-panel">
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="jevSelect"></select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="main.js"></script>
+
+</body>
+
+</html>
