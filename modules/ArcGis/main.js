@@ -11,20 +11,31 @@ require([
 ) => {
 	let floodLayerView;
 
-	// flash flood warnings layer
-	const layer = new FeatureLayer({
-		portalItem: {
-			id: "731b01b6041d437a83fb5b65bd9ade69"
-		},
-		outFields: ["idOkres"]
-	});
+	layersByYears = [
+		{ year: 1921, layers: [ 
+			{ layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null },
+			{ layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null },
+			{ layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null },
+		 ] },
+		{ year: 1931, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 1941, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 1951, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 1961, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 1971, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 1981, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 1991, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 2001, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 2011, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 2021, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+	]
 
-	const pointLayer = new TileLayer({
-		portalItem: {
-			id: "731b01b6041d437a83fb5b65bd9ade69",
-			opacity: 0.7
-		}
-	});
+	layersByYears.forEach((layerByYear) => {
+		layerByYear.layers.forEach((layer) => { 
+			layer.featureLayer = new FeatureLayer({ portalItem: { id: layer.layerID } })
+		}) 
+	})
+	showLayerByYear(10);
+
 
 	const streetsLayerToggle = $("streetsLayer");
 	streetsLayerToggle.addEventListener("change", () => {
@@ -36,9 +47,10 @@ require([
 		pointLayer.visible = pointLayerToggle.checked;
 	});
 
+	const concatedLayers = [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => layer.featureLayer )))
 	const map = new Map({
 		basemap: "streets-vector",
-		layers: [layer, pointLayer]
+		layers: concatedLayers,
 	});
 
 	const view = new MapView({
@@ -58,7 +70,7 @@ require([
 			where: `idOkres = '${selectedSeason}'`
 		};
 	}
-
+/*
 	view.whenLayerView(layer).then((layerView) => {
 		floodLayerView = layerView;
 
@@ -76,7 +88,16 @@ require([
 		});
 		view.ui.add(seasonsExpand, "top-left");
 	})
+	*/
 })
+
+function showLayerByYear(year) {
+	layersByYears.forEach((layerByYear, layerYear) => {
+		layerByYear.layers.forEach((layer) => { 
+			layer.featureLayer.visible = layerYear == year;
+		}) 
+	})
+}
 
 function changeYearDelta(delta){ 
 	let op = $("yearsDatalist").getElementsByTagName("option");
@@ -93,6 +114,7 @@ function changeYear(newValue) {
 	$("rokyRange").value = newValue;
 	$("yearLabel").innerText = op[newValue].label;
 	cngRok(newValue);
+	showLayerByYear(newValue)
 }
 
 function cngRok(vol) {
