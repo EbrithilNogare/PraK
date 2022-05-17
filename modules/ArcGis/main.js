@@ -11,6 +11,76 @@ require([
 ) => {
 	let floodLayerView;
 
+	//znovu jsem vlozil definice jednotlivych vrstev, 
+	//nevim jak je definovat jinak JaPa
+
+	const layer = new FeatureLayer({
+        portalItem: {
+          id: "abad00b4ad484e9bb66b499816f35876"
+        },
+        outFields: ["idOkres"]
+      });
+      const POULayer = new FeatureLayer({
+        portalItem: {
+          id: "afa4ff69d2f74f8b82b1ebdf002f07aa"
+        },
+        outFields: ["idOkres"],
+        visible: false
+      });
+
+      const obceSoucLayer = new FeatureLayer({
+        portalItem: {
+          id: "6b1062d665274b69b1818ee125208231",
+          opacity: 0.9
+        }, 
+        outFields: ["idOkres"],
+        visible: false
+      });
+
+      const katSoucPol = new FeatureLayer({
+        portalItem: {
+          id: "06dd8a47823c435eaa943daaceb9ef3f",
+          opacity: 0.9
+        }, 
+        outFields: ["idOkres"],
+        visible: false
+      });
+
+      const ZSJSoucBod = new FeatureLayer({
+        portalItem: {
+          id: "31680445e4994b0fbe75034f2a39236c",
+          opacity: 0.9
+        }, 
+        outFields: ["idOkres"],
+        visible: false
+      });
+
+      const castObcPol = new FeatureLayer({
+        portalItem: {
+          id: "c0df9f209d1445618083f0d906ea3571",
+          opacity: 0.9
+        }, 
+        outFields: ["idOkres"],
+        visible: false
+      });
+
+      const ZSJPol = new FeatureLayer({
+        portalItem: {
+          id: "e1dd7e7c83c141e7b092b47c30577743",
+          opacity: 0.9
+        }, 
+        outFields: ["idOkres"],
+        visible: false
+      });  
+      
+      const soudOkresyLayer = new FeatureLayer({
+        portalItem: {
+          id: "1cfec9b5ee5244c6bc78208576208d69",
+          opacity: 0.9
+        }, 
+        visible: false
+      });   
+
 	layersByYears = [
 		{ year: 1921, layers: [ 
 			{ layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null },
@@ -26,7 +96,16 @@ require([
 		{ year: 1991, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
 		{ year: 2001, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
 		{ year: 2011, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
-		{ year: 2021, layers: [ { layerID: "731b01b6041d437a83fb5b65bd9ade69", featureLayer: null } ] },
+		{ year: 2021, layers: [ 
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", name: "layer", featureLayer: null },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", name: "POULayer", featureLayer: null },
+			{ layerID: "6b1062d665274b69b1818ee125208231", name: "obceSoucLayer", featureLayer: null },
+			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", name: "katSoucPol", featureLayer: null },
+			{ layerID: "31680445e4994b0fbe75034f2a39236c", name: "ZSJSoucBod", featureLayer: null },
+			{ layerID: "c0df9f209d1445618083f0d906ea3571", name: "castObcPol", featureLayer: null },
+			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", name: "ZSJPol", featureLayer: null },
+			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", name: "soudOkresyLayer", featureLayer: null }
+		 ] },
 	]
 
 	layersByYears.forEach((layerByYear) => {
@@ -37,20 +116,63 @@ require([
 	showLayerByYear(10);
 
 
-	const streetsLayerToggle = $("streetsLayer");
-	streetsLayerToggle.addEventListener("change", () => {
-		layer.visible = streetsLayerToggle.checked;
-	});
+	const ORPLayerToggle = $("ORPLayer");
+    ORPLayerToggle.addEventListener("change", () => {
+        layer.visible = ORPLayerToggle.checked;
+      });
+	
+	const POULayerToggle = $("POULayer");
+    POULayerToggle.addEventListener("change", () => {
+        POULayer.visible = POULayerToggle.checked;
+      });
+	
+	const obceSoucLayerToggle = $("obceSouc");
+    obceSoucLayerToggle.addEventListener("change", () => {
+        obceSoucLayer.visible = obceSoucLayerToggle.checked;
+      });
 
-	const pointLayerToggle = $("pointLayer");
-	pointLayerToggle.addEventListener("change", () => {
-		pointLayer.visible = pointLayerToggle.checked;
-	});
+	const katSoucPolLayerToggle = $("katSoucPol");
+    katSoucPolLayerToggle.addEventListener("change", () => {
+        katSoucPol.visible = katSoucPolLayerToggle.checked;
+      });
+
+	const ZSJSoucBodLayerToggle = $("ZSJSoucBod");
+    ZSJSoucBodLayerToggle.addEventListener("change", () => {
+        ZSJSoucBod.visible = ZSJSoucBodLayerToggle.checked;
+      });
+
+	const castObcPolLayerToggle = $("castObcPol");
+    castObcPolLayerToggle.addEventListener("change", () => {
+        castObcPol.visible = castObcPolLayerToggle.checked;
+      });
+
+	const ZSJPolLayerToggle = $("ZSJPol");
+    ZSJPolLayerToggle.addEventListener("change", () => {
+        ZSJPol.visible = ZSJPolLayerToggle.checked;
+      });
+
+	const soudOkresyLayerToggle = $("soudOkresy");
+	soudOkresyLayerToggle.addEventListener("change", () => {
+        soudOkresyLayer.visible = soudOkresyLayerToggle.checked;
+      }); 
+
+
+	// const streetsLayerToggle = $("streetsLayer");
+	// streetsLayerToggle.addEventListener("change", () => {
+	// 	layer.visible = streetsLayerToggle.checked;
+	// });
+
+	// const pointLayerToggle = $("pointLayer");
+	// pointLayerToggle.addEventListener("change", () => {
+	// 	pointLayer.visible = pointLayerToggle.checked;
+	// });
 
 	const concatedLayers = [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => layer.featureLayer )))
 	const map = new Map({
-		basemap: "streets-vector",
-		layers: concatedLayers,
+		basemap: "osm",
+		//tady nevim jak ti funguje to concat - resp. kde vezmes nazev te vrstvy
+		layers: [layer, POULayer, obceSoucLayer,katSoucPol,ZSJSoucBod,castObcPol,ZSJPol,soudOkresyLayer]
+		//layers: concatedLayers,
 	});
 
 	const view = new MapView({
@@ -70,8 +192,9 @@ require([
 			where: `idOkres = '${selectedSeason}'`
 		};
 	}
-/*
-	view.whenLayerView(layer).then((layerView) => {
+//jenom jsem to odkomentoval, aby bylo videt
+//jak to funguje
+	view.whenLayerView(obceSoucLayer).then((layerView) => {
 		floodLayerView = layerView;
 
 		seasonsElement.style.visibility = "visible";
@@ -88,7 +211,7 @@ require([
 		});
 		view.ui.add(seasonsExpand, "top-left");
 	})
-	*/
+	
 })
 
 function showLayerByYear(year) {
