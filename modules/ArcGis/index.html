@@ -43,19 +43,20 @@
 				<div class="rangeWithButtons">
 					<button type="button" class="mui-btn mui-btn--primary" onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="10" list="yearsDatalist" value="10" onchange="changeYear(value)">
+						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11" onchange="changeYear(value)">
 						<datalist id="yearsDatalist">
-							<option value="0" label="1921"></option>
-							<option value="1" hidden label="1931"></option>
-							<option value="2" hidden label="1941"></option>
-							<option value="3" hidden label="1951"></option>
-							<option value="4" hidden label="1961"></option>
-							<option value="5" label="1971"></option>
-							<option value="6" hidden label="1981"></option>
-							<option value="7" hidden label="1991"></option>
-							<option value="8" hidden label="2001"></option>
-							<option value="9" hidden label="2011"></option>
-							<option value="10" label="2021"></option>
+							<option value="0" label="1910"></option>
+							<option value="1" hidden label="1921"></option>
+							<option value="2" hidden label="1930"></option>
+							<option value="3" hidden label="1939"></option>
+							<option value="4" hidden label="1946"></option>
+							<option value="5" label="1948"></option>
+							<option value="6" hidden label="1950"></option>
+							<option value="7" hidden label="1961"></option>
+							<option value="8" hidden label="1970"></option>
+							<option value="9" hidden label="1980"></option>
+							<option value="10" hidden label="1991"></option>
+							<option value="11" label="2021"></option>
 						</datalist>
 					</div>
 					<button type="button" onclick="changeYearDelta(+1)" class="mui-btn mui-btn--primary">&gt;&gt;</button>
@@ -67,17 +68,54 @@
 
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="streetsLayer" checked>
-						streetsLayer
+						<input type="checkbox" id="ORPLayer" checked>
+						ORP
 					</label>
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="pointLayer" checked>
-						pointLayer
+						<input type="checkbox" id="POULayer" >
+						POU
+					</label>
+				</div>
+				<div class="mui-checkbox">
+					<label>
+						<input type="checkbox" id="katSoucPol" >
+						Katastry polygony
+					</label>
+				</div>
+				<div class="mui-checkbox">
+					<label>
+						<input type="checkbox" id="ZSJSoucBod" >
+						ZSJ body
+					</label>
+				</div>
+				<div class="mui-checkbox">
+					<label>
+						<input type="checkbox" id="castObcPol" >
+						Části obce polygony
+					</label>
+				</div>
+				<div class="mui-checkbox">
+					<label>
+						<input type="checkbox" id="ZSJPol" >
+						ZSJ polygony
+					</label>
+				</div>
+				<div class="mui-checkbox">
+					<label>
+						<input type="checkbox" id="obceSouc" >
+						Obce polygony
+					</label>
+				</div>
+				<div class="mui-checkbox">
+					<label>
+						<input type="checkbox" id="soudOkresy" >
+						SO46
 					</label>
 				</div>
 			</div>
+
 			
 			<div class="mui-panel">Sektor hospodářství (I - III), v které je zaměstnáno nejvíce osob</div>
 
