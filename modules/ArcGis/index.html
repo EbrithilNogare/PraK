@@ -19,16 +19,6 @@
 <body>
 	<div class="wrapper">
 		<div class="viewDiv" id="viewDiv">
-			<div id="seasons-filter" class="esri-widget">
-				<div class="season-item visible-season" data-season="SOH">Hostinné</div>
-				<div class="season-item visible-season" data-season="SOM">Maršov</div>
-				<div class="season-item visible-season" data-season="SOT">Trutnov</div>
-				<div class="season-item visible-season" data-season="SOJ">Jilemnice</div>
-				<div class="season-item visible-season" data-season="SOR">Rokytnice</div>
-				<div class="season-item visible-season" data-season="SOS">Vysoké n.J.</div>
-				<div class="season-item visible-season" data-season="SOV">Vrchlabí</div>
-				<div class="season-item visible-season" data-season="SOZ">Žacléř</div>
-			</div>
 		</div>
 		
 		<div class="controlTab mui--z4" id="titleDiv">
@@ -43,7 +33,7 @@
 				<div class="rangeWithButtons">
 					<button type="button" class="mui-btn mui-btn--primary" onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11" onchange="changeYear(value)">
+						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11" onchange="changeYear(value)" oninput="changeYearLite(value)">
 						<datalist id="yearsDatalist">
 							<option value="0" label="1910"></option>
 							<option value="1" hidden label="1921"></option>
@@ -68,13 +58,13 @@
 
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="ORPLayer" checked>
+						<input type="checkbox" id="ORP" checked>
 						ORP
 					</label>
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="POULayer" >
+						<input type="checkbox" id="POU" >
 						POU
 					</label>
 				</div>
