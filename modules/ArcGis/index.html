@@ -6,10 +6,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mapy Krkonoš</title>
 
-	<link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+	<link rel="stylesheet"
+		href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
 	<script src="https://js.arcgis.com/4.23/"></script>
 
-    <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+	<link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet"
+		type="text/css" />
 	<link rel="stylesheet" href="muiCustomization.css">
 	<script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
 
@@ -18,22 +20,33 @@
 
 <body>
 	<div class="wrapper">
+
 		<div class="viewDiv" id="viewDiv">
+
 		</div>
-		
+
+
+
+
+
+
 		<div class="controlTab mui--z4" id="titleDiv">
 			<h2>Mapy Prameny Krkonoš</h2>
 			<h4>Interaktivní mapa obyvatelstva Prameny Krkonoš </h4>
 
-			<div  class="mui-panel" id="uzemiRok">
+			<div class="mui-panel" id="uzemiRok">
 				<div class="titleLabel">
 					<span>Okresy</span>
 					<span id="yearLabel" for="rokyRange">2021</span>
 				</div>
 				<div class="rangeWithButtons">
-					<button type="button" class="mui-btn mui-btn--primary" onclick="changeYearDelta(-1)">&lt;&lt;</button>
+					<button type="button" class="mui-btn mui-btn--primary"
+						onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11" onchange="changeYear(value)" oninput="changeYearLite(value)">
+						<input type="range" id="rokyRange" min="0" max="11"
+							list="yearsDatalist" value="11"
+							onchange="changeYear(value)"
+							oninput="changeYearLite(value)">
 						<datalist id="yearsDatalist">
 							<option value="0" label="1910"></option>
 							<option value="1" hidden label="1921"></option>
@@ -49,7 +62,8 @@
 							<option value="11" label="2021"></option>
 						</datalist>
 					</div>
-					<button type="button" onclick="changeYearDelta(+1)" class="mui-btn mui-btn--primary">&gt;&gt;</button>
+					<button type="button" onclick="changeYearDelta(+1)"
+						class="mui-btn mui-btn--primary">&gt;&gt;</button>
 				</div>
 			</div>
 
@@ -64,50 +78,51 @@
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="POU" >
+						<input type="checkbox" id="POU">
 						POU
 					</label>
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="katSoucPol" >
+						<input type="checkbox" id="katSoucPol">
 						Katastry polygony
 					</label>
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="ZSJSoucBod" >
+						<input type="checkbox" id="ZSJSoucBod">
 						ZSJ body
 					</label>
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="castObcPol" >
+						<input type="checkbox" id="castObcPol">
 						Části obce polygony
 					</label>
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="ZSJPol" >
+						<input type="checkbox" id="ZSJPol">
 						ZSJ polygony
 					</label>
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="obceSouc" >
+						<input type="checkbox" id="obceSouc">
 						Obce polygony
 					</label>
 				</div>
 				<div class="mui-checkbox">
 					<label>
-						<input type="checkbox" id="soudOkresy" >
+						<input type="checkbox" id="soudOkresy">
 						SO46
 					</label>
 				</div>
 			</div>
 
-			
-			<div class="mui-panel">Sektor hospodářství (I - III), v které je zaměstnáno nejvíce osob</div>
+
+			<div class="mui-panel">Sektor hospodářství (I - III), v které je
+				zaměstnáno nejvíce osob</div>
 
 			<div class="mui-panel">
 				<div class="mui-select">
@@ -123,11 +138,38 @@
 					</select>
 				</div>
 			</div>
+
+			<!-- filtry pro query -->
 			<div class="mui-panel">
 				<div class="mui-select">
 					<label>Zobrazený údaj</label>
 					<select id="jevSelect"></select>
 				</div>
+			</div>
+
+			<div class="esri-widget" id="optionsDiv">
+				<h2>Filtrování dat</h2>
+				<select class="esri-widget" id="attSelect">
+					<option value="početobyv">Počet obyvatel</option>
+					<option value="početbudo" selected>Počet budov</option>
+				</select>
+				<select class="esri-widget" id="signSelect">
+					<option value=">">je větší než</option>
+					<option value="<">je menší než</option>
+					<option value="=">rovná se</option>
+				</select>
+				<input type="number" value="0" id="inputNumber">
+				<select class="esri-widget" id="valSelect">
+					<option value="1000">10</option>
+					<option value="5000">50</option>
+					<option value="10000">100</option>
+					<option value="15000">150</option>
+					<option value="20000">200</option>
+				</select>
+				<br />
+				<br />
+				<button class="esri-widget" id="doBtn">Proveď</button> <br />
+				<p><span id="printResults"></span></p>
 			</div>
 		</div>
 	</div>
