@@ -164,7 +164,7 @@ const layersByYears = [
 			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
 			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
 			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
+			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPola" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
@@ -182,9 +182,10 @@ require([
 	"esri/layers/TileLayer",
 	"esri/widgets/Expand",
 	"esri/rest/query",
-	"esri/rest/support/Query"
+	"esri/rest/support/Query",
+	"esri/widgets/Legend"
 ], (
-	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query
+	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend
 ) => {
 
 	esriConfig.apiKey = "AAPK8bc6dada19fc40b495ff8ef292a6162bPTUaWG0rfCO_sIehiCZr8W72weLqN42yKhTPDbTK4S0XbpfyQYfb5RiVUvKkD9AB";
@@ -241,7 +242,7 @@ require([
         map: map,
         container: "viewDiv",
         center: [15.79, 50.57],
-        zoom: 9
+        zoom: 11
     });
 
     //call doQuery() each time the button is clicked
@@ -259,12 +260,12 @@ require([
 	function doQuery() {
 		expression =	attributeName.value +
 						expressionSign.value +
-						inputValue.value;
+						"'"+inputValue.value+"'";
 		document.getElementById("printResults").innerHTML = expression;
 
 		layersByYears.forEach(layerByYear =>
 			layerByYear.layers.forEach(layer => {
-				if(layer.name === "ZSJPol")
+				if(layer.name === "ZSJPola")
 					layer.definitionExpression = expression;	
 			})
 		)
@@ -317,9 +318,32 @@ require([
 	
 */
 
-	
+//zobrazeni mapy s kategoriemi
+const obceKategorie = new FeatureLayer({
+	portalItem: {
+		id: "7f4735d813054cd89a718d1b7156112b"
+	},
+	outFields:["*"],
+});
+const legend = new Legend({
+	view:view,
+	layerInfos : [
+		{ 
+			layer: obceKategorie,
+			title: "Počet obyvatel"
+		}
+	]
+});
+
+var testActivity = document.getElementById("jevSelect");
+testActivity.addEventListener("change", (event) => {
+	map.add(obceKategorie);
+	view.ui.add(legend, "bottom-left");
+})
 	
 });
+
+
 
 // when some button changed state
 function layersFromButtonsChanged(){
@@ -388,13 +412,32 @@ function cngRok(vol) {
 };
 
 const moduly = [];
-moduly[0] = ["Počet obyvatel", "Bydlící"];
-moduly[1] = ["Česká", "Německá", "Slovenská"];
-moduly[2] = ["Počet domů", "Počet ovcí"];
-moduly[3] = ["Obydlí", "Polí"];
-moduly[4] = ["Vlevo", "Vpravo", "Na severu"];
-moduly[5] = ["Vdaná", "Ženatý", "Rozvedený"];
-moduly[6] = ["Základní", "Střední", "Vysokoškolské"];
+moduly['0'] = [["Počet trvalých obyvatel 2021","početobyv"],
+                  ["Počet obvyklých obyvatel 2021","početob_1"],
+                  ["Počet obyvatel trvalých 2011","počet_o_1"],
+                  ["Počet obyvatel obvyklých 2011","počet_o_2"]
+                ];
+
+moduly['1'] = [["Česká národnost 2021","národno_1"],
+                  ["Německá národnost 2021","národnost"],
+                  ["Moravská národnost 2021","národno_2"],
+                  ["Slezská národnost 2021","národno_3"],
+                  ["Slovenská národnost 2021","národno_4"],
+                  ["Polská národnost 2021","národno_5"],
+                  ["Romská národnost 2021","národno_6"],,
+                  ["Ruská národnost 2021","národno_8"],
+                  ["Ukrajinská národnost 2021","národno_9"],
+                  ["Vietnamská národnost 2021","národno_10"]
+                  ];				  
+
+
+moduly['2'] = [["Počet budov s čísly 2021","početbudo"],
+                ["Počet budov s čísly 2011","počet_b_1"]
+                ];
+    
+moduly['3'] = [["Výměra lokality 2021","rozlohalok"],
+                ["Rozloha lokality 2011","rozloha__1"]];
+				
 
 $("modulSelect").addEventListener("change", moduleChanged, false);
 function moduleChanged () {
@@ -410,8 +453,8 @@ function moduleChanged () {
 		select.appendChild(node);
 		moduly[element.value].forEach(function (element) {
 			let node = document.createElement("option");
-			node.value = element;
-			node.textContent = element;
+			node.value = element[1];
+			node.textContent = element[0];
 			select.appendChild(node);
 		});
 		$("jevSelect").parentElement.replaceChild(select, $("jevSelect"));
