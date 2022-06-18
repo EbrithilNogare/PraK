@@ -171,6 +171,10 @@ const layersByYears = [
 	},
 ]
 const getLayersFromButtons = ["ORP", "POU", "obceSouc", "katSoucPol", "ZSJSoucBod", "castObcPol", "ZSJPol", "soudOkresy"]
+let loadingProgress = {
+	value: 0,
+	max: [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => 0 ))).length,
+};
 
 
 require([
@@ -199,14 +203,24 @@ require([
 		});
 	})
 	
-	const createFL = (layer) => { 
+	const createFL = (layer) => {
 		if(layer.featureLayer !== null && layer.featureLayer !== undefined)
 			return;
+
 		layer.featureLayer = new FeatureLayer({ portalItem: {
 			id: layer.layerID,
 			opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
 			visible: false,
 		} })
+
+		layer.featureLayer.load().then(function() {
+			$("loadingProgressbar").value = ++loadingProgress.value;
+			$("loadingProgressbar").max = loadingProgress.max;
+			if(loadingProgress.max === loadingProgress.value)
+				$("loadingProgressbar").style.display = "none";
+		});
+
+
 	}
 
 	layersByYears[parseInt($("rokyRange").value)].layers.forEach(createFL);
@@ -228,8 +242,6 @@ require([
     });
     const map = new Map({
         basemap: "osm",
-        //tady nevim jak ti funguje to concat - resp. kde vezmes nazev te vrstvy
-        //layers: [layer, POU, obceSouc,katSoucPol,ZSJSoucBod,castObcPol,ZSJPol,soudOkresy]
         layers: concatedLayers
     });
 
@@ -244,11 +256,6 @@ require([
         center: [15.79, 50.57],
         zoom: 11
     });
-
-    //call doQuery() each time the button is clicked
-    view.when(function() {
-        view.ui.add("optionsDiv", "bottom-right");
-    });
 	
 	
 	document.getElementById("doBtn").addEventListener("click",doQuery);
@@ -258,17 +265,15 @@ require([
 	let expression;
 
 	function doQuery() {
-		expression =	attributeName.value +
-						expressionSign.value +
-						"'"+inputValue.value+"'";
+		expression = `${attributeName.value}${expressionSign.value}'${inputValue.value}'`;
 		document.getElementById("printResults").innerHTML = expression;
 
 		layersByYears.forEach(layerByYear =>
 			layerByYear.layers.forEach(layer => {
-				if(layer.name === "ZSJPola")
-					layer.definitionExpression = expression;	
+				layer.featureLayer.definitionExpression = expression;	
 			})
 		)
+		
 	}
 	
 
@@ -296,50 +301,28 @@ require([
 		]
 	};
 
-	/*
-	const featureLayer = new FeatureLayer({
-        portalItem: {
-            id: "e1dd7e7c83c141e7b092b47c30577743"
-        },
-        outFields: ["*"],
-        popupTemplate: queryPopUpTemplate
-		// : {
-        //   title: "Název lokality: {}",
-        //   content: "Description: . Land value: "
-        // }
-        //,definitionExpression: "1=0"
-      });
-      map.add(featureLayer);
+	//zobrazeni mapy s kategoriemi
+	const obceKategorie = new FeatureLayer({
+		portalItem: {
+			id: "7f4735d813054cd89a718d1b7156112b"
+		},
+		outFields:["*"],
+	});
+	const legend = new Legend({
+		view: view,
+		layerInfos : [
+			{ 
+				layer: obceKategorie,
+				title: "Počet obyvatel"
+			}
+		]
+	});
 
-	function setFeauterLayerFilter(expression) {
-		featureLayer.definitionExpression = expression;
-	}
-	//Event listener
-	
-*/
-
-//zobrazeni mapy s kategoriemi
-const obceKategorie = new FeatureLayer({
-	portalItem: {
-		id: "7f4735d813054cd89a718d1b7156112b"
-	},
-	outFields:["*"],
-});
-const legend = new Legend({
-	view:view,
-	layerInfos : [
-		{ 
-			layer: obceKategorie,
-			title: "Počet obyvatel"
-		}
-	]
-});
-
-var testActivity = document.getElementById("jevSelect");
-testActivity.addEventListener("change", (event) => {
-	map.add(obceKategorie);
-	view.ui.add(legend, "bottom-left");
-})
+	var testActivity = document.getElementById("jevSelect");
+	testActivity.addEventListener("change", (event) => {
+		map.add(obceKategorie);
+		view.ui.add(legend, "bottom-left");
+	})
 	
 });
 
@@ -412,31 +395,32 @@ function cngRok(vol) {
 };
 
 const moduly = [];
-moduly['0'] = [["Počet trvalých obyvatel 2021","početobyv"],
-                  ["Počet obvyklých obyvatel 2021","početob_1"],
-                  ["Počet obyvatel trvalých 2011","počet_o_1"],
-                  ["Počet obyvatel obvyklých 2011","počet_o_2"]
-                ];
-
-moduly['1'] = [["Česká národnost 2021","národno_1"],
-                  ["Německá národnost 2021","národnost"],
-                  ["Moravská národnost 2021","národno_2"],
-                  ["Slezská národnost 2021","národno_3"],
-                  ["Slovenská národnost 2021","národno_4"],
-                  ["Polská národnost 2021","národno_5"],
-                  ["Romská národnost 2021","národno_6"],,
-                  ["Ruská národnost 2021","národno_8"],
-                  ["Ukrajinská národnost 2021","národno_9"],
-                  ["Vietnamská národnost 2021","národno_10"]
-                  ];				  
-
-
-moduly['2'] = [["Počet budov s čísly 2021","početbudo"],
-                ["Počet budov s čísly 2011","počet_b_1"]
-                ];
-    
-moduly['3'] = [["Výměra lokality 2021","rozlohalok"],
-                ["Rozloha lokality 2011","rozloha__1"]];
+moduly['0'] = [
+	["Počet trvalých obyvatel 2021","početobyv"],
+    ["Počet obvyklých obyvatel 2021","početob_1"],
+    ["Počet obyvatel trvalých 2011","počet_o_1"],
+    ["Počet obyvatel obvyklých 2011","počet_o_2"]
+];
+moduly['1'] = [
+	["Česká národnost 2021","národno_1"],
+    ["Německá národnost 2021","národnost"],
+    ["Moravská národnost 2021","národno_2"],
+    ["Slezská národnost 2021","národno_3"],
+    ["Slovenská národnost 2021","národno_4"],
+    ["Polská národnost 2021","národno_5"],
+    ["Romská národnost 2021","národno_6"],,
+    ["Ruská národnost 2021","národno_8"],
+    ["Ukrajinská národnost 2021","národno_9"],
+    ["Vietnamská národnost 2021","národno_10"]
+];				  
+moduly['2'] = [
+	["Počet budov s čísly 2021","početbudo"],
+    ["Počet budov s čísly 2011","počet_b_1"]
+];
+moduly['3'] = [
+	["Výměra lokality 2021","rozlohalok"],
+    ["Rozloha lokality 2011","rozloha__1"]
+];
 				
 
 $("modulSelect").addEventListener("change", moduleChanged, false);

@@ -32,6 +32,7 @@
 
 		<div class="controlTab mui--z4" id="titleDiv">
 			<h2>Mapy Prameny Krkonoš</h2>
+			<progress id="loadingProgressbar" value="0" max="100"></progress>
 			<h4>Interaktivní mapa obyvatelstva Prameny Krkonoš </h4>
 
 			<div class="mui-panel" id="uzemiRok">
@@ -69,59 +70,60 @@
 
 			<div class="mui-panel">
 				<div class="titleLabel">Vrstvy</div>
-
-				<div class="mui-checkbox">
-					<label>
-						<input type="checkbox" id="ORP" checked>
-						ORP
-					</label>
-				</div>
-				<div class="mui-checkbox">
-					<label>
-						<input type="checkbox" id="POU">
-						POU
-					</label>
-				</div>
-				<div class="mui-checkbox">
-					<label>
-						<input type="checkbox" id="katSoucPol">
-						Katastry polygony
-					</label>
-				</div>
-				<div class="mui-checkbox">
-					<label>
-						<input type="checkbox" id="ZSJSoucBod">
-						ZSJ body
-					</label>
-				</div>
-				<div class="mui-checkbox">
-					<label>
-						<input type="checkbox" id="castObcPol">
-						Části obce polygony
-					</label>
-				</div>
-				<div class="mui-checkbox">
-					<label>
-						<input type="checkbox" id="ZSJPol">
-						ZSJ polygony
-					</label>
-				</div>
-				<div class="mui-checkbox">
-					<label>
-						<input type="checkbox" id="obceSouc">
-						Obce polygony
-					</label>
-				</div>
-				<div class="mui-checkbox">
-					<label>
-						<input type="checkbox" id="soudOkresy">
-						SO46
-					</label>
-				</div>
+				<form class="layersGrid">
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="ORP">
+							ORP
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="POU">
+							POU
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="katSoucPol">
+							Katastry polygony
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="ZSJSoucBod">
+							ZSJ body
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="castObcPol">
+							Části obce polygony
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="ZSJPol">
+							ZSJ polygony
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="obceSouc">
+							Obce polygony
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="soudOkresy">
+							SO46
+						</label>
+					</div>
+				</form>
 			</div>
 
 
-			
+
 
 			<div class="mui-panel">
 				<div class="mui-select">
@@ -130,40 +132,44 @@
 						<option value="0">Demografická struktura</option>
 						<option value="1">Národnost</option>
 						<option value="2">Domy</option>
-						<option value="3">Rozloha</option>						
+						<option value="3">Rozloha</option>
 					</select>
 				</div>
-			</div>
 
-			<!-- filtry pro query -->
-			<div class="mui-panel">
 				<div class="mui-select">
 					<label>Zobrazený údaj</label>
 					<select id="jevSelect"></select>
 				</div>
 			</div>
 
-			<div class="esri-widget" id="optionsDiv">
-				<h2>Filtrování dat</h2>
-				<select class="esri-widget" id="attSelect">
-					<option value="početobyv">Počet obyvatel</option>
-					<option value="početbudo" selected>Počet budov</option>
-				</select>
-				<select class="esri-widget" id="signSelect">
-					<option value=">">je větší než</option>
-					<option value="<">je menší než</option>
-					<option value="=">rovná se</option>
-				</select>
-				<input type="number" value="0" id="inputNumber">
-				 <!-- <select class="esri-widget" id="valSelect">
-			<option value="Průmysl">Průmysl</option>
-			<option value="Služby">Služby</option>
-			<option value="Zemědělství">Zemědělství</option>
-			
-		  </select> -->
-				<br />
-				<br />
-				<button class="esri-widget" id="doBtn">Proveď</button> <br />
+			<div class="mui-panel">
+				<div class="titleLabel">Filtrování dat</div>
+
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="attSelect">
+						<option value="početobyv">Počet obyvatel</option>
+						<option value="početbudo" selected>Počet budov</option>
+					</select>
+				</div>
+
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="signSelect">
+						<option value=">">je větší než</option>
+						<option value="<">je menší než</option>
+						<option value="=">rovná se</option>
+					</select>
+				</div>
+
+				<div class="splitTwo">
+					<div class="mui-textfield">
+						<input type="number" value="0" id="inputNumber">
+					</div>
+
+					<button class="mui-btn mui-btn--raised" id="doBtn">Proveď</button>
+				</div>
+
 				<p><span id="printResults"></span></p>
 			</div>
 		</div>
