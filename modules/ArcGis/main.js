@@ -164,7 +164,7 @@ const layersByYears = [
 			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
 			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
 			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPola" },
+			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
@@ -187,9 +187,10 @@ require([
 	"esri/widgets/Expand",
 	"esri/rest/query",
 	"esri/rest/support/Query",
-	"esri/widgets/Legend"
+	"esri/widgets/Legend",
+	"esri/widgets/Search"
 ], (
-	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend
+	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend, Search
 ) => {
 
 	esriConfig.apiKey = "AAPK8bc6dada19fc40b495ff8ef292a6162bPTUaWG0rfCO_sIehiCZr8W72weLqN42yKhTPDbTK4S0XbpfyQYfb5RiVUvKkD9AB";
@@ -202,6 +203,8 @@ require([
 			layersFromButtonsChanged();
 		});
 	})
+
+	
 	
 	const createFL = (layer) => {
 		if(layer.featureLayer !== null && layer.featureLayer !== undefined)
@@ -323,6 +326,14 @@ require([
 		map.add(obceKategorie);
 		view.ui.add(legend, "bottom-left");
 	})
+	//search widget
+	const searchWidget = new Search({
+		view: view
+	  });
+
+	view.ui.add(searchWidget, {
+		position: "top-right"
+	  });
 	
 });
 
