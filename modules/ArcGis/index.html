@@ -44,8 +44,8 @@
 					<button type="button" class="mui-btn mui-btn--primary"
 						onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="11"
-							list="yearsDatalist" value="11"
+						<input type="range" id="rokyRange" min="0" max="12"
+							list="yearsDatalist" value="12"
 							onchange="changeYear(value)"
 							oninput="changeYearLite(value)">
 						<datalist id="yearsDatalist">
@@ -54,7 +54,8 @@
 							<option value="2" hidden label="1930"></option>
 							<option value="3" hidden label="1939"></option>
 							<option value="4" hidden label="1946"></option>
-							<option value="5" label="1948"></option>
+							<option value="5" label="1947"></option>
+							<option value="6" hidden label="1949"></option>
 							<option value="6" hidden label="1950"></option>
 							<option value="7" hidden label="1961"></option>
 							<option value="8" hidden label="1970"></option>
@@ -74,49 +75,49 @@
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ORP">
-							ORP
+							Obce s rozšířenou působností
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="POU">
-							POU
+							Obce s pověřeným obecním úřadem
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="katSoucPol">
-							Katastry polygony
+							Katastrální území 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ZSJSoucBod">
-							ZSJ body
+							Prostranství  2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="castObcPol">
-							Části obce polygony
+							Části obcí 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ZSJPol">
-							ZSJ polygony
+							Základní sídelní jednotky 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="obceSouc">
-							Obce polygony
+							Obce 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="soudOkresy">
-							SO46
+							Soudní okresy k roku 1946
 						</label>
 					</div>
 				</form>
