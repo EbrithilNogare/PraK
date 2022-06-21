@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mapy Krkonoš</title>
+
+	<link rel="stylesheet"
+		href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.23/"></script>
+
+	<link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet"
+		type="text/css" />
+	<link rel="stylesheet" href="muiCustomization.css">
+	<script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<div class="viewDiv" id="viewDiv">
+
+		</div>
+
+
+
+
+
+
+		<div class="controlTab mui--z4" id="titleDiv">
+			<h2>Mapy Prameny Krkonoš</h2>
+			<progress id="loadingProgressbar" value="0" max="100"></progress>
+			<h4>Interaktivní mapa obyvatelstva Prameny Krkonoš </h4>
+
+			<div class="mui-panel" id="uzemiRok">
+				<div class="titleLabel">
+					<span></span>
+					<span id="yearLabel" for="rokyRange">1981</span>
+				</div>
+				<div class="rangeWithButtons">
+					<button type="button" class="mui-btn mui-btn--primary"
+						onclick="changeYearDelta(-1)">&lt;&lt;</button>
+					<div class="inputWithDatalist">
+						<input type="range" id="rokyRange" min="0" max="3"
+							list="yearsDatalist" value="3"
+							onchange="changeYear(value)"
+							oninput="changeYearLite(value)">
+							<datalist id="yearsDatalist">
+								<option value="0" label="1918"></option>
+								<option value="1" label="1936"></option>
+								<option value="2" label="1950"></option>
+								<option value="3" label="1981"></option>
+								
+							</datalist>
+					</div>
+					<button type="button" onclick="changeYearDelta(+1)"
+						class="mui-btn mui-btn--primary">&gt;&gt;</button>
+				</div>
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Vrstva</div>
+				<form class="layersGrid">
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="ORP">
+							Podniky
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" checked id="obceSouc" >
+							Obce polygony
+						</label>
+					</div>
+					
+				</form>
+			</div>
+
+
+
+
+			<div class="mui-panel">
+				<div class="mui-select">
+					<label>Modul</label>
+					<select id="modulSelect">
+						<option value="0">Sektor</option>
+						<option value="1">Forma podnikání</option>
+						<option value="2">Obor</option>
+						
+					</select>
+				</div>
+
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="jevSelect"></select>
+				</div>
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Filtrování dat</div>
+
+				<!-- <select class="esri-widget" id="attSelect" style="display:none;">
+					<option value="Sektor">Sektor</option>
+					
+				  </select> -->
+				  <select class="esri-widget" id="signSelect" style="display:none;">
+					<!-- <option value=">">je větší než</option>
+					<option value="<">je menší než</option> -->
+					<option value="=" selected>rovná se</option>
+				  </select>
+				  <!-- <input type="number" value="0" id="inputNumber"> -->
+				  <!-- <select class="esri-widget" id="valSelect" style="display:none;">
+					<option value="Průmysl">Průmysl</option>
+					<option value="Služby">Služby</option>
+					<option value="Zemědělství">Zemědělství</option>
+					
+				  </select> -->
+
+				<div class="splitTwo">
+					<div class="mui-textfield">
+						
+					</div>
+
+					<button class="mui-btn mui-btn--raised" id="doBtn">Proveď</button>
+				</div>
+
+				<p><span id="printResults"></span></p>
+			</div>
+		</div>
+	</div>
+
+	<script src="main.js"></script>
+
+</body>
+
+</html>
