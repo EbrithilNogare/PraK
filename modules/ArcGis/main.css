@@ -140,3 +140,7 @@ select {
 progress:after {
 	content: "Loading maps: " attr(value) " / " attr(max);
   }
+
+  #lipsum{
+	text-align:justify
+} 

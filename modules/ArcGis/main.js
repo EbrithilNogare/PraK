@@ -474,3 +474,8 @@ function moduleChanged () {
 	}
 };
 moduleChanged();
+
+function myPopupFunction() {
+	var popup = document.getElementById("myPopup");
+	popup.classList.toggle("show");
+  }
