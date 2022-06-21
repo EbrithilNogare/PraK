@@ -160,11 +160,11 @@ const layersByYears = [
 		layers: [ 
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
+			{ layerID: "40dfc84302cc4a9bb39cc7d4a442dc4b", opacity: 0.9, featureLayer: null, name: "obceSouc" },
+			{ layerID: "249f6790deab4053814212e31d5523b7", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
+			{ layerID: "7a2511b39d384be5aad394fe065a9bef", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
+			{ layerID: "63403761afca4561beecc5ce9ddf3202", opacity: 0.9, featureLayer: null, name: "castObcPol" },
+			{ layerID: "457534b3930c4716975d10294d845752", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
