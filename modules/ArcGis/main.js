@@ -276,6 +276,7 @@ require([
 	
 	
 	document.getElementById("doBtn").addEventListener("click",doQuery);
+	//document.getElementById("doDel").addEventListener("click",doDelete);
 	const attributeName = document.getElementById("attSelect");
     const expressionSign = document.getElementById("signSelect");
     const inputValue = document.getElementById("inputNumber");
@@ -289,9 +290,12 @@ require([
 			layerByYear.layers.forEach(layer => {
 				layer.featureLayer.definitionExpression = expression;	
 			})
-		)
-		
+		)		
 	}
+
+	// function doDelete(){
+	// 	map.removeAll();
+	// }
 	
 
 	const queryPopUpTemplate = {
