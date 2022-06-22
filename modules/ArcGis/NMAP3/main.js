@@ -2,7 +2,7 @@ const $ = (id) => document.getElementById(id);
 const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[parseInt($("rokyRange").value)].label;
 const layersByYears = [	
 	{ year: 1918, layers: [ 
-		{ layerID: "1b98ba36218d4467b34ee76ce4d558fb", opacity: 1.0, name: "ORP", featureLayer: null },
+		{ layerID: "93e3db3becfd48deb3a458a6f6ff8b63", opacity: 1.0, name: "ORP", featureLayer: null },
 		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
 	] }	
 ]
