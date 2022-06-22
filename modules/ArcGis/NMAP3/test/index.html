@@ -1,4 +1,309 @@
-const $ = (id) => document.getElementById(id);
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mapy Krkonoš</title>
+	<style>
+	html,
+body {
+	padding: 0;
+	margin: 0;
+	min-height: 100%;
+	height: 100%;
+	width: 100%;
+	background: #f4e7bb;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+datalist {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: 1fr 350px;
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper :is(h1, h2, h3, h4, h5, h6) {
+	text-align: center;
+}
+
+.viewDiv {
+	min-height: 110px;
+	height: 100%;
+}
+
+.controlTab {
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 8px;
+	z-index: 1;
+}
+
+.rangeWithButtons {
+	display: grid;
+	column-gap: 8px;
+	justify-items: center;
+	grid-template-columns: auto 1fr auto;
+}
+
+#seasons-filter {
+	height: 320px;
+	width: 100px;
+	visibility: hidden;
+}
+
+.season-item {
+	width: 100%;
+	padding: 12px;
+	text-align: center;
+	vertical-align: baseline;
+	cursor: pointer;
+	height: 40px;
+}
+
+.season-item:focus {
+	background-color: dimgrey;
+}
+
+.season-item:hover {
+	background-color: dimgrey;
+}
+
+.titleLabel {
+	font-weight: bold;
+	text-align: center;
+}
+
+
+.inputWithDatalist {
+	display: inline-block;
+	width: 100%;
+}
+
+#labely {
+	width: 200px;
+	text-align: center;
+
+}
+
+#rokyRange {
+	text-align: center;
+	color: #000000;
+
+	width: 100%;
+}
+
+select {
+	width: 200px
+}
+
+#optionsDiv {
+	background-color: dimgray;
+	color: white;
+	padding: 10px;
+	width: 350px;
+}
+
+.esri-popup .esri-popup-header .esri-title {
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+.esri-popup .esri-popup-body .esri-popup-content {
+	font-size: 14px;
+}
+
+.layersGrid {
+	display: grid;
+    grid-template-columns: auto auto;
+	align-items: end;
+    justify-items: start;
+}
+
+.splitTwo {
+	display: grid;
+    grid-template-columns: 1fr 1fr;
+	column-gap: 5%;
+}
+
+#loadingProgressbar{
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	color: #000;
+	text-align: center;
+}
+
+progress:after {
+	content: "Loading maps: " attr(value) " / " attr(max);
+  }
+
+	
+	</style>
+
+	<link rel="stylesheet"
+		href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.23/"></script>
+
+	<link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet"
+		type="text/css" />
+	<link rel="stylesheet" href="muiCustomization.css">
+	<script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+
+	
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<div class="viewDiv" id="viewDiv">
+
+		</div>
+
+
+
+
+
+
+		<div class="controlTab mui--z4" id="titleDiv">
+			<h2>Mapy Prameny Krkonoš NMAP3</h2>
+			<progress id="loadingProgressbar" value="0" max="100"></progress>
+			<h4>Interaktivní mapa obyvatelstva Prameny Krkonoš </h4>
+
+			<div class="mui-panel">
+				<a href="#" onClick="window.open('technicky_popis.pdf','pagename','resizable,height=560,width=570'); 
+				return false;"><p style="text-align:center;">Metodický komentář pdf</p> </a>
+				<noscript>You need Javascript to use the previous link or use 
+				<a href="technicky_popis.pdf" target="_blank">
+				<p style="text-align:center;">Metodický komentář</p></a></noscript>
+				
+			</div>
+
+			<div class="mui-panel">
+				<a href="#" onClick="window.open('technicky_popis.pdf','pagename','resizable,height=560,width=570'); 
+				return false;"><p style="text-align:center;">Odborný komentář pdf</p> </a>
+				<noscript>You need Javascript to use the previous link or use 
+				<a href="technicky_popis.pdf" target="_blank">
+				<p style="text-align:center;">Odborný komentář</p></a></noscript>
+				
+			</div>
+
+			<div class="mui-panel" id="uzemiRok">
+				<div class="titleLabel">
+					<span></span>
+					<span style="display: none;" id="yearLabel" for="rokyRange">1981</span>
+				</div>
+				<div class="rangeWithButtons">
+					<button  style="display: none;" type="button" class="mui-btn mui-btn--primary"
+						onclick="changeYearDelta(-1)">&lt;&lt;</button>
+					<div class="inputWithDatalist">
+						<input style="display: none;" type="range" id="rokyRange" min="0" max="0"
+							list="yearsDatalist" value="0"
+							onchange="changeYear(value)"
+							oninput="changeYearLite(value)">
+							<datalist id="yearsDatalist">
+								<option style="display: none;" value="0" label="1918"></option>
+								<!-- <option value="1" label="1936"></option>
+								<option value="2" label="1950"></option>
+								<option value="3" label="1981"></option>  -->
+								
+							</datalist>
+					</div>
+					<button style="display: none;" type="button" onclick="changeYearDelta(+1)"
+						class="mui-btn mui-btn--primary">&gt;&gt;</button>
+				</div> 
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Vrstva</div>
+				<form class="layersGrid">
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" checked id="ORP">
+							Podniky
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" checked id="obceSouc" >
+							Obce polygony
+						</label>
+					</div>
+					
+				</form>
+			</div>
+
+
+
+
+			<div class="mui-panel">
+				<div class="mui-select">
+					<label>Modul</label>
+					<select id="modulSelect">
+						<option value="0">Typ korporace</option>
+						<option value="1">Centrální</option>
+						<option value="2">Množství</option>
+						<option value="3">Zpracováno</option>
+						<option value="4">Význam</option>
+						<option value="5">Zdroje</option>
+						
+					</select>
+				</div>
+
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="jevSelect"></select>
+				</div>
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Filtrování dat</div>
+
+				<!-- <select class="esri-widget" id="attSelect" style="display:none;">
+					<option value="Sektor">Sektor</option>
+					
+				  </select> -->
+				  <select class="esri-widget" id="signSelect" style="display:none;">
+					<!-- <option value=">">je větší než</option>
+					<option value="<">je menší než</option> -->
+					<option value="=" selected>rovná se</option>
+				  </select>
+				  <!-- <input type="number" value="0" id="inputNumber"> -->
+				  <!-- <select class="esri-widget" id="valSelect" style="display:none;">
+					<option value="Průmysl">Průmysl</option>
+					<option value="Služby">Služby</option>
+					<option value="Zemědělství">Zemědělství</option>
+					
+				  </select> -->
+
+				<div class="splitTwo">
+
+					<button class="mui-btn mui-btn--raised" id="doDel">Vymazat</button>
+					
+
+					<button class="mui-btn mui-btn--raised" id="doBtn">Filtrovat</button>
+				</div>
+
+				
+
+				<p><span id="printResults"></span></p>
+			</div>
+		</div>
+	</div>
+
+	<script>
+	const $ = (id) => document.getElementById(id);
 const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[parseInt($("rokyRange").value)].label;
 const layersByYears = [	
 	{ year: 1918, layers: [ 
@@ -317,3 +622,8 @@ function moduleChanged () {
 	}
 };
 moduleChanged();
+	</script>
+
+</body>
+
+</html>

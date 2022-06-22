@@ -311,31 +311,8 @@ require([
 			}
 		}
 	};
+
 	
-
-	const queryPopUpTemplate = {
-		title: "Název nějaké lokality: {}",
-		content: [
-			{
-				type: "fields",
-				fieldInfos: [
-					{
-						fieldName: "názevLoka",
-						label: "Název lokality"
-					},
-					{
-						fieldName: attributeName.value,
-						label: attributeName.textContent
-					},
-					{
-						fieldName: "typLokalit",
-						label: "Typ lokality"
-					}
-				]
-
-			}
-		]
-	};
 
 	//zobrazeni mapy s kategoriemi
 	const obceKategorie = new FeatureLayer({
