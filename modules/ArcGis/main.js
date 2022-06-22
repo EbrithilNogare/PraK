@@ -276,7 +276,7 @@ require([
 	
 	
 	document.getElementById("doBtn").addEventListener("click",doQuery);
-	//document.getElementById("doDel").addEventListener("click",doDelete);
+	document.getElementById("doDel").addEventListener("click",doDelete);
 	const attributeName = document.getElementById("attSelect");
     const expressionSign = document.getElementById("signSelect");
     const inputValue = document.getElementById("inputNumber");
@@ -293,9 +293,24 @@ require([
 		)		
 	}
 
-	// function doDelete(){
-	// 	map.removeAll();
-	// }
+	function doDelete(){
+		view.map.layers.map(function(lyr){
+			//console.info(lyr);
+			lyr.visible = false;
+		})
+
+		var activeCheckBox = document.querySelectorAll('input[type="checkbox"]:checked');
+		var numActive = activeCheckBox.length;
+		// console.log(activeCheckBox);
+		// console.log("Pocet zaskrtnutych " + numActive);
+		if (numActive>=1) {
+			for (let i = 0; i < activeCheckBox.length; i++) {
+				if (activeCheckBox[i].checked = true) {
+					activeCheckBox[i].checked = false;
+				}				
+			}
+		}
+	};
 	
 
 	const queryPopUpTemplate = {
@@ -342,6 +357,7 @@ require([
 	var testActivity = document.getElementById("jevSelect");
 	testActivity.addEventListener("change", (event) => {
 		map.add(obceKategorie);
+		obceKategorie.visible = true;
 		view.ui.add(legend, "bottom-left");
 	})
 	//search widget
