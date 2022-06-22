@@ -35,6 +35,24 @@
 			<progress id="loadingProgressbar" value="0" max="100"></progress>
 			<h4>Interaktivní mapa obyvatelstva Prameny Krkonoš </h4>
 
+			<div class="mui-panel">
+				<a href="#" onClick="window.open('technicky_popis.pdf','pagename','resizable,height=560,width=570'); 
+				return false;"><p style="text-align:center;">Metodický komentář pdf</p> </a>
+				<noscript>You need Javascript to use the previous link or use 
+				<a href="technicky_popis.pdf" target="_blank">
+				<p style="text-align:center;">Metodický komentář</p></a></noscript>
+				
+			</div>
+
+			<div class="mui-panel">
+				<a href="#" onClick="window.open('technicky_popis.pdf','pagename','resizable,height=560,width=570'); 
+				return false;"><p style="text-align:center;">Odborný komentář pdf</p> </a>
+				<noscript>You need Javascript to use the previous link or use 
+				<a href="technicky_popis.pdf" target="_blank">
+				<p style="text-align:center;">Odborný komentář</p></a></noscript>
+				
+			</div>
+
 			<div class="mui-panel" id="uzemiRok">
 				<div class="titleLabel">
 					<span></span>
@@ -66,14 +84,14 @@
 				<form class="layersGrid">
 					<div class="mui-checkbox">
 						<label>
-							<input type="checkbox" id="ORP">
+							<input type="checkbox" checked id="ORP">
 							Podniky
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" checked id="obceSouc" >
-							Obce polygony
+							Obce 2021
 						</label>
 					</div>
 					
@@ -87,9 +105,12 @@
 				<div class="mui-select">
 					<label>Modul</label>
 					<select id="modulSelect">
-						<option value="0">Sektor</option>
-						<option value="1">Forma podnikání</option>
-						<option value="2">Obor</option>
+						<option value="0">Typ korporace</option>
+						<option value="1">Centrální</option>
+						<option value="2">Množství</option>
+						<option value="3">Zpracováno</option>
+						<option value="4">Význam</option>
+						<option value="5">Zdroje</option>
 						
 					</select>
 				</div>
@@ -121,12 +142,14 @@
 				  </select> -->
 
 				<div class="splitTwo">
-					<div class="mui-textfield">
-						
-					</div>
 
-					<button class="mui-btn mui-btn--raised" id="doBtn">Proveď</button>
+					<button class="mui-btn mui-btn--raised" id="doDel">Vymazat</button>
+					
+
+					<button class="mui-btn mui-btn--raised" id="doBtn">Filtrovat</button>
 				</div>
+
+				
 
 				<p><span id="printResults"></span></p>
 			</div>
