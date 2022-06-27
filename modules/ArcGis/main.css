@@ -40,6 +40,8 @@ datalist {
 	flex-direction: column;
 	row-gap: 8px;
 	z-index: 1;
+	height: 100%;
+	overflow-y: scroll;
 }
 
 .rangeWithButtons {
