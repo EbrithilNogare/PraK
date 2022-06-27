@@ -277,10 +277,13 @@ moduly['1'] = [
 	["Akciová společnost","Forma_podn"],
     ["Banka/pobočka banky","Forma_podn"],
 	["Družstvo","Forma_podn"],
+	["Jednotné zemědělské družstvo","Forma_podn"],
 	["Komanditní společnost","Forma_podn"],
+	["Národní/Státní podnik","Forma_podn"],
 	["Podnik samosprávného celku","Forma_podn"],
 	["Soukromá firma neurčeného typu","Forma_podn"],
 	["Společnost r.o.","Forma_podn"],
+	["Státní statek","Forma_podn"],
 	["Velkostatek","Forma_podn"],
 	["Živnost","Forma_podn"]    
 ];				  
