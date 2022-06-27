@@ -6,12 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Mapy Krkonoš</title>
 
-	<link rel="stylesheet"
-		href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+	<link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
 	<script src="https://js.arcgis.com/4.23/"></script>
 
-	<link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet"
-		type="text/css" />
+	<link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="muiCustomization.css">
 	<script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
 
@@ -37,20 +35,26 @@
 
 			<div class="mui-panel">
 				<a href="#" onClick="window.open('dokumentace.html','pagename','resizable,height=560,width=570'); 
-				return false;"><p style="text-align:center;">Metodický komentář</p> </a>
-				<noscript>You need Javascript to use the previous link or use 
-				<a href="dokumentace.html" target="_blank">
-				<p style="text-align:center;">Metodický komentář</p></a></noscript>
-				
+				return false;">
+					<p style="text-align:center;">Metodický komentář</p>
+				</a>
+				<noscript>You need Javascript to use the previous link or use
+					<a href="dokumentace.html" target="_blank">
+						<p style="text-align:center;">Metodický komentář</p>
+					</a></noscript>
+
 			</div>
 
 			<div class="mui-panel">
 				<a href="#" onClick="window.open('dokumentace.html','pagename','resizable,height=560,width=570'); 
-				return false;"><p style="text-align:center;">Odborný komentář</p> </a>
-				<noscript>You need Javascript to use the previous link or use 
-				<a href="dokumentace.html" target="_blank">
-				<p style="text-align:center;">Odborný komentář</p></a></noscript>
-				
+				return false;">
+					<p style="text-align:center;">Odborný komentář</p>
+				</a>
+				<noscript>You need Javascript to use the previous link or use
+					<a href="dokumentace.html" target="_blank">
+						<p style="text-align:center;">Odborný komentář</p>
+					</a></noscript>
+
 			</div>
 
 			<div class="mui-panel" id="uzemiRok">
@@ -59,13 +63,11 @@
 					<span id="yearLabel" for="rokyRange">2021</span>
 				</div>
 				<div class="rangeWithButtons">
-					<button type="button" class="mui-btn mui-btn--primary"
+					<button type="button" class="mui-btn mui-btn--primary rangePrevBtn"
 						onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="12"
-							list="yearsDatalist" value="12"
-							onchange="changeYear(value)"
-							oninput="changeYearLite(value)">
+						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11"
+							onchange="changeYear(value)" oninput="changeYearLite(value)">
 						<datalist id="yearsDatalist">
 							<option value="0" label="1910"></option>
 							<option value="1" hidden label="1921"></option>
@@ -73,7 +75,7 @@
 							<option value="3" hidden label="1939"></option>
 							<option value="4" hidden label="1946"></option>
 							<option value="5" label="1947"></option>
-							<option value="6" hidden label="1949"></option>
+							<!-- <option value="6" hidden label="1949"></option> -->
 							<option value="6" hidden label="1950"></option>
 							<option value="7" hidden label="1961"></option>
 							<option value="8" hidden label="1970"></option>
@@ -83,7 +85,7 @@
 						</datalist>
 					</div>
 					<button type="button" onclick="changeYearDelta(+1)"
-						class="mui-btn mui-btn--primary">&gt;&gt;</button>
+						class="mui-btn mui-btn--primary rangeNextBtn">&gt;&gt;</button>
 				</div>
 			</div>
 
@@ -111,7 +113,7 @@
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ZSJSoucBod">
-							Prostranství  2021
+							Prostranství 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
@@ -199,6 +201,7 @@
 	</div>
 
 	<script src="main.js"></script>
+	<script src="./custom.js"></script>
 
 </body>
 

@@ -3,183 +3,139 @@ const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[pa
 const layersByYears = [
 	{
 		year: 1910,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "f14869d64d1c459a8d1974ec91b59936", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "1470f53a79744a42875a473332c3233d", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" },
+			{ layerID: "0e62e767acbb451994ac276b008d00d4", opacity: 0.9, featureLayer: null, infoLayer: "častOsady", name: "ZSJSoucBod" },
+			{ layerID: "b785e7046d454db7869a6d3b877f9c1d", opacity: 0.9, featureLayer: null, infoLayer: "katastry", name: "castObcPol" },
+			{ layerID: "8e76bbc2638141c0a519dc51cdbbeb82", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" }
+			
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1921,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "f0b3d154c1c14f468fa08db55f5aee3d", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "94f382c6fd23405a9ef829aa93d90933", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" },
+			{ layerID: "8f00335f1dbc4e178f0ad1660c358ca6", opacity: 0.9, featureLayer: null, infoLayer: "častOsady", name: "ZSJSoucBod" },
+			{ layerID: "18afa04e3bbc48d4b9d99bab2ea700ef", opacity: 0.9, featureLayer: null, infoLayer: "katastry", name: "castObcPol" },
+			{ layerID: "c38ca29b33dd434788b4b19cce61f62f", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1930,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "b45aa40436a34772a99a48449954c691", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "b877ea49ad90497cb1e0fe23e6cab248", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" },
+			{ layerID: "d3f8947b5bff47afae9a05ef3fe4d305", opacity: 0.9, featureLayer: null, infoLayer: "častOsady", name: "ZSJSoucBod" },
+			{ layerID: "ede1ce8b4190480499531911810f9d45", opacity: 0.9, featureLayer: null, infoLayer: "katastry", name: "castObcPol" },
+			{ layerID: "3e532488183940e9b4079dfd6b5dbcc8", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1939,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "eed78ec4482d420cbaa7eef345a91d9c", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "f14f296edb0547e3a203d1ffde8a3408", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1946,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "85cedcb67daf432783070b1ff80f3c6b", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1947,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "151a1de9355746589dc595c6a8e9fc86", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
-	},
-	{
-		year: 1949,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
-		],
-		options: ["attSelect", "signSelect", "valSelect"],
-	},
+	},	
 	{
 		year: 1950,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "3ea069ea8f74401a94923ae325eaff85", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "e12e86b19fd4413d94f721ffcc6c7732", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" },
+			{ layerID: "f84ff296714c469a9d92b00d482f4d2d", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1961,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "dd89cf410a1d4a99aa8765e3ac6f9f02", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "b6c32c7b93a7492fa49695b3ccfdd4ab", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" },
+			{ layerID: "abfffe7b10be4b3ab3f1a4e7f3ccbf7d", opacity: 0.9, featureLayer: null, infoLayer: "častOsady", name: "ZSJSoucBod" },
+			{ layerID: "f8b792aa30124db79c346f644760afdb", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1970,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "ec526d1f591c49d1ad8d04f3050f3c7f", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "63a45993d68c4685b8d3ad5d91cc5973", opacity: 0.9, featureLayer: null, infoLayer: "častOsady", name: "ZSJSoucBod" },
+			{ layerID: "4bbf704bef4a4f24af0c9a96280dda52", opacity: 0.9, featureLayer: null, infoLayer: "ZSJ", name: "castObcPol" },
+			{ layerID: "6bdabaef62674e5f91387cf6fffdbb0b", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1980,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "6b1062d665274b69b1818ee125208231", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "06dd8a47823c435eaa943daaceb9ef3f", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "31680445e4994b0fbe75034f2a39236c", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "c0df9f209d1445618083f0d906ea3571", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "e1dd7e7c83c141e7b092b47c30577743", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "e099975527404159a4ecbe2e61a528e4", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "fc4091d86d2044c8984f343fcea7df7d", opacity: 0.9, featureLayer: null, infoLayer: "castObce", name: "ZSJSoucBod" },
+			{ layerID: "29efad638fdc474b9daeff462e0b70b0", opacity: 0.9, featureLayer: null, infoLayer: "ZSJ", name: "castObcPol" },
+			{ layerID: "e1a80c1084084b979706c24225fd91b3", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 1991,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "40dfc84302cc4a9bb39cc7d4a442dc4b", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "249f6790deab4053814212e31d5523b7", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "7a2511b39d384be5aad394fe065a9bef", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "63403761afca4561beecc5ce9ddf3202", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "457534b3930c4716975d10294d845752", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "abbefe51db4e4a5784578f6bfe5fd8df", opacity: 0.9, featureLayer: null, infoLayer: "ZSJ", name: "castObcPol" },
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 	{
 		year: 2021,
-		layers: [ 
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, name: "POU" },
-			{ layerID: "40dfc84302cc4a9bb39cc7d4a442dc4b", opacity: 0.9, featureLayer: null, name: "obceSouc" },
-			{ layerID: "249f6790deab4053814212e31d5523b7", opacity: 0.9, featureLayer: null, name: "katSoucPol" },
-			{ layerID: "7a2511b39d384be5aad394fe065a9bef", opacity: 0.9, featureLayer: null, name: "ZSJSoucBod" },
-			{ layerID: "63403761afca4561beecc5ce9ddf3202", opacity: 0.9, featureLayer: null, name: "castObcPol" },
-			{ layerID: "457534b3930c4716975d10294d845752", opacity: 0.9, featureLayer: null, name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, name: "soudOkresy" }
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "obce1910", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "obce1910", name: "POU" },
+			{ layerID: "40dfc84302cc4a9bb39cc7d4a442dc4b", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "obceSouc" },
+			{ layerID: "249f6790deab4053814212e31d5523b7", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "katSoucPol" },
+			{ layerID: "7a2511b39d384be5aad394fe065a9bef", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "ZSJSoucBod" },
+			{ layerID: "63403761afca4561beecc5ce9ddf3202", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "castObcPol" },
+			{ layerID: "457534b3930c4716975d10294d845752", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "ZSJPol" },
+			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "soudOkresy" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
@@ -187,7 +143,7 @@ const layersByYears = [
 const getLayersFromButtons = ["ORP", "POU", "obceSouc", "katSoucPol", "ZSJSoucBod", "castObcPol", "ZSJPol", "soudOkresy"]
 let loadingProgress = {
 	value: 0,
-	max: [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => 0 ))).length,
+	max: [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => 0))).length,
 };
 
 
@@ -218,22 +174,24 @@ require([
 		});
 	})
 
-	
-	
+
+
 	const createFL = (layer) => {
-		if(layer.featureLayer !== null && layer.featureLayer !== undefined)
+		if (layer.featureLayer !== null && layer.featureLayer !== undefined)
 			return;
 
-		layer.featureLayer = new FeatureLayer({ portalItem: {
-			id: layer.layerID,
-			opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
-			visible: false,
-		} })
+		layer.featureLayer = new FeatureLayer({
+			portalItem: {
+				id: layer.layerID,
+				opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
+				visible: false,
+			}
+		})
 
-		layer.featureLayer.load().then(function() {
+		layer.featureLayer.load().then(function () {
 			$("loadingProgressbar").value = ++loadingProgress.value;
 			$("loadingProgressbar").max = loadingProgress.max;
-			if(loadingProgress.max === loadingProgress.value)
+			if (loadingProgress.max === loadingProgress.value)
 				$("loadingProgressbar").style.display = "none";
 		});
 
@@ -241,45 +199,45 @@ require([
 	}
 
 	layersByYears[parseInt($("rokyRange").value)].layers.forEach(createFL);
-	layersByYears.forEach((layerByYear) => {	
+	layersByYears.forEach((layerByYear) => {
 		layerByYear.layers.forEach(createFL)
 	});
 
 	showLayerByYear(parseInt($("rokyRange").value));
-	
-
-	const concatedLayers = [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => layer.featureLayer )))
-
-    //create graphic layer to display result of query
-    const resultsLayer = new GraphicsLayer();
-    //set query parameters to always return geometry and all fields
-    const params = new Query({
-        returnGeometry: true,
-        outFields: ["*"]
-    });
-    const map = new Map({
-        basemap: "osm",
-        layers: concatedLayers
-    });
-
-    //Define popup content for each result
-    //zatim neimplementovat
 
 
+	const concatedLayers = [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => layer.featureLayer)))
 
-    const view = new MapView({
-        map: map,
-        container: "viewDiv",
-        center: [15.79, 50.57],
-        zoom: 11
-    });
-	
-	
-	document.getElementById("doBtn").addEventListener("click",doQuery);
-	document.getElementById("doDel").addEventListener("click",doDelete);
+	//create graphic layer to display result of query
+	const resultsLayer = new GraphicsLayer();
+	//set query parameters to always return geometry and all fields
+	const params = new Query({
+		returnGeometry: true,
+		outFields: ["*"]
+	});
+	const map = new Map({
+		basemap: "osm",
+		layers: concatedLayers
+	});
+
+	//Define popup content for each result
+	//zatim neimplementovat
+
+
+
+	const view = new MapView({
+		map: map,
+		container: "viewDiv",
+		center: [15.79, 50.57],
+		zoom: 11
+	});
+
+
+	document.getElementById("doBtn").addEventListener("click", doQuery);
+	document.getElementById("doDel").addEventListener("click", doDelete);
 	const attributeName = document.getElementById("attSelect");
-    const expressionSign = document.getElementById("signSelect");
-    const inputValue = document.getElementById("inputNumber");
+	const expressionSign = document.getElementById("signSelect");
+	const inputValue = document.getElementById("inputNumber");
 	let expression;
 
 	function doQuery() {
@@ -288,13 +246,13 @@ require([
 
 		layersByYears.forEach(layerByYear =>
 			layerByYear.layers.forEach(layer => {
-				layer.featureLayer.definitionExpression = expression;	
+				layer.featureLayer.definitionExpression = expression;
 			})
-		)		
+		)
 	}
 
-	function doDelete(){
-		view.map.layers.map(function(lyr){
+	function doDelete() {
+		view.map.layers.map(function (lyr) {
 			//console.info(lyr);
 			lyr.visible = false;
 		})
@@ -303,28 +261,36 @@ require([
 		var numActive = activeCheckBox.length;
 		// console.log(activeCheckBox);
 		// console.log("Pocet zaskrtnutych " + numActive);
-		if (numActive>=1) {
+		if (numActive >= 1) {
 			for (let i = 0; i < activeCheckBox.length; i++) {
 				if (activeCheckBox[i].checked = true) {
 					activeCheckBox[i].checked = false;
-				}				
+				}
 			}
 		}
 	};
 
-	
+
 
 	//zobrazeni mapy s kategoriemi
+	// const obceKategorie = new FeatureLayer({
+	// 	portalItem: {
+	// 		id: "7f4735d813054cd89a718d1b7156112b"
+	// 	},
+	// 	outFields: ["*"],
+	// });
+
 	const obceKategorie = new FeatureLayer({
 		portalItem: {
-			id: "7f4735d813054cd89a718d1b7156112b"
+			id: "63403761afca4561beecc5ce9ddf3202"
 		},
-		outFields:["*"],
+		outFields: ["*"],
 	});
+
 	const legend = new Legend({
 		view: view,
-		layerInfos : [
-			{ 
+		layerInfos: [
+			{
 				layer: obceKategorie,
 				title: "Počet obyvatel"
 			}
@@ -340,43 +306,49 @@ require([
 	//search widget
 	const searchWidget = new Search({
 		view: view
-	  });
+	});
 
 	view.ui.add(searchWidget, {
 		position: "top-right"
-	  });
-	
+	});
+
 });
 
 
 
 // when some button changed state
-function layersFromButtonsChanged(){
+function layersFromButtonsChanged() {
 	layersByYears[parseInt($("rokyRange").value)].layers.forEach((layer) => {
-		if(!getLayersFromButtons.includes(layer.name))
+		if (!getLayersFromButtons.includes(layer.name))
 			return;
-		layer.featureLayer.visible = $(layer.name).checked;
+		console.log(layer)
+		if ($(layer.name)){
+			layer.featureLayer.visible = $(layer.name).checked;
+		}	
+		else {
+			layer.featureLayer.visible = false;
+		}	
 	})
 }
 
-function changeYearLite(newValue){
+function changeYearLite(newValue) {
 	let op = $("yearsDatalist").getElementsByTagName("option");
 	$("yearLabel").innerText = op[newValue].label
 }
 
 function showLayerByYear(year) {
 	layersByYears.forEach((layerByYear, layerYear) => {
-		layerByYear.layers.forEach((layer) => { 
+		layerByYear.layers.forEach((layer) => {
 			layer.featureLayer.visible = layerYear == year;
-		}) 
+		})
 	})
 	layersFromButtonsChanged();
 }
 
-function changeYearDelta(delta){ 
+function changeYearDelta(delta) {
 	let op = $("yearsDatalist").getElementsByTagName("option");
 	let newValue = parseInt($("rokyRange").value) + delta;
-	if (newValue < 0 || newValue >= op.length) 
+	if (newValue < 0 || newValue >= op.length)
 		return;
 
 	changeYear(newValue)
@@ -390,11 +362,11 @@ function changeYear(newValue) {
 	updateSelectBox(getActiveYear())
 }
 
-function updateSelectBox(newValue){
+function updateSelectBox(newValue) {
 	let layer = layersByYears.filter(layer => layer.year === parseInt(newValue))[0]
 	$("attSelect").hidden = !layer.options.includes("attSelect")
 	$("signSelect").hidden = !layer.options.includes("signSelect")
-	$("valSelect").hidden = !layer.options.includes("valSelect")
+	// $("valSelect").hidden = !layer.options.includes("valSelect")
 }
 
 function cngRok(vol) {
@@ -418,35 +390,35 @@ function cngRok(vol) {
 
 const moduly = [];
 moduly['0'] = [
-	["Počet trvalých obyvatel 2021","početobyv"],
-    ["Počet obvyklých obyvatel 2021","početob_1"],
-    ["Počet obyvatel trvalých 2011","počet_o_1"],
-    ["Počet obyvatel obvyklých 2011","počet_o_2"]
+	["Počet trvalých obyvatel 2021", "početobyv"],
+	["Počet obvyklých obyvatel 2021", "početob_1"],
+	["Počet obyvatel trvalých 2011", "počet_o_1"],
+	["Počet obyvatel obvyklých 2011", "počet_o_2"]
 ];
 moduly['1'] = [
-	["Česká národnost 2021","národno_1"],
-    ["Německá národnost 2021","národnost"],
-    ["Moravská národnost 2021","národno_2"],
-    ["Slezská národnost 2021","národno_3"],
-    ["Slovenská národnost 2021","národno_4"],
-    ["Polská národnost 2021","národno_5"],
-    ["Romská národnost 2021","národno_6"],,
-    ["Ruská národnost 2021","národno_8"],
-    ["Ukrajinská národnost 2021","národno_9"],
-    ["Vietnamská národnost 2021","národno_10"]
-];				  
+	["Česká národnost 2021", "národno_1"],
+	["Německá národnost 2021", "národnost"],
+	["Moravská národnost 2021", "národno_2"],
+	["Slezská národnost 2021", "národno_3"],
+	["Slovenská národnost 2021", "národno_4"],
+	["Polská národnost 2021", "národno_5"],
+	["Romská národnost 2021", "národno_6"], ,
+	["Ruská národnost 2021", "národno_8"],
+	["Ukrajinská národnost 2021", "národno_9"],
+	["Vietnamská národnost 2021", "národno_10"]
+];
 moduly['2'] = [
-	["Počet budov s čísly 2021","početbudo"],
-    ["Počet budov s čísly 2011","počet_b_1"]
+	["Počet budov s čísly 2021", "početbudo"],
+	["Počet budov s čísly 2011", "počet_b_1"]
 ];
 moduly['3'] = [
-	["Výměra lokality 2021","rozlohalok"],
-    ["Rozloha lokality 2011","rozloha__1"]
+	["Výměra lokality 2021", "rozlohalok"],
+	["Rozloha lokality 2011", "rozloha__1"]
 ];
-				
+
 
 $("modulSelect").addEventListener("change", moduleChanged, false);
-function moduleChanged () {
+function moduleChanged() {
 	let element = $("modulSelect");
 	let newValue = moduly[element.value];
 	if (newValue) {
@@ -471,4 +443,4 @@ moduleChanged();
 function myPopupFunction() {
 	var popup = document.getElementById("myPopup");
 	popup.classList.toggle("show");
-  }
+}
