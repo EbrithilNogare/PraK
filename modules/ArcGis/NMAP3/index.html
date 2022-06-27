@@ -31,24 +31,24 @@
 
 
 		<div class="controlTab mui--z4" id="titleDiv">
-			<h2>Mapy Prameny Krkonoš - NMAP2</h2>
+			<h2>Mapy Prameny Krkonoš NMAP3</h2>
 			<progress id="loadingProgressbar" value="0" max="100"></progress>
 			<h4>Interaktivní mapa obyvatelstva Prameny Krkonoš </h4>
 
 			<div class="mui-panel">
-				<a href="#" onClick="window.open('dokumentace.html','pagename','resizable,height=560,width=570'); 
-				return false;"><p style="text-align:center;">Metodický komentář</p> </a>
+				<a href="#" onClick="window.open('technicky_popis.pdf','pagename','resizable,height=560,width=570'); 
+				return false;"><p style="text-align:center;">Metodický komentář pdf</p> </a>
 				<noscript>You need Javascript to use the previous link or use 
-				<a href="dokumentace.html" target="_blank">
+				<a href="technicky_popis.pdf" target="_blank">
 				<p style="text-align:center;">Metodický komentář</p></a></noscript>
 				
 			</div>
 
 			<div class="mui-panel">
-				<a href="#" onClick="window.open('dokumentace.html','pagename','resizable,height=560,width=570'); 
-				return false;"><p style="text-align:center;">Odborný komentář</p> </a>
+				<a href="#" onClick="window.open('technicky_popis.pdf','pagename','resizable,height=560,width=570'); 
+				return false;"><p style="text-align:center;">Odborný komentář pdf</p> </a>
 				<noscript>You need Javascript to use the previous link or use 
-				<a href="dokumentace.html" target="_blank">
+				<a href="technicky_popis.pdf" target="_blank">
 				<p style="text-align:center;">Odborný komentář</p></a></noscript>
 				
 			</div>
@@ -56,27 +56,27 @@
 			<div class="mui-panel" id="uzemiRok">
 				<div class="titleLabel">
 					<span></span>
-					<span id="yearLabel" for="rokyRange">1981</span>
+					<span style="display: none;" id="yearLabel" for="rokyRange">1981</span>
 				</div>
 				<div class="rangeWithButtons">
-					<button type="button" class="mui-btn mui-btn--primary"
+					<button  style="display: none;" type="button" class="mui-btn mui-btn--primary"
 						onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="3"
-							list="yearsDatalist" value="3"
+						<input style="display: none;" type="range" id="rokyRange" min="0" max="0"
+							list="yearsDatalist" value="0"
 							onchange="changeYear(value)"
 							oninput="changeYearLite(value)">
 							<datalist id="yearsDatalist">
-								<option value="0" label="1918"></option>
-								<option value="1" label="1936"></option>
+								<option style="display: none;" value="0" label="1918"></option>
+								<!-- <option value="1" label="1936"></option>
 								<option value="2" label="1950"></option>
-								<option value="3" label="1981"></option>
+								<option value="3" label="1981"></option>  -->
 								
 							</datalist>
 					</div>
-					<button type="button" onclick="changeYearDelta(+1)"
+					<button style="display: none;" type="button" onclick="changeYearDelta(+1)"
 						class="mui-btn mui-btn--primary">&gt;&gt;</button>
-				</div>
+				</div> 
 			</div>
 
 			<div class="mui-panel">
@@ -105,9 +105,12 @@
 				<div class="mui-select">
 					<label>Modul</label>
 					<select id="modulSelect">
-						<option value="0">Sektor</option>
-						<option value="1">Forma podnikání</option>
-						<option value="2">Obor</option>
+						<option value="0">Typ korporace</option>
+						<option value="1">Centrální</option>
+						<option value="2">Množství</option>
+						<option value="3">Zpracováno</option>
+						<option value="4">Význam</option>
+						<option value="5">Zdroje</option>
 						
 					</select>
 				</div>
@@ -138,13 +141,15 @@
 					
 				  </select> -->
 
-				  <div class="splitTwo">
+				<div class="splitTwo">
 
 					<button class="mui-btn mui-btn--raised" id="doDel">Vymazat</button>
 					
 
 					<button class="mui-btn mui-btn--raised" id="doBtn">Filtrovat</button>
 				</div>
+
+				
 
 				<p><span id="printResults"></span></p>
 			</div>

@@ -2,22 +2,9 @@ const $ = (id) => document.getElementById(id);
 const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[parseInt($("rokyRange").value)].label;
 const layersByYears = [	
 	{ year: 1918, layers: [ 
-		{ layerID: "443709212b894e9297888b3194b51100", opacity: 1.0, name: "ORP", featureLayer: null },
+		{ layerID: "93e3db3becfd48deb3a458a6f6ff8b63", opacity: 1.0, name: "ORP", featureLayer: null },
 		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
-	] },
-	{ year: 1936, layers: [ 
-		{ layerID: "a2e007238e304f1ea58005fc69c921e9", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
-	] },
-	{ year: 1950, layers: [ 
-		{ layerID: "23bcd52310854d6185e5f22a4eca0303", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
-	] },
-	{ year: 1981, layers: [ 
-		{ layerID: "401e9530ba074936800a8f596fc49d70", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
-	] },
-	
+	] }	
 ]
 const getLayersFromButtons = ["ORP", "obceSouc"]
 let loadingProgress = {
@@ -105,8 +92,8 @@ require([
     const view = new MapView({
         map: map,
         container: "viewDiv",
-        center: [15.75, 50.62],
-        zoom: 11
+        center: [11.60, 50.06],
+        zoom: 7
     });
 	
 	
@@ -124,7 +111,8 @@ require([
 	function doQuery() {
 	var selModul = document.getElementById("jevSelect");
 	var attributeName = selModul.options[selModul.selectedIndex].value;
-	
+	console.log("Ahoj");
+	console.log(attributeName);
 
     const expressionSign = document.getElementById("signSelect");
 	
@@ -269,41 +257,43 @@ function cngRok(vol) {
 
 const moduly = [];
 moduly['0'] = [
-	["Průmysl","Sektor"],
-    ["Služby","Sektor"],
-    ["Zemědělství","Sektor"]
+	["Archivy","Typ_korpor"],
+    ["Knihovny","Typ_korpor"],
+    ["Muzea","Typ_korpor"],
+    ["Odborné ústavy","Typ_korpor"],
+    ["Soukromé sbírky","Typ_korpor"],
+    ["Spolky","Typ_korpor"],
+    ["Státní úřady","Typ_korpor"],
+    ["Vědecké instituce","Typ_korpor"]
 ];
 moduly['1'] = [
-	["Akciová společnost","Forma_podn"],
-    ["Banka/pobočka banky","Forma_podn"],
-	["Družstvo","Forma_podn"],
-	["Komanditní společnost","Forma_podn"],
-	["Podnik samosprávného celku","Forma_podn"],
-	["Soukromá firma neurčeného typu","Forma_podn"],
-	["Společnost r.o.","Forma_podn"],
-	["Velkostatek","Forma_podn"],
-	["Živnost","Forma_podn"]    
+	["Centrální","Centráln"],
+    ["Regionální","Centráln"]   
 ];				  
 moduly['2'] = [
 	
-	["Cestovní ruch","Obor"],
-	["Chemie","Obor"],
-	["Doprava a cestovní ruch","Obor"],
-	["Elektrotechnika","Obor"],
-	["Energetika","Obor"],
-	["Finance","Obor"],
-	["Grafika a tisk","Obor"],
-	["Hornictví, metalurgie, zpracování nerostů","Obor"],
-	["Obchod a služby bez cestovního ruchu","Obor"],
-	["Papírenství, dřevařství","Obor"],
-	["Potravinářství","Obor"],
-	["Sklo, porcelán a keramika","Obor"],
-	["Stavebnictví","Obor"],
-	["Strojírenství","Obor"],
-	["Textilnictví , oděvnictví, obuvnictví, zpracování kůže","Obor"],
-	["Zemědělství, rybářství, lesnictví","Obor"],
-	["Ostatní","Obor"]
-];				
+	["Malé množství","Malé_mno"],
+	["Střední množství","Malé_mno"],
+	["Velké množství","Malé_mno"]
+];		
+moduly['3'] = [
+	["Nezpracováno","Zpracován"],
+    ["Zpracováno","Zpracován"]   
+];	
+moduly['4'] = [
+	["Malý význam","Malý_výz"],
+    ["Střední význam","Malý_výz"],
+    ["Zásadní význam","Malý_výz"] 
+];	
+moduly['5'] = [
+	["Mapové sbírky","Mapové_sb"],
+	["Digitální služby","Digitáln"],
+	["Mapové portály","Mapové_po"],
+	["Muzejní sbírky","Muzejní_s"], 
+	["Neviditelné prameny","Neviditeln"],
+	["Stálé expozice","Stálé_ex"]
+];	
+	
 
 $("modulSelect").addEventListener("change", moduleChanged, false);
 function moduleChanged () {
