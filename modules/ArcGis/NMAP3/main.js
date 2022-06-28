@@ -2,11 +2,10 @@ const $ = (id) => document.getElementById(id);
 const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[parseInt($("rokyRange").value)].label;
 const layersByYears = [	
 	{ year: 1918, layers: [ 
-		{ layerID: "93e3db3becfd48deb3a458a6f6ff8b63", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
+		{ layerID: "93e3db3becfd48deb3a458a6f6ff8b63", opacity: 1.0, name: "ORP", featureLayer: null }		
 	] }	
 ]
-const getLayersFromButtons = ["ORP", "obceSouc"]
+const getLayersFromButtons = ["ORP"]
 let loadingProgress = {
 	value: 0,
 	max: [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => 0 ))).length,
@@ -264,35 +263,44 @@ moduly['0'] = [
     ["Soukromé sbírky","Typ_korpor"],
     ["Spolky","Typ_korpor"],
     ["Státní úřady","Typ_korpor"],
-    ["Vědecké instituce","Typ_korpor"]
+    ["Vědecké instituce","Typ_korpor"],
+    ["Veřejné korporace","Typ_korpor"]
 ];
 moduly['1'] = [
 	["Centrální","Centráln"],
     ["Regionální","Centráln"]   
-];				  
+];	
 moduly['2'] = [
+	
+	["Institucionální","Soukromá_"],
+	["Soukromá","Soukromá_"]
+];					  
+moduly['3'] = [
 	
 	["Malé množství","Malé_mno"],
 	["Střední množství","Malé_mno"],
 	["Velké množství","Malé_mno"]
 ];		
-moduly['3'] = [
+moduly['4'] = [
+	["Částečně zpracováno","Zpracován"],
 	["Nezpracováno","Zpracován"],
     ["Zpracováno","Zpracován"]   
 ];	
-moduly['4'] = [
+moduly['5'] = [
 	["Malý význam","Malý_výz"],
     ["Střední význam","Malý_výz"],
     ["Zásadní význam","Malý_výz"] 
 ];	
-moduly['5'] = [
+moduly['6'] = [
+	["Knihovní fondy","Knihovní_"],
+	["Archivní fondy","Archivní_"],
 	["Mapové sbírky","Mapové_sb"],
 	["Digitální služby","Digitáln"],
 	["Mapové portály","Mapové_po"],
 	["Muzejní sbírky","Muzejní_s"], 
 	["Neviditelné prameny","Neviditeln"],
 	["Stálé expozice","Stálé_ex"]
-];	
+];		
 	
 
 $("modulSelect").addEventListener("change", moduleChanged, false);
