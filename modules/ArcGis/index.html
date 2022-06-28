@@ -66,22 +66,22 @@
 					<button type="button" class="mui-btn mui-btn--primary rangePrevBtn"
 						onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11"
+						<input type="range" id="rokyRange" min="0" max="12" list="yearsDatalist" value="12"
 							onchange="changeYear(value)" oninput="changeYearLite(value)">
 						<datalist id="yearsDatalist">
 							<option value="0" label="1910"></option>
 							<option value="1" hidden label="1921"></option>
 							<option value="2" hidden label="1930"></option>
-							<option value="3" hidden label="1939"></option>
+							<option value="3" hidden label="1939"></option>							
 							<option value="4" hidden label="1946"></option>
-							<option value="5" label="1947"></option>
-							<!-- <option value="6" hidden label="1949"></option> -->
-							<option value="6" hidden label="1950"></option>
-							<option value="7" hidden label="1961"></option>
-							<option value="8" hidden label="1970"></option>
-							<option value="9" hidden label="1980"></option>
-							<option value="10" hidden label="1991"></option>
-							<option value="11" label="2021"></option>
+							<option value="5" hidden label="1947"></option>
+							<option value="6" label="1949"></option>
+							<option value="7" hidden label="1950"></option>
+							<option value="8" hidden label="1961"></option>
+							<option value="9" hidden label="1970"></option>
+							<option value="10" hidden label="1980"></option>
+							<option value="11" hidden label="1991"></option>
+							<option value="12" label="2021"></option>
 						</datalist>
 					</div>
 					<button type="button" onclick="changeYearDelta(+1)"

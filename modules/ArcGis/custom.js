@@ -129,13 +129,17 @@ const yearsInputsDataList = {
     "1939": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "katSoucPol": "Osady 1939",        
-        "obceSouc": "Obce 1939"       
-    },
+        "katSoucPol": "Osady Protektorát 1939",        
+        "obceSouc": "Obce Protektorát 1939",
+        "ZSJPol": "Osady Župa 1939",        
+        "castObcPol": "Obce Župa 1939"              
+    },   
     "1946": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "obceSouc": "Obce 1946"
+        "obceSouc": "Obce 1946 Archivni soupis",
+        "katSoucPol": "Obce 1946 Soupis obyvatel",
+        "ZSJSoucBod": "Části obce 1946 Soupis obyvatel"
     },
     "1947": {
         "ORP": "Obce s rozšířenou působností 2021",
@@ -143,7 +147,13 @@ const yearsInputsDataList = {
         "obceSouc": "Obce 1947",
         "ZSJPol": "Příslušnost"
     },
-   
+    "1949": {
+        "ORP": "Obce s rozšířenou působností 2021",
+        "POU": "Obce s pověřeným obecním úřadem 2021",
+        "obceSouc": "Obce 1949",
+        "castObcPol": "Katastrální území 1949",
+        "ZSJSoucBod": "Část obce 1949"
+    },   
     "1950": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",

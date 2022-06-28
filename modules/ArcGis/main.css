@@ -120,7 +120,7 @@ select {
 
 .layersGrid {
 	display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
 	align-items: end;
     justify-items: start;
 }

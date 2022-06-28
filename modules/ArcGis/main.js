@@ -46,17 +46,21 @@ const layersByYears = [
 		layers: [
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
-			{ layerID: "eed78ec4482d420cbaa7eef345a91d9c", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
-			{ layerID: "f14f296edb0547e3a203d1ffde8a3408", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" }
+			{ layerID: "69710b2ee1714df0af301754553fd51e", opacity: 0.9, featureLayer: null, infoLayer: "obceProtektorát", name: "obceSouc" },
+			{ layerID: "facd83be40074f059fd38d4405b39dbd", opacity: 0.9, featureLayer: null, infoLayer: "osadyProtektorát", name: "katSoucPol" },
+			{ layerID: "502fe8f634e741f5b4535c82367920dc", opacity: 0.9, featureLayer: null, infoLayer: "obceZupa", name: "castObcPol" },
+			{ layerID: "d47a7fee2cda494cacefed3bf7a11684", opacity: 0.9, featureLayer: null, infoLayer: "osadyZupa", name: "ZSJPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
-	},
+	},	
 	{
 		year: 1946,
 		layers: [
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
-			{ layerID: "85cedcb67daf432783070b1ff80f3c6b", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" }
+			{ layerID: "85cedcb67daf432783070b1ff80f3c6b", opacity: 0.9, featureLayer: null, infoLayer: "obceAS", name: "obceSouc" },
+			{ layerID: "418371d97cb64e498ec8f74391e2f12d", opacity: 0.9, featureLayer: null, infoLayer: "obceSO", name: "katSoucPol" },
+			{ layerID: "955bd3d4ff5e4c87a28125ad5cc4026c", opacity: 0.9, featureLayer: null, infoLayer: "castobceSO", name: "ZSJSoucBod" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
@@ -66,6 +70,17 @@ const layersByYears = [
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
 			{ layerID: "151a1de9355746589dc595c6a8e9fc86", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" }
+		],
+		options: ["attSelect", "signSelect", "valSelect"],
+	},	
+	{
+		year: 1949,
+		layers: [
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "71c5311066bf4647b769ef8b7082f0f0", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "08816206c1dd42d28e9f874eb8d86989", opacity: 0.9, featureLayer: null, infoLayer: "katastry", name: "castObcPol" },
+			{ layerID: "9c2b2b92ab304468b7771c43f8d6b4ff", opacity: 0.9, featureLayer: null, infoLayer: "castObce", name: "ZSJSoucBod" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},	
