@@ -22,7 +22,7 @@ function updateLayerGrid() {
 		</div>
         `;
     }
-    updateSignSelect(selectedYear);   
+    //updateSignSelect(selectedYear);   
     updateFilterSelect(selectedYear); 
     getLayersFromButtons.forEach((value) => {
         if ($(value)){

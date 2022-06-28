@@ -150,7 +150,6 @@ require([
 		}
 	};
 	
-
 	
 
 	//zobrazeni mapy s kategoriemi

@@ -255,6 +255,7 @@ require([
 		view.map.layers.map(function (lyr) {
 			//console.info(lyr);
 			lyr.visible = false;
+			window.location.reload();
 		})
 
 		var activeCheckBox = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -269,6 +270,82 @@ require([
 			}
 		}
 	};
+
+	// var s = document.getElementById("jevSelect").value;
+
+	// if (s == "početobyv") {
+	// 	alert("Ahoj" + s)
+	// }
+
+	document.getElementById("jevSelect").addEventListener('change', function(){
+		var s = this.value;
+
+		if (s == "početobyv") {
+			showLayer("7f4735d813054cd89a718d1b7156112b","Počet trvalých obyvatel obce 2021");
+		}
+		else if (s == "početob_1") {
+			showLayer("07e39b8ed447407d925d6c73ff1ef985","Počet obvyklých obyvatel obce 2021");
+		}		
+		else if (s == "počet_o_1") {
+			showLayer("1f31d5f7f95249919a1879415af7a950","Počet trvalých obyvatel obce 2011");
+		}
+		else if (s == "počet_o_2") {
+			showLayer("9e92579c8ed24660bbe7d4391056630c","Počet obvyklých obyvatel obce 2011");
+		}
+		else if (s == "počet_b_1") {
+			showLayer("cd45375e05fa4fcba872261ddec0eb2e","Počet budov s čísly 2011");
+		}
+		else if (s == "početbudo") {
+			showLayer("eab2e77593d2465fa8c617c1b0087a5b","Počet domů s čísly 2021");
+		}
+		else if (s == "rozloha__1") {
+			showLayer("08e9d94ff80f49cf93bd6bb3e18113d6","Rozloha lokality 2011");
+		}
+		else if (s == "rozlohalok") {
+			showLayer("869959c0db214a419870bd20fa93fcfa","Rozloha lokality 2021");
+		}
+		else if (s == "národno_1") {
+			showLayer("1637098666904d20811139305956a5b5","Česká národnost 2021");
+		}
+		else if (s == "národnost") {
+			showLayer("d04a7198ae5b4db896f72c09cc80f325","Německá národnost 2021");
+		}
+		
+	})
+
+	function testResult(idNumber, titleText){
+		var val;
+		val = idNumber + titleText;
+		return val;
+	}
+
+	
+	function showLayer(idNumber, titleText){
+		
+		const obceKategorie = new FeatureLayer({
+			portalItem: {
+				id: idNumber
+				//id: "7f4735d813054cd89a718d1b7156112b"
+			},
+			outFields:["*"],
+		});
+		const legend = new Legend({
+			view: view,
+			layerInfos : [
+				{ 
+					layer: obceKategorie,
+					title: titleText
+					//title: "Počet obyvatel"
+				}
+			]
+		});
+		map.remove(obceKategorie);
+		
+		
+		map.add(obceKategorie);
+		obceKategorie.visible = true;
+		view.ui.add(legend, "bottom-left");
+	}
 
 
 
@@ -297,12 +374,12 @@ require([
 		]
 	});
 
-	var testActivity = document.getElementById("jevSelect");
-	testActivity.addEventListener("change", (event) => {
-		map.add(obceKategorie);
-		obceKategorie.visible = true;
-		view.ui.add(legend, "bottom-left");
-	})
+	// var testActivity = document.getElementById("jevSelect");
+	// testActivity.addEventListener("change", (event) => {
+	// 	map.add(obceKategorie);
+	// 	obceKategorie.visible = true;
+	// 	view.ui.add(legend, "bottom-left");
+	// })
 	//search widget
 	const searchWidget = new Search({
 		view: view
@@ -397,15 +474,7 @@ moduly['0'] = [
 ];
 moduly['1'] = [
 	["Česká národnost 2021", "národno_1"],
-	["Německá národnost 2021", "národnost"],
-	["Moravská národnost 2021", "národno_2"],
-	["Slezská národnost 2021", "národno_3"],
-	["Slovenská národnost 2021", "národno_4"],
-	["Polská národnost 2021", "národno_5"],
-	["Romská národnost 2021", "národno_6"], ,
-	["Ruská národnost 2021", "národno_8"],
-	["Ukrajinská národnost 2021", "národno_9"],
-	["Vietnamská národnost 2021", "národno_10"]
+	["Německá národnost 2021", "národnost"]
 ];
 moduly['2'] = [
 	["Počet budov s čísly 2021", "početbudo"],
