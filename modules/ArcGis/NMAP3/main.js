@@ -2,7 +2,7 @@ const $ = (id) => document.getElementById(id);
 const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[parseInt($("rokyRange").value)].label;
 const layersByYears = [	
 	{ year: 1918, layers: [ 
-		{ layerID: "93e3db3becfd48deb3a458a6f6ff8b63", opacity: 1.0, name: "ORP", featureLayer: null }		
+		{ layerID: "5a1c204f69644a9ea5034965f285a078", opacity: 1.0, name: "ORP", featureLayer: null }		
 	] }	
 ]
 const getLayersFromButtons = ["ORP"]
@@ -92,7 +92,7 @@ require([
         map: map,
         container: "viewDiv",
         center: [11.60, 50.06],
-        zoom: 7
+        zoom: 3
     });
 	
 	
@@ -135,6 +135,7 @@ require([
 		view.map.layers.map(function(lyr){
 			//console.info(lyr);
 			lyr.visible = false;
+			window.location.reload();
 		})
 
 		var activeCheckBox = document.querySelectorAll('input[type="checkbox"]:checked');

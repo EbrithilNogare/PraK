@@ -125,8 +125,8 @@ const layersByYears = [
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
 			{ layerID: "e099975527404159a4ecbe2e61a528e4", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
-			{ layerID: "fc4091d86d2044c8984f343fcea7df7d", opacity: 0.9, featureLayer: null, infoLayer: "castObce", name: "ZSJSoucBod" },
-			{ layerID: "29efad638fdc474b9daeff462e0b70b0", opacity: 0.9, featureLayer: null, infoLayer: "ZSJ", name: "castObcPol" },
+			{ layerID: "0790ee9e0feb44fc849f6b23deab0986", opacity: 0.9, featureLayer: null, infoLayer: "castObce", name: "ZSJSoucBod" },
+			{ layerID: "5eed39b9cab74a62ad60137ad974c5eb", opacity: 0.9, featureLayer: null, infoLayer: "ZSJ", name: "castObcPol" },
 			{ layerID: "e1a80c1084084b979706c24225fd91b3", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
@@ -147,7 +147,7 @@ const layersByYears = [
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "obce1910", name: "POU" },
 			{ layerID: "40dfc84302cc4a9bb39cc7d4a442dc4b", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "obceSouc" },
 			{ layerID: "249f6790deab4053814212e31d5523b7", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "katSoucPol" },
-			{ layerID: "7a2511b39d384be5aad394fe065a9bef", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "ZSJSoucBod" },
+			{ layerID: "02eb858eb6ca4d5fa6ddb2ad16f92c63", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "ZSJSoucBod" },
 			{ layerID: "63403761afca4561beecc5ce9ddf3202", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "castObcPol" },
 			{ layerID: "457534b3930c4716975d10294d845752", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "ZSJPol" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "soudOkresy" }
