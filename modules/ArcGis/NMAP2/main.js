@@ -53,6 +53,22 @@ require([
 		});
 	})
 
+	const labelClass = {
+		symbol: {
+			type: "text",  // autocasts as new TextSymbol()
+			color: "green",
+			font: {  // autocast as new Font()
+			  family: "Playfair Display",
+			  size: 12,
+			  weight: "bold"
+			}
+		  },
+		  labelPlacement: "above-center",
+		  labelExpressionInfo: {
+			expression: "$feature.Název"
+		  }
+	}
+
 	
 	
 	const createFL = (layer) => {
@@ -63,7 +79,9 @@ require([
 			id: layer.layerID,
 			opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
 			visible: false,
-		} })
+		 }
+		//, labelingInfo: [labelClass]
+	 })
 
 		layer.featureLayer.load().then(function() {
 			$("loadingProgressbar").value = ++loadingProgress.value;
@@ -138,11 +156,12 @@ require([
 
 		layersByYears.forEach(layerByYear =>
 			layerByYear.layers.forEach(layer => {
-				layer.featureLayer.definitionExpression = expression;	
+				layer.featureLayer.definitionExpression = expression;				
 			})
-		)
-		
+		)		
 	}
+
+	
 
 	function doDelete(){
 		view.map.layers.map(function(lyr){
@@ -269,9 +288,9 @@ function cngRok(vol) {
 
 const moduly = [];
 moduly['0'] = [
-	["Průmysl","Sektor"],
-    ["Služby","Sektor"],
-    ["Zemědělství","Sektor"]
+	["Primární","Sektor"],
+    ["Sekundární","Sektor"],
+    ["Terciární","Sektor"]
 ];
 moduly['1'] = [
 	["Akciová společnost","Forma_podn"],
