@@ -423,7 +423,7 @@ const yearsFilterDataList = {
         "ostatní": "Ostatní národnost",
         "nezjiště": "Nezjištěná národnost",
         "neudaná": "Neudaná národnost"
-    // },
+     },
     // "2021": {
     //     "0": "Vyberte modul",
     //     "početobyv": "Počet trvalých obyvatel 2021",
