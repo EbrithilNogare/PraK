@@ -2,19 +2,19 @@ const $ = (id) => document.getElementById(id);
 const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[parseInt($("rokyRange").value)].label;
 const layersByYears = [	
 	{ year: 1918, layers: [ 
-		{ layerID: "443709212b894e9297888b3194b51100", opacity: 1.0, name: "ORP", featureLayer: null },
+		{ layerID: "28d600499c6d4060a6a2f8bea020d304", opacity: 1.0, name: "ORP", featureLayer: null },
 		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
 	] },
 	{ year: 1936, layers: [ 
-		{ layerID: "a2e007238e304f1ea58005fc69c921e9", opacity: 1.0, name: "ORP", featureLayer: null },
+		{ layerID: "901ffd24c6d0482e9200a3baa2204c61", opacity: 1.0, name: "ORP", featureLayer: null },
 		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
 	] },
 	{ year: 1950, layers: [ 
-		{ layerID: "23bcd52310854d6185e5f22a4eca0303", opacity: 1.0, name: "ORP", featureLayer: null },
+		{ layerID: "ac86e367126b456cbd926954e2873d0e", opacity: 1.0, name: "ORP", featureLayer: null },
 		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
 	] },
 	{ year: 1981, layers: [ 
-		{ layerID: "401e9530ba074936800a8f596fc49d70", opacity: 1.0, name: "ORP", featureLayer: null },
+		{ layerID: "0cb0d5fa711143948603dcc8d9a8534d", opacity: 1.0, name: "ORP", featureLayer: null },
 		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
 	] },
 	
@@ -280,11 +280,14 @@ moduly['1'] = [
 	["Jednotné zemědělské družstvo","Forma_podn"],
 	["Komanditní společnost","Forma_podn"],
 	["Národní/Státní podnik","Forma_podn"],
-	["Podnik samosprávného celku","Forma_podn"],
+	["Podnik samosprávného celku (městský, komunální, okresní, krajský, zemský)","Forma_podn"],
 	["Soukromá firma neurčeného typu","Forma_podn"],
 	["Společnost r.o.","Forma_podn"],
 	["Státní statek","Forma_podn"],
+	["Strojní a traktorová stanice","Forma_podn"],
 	["Velkostatek","Forma_podn"],
+	["Veřejná společnost obchodní","Forma_podn"],
+	["Zbytkový statek","Forma_podn"],
 	["Živnost","Forma_podn"]    
 ];				  
 moduly['2'] = [
@@ -297,13 +300,15 @@ moduly['2'] = [
 	["Finance","Obor"],
 	["Grafika a tisk","Obor"],
 	["Hornictví, metalurgie, zpracování nerostů","Obor"],
-	["Obchod a služby bez cestovního ruchu","Obor"],
+	["Chemie","Obor"],
+	["Obchod a služby bez cestovního ruchu","Obor"],	
 	["Papírenství, dřevařství","Obor"],
 	["Potravinářství","Obor"],
 	["Sklo, porcelán a keramika","Obor"],
 	["Stavebnictví","Obor"],
 	["Strojírenství","Obor"],
 	["Textilnictví , oděvnictví, obuvnictví, zpracování kůže","Obor"],
+	["Zdravotnictví a školství","Obor"],
 	["Zemědělství, rybářství, lesnictví","Obor"],
 	["Ostatní","Obor"]
 ];				
