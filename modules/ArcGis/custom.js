@@ -102,29 +102,32 @@ const yearsInputsDataList = {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "katSoucPol": "Osady 1910",
-        "ZSJSoucBod": "Část osady 1910",
-        "castObcPol": "Katastry 1910",        
+        "ZSJSoucBod": "Místní část 1910",
+        "castObcPol": "Katastrální území 1910",        
         "obceSouc": "Obce 1910",
-        "ZSJPol": "Příslušnost"
+        "ZSJPol": "Struktura obce",
+        "soudOkresy": "Soudní okresy 1946"
         
     },
     "1921": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "katSoucPol": "Osady 1921",
-        "ZSJSoucBod": "Část osady 1921",
-        "castObcPol": "Katastry 1921",
+        "ZSJSoucBod": "Místní část 1921",
+        "castObcPol": "Katastrální území 1921",
         "obceSouc": "Obce 1921",
-        "ZSJPol": "Příslušnost"
+        "ZSJPol": "Struktura obce",
+        "soudOkresy": "Soudní okresy 1946"
     },
     "1930": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "katSoucPol": "Osady 1930",
-        "ZSJSoucBod": "Část osady 1930",
-        "castObcPol": "Katastry 1930",
+        "ZSJSoucBod": "Místní část 1930",
+        "castObcPol": "Katastrální území 1930",
         "obceSouc": "Obce 1930",
-        "ZSJPol": "Příslušnost"
+        "ZSJPol": "Struktura obce",
+        "soudOkresy": "Soudní okresy 1946"
     },
     "1939": {
         "ORP": "Obce s rozšířenou působností 2021",
@@ -132,42 +135,46 @@ const yearsInputsDataList = {
         "katSoucPol": "Osady Protektorát 1939",        
         "obceSouc": "Obce Protektorát 1939",
         "ZSJPol": "Osady Župa 1939",        
-        "castObcPol": "Obce Župa 1939"              
+        "castObcPol": "Obce Župa 1939",        
+        "soudOkresy": "Soudní okresy 1946"              
     },   
     "1946": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "obceSouc": "Obce 1946 Archivni soupis",
         "katSoucPol": "Obce 1946 Soupis obyvatel",
-        "ZSJSoucBod": "Části obce 1946 Soupis obyvatel"
+        "ZSJSoucBod": "Části obce 1946 Soupis obyvatel",
+        "soudOkresy": "Soudní okresy 1946"
     },
     "1947": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "obceSouc": "Obce 1947",
-        "ZSJPol": "Příslušnost"
+        "soudOkresy": "Soudní okresy 1946"
     },
     "1949": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "obceSouc": "Obce 1949",
         "castObcPol": "Katastrální území 1949",
-        "ZSJSoucBod": "Část obce 1949"
+        "ZSJSoucBod": "Část obce 1949",
+        "soudOkresy": "Soudní okresy 1946"
     },   
     "1950": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "katSoucPol": "Osady 1950",
         "obceSouc": "Obce 1950",
-        "ZSJPol": "Příslušnost"
+        "ZSJPol": "Struktura obce",
+        "soudOkresy": "Soudní okresy 1946"
     },
     "1961": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "katSoucPol": "Osady 1961",
-        "ZSJSoucBod": "Část osady 1961",
+        "katSoucPol": "Část obce 1961",
         "obceSouc": "Obce 1961",
-        "ZSJPol": "Příslušnost"
+        "ZSJPol": "Struktura obce",
+        "soudOkresy": "Soudní okresy 1946"
     },
     "1970": {
         "ORP": "Obce s rozšířenou působností 2021",
@@ -175,7 +182,8 @@ const yearsInputsDataList = {
         "ZSJSoucBod": "Část osady 1970",
         "castObcPol": "Základní sídelní jednotky 1970",
         "obceSouc": "Obce 1970",
-        "ZSJPol": "Příslušnost"
+        "ZSJPol": "Struktura obce",
+        "soudOkresy": "Soudní okresy 1946"
     },
     "1980": {
         "ORP": "Obce s rozšířenou působností 2021",
@@ -183,12 +191,14 @@ const yearsInputsDataList = {
         "ZSJSoucBod": "Část obce 1980",
         "castObcPol": "Základní sídelní jednoty 1980",
         "obceSouc": "Obce 1980",
-        "ZSJPol": "Příslušnost"
+        "ZSJPol": "Struktura obce",
+        "soudOkresy": "Soudní okresy 1946"
     },
     "1991": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "castObcPol": "Základní sídelní jednoty 1980"
+        "castObcPol": "Základní sídelní jednoty 1980",        
+        "soudOkresy": "Soudní okresy 1946"
     },
     "2021": {
         "ORP": "Obce s rozšířenou působností",
@@ -198,6 +208,7 @@ const yearsInputsDataList = {
         "castObcPol": "Části obcí 2021",
         "ZSJPol": "Základní sídelní jednotky 2021",
         "obceSouc": "Obce 2021",
+        "soudOkresy": "Soudní okresy 1946"
     }
 }
 
