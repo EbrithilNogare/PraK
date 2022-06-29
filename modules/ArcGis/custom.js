@@ -105,7 +105,7 @@ const yearsInputsDataList = {
         "ZSJSoucBod": "Místní část 1910",
         "castObcPol": "Katastrální území 1910",        
         "obceSouc": "Obce 1910",
-        "ZSJPol": "Struktura obce",
+        "ZSJPol": "Struktura obce 1910",
         "soudOkresy": "Soudní okresy 1946"
         
     },
@@ -116,7 +116,7 @@ const yearsInputsDataList = {
         "ZSJSoucBod": "Místní část 1921",
         "castObcPol": "Katastrální území 1921",
         "obceSouc": "Obce 1921",
-        "ZSJPol": "Struktura obce",
+        "ZSJPol": "Struktura obce 1921",
         "soudOkresy": "Soudní okresy 1946"
     },
     "1930": {
@@ -126,15 +126,14 @@ const yearsInputsDataList = {
         "ZSJSoucBod": "Místní část 1930",
         "castObcPol": "Katastrální území 1930",
         "obceSouc": "Obce 1930",
-        "ZSJPol": "Struktura obce",
+        "ZSJPol": "Struktura obce 1930",
         "soudOkresy": "Soudní okresy 1946"
     },
     "1939": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "katSoucPol": "Osady Protektorát 1939",        
-        "obceSouc": "Obce Protektorát 1939",
-        "ZSJPol": "Osady Župa 1939",        
+        "obceSouc": "Obce Protektorát 1939",               
         "castObcPol": "Obce Župa 1939",        
         "soudOkresy": "Soudní okresy 1946"              
     },   
@@ -156,7 +155,6 @@ const yearsInputsDataList = {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "obceSouc": "Obce 1949",
-        "castObcPol": "Katastrální území 1949",
         "ZSJSoucBod": "Část obce 1949",
         "soudOkresy": "Soudní okresy 1946"
     },   
@@ -165,24 +163,24 @@ const yearsInputsDataList = {
         "POU": "Obce s pověřeným obecním úřadem 2021",
         "katSoucPol": "Osady 1950",
         "obceSouc": "Obce 1950",
-        "ZSJPol": "Struktura obce",
+        "ZSJPol": "Struktura obce 1950",
         "soudOkresy": "Soudní okresy 1946"
     },
     "1961": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "katSoucPol": "Část obce 1961",
+        "ZSJSoucBod": "Část obce 1961",
         "obceSouc": "Obce 1961",
-        "ZSJPol": "Struktura obce",
+        "ZSJPol": "Struktura obce 1961",
         "soudOkresy": "Soudní okresy 1946"
     },
     "1970": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "ZSJSoucBod": "Část osady 1970",
+        "ZSJSoucBod": "Část obce 1970",
         "castObcPol": "Základní sídelní jednotky 1970",
         "obceSouc": "Obce 1970",
-        "ZSJPol": "Struktura obce",
+        "ZSJPol": "Struktura obce 1970",
         "soudOkresy": "Soudní okresy 1946"
     },
     "1980": {
@@ -191,15 +189,15 @@ const yearsInputsDataList = {
         "ZSJSoucBod": "Část obce 1980",
         "castObcPol": "Základní sídelní jednoty 1980",
         "obceSouc": "Obce 1980",
-        "ZSJPol": "Struktura obce",
+        "ZSJPol": "Struktura obce 1980",
         "soudOkresy": "Soudní okresy 1946"
     },
     "1991": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "castObcPol": "Základní sídelní jednoty 1980",        
+        "castObcPol": "Základní sídelní jednoty 1991",        
         "soudOkresy": "Soudní okresy 1946"
-    },
+     },
     "2021": {
         "ORP": "Obce s rozšířenou působností",
         "POU": "Obce s pověřeným obecním úřadem",
@@ -321,35 +319,33 @@ const yearsFilterDataList = {
         "0": "Vyberte modul",
         "rozloha": "Výměra katastrálního území",
         "přítomn": "Přítomné obyvatelstvo",
-        "národnost": "Německá národnost",
-        "národno_1": "Československá národnost",
-        "národno_2": "Jiná národnost",
-        "cizozemci": "Cizozemci"
+        "německá": "Německá národnost",
+        "česká_n": "Československá národnost",
+        "jiná_nár": "Jiná národnost"
     },
     "1946": {
         "0": "Vyberte modul",        
         "přítomn": "Přítomné obyvatelstvo",
-        "národnost": "Německý mateřský jazyk",
-        "česká_n": "Český mateřský jazyk",
-        "jiná_nár": "Jiný mateřský jazyk"
+        "německá": "Německá národnost",
+        "česká_n": "Česká národnost",
+        "slovenská": "Slovenská národnost",
+        "jiná_nár": "Jiná národnost"
     },
     "1947": {
         "0": "Vyberte modul",
         "přítomn": "Přítomné obyvatelstvo",
-        "národnost": "Německý mateřský jazyk",
-        "česká_n": "Český mateřský jazyk",
-        "jiná_nár": "Jiný mateřský jazyk"
+        "německá": "Německá národnost",
+        "česká_n": "Česká národnost"
     },
     "1949": {
         "0": "Vyberte modul",
-        "početobyv": "Počet trvalých obyvatel 2021",
-        "počet_o_1": "Počet obyvatel trvalých 2011",
-        "počet_o_2": "Počet obyvatel obvyklých 2011"
+        "přítomn": "Počet Přítomných obyvatel",
+        "výměra": "Výměra lokality"
     },
     "1950": {
         "0": "Vyberte modul",
         "plocha_obc": "Plocha obce",
-        "počet_dom": "Trvale obydlené domy",
+        "počet_dom": "Domy",
         "přítomn": "Přítomné obyvatelstvo",
         "česká": "Česká národnost",
         "německá": "Německá národnost",
@@ -427,21 +423,21 @@ const yearsFilterDataList = {
         "ostatní": "Ostatní národnost",
         "nezjiště": "Nezjištěná národnost",
         "neudaná": "Neudaná národnost"
-    },
-    "2021": {
-        "0": "Vyberte modul",
-        "početobyv": "Počet trvalých obyvatel 2021",
-        "početob_1": "Počet obvyklých obyvatel 2021",
-        "početbudo": "Počet budov s čísly 2021",
-        "národno_1": "Národnost 2021 – česká",
-        "národnost": "Národnost 2021 - německá",
-        "národno_2": "Národnost 2021 - moravská",
-        "národno_3": "Národnost 2021 - slezská",
-        "národno_4": "Národnost 2021 - slovenská",
-        "národno_5": "Národnost 2021 - polská",
-        "národno_6": "Národnost 2021 - romská",
-        "národno_8": "Národnost 2021 - ruská",
-        "národno_9": "Národnost 2021 - ukrajinská",
-        "národno_10": "Národnost 2021 - vietnamská"
-    }
+    // },
+    // "2021": {
+    //     "0": "Vyberte modul",
+    //     "početobyv": "Počet trvalých obyvatel 2021",
+    //     "početob_1": "Počet obvyklých obyvatel 2021",
+    //     "početbudo": "Počet budov s čísly 2021",
+    //     "národno_1": "Národnost 2021 – česká",
+    //     "národnost": "Národnost 2021 - německá",
+    //     "národno_2": "Národnost 2021 - moravská",
+    //     "národno_3": "Národnost 2021 - slezská",
+    //     "národno_4": "Národnost 2021 - slovenská",
+    //     "národno_5": "Národnost 2021 - polská",
+    //     "národno_6": "Národnost 2021 - romská",
+    //     "národno_8": "Národnost 2021 - ruská",
+    //     "národno_9": "Národnost 2021 - ukrajinská",
+    //     "národno_10": "Národnost 2021 - vietnamská"
+    // }
 }

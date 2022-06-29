@@ -52,7 +52,6 @@ const layersByYears = [
 			{ layerID: "69710b2ee1714df0af301754553fd51e", opacity: 0.9, featureLayer: null, infoLayer: "obceProtektorát", name: "obceSouc" },
 			{ layerID: "facd83be40074f059fd38d4405b39dbd", opacity: 0.9, featureLayer: null, infoLayer: "osadyProtektorát", name: "katSoucPol" },
 			{ layerID: "502fe8f634e741f5b4535c82367920dc", opacity: 0.9, featureLayer: null, infoLayer: "obceZupa", name: "castObcPol" },
-			{ layerID: "d47a7fee2cda494cacefed3bf7a11684", opacity: 0.9, featureLayer: null, infoLayer: "osadyZupa", name: "ZSJPol" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "SO46", name: "soudOkresy" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
@@ -85,7 +84,6 @@ const layersByYears = [
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
 			{ layerID: "71c5311066bf4647b769ef8b7082f0f0", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
-			{ layerID: "08816206c1dd42d28e9f874eb8d86989", opacity: 0.9, featureLayer: null, infoLayer: "katastry", name: "castObcPol" },
 			{ layerID: "9c2b2b92ab304468b7771c43f8d6b4ff", opacity: 0.9, featureLayer: null, infoLayer: "castObce", name: "ZSJSoucBod" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "SO46", name: "soudOkresy" }
 		],
@@ -109,7 +107,7 @@ const layersByYears = [
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
 			{ layerID: "dd89cf410a1d4a99aa8765e3ac6f9f02", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
-			{ layerID: "b6c32c7b93a7492fa49695b3ccfdd4ab", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" },
+			{ layerID: "abfffe7b10be4b3ab3f1a4e7f3ccbf7d", opacity: 0.9, featureLayer: null, infoLayer: "castObce", name: "ZSJSoucBod" },
 			{ layerID: "f8b792aa30124db79c346f644760afdb", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "SO46", name: "soudOkresy" }
 		],
@@ -185,9 +183,10 @@ require([
 	"esri/rest/query",
 	"esri/rest/support/Query",
 	"esri/widgets/Legend",
-	"esri/widgets/Search"
+	"esri/widgets/Search",
+	"esri/widgets/ScaleBar"
 ], (
-	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend, Search
+	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend, Search, ScaleBar
 ) => {
 
 	esriConfig.apiKey = "AAPK8bc6dada19fc40b495ff8ef292a6162bPTUaWG0rfCO_sIehiCZr8W72weLqN42yKhTPDbTK4S0XbpfyQYfb5RiVUvKkD9AB";
@@ -373,6 +372,15 @@ require([
 		obceKategorie.visible = true;
 		view.ui.add(legend, "bottom-left");
 	}
+
+	let scaleBar = new ScaleBar({
+		view: view,
+		unit: "metric"
+	  });
+	  // Add widget to the bottom left corner of the view
+	  view.ui.add(scaleBar, {
+		position: "top-left"
+	  });
 
 
 

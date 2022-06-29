@@ -60,13 +60,13 @@
 			<div class="mui-panel" id="uzemiRok">
 				<div class="titleLabel">
 					<span>Časová vrstva</span>
-					<span id="yearLabel" for="rokyRange">2021</span>
+					<span id="yearLabel" for="rokyRange">1991</span>
 				</div>
 				<div class="rangeWithButtons">
 					<button type="button" class="mui-btn mui-btn--primary rangePrevBtn"
 						onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="12" list="yearsDatalist" value="12"
+						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11"
 							onchange="changeYear(value)" oninput="changeYearLite(value)">
 						<datalist id="yearsDatalist">
 							<option value="0" label="1910"></option>
@@ -81,7 +81,7 @@
 							<option value="9" hidden label="1970"></option>
 							<option value="10" hidden label="1980"></option>
 							<option value="11" hidden label="1991"></option>
-							<option value="12" label="2021"></option>
+							<!-- <option value="12" label="2021"></option> -->
 						</datalist>
 					</div>
 					<button type="button" onclick="changeYearDelta(+1)"
@@ -95,22 +95,22 @@
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ORP">
-							Obce s rozšířenou působností
+							Obce s rozšířenou působností 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="POU">
-							Obce s pověřeným obecním úřadem
+							Obce s pověřeným obecním úřadem 2021
 						</label>
 					</div>
-					<div class="mui-checkbox">
+					<div style="display:none" class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="katSoucPol">
 							Katastrální území 2021
 						</label>
 					</div>
-					<div class="mui-checkbox">
+					<div style="display:none" class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ZSJSoucBod">
 							Prostranství 2021
@@ -118,22 +118,22 @@
 					</div>
 					<div class="mui-checkbox">
 						<label>
-							<input type="checkbox" id="castObcPol">
-							Části obcí 2021
+							<input type="checkbox" checked id="castObcPol">
+							Základní sídelní jednoty 1991
 						</label>
 					</div>
-					<div class="mui-checkbox">
+					 <div style="display:none" class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ZSJPol">
 							Základní sídelní jednotky 2021
 						</label>
 					</div>
-					<div class="mui-checkbox">
+					<div style="display:none" class="mui-checkbox">
 						<label>
-							<input type="checkbox" checked id="obceSouc">
+							<input type="checkbox"  id="obceSouc">
 							Obce 2021
 						</label>
-					</div>
+					</div> 
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="soudOkresy">

@@ -23,9 +23,10 @@ require([
 	"esri/rest/query",
 	"esri/rest/support/Query",
 	"esri/widgets/Legend",
-	"esri/widgets/Search"
+	"esri/widgets/Search",
+	"esri/widgets/ScaleBar"
 ], (
-	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend, Search
+	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend, Search, ScaleBar
 ) => {
 
 	esriConfig.apiKey = "AAPK8bc6dada19fc40b495ff8ef292a6162bPTUaWG0rfCO_sIehiCZr8W72weLqN42yKhTPDbTK4S0XbpfyQYfb5RiVUvKkD9AB";
@@ -182,6 +183,15 @@ require([
 
 	view.ui.add(searchWidget, {
 		position: "top-right"
+	  });
+
+	  let scaleBar = new ScaleBar({
+		view: view,
+		unit: "metric"
+	  });
+	  // Add widget to the bottom left corner of the view
+	  view.ui.add(scaleBar, {
+		position: "top-left"
 	  });
 	
 });
