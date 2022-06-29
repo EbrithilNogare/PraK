@@ -3,23 +3,37 @@ const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[pa
 const layersByYears = [	
 	{ year: 1918, layers: [ 
 		{ layerID: "28d600499c6d4060a6a2f8bea020d304", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
+		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null },
+		//{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "zeleznice", featureLayer: null },
+		{ layerID: "5a45f3e4837f4515bd87365a7165f215", opacity: 1.0, name: "zelezniceSouc", featureLayer: null }
 	] },
 	{ year: 1936, layers: [ 
 		{ layerID: "901ffd24c6d0482e9200a3baa2204c61", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
+		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null },
+		{ layerID: "92d4feb6383a482bac2542c2d703b660", opacity: 1.0, name: "zeleznice", featureLayer: null },
+		{ layerID: "5a45f3e4837f4515bd87365a7165f215", opacity: 1.0, name: "zelezniceSouc", featureLayer: null },
+		{ layerID: "e3a18dddaea842e880293449a06e1d77", opacity: 1.0, name: "silnice", featureLayer: null },
+		{ layerID: "800a5c6b90264e6e9615136de81681d9", opacity: 1.0, name: "silniceSouc", featureLayer: null }
 	] },
 	{ year: 1950, layers: [ 
 		{ layerID: "ac86e367126b456cbd926954e2873d0e", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
+		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null },
+		{ layerID: "edc33f5035ef49d2aa250b963df14238", opacity: 1.0, name: "zeleznice", featureLayer: null },
+		{ layerID: "5a45f3e4837f4515bd87365a7165f215", opacity: 1.0, name: "zelezniceSouc", featureLayer: null },
+		{ layerID: "92eabea5425345eaab1e86feda8db7de", opacity: 1.0, name: "silnice", featureLayer: null },
+		{ layerID: "800a5c6b90264e6e9615136de81681d9", opacity: 1.0, name: "silniceSouc", featureLayer: null }
 	] },
 	{ year: 1981, layers: [ 
-		{ layerID: "0cb0d5fa711143948603dcc8d9a8534d", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
+		{ layerID: "3c14e174a5d24ba2bbc454b9b5edb7c8", opacity: 1.0, name: "ORP", featureLayer: null },
+		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null },
+		{ layerID: "6883b5fcc8644287a7c3fed92176437f", opacity: 1.0, name: "zeleznice", featureLayer: null },
+		{ layerID: "5a45f3e4837f4515bd87365a7165f215", opacity: 1.0, name: "zelezniceSouc", featureLayer: null },
+		{ layerID: "b196d475d1b34975b44942ab390bf003", opacity: 1.0, name: "silnice", featureLayer: null },
+		{ layerID: "800a5c6b90264e6e9615136de81681d9", opacity: 1.0, name: "silniceSouc", featureLayer: null }
 	] },
 	
 ]
-const getLayersFromButtons = ["ORP", "obceSouc"]
+const getLayersFromButtons = ["ORP", "obceSouc", "zeleznice", "zelezniceSouc", "silnice", "silniceSouc"]
 let loadingProgress = {
 	value: 0,
 	max: [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => 0 ))).length,
@@ -309,9 +323,7 @@ moduly['1'] = [
 	["Zbytkový statek","Forma_podn"],
 	["Živnost","Forma_podn"]    
 ];				  
-moduly['2'] = [
-	
-	["Cestovní ruch","Obor"],
+moduly['2'] = [	
 	["Chemie","Obor"],
 	["Doprava a cestovní ruch","Obor"],
 	["Elektrotechnika","Obor"],

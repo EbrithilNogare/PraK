@@ -56,7 +56,7 @@
 			<div class="mui-panel" id="uzemiRok">
 				<div class="titleLabel">
 					<span></span>
-					<span id="yearLabel" for="rokyRange">1981</span>
+					<span id="yearLabel" for="rokyRange">1982-1989</span>
 				</div>
 				<div class="rangeWithButtons">
 					<button type="button" class="mui-btn mui-btn--primary"
@@ -67,10 +67,10 @@
 							onchange="changeYear(value)"
 							oninput="changeYearLite(value)">
 							<datalist id="yearsDatalist">
-								<option value="0" label="1918"></option>
-								<option value="1" label="1936"></option>
-								<option value="2" label="1950"></option>
-								<option value="3" label="1981"></option>
+								<option value="0" hidden label="1919-1921"></option>
+								<option value="1" hidden label="1936-1937"></option>
+								<option value="2" hidden label="1951-1952"></option>
+								<option value="3" hidden label="1982-1989"></option>
 								
 							</datalist>
 					</div>
@@ -92,6 +92,30 @@
 						<label>
 							<input type="checkbox" id="obceSouc" >
 							Obce 2021
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="zeleznice" >
+							Železnice
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="zelezniceSouc" >
+							Železnice současnost
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="silnice" >
+							Silnice
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="silniceSouc" >
+							Silnice současnost
 						</label>
 					</div>
 					
