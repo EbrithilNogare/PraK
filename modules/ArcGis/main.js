@@ -94,8 +94,8 @@ const layersByYears = [
 		layers: [
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
-			{ layerID: "8e80e1928ccd4004ac76ed97852ed7c7", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
-			{ layerID: "22a3ae0b92434ac2afed972cf5467e39", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" },
+			{ layerID: "9aab833605d841ac8d43f9f1c656af24", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
+			{ layerID: "7541b7b7e5bd4b239cf373133dba5871", opacity: 0.9, featureLayer: null, infoLayer: "osady", name: "katSoucPol" },
 			{ layerID: "8180ceb28cff4537ba6c8c32935742ca", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "SO46", name: "soudOkresy" }
 		],
