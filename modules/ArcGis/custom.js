@@ -195,7 +195,10 @@ const yearsInputsDataList = {
     "1991": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "castObcPol": "Základní sídelní jednoty 1991",        
+        "obceSouc": "Obce 1991",
+        "ZSJSoucBod": "Část obce 1991",
+        "castObcPol": "Základní sídelní jednoty 1991",
+        "ZSJPol": "Struktura obce 1980",        
         "soudOkresy": "Soudní okresy 1946"
      },
     "2021": {
