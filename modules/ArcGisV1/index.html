@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mapy Krkonoš</title>
+
+	<link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.23/"></script>
+
+	<link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="muiCustomization.css">
+	<script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<div class="viewDiv" id="viewDiv">
+
+		</div>
+
+
+
+
+
+
+		<div class="controlTab mui--z4" id="titleDiv">
+			<h2>Mapy Prameny Krkonoš - NMAP1</h2>
+			<progress id="loadingProgressbar" value="0" max="?"></progress>
+			<h2>Obyvatelstvo, obce a správní systém Krkonoš ve 20. století </h2>
+
+			<div class="mui-panel">
+				<a href="#" onClick="window.open('repo/NMAP1MetKom.pdf#page=1&zoom=100&navpanes=0&statusbar=0','pagename','resizable,height=700,width=870'); 
+				return false;">
+					<p style="text-align:center;">Metodický komentář</p>
+				</a>
+				<noscript>Zřejmě nemáte povolený JavaScript, použijte následující odkaz
+					<a href="repo/NMAP1MetKom.pdf" target="_blank">
+						<p style="text-align:center;">Metodický komentář</p>
+					</a></noscript>
+
+			</div>
+
+			<div class="mui-panel">
+				<a href="#" onClick="window.open('repo/NMAP1OdbKom.pdf#page=1&zoom=100&navpanes=0&statusbar=0','pagename','resizable,height=700,width=870'); 
+				return false;">
+					<p style="text-align:center;">Odborný komentář</p>
+				</a>
+				<noscript>Zřejmě nemáte povolený JavaScript, použijte následující odkaz
+					<a href="repo/NMAP1OdbKom.pdf" target="_blank">
+						<p style="text-align:center;">Odborný komentář</p>
+					</a></noscript>
+
+			</div>
+
+			<div class="mui-panel" id="uzemiRok">
+				<div class="titleLabel">
+					<span>Časová vrstva</span>
+					<span id="yearLabel" for="rokyRange">1991</span>
+				</div>
+				<div class="rangeWithButtons">
+					<button type="button" class="mui-btn mui-btn--primary rangePrevBtn"
+						onclick="changeYearDelta(-1)">&lt;&lt;</button>
+					<div class="inputWithDatalist">
+						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11"
+							onchange="changeYear(value)" oninput="changeYearLite(value)">
+						<datalist id="yearsDatalist">
+							<option value="0" label="1910"></option>
+							<option value="1" hidden label="1921"></option>
+							<option value="2" hidden label="1930"></option>
+							<option value="3" hidden label="1939"></option>							
+							<option value="4" hidden label="1946"></option>
+							<option value="5" hidden label="1947"></option>
+							<option value="6" label="1949"></option>
+							<option value="7" hidden label="1950"></option>
+							<option value="8" hidden label="1961"></option>
+							<option value="9" hidden label="1970"></option>
+							<option value="10" hidden label="1980"></option>
+							<option value="11" hidden label="1991"></option>
+							<!-- <option value="12" label="2021"></option> -->
+						</datalist>
+					</div>
+					<button type="button" onclick="changeYearDelta(+1)"
+						class="mui-btn mui-btn--primary rangeNextBtn">&gt;&gt;</button>
+				</div>
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Územní struktura</div>
+				<form class="layersGrid">
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="ORP">
+							Obce s rozšířenou působností 2021
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="POU">
+							Obce s pověřeným obecním úřadem 2021
+						</label>
+					</div>
+					<div style="display:none" class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="katSoucPol">
+							Katastrální území 2021
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="ZSJSoucBod">
+							Část obce 1991
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" checked id="castObcPol">
+							Základní sídelní jednoty 1991
+						</label>
+					</div>
+					 <div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="ZSJPol">
+							Struktura obce 1991
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox"  id="obceSouc">
+							Obce 1991
+						</label>
+					</div> 
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="soudOkresy">
+							Soudní okresy k roku 1946
+						</label>
+					</div>
+				</form>
+			</div>
+
+
+
+
+			<div style="display:none" class="mui-panel">
+				<div class="mui-select">
+					<label>Modul - pouze současná vrstva</label>
+					<select id="modulSelect">
+						<option value="0">Demografická struktura</option>
+						<option value="1">Národnost</option>
+						<option value="2">Domy</option>
+						<option value="3">Rozloha</option>
+					</select>
+				</div>
+
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="jevSelect"></select>
+				</div>
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Filtrování dat</div>
+
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="attSelect">
+						<option value="početobyv">Počet obyvatel</option>
+						<option value="početbudo" selected>Počet budov</option>
+					</select>
+				</div>
+
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="signSelect">
+						<option value=">">je větší než</option>
+						<option value="<">je menší než</option>
+						<option value="=">rovná se</option>
+					</select>
+				</div>
+
+				<div class="splitTwo">
+					<div class="mui-textfield">
+						<input type="number" value="0" id="inputNumber">
+					</div>
+
+					<button class="mui-btn mui-btn--raised" id="doBtn">Proveď</button>
+				</div>
+
+				<div>
+					<button class="mui-btn mui-btn--raised" id="doDel">Vymaž vrstvy</button>
+				</div>
+
+				<p><span id="printResults"></span></p>
+			</div>
+		</div>
+	</div>
+
+	<script src="main.js"></script>
+	<script src="./custom.js"></script>
+	<script src="./filter.js"></script>
+
+</body>
+
+</html>

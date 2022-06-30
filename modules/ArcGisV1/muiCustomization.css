@@ -1,0 +1,8 @@
+.mui-panel {
+	background-color: #ffffff33;
+	margin: inherit;
+}
+
+.mui-checkbox label{
+	user-select: none;
+}

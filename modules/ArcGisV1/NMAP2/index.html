@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mapy Krkonoš</title>
+
+	<link rel="stylesheet"
+		href="https://js.arcgis.com/4.23/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.23/"></script>
+
+	<link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet"
+		type="text/css" />
+	<link rel="stylesheet" href="muiCustomization.css">
+	<script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<div class="wrapper">
+
+		<div class="viewDiv" id="viewDiv">
+
+		</div>
+
+
+
+
+
+
+		<div class="controlTab mui--z4" id="titleDiv">
+			<h2>Mapy Prameny Krkonoš - NMAP2</h2>
+			<progress id="loadingProgressbar" value="0" max="100"></progress>
+			<h2>Významné ekonomické subjekty a dopravní infrastruktura Krkonoš ve 20. století </h2>
+
+			<div class="mui-panel">
+				<a href="#" onClick="window.open('../repo/NMAP2MetKom.pdf#page=1&zoom=100&navpanes=0&statusbar=0','pagename','resizable,height=700,width=870'); 
+				return false;"><p style="text-align:center;">Metodický komentář</p> </a>
+				<noscript>You need Javascript to use the previous link or use 
+				<a href="../repo/NMAP2MetKom.pdf#page=1&zoom=100&navpanes=0&statusbar=0" target="_blank">
+				<p style="text-align:center;">Metodický komentář</p></a></noscript>
+				
+			</div>
+
+			<div class="mui-panel">
+				<a href="#" onClick="window.open('../repo/NMAP2OdbKom.pdf#page=1&zoom=100&navpanes=0&statusbar=0','pagename','resizable,height=700,width=870'); 
+				return false;"><p style="text-align:center;">Odborný komentář</p> </a>
+				<noscript>You need Javascript to use the previous link or use 
+				<a href="../repo/NMAP2OdbKom.pdf#page=1&zoom=100&navpanes=0&statusbar=0" target="_blank">
+				<p style="text-align:center;">Odborný komentář</p></a></noscript>
+				
+			</div>
+
+			<div class="mui-panel" id="uzemiRok">
+				<div class="titleLabel">
+					<span></span>
+					<span id="yearLabel" for="rokyRange">1982-1989</span>
+				</div>
+				<div class="rangeWithButtons">
+					<button type="button" class="mui-btn mui-btn--primary"
+						onclick="changeYearDelta(-1)">&lt;&lt;</button>
+					<div class="inputWithDatalist">
+						<input type="range" id="rokyRange" min="0" max="3"
+							list="yearsDatalist" value="3"
+							onchange="changeYear(value)"
+							oninput="changeYearLite(value)">
+							<datalist id="yearsDatalist">
+								<option value="0" hidden label="1919-1921"></option>
+								<option value="1" hidden label="1936-1937"></option>
+								<option value="2" hidden label="1951-1952"></option>
+								<option value="3" hidden label="1982-1989"></option>
+								
+							</datalist>
+					</div>
+					<button type="button" onclick="changeYearDelta(+1)"
+						class="mui-btn mui-btn--primary">&gt;&gt;</button>
+				</div>
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Vrstva</div>
+				<form class="layersGrid">
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" checked id="ORP">
+							Podniky
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="obceSouc" >
+							Obce 2021
+						</label>
+					</div>
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="zeleznice" >
+							Železnice
+						</label>
+					</div>
+					
+					<div class="mui-checkbox">
+						<label>
+							<input type="checkbox" id="silnice" >
+							Silnice
+						</label>
+					</div>
+					
+					
+				</form>
+			</div>
+
+
+
+
+			<div class="mui-panel">
+				<div class="mui-select">
+					<label>Modul</label>
+					<select id="modulSelect">
+						<option value="0">Sektor</option>
+						<option value="1">Forma podnikání</option>
+						<option value="2">Obor</option>
+						
+					</select>
+				</div>
+
+				<div class="mui-select">
+					<label>Zobrazený údaj</label>
+					<select id="jevSelect"></select>
+				</div>
+			</div>
+
+			<div class="mui-panel">
+				<div class="titleLabel">Filtrování dat</div>
+
+				<!-- <select class="esri-widget" id="attSelect" style="display:none;">
+					<option value="Sektor">Sektor</option>
+					
+				  </select> -->
+				  <select class="esri-widget" id="signSelect" style="display:none;">
+					<!-- <option value=">">je větší než</option>
+					<option value="<">je menší než</option> -->
+					<option value="=" selected>rovná se</option>
+				  </select>
+				  <!-- <input type="number" value="0" id="inputNumber"> -->
+				  <!-- <select class="esri-widget" id="valSelect" style="display:none;">
+					<option value="Průmysl">Průmysl</option>
+					<option value="Služby">Služby</option>
+					<option value="Zemědělství">Zemědělství</option>
+					
+				  </select> -->
+
+				  <div class="splitTwo">
+
+					<button class="mui-btn mui-btn--raised" id="doDel">Vymazat</button>
+					
+
+					<button class="mui-btn mui-btn--raised" id="doBtn">Filtrovat</button>
+				</div>
+
+				<p><span id="printResults"></span></p>
+			</div>
+		</div>
+	</div>
+
+	<script src="main.js"></script>
+
+</body>
+
+</html>
