@@ -195,7 +195,10 @@ const yearsInputsDataList = {
     "1991": {
         "ORP": "Obce s rozšířenou působností 2021",
         "POU": "Obce s pověřeným obecním úřadem 2021",
-        "castObcPol": "Základní sídelní jednoty 1991",        
+        "obceSouc": "Obce 1991",
+        "ZSJSoucBod": "Část obce 1991",
+        "castObcPol": "Základní sídelní jednoty 1991",
+        "ZSJPol": "Struktura obce 1980",        
         "soudOkresy": "Soudní okresy 1946"
      },
     "2021": {
@@ -439,5 +442,9 @@ const yearsFilterDataList = {
     //     "národno_8": "Národnost 2021 - ruská",
     //     "národno_9": "Národnost 2021 - ukrajinská",
     //     "národno_10": "Národnost 2021 - vietnamská"
+    //árodno_6": "Národnost 2021 - romská",
+    //     "národno_8": "Národnost 2021 - ruská",
+    //     "národno_9": "Národnost 2021 - ukrajinská",
+    //     "národno_10": "Národnost 2021 - vietnamská
     // }
 }

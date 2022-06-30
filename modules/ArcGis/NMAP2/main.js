@@ -3,7 +3,9 @@ const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[pa
 const layersByYears = [	
 	{ year: 1918, layers: [ 
 		{ layerID: "28d600499c6d4060a6a2f8bea020d304", opacity: 1.0, name: "ORP", featureLayer: null },
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null }
+		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null },
+		{ layerID: "ad56bf8c2b4546f9b700cc976f3933b4", opacity: 1.0, name: "zeleznice", featureLayer: null },
+		{ layerID: "697d67d7a37946b4943e0ead9b61a474", opacity: 1.0, name: "silnice", featureLayer: null }
 	] },
 	{ year: 1936, layers: [ 
 		{ layerID: "901ffd24c6d0482e9200a3baa2204c61", opacity: 1.0, name: "ORP", featureLayer: null },
