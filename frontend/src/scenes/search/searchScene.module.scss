@@ -39,3 +39,29 @@
 .cursorPoiter{
 	cursor: pointer;
 }
+
+.resultsBlock{
+	height: 400px;
+	width: 100%;
+	margin: 50px 0;
+}
+
+.resultTagSelector{
+	display: flex;
+	padding: 30px;
+	column-gap: 30px;
+	row-gap: 30px;
+}
+
+.resultTag{
+	display: grid;
+}
+
+.resultTagValue{
+
+}
+
+.tagCount{
+	font-size: x-small;
+	color: #aaa;
+}

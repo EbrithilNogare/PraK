@@ -9,6 +9,8 @@ import {
 	MenuItem,
 	TextField,
 	Button,
+	FormControlLabel,
+	Checkbox,
 } from '@material-ui/core'
 import { DataGrid } from '@material-ui/data-grid';
 import {
@@ -27,12 +29,13 @@ class ShowScene extends React.Component {
 
 		this.state = {
 			indexer: "metadata",
-			records: [] ,
+			records: [],
 			template: [
 				{field: "author", headerName: "Hlavní autor", flex: 400},
 				{field: "name", headerName: "Hlavní název", flex: 400},
 				{field: "publishing_date", headerName: "Datum vydání nebo vzniku", flex: 200, type: 'date'},
 			],
+			searchParams: this.createSearchParams([]),
 		}
 		
 		this.description = {}
@@ -286,22 +289,56 @@ class ShowScene extends React.Component {
 		})
 		.then(data => {
 			console.info("%cFound: ", "background: #222; color: #bada55", data);
+			const records = data.map(a => {
+				const toReturn = {...a}
+				toReturn.born_year = toReturn.author = toReturn.publishing_date = ""
+				toReturn.id = a._id
+				if(a.born_year) toReturn.born_year = a.born_year.year
+				if(a.author && a.author.id) toReturn.author = a.author.id.name + " " + a.author.id.surname
+				if(a.publishing_date && a.publishing_date[0] && a.publishing_date[0].date) toReturn.publishing_date = a.publishing_date[0].date
+				return toReturn
+			})
 			this.setState({
-				records: data.map(a => {
-					const toReturn = {...a}
-					toReturn.born_year = toReturn.author = toReturn.publishing_date = ""
-					toReturn.id = a._id
-					if(a.born_year) toReturn.born_year = a.born_year.year
-					if(a.author && a.author.id) toReturn.author = a.author.id.name + " " + a.author.id.surname
-					if(a.publishing_date && a.publishing_date[0] && a.publishing_date[0].date) toReturn.publishing_date = a.publishing_date[0].date
-					return toReturn
-				}),
+				records,
 				loading: false,
+				searchParams: this.createSearchParams(records),
 			})
 		})
 		.catch((error) => {
 			console.error('Error:', error);
 		})
+	}
+
+	createSearchParams = (records) => {
+		let searchParams = {};
+
+		let properties = ["author", "publishing_date", "publish_country", "language", "documentType", "submitter"];
+
+		for(let property of properties){
+			searchParams[property] = [];
+			records.forEach((item)=>{
+				let itemProperty = item[property]
+				if(Array.isArray(itemProperty))
+					itemProperty = itemProperty.join(", ")
+
+				if(itemProperty !== undefined && itemProperty !== null && itemProperty !== ""){
+					let foundIndex = -1;
+					for(let index = 0; index < searchParams[property].length; index++){
+						if(searchParams[property][index][0] === itemProperty){
+							foundIndex = index;
+							break;
+						}
+					}
+					if(foundIndex !== -1)
+						searchParams[property][foundIndex][1]++
+					else
+						searchParams[property].push([itemProperty, 1, true])
+				}
+			})
+		}
+
+
+		return(searchParams)
 	}
 
 	render(){
@@ -340,9 +377,35 @@ class ShowScene extends React.Component {
 						<b>Zobrazení záznamu:</b> klikněte kamkoliv na příslušný záznam v tabulce níže
 					</div>
 				</Paper>
-				<Paper style={{ height: 400, width: '100%' }}>
-					{console.log("records", this.state.records)}
-					{console.log("template", this.state.template)}
+				
+				<Paper className={styles.resultTagSelector}>
+					{
+						Object.entries(this.state.searchParams).map(([key, value])=> {
+							if(value.length === 0)
+								return null;
+							
+							return(
+								<div className={styles.resultTag}>
+									<h3>{key}</h3>
+									{ value
+										.sort((itemA, itemB) => itemA[1] < itemB[1] ? 1 : -1)
+										.slice(0, 10)
+										.map(([key, value, checked])=>(
+											<FormControlLabel
+												control={<Checkbox checked={checked} />}
+												label={(<div>{key} <span className={styles.tagCount}>({value}x)</span></div>)} 
+												className={styles.resultTagValue}
+												key={key}>
+											</FormControlLabel>
+										))
+									}
+								</div>
+							)
+						})
+					}
+				</Paper>
+
+				<Paper className={styles.resultsBlock}>
 					<DataGrid
 						className={styles.cursorPoiter}
 						rows={this.state.records}
