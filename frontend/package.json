@@ -136,7 +136,7 @@
 			"^.+\\.module\\.(css|sass|scss)$"
 		],
 		"modulePaths": [
-			"F:\\git\\naki\\frontend\\src"
+			".\\frontend\\src"
 		],
 		"moduleNameMapper": {
 			"^react-native$": "react-native-web",
