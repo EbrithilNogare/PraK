@@ -11,6 +11,7 @@ import {
 	Button,
 	FormControlLabel,
 	Checkbox,
+	Typography,
 } from '@material-ui/core'
 import { DataGrid } from '@material-ui/data-grid';
 import {
@@ -19,7 +20,9 @@ import {
 	CorporationComboBox,
 	MetadataComboBox,
 	KeywordComboBox,
+	StaticComboBox,
 } from '../../components/comboBoxes'
+import typeDefinitionFile from '../../components/indices/metadataTypes.json'
 import DateField from '../../components/validationTextFields/DateField'
 import styles from './searchScene.module.scss'
 
@@ -54,22 +57,82 @@ class ShowScene extends React.Component {
 					{field: "publishing_date", headerName: "Datum vydání nebo vzniku", flex: 200, type: 'date'},
 				],
 				render: (
-					<div>
+					<div style={{ display: "grid", rowGap: 5 }}>
+						<Typography variant="h5">Autor - Název</Typography>
 						<PersonComboBox
-							label = "Hlavní autor"
+							label = { typeDefinitionFile.properties["author"].label }
 							variant = "outlined"
 							onChange = { e => {(this.description["author"] = e.target.value); if(e.target.value !== undefined ) this.search(true)} }
 						/>
 						<TextField
-							label = "Hlavní název"
+							label = { typeDefinitionFile.properties["name"].label }
 							variant = "outlined"
 							onChange = { e => {(this.description["name"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
-						<DateField
-							label = "Datum vydání nebo vzniku"
+
+						<Typography variant="h5">Klíčová slova</Typography>
+						<KeywordComboBox
+							label = { typeDefinitionFile.properties["topic_keyword"].label }
 							variant = "outlined"
-							onChange = { e => {(this.description["publishing_date"] = e.target.value); this.search(true)} }
+							onChange = { e => {(this.description["topic_keyword"] = `/${e.target.value}/`); this.search(true)} }
+							fullWidth
+						/>
+
+						<Typography variant="h5">Rok vydání</Typography>
+						<DateField
+							label = { typeDefinitionFile.properties["publishing_date"].label }
+							variant = "outlined"
+							onChange = { e => {(this.description["publishing_date"] = `/${e.target.value}/`); this.search(true)} }
+							fullWidth
+						/>
+
+						<Typography variant="h5">Místo vydání</Typography>
+						<StaticComboBox
+							label = { typeDefinitionFile.properties["publish_country"].label }
+							variant = "outlined"
+							onChange = { e => {(this.description["publish_country"] = e.target.value); this.search(true)} }
+							options = { typeDefinitionFile.properties["publish_country"].options }
+							fullWidth
+						/>
+
+						<Typography variant="h5">Jazyk</Typography>
+						<StaticComboBox
+							label = { typeDefinitionFile.properties["language"].label }
+							variant = "outlined"
+							onChange = { e => {(this.description["language"] = e.target.value); this.search(true)} }
+							options = { typeDefinitionFile.properties["language"].options }
+							fullWidth
+						/>
+
+						<Typography variant="h5">Typ dokumentu</Typography>
+						<StaticComboBox
+							label = "Typ dokumentu"
+							variant = "outlined"
+							onChange = { e => {(this.description["documentType"] = e.target.value); this.search(true)} }
+							options = { typeDefinitionFile["types"] }
+							fullWidth
+						/>
+
+						<Typography variant="h5">Standardní číslo</Typography>
+						<TextField
+							label = { typeDefinitionFile.properties["isbn"].label }
+							variant = "outlined"
+							onChange = { e => {(this.description["isbn"] = `/${e.target.value}/`); this.search(true)} }
+							fullWidth
+						/>
+						<TextField
+							label = { typeDefinitionFile.properties["issn"].label }
+							variant = "outlined"
+							onChange = { e => {(this.description["issn"] = `/${e.target.value}/`); this.search(true)} }
+							fullWidth
+						/>
+
+						<Typography variant="h5">Vlastník záznamu</Typography>
+						<TextField
+							label = { typeDefinitionFile.properties["submitter"].label }
+							variant = "outlined"
+							onChange = { e => {(this.description["submitter"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
 					</div>
@@ -288,7 +351,6 @@ class ShowScene extends React.Component {
 			return response.json()
 		})
 		.then(data => {
-			console.info("%cFound: ", "background: #222; color: #bada55", data);
 			const records = data.map(a => {
 				const toReturn = {...a}
 				toReturn.born_year = toReturn.author = toReturn.publishing_date = ""
@@ -298,6 +360,7 @@ class ShowScene extends React.Component {
 				if(a.publishing_date && a.publishing_date[0] && a.publishing_date[0].date) toReturn.publishing_date = a.publishing_date[0].date
 				return toReturn
 			})
+			console.info("%cFound: ", "background: #222; color: #bada55", records);
 			this.setState({
 				records,
 				loading: false,

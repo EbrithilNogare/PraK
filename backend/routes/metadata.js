@@ -49,15 +49,15 @@ router.route('/:id').get((req, res) => {
 
 router.route('/').post((req, res) => {
 	// support for regexp search
-	for(let key of ["name"])
-	if(
-		req.body[key] &&
-		typeof req.body[key] === "string" &&
-		req.body[key].length > 1 &&
-		req.body[key][0] == "/" &&
-		req.body[key].slice(-1) == "/"
-	)
-		req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
+	for(let key of Object.keys(req.body))
+		if(
+			req.body[key] &&
+			typeof req.body[key] === "string" &&
+			req.body[key].length > 1 &&
+			req.body[key][0] == "/" &&
+			req.body[key].slice(-1) == "/"
+		)
+			req.body[key] = {$regex : req.body[key].substring(1, req.body[key].length - 1), '$options' : 'i'}
 
 	// extract special attributes
 	const {_limit, ...description} = req.body

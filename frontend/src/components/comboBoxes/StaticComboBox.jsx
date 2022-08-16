@@ -25,11 +25,12 @@ class StaticComboBox extends React.Component {
 
 	render(){
 		return(
-			<FormControl style={{width: "100%"}}>
+			<FormControl style={{width: "100%"}} variant={ this.props.variant }>
 				<InputLabel id="select-label">{this.props.label[0].toUpperCase() + this.props.label.slice(1)}</InputLabel>
 				<Select
 					name={this.props.name}
 					labelId="select-label"
+					label={this.props.label[0].toUpperCase() + this.props.label.slice(1)}
 					required={this.props.required}
 					onChange={this.handleChange}
 					value={this.state.value}
