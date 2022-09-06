@@ -12,6 +12,9 @@
 		"3D objekt"
 	],
 	"properties": {
+		"documentType":{
+			"label": "Typ dokumentu"
+		},
 		"author": {
 			"label": "Hlavní autor nebo původce",
 			"schema": "author"

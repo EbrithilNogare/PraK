@@ -47,14 +47,20 @@
 }
 
 .resultTagSelector{
-	display: none; //flex;
+	display: flex;
+	flex-direction: column;
 	padding: 30px;
-	column-gap: 30px;
-	row-gap: 30px;
+	gap: 10px;
 }
 
 .resultTag{
-	display: grid;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.resultTagSelector h3{
+	margin-block: 1px;
 }
 
 .resultTagValue{
