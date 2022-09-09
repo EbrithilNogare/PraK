@@ -60,13 +60,13 @@
 			<div class="mui-panel" id="uzemiRok">
 				<div class="titleLabel">
 					<span>Časová vrstva</span>
-					<span id="yearLabel" for="rokyRange">1991</span>
+					<span id="yearLabel" for="rokyRange">2021</span>
 				</div>
 				<div class="rangeWithButtons">
 					<button type="button" class="mui-btn mui-btn--primary rangePrevBtn"
 						onclick="changeYearDelta(-1)">&lt;&lt;</button>
 					<div class="inputWithDatalist">
-						<input type="range" id="rokyRange" min="0" max="11" list="yearsDatalist" value="11"
+						<input type="range" id="rokyRange" min="0" max="12" list="yearsDatalist" value="12"
 							onchange="changeYear(value)" oninput="changeYearLite(value)">
 						<datalist id="yearsDatalist">
 							<option value="0" label="1910"></option>
@@ -81,7 +81,7 @@
 							<option value="9" hidden label="1970"></option>
 							<option value="10" hidden label="1980"></option>
 							<option value="11" hidden label="1991"></option>
-							<!-- <option value="12" label="2021"></option> -->
+							<option value="12" label="2021"></option> 
 						</datalist>
 					</div>
 					<button type="button" onclick="changeYearDelta(+1)"
@@ -104,7 +104,7 @@
 							Obce s pověřeným obecním úřadem 2021
 						</label>
 					</div>
-					<div style="display:none" class="mui-checkbox">
+					<div style="display" class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="katSoucPol">
 							Katastrální území 2021
@@ -113,25 +113,25 @@
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ZSJSoucBod">
-							Část obce 1991
+							Prostranství 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox" checked id="castObcPol">
-							Základní sídelní jednoty 1991
+							Části obcí 2021
 						</label>
 					</div>
 					 <div class="mui-checkbox">
 						<label>
 							<input type="checkbox" id="ZSJPol">
-							Struktura obce 1991
+							Základní sídelní jednotky 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
 						<label>
 							<input type="checkbox"  id="obceSouc">
-							Obce 1991
+							Obce 2021
 						</label>
 					</div> 
 					<div class="mui-checkbox">

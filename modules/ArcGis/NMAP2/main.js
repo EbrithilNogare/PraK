@@ -135,6 +135,21 @@ require([
         center: [15.75, 50.62],
         zoom: 11
     });
+
+	const layerQueryFeatureCount = function(layer, where) {
+		if (!where) {
+			where = "1==1";
+		}
+		layer.featureLayer.queryFeatureCount(new Query({where})).then(
+			function(results){
+				console.log('${layer.name}: ${where} (count=${results})');
+			}, function(error) {
+				console.log(error);
+				layer.count = "-";
+				console.log('${layer.name}: ${where} (count=${error})');
+			}
+		)
+	}
 	
 	
 	document.getElementById("doBtn").addEventListener("click",doQuery);
@@ -167,7 +182,8 @@ require([
 			layerByYear.layers.forEach(layer => {
 				layer.featureLayer.definitionExpression = expression;				
 			})
-		)		
+		)	
+		layerQueryFeatureCount;
 	}
 
 	
