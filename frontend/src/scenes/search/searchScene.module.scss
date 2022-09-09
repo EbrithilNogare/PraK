@@ -22,8 +22,8 @@
 	margin: 50px 0;
 	padding: 100px;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	column-gap: 100px;
+	grid-template-columns: 3fr 2fr;
+	column-gap: 50px;
 	row-gap: 50px;
 }
 
@@ -38,4 +38,36 @@
 
 .cursorPoiter{
 	cursor: pointer;
+}
+
+.resultsBlock{
+	height: 400px;
+	width: 100%;
+	margin: 50px 0;
+}
+
+.resultTagSelector{
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+	gap: 10px;
+}
+
+.resultTag{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.resultTagSelector h3{
+	margin-block: 1px;
+}
+
+.resultTagValue{
+
+}
+
+.tagCount{
+	font-size: x-small;
+	color: #aaa;
 }
