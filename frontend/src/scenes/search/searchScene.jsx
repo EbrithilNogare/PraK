@@ -128,8 +128,17 @@ class ShowScene extends React.Component {
 				<Paper className={styles.header}>
 					<h1>Vyhledavátko</h1>
 				</Paper>
-				<Paper className={styles.body}>
-					<div style={{ display: "grid", rowGap: 5 }}>
+				<div className={styles.phasesBlock}>
+					<Paper className={styles.body}>
+						
+					<Button
+						variant="contained"
+						color="primary"
+						onClick = { ()=>this.search() }
+					>
+						Vyhledat
+					</Button>
+
 						<Typography variant="h5">Autor - Název</Typography>
 						<PersonComboBox
 							label = { typeDefinitionFile.properties["author"].label }
@@ -214,71 +223,69 @@ class ShowScene extends React.Component {
 						>
 							Vyhledat
 						</Button>
-					</div>
 
-					<div>
-						<Button
-							variant="contained"
-							color="primary"
-							onClick = { ()=>this.search() }
-						>
-							Vyhledat
-						</Button>
-						<h3>Nápověda</h3>
-						<b>Vyhledání všech záznamů:</b> nechte všechna pole prázdná a klikněte na Vyhledat <br/> <br/>
-						<b>Interaktivní režim:</b> už během zadávání se ukáže 5 nejlepších shod<br/> <br/>
-						<b>Zobrazení záznamu:</b> klikněte kamkoliv na příslušný záznam v tabulce níže
-					</div>
-				</Paper>
-				
-				<Paper className={styles.resultTagSelector}>
-					{
-						Object.entries(this.state.searchParams).map(([searchParamsKey, value])=> {
-							if(value.length === 0)
-								return null;
-							
-							return(
-								<>
-								<h3>{typeDefinitionFile.properties[searchParamsKey]?.label ?? searchParamsKey}</h3>
-								<div className={styles.resultTag}>
-									{ value
-										.sort((itemA, itemB) => 
-											itemA[1] === itemB[1]
-												? itemA[0].toString().localeCompare(itemB[0])
-												: itemA[1] < itemB[1]
-													? 1
-													: -1)
-										//.slice(0, 20)
-										.map(([label, value, checked], key)=>(
-											<Chip
-												color={checked ? "primary" : "default"}
-												label={(<div style={{textDecoration: checked ? "none" : "line-through"}}>{label} <span className={styles.tagCount}>({value}x)</span></div>)} 
-												key={key}
-												onClick={()=>{this.setState((prevState)=>{
-													prevState.searchParams[searchParamsKey][key][2] = !prevState.searchParams[searchParamsKey][key][2]; 
-													return prevState;
-												})}}>
-											</Chip>
-										))
-									}
-								</div>
-								</>
-							)
-						})
-					}
-				</Paper>
+						
+					</Paper>
+					
 
-				<Paper className={styles.resultsBlock}>
-					<DataGrid
-						className={styles.cursorPoiter}
-						rows={this.state.records}
-						columns={this.state.template}
-						pageSize={5}
-						onRowClick = { e => {
-							console.info("%cShow: ", "background: #222; color: #bada55", e.id)
-							this.props.history.push(`/prak/show/metadata/${e.id}`)
-						} }
-					/>
+					<Paper className={styles.resultsBlock}>
+						<DataGrid
+							className={styles.cursorPoiter}
+							rows={this.state.records}
+							columns={this.state.template}
+							pageSize={5}
+							onRowClick = { e => {
+								console.info("%cShow: ", "background: #222; color: #bada55", e.id)
+								this.props.history.push(`/prak/show/metadata/${e.id}`)
+							} }
+						/>
+					</Paper>
+
+					
+					<Paper className={styles.resultTagSelector}>
+						{
+							Object.entries(this.state.searchParams).map(([searchParamsKey, value])=> {
+								if(value.length === 0)
+									return null;
+								
+								return(
+									<div>
+										<h3>{typeDefinitionFile.properties[searchParamsKey]?.label ?? searchParamsKey}</h3>
+										<div className={styles.resultTag}>
+											{ value
+												.sort((itemA, itemB) => 
+													itemA[1] === itemB[1]
+														? itemA[0].toString().localeCompare(itemB[0])
+														: itemA[1] < itemB[1]
+															? 1
+															: -1)
+												//.slice(0, 20)
+												.map(([label, value, checked], key)=>(
+													<Chip
+														color={checked ? "primary" : "default"}
+														label={(<div style={{textDecoration: checked ? "none" : "line-through"}}>{label} <span className={styles.tagCount}>({value}x)</span></div>)} 
+														key={key}
+														className={styles.chip}
+														onClick={()=>{this.setState((prevState)=>{
+															prevState.searchParams[searchParamsKey][key][2] = !prevState.searchParams[searchParamsKey][key][2]; 
+															return prevState;
+														})}}>
+													</Chip>
+												))
+											}
+										</div>
+									</div>
+								)
+							})
+						}
+					</Paper>
+				</div>
+
+				<Paper className={styles.helperBlock}>
+					<h3>Nápověda</h3>
+					<b>Vyhledání všech záznamů:</b> nechte všechna pole prázdná a klikněte na Vyhledat <br/> <br/>
+					<b>Interaktivní režim:</b> už během zadávání se ukáže 5 nejlepších shod<br/> <br/>
+					<b>Zobrazení záznamu:</b> klikněte kamkoliv na příslušný záznam v tabulce níže
 				</Paper>
 			</div>
 		)

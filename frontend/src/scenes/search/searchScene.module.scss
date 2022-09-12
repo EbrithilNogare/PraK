@@ -1,6 +1,5 @@
 .ShowScene {
 	width: 100%;
-	padding: 50px 15%;
 }
 
 .dataBlock{
@@ -16,15 +15,29 @@
 .header{
 	padding: 20px;
 	text-align: center;
+	margin: 50px 15% 0 15%;
+}
+
+.MuiChip-label{
+	
+}
+
+.phasesBlock{
+	display: grid;
+	align-items: start;
+	grid-template-columns: 280px auto 280px;
+	column-gap: 10px;
 }
 
 .body{
-	margin: 50px 0;
-	padding: 100px;
+	margin: 50px 10px;
+	padding: 5px;
 	display: grid;
-	grid-template-columns: 3fr 2fr;
-	column-gap: 50px;
-	row-gap: 50px;
+	row-gap: 5px;
+
+	h5{
+		justify-self: center;
+	}
 }
 
 .body pre{
@@ -34,6 +47,11 @@
 
 .footer{
 	width: calc(50% - 30px);
+}
+
+.helperBlock{
+	margin: 50px;
+	padding: 20px;
 }
 
 .cursorPoiter{
@@ -47,15 +65,25 @@
 }
 
 .resultTagSelector{
+	margin: 50px 10px;
+	padding: 10px;
 	display: flex;
 	flex-direction: column;
-	padding: 30px;
-	gap: 10px;
+	gap: 30px;
+
+	h3{
+		margin: 5px;
+	}
+}
+
+.chip span div{
+	white-space: break-spaces !important,
 }
 
 .resultTag{
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-evenly;
 	gap: 10px;
 }
 
