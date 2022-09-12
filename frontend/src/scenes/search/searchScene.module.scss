@@ -70,10 +70,11 @@
 	display: flex;
 	flex-direction: column;
 	gap: 30px;
+}
 
-	h3{
-		margin: 5px;
-	}
+.resultTagSelector h3{
+	text-align: center;
+	margin-block: 10px;
 }
 
 .chip span div{
@@ -85,10 +86,6 @@
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	gap: 10px;
-}
-
-.resultTagSelector h3{
-	margin-block: 1px;
 }
 
 .resultTagValue{

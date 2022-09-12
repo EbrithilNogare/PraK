@@ -97,7 +97,7 @@ class Login extends React.Component {
 					/>
 				<Button 
 					variant="contained" 
-					color="primary" 
+					color="secondary" 
 					type="submit"
 				>
 					Přihlásit

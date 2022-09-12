@@ -65,7 +65,7 @@ class NewPage extends React.Component {
 				onChange={this.handleChange}
 			/>
 			<Button
-				color="primary"
+				color="secondary"
 				variant="contained"
 				onClick={this.createNewPage}
 			>

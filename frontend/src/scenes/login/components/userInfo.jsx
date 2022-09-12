@@ -58,7 +58,7 @@ class UserInfo extends React.Component {
 			<p><b>SessionID:</b> <span className={styles.hiddenText}>{this.props.cookies.get("sessionID")}</span></p>
 			<Button 
 				variant="contained" 
-				color="primary" 
+				color="secondary" 
 				type="submit"
 				onClick={ this.Logout }
 				style={ {width: "100%"} }

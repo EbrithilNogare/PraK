@@ -90,8 +90,8 @@ class Prak extends React.Component {
 
 		const theme = createTheme({
 			palette: {
-				primary: { main: "#f4e7bb" },
-				secondary: { main: "#FFF274" }, 
+				primary: { main: "#000" },
+				secondary: { main: "#f4e7bb" }, 
 				type: "light"
 			}
 		})

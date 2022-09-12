@@ -43,7 +43,7 @@ class MapSelector extends React.Component {
 							.sort((a, b)=> (a.name > b.name) ? 1 : (a.name === b.name) ? 0 : -1 )
 							.map(map=>(
 								<NavLink key={map.id} to={"/prak/maps/"+map.url}>
-									<Button variant="contained" color="primary">
+									<Button variant="contained" color="secondary">
 										{map.name}
 									</Button>
 								</NavLink>

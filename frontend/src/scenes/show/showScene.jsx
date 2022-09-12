@@ -219,7 +219,6 @@ class ShowScene extends React.Component {
 									control={<Switch
 										checked={this.state.translated}
 										onChange={e=>this.setState({translated: e.target.checked})}
-										color="primary"
 									/>}
 									label="Překládat databázové názvy"
 								/>
@@ -230,7 +229,7 @@ class ShowScene extends React.Component {
 								<Grid item>
 									<Button
 										variant="contained" 
-										color="primary"
+										color="secondary"
 										onClick={ e => this.handleRemove(e, match.params.type, match.params.id) }
 										disabled={this.state.record===null || !(this.props.cookies.get("permission") & 2)}
 									>Smazat záznam</Button>
@@ -238,7 +237,7 @@ class ShowScene extends React.Component {
 								<Grid item>
 									<Button
 										variant="contained" 
-										color="primary"
+										color="secondary"
 										onClick={ e => this.handleEdit(e, match.params.type, match.params.id) }
 										disabled={this.state.record===null || !(this.props.cookies.get("permission") & 2)}
 									>Editovat záznam</Button>

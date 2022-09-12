@@ -133,7 +133,7 @@ class ShowScene extends React.Component {
 						
 					<Button
 						variant="contained"
-						color="primary"
+						color="secondary"
 						onClick = { ()=>this.search() }
 					>
 						Vyhledat
@@ -142,12 +142,10 @@ class ShowScene extends React.Component {
 						<Typography variant="h5">Autor - Název</Typography>
 						<PersonComboBox
 							label = { typeDefinitionFile.properties["author"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["author"] = e.target.value); if(e.target.value !== undefined ) this.search(true)} }
 						/>
 						<TextField
 							label = { typeDefinitionFile.properties["name"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["name"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
@@ -155,7 +153,6 @@ class ShowScene extends React.Component {
 						<Typography variant="h5">Klíčová slova</Typography>
 						<KeywordComboBox
 							label = { typeDefinitionFile.properties["topic_keyword"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["topic_keyword"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
@@ -163,7 +160,6 @@ class ShowScene extends React.Component {
 						<Typography variant="h5">Rok vydání</Typography>
 						<DateField
 							label = { typeDefinitionFile.properties["publishing_date"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["publishing_date"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
@@ -171,7 +167,6 @@ class ShowScene extends React.Component {
 						<Typography variant="h5">Místo vydání</Typography>
 						<StaticComboBox
 							label = { typeDefinitionFile.properties["publish_country"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["publish_country"] = e.target.value); this.search(true)} }
 							options = { typeDefinitionFile.properties["publish_country"].options }
 							fullWidth
@@ -180,7 +175,6 @@ class ShowScene extends React.Component {
 						<Typography variant="h5">Jazyk</Typography>
 						<StaticComboBox
 							label = { typeDefinitionFile.properties["language"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["language"] = e.target.value); this.search(true)} }
 							options = { typeDefinitionFile.properties["language"].options }
 							fullWidth
@@ -189,7 +183,6 @@ class ShowScene extends React.Component {
 						<Typography variant="h5">Typ dokumentu</Typography>
 						<StaticComboBox
 							label = "Typ dokumentu"
-							variant = "outlined"
 							onChange = { e => {(this.description["documentType"] = e.target.value); this.search(true)} }
 							options = { typeDefinitionFile["types"] }
 							fullWidth
@@ -198,13 +191,11 @@ class ShowScene extends React.Component {
 						<Typography variant="h5">Standardní číslo</Typography>
 						<TextField
 							label = { typeDefinitionFile.properties["isbn"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["isbn"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
 						<TextField
 							label = { typeDefinitionFile.properties["issn"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["issn"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
@@ -212,13 +203,12 @@ class ShowScene extends React.Component {
 						<Typography variant="h5">Vlastník záznamu</Typography>
 						<TextField
 							label = { typeDefinitionFile.properties["submitter"].label }
-							variant = "outlined"
 							onChange = { e => {(this.description["submitter"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
 						<Button
 							variant="contained"
-							color="primary"
+							color="secondary"
 							onClick = { ()=>this.search() }
 						>
 							Vyhledat
@@ -262,7 +252,7 @@ class ShowScene extends React.Component {
 												//.slice(0, 20)
 												.map(([label, value, checked], key)=>(
 													<Chip
-														color={checked ? "primary" : "default"}
+														color={checked ? "secondary" : "default"}
 														label={(<div style={{textDecoration: checked ? "none" : "line-through"}}>{label} <span className={styles.tagCount}>({value}x)</span></div>)} 
 														key={key}
 														className={styles.chip}

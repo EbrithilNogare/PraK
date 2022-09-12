@@ -149,7 +149,7 @@ class Corporation extends IndexParent {
 						</Multiplier>
 					</FoldablePaper>
 				</div>
-				<Button className={styles.footer} type="submit" variant="contained" color="primary" onClick={this.send}>Nahrát</Button>
+				<Button className={styles.footer} type="submit" variant="contained" color="secondary" onClick={this.send}>Nahrát</Button>
 			</form>
 		)
 	}

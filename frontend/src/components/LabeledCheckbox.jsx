@@ -28,7 +28,7 @@ class LabeledCheckbox extends React.Component {
 			<Grid container direction="row" justifyContent="flex-end" alignItems="center">
 				<Grid item xs style={{textAlign:"right"}}>{ label }</Grid>
 				<Grid item>
-					<Checkbox style={{width:"20px"}} color="primary" {...config} onChange={this.handleChange} checked={this.state.checked}/>
+					<Checkbox style={{width:"20px"}} color="secondary" {...config} onChange={this.handleChange} checked={this.state.checked}/>
 				</Grid>
 			</Grid>
 		)

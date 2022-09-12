@@ -167,7 +167,7 @@ class OneUser extends React.Component {
 					checked={this.state.roleRead}
 					onChange={this.handleChange}
 					name="roleRead"
-					color="primary"
+					color="secondary"
 				/>
 				}
 				label={t("admin.read")}
@@ -178,7 +178,7 @@ class OneUser extends React.Component {
 					checked={this.state.roleWrite}
 					onChange={this.handleChange}
 					name="roleWrite"
-					color="primary"
+					color="secondary"
 				/>
 				}
 				label={t("admin.write")}
@@ -189,7 +189,7 @@ class OneUser extends React.Component {
 					checked={this.state.roleExecute}
 					onChange={this.handleChange}
 					name="roleExecute"
-					color="primary"
+					color="secondary"
 				/>
 				}
 				label={t("admin.execute")}
@@ -200,21 +200,21 @@ class OneUser extends React.Component {
 					checked={this.state.roleCms}
 					onChange={this.handleChange}
 					name="roleCms"
-					color="primary"
+					color="secondary"
 				/>
 				}
 				label={t("admin.cms")}
 			/>
 			<Button
 				variant="contained"
-				color="primary"
+				color="secondary"
 				type="submit"
 				disabled={!this.state.changed}
 				onClick={this.saveUser}
 			>{t("admin.save")}</Button>
 			<Button
 				variant="contained"
-				color="primary"
+				color="secondary"
 				type="submit"
 				onClick={this.removeUser}
 			>{t("admin.remove")}</Button>

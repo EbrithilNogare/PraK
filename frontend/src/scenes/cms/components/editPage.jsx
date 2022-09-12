@@ -233,14 +233,14 @@ class EditPage extends React.Component {
 
 				<Button
 					variant="contained"
-					color="primary"
+					color="secondary"
 					onClick={this.uploadContent}
 				>
 					Uložit změny
 				</Button>
 				{this.state.category !== "main page" && <Button
 					variant="contained"
-					color="primary"
+					color="secondary"
 					onClick={this.deleteContent}
 				>
 					Smazat záznam

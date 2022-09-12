@@ -102,7 +102,7 @@ class NewUser extends React.Component {
 			</div>
 			<Button
 				variant="contained"
-				color="primary"
+				color="secondary"
 				onClick={()=>{
 					this.setState({password: Math.random().toString(36).substring(2)})
 				}}
@@ -114,7 +114,7 @@ class NewUser extends React.Component {
 						checked={this.state.roleRead}
 						onChange={this.handleChange}
 						name="roleRead"
-						color="primary"
+						color="secondary"
 					/>
 					}
 					label={t("admin.read")}
@@ -126,7 +126,7 @@ class NewUser extends React.Component {
 						checked={this.state.roleWrite}
 						onChange={this.handleChange}
 						name="roleWrite"
-						color="primary"
+						color="secondary"
 					/>
 					}
 					label={t("admin.write")}
@@ -138,7 +138,7 @@ class NewUser extends React.Component {
 						checked={this.state.roleExecute}
 						onChange={this.handleChange}
 						name="roleExecute"
-						color="primary"
+						color="secondary"
 					/>
 					}
 					label={t("admin.write")}
@@ -150,7 +150,7 @@ class NewUser extends React.Component {
 						checked={this.state.roleCms}
 						onChange={this.handleChange}
 						name="roleCms"
-						color="primary"
+						color="secondary"
 					/>
 					}
 					label={t("admin.cms")}
@@ -173,7 +173,7 @@ class NewUser extends React.Component {
 			</div>
 			<Button
 				variant="contained"
-				color="primary"
+				color="secondary"
 				type="submit"
 			>{t("admin.createNewUser")}</Button>
 		</form>

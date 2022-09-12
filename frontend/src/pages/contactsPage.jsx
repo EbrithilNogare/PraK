@@ -79,7 +79,7 @@ class ContactsPage extends React.Component {
 				/>
 				<br/>
 				<br/>
-				<Button color="primary" variant="contained" type="submit" style={{width:"300px", height:"60px"}}>{t("contactPage.send")}</Button><br/><br/><br/><br/>
+				<Button color="secondary" variant="contained" type="submit" style={{width:"300px", height:"60px"}}>{t("contactPage.send")}</Button><br/><br/><br/><br/>
 				{t("contactPage.coordinator")}
 			</form>
 		)
