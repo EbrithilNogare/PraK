@@ -54,7 +54,7 @@ class ShowScene extends React.Component {
 
 	search = (fast = false) => {
 		const thisRequestVesion = this.request_v++
-		const url = `/api/metadata`
+		const url = `api/metadata`
 
 		this.setState({loading: true})
 		fetch(url,{
