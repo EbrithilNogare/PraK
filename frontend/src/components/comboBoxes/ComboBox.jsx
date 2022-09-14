@@ -44,16 +44,21 @@ class ComboBox extends React.Component {
 	 * @param	{Event}	event 	
 	 */
 	handleChange = event => {
-		this.setState({
+		this.setState(prevState => ({
+			...prevState,
 			value: event.target.value,
-			ID: ""
-		})
+			menuList: event.target.value.length === 0 ? [] : prevState.menuList,
+			ID: "",
+		}))
+
+		if(event.target.value.length === 0)
+			return;
 
 		if(this.props.onChange) this.props.onChange({target:{value:undefined}})
 
 		this.setState({loading: true})
 
-		const thisRequestVesion = this.request_v++
+		const thisRequestVersion = this.request_v++
 		fetch(this.getFetchURL(),{
 			method: "POST",
 			headers: {
@@ -62,9 +67,9 @@ class ComboBox extends React.Component {
 			body: JSON.stringify(this.generateObjectForMongooseFind(event.target.value))
 		})
 		.then(response => {
-			if(thisRequestVesion < this.newestRequest_v)
-				Promise.reject(`Old request version: ${thisRequestVesion}`)
-			this.newestRequest_v = thisRequestVesion
+			if(thisRequestVersion < this.newestRequest_v)
+				Promise.reject(`Old request version: ${thisRequestVersion}`)
+			this.newestRequest_v = thisRequestVersion
 			return response.json()
 		})
 		.then(data => {
@@ -112,7 +117,7 @@ class ComboBox extends React.Component {
 		return(
 			<div>
 				<TextField {...config}
-					label={this.props.label && this.props.label.length !== 0 ? this.props.label[0].toUpperCase() + this.props.label.slice(1) + this.labelPostfix() : ""}
+					label={this.props.label && this.props.label.length !== 0 ? this.props.label[0].toUpperCase() + this.props.label.slice(1): ""}
 					onChange={this.handleChange}
 					value={this.state.value}
 					style={{width: "100%"}}

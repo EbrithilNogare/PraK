@@ -8,8 +8,10 @@ import {
 	TextField,
 	Button,
 	Typography,
+	IconButton,
 	Chip,
 } from '@material-ui/core'
+import RemoveIcon from '@material-ui/icons/Remove'
 import { DataGrid } from '@material-ui/data-grid';
 import {
 	PersonComboBox,
@@ -52,7 +54,7 @@ class ShowScene extends React.Component {
 
 	search = (fast = false) => {
 		const thisRequestVesion = this.request_v++
-		const url = `api/metadata`
+		const url = `http://localhost:50080/prak/api/metadata` // todo
 
 		this.setState({loading: true})
 		fetch(url,{
@@ -93,33 +95,49 @@ class ShowScene extends React.Component {
 	createSearchParams = (records) => {
 		let searchParams = {};
 
-		let properties = ["author", "publishing_date", "publish_country", "language", "documentType", "submitter"];
+		let properties = ["documentType", "language", "author", "publishing_date", "publish_country"];
 
 		for(let property of properties){
-			searchParams[property] = [];
+			searchParams[property] = { _other: {count: 0, checked: true}};
 			records.forEach((item)=>{
 				let itemProperty = item[property]
 				if(Array.isArray(itemProperty))
 					itemProperty = itemProperty.join(", ")
 
 				if(itemProperty !== undefined && itemProperty !== null && itemProperty !== ""){
-					let foundIndex = -1;
-					for(let index = 0; index < searchParams[property].length; index++){
-						if(searchParams[property][index][0] === itemProperty){
-							foundIndex = index;
-							break;
-						}
-					}
-					if(foundIndex !== -1)
-						searchParams[property][foundIndex][1]++
+					if(searchParams[property][itemProperty])
+						searchParams[property][itemProperty].count++
 					else
-						searchParams[property].push([itemProperty, 1, true])
+						searchParams[property][itemProperty] = { count:1, checked:true }
+				} else {
+					searchParams[property]["_other"].count++
 				}
 			})
 		}
 
-
+		console.log(searchParams);
 		return(searchParams)
+	}
+
+	filterRecords = records => {
+		return records.filter(record => {
+			let passing = true;
+			Object.entries(this.state.searchParams).forEach(([key, value]) => {
+				let recordKey = record[key];
+				if(Array.isArray(record[key]))
+					recordKey = record[key].join(", ")
+				
+				if(recordKey === undefined || recordKey === null || recordKey.length === 0){
+					if(!value["_other"].checked)
+						passing = false;
+					return;
+				}
+
+				if(!value[recordKey] || !value[recordKey].checked)
+					passing = false;
+			})
+			return passing;
+		})
 	}
 
 	render(){
@@ -152,8 +170,8 @@ class ShowScene extends React.Component {
 
 						<Typography variant="h5">Klíčová slova</Typography>
 						<KeywordComboBox
-							label = { typeDefinitionFile.properties["topic_keyword"].label }
-							onChange = { e => {(this.description["topic_keyword"] = `/${e.target.value}/`); this.search(true)} }
+							label = { typeDefinitionFile.properties["keywords"].label }
+							onChange = { e => {(this.description["keywords"] = e.target.value); this.search(true)} }
 							fullWidth
 						/>
 
@@ -199,13 +217,6 @@ class ShowScene extends React.Component {
 							onChange = { e => {(this.description["issn"] = `/${e.target.value}/`); this.search(true)} }
 							fullWidth
 						/>
-
-						<Typography variant="h5">Vlastník záznamu</Typography>
-						<TextField
-							label = { typeDefinitionFile.properties["submitter"].label }
-							onChange = { e => {(this.description["submitter"] = `/${e.target.value}/`); this.search(true)} }
-							fullWidth
-						/>
 						<Button
 							variant="contained"
 							color="secondary"
@@ -213,51 +224,68 @@ class ShowScene extends React.Component {
 						>
 							Vyhledat
 						</Button>
-
-						
+						<Button
+							variant="contained"
+							color="secondary"
+							onClick = { () => window.location.reload(false) }
+						>
+							Smazat vše
+						</Button>
 					</Paper>
 					
 
 					<Paper className={styles.resultsBlock}>
+						{false && JSON.stringify(this.filterRecords(this.state.records))}
+						{true &&
 						<DataGrid
 							className={styles.cursorPoiter}
-							rows={this.state.records}
+							rows={this.filterRecords(this.state.records)}
 							columns={this.state.template}
 							pageSize={5}
 							onRowClick = { e => {
 								console.info("%cShow: ", "background: #222; color: #bada55", e.id)
 								this.props.history.push(`/prak/show/metadata/${e.id}`)
 							} }
-						/>
+						/>}
 					</Paper>
 
 					
 					<Paper className={styles.resultTagSelector}>
 						{
 							Object.entries(this.state.searchParams).map(([searchParamsKey, value])=> {
-								if(value.length === 0)
+								if(Object.entries(value).length === 0)
 									return null;
-								
+
 								return(
-									<div>
-										<h3>{typeDefinitionFile.properties[searchParamsKey]?.label ?? searchParamsKey}</h3>
+									<div key={searchParamsKey}>
+										<h3>
+											{typeDefinitionFile.properties[searchParamsKey]?.label ?? searchParamsKey}
+											<Button
+												onClick = {() => {
+													this.setState(prevState => {
+														Object.entries(prevState.searchParams[searchParamsKey]).forEach(([key, value], index) => value.checked = !value.checked) 
+														return prevState
+													})
+												}}
+											>Reverse</Button>
+										</h3>
 										<div className={styles.resultTag}>
-											{ value
-												.sort((itemA, itemB) => 
-													itemA[1] === itemB[1]
-														? itemA[0].toString().localeCompare(itemB[0])
-														: itemA[1] < itemB[1]
+											{ Object.entries(value)
+												.sort(([itemAName,itemA], [itemBName,itemB]) => 
+													itemA.count === itemB.count
+														? 0
+														: itemA.count < itemB.count
 															? 1
 															: -1)
 												//.slice(0, 20)
-												.map(([label, value, checked], key)=>(
+												.map(([name, {count, checked}])=>(
 													<Chip
 														color={checked ? "secondary" : "default"}
-														label={(<div style={{textDecoration: checked ? "none" : "line-through"}}>{label} <span className={styles.tagCount}>({value}x)</span></div>)} 
-														key={key}
+														label={(<div style={{textDecoration: checked ? "none" : "line-through"}}> {name === "_other" ? "Ostatní" : name} <span className={styles.tagCount}>({count}x)</span></div>)} 
+														key={name}
 														className={styles.chip}
 														onClick={()=>{this.setState((prevState)=>{
-															prevState.searchParams[searchParamsKey][key][2] = !prevState.searchParams[searchParamsKey][key][2]; 
+															prevState.searchParams[searchParamsKey][name].checked = !prevState.searchParams[searchParamsKey][name].checked; 
 															return prevState;
 														})}}>
 													</Chip>
@@ -276,6 +304,13 @@ class ShowScene extends React.Component {
 					<b>Vyhledání všech záznamů:</b> nechte všechna pole prázdná a klikněte na Vyhledat <br/> <br/>
 					<b>Interaktivní režim:</b> už během zadávání se ukáže 5 nejlepších shod<br/> <br/>
 					<b>Zobrazení záznamu:</b> klikněte kamkoliv na příslušný záznam v tabulce níže
+				</Paper>
+
+				<Paper className={styles.helperBlock}>
+					<h3>Dotaz</h3>
+					<pre>
+						{JSON.stringify(this.description, null, 2)}
+					</pre>
 				</Paper>
 			</div>
 		)
