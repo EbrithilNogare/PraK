@@ -11,7 +11,11 @@ import {
 	IconButton,
 	Chip,
 } from '@material-ui/core'
-import RemoveIcon from '@material-ui/icons/Remove'
+import { 
+	Remove as RemoveIcon,
+	KeyboardArrowRight as KeyboardArrowRightIcon,
+	KeyboardArrowLeft as KeyboardArrowLeftIcon,
+} from '@material-ui/icons'
 import { DataGrid } from '@material-ui/data-grid';
 import {
 	PersonComboBox,
@@ -28,7 +32,10 @@ class ShowScene extends React.Component {
 
 		this.state = {
 			indexer: "metadata",
+			page: 0,
+			itemsOnPage: 5,
 			records: [],
+			filteredRecords: [],
 			template: [
 				{field: "author", headerName: "Hlavní autor", flex: 400},
 				{field: "name", headerName: "Hlavní název", flex: 400},
@@ -54,7 +61,7 @@ class ShowScene extends React.Component {
 
 	search = (fast = false) => {
 		const thisRequestVesion = this.request_v++
-		const url = `api/metadata`
+		const url = window.location.hostname === "localhost" ? 'http://localhost:50080/prak/api/metadata' : 'api/metadata'
 
 		this.setState({loading: true})
 		fetch(url,{
@@ -62,7 +69,7 @@ class ShowScene extends React.Component {
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({_limit: fast?5:10000, ...this.description})
+			body: JSON.stringify({_limit: fast ? 5 : 10000, ...this.description})
 		})
 		.then(response => {
 			if(thisRequestVesion < this.newestRequest_v)
@@ -81,10 +88,12 @@ class ShowScene extends React.Component {
 				return toReturn
 			})
 			console.info("%cFound: ", "background: #222; color: #bada55", records);
+			const searchParams = this.createSearchParams(records);
 			this.setState({
 				records,
 				loading: false,
-				searchParams: this.createSearchParams(records),
+				searchParams,
+				filteredRecords: this.filterRecords(records, searchParams),
 			})
 		})
 		.catch((error) => {
@@ -115,14 +124,13 @@ class ShowScene extends React.Component {
 			})
 		}
 
-		console.log(searchParams);
 		return(searchParams)
 	}
 
-	filterRecords = records => {
+	filterRecords = (records, searchParams) => {
 		return records.filter(record => {
 			let passing = true;
-			Object.entries(this.state.searchParams).forEach(([key, value]) => {
+			Object.entries(searchParams).forEach(([key, value]) => {
 				let recordKey = record[key];
 				if(Array.isArray(record[key]))
 					recordKey = record[key].join(", ")
@@ -232,22 +240,26 @@ class ShowScene extends React.Component {
 							Smazat vše
 						</Button>
 					</Paper>
-					
 
-					<Paper className={styles.resultsBlock}>
-						{false && JSON.stringify(this.filterRecords(this.state.records))}
-						{true &&
-						<DataGrid
-							className={styles.cursorPoiter}
-							rows={this.filterRecords(this.state.records)}
-							columns={this.state.template}
-							pageSize={5}
-							onRowClick = { e => {
-								console.info("%cShow: ", "background: #222; color: #bada55", e.id)
-								this.props.history.push(`/prak/show/metadata/${e.id}`)
-							} }
-						/>}
-					</Paper>
+					<div className={styles.resultsBlock}>
+						<div className={styles.resultBlockControls}>
+							<Button onClick={()=>{this.setState((prevState) => ({ page: prevState.page + 1 }))}}><KeyboardArrowRightIcon/></Button>
+							<Button disabled>{this.state.page + 1} / {Math.ceil(this.state.filteredRecords.length / this.state.itemsOnPage)}</Button>
+							<Button onClick={()=>{this.setState((prevState) => ({ page: prevState.page - 1 }))}}><KeyboardArrowLeftIcon/></Button>
+						</div>
+
+						{this.state.filteredRecords
+							.slice(this.state.page * this.state.itemsOnPage, (this.state.page + 1) * this.state.itemsOnPage)
+							.map((value, key) => (
+								<Paper className={styles.resultBlockItem} key={key}>
+									<Typography variant="h5">{value.name}</Typography>	
+									<p>{value.author}</p>
+									<p>{value.publishing_date}</p>
+									<p>{value.language.join(", ")}</p>
+								</Paper>
+							)
+						)}
+					</div>
 
 					
 					<Paper className={styles.resultTagSelector}>
@@ -264,7 +276,7 @@ class ShowScene extends React.Component {
 												onClick = {() => {
 													this.setState(prevState => {
 														Object.entries(prevState.searchParams[searchParamsKey]).forEach(([key, value], index) => value.checked = !value.checked) 
-														return prevState
+														return {...prevState, filteredRecords: this.filterRecords(prevState.records, prevState.searchParams)}
 													})
 												}}
 											>Reverse</Button>
@@ -286,7 +298,7 @@ class ShowScene extends React.Component {
 														className={styles.chip}
 														onClick={()=>{this.setState((prevState)=>{
 															prevState.searchParams[searchParamsKey][name].checked = !prevState.searchParams[searchParamsKey][name].checked; 
-															return prevState;
+															return {...prevState, filteredRecords: this.filterRecords(prevState.records, prevState.searchParams)};
 														})}}>
 													</Chip>
 												))
@@ -308,6 +320,7 @@ class ShowScene extends React.Component {
 
 				<Paper className={styles.helperBlock}>
 					<h3>Dotaz</h3>
+					<pre>URL: https://quest.ms.mff.cuni.cz/prak/api/metadata</pre>
 					<pre>
 						{JSON.stringify(this.description, null, 2)}
 					</pre>
