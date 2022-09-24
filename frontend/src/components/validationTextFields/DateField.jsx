@@ -30,17 +30,16 @@ class DateField extends React.Component {
 		let state = {}
 		let newDate = undefined
 
-		if(!regex.test(value)){
-			this.setState({value, error: true})
-			return;
-		}
-
 		if(value.length === 0){
 			this.setState({value:undefined, error: false})
 			if(this.props.onChange) this.props.onChange(event)
 			return;
 		}
 
+		if(!regex.test(value)){
+			this.setState({value, error: true})
+			return;
+		}
 		// parse czech date format of various length 
 		const sd = value.split('.')
 		switch(sd.length){
