@@ -58,7 +58,7 @@ class SearchScene extends React.Component {
   };
 
   getCornerYears = () => {
-    const minMax = [1950, 2040];
+    const minMax = [1838, new Date().getFullYear()];
     return [
       { value: minMax[0], label: minMax[0] },
       { value: minMax[1], label: minMax[1] },
@@ -130,7 +130,13 @@ class SearchScene extends React.Component {
   createSearchParams = (records) => {
     let searchParams = {};
 
-    let properties = ["documentType", "language", "author", "publish_country"];
+    let properties = [
+      "documentType",
+      "language",
+      "author",
+      "publish_country",
+      "publish_date",
+    ];
 
     for (let property of properties) {
       searchParams[property] = { _other: { count: 0, checked: true } };
