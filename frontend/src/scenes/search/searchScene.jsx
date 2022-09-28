@@ -1,7 +1,14 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { withSnackbar } from "notistack";
-import { Paper, TextField, Button, Typography, Chip } from "@material-ui/core";
+import {
+  Paper,
+  TextField,
+  Button,
+  Typography,
+  Chip,
+  Slider,
+} from "@material-ui/core";
 import {
   KeyboardArrowRight as KeyboardArrowRightIcon,
   KeyboardArrowLeft as KeyboardArrowLeftIcon,
@@ -15,7 +22,7 @@ import typeDefinitionFile from "../../components/indices/metadataTypes.json";
 import DateField from "../../components/validationTextFields/DateField";
 import styles from "./searchScene.module.scss";
 
-class ShowScene extends React.Component {
+class SearchScene extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,21 +32,11 @@ class ShowScene extends React.Component {
       itemsOnPage: 5,
       records: [],
       filteredRecords: [],
-      template: [
-        { field: "author", headerName: "Hlavní autor", flex: 400 },
-        { field: "name", headerName: "Hlavní název", flex: 400 },
-        {
-          field: "publishing_date",
-          headerName: "Datum vydání nebo vzniku",
-          flex: 200,
-          type: "date",
-        },
-      ],
       searchParams: this.createSearchParams([]),
+      publishingDateFilter: this.getCornerYears().map((item) => item.value),
     };
 
     this.description = {};
-
     this.request_v = 0;
     this.newestRequest_v = 0;
   }
@@ -47,6 +44,25 @@ class ShowScene extends React.Component {
   handleChange = (e, type) => {
     if (e.target.value)
       this.props.history.push(`/prak/show/${type}/${e.target.value}`);
+  };
+
+  handleSliderChange = (event, newValue) => {
+    this.setState((prevState) => ({
+      publishingDateFilter: newValue,
+      filteredRecords: this.filterRecords(
+        prevState.records,
+        prevState.searchParams,
+        prevState.publishingDateFilter
+      ),
+    }));
+  };
+
+  getCornerYears = () => {
+    const minMax = [1950, 2040];
+    return [
+      { value: minMax[0], label: minMax[0] },
+      { value: minMax[1], label: minMax[1] },
+    ];
   };
 
   componentDidMount() {
@@ -95,12 +111,16 @@ class ShowScene extends React.Component {
         });
         console.info("%cFound: ", "background: #222; color: #bada55", records);
         const searchParams = this.createSearchParams(records);
-        this.setState({
+        this.setState((prevState) => ({
           records,
           loading: false,
           searchParams,
-          filteredRecords: this.filterRecords(records, searchParams),
-        });
+          filteredRecords: this.filterRecords(
+            records,
+            searchParams,
+            prevState.publishingDateFilter
+          ),
+        }));
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -110,13 +130,7 @@ class ShowScene extends React.Component {
   createSearchParams = (records) => {
     let searchParams = {};
 
-    let properties = [
-      "documentType",
-      "language",
-      "author",
-      "publishing_date",
-      "publish_country",
-    ];
+    let properties = ["documentType", "language", "author", "publish_country"];
 
     for (let property of properties) {
       searchParams[property] = { _other: { count: 0, checked: true } };
@@ -156,7 +170,7 @@ class ShowScene extends React.Component {
     }));
   }
 
-  filterRecords = (records, searchParams) => {
+  filterRecords = (records, searchParams, dateFilter) => {
     return records.filter((record) => {
       let passing = true;
       Object.entries(searchParams).forEach(([key, value]) => {
@@ -174,20 +188,35 @@ class ShowScene extends React.Component {
 
         if (!value[recordKey] || !value[recordKey].checked) passing = false;
       });
+
+      if (
+        record.publishing_date !== undefined &&
+        record.publishing_date !== "" &&
+        !record.publishing_date.includes("-")
+      ) {
+        const recordDate = record.publishing_date.split(".").at(-1);
+        if (
+          recordDate < dateFilter[0] ||
+          recordDate > this.state.publishingDateFilter[1]
+        ) {
+          passing = false;
+        }
+      }
+
       return passing;
     });
   };
 
   setDescription(where, what, regexp = false, search = true) {
-	if(what !== ""){
-		if(regexp){
-			this.description[where] = `/${what}/`; 
-		} else {
-			this.description[where] = what; 
-		}
-	} else {
-		this.description[where] = undefined;
-	}
+    if (what !== "") {
+      if (regexp) {
+        this.description[where] = `/${what}/`;
+      } else {
+        this.description[where] = what;
+      }
+    } else {
+      this.description[where] = undefined;
+    }
     if (what !== undefined && search) {
       this.search(true);
     }
@@ -195,7 +224,7 @@ class ShowScene extends React.Component {
 
   render() {
     return (
-      <div className={styles.ShowScene}>
+      <div className={styles.SearchScene}>
         <Paper className={styles.header}>
           <h1>Vyhledavátko</h1>
         </Paper>
@@ -228,16 +257,7 @@ class ShowScene extends React.Component {
             <KeywordComboBox
               label={typeDefinitionFile.properties["keywords"].label}
               onChange={(e) => {
-				this.setDescription("keywords", e.target.value, false, true);
-              }}
-              fullWidth
-            />
-
-            <Typography variant="h5">Rok vydání</Typography>
-            <DateField
-              label={typeDefinitionFile.properties["publishing_date"].label}
-              onChange={(e) => {
-				this.setDescription("publishing_date", e.target.value, true, true);
+                this.setDescription("keywords", e.target.value, false, true);
               }}
               fullWidth
             />
@@ -246,7 +266,12 @@ class ShowScene extends React.Component {
             <StaticComboBox
               label={typeDefinitionFile.properties["publish_country"].label}
               onChange={(e) => {
-				this.setDescription("publish_country", e.target.value, false, true);
+                this.setDescription(
+                  "publish_country",
+                  e.target.value,
+                  false,
+                  true
+                );
               }}
               options={typeDefinitionFile.properties["publish_country"].options}
               fullWidth
@@ -256,7 +281,7 @@ class ShowScene extends React.Component {
             <StaticComboBox
               label={typeDefinitionFile.properties["language"].label}
               onChange={(e) => {
-				this.setDescription("language", e.target.value, false, true);
+                this.setDescription("language", e.target.value, false, true);
               }}
               options={typeDefinitionFile.properties["language"].options}
               fullWidth
@@ -266,7 +291,12 @@ class ShowScene extends React.Component {
             <StaticComboBox
               label="Typ dokumentu"
               onChange={(e) => {
-				this.setDescription("documentType", e.target.value, false, true);
+                this.setDescription(
+                  "documentType",
+                  e.target.value,
+                  false,
+                  true
+                );
               }}
               options={typeDefinitionFile["types"]}
               fullWidth
@@ -276,14 +306,14 @@ class ShowScene extends React.Component {
             <TextField
               label={typeDefinitionFile.properties["isbn"].label}
               onChange={(e) => {
-				this.setDescription("isbn", e.target.value, true, true);
+                this.setDescription("isbn", e.target.value, true, true);
               }}
               fullWidth
             />
             <TextField
               label={typeDefinitionFile.properties["issn"].label}
               onChange={(e) => {
-				this.setDescription("issn", e.target.value, true, true);
+                this.setDescription("issn", e.target.value, true, true);
               }}
               fullWidth
             />
@@ -354,6 +384,23 @@ class ShowScene extends React.Component {
           </div>
 
           <Paper className={styles.resultTagSelector}>
+            <div style={{ marginInline: "10px" }}>
+              <h3>Rok vydání</h3>
+              <Slider
+                getAriaLabel={() => "Temperature range"}
+                value={this.state.publishingDateFilter}
+                onChange={(e, newValue) =>
+                  this.setState({ publishingDateFilter: newValue })
+                }
+                onChangeCommitted={this.handleSliderChange}
+                valueLabelDisplay="auto"
+                getAriaValueText={(value) => value}
+                min={this.getCornerYears().map((item) => item.value)[0]}
+                max={this.getCornerYears().map((item) => item.value)[1]}
+                marks={this.getCornerYears()}
+              />
+            </div>
+
             {Object.entries(this.state.searchParams).map(
               ([searchParamsKey, value]) => {
                 if (Object.entries(value).length === 0) return null;
@@ -373,15 +420,13 @@ class ShowScene extends React.Component {
                                 (value.checked = !value.checked)
                             );
                             return {
-                              ...prevState,
                               filteredRecords: this.filterRecords(
                                 prevState.records,
-                                prevState.searchParams
+                                prevState.searchParams,
+                                prevState.publishingDateFilter
                               ),
                             };
-                          }, 
-						  this.setPage
-						  );
+                          }, this.setPage);
                         }}
                       >
                         Reverse
@@ -408,11 +453,11 @@ class ShowScene extends React.Component {
                                     : "line-through",
                                 }}
                               >
-                                {
-									name === "_other" ? "Ostatní" :
-									searchParamsKey === "documentType" ? typeDefinitionFile.types[name] :
-									name
-								}
+                                {name === "_other"
+                                  ? "Ostatní"
+                                  : searchParamsKey === "documentType"
+                                  ? typeDefinitionFile.types[name]
+                                  : name}
                                 <span className={styles.tagCount}>
                                   {` (${count}x)`}
                                 </span>
@@ -431,7 +476,8 @@ class ShowScene extends React.Component {
                                   ...prevState,
                                   filteredRecords: this.filterRecords(
                                     prevState.records,
-                                    prevState.searchParams
+                                    prevState.searchParams,
+                                    prevState.publishingDateFilter
                                   ),
                                 };
                               });
@@ -459,7 +505,8 @@ class ShowScene extends React.Component {
 
         <Paper className={styles.helperBlock}>
           <h3>Dotaz</h3>
-          <pre>URL: 1https://quest.ms.mff.cuni.cz/prak/api/metadata</pre>
+          <pre>URL: https://quest.ms.mff.cuni.cz/prak/api/metadata</pre>
+          <pre>Method: POST</pre>
           <pre>{JSON.stringify(this.description, null, 2)}</pre>
         </Paper>
       </div>
@@ -467,4 +514,4 @@ class ShowScene extends React.Component {
   }
 }
 
-export default withSnackbar(withRouter(ShowScene));
+export default withSnackbar(withRouter(SearchScene));
