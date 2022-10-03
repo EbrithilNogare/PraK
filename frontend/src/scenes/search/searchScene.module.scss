@@ -36,6 +36,7 @@
 	padding: 5px;
 	display: grid;
 	row-gap: 5px;
+	grid-template-columns: minmax(0, 1fr);
 
 	h5{
 		justify-self: center;

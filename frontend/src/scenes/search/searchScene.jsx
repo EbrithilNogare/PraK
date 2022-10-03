@@ -130,13 +130,7 @@ class SearchScene extends React.Component {
   createSearchParams = (records) => {
     let searchParams = {};
 
-    let properties = [
-      "documentType",
-      "language",
-      "author",
-      "publish_country",
-      "publish_date",
-    ];
+    let properties = ["documentType", "language", "author", "publish_country"];
 
     for (let property of properties) {
       searchParams[property] = { _other: { count: 0, checked: true } };
@@ -304,7 +298,7 @@ class SearchScene extends React.Component {
                   true
                 );
               }}
-              options={typeDefinitionFile["types"]}
+              options={["", ...typeDefinitionFile["types"]]}
               fullWidth
             />
 
@@ -341,6 +335,9 @@ class SearchScene extends React.Component {
 
           <div className={styles.resultsBlock}>
             <div className={styles.resultBlockControls}>
+              <Button disabled>
+                {` (celkem ${this.state.filteredRecords.length} záznamů)`}
+              </Button>
               <Button
                 onClick={() => {
                   this.setPage(1);
@@ -349,7 +346,8 @@ class SearchScene extends React.Component {
                 <KeyboardArrowRightIcon />
               </Button>
               <Button disabled>
-                {this.state.page + 1} /{" "}
+                {this.state.page + 1}
+                {" / "}
                 {Math.ceil(
                   this.state.filteredRecords.length / this.state.itemsOnPage
                 )}
