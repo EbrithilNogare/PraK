@@ -1,10 +1,10 @@
 {
-	"NavBar": {
-		"about": "Project",
-		"team": "Solver team",
-		"ourwork": "Outputs",
-		"partners": "Partners",
-		"contacts": "Contacts",
-		"news": "News"
-	}
-  }
+    "NavBar": {
+        "about": "Project",
+        "team": "Solver team",
+        "ourwork": "Outputs",
+        "partners": "Partners",
+        "contacts": "Contacts",
+        "news": "News"
+    }
+}

@@ -1,3 +1,3 @@
 import MapsScene from './mapsScene'
 
-export default MapsScene;
+export default MapsScene

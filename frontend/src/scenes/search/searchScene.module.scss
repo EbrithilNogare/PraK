@@ -1,127 +1,125 @@
 .SearchScene {
-	width: 100%;
-	background: #fafafa;
+    width: 100%;
+    background: #fafafa;
 }
 
-.dataBlock{
-	width: 100%;
-	padding: 20px;
-	display: inline-grid;
-	grid-template-columns: 1fr;
-	grid-column-gap: 50px;
-	grid-row-gap: 20px;
-	margin: 0 0 50px 0;
+.dataBlock {
+    width: 100%;
+    padding: 20px;
+    display: inline-grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 20px;
+    margin: 0 0 50px 0;
 }
 
-.header{
-	padding: 20px;
-	text-align: center;
-	margin: 50px 15% 0 15%;
+.header {
+    padding: 20px;
+    text-align: center;
+    margin: 50px 15% 0 15%;
 }
 
-.MuiChip-label{
-	
+.MuiChip-label {
 }
 
-.phasesBlock{
-	display: grid;
-	align-items: start;
-	grid-template-columns: 280px 1fr 280px;
-	column-gap: 10px;
-	width: 100%;
+.phasesBlock {
+    display: grid;
+    align-items: start;
+    grid-template-columns: 280px 1fr 280px;
+    column-gap: 10px;
+    width: 100%;
 }
 
-.body{
-	margin: 50px 10px;
-	padding: 5px;
-	display: grid;
-	row-gap: 5px;
-	grid-template-columns: minmax(0, 1fr);
+.body {
+    margin: 50px 10px;
+    padding: 5px;
+    display: grid;
+    row-gap: 5px;
+    grid-template-columns: minmax(0, 1fr);
 
-	h5{
-		justify-self: center;
-	}
+    h5 {
+        justify-self: center;
+    }
 }
 
-.body pre{
-	margin: 0;
-	font-family: roboto;
+.body pre {
+    margin: 0;
+    font-family: roboto;
 }
 
-.footer{
-	width: calc(50% - 30px);
+.footer {
+    width: calc(50% - 30px);
 }
 
-.helperBlock{
-	margin: 50px;
-	padding: 20px;
-	width: max-content;
+.helperBlock {
+    margin: 50px;
+    padding: 20px;
+    width: max-content;
 }
 
-.cursorPoiter{
-	cursor: pointer;
+.cursorPoiter {
+    cursor: pointer;
 }
 
-.resultsBlock{
-	width: 100%;
-	max-width: 100%;
-	margin: 50px 0;
-	display: grid;
-	row-gap: 15px;
+.resultsBlock {
+    width: 100%;
+    max-width: 100%;
+    margin: 50px 0;
+    display: grid;
+    row-gap: 15px;
 }
 
-.resultBlockControls{
-	width: 100%;
-	display: flex;
+.resultBlockControls {
+    width: 100%;
+    display: flex;
     flex-direction: row-reverse;
     flex-wrap: nowrap;
 }
 
-.resultBlockItem{
-	padding: 10px;
-	cursor: pointer;
-	width: 100%;
-	h5 {
-		max-width: 590px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
+.resultBlockItem {
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    h5 {
+        max-width: 590px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
 
-.resultBlockItem:hover{
-	background: #f4e7bb8a;
+.resultBlockItem:hover {
+    background: #f4e7bb8a;
 }
 
-.resultTagSelector{
-	margin: 50px 10px;
-	padding: 10px;
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
+.resultTagSelector {
+    margin: 50px 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.resultTagSelector h3{
-	text-align: center;
-	margin-block: 10px;
+.resultTagSelector h3 {
+    text-align: center;
+    margin-block: 10px;
 }
 
-.chip span div{
-	white-space: break-spaces !important,
+.chip span div {
+    white-space: break-spaces !important;
 }
 
-.resultTag{
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	gap: 10px;
+.resultTag {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px;
 }
 
-.resultTagValue{
-
+.resultTagValue {
 }
 
-.tagCount{
-	font-size: x-small;
-	color: #aaa;
+.tagCount {
+    font-size: x-small;
+    color: #aaa;
 }

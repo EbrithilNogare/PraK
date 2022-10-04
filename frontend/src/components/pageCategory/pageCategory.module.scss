@@ -1,25 +1,25 @@
 .PageCategoryBlock {
-	width: 100%;
-	padding: 20px 10%;
+    width: 100%;
+    padding: 20px 10%;
 }
 
 .PageCategoryBlockItem {
-	display: grid;
-	grid-template-columns: auto 1fr;
-	column-gap: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 20px;
 }
 
 .PageCategoryList {
-	margin: 50px;
-	padding: 20px;
+    margin: 50px;
+    padding: 20px;
 }
 
 .PageCategoryView {
-	padding: 10px 20px;
-	min-height: 100px;
-	cursor: pointer;
+    padding: 10px 20px;
+    min-height: 100px;
+    cursor: pointer;
 }
 
 .PageCategoryView:hover {
-	background: #eee;
+    background: #eee;
 }

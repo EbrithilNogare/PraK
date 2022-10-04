@@ -1,3 +1,3 @@
-import LoginScene from "./loginScene"
+import LoginScene from './loginScene'
 
 export default LoginScene

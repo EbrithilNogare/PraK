@@ -1,3 +1,3 @@
-import InputScene from './inputScene';
+import InputScene from './inputScene'
 
-export default InputScene;
+export default InputScene

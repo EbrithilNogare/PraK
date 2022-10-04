@@ -1,79 +1,79 @@
- { 
- 	"properties":{
-		"name_main_part": {
-			"label": "Hlavní část názvu",
-			"schema": "name_main_part",
-			"helper": "Odkaz na součásti korporace.",
-			"required": true
-		},
-		"name_other_part": {
-			"label": "Další část názvu",
-			"schema": "name_other_part[%]",
-			"helper": "Odkaz na součásti korporace."
-		},
-		
-		"public_note": {
-			"label": "Veřejná poznámka",
-			"schema": "public_note[%]",
-			"helper": "",
-			"multiline" : true
-		},
-		"nonpublic_note": {
-			"label": "Neveřejná poznámka",
-			"schema": "nonpublic_note[%]",
-			"helper": "",
-			"multiline" : true
-		},
+{
+    "properties": {
+        "name_main_part": {
+            "label": "Hlavní část názvu",
+            "schema": "name_main_part",
+            "helper": "Odkaz na součásti korporace.",
+            "required": true
+        },
+        "name_other_part": {
+            "label": "Další část názvu",
+            "schema": "name_other_part[%]",
+            "helper": "Odkaz na součásti korporace."
+        },
 
-		"other_source": {
-			"label": "Další zdroje",
-			"schema": "other_source[%]",
-			"helper": "Další zdroje."
-		},
-		"other_source_name": {
-			"label": "Název",
-			"schema": "other_source[%].name",
-			"helper": "Název jiného zdroje."
-		},
-		"other_source_id": {
-			"label": "ID",
-			"schema": "other_source[%].id",
-			"helper": "ID cizího zdroje."
-		},
-		"other_source_identificator": {
-			"label": "Identifikátor hesla",
-			"schema": "other_source[%].identificator",
-			"helper": "ID dokumentu v cizím zdroji."
-		},
-		
-		"record_sources": {
-			"label": "Zdroje o heslu",
-			"schema": "record_sources[%]",
-			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
-			"multiline" : true
-		},
-		"editor_note": {
-			"label": "Poznámka editora",
-			"schema": "editor_note[%]",
-			"helper": "Interní poznámka",
-			"multiline" : true
-		},
-		"submitter": {
-			"label": "Zadavatel",
-			"schema": "submitter",
-			"required": true
-		},
-		"attachment-category": {
-			"label": "Přílohy",
-			"schema": "attachment[%]"
-		},
-		"attachment_url": {
-			"label": "Příloha",
-			"schema": "attachment[%].url"
-		},
-		"attachment_description": {
-			"label": "Popis",
-			"schema": "attachment[%].description"
-		}
-	}
+        "public_note": {
+            "label": "Veřejná poznámka",
+            "schema": "public_note[%]",
+            "helper": "",
+            "multiline": true
+        },
+        "nonpublic_note": {
+            "label": "Neveřejná poznámka",
+            "schema": "nonpublic_note[%]",
+            "helper": "",
+            "multiline": true
+        },
+
+        "other_source": {
+            "label": "Další zdroje",
+            "schema": "other_source[%]",
+            "helper": "Další zdroje."
+        },
+        "other_source_name": {
+            "label": "Název",
+            "schema": "other_source[%].name",
+            "helper": "Název jiného zdroje."
+        },
+        "other_source_id": {
+            "label": "ID",
+            "schema": "other_source[%].id",
+            "helper": "ID cizího zdroje."
+        },
+        "other_source_identificator": {
+            "label": "Identifikátor hesla",
+            "schema": "other_source[%].identificator",
+            "helper": "ID dokumentu v cizím zdroji."
+        },
+
+        "record_sources": {
+            "label": "Zdroje o heslu",
+            "schema": "record_sources[%]",
+            "helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
+            "multiline": true
+        },
+        "editor_note": {
+            "label": "Poznámka editora",
+            "schema": "editor_note[%]",
+            "helper": "Interní poznámka",
+            "multiline": true
+        },
+        "submitter": {
+            "label": "Zadavatel",
+            "schema": "submitter",
+            "required": true
+        },
+        "attachment-category": {
+            "label": "Přílohy",
+            "schema": "attachment[%]"
+        },
+        "attachment_url": {
+            "label": "Příloha",
+            "schema": "attachment[%].url"
+        },
+        "attachment_description": {
+            "label": "Popis",
+            "schema": "attachment[%].description"
+        }
+    }
 }

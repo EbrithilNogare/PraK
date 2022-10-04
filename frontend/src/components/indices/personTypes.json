@@ -1,317 +1,337 @@
 {
-	"properties": {
-		"name": {
-			"label": "Jméno",
-			"schema": "name",
-			"helper": "Křestní jméno.",
-			"required": true
-		},
-		"surname": {
-			"label": "Příjmení",
-			"schema": "surname",
-			"helper": "Příjmení.",
-			"required": true
-		},
-		"born_year-category": {
-			"schema": "born_year"
-		},
-		"born_year": {
-			"label": "Rok narození",
-			"schema": "born_year.year",
-			"helper": "Rok narození osoby.",
-			"type": "Number"
-		},
-		"born_year_notKnown": {
-			"label": "Rok není jistý",
-			"schema": "born_year.notKnown"
-		},
-		"born_date": {
-			"label": "Datum narození",
-			"schema": "born_date.date",
-			"helper": "",
-			"regexp": "^\\d{1,2}.\\d{1,2}$",
-			"errorMessage": "Zadejte ve formátu dd.mm"
-		},
-		"born_date_notKnown": {
-			"label": "Datum není jisté",
-			"schema": "born_date.notKnown"
-		},
-		"born_place": {
-			"label": "Místo narození",
-			"helper":"Výběr z geografického rejstříku.",
-			"schema": "born_place"
-		},
-		"death_year-category": {
-			"schema": "death_year"
-		},
-		"death_year": {
-			"label": "Rok úmrtí",
-			"schema": "death_year.year",
-			"helper": "Rok úmrtí osoby.",
-			"type": "Number"
-		},
-		"death_year_notKnown": {
-			"label": "Rok není jistý",
-			"schema": "death_year.notKnown"
-		},
-		"death_date": {
-			"label": "Datum úmrtí",
-			"schema": "death_date.date",
-			"helper": "",
-			"regexp": "^\\d{1,2}.\\d{1,2}$",
-			"errorMessage": "Zadejte ve formátu dd.mm"
-		},
-		"death_date_notKnown": {
-			"label": "Datum není jisté",
-			"schema": "death_date.notKnown"
-		},
-		"death_place": {
-			"label": "Místo úmrtí",
-			"helper": "Výběr z geografického rejstříku.",
-			"schema": "death_place"
-		},
-		"initials": {
-			"label": "Rozpis iniciál",
-			"schema": "initials",
-			"helper": "Rozpis iniciál - uvedení celého jména."
-		},
-		"roman_numerals": {
-			"label": "Římské číslice",
-			"schema": "roman_numerals",
-			"helper": "Římské číslice u označnení panovníků či papežů."
-		},
-		"general_complement": {
-			"label": "Obecný doplněk",
-			"schema": "general_complement",
-			"helper": "Doplněk ke jménu jako panovnický titul, funkce, st./ml. ...."
-		},
-		"geographical_complement": {
-			"label": "Geografický doplněk",
-			"schema": "geographical_complement",
-			"helper": ""
-		},
-		"chronological_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "chronological_complement",
-			"helper": ""
-		},
+    "properties": {
+        "name": {
+            "label": "Jméno",
+            "schema": "name",
+            "helper": "Křestní jméno.",
+            "required": true
+        },
+        "surname": {
+            "label": "Příjmení",
+            "schema": "surname",
+            "helper": "Příjmení.",
+            "required": true
+        },
+        "born_year-category": {
+            "schema": "born_year"
+        },
+        "born_year": {
+            "label": "Rok narození",
+            "schema": "born_year.year",
+            "helper": "Rok narození osoby.",
+            "type": "Number"
+        },
+        "born_year_notKnown": {
+            "label": "Rok není jistý",
+            "schema": "born_year.notKnown"
+        },
+        "born_date": {
+            "label": "Datum narození",
+            "schema": "born_date.date",
+            "helper": "",
+            "regexp": "^\\d{1,2}.\\d{1,2}$",
+            "errorMessage": "Zadejte ve formátu dd.mm"
+        },
+        "born_date_notKnown": {
+            "label": "Datum není jisté",
+            "schema": "born_date.notKnown"
+        },
+        "born_place": {
+            "label": "Místo narození",
+            "helper": "Výběr z geografického rejstříku.",
+            "schema": "born_place"
+        },
+        "death_year-category": {
+            "schema": "death_year"
+        },
+        "death_year": {
+            "label": "Rok úmrtí",
+            "schema": "death_year.year",
+            "helper": "Rok úmrtí osoby.",
+            "type": "Number"
+        },
+        "death_year_notKnown": {
+            "label": "Rok není jistý",
+            "schema": "death_year.notKnown"
+        },
+        "death_date": {
+            "label": "Datum úmrtí",
+            "schema": "death_date.date",
+            "helper": "",
+            "regexp": "^\\d{1,2}.\\d{1,2}$",
+            "errorMessage": "Zadejte ve formátu dd.mm"
+        },
+        "death_date_notKnown": {
+            "label": "Datum není jisté",
+            "schema": "death_date.notKnown"
+        },
+        "death_place": {
+            "label": "Místo úmrtí",
+            "helper": "Výběr z geografického rejstříku.",
+            "schema": "death_place"
+        },
+        "initials": {
+            "label": "Rozpis iniciál",
+            "schema": "initials",
+            "helper": "Rozpis iniciál - uvedení celého jména."
+        },
+        "roman_numerals": {
+            "label": "Římské číslice",
+            "schema": "roman_numerals",
+            "helper": "Římské číslice u označnení panovníků či papežů."
+        },
+        "general_complement": {
+            "label": "Obecný doplněk",
+            "schema": "general_complement",
+            "helper": "Doplněk ke jménu jako panovnický titul, funkce, st./ml. ...."
+        },
+        "geographical_complement": {
+            "label": "Geografický doplněk",
+            "schema": "geographical_complement",
+            "helper": ""
+        },
+        "chronological_complement": {
+            "label": "Chronologický doplněk",
+            "schema": "chronological_complement",
+            "helper": ""
+        },
 
-		"variant-category": {
-			"label": "Variantní označení",
-			"schema": "variant[%]"
-		},
-		"variant_type": {
-			"label": "Typ variantního označení",
-			"schema": "variant[%].variant_type",
-			"helper": "",
-			"options": ["", "Jméno v jiném jazyce", "Původní jméno", "Akronym/zkratka", "Autorská šifra/novinářská značka", "Církevní jméno", "Jméno získané sňatkem", "Historická podoba jména", "Přímé pořadí", "Jiná forma jména", "Pseudonym"]
-		},
-		"variant_value": {
-			"label": "Variantní označení",
-			"schema": "variant[%].variant_value",
-			"helper": "Jméno v jiném jazyce -> Uvádíme variantu jména v jiném jazyce. Původní jméno -> Uvádíme úřední/skutečné/světské jméno/jméno za svobodna. Akronym/zkratka -> Akronym, který autor používá. Autorská šifra/novinářská značka -> Autorská šifra u novinářů. Církevní jméno -> Církevní jméno. Jméno získané sňatkem -> Jméno získané sňatkem. Historická podoba jména -> Historická podoba jména. Přímé pořadí -> Jméno v podobě Jméno_Příjmení Jiná forma jména -> Jiná forma jména. Pseudonym -> Pseudonym."
-		},
-		"variant_general_complement": {
-			"label": "Geografický doplněk",
-			"schema": "variant[%].general_complement",
-			"helper": ""
-		},
-		"variant_geographical_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "variant[%].geographical_complement",
-			"helper": ""
-		},
-		"variant_chronological_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "variant[%].chronological_complement",
-			"helper": ""
-		},
+        "variant-category": {
+            "label": "Variantní označení",
+            "schema": "variant[%]"
+        },
+        "variant_type": {
+            "label": "Typ variantního označení",
+            "schema": "variant[%].variant_type",
+            "helper": "",
+            "options": [
+                "",
+                "Jméno v jiném jazyce",
+                "Původní jméno",
+                "Akronym/zkratka",
+                "Autorská šifra/novinářská značka",
+                "Církevní jméno",
+                "Jméno získané sňatkem",
+                "Historická podoba jména",
+                "Přímé pořadí",
+                "Jiná forma jména",
+                "Pseudonym"
+            ]
+        },
+        "variant_value": {
+            "label": "Variantní označení",
+            "schema": "variant[%].variant_value",
+            "helper": "Jméno v jiném jazyce -> Uvádíme variantu jména v jiném jazyce. Původní jméno -> Uvádíme úřední/skutečné/světské jméno/jméno za svobodna. Akronym/zkratka -> Akronym, který autor používá. Autorská šifra/novinářská značka -> Autorská šifra u novinářů. Církevní jméno -> Církevní jméno. Jméno získané sňatkem -> Jméno získané sňatkem. Historická podoba jména -> Historická podoba jména. Přímé pořadí -> Jméno v podobě Jméno_Příjmení Jiná forma jména -> Jiná forma jména. Pseudonym -> Pseudonym."
+        },
+        "variant_general_complement": {
+            "label": "Geografický doplněk",
+            "schema": "variant[%].general_complement",
+            "helper": ""
+        },
+        "variant_geographical_complement": {
+            "label": "Chronologický doplněk",
+            "schema": "variant[%].geographical_complement",
+            "helper": ""
+        },
+        "variant_chronological_complement": {
+            "label": "Chronologický doplněk",
+            "schema": "variant[%].chronological_complement",
+            "helper": ""
+        },
 
-		"title-category": {
-			"schema": "titles[%]"
-		},
-		"title": {
-			"label": "Titul",
-			"schema": "titles[%].title",
-			"helper": "Získané akademické tituly."
-		},
-		"date": {
-			"label": "Datum",
-			"schema": "titles[%].date",
-			"helper": "Rok získání titulu."
-		},
+        "title-category": {
+            "schema": "titles[%]"
+        },
+        "title": {
+            "label": "Titul",
+            "schema": "titles[%].title",
+            "helper": "Získané akademické tituly."
+        },
+        "date": {
+            "label": "Datum",
+            "schema": "titles[%].date",
+            "helper": "Rok získání titulu."
+        },
 
-		"gender": {
-			"label": "Pohlaví",
-			"schema": "gender",
-			"helper": "Výběr z nabídky.",
-			"options": ["","Neuvedeno", "Muž", "Žena"]
-		},
+        "gender": {
+            "label": "Pohlaví",
+            "schema": "gender",
+            "helper": "Výběr z nabídky.",
+            "options": ["", "Neuvedeno", "Muž", "Žena"]
+        },
 
-		"bibliographical_note": {
-			"label": "Biografická poznámka",
-			"schema": "bibliographical_note",
-			"helper": "Stručná charakteristika charakterirujícící osobu, včetně místa a oboru působnosti."
-		},
+        "bibliographical_note": {
+            "label": "Biografická poznámka",
+            "schema": "bibliographical_note",
+            "helper": "Stručná charakteristika charakterirujícící osobu, včetně místa a oboru působnosti."
+        },
 
-		"cv": {
-			"label": "Životopis",
-			"schema": "cv",
-			"helper": "Nahrává se jako soubor."
-		},
+        "cv": {
+            "label": "Životopis",
+            "schema": "cv",
+            "helper": "Nahrává se jako soubor."
+        },
 
-		"domain_branch": {
-			"label": "Obor působnosti",
-			"schema": "domain_branch[%]",
-			"helper": "Výběr z rejsříku klíčových slov."
-		},
+        "domain_branch": {
+            "label": "Obor působnosti",
+            "schema": "domain_branch[%]",
+            "helper": "Výběr z rejsříku klíčových slov."
+        },
 
-		"related_country": {
-			"label": "Související země",
-			"schema": "related_country[%]",
-			"helper": "Výběr z geografického rejstříku."
-		},
+        "related_country": {
+            "label": "Související země",
+            "schema": "related_country[%]",
+            "helper": "Výběr z geografického rejstříku."
+        },
 
-		"language_country": {
-			"label": "Určení jazykové oblasti",
-			"schema": "language_country[%]",
-			"helper": "Výběr z nabídky.",
-			"options": ["","Čeština", "Latina", "Němčina", "Angličtina", "Polština", "Slovenština", "Jiné"]
-		},
+        "language_country": {
+            "label": "Určení jazykové oblasti",
+            "schema": "language_country[%]",
+            "helper": "Výběr z nabídky.",
+            "options": [
+                "",
+                "Čeština",
+                "Latina",
+                "Němčina",
+                "Angličtina",
+                "Polština",
+                "Slovenština",
+                "Jiné"
+            ]
+        },
 
-		"parents": {
-			"label": "Rodiče",
-			"schema": "parents[%]",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"siblings": {
-			"label": "Sourozenci",
-			"schema": "siblings[%]",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"family": {
-			"label": "Člen rodu/rodiny",
-			"schema": "family[%]",
-			"helper": "Výběr z rejstříku rodů."
-		},
-		"membreship": {
-			"label": "Členství",
-			"schema": "membreship[%]",
-			"helper": "Výběr z rejstříku korporací."
-		},
-		"employment": {
-			"label": "Zaměstnání",
-			"schema": "employment[%]",
-			"helper": "Výběr z rejsříku klíčových slov."
-		},
-		"affiliation": {
-			"label": "Afiliace",
-			"schema": "affiliation[%]",
-			"helper": "Výběr z rejstříku korporací."
+        "parents": {
+            "label": "Rodiče",
+            "schema": "parents[%]",
+            "helper": "Výběr z rejstříku osob."
+        },
+        "siblings": {
+            "label": "Sourozenci",
+            "schema": "siblings[%]",
+            "helper": "Výběr z rejstříku osob."
+        },
+        "family": {
+            "label": "Člen rodu/rodiny",
+            "schema": "family[%]",
+            "helper": "Výběr z rejstříku rodů."
+        },
+        "membreship": {
+            "label": "Členství",
+            "schema": "membreship[%]",
+            "helper": "Výběr z rejstříku korporací."
+        },
+        "employment": {
+            "label": "Zaměstnání",
+            "schema": "employment[%]",
+            "helper": "Výběr z rejsříku klíčových slov."
+        },
+        "affiliation": {
+            "label": "Afiliace",
+            "schema": "affiliation[%]",
+            "helper": "Výběr z rejstříku korporací."
+        },
+        "important_creation": {
+            "label": "Významná díla",
+            "schema": "important_creation[%]",
+            "helper": "Výběr z rejstříku dílo/výtvor."
+        },
+        "important_event": {
+            "label": "Významné události",
+            "schema": "important_event[%]",
+            "helper": "Výběr z rejstříku události."
+        },
+        "marriage-category": {
+            "label": "Manželství",
+            "schema": "marriage[%]"
+        },
+        "marriage_start": {
+            "label": "Uzavření manželství",
+            "schema": "marriage[%].marriage_start",
+            "helper": "Informace o uzavření manželství.",
+            "type": "Number"
+        },
+        "marriage_end": {
+            "label": "Ukončení manželství",
+            "schema": "marriage[%].marriage_end",
+            "helper": "Informace o ukončení manželství.",
+            "type": "Number"
+        },
+        "study": {
+            "label": "Studium",
+            "schema": "study[%]",
+            "helper": "Výběr z rejstříku korporací."
+        },
 
-		},
-		"important_creation": {
-			"label": "Významná díla",
-			"schema": "important_creation[%]",
-			"helper": "Výběr z rejstříku dílo/výtvor."
-		},
-		"important_event": {
-			"label": "Významné události",
-			"schema": "important_event[%]",
-			"helper": "Výběr z rejstříku události."
-		},
-		"marriage-category": {
-			"label": "Manželství",
-			"schema": "marriage[%]"
-		},
-		"marriage_start": {
-			"label": "Uzavření manželství",
-			"schema": "marriage[%].marriage_start",
-			"helper": "Informace o uzavření manželství.",
-			"type": "Number"
-		},
-		"marriage_end": {
-			"label": "Ukončení manželství",
-			"schema": "marriage[%].marriage_end",
-			"helper": "Informace o ukončení manželství.",
-			"type": "Number"
-		},
-		"study": {
-			"label": "Studium",
-			"schema": "study[%]",
-			"helper": "Výběr z rejstříku korporací."
-		},
+        "arm": {
+            "label": "Erby",
+            "schema": "arm[%]",
+            "helper": "URL obrázku."
+        },
+        "photo": {
+            "label": "Fotografie",
+            "schema": "photo[%]",
+            "helper": "URL obrázku."
+        },
 
-		"arm": {
-			"label": "Erby",
-			"schema": "arm[%]",
-			"helper": "URL obrázku."
-		},
-		"photo": {
-			"label": "Fotografie",
-			"schema": "photo[%]",
-			"helper": "URL obrázku."
-		},
-		
-		"public_note": {
-			"label": "Veřejná poznámka",
-			"schema": "public_note[%]",
-			"helper": "Textová poznámka k heslu.",
-			"multiline" : true
-		},
-		"nonpublic_note": {
-			"label": "Neveřejná poznámka",
-			"schema": "nonpublic_note[%]",
-			"helper": "",
-			"multiline" : true
-		},
+        "public_note": {
+            "label": "Veřejná poznámka",
+            "schema": "public_note[%]",
+            "helper": "Textová poznámka k heslu.",
+            "multiline": true
+        },
+        "nonpublic_note": {
+            "label": "Neveřejná poznámka",
+            "schema": "nonpublic_note[%]",
+            "helper": "",
+            "multiline": true
+        },
 
-		"other_source-category": {
-			"schema": "other_source[%]"
-		},
-		"other_source_name": {
-			"label": "Název",
-			"schema": "other_source[%].name",
-			"helper": "Název jiného zdroje."
-		},
-		"other_source_id": {
-			"label": "ID",
-			"schema": "other_source[%].id",
-			"helper": "ID cizího zdroje."
-		},
-		"other_source_identificator": {
-			"label": "Identifikátor hesla",
-			"schema": "other_source[%].identificator",
-			"helper": "ID dokumentu v cizím zdroji."
-		},
+        "other_source-category": {
+            "schema": "other_source[%]"
+        },
+        "other_source_name": {
+            "label": "Název",
+            "schema": "other_source[%].name",
+            "helper": "Název jiného zdroje."
+        },
+        "other_source_id": {
+            "label": "ID",
+            "schema": "other_source[%].id",
+            "helper": "ID cizího zdroje."
+        },
+        "other_source_identificator": {
+            "label": "Identifikátor hesla",
+            "schema": "other_source[%].identificator",
+            "helper": "ID dokumentu v cizím zdroji."
+        },
 
-		"record_sources": {
-			"label": "Zdroje o heslu",
-			"schema": "record_sources[%]",
-			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
-			"multiline" : true
-		},
-		"editor_note": {
-			"label": "Poznámka editora",
-			"schema": "editor_note[%]",
-			"helper": "Interní poznámka"
-		},
-		"submitter": {
-			"label": "Zadavatel",
-			"schema": "submitter",
-			"required": true
-		},
-		"attachment-category": {
-			"label": "Přílohy",
-			"schema": "attachment[%]"
-		},
-		"attachment_url": {
-			"label": "Příloha",
-			"schema": "attachment[%].url"
-		},
-		"attachment_description": {
-			"label": "Popis",
-			"schema": "attachment[%].description"
-		}
-	}
+        "record_sources": {
+            "label": "Zdroje o heslu",
+            "schema": "record_sources[%]",
+            "helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
+            "multiline": true
+        },
+        "editor_note": {
+            "label": "Poznámka editora",
+            "schema": "editor_note[%]",
+            "helper": "Interní poznámka"
+        },
+        "submitter": {
+            "label": "Zadavatel",
+            "schema": "submitter",
+            "required": true
+        },
+        "attachment-category": {
+            "label": "Přílohy",
+            "schema": "attachment[%]"
+        },
+        "attachment_url": {
+            "label": "Příloha",
+            "schema": "attachment[%].url"
+        },
+        "attachment_description": {
+            "label": "Popis",
+            "schema": "attachment[%].description"
+        }
+    }
 }

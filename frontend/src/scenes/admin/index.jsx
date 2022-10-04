@@ -1,3 +1,3 @@
-import AdminScene from "./adminScene"
+import AdminScene from './adminScene'
 
 export default AdminScene

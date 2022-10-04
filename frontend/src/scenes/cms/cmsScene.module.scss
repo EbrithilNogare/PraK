@@ -1,10 +1,10 @@
 .root {
-	margin: 50px;
-	display: grid;
-	row-gap: 50px;
-	grid-template-rows: auto minmax(500px, 1fr);
+    margin: 50px;
+    display: grid;
+    row-gap: 50px;
+    grid-template-rows: auto minmax(500px, 1fr);
 }
 
 .title {
-	text-align: center;
+    text-align: center;
 }

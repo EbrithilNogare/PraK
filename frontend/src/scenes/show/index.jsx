@@ -1,3 +1,3 @@
-import ShowScene from './showScene';
+import ShowScene from './showScene'
 
-export default ShowScene;
+export default ShowScene

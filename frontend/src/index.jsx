@@ -1,11 +1,8 @@
-import React from "react"
+import React from 'react'
 import ReactDOM from 'react-dom'
 
 import Prak from './Prak'
 
-import "./index.scss"
+import './index.scss'
 
-ReactDOM.render(
-	<Prak className="prak"/>,
-	document.getElementById('root')
-)
+ReactDOM.render(<Prak className="prak" />, document.getElementById('root'))

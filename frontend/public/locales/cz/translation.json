@@ -1,76 +1,74 @@
 {
-	"NavBar": {
-		"news": "Aktuality",
-		"about": "O projektu",
-		"team": "Řešitelský tým",
-		"ourwork": "Výstupy",
-		"partners": "Partneři",
-		"contacts": "Kontakty",
-		"topography": "Místopis Krkonoš",
-		"shards": "Střípky z Krkonoš",
-		"from_history": "Z dějin Krkonoš",
-		"attractions": "Zajímavosti"
-	},
-	"comboBoxes": {
-		"addNewRecord": "+ Přidat nový záznam",
-		"syncedWithDB": "hodnota je synchronizována se záznamem v databázi",
-		"notSyncedWithDB": "hodnota není synchronizována s žádným záznamem v databázi"
-	},
-	"footer": {
-		"finance": "Financování: Projekt je financován Ministerstvem kultury ČR z Programu aplikovaného výzkumu a vývoje národní a kulturní identity (NAKI II)",
-		"realization": "Doba realizace: 2020-2022",
-		"code": "Kód: DG20P02OVV010",
-		"loggedUser": "Přihlášený uživatel:",
-		"upload": "Nahrát soubor",
-		"cms": "Redakční systém",
-		"admin": "Admin",
-		"metadata": "Metadata",
-		"corporation": "Rejstřík korporací",
-		"creation": "Rejstřík dílo",
-		"geographic": "Geografický rejstřík",
-		"keyword": "Rejstřík klíčových",
-		"person": "Rejstřík osob",
-		"subject": "Rejstřík událostí",
-		"family": "Rejstřík rodů",
-		"titleTools": "Nástroje",
-		"titleCreate": "Založení nového záznamu",
-		"search": "Vyhledávátko"
-	},
-	"indices": {
-
-	},
-	"pageCategory": {
-		"page": "Stránka",
-		"main": "Nesmazatelná stránka",
-		"news": "Aktuality",
-		"post": "Článek",
-		"ourwork": "Výstupy",
-		"topography": "Místopis Krkonoš",
-		"category": "Kategorie"
-	},
-	"contactPage": {
-		"contacts": "Kontakty",
-		"questions": "Máte-li otázku, podnět či připomínku, kontaktujete nás prosím prostřednictvím kontaktního formuláře.",
-		"name": "Jméno",
-		"mail": "Email",
-		"message": "Zpráva",
-		"send": "Odeslat",
-		"coordinator": "Kontaktovat můžete také koordinátora projektu kohoutek@hiu.cas.cz či jednotlivé řešitele."
-	},
-	"admin": {
-		"allUsers": "Všichni uživatelé",
-		"addNewUser": "Přidat nového uživatele",
-		"email": "Email",
-		"password": "Heslo",
-		"generatePassword": "Vygenerovat bezpečné heslo",
-		"read": "Číst",
-		"write": "Vkládat",
-		"execute": "Spravovat (Admin)",
-		"cms": "CMS (Redakční systém)",
-		"firstName": "Jméno",
-		"secondName": "Příjmení",
-		"createNewUser": "Přidat uživatele",
-		"save": "Uložit změny",
-		"remove": "Smazat uživatele"
-	}
+    "NavBar": {
+        "news": "Aktuality",
+        "about": "O projektu",
+        "team": "Řešitelský tým",
+        "ourwork": "Výstupy",
+        "partners": "Partneři",
+        "contacts": "Kontakty",
+        "topography": "Místopis Krkonoš",
+        "shards": "Střípky z Krkonoš",
+        "from_history": "Z dějin Krkonoš",
+        "attractions": "Zajímavosti"
+    },
+    "comboBoxes": {
+        "addNewRecord": "+ Přidat nový záznam",
+        "syncedWithDB": "hodnota je synchronizována se záznamem v databázi",
+        "notSyncedWithDB": "hodnota není synchronizována s žádným záznamem v databázi"
+    },
+    "footer": {
+        "finance": "Financování: Projekt je financován Ministerstvem kultury ČR z Programu aplikovaného výzkumu a vývoje národní a kulturní identity (NAKI II)",
+        "realization": "Doba realizace: 2020-2022",
+        "code": "Kód: DG20P02OVV010",
+        "loggedUser": "Přihlášený uživatel:",
+        "upload": "Nahrát soubor",
+        "cms": "Redakční systém",
+        "admin": "Admin",
+        "metadata": "Metadata",
+        "corporation": "Rejstřík korporací",
+        "creation": "Rejstřík dílo",
+        "geographic": "Geografický rejstřík",
+        "keyword": "Rejstřík klíčových",
+        "person": "Rejstřík osob",
+        "subject": "Rejstřík událostí",
+        "family": "Rejstřík rodů",
+        "titleTools": "Nástroje",
+        "titleCreate": "Založení nového záznamu",
+        "search": "Vyhledávátko"
+    },
+    "indices": {},
+    "pageCategory": {
+        "page": "Stránka",
+        "main": "Nesmazatelná stránka",
+        "news": "Aktuality",
+        "post": "Článek",
+        "ourwork": "Výstupy",
+        "topography": "Místopis Krkonoš",
+        "category": "Kategorie"
+    },
+    "contactPage": {
+        "contacts": "Kontakty",
+        "questions": "Máte-li otázku, podnět či připomínku, kontaktujete nás prosím prostřednictvím kontaktního formuláře.",
+        "name": "Jméno",
+        "mail": "Email",
+        "message": "Zpráva",
+        "send": "Odeslat",
+        "coordinator": "Kontaktovat můžete také koordinátora projektu kohoutek@hiu.cas.cz či jednotlivé řešitele."
+    },
+    "admin": {
+        "allUsers": "Všichni uživatelé",
+        "addNewUser": "Přidat nového uživatele",
+        "email": "Email",
+        "password": "Heslo",
+        "generatePassword": "Vygenerovat bezpečné heslo",
+        "read": "Číst",
+        "write": "Vkládat",
+        "execute": "Spravovat (Admin)",
+        "cms": "CMS (Redakční systém)",
+        "firstName": "Jméno",
+        "secondName": "Příjmení",
+        "createNewUser": "Přidat uživatele",
+        "save": "Uložit změny",
+        "remove": "Smazat uživatele"
+    }
 }

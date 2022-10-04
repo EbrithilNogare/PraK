@@ -1,3 +1,3 @@
-import SearchScene from "./searchScene"
+import SearchScene from './searchScene'
 
 export default SearchScene

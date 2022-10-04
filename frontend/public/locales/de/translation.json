@@ -1,10 +1,10 @@
 {
-	"NavBar": {
-		"about": "Projekt",
-		"team": "Unser Team",
-		"ourwork": "Ausgaben",
-		"partners": "Partner",
-		"contacts": "Kontakten",
-		"news": "Aktualitäten"
-	}
-  }
+    "NavBar": {
+        "about": "Projekt",
+        "team": "Unser Team",
+        "ourwork": "Ausgaben",
+        "partners": "Partner",
+        "contacts": "Kontakten",
+        "news": "Aktualitäten"
+    }
+}

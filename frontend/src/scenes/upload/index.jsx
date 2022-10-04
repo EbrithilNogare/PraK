@@ -1,3 +1,3 @@
-import UploadScene from './uploadScene';
+import UploadScene from './uploadScene'
 
-export default UploadScene;
+export default UploadScene

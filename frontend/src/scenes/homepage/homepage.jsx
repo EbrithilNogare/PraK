@@ -1,24 +1,24 @@
-import React from "react"
+import React from 'react'
 
-import NewsBlock from "../../components/NewsBlock"
-import LoadPageFromDB from "../../components/loadPageFromDB"
+import NewsBlock from '../../components/NewsBlock'
+import LoadPageFromDB from '../../components/loadPageFromDB'
 
 import styles from './homepage.module.scss'
 
 class Homepage extends React.Component {
-	constructor(props){
-		super(props)
-		this.state = {}
-	}
+    constructor(props) {
+        super(props)
+        this.state = {}
+    }
 
-	render(){
-		return(
-			<div className={styles.Homepage}>
-				<NewsBlock/>
-				<LoadPageFromDB pageName={"homepage"}/>
-			</div>
-		)
-	}
+    render() {
+        return (
+            <div className={styles.Homepage}>
+                <NewsBlock />
+                <LoadPageFromDB pageName={'homepage'} />
+            </div>
+        )
+    }
 }
 
 export default Homepage

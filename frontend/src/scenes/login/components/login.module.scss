@@ -1,24 +1,23 @@
-.loginForm{
-	width: 100%;
-	margin-top: 30px;
-	display: grid;
-	grid-template-rows: 1fr 1fr 1fr;
-	grid-row-gap: 30px;
+.loginForm {
+    width: 100%;
+    margin-top: 30px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 30px;
 }
 
-.logo{
-	width: 150px;
-	height: 150px;
+.logo {
+    width: 150px;
+    height: 150px;
 }
 
-.hiddenText{
-	background-color: black;
-	color: black;
-	user-select: none;
+.hiddenText {
+    background-color: black;
+    color: black;
+    user-select: none;
 }
 
-
-.hiddenText:hover{
-	transition-delay: 1s;
-	background-color: white;
+.hiddenText:hover {
+    transition-delay: 1s;
+    background-color: white;
 }

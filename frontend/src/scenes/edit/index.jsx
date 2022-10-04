@@ -1,3 +1,3 @@
-import EditScene from './editScene';
+import EditScene from './editScene'
 
-export default EditScene;
+export default EditScene

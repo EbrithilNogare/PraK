@@ -1,20 +1,19 @@
 .root {
-	display: grid;
-	column-gap: 60px;
-	grid-template-columns: 1fr 300px;
+    display: grid;
+    column-gap: 60px;
+    grid-template-columns: 1fr 300px;
 }
 
 .content {
-	img {
-		max-width: 100%;
-	}
+    img {
+        max-width: 100%;
+    }
 }
 
 .rightPanel {
-	display: grid;
-	row-gap: 10px;
-	grid-template-rows: repeat(10, auto) 1fr;
-	
-	word-break: break-all;
-}
+    display: grid;
+    row-gap: 10px;
+    grid-template-rows: repeat(10, auto) 1fr;
 
+    word-break: break-all;
+}

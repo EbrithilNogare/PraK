@@ -1,24 +1,24 @@
 .root {
-	margin: 50px;
-	padding: 20px;
+    margin: 50px;
+    padding: 20px;
 }
 
 .title {
-	text-align: center;
+    text-align: center;
 }
 
-.currentFiles{
-	display: flex;
-	flex-wrap: wrap;
-	column-gap: 10px;
-	row-gap: 10px;
+.currentFiles {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 10px;
 }
 
-.fileHref{
-	width: auto;
-	padding: 13px;
-	border-radius: 5px;
-	background-color: #eee;
-	color: black;
-	text-decoration: none;
+.fileHref {
+    width: auto;
+    padding: 13px;
+    border-radius: 5px;
+    background-color: #eee;
+    color: black;
+    text-decoration: none;
 }

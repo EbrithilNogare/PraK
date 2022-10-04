@@ -1,3 +1,3 @@
-import CmsScene from './cmsScene';
+import CmsScene from './cmsScene'
 
-export default CmsScene;
+export default CmsScene

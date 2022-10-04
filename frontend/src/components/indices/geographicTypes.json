@@ -1,455 +1,466 @@
- { 
- 	"properties":{
-		"name_main_part": {
-			"label": "Hlavní část názvu",
-			"schema": "name_main_part",
-			"helper": "Odkaz na části názvu geografické entity.",
-			"required": true
-		},
-		"name_other_part": {
-			"label": "Další část názvu",
-			"schema": "name_other_part[%]",
-			"helper": "Odkaz na části názvu geografické entity."
-		},
-		"general_complement": {
-			"label": "Obecný doplněk",
-			"schema": "general_complement",
-			"helper": "Blíže charakterizuje entitu - uvádí se vždy s výjímkou obcí."
-		},
-		"geographical_complement": {
-			"label": "Geografický doplněk",
-			"schema": "geographical_complement",
-			"helper": "Označení nadřazených geografických celků, uvádí se u entit do úrovně států."
-		},
-		"chronological_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "chronological_complement",
-			"helper": "V případě, že se zpracovává zvlášť historická etapa entity."
-		},
+{
+    "properties": {
+        "name_main_part": {
+            "label": "Hlavní část názvu",
+            "schema": "name_main_part",
+            "helper": "Odkaz na části názvu geografické entity.",
+            "required": true
+        },
+        "name_other_part": {
+            "label": "Další část názvu",
+            "schema": "name_other_part[%]",
+            "helper": "Odkaz na části názvu geografické entity."
+        },
+        "general_complement": {
+            "label": "Obecný doplněk",
+            "schema": "general_complement",
+            "helper": "Blíže charakterizuje entitu - uvádí se vždy s výjímkou obcí."
+        },
+        "geographical_complement": {
+            "label": "Geografický doplněk",
+            "schema": "geographical_complement",
+            "helper": "Označení nadřazených geografických celků, uvádí se u entit do úrovně států."
+        },
+        "chronological_complement": {
+            "label": "Chronologický doplněk",
+            "schema": "chronological_complement",
+            "helper": "V případě, že se zpracovává zvlášť historická etapa entity."
+        },
 
-		"variant-category": {
-			"label": "Variantní označení",
-			"schema": "variant[%]"
-		},
-		"variant_type": {
-			"label": "Typ variantního označení",
-			"schema": "variant[%].variant_type",
-			"helper": "",
-			"options": ["", "Název v jiném jazyce", "Akronym/zkratka", "Historická/dřívější forma jména", "Jiný tvar jména/označení"]
-		},
-		"variant_value": {
-			"label": "Variantní označení",
-			"schema": "variant[%].variant_value",
-			"helper": "Název v jiném jazyce -> Uvádíme variantu názvu v jiném jazyce. Akronym/zkratka -> Zkratka/akronym, pokud ji korporace používá. Historická/dřívější forma jména -> Dřívejší jméno korporace. Jiný tvar jména/označení -> Jiné označení, pod kterým je geografická entita známa."
-		},
-		"variant_general_complement": {
-			"label": "Geografický doplněk",
-			"schema": "variant[%].general_complement",
-			"helper": ""
-		},
-		"variant_geographical_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "variant[%].geographical_complement",
-			"helper": ""
-		},
-		"variant_chronological_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "variant[%].chronological_complement",
-			"helper": ""
-		},
+        "variant-category": {
+            "label": "Variantní označení",
+            "schema": "variant[%]"
+        },
+        "variant_type": {
+            "label": "Typ variantního označení",
+            "schema": "variant[%].variant_type",
+            "helper": "",
+            "options": [
+                "",
+                "Název v jiném jazyce",
+                "Akronym/zkratka",
+                "Historická/dřívější forma jména",
+                "Jiný tvar jména/označení"
+            ]
+        },
+        "variant_value": {
+            "label": "Variantní označení",
+            "schema": "variant[%].variant_value",
+            "helper": "Název v jiném jazyce -> Uvádíme variantu názvu v jiném jazyce. Akronym/zkratka -> Zkratka/akronym, pokud ji korporace používá. Historická/dřívější forma jména -> Dřívejší jméno korporace. Jiný tvar jména/označení -> Jiné označení, pod kterým je geografická entita známa."
+        },
+        "variant_general_complement": {
+            "label": "Geografický doplněk",
+            "schema": "variant[%].general_complement",
+            "helper": ""
+        },
+        "variant_geographical_complement": {
+            "label": "Chronologický doplněk",
+            "schema": "variant[%].geographical_complement",
+            "helper": ""
+        },
+        "variant_chronological_complement": {
+            "label": "Chronologický doplněk",
+            "schema": "variant[%].chronological_complement",
+            "helper": ""
+        },
 
-		"complement_change-category": {
-			"label": "Změna doplňků",
-			"schema": "complement_change[%]"
-		},
-		"complement_change_type": {
-			"label": "Typ změny doplňku",
-			"schema": "complement_change[%].complement_change_type",
-			"helper": "",
-			"options": ["", "Změna statusu", "Změna nadřízené položky", "Změna chronologického odplňku"]
-		},
-		"complement_change_value": {
-			"label": "Změna doplňku",
-			"schema": "complement_change[%].complement_change_value",
-			"helper": ""
-		},
-		"complement_change_general_complement": {
-			"label": "Geografický doplněk",
-			"schema": "complement_change[%].general_complement",
-			"helper": ""
-		},
-		"complement_change_geographical_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "complement_change[%].geographical_complement",
-			"helper": ""
-		},
-		"complement_change_chronological_complement": {
-			"label": "Chronologický doplněk",
-			"schema": "complement_change[%].chronological_complement",
-			"helper": ""
-		},
+        "complement_change-category": {
+            "label": "Změna doplňků",
+            "schema": "complement_change[%]"
+        },
+        "complement_change_type": {
+            "label": "Typ změny doplňku",
+            "schema": "complement_change[%].complement_change_type",
+            "helper": "",
+            "options": [
+                "",
+                "Změna statusu",
+                "Změna nadřízené položky",
+                "Změna chronologického odplňku"
+            ]
+        },
+        "complement_change_value": {
+            "label": "Změna doplňku",
+            "schema": "complement_change[%].complement_change_value",
+            "helper": ""
+        },
+        "complement_change_general_complement": {
+            "label": "Geografický doplněk",
+            "schema": "complement_change[%].general_complement",
+            "helper": ""
+        },
+        "complement_change_geographical_complement": {
+            "label": "Chronologický doplněk",
+            "schema": "complement_change[%].geographical_complement",
+            "helper": ""
+        },
+        "complement_change_chronological_complement": {
+            "label": "Chronologický doplněk",
+            "schema": "complement_change[%].chronological_complement",
+            "helper": ""
+        },
 
-		"brief_characteristic": {
-			"label": "Stručná charakteristika",
-			"schema": "brief_characteristic",
-			"helper": "Popis v rozsahu jedné věty se základními informacemi o charakteru a umístění entity.",
-			"multiline" : true
-		},
-		"description": {
-			"label": "Popis",
-			"schema": "description",
-			"helper": "Rozsáhlejší narativní popis geografického objektu.",
-			"multiline" : true
-		},
-		"history": {
-			"label": "Historie",
-			"schema": "history",
-			"helper": "Rozsáhlejší narativní popis historie geografického objektu.",
-			"multiline" : true
-		},
-		"electronical_location": {
-			"label": "Elektronické umístění",
-			"schema": "electronical_location[%]",
-			"helper": "URL související s popisem geografického objektu."
-		},
+        "brief_characteristic": {
+            "label": "Stručná charakteristika",
+            "schema": "brief_characteristic",
+            "helper": "Popis v rozsahu jedné věty se základními informacemi o charakteru a umístění entity.",
+            "multiline": true
+        },
+        "description": {
+            "label": "Popis",
+            "schema": "description",
+            "helper": "Rozsáhlejší narativní popis geografického objektu.",
+            "multiline": true
+        },
+        "history": {
+            "label": "Historie",
+            "schema": "history",
+            "helper": "Rozsáhlejší narativní popis historie geografického objektu.",
+            "multiline": true
+        },
+        "electronical_location": {
+            "label": "Elektronické umístění",
+            "schema": "electronical_location[%]",
+            "helper": "URL související s popisem geografického objektu."
+        },
 
-		"coordinates": {
-			"label": "Souřadnice",
-			"schema": "coordinates[%]",
-			"helper": "Souřadnice geografické entity. Nutno kopírovat z Google maps.",
-			"errorMessage": "Chybný formát souřadnic"
-		},
+        "coordinates": {
+            "label": "Souřadnice",
+            "schema": "coordinates[%]",
+            "helper": "Souřadnice geografické entity. Nutno kopírovat z Google maps.",
+            "errorMessage": "Chybný formát souřadnic"
+        },
 
-		"partner_object": {
-			"label": "Partnerský geografický objekt",
-			"schema": "partner_object[%]",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"owner": {
-			"label": "Majitelé",
-			"schema": "owner[%]",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"corporation-category": {
-			"label": "Název",
-			"schema": "part_of[%]",
-			"helper": "Název"
-		},
-		"corporation_name": {
-			"label": "Název",
-			"schema": "part_of[%].corporation_name",
-			"helper": "Výběr z rejstříku korporací."
-		},
-		"corporation_owner": {
-			"label": "Majitel",
-			"schema": "part_of[%].corporation_owner",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"related_person": {
-			"label": "Pojmenováno po osobě",
-			"schema": "related_person[%]",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"related_creation": {
-			"label": "Pojmenováno po dílu/výtvoru",
-			"schema": "related_creation[%]",
-			"helper": "Výběr z rejstříku dílo/výtvor."
-		},
-		"related_event": {
-			"label": "Pojmenováno po události",
-			"schema": "related_event[%]",
-			"helper": "Výběr z rejstříku událost."
-		},
-		"related_corporation": {
-			"label": "Pojmenováno po korporaci",
-			"schema": "related_corporation[%]",
-			"helper": "Výběr z rejstříku korporací."
-		},
-		"superordinate": {
-			"label": "Nadřazený",
-			"schema": "superordinate[%]",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"subordinate": {
-			"label": "Podřazený",
-			"schema": "subordinate[%]",
-			"helper": "Výběr z geografického rejstříku."
-		},
+        "partner_object": {
+            "label": "Partnerský geografický objekt",
+            "schema": "partner_object[%]",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "owner": {
+            "label": "Majitelé",
+            "schema": "owner[%]",
+            "helper": "Výběr z rejstříku osob."
+        },
+        "corporation-category": {
+            "label": "Název",
+            "schema": "part_of[%]",
+            "helper": "Název"
+        },
+        "corporation_name": {
+            "label": "Název",
+            "schema": "part_of[%].corporation_name",
+            "helper": "Výběr z rejstříku korporací."
+        },
+        "corporation_owner": {
+            "label": "Majitel",
+            "schema": "part_of[%].corporation_owner",
+            "helper": "Výběr z rejstříku osob."
+        },
+        "related_person": {
+            "label": "Pojmenováno po osobě",
+            "schema": "related_person[%]",
+            "helper": "Výběr z rejstříku osob."
+        },
+        "related_creation": {
+            "label": "Pojmenováno po dílu/výtvoru",
+            "schema": "related_creation[%]",
+            "helper": "Výběr z rejstříku dílo/výtvor."
+        },
+        "related_event": {
+            "label": "Pojmenováno po události",
+            "schema": "related_event[%]",
+            "helper": "Výběr z rejstříku událost."
+        },
+        "related_corporation": {
+            "label": "Pojmenováno po korporaci",
+            "schema": "related_corporation[%]",
+            "helper": "Výběr z rejstříku korporací."
+        },
+        "superordinate": {
+            "label": "Nadřazený",
+            "schema": "superordinate[%]",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "subordinate": {
+            "label": "Podřazený",
+            "schema": "subordinate[%]",
+            "helper": "Výběr z geografického rejstříku."
+        },
 
-		"founding_person": {
-			"label": "Zakladatel",
-			"schema": "founding_person",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"founding_person_chrono_spec": {
-			"label": "Chronologické zpřesnění založení - zakladatel",
-			"schema": "founding_person_chrono_spec",
-			"helper": ""
-		},
-		"founding_corporation": {
-			"label": "Zakládající korporace",
-			"schema": "founding_corporation",
-			"helper": "Výběr z rejstříku korporací."
-		},
-		"founding_corporation_chrono_spec": {
-			"label": "Chronologické zpřesnění založení - zakládající korporace",
-			"schema": "founding_corporation_chrono_spec",
-			"helper": ""
-		},
-		"founding_document": {
-			"label": "Zakládající dokument",
-			"schema": "founding_document",
-			"helper": "Výběr z rejstříku dílo/výtvor."
-		},
-		"founding_document_chrono_spec": {
-			"label": "Chronologické zpřesnění založení - zakládající dokument",
-			"schema": "founding_document_chrono_spec",
-			"helper": ""
-		},
-		"founding_place": {
-			"label": "Místo založení",
-			"schema": "founding_place",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"founding_place_chrono_spec": {
-			"label": "Chronologické zpřesnění založení - místo založení",
-			"schema": "founding_place_chrono_spec",
-			"helper": ""
-		},
-		"founding_event": {
-			"label": "Zakládající událost",
-			"schema": "founding_event",
-			"helper": "Výběr z rejstříku událost."
-		},
-		"founding_event_chrono_spec": {
-			"label": "Chronologické zpřesnění založení - zakládající událost",
-			"schema": "founding_event_chrono_spec",
-			"helper": ""
-		},
-		"first_mention_document": {
-			"label": "První písemná zmínka - událost",
-			"schema": "first_mention_document",
-			"helper": "Výběr z rejstříku dílo/výtvor."
-		},
-		"first_mention_document_chrono_spec": {
-			"label": "Chronologické zpřesnění založení - první písemná zmínka - událost",
-			"schema": "first_mention_document_chrono_spec",
-			"helper": ""
-		},
-		"first_mention_place": {
-			"label": "První písemná zmínka - místo",
-			"schema": "first_mention_place",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"first_mention_place_chrono_spec": {
-			"label": "Chronologické zpřesnění založení - první písemná zmínka - místo",
-			"schema": "first_mention_place_chrono_spec",
-			"helper": ""
-		},
+        "founding_person": {
+            "label": "Zakladatel",
+            "schema": "founding_person",
+            "helper": "Výběr z rejstříku osob."
+        },
+        "founding_person_chrono_spec": {
+            "label": "Chronologické zpřesnění založení - zakladatel",
+            "schema": "founding_person_chrono_spec",
+            "helper": ""
+        },
+        "founding_corporation": {
+            "label": "Zakládající korporace",
+            "schema": "founding_corporation",
+            "helper": "Výběr z rejstříku korporací."
+        },
+        "founding_corporation_chrono_spec": {
+            "label": "Chronologické zpřesnění založení - zakládající korporace",
+            "schema": "founding_corporation_chrono_spec",
+            "helper": ""
+        },
+        "founding_document": {
+            "label": "Zakládající dokument",
+            "schema": "founding_document",
+            "helper": "Výběr z rejstříku dílo/výtvor."
+        },
+        "founding_document_chrono_spec": {
+            "label": "Chronologické zpřesnění založení - zakládající dokument",
+            "schema": "founding_document_chrono_spec",
+            "helper": ""
+        },
+        "founding_place": {
+            "label": "Místo založení",
+            "schema": "founding_place",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "founding_place_chrono_spec": {
+            "label": "Chronologické zpřesnění založení - místo založení",
+            "schema": "founding_place_chrono_spec",
+            "helper": ""
+        },
+        "founding_event": {
+            "label": "Zakládající událost",
+            "schema": "founding_event",
+            "helper": "Výběr z rejstříku událost."
+        },
+        "founding_event_chrono_spec": {
+            "label": "Chronologické zpřesnění založení - zakládající událost",
+            "schema": "founding_event_chrono_spec",
+            "helper": ""
+        },
+        "first_mention_document": {
+            "label": "První písemná zmínka - událost",
+            "schema": "first_mention_document",
+            "helper": "Výběr z rejstříku dílo/výtvor."
+        },
+        "first_mention_document_chrono_spec": {
+            "label": "Chronologické zpřesnění založení - první písemná zmínka - událost",
+            "schema": "first_mention_document_chrono_spec",
+            "helper": ""
+        },
+        "first_mention_place": {
+            "label": "První písemná zmínka - místo",
+            "schema": "first_mention_place",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "first_mention_place_chrono_spec": {
+            "label": "Chronologické zpřesnění založení - první písemná zmínka - místo",
+            "schema": "first_mention_place_chrono_spec",
+            "helper": ""
+        },
 
-		"cancellation_person": {
-			"label": "Rušitel",
-			"schema": "cancellation_person",
-			"helper": "Výběr z rejstříku osob."
-		},
-		"cancellation_person_chrono_spec": {
-			"label": "Chronologické zpřesnění zrušení - rušitel",
-			"schema": "cancellation_person_chrono_spec",
-			"helper": ""
-		},
-		"cancellation_corporation": {
-			"label": "Rušící korporace",
-			"schema": "cancellation_corporation",
-			"helper": "Výběr z rejstříku korporací."
-		},
-		"cancellation_corporation_chrono_spec": {
-			"label": "Chronologické zpřesnění zrušení - rušící korporace",
-			"schema": "cancellation_corporation_chrono_spec",
-			"helper": ""
-		},
-		"cancellation_document": {
-			"label": "Rušící dokument",
-			"schema": "cancellation_document",
-			"helper": "Výběr z rejstříku dílo/výtvor."
-		},
-		"cancellation_document_chrono_spec": {
-			"label": "Chronologické zpřesnění zrušení - rušící dokument",
-			"schema": "cancellation_document_chrono_spec",
-			"helper": ""
-		},
-		"cancellation_place": {
-			"label": "Místo zrušení",
-			"schema": "cancellation_place",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"cancellation_place_chrono_spec": {
-			"label": "Chronologické zpřesnění zrušení - místo zrušení",
-			"schema": "cancellation_place_chrono_spec",
-			"helper": ""
-		},
-		"last_mention_event": {
-			"label": "Rušící událost",
-			"schema": "last_mention_event",
-			"helper": "Výběr z rejstříku událost."
-		},
-		"last_mention_event_chrono_spec": {
-			"label": "Chronologické zpřesnění zrušení - rušící událost",
-			"schema": "last_mention_event_chrono_spec",
-			"helper": ""
-		},
-		"last_mention_document": {
-			"label": "Poslední písemná zmínka - událost",
-			"schema": "last_mention_document",
-			"helper": "Výběr z rejstříku dílo/výtvor."
-		},
-		"last_mention_document_chrono_spec": {
-			"label": "Chronologické zpřesnění zrušení - poslední písemná zmínka - událost",
-			"schema": "last_mention_document_chrono_spec",
-			"helper": ""
-		},
-		"last_mention_place": {
-			"label": "Poslední písemná zmínka - místo",
-			"schema": "last_mention_place",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"last_mention_place_chrono_spec": {
-			"label": "Chronologické zpřesnění zrušení - poslední písemná zmínka - místo",
-			"schema": "last_mention_place_chrono_spec",
-			"helper": ""
-		},
-		"owner_change": {
-			"label": "Změna majitele, držitele",
-			"schema": "owner_change",
-			"helper": "Odkaz na předchozí entitu. Výběr z geografického rejstříku."
-		},
-		"owner_change_chrono_spec": {
-			"label": "Chronologické zpřesnění zrušení - změna majitele, držitele",
-			"schema": "owner_change_chrono_spec",
-			"helper": ""
-		},
-		"historical_milestones": {
-			"label": "Chronologické zpřesnění změny majitele",
-			"schema": "historical_milestones[%]",
-			"helper": "Událost související s historií geografické entity, např. požár, přidělení práva."
-		},
-		
-		"country": {
-			"label": "Historické milníky",
-			"schema": "country",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"region": {
-			"label": "Kraj",
-			"schema": "region",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"district": {
-			"label": "Okres",
-			"schema": "district",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"municipality": {
-			"label": "Obec",
-			"schema": "municipality",
-			"helper": "Výběr z geografického rejstříku."
-		},
-		"municipality_part": {
-			"label": "Část obce",
-			"schema": "municipality_part",
-			"helper": "Výběr z geografického rejstříku."
-		},
+        "cancellation_person": {
+            "label": "Rušitel",
+            "schema": "cancellation_person",
+            "helper": "Výběr z rejstříku osob."
+        },
+        "cancellation_person_chrono_spec": {
+            "label": "Chronologické zpřesnění zrušení - rušitel",
+            "schema": "cancellation_person_chrono_spec",
+            "helper": ""
+        },
+        "cancellation_corporation": {
+            "label": "Rušící korporace",
+            "schema": "cancellation_corporation",
+            "helper": "Výběr z rejstříku korporací."
+        },
+        "cancellation_corporation_chrono_spec": {
+            "label": "Chronologické zpřesnění zrušení - rušící korporace",
+            "schema": "cancellation_corporation_chrono_spec",
+            "helper": ""
+        },
+        "cancellation_document": {
+            "label": "Rušící dokument",
+            "schema": "cancellation_document",
+            "helper": "Výběr z rejstříku dílo/výtvor."
+        },
+        "cancellation_document_chrono_spec": {
+            "label": "Chronologické zpřesnění zrušení - rušící dokument",
+            "schema": "cancellation_document_chrono_spec",
+            "helper": ""
+        },
+        "cancellation_place": {
+            "label": "Místo zrušení",
+            "schema": "cancellation_place",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "cancellation_place_chrono_spec": {
+            "label": "Chronologické zpřesnění zrušení - místo zrušení",
+            "schema": "cancellation_place_chrono_spec",
+            "helper": ""
+        },
+        "last_mention_event": {
+            "label": "Rušící událost",
+            "schema": "last_mention_event",
+            "helper": "Výběr z rejstříku událost."
+        },
+        "last_mention_event_chrono_spec": {
+            "label": "Chronologické zpřesnění zrušení - rušící událost",
+            "schema": "last_mention_event_chrono_spec",
+            "helper": ""
+        },
+        "last_mention_document": {
+            "label": "Poslední písemná zmínka - událost",
+            "schema": "last_mention_document",
+            "helper": "Výběr z rejstříku dílo/výtvor."
+        },
+        "last_mention_document_chrono_spec": {
+            "label": "Chronologické zpřesnění zrušení - poslední písemná zmínka - událost",
+            "schema": "last_mention_document_chrono_spec",
+            "helper": ""
+        },
+        "last_mention_place": {
+            "label": "Poslední písemná zmínka - místo",
+            "schema": "last_mention_place",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "last_mention_place_chrono_spec": {
+            "label": "Chronologické zpřesnění zrušení - poslední písemná zmínka - místo",
+            "schema": "last_mention_place_chrono_spec",
+            "helper": ""
+        },
+        "owner_change": {
+            "label": "Změna majitele, držitele",
+            "schema": "owner_change",
+            "helper": "Odkaz na předchozí entitu. Výběr z geografického rejstříku."
+        },
+        "owner_change_chrono_spec": {
+            "label": "Chronologické zpřesnění zrušení - změna majitele, držitele",
+            "schema": "owner_change_chrono_spec",
+            "helper": ""
+        },
+        "historical_milestones": {
+            "label": "Chronologické zpřesnění změny majitele",
+            "schema": "historical_milestones[%]",
+            "helper": "Událost související s historií geografické entity, např. požár, přidělení práva."
+        },
 
-		"category": {
-			"label": "Kategorie",
-			"schema": "category[%]",
-			"helper": "Výběr z rejstříku klíčových slov."
-		},
-		"characteristic": {
-			"label": "Charakteristika",
-			"schema": "characteristic[%]",
-			"helper": "Výběr z rejstříku klíčových slov."
-		},
+        "country": {
+            "label": "Historické milníky",
+            "schema": "country",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "region": {
+            "label": "Kraj",
+            "schema": "region",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "district": {
+            "label": "Okres",
+            "schema": "district",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "municipality": {
+            "label": "Obec",
+            "schema": "municipality",
+            "helper": "Výběr z geografického rejstříku."
+        },
+        "municipality_part": {
+            "label": "Část obce",
+            "schema": "municipality_part",
+            "helper": "Výběr z geografického rejstříku."
+        },
 
-		"logo": {
-			"label": "Logo",
-			"schema": "logo[%]",
-			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
-		},
-		"mark": {
-			"label": "Značka",
-			"schema": "mark[%]",
-			"helper": "Narativní popis, URL s odkazem na umístění obrázku, možno zaznamenat dataci a poznámku."
-		},
-		"flag": {
-			"label": "Vlajka",
-			"schema": "flag[%]",
-			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
-		},
-		"arm": {
-			"label": "Erb",
-			"schema": "arm[%]",
-			"helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
-		},
-		
-		"public_note": {
-			"label": "Veřejná poznámka",
-			"schema": "public_note[%]",
-			"helper": "Textová poznámka k heslu.",
-			"multiline" : true
-		},
-		"nonpublic_note": {
-			"label": "Neveřejná poznámka",
-			"schema": "nonpublic_note[%]",
-			"helper": "Textová poznámka k heslu.",
-			"multiline" : true
-		},
+        "category": {
+            "label": "Kategorie",
+            "schema": "category[%]",
+            "helper": "Výběr z rejstříku klíčových slov."
+        },
+        "characteristic": {
+            "label": "Charakteristika",
+            "schema": "characteristic[%]",
+            "helper": "Výběr z rejstříku klíčových slov."
+        },
 
-		"other_source-category": {
-			"schema": "other_source[%]"
-		},
-		"other_source_name": {
-			"label": "Název",
-			"schema": "other_source[%].name",
-			"helper": "Název jiného zdroje."
-		},
-		"other_source_id": {
-			"label": "ID",
-			"schema": "other_source[%].id",
-			"helper": "ID cizího zdroje."
-		},
-		"other_source_identificator": {
-			"label": "Identifikátor hesla",
-			"schema": "other_source[%].identificator",
-			"helper": "ID dokumentu v cizím zdroji."
-		},
-		
-		"record_sources": {
-			"label": "Zdroje o heslu",
-			"schema": "record_sources[%]",
-			"helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
-			"multiline" : true
-		},
-		"editor_note": {
-			"label": "Poznámka editora",
-			"schema": "editor_note[%]",
-			"helper": "Interní poznámka"
-		},
-		"submitter": {
-			"label": "Zadavatel",
-			"schema": "submitter",
-			"required": true
-		},
-		"attachment-category": {
-			"label": "Přílohy",
-			"schema": "attachment[%]"
-		},
-		"attachment_url": {
-			"label": "Příloha",
-			"schema": "attachment[%].url"
-		},
-		"attachment_description": {
-			"label": "Popis",
-			"schema": "attachment[%].description"
-		}
-	}
+        "logo": {
+            "label": "Logo",
+            "schema": "logo[%]",
+            "helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
+        },
+        "mark": {
+            "label": "Značka",
+            "schema": "mark[%]",
+            "helper": "Narativní popis, URL s odkazem na umístění obrázku, možno zaznamenat dataci a poznámku."
+        },
+        "flag": {
+            "label": "Vlajka",
+            "schema": "flag[%]",
+            "helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
+        },
+        "arm": {
+            "label": "Erb",
+            "schema": "arm[%]",
+            "helper": "Narativní popis, URL s odkazem na umístění obrázku. Možno zaznamenat dataci a poznámku."
+        },
+
+        "public_note": {
+            "label": "Veřejná poznámka",
+            "schema": "public_note[%]",
+            "helper": "Textová poznámka k heslu.",
+            "multiline": true
+        },
+        "nonpublic_note": {
+            "label": "Neveřejná poznámka",
+            "schema": "nonpublic_note[%]",
+            "helper": "Textová poznámka k heslu.",
+            "multiline": true
+        },
+
+        "other_source-category": {
+            "schema": "other_source[%]"
+        },
+        "other_source_name": {
+            "label": "Název",
+            "schema": "other_source[%].name",
+            "helper": "Název jiného zdroje."
+        },
+        "other_source_id": {
+            "label": "ID",
+            "schema": "other_source[%].id",
+            "helper": "ID cizího zdroje."
+        },
+        "other_source_identificator": {
+            "label": "Identifikátor hesla",
+            "schema": "other_source[%].identificator",
+            "helper": "ID dokumentu v cizím zdroji."
+        },
+
+        "record_sources": {
+            "label": "Zdroje o heslu",
+            "schema": "record_sources[%]",
+            "helper": "Informace, odkud byla daná informace přejata. (včetně data a URL)",
+            "multiline": true
+        },
+        "editor_note": {
+            "label": "Poznámka editora",
+            "schema": "editor_note[%]",
+            "helper": "Interní poznámka"
+        },
+        "submitter": {
+            "label": "Zadavatel",
+            "schema": "submitter",
+            "required": true
+        },
+        "attachment-category": {
+            "label": "Přílohy",
+            "schema": "attachment[%]"
+        },
+        "attachment_url": {
+            "label": "Příloha",
+            "schema": "attachment[%].url"
+        },
+        "attachment_description": {
+            "label": "Popis",
+            "schema": "attachment[%].description"
+        }
+    }
 }
