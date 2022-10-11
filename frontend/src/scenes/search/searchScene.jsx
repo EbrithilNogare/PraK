@@ -456,15 +456,34 @@ class SearchScene extends React.Component {
                                     <Typography variant="h5">
                                         {value.name}
                                     </Typography>
-                                    <p>{value.author}</p>
-                                    <p>{value.publishing_date}</p>
-                                    <p>{value.language.join(', ')}</p>
+                                    <p>
+                                        {value.author &&
+                                            'Autor: ' + value.author}
+                                    </p>
+                                    <p>
+                                        {value.publishing_date &&
+                                            'Datum vydání: ' +
+                                                value.publishing_date}
+                                    </p>
+                                    <p>
+                                        {value.language.length > 0 &&
+                                            'Jazyk: ' +
+                                                value.language.join(', ')}
+                                    </p>
                                 </Paper>
                             ))}
                     </div>
 
-                    <Paper className={styles.resultTagSelector}>
-                        <div style={{ marginInline: '10px' }}>
+                    <div
+                        className={[
+                            styles.resultTagSelector,
+                            styles.minimalisticScrollbar,
+                        ].join(' ')}
+                    >
+                        <Paper
+                            className={styles.resultTagSelectorItem}
+                            style={{ padding: '0 20px' }}
+                        >
                             <h3>Rok vydání</h3>
                             <Slider
                                 getAriaLabel={() => 'Temperature range'}
@@ -489,7 +508,7 @@ class SearchScene extends React.Component {
                                 }
                                 marks={this.getCornerYears()}
                             />
-                        </div>
+                        </Paper>
 
                         {Object.entries(this.state.searchParams).map(
                             ([searchParamsKey, value]) => {
@@ -497,7 +516,10 @@ class SearchScene extends React.Component {
                                     return null
 
                                 return (
-                                    <div key={searchParamsKey}>
+                                    <Paper
+                                        key={searchParamsKey}
+                                        className={styles.resultTagSelectorItem}
+                                    >
                                         <h3>
                                             {typeDefinitionFile.properties[
                                                 searchParamsKey
@@ -630,11 +652,11 @@ class SearchScene extends React.Component {
                                                     )
                                                 )}
                                         </div>
-                                    </div>
+                                    </Paper>
                                 )
                             }
                         )}
-                    </Paper>
+                    </div>
                 </div>
 
                 <Paper className={styles.helperBlock}>
