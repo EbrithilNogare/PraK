@@ -9,7 +9,7 @@ export default class ChatBot extends React.Component {
         super(props)
 
         this.state = {
-            opened: true,
+            opened: false,
             value: '',
             messages: [
                 {

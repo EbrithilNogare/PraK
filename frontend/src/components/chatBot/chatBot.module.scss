@@ -1,5 +1,5 @@
 .chatBot {
-    position: absolute;
+    position: fixed;
     right: 10px;
     bottom: 10px;
     width: 350px;
@@ -11,7 +11,7 @@
 }
 
 .openButton{
-    position: absolute;
+    position: fixed;
     right: 10px;
     bottom: 10px;
     z-index: 10;
