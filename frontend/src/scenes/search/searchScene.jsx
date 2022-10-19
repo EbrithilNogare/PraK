@@ -264,6 +264,18 @@ class SearchScene extends React.Component {
                             Vyhledat
                         </Button>
 
+                        <TextField
+                            label={'Vyhledávání přes všechna pole'}
+                            onChange={(e) => {
+                                this.setDescription(
+                                    '$**',
+                                    e.target.value,
+                                    false,
+                                    true
+                                )
+                            }}
+                        />
+
                         <Typography variant="h5">Autor - Název</Typography>
                         <PersonComboBox
                             label={

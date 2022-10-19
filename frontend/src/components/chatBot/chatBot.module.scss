@@ -1,0 +1,62 @@
+.chatBot {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 350px;
+    height: 450px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    z-index: 10;
+}
+
+.openButton{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 10;
+}
+
+.header{
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    background-color: #f4e7bb;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.messages{
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+
+    .leftMessage{
+        max-width: 70%;
+        margin-right: auto;
+        height: min-content;
+    }
+
+    .rightMessage{
+        max-width: 70%;
+        margin-left: auto;
+        height: min-content;
+    }
+
+    .messageBlock{
+        background-color: #eee;
+        padding: 10px;
+
+    }
+
+    .messageAuthor{
+        color:rgb(170, 170, 170);
+    }
+}
+
+.inputBlock{
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
