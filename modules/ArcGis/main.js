@@ -156,13 +156,13 @@ const layersByYears = [
 	{
 		year: 2021,
 		layers: [
-			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "obce1910", name: "ORP" },
-			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "obce1910", name: "POU" },
-			{ layerID: "40dfc84302cc4a9bb39cc7d4a442dc4b", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "obceSouc" },
-			{ layerID: "249f6790deab4053814212e31d5523b7", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "katSoucPol" },
-			{ layerID: "02eb858eb6ca4d5fa6ddb2ad16f92c63", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "ZSJSoucBod" },
-			{ layerID: "63403761afca4561beecc5ce9ddf3202", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "castObcPol" },
-			{ layerID: "457534b3930c4716975d10294d845752", opacity: 0.9, featureLayer: null, infoLayer: "obce1910", name: "ZSJPol" },
+			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
+			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
+			{ layerID: "40dfc84302cc4a9bb39cc7d4a442dc4b", opacity: 0.9, featureLayer: null, infoLayer: "obceSouc", name: "obceSouc" },
+			{ layerID: "249f6790deab4053814212e31d5523b7", opacity: 0.9, featureLayer: null, infoLayer: "katSoucPol", name: "katSoucPol" },
+			{ layerID: "02eb858eb6ca4d5fa6ddb2ad16f92c63", opacity: 0.9, featureLayer: null, infoLayer: "ZSJSoucBod", name: "ZSJSoucBod" },
+			{ layerID: "63403761afca4561beecc5ce9ddf3202", opacity: 0.9, featureLayer: null, infoLayer: "castObcPol", name: "castObcPol" },
+			{ layerID: "457534b3930c4716975d10294d845752", opacity: 0.9, featureLayer: null, infoLayer: "ZSJPol", name: "ZSJPol" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "SO46", name: "soudOkresy" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
@@ -420,7 +420,29 @@ require([
 	// })
 	//search widget
 	const searchWidget = new Search({
-		view: view
+		view: view,
+		sources: [
+			{
+			  layer: obceKategorie,
+              searchFields: ["názevLoka"],
+              displayField: "Název lokality",
+              exactMatch: false,
+              outFields: ["názevLoka", "typLokalit", "idObec"],
+              name: "ZSJ 2021",
+              placeholder: "příklad: Rýchorská bouda"
+
+			},
+			{
+			  layer: obceKategorie,
+              searchFields: ["NAZ_OBEC"],
+              displayField: "Název obec",
+              exactMatch: false,
+              outFields: ["NAZ_OBEC", "NAZ_POU"],
+              name: "Obce současnost 2021",
+              placeholder: "příklad: Královec"
+
+			},
+		]
 	});
 
 	view.ui.add(searchWidget, {
