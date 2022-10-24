@@ -93,49 +93,49 @@
 				<div class="titleLabel">Územní struktura</div>
 				<form class="layersGrid">
 					<div class="mui-checkbox">
-						<label>
+						<label style="color:red">
 							<input type="checkbox" id="ORP">
 							Obce s rozšířenou působností 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
-						<label>
+						<label style="color:yellow; text-shadow: 1px -1px grey;">
 							<input type="checkbox" id="POU">
 							Obce s pověřeným obecním úřadem 2021
 						</label>
 					</div>
-					<div style="display" class="mui-checkbox">
-						<label>
+					<div class="mui-checkbox">
+						<label style="color:green">
 							<input type="checkbox" id="katSoucPol">
 							Katastrální území 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
-						<label>
+						<label style="color:greenyellow; text-shadow: 1px -1px grey;">
 							<input type="checkbox" id="ZSJSoucBod">
 							Prostranství 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
-						<label>
+						<label style="color:rgb(51, 204, 255)">
 							<input type="checkbox" checked id="castObcPol">
 							Části obcí 2021
 						</label>
 					</div>
 					 <div class="mui-checkbox">
-						<label>
+						<label style="color:rgb(0, 255, 153)">
 							<input type="checkbox" id="ZSJPol">
 							Základní sídelní jednotky 2021
 						</label>
 					</div>
 					<div class="mui-checkbox">
-						<label>
+						<label style="color:rgb(0, 153, 51)">
 							<input type="checkbox"  id="obceSouc">
 							Obce 2021
 						</label>
 					</div> 
 					<div class="mui-checkbox">
-						<label>
+						<label style="color:rgb(255, 153, 0)">
 							<input type="checkbox" id="soudOkresy">
 							Soudní okresy k roku 1946
 						</label>
@@ -143,25 +143,6 @@
 				</form>
 			</div>
 
-
-
-
-			<div style="display:none" class="mui-panel">
-				<div class="mui-select">
-					<label>Modul - pouze současná vrstva</label>
-					<select id="modulSelect">
-						<option value="0">Demografická struktura</option>
-						<option value="1">Národnost</option>
-						<option value="2">Domy</option>
-						<option value="3">Rozloha</option>
-					</select>
-				</div>
-
-				<div class="mui-select">
-					<label>Zobrazený údaj</label>
-					<select id="jevSelect"></select>
-				</div>
-			</div>
 
 			<div class="mui-panel">
 				<div class="titleLabel">Filtrování dat</div>
@@ -197,6 +178,90 @@
 
 				<p><span id="printResults"></span></p>
 			</div>
+
+
+
+			<div class="mui-panel">
+				<div class="titleLabel">Moduly - současná vrstva</div>
+					<form class="layersModules">
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="pocetobyv">
+								Počet trvalých obyvatel obce 2021
+							</label>
+						</div>
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="pocetob_1">
+								Počet obvyklých obyvatel obce 2021
+							</label>
+						</div>
+						
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="počet_o_1">
+								Počet trvalých obyvatel obce 2011
+							</label>
+						</div>
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="počet_o_2">
+								Počet obvyklých obyvatel obce 2011
+							</label>
+						</div>
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="počet_b_1">
+								Počet budov s čísly 2011
+							</label>
+						</div>
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="početbudo">
+								Počet domů s čísly 2021
+							</label>
+						</div>
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="rozloha__1">
+								Rozloha lokality 2011
+							</label>
+						</div>
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="rozlohalok">
+								Rozloha lokality 2021
+							</label>
+						</div>
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="národno_1">
+								Česká národnost 2021
+							</label>
+						</div>
+						<div class="mui-checkbox">
+							<label>
+								<input type="checkbox" id="národnost">
+								Německá národnost 2021
+							</label>
+						</div>
+
+					</form>
+					<!-- <label>Modul - pouze současná vrstva</label>
+					<select id="modulSelect">
+						<option value="0">Demografická struktura</option>
+						<option value="1">Národnost</option>
+						<option value="2">Domy</option>
+						<option value="3">Rozloha</option>
+					</select> -->
+				</div>
+
+				<div class="mui-select">
+					<!-- <label>Zobrazený údaj</label>
+					<select id="jevSelect"></select> -->
+				</div>
+			</div>
+
 		</div>
 	</div>
 

@@ -145,8 +145,8 @@ const layersByYears = [
 			{ layerID: "abad00b4ad484e9bb66b499816f35876", opacity: 1.0, featureLayer: null, infoLayer: "ORP", name: "ORP" },
 			{ layerID: "afa4ff69d2f74f8b82b1ebdf002f07aa", opacity: 1.0, featureLayer: null, infoLayer: "POU", name: "POU" },
 			{ layerID: "7412253b0a404ea0bf12b14ddc0f1372", opacity: 0.9, featureLayer: null, infoLayer: "obce", name: "obceSouc" },
-			{ layerID: "c63665c850b94fab8aae62a38bdaa5be", opacity: 0.9, featureLayer: null, infoLayer: "castObce", name: "ZSJSoucBod" },
-			{ layerID: "abbefe51db4e4a5784578f6bfe5fd8df", opacity: 0.9, featureLayer: null, infoLayer: "ZSJ", name: "castObcPol" },
+			{ layerID: "c63665c850b94fab8aae62a38bdaa5be", opacity: 0.3, featureLayer: null, infoLayer: "castObce", name: "ZSJSoucBod" },
+			{ layerID: "abbefe51db4e4a5784578f6bfe5fd8df", opacity: 0.4, featureLayer: null, infoLayer: "ZSJ", name: "castObcPol" },
 			{ layerID: "22ed71812ce24212bbc9891a62694dda", opacity: 0.9, featureLayer: null, infoLayer: "pavouk", name: "ZSJPol" },
 			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "SO46", name: "soudOkresy" }
 			
@@ -163,12 +163,22 @@ const layersByYears = [
 			{ layerID: "02eb858eb6ca4d5fa6ddb2ad16f92c63", opacity: 0.9, featureLayer: null, infoLayer: "ZSJSoucBod", name: "ZSJSoucBod" },
 			{ layerID: "63403761afca4561beecc5ce9ddf3202", opacity: 0.9, featureLayer: null, infoLayer: "castObcPol", name: "castObcPol" },
 			{ layerID: "457534b3930c4716975d10294d845752", opacity: 0.9, featureLayer: null, infoLayer: "ZSJPol", name: "ZSJPol" },
-			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "SO46", name: "soudOkresy" }
+			{ layerID: "1cfec9b5ee5244c6bc78208576208d69", opacity: 0.9, featureLayer: null, infoLayer: "SO46", name: "soudOkresy" },
+			{ layerID: "7f4735d813054cd89a718d1b7156112b", opacity: 0.9, featureLayer: null, infoLayer: "pocetobyv", name: "pocetobyv" },
+			{ layerID: "07e39b8ed447407d925d6c73ff1ef985", opacity: 0.9, featureLayer: null, infoLayer: "pocetob_1", name: "pocetob_1" },
+			{ layerID: "1f31d5f7f95249919a1879415af7a950", opacity: 0.9, featureLayer: null, infoLayer: "počet_o_1", name: "počet_o_1" },
+			{ layerID: "9e92579c8ed24660bbe7d4391056630c", opacity: 0.9, featureLayer: null, infoLayer: "počet_o_2", name: "počet_o_2" },
+			{ layerID: "cd45375e05fa4fcba872261ddec0eb2e", opacity: 0.9, featureLayer: null, infoLayer: "počet_b_1", name: "počet_b_1" },
+			{ layerID: "e6d91643f3074cc0824859094793ac7d", opacity: 0.9, featureLayer: null, infoLayer: "početbudo", name: "početbudo" },
+			{ layerID: "08e9d94ff80f49cf93bd6bb3e18113d6", opacity: 0.9, featureLayer: null, infoLayer: "rozloha__1", name: "rozloha__1" },
+			{ layerID: "869959c0db214a419870bd20fa93fcfa", opacity: 0.9, featureLayer: null, infoLayer: "rozlohalok", name: "rozlohalok" },
+			{ layerID: "1637098666904d20811139305956a5b5", opacity: 0.9, featureLayer: null, infoLayer: "národno_1", name: "národno_1" },
+			{ layerID: "d04a7198ae5b4db896f72c09cc80f325", opacity: 0.9, featureLayer: null, infoLayer: "národnost", name: "národnost" }
 		],
 		options: ["attSelect", "signSelect", "valSelect"],
 	},
 ]
-const getLayersFromButtons = ["ORP", "POU", "obceSouc", "katSoucPol", "ZSJSoucBod", "castObcPol", "ZSJPol", "soudOkresy"]
+const getLayersFromButtons = ["ORP", "POU", "obceSouc", "katSoucPol", "ZSJSoucBod", "castObcPol", "ZSJPol", "soudOkresy","pocetobyv","pocetob_1","počet_o_1","počet_o_2","počet_b_1","početbudo","rozloha__1","rozlohalok","národno_1","národnost"]
 let loadingProgress = {
 	value: 0,
 	max: [].concat(...layersByYears.map((layerByYear) => layerByYear.layers.map((layer) => 0))).length,
@@ -187,9 +197,11 @@ require([
 	"esri/rest/support/Query",
 	"esri/widgets/Legend",
 	"esri/widgets/Search",
-	"esri/widgets/ScaleBar"
+	"esri/widgets/ScaleBar",
+	"esri/widgets/BasemapToggle",
+    "esri/widgets/BasemapGallery"
 ], (
-	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend, Search, ScaleBar
+	esriConfig, MapView, Map, FeatureLayer, GraphicsLayer, TileLayer, Expand, query, Query, Legend, Search, ScaleBar, BasemapToggle, BasemapGallery
 ) => {
 
 	esriConfig.apiKey = "AAPK8bc6dada19fc40b495ff8ef292a6162bPTUaWG0rfCO_sIehiCZr8W72weLqN42yKhTPDbTK4S0XbpfyQYfb5RiVUvKkD9AB";
@@ -212,10 +224,12 @@ require([
 		layer.featureLayer = new FeatureLayer({
 			portalItem: {
 				id: layer.layerID,
-				opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
+				// opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
 				visible: false,
 			}
 		})
+
+		
 
 		layer.featureLayer.load().then(function () {
 			$("loadingProgressbar").value = ++loadingProgress.value;
@@ -260,6 +274,26 @@ require([
 		center: [15.79, 50.57],
 		zoom: 11
 	});
+
+	const basemapToggle = new BasemapToggle({
+		view: view,
+		nextBasemap: "topo-vector",
+		nextBasemap: "arcgis-imagery"
+	});
+
+
+	view.ui.add(basemapToggle, "bottom-left");
+
+	// const basemapGallery = new BasemapGallery({
+    //     view: view,
+    //     source: {
+    //       query: {
+    //         title: '"World Basemaps for Developers" AND owner:esri'
+    //       }
+    //     }
+    //   });
+
+	//   view.ui.add(basemapGallery, "top-right");
 
 
 	document.getElementById("doBtn").addEventListener("click", doQuery);
@@ -306,75 +340,76 @@ require([
 	// 	alert("Ahoj" + s)
 	// }
 
-	document.getElementById("jevSelect").addEventListener('change', function(){
-		var s = this.value;
+	// document.getElementById("jevSelect").addEventListener('change', function(){
+	// 	var s = this.value;
 
-		if (s == "početobyv") {
-			showLayer("7f4735d813054cd89a718d1b7156112b","Počet trvalých obyvatel obce 2021");
-		}
-		else if (s == "početob_1") {
-			showLayer("07e39b8ed447407d925d6c73ff1ef985","Počet obvyklých obyvatel obce 2021");
-		}		
-		else if (s == "počet_o_1") {
-			showLayer("1f31d5f7f95249919a1879415af7a950","Počet trvalých obyvatel obce 2011");
-		}
-		else if (s == "počet_o_2") {
-			showLayer("9e92579c8ed24660bbe7d4391056630c","Počet obvyklých obyvatel obce 2011");
-		}
-		else if (s == "počet_b_1") {
-			showLayer("cd45375e05fa4fcba872261ddec0eb2e","Počet budov s čísly 2011");
-		}
-		else if (s == "početbudo") {
-			showLayer("eab2e77593d2465fa8c617c1b0087a5b","Počet domů s čísly 2021");
-		}
-		else if (s == "rozloha__1") {
-			showLayer("08e9d94ff80f49cf93bd6bb3e18113d6","Rozloha lokality 2011");
-		}
-		else if (s == "rozlohalok") {
-			showLayer("869959c0db214a419870bd20fa93fcfa","Rozloha lokality 2021");
-		}
-		else if (s == "národno_1") {
-			showLayer("1637098666904d20811139305956a5b5","Česká národnost 2021");
-		}
-		else if (s == "národnost") {
-			showLayer("d04a7198ae5b4db896f72c09cc80f325","Německá národnost 2021");
-		}
+
+	// 	if (s == "početobyv") {
+	// 		showLayer("7f4735d813054cd89a718d1b7156112b","Počet trvalých obyvatel obce 2021");
+	// 	}
+	// 	else if (s == "početob_1") {
+	// 		showLayer("07e39b8ed447407d925d6c73ff1ef985","Počet obvyklých obyvatel obce 2021");
+	// 	}		
+	// 	else if (s == "počet_o_1") {
+	// 		showLayer("1f31d5f7f95249919a1879415af7a950","Počet trvalých obyvatel obce 2011");
+	// 	}
+	// 	else if (s == "počet_o_2") {
+	// 		showLayer("9e92579c8ed24660bbe7d4391056630c","Počet obvyklých obyvatel obce 2011");
+	// 	}
+	// 	else if (s == "počet_b_1") {
+	// 		showLayer("cd45375e05fa4fcba872261ddec0eb2e","Počet budov s čísly 2011");
+	// 	}
+	// 	else if (s == "početbudo") {
+	// 		showLayer("e6d91643f3074cc0824859094793ac7d","Počet domů s čísly 2021");
+	// 	}
+	// 	else if (s == "rozloha__1") {
+	// 		showLayer("08e9d94ff80f49cf93bd6bb3e18113d6","Rozloha lokality 2011");
+	// 	}
+	// 	else if (s == "rozlohalok") {
+	// 		showLayer("869959c0db214a419870bd20fa93fcfa","Rozloha lokality 2021");
+	// 	}
+	// 	else if (s == "národno_1") {
+	// 		showLayer("1637098666904d20811139305956a5b5","Česká národnost 2021");
+	// 	}
+	// 	else if (s == "národnost") {
+	// 		showLayer("d04a7198ae5b4db896f72c09cc80f325","Německá národnost 2021");
+	// 	}
 		
-	})
+	// })
 
-	function testResult(idNumber, titleText){
-		var val;
-		val = idNumber + titleText;
-		return val;
-	}
+	// function testResult(idNumber, titleText){
+	// 	var val;
+	// 	val = idNumber + titleText;
+	// 	return val;
+	// }
 
 	
-	function showLayer(idNumber, titleText){
+	// function showLayer(idNumber, titleText){
 		
-		const obceKategorie = new FeatureLayer({
-			portalItem: {
-				id: idNumber
-				//id: "7f4735d813054cd89a718d1b7156112b"
-			},
-			outFields:["*"],
-		});
-		const legend = new Legend({
-			view: view,
-			layerInfos : [
-				{ 
-					layer: obceKategorie,
-					title: titleText
-					//title: "Počet obyvatel"
-				}
-			]
-		});
-		map.remove(obceKategorie);
+	// 	const obceKategorie = new FeatureLayer({
+	// 		portalItem: {
+	// 			id: idNumber
+	// 			//id: "7f4735d813054cd89a718d1b7156112b"
+	// 		},
+	// 		outFields:["*"],
+	// 	});
+	// 	const legend = new Legend({
+	// 		view: view,
+	// 		layerInfos : [
+	// 			{ 
+	// 				layer: obceKategorie,
+	// 				title: titleText
+	// 				//title: "Počet obyvatel"
+	// 			}
+	// 		]
+	// 	});
+	// 	map.remove(obceKategorie);
 		
 		
-		map.add(obceKategorie);
-		obceKategorie.visible = true;
-		view.ui.add(legend, "bottom-left");
-	}
+	// 	map.add(obceKategorie);
+	// 	obceKategorie.visible = true;
+	// 	view.ui.add(legend, "bottom-left");
+	// }
 
 	let scaleBar = new ScaleBar({
 		view: view,
