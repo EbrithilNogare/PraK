@@ -94,12 +94,6 @@ function getDocumentType(type) {
   }
 }
 
-function getUniqueName(name) {
-  const count = metadata.filter((item) => item.name === name).length;
-  if (count === 0) return name;
-  else return getUniqueName(name + "_");
-}
-
 function createMetadata(item) {
   const newItem = {
     _id: generateID(),
