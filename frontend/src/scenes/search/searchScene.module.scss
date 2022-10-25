@@ -136,6 +136,10 @@
 
 .chip span div {
     white-space: break-spaces !important;
+    padding: 6px 4px;
+}
+.chip {
+    height: auto;
 }
 
 .resultTag {

@@ -19,7 +19,6 @@ import {
     StaticComboBox,
 } from '../../components/comboBoxes'
 import typeDefinitionFile from '../../components/indices/metadataTypes.json'
-import DateField from '../../components/validationTextFields/DateField'
 import styles from './searchScene.module.scss'
 
 class SearchScene extends React.Component {
@@ -60,7 +59,10 @@ class SearchScene extends React.Component {
     }
 
     getCornerYears = () => {
-        const minMax = [1838, new Date().getFullYear()]
+        const minMax = [
+            new Date().getFullYear() - 200,
+            new Date().getFullYear(),
+        ]
         return [
             { value: minMax[0], label: minMax[0] },
             { value: minMax[1], label: minMax[1] },
@@ -252,7 +254,7 @@ class SearchScene extends React.Component {
         return (
             <div className={styles.SearchScene}>
                 <Paper className={styles.header}>
-                    <h1>Vyhledavátko</h1>
+                    <h1>Vyhledávátko</h1>
                 </Paper>
                 <div className={styles.phasesBlock}>
                     <Paper className={styles.body}>

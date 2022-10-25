@@ -26,14 +26,14 @@ class PersonComboBox extends ComboBox {
     }
 
     parseReturnedObjectFromMongooseFind = (element) => {
-        if (!element.surname || !element.name) {
+        if (!element.surname && !element.name) {
             console.warn(
                 'missing name in parseReturnedObjectFromMongooseFind(element)',
                 element
             )
             return ''
         }
-        return `${element.surname} ${element.name}`
+        return `${element.surname ?? ''} ${element.name ?? ''}`
     }
 }
 

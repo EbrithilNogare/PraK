@@ -17,6 +17,22 @@ function generateID() {
   return { $oid: id };
 }
 
+function OR(a, b = "", c = "", d = "", e = "", f = "") {
+  return a !== ""
+    ? a
+    : b !== ""
+    ? b
+    : c !== ""
+    ? c
+    : d !== ""
+    ? d
+    : e !== ""
+    ? e
+    : f !== ""
+    ? f
+    : undefined;
+}
+
 function cleanEmpty(input) {
   return Object.fromEntries(
     Object.entries(input).filter(([key, val]) => {
@@ -94,6 +110,25 @@ function getDocumentType(type) {
   }
 }
 
+function getLanguage(language) {
+  const SEPARATOR_REGEXP = /[;, ]+/;
+  language = language.trim().split(SEPARATOR_REGEXP);
+  return language.map((item) => {
+    switch (item) {
+      case "cze":
+        return "čeština";
+      case "ger":
+        return "němčina";
+      case "eng":
+        return "angličtina";
+      case "pol":
+        return "polština";
+      default:
+        return item;
+    }
+  });
+}
+
 function createMetadata(item) {
   const newItem = {
     _id: generateID(),
@@ -108,17 +143,18 @@ function createMetadata(item) {
     name: item.nazev245a, // ! todo unique
     author_responsibility: item.odpovednost245c,
     other_names: [item.podnazev245b, item.nazevCasti245n],
-    language: [item.jazyk041a],
+    language: getLanguage(item.jazyk041a),
     publish: [
       {
         publish_country: item.zemeVydani270d,
-        publish_place: getGeographic(item.mistoVydani260a),
+        publish_place: getGeographic(
+          OR(item.mistoVydani264a, item.mistoVydani260a)
+        ),
       },
     ],
     publishing_date: [
       {
-        date:
-          item.rokVydani260c === "" ? item.rokVydani264c : item.rokVydani260c,
+        date: OR(item.rokVydani264c, item.rokVydani260c),
         note: item.poznODatu518a,
       },
     ],
@@ -145,7 +181,7 @@ function createMetadata(item) {
     ],
     location: [
       {
-        institution: item["852b"],
+        institution: OR(item["852b"], item.siglaVlastnika910a),
         fund: item.signatura852c,
         note: item.neverejnaPoznamka852x,
       },
@@ -158,6 +194,7 @@ function createMetadata(item) {
       },
     ],
     submitter: "Export",
+    keywords: getKeyword(item.klicoveSlovo650a),
   };
 
   return newItem;
@@ -166,7 +203,7 @@ function createMetadata(item) {
 function getCorporation(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = corporation.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -180,7 +217,7 @@ function getCorporation(name_main_part) {
 function getCreation(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = creation.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -194,7 +231,7 @@ function getCreation(name_main_part) {
 function getFamily(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = family.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -208,7 +245,7 @@ function getFamily(name_main_part) {
 function getGeographic(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = geographic.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -222,7 +259,7 @@ function getGeographic(name_main_part) {
 function getKeyword(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = keyword.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -236,7 +273,7 @@ function getKeyword(name_main_part) {
 function getPerson(name) {
   if (name === "") return undefined;
   const foundItems = person.filter((item) => {
-    item.name === name;
+    return item.name === name;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name };
@@ -250,7 +287,7 @@ function getPerson(name) {
 function getSubject(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = subject.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -266,6 +303,7 @@ data.forEach((dato) => {
 });
 
 function toFile(data, fileName) {
+  if (data.length === 0) return;
   fs.writeFile(`./outDB/${fileName}.json`, JSON.stringify(data), (err) => {
     if (err) {
       console.error(err);

@@ -790,11 +790,11 @@
             ]
         },
         "publish-category": {
-            "label": "Země vydání nebo vzniku",
+            "label": "Místo vydání nebo vzniku",
             "schema": "publish[%]"
         },
         "publish_country": {
-            "label": "Země vydání nebo vzniku",
+            "label": "Místo vydání nebo vzniku",
             "schema": "publish[%].publish_country",
             "fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             "options": [

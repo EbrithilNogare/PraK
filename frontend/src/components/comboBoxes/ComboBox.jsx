@@ -25,7 +25,10 @@ class ComboBox extends React.Component {
 
     handleKeyUp = (e) => {
         if (e.key === 'Escape') {
-            this.setState({ value: '', menuList: [] })
+            this.setState({ value: '', menuList: [], ID: '' })
+
+            if (this.props.onChange)
+                this.props.onChange({ target: { value: undefined } })
         }
     }
 
