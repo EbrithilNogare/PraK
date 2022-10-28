@@ -21,6 +21,30 @@ export default class ChatBot extends React.Component {
         }
     }
 
+    sendAsLog = (data) => {
+        const url =
+            window.location.hostname === 'localhost'
+                ? 'http://localhost:50080/prak/api/log'
+                : '/prak/api/log'
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data }),
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                //console.log('log: ', data)
+            })
+            .catch((error) => {
+                console.error('Error:', error)
+            })
+    }
+
     toSimpleText = (r) => {
         return r
             .toLowerCase()
@@ -57,12 +81,13 @@ export default class ChatBot extends React.Component {
         { in: 'najit', out: '' },
         { in: 'resitelsky tym', out: '' },
         { in: 'zdravím', out: 'ahoj' },
-        { in: '', out: '' },
-        { in: '', out: '' },
-        { in: '', out: '' },
+        { in: 'ahoj', out: 'ahoj' },
+        { in: 'cau', out: 'ahoj' },
+        { in: '', out: 'Hmmm, nevím, zkus svou otázku položit jinak.' },
     ].map((item) => ({ ...item, in: this.toSimpleText(item.in) }))
 
     send = () => {
+        this.sendAsLog(this.state.value)
         const input = this.toSimpleText(this.state.value)
 
         if (input.length === 0) return

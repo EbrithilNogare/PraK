@@ -15,7 +15,7 @@ import {
     FormControlLabel,
 } from '@material-ui/core'
 import { TreeView, TreeItem } from '@material-ui/lab'
-import { ExpandMore, ChevronRight } from '@material-ui/icons'
+import { ExpandMore, ChevronRight, ThreeSixtySharp } from '@material-ui/icons'
 import styles from './showScene.module.scss'
 
 import corporationTypes from '../../components/indices/corporationTypes.json'
@@ -26,6 +26,7 @@ import keywordTypes from '../../components/indices/keywordTypes.json'
 import metadataTypes from '../../components/indices/metadataTypes.json'
 import personTypes from '../../components/indices/personTypes.json'
 import subjectTypes from '../../components/indices/subjectTypes.json'
+import { prevElementSibling } from 'domutils'
 
 class ShowScene extends React.Component {
     constructor(props) {
@@ -35,14 +36,20 @@ class ShowScene extends React.Component {
             record: undefined,
             translatedRecord: undefined,
             translated: true,
+            expanded: [],
         }
         this.uniqueId = 0
+        this.initExpanded = []
     }
 
     getRecord = (type, id) => {
         if (this.state.record !== undefined) return
+        const url =
+            window.location.hostname === 'localhost'
+                ? 'http://localhost:50080/prak/api/'
+                : '/prak/api/'
 
-        fetch(`/prak/api/${type}${type === 'metadata' ? '' : 'index'}/${id}`)
+        fetch(`${url}${type}${type === 'metadata' ? '' : 'index'}/${id}`)
             .then((response) => response.json())
             .then((data) => {
                 console.info(
@@ -50,9 +57,12 @@ class ShowScene extends React.Component {
                     'background: #222; color: #bada55',
                     data
                 )
+                const tmp = this.translateRecord(data, type)
                 this.setState({
                     record: data,
-                    translatedRecord: this.translateRecord(data, type),
+                    translatedRecord: tmp,
+                    treeViewItems: this.recursiveTreeItem(tmp, 0),
+                    expanded: this.initExpanded,
                 })
             })
             .catch((err) => {
@@ -137,51 +147,36 @@ class ShowScene extends React.Component {
 
     recursiveTreeItem = (nodes, uniqueKey) => {
         if (Array.isArray(nodes)) {
-            return nodes.map((value, key) => {
+            return nodes.map((value, key, self) => {
+                const nodeId = uniqueKey + '-' + key
+                this.initExpanded.push(nodeId)
                 if (typeof value === 'object' && value !== null)
-                    return (
-                        <TreeItem
-                            key={key}
-                            nodeId={uniqueKey + '-' + key}
-                            label={key}
-                        >
-                            {this.recursiveTreeItem(
-                                value,
-                                uniqueKey + '-' + key
-                            )}
+                    return self.length === 1 ? (
+                        this.recursiveTreeItem(value, nodeId)
+                    ) : (
+                        <TreeItem key={key} nodeId={nodeId} label={key}>
+                            {this.recursiveTreeItem(value, nodeId)}
                         </TreeItem>
                     )
-                else
-                    return (
-                        <TreeItem
-                            key={key}
-                            nodeId={uniqueKey + '-' + key}
-                            label={value}
-                        />
-                    )
+                else return <TreeItem key={key} nodeId={nodeId} label={value} />
             })
         } else if (typeof nodes === 'object' && nodes !== null) {
             return Object.keys(nodes).map((value, key) => {
+                const nodeId = uniqueKey + '-' + key
+                this.initExpanded.push(nodeId)
                 if (nodes[value] === null || nodes[value].length === 0)
                     return null
                 if (typeof nodes[value] === 'object' && nodes[value] !== null)
                     return (
-                        <TreeItem
-                            key={key}
-                            nodeId={uniqueKey + '-' + key}
-                            label={value}
-                        >
-                            {this.recursiveTreeItem(
-                                nodes[value],
-                                uniqueKey + '-' + key
-                            )}
+                        <TreeItem key={key} nodeId={nodeId} label={value}>
+                            {this.recursiveTreeItem(nodes[value], nodeId)}
                         </TreeItem>
                     )
                 else
                     return (
                         <TreeItem
                             key={key}
-                            nodeId={uniqueKey + '-' + key}
+                            nodeId={nodeId}
                             label={value + ': ' + nodes[value]}
                         />
                     )
@@ -314,14 +309,12 @@ class ShowScene extends React.Component {
                                         <TreeView
                                             defaultCollapseIcon={<ExpandMore />}
                                             defaultExpandIcon={<ChevronRight />}
+                                            expanded={this.state.expanded}
+                                            onNodeToggle={(event, expanded) =>
+                                                this.setState({ expanded })
+                                            }
                                         >
-                                            {this.recursiveTreeItem(
-                                                this.state.translated
-                                                    ? this.state
-                                                          .translatedRecord
-                                                    : this.state.record,
-                                                0
-                                            )}
+                                            {this.state.treeViewItems}
                                         </TreeView>
                                     </Paper>
                                     <FormControlLabel

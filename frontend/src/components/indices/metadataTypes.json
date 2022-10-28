@@ -9,7 +9,10 @@
         "Obrazový dokument",
         "Periodika",
         "Svazek",
-        "3D objekt"
+        "3D objekt",
+        "Časopisy",
+        "Mapy",
+        "Nezařaditelný dokument"
     ],
     "properties": {
         "documentType": {

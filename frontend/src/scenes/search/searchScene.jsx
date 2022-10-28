@@ -18,6 +18,8 @@ import {
     KeywordComboBox,
     StaticComboBox,
 } from '../../components/comboBoxes'
+import ChatBot from '../../components/chatBot'
+
 import typeDefinitionFile from '../../components/indices/metadataTypes.json'
 import styles from './searchScene.module.scss'
 
@@ -253,6 +255,7 @@ class SearchScene extends React.Component {
     render() {
         return (
             <div className={styles.SearchScene}>
+                <ChatBot />
                 <Paper className={styles.header}>
                     <h1>Vyhledávátko</h1>
                 </Paper>
@@ -322,7 +325,7 @@ class SearchScene extends React.Component {
                         />
 
                         <Typography variant="h5">Místo vydání</Typography>
-                        <StaticComboBox
+                        <TextField
                             label={
                                 typeDefinitionFile.properties['publish_country']
                                     .label
@@ -331,14 +334,10 @@ class SearchScene extends React.Component {
                                 this.setDescription(
                                     'publish_country',
                                     e.target.value,
-                                    false,
+                                    true,
                                     true
                                 )
                             }}
-                            options={
-                                typeDefinitionFile.properties['publish_country']
-                                    .options
-                            }
                             fullWidth
                         />
 
@@ -366,9 +365,12 @@ class SearchScene extends React.Component {
                         <StaticComboBox
                             label="Typ dokumentu"
                             onChange={(e) => {
+                                const index = typeDefinitionFile.types.indexOf(
+                                    e.target.value
+                                )
                                 this.setDescription(
                                     'documentType',
-                                    e.target.value,
+                                    index === -1 ? '' : index,
                                     false,
                                     true
                                 )
@@ -682,6 +684,17 @@ class SearchScene extends React.Component {
                     <br /> <br />
                     <b>Zobrazení záznamu:</b> klikněte kamkoliv na příslušný
                     záznam v tabulce níže
+                    <br /> <br />
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {
+                            window.location.href =
+                                'https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley'
+                        }}
+                    >
+                        Přejít do vyhledávání KOHA
+                    </Button>
                 </Paper>
 
                 <Paper className={styles.helperBlock}>

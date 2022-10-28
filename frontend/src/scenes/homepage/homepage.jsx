@@ -3,8 +3,6 @@ import React from 'react'
 import NewsBlock from '../../components/NewsBlock'
 import LoadPageFromDB from '../../components/loadPageFromDB'
 
-import ChatBot from '../../components/chatBot'
-
 import styles from './homepage.module.scss'
 
 class Homepage extends React.Component {
@@ -17,7 +15,6 @@ class Homepage extends React.Component {
         return (
             <div className={styles.Homepage}>
                 <NewsBlock />
-                <ChatBot></ChatBot>
                 <LoadPageFromDB pageName={'homepage'} />
             </div>
         )
