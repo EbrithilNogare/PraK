@@ -690,7 +690,7 @@ class SearchScene extends React.Component {
                         color="secondary"
                         onClick={() => {
                             window.location.href =
-                                'https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley'
+                                'https://katalog.koha.pramenykrkonos.cz/'
                         }}
                     >
                         Přejít do vyhledávání KOHA
