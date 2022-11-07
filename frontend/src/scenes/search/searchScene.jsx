@@ -257,7 +257,7 @@ class SearchScene extends React.Component {
             <div className={styles.SearchScene}>
                 <ChatBot />
                 <Paper className={styles.header}>
-                    <h1>Vyhledávátko</h1>
+                    <h1>Vyhledávání</h1>
                 </Paper>
                 <div className={styles.phasesBlock}>
                     <Paper className={styles.body}>
