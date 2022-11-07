@@ -149,7 +149,11 @@ export default class ChatBot extends React.Component {
   {
     in: "chybu",
     out: "Pokud jste narazili na chybu nahlašte ji prosím na e-mailovou adresu",
-  },
+  },        
+  { in: 'zdravím', out: 'ahoj' },
+  { in: 'ahoj', out: 'ahoj' },
+  { in: 'cau', out: 'ahoj' },
+  { in: '', out: 'Hmmm, nevím, zkus svou otázku položit jinak.' },
 ].map((item) => ({ ...item, in: this.toSimpleText(item.in) }))
 
     send = () => {
