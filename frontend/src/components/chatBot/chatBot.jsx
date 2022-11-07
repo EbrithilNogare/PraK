@@ -204,7 +204,7 @@ export default class ChatBot extends React.Component {
         return (
             <Paper className={styles.chatBot}>
                 <div className={styles.header}>
-                    Chat s Krakonošem
+                    Poradit se se sojkou
                     <Button
                         color="primary"
                         onClick={() => {
@@ -237,7 +237,7 @@ export default class ChatBot extends React.Component {
                                     variant="caption"
                                     className={styles.messageAuthor}
                                 >
-                                    Krakonoš {item.time}
+                                    Sojka {item.time}
                                 </Typography>
                             </div>
                         )
