@@ -319,3 +319,9 @@ toFile(geographic, "geographic");
 toFile(keyword, "keyword");
 toFile(person, "person");
 toFile(subject, "subject");
+
+/*/
+console.log(
+  data.map((item) => item.ISSN022a).filter((a) => a !== undefined && a !== "")
+);
+/**/

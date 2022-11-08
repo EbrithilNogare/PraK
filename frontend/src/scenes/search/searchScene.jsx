@@ -147,12 +147,7 @@ class SearchScene extends React.Component {
     createSearchParams = (records) => {
         let searchParams = {}
 
-        let properties = [
-            'documentType',
-            'language',
-            'author',
-            'publish_country',
-        ]
+        let properties = ['documentType', 'language', 'author', 'publish_place']
 
         for (let property of properties) {
             searchParams[property] = { _other: { count: 0, checked: true } }
@@ -327,12 +322,12 @@ class SearchScene extends React.Component {
                         <Typography variant="h5">Místo vydání</Typography>
                         <TextField
                             label={
-                                typeDefinitionFile.properties['publish_country']
+                                typeDefinitionFile.properties['publish_place']
                                     .label
                             }
                             onChange={(e) => {
                                 this.setDescription(
-                                    'publish_country',
+                                    'publish_place',
                                     e.target.value,
                                     true,
                                     true
