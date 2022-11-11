@@ -21,6 +21,12 @@ export default class ChatBot extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+        if (document.getElementById('messagesBlock'))
+            document.getElementById('messagesBlock').scrollTop =
+                document.getElementById('messagesBlock').lastChild.offsetTop
+    }
+
     sendAsLog = (data) => {
         const url =
             window.location.hostname === 'localhost'
@@ -65,96 +71,96 @@ export default class ChatBot extends React.Component {
     }
 
     dataSet = [
-  { in: "vyhledavatko", out: "Vyhledávátko naleznete zde." },
-  {
-    in: "vyhledavani",
-    out: "Zadejte hledaný výraz do levého panelu. Můžete vyplnit více jak jedno pole. Pro zpřesnění dotazu můžete využít filtry v pravém panelu.",
-  },
-  {
-    in: "hledat",
-    out: "Zadejte hledaný výraz či typ dokumentu do pravého panelu. Nezapomeňte zmáčknout tlačítko Vyhledat.",
-  },
-  {
-    in: "nejde vyhledat",
-    out: "Ujistěte se, že nemáte vyplněné některé pole z původního vyhledávání.",
-  },
-  {
-    in: "nove vyhledavani",
-    out: "Pro vymazání předchozího dotazu můžete využít tlačítko Smazat vše.",
-  },
-  {
-    in: "filtry",
-    out: "Panel s filtry slouží ke zpřesnění výsledků vyhledávání.",
-  },
-  { in: "ikonka", out: "Provede inverzní výběr." },
-  { in: "knihu", out: "V pole Druh dokumentu zvolte variantu Svazek." },
-  {
-    in: "casopisy",
-    out: "Pro hledání článků z časopisu zvolte v poli Druh dokumentu Články, pro hledání celých ročníků časopisu zvolte možnost Periodika.",
-  },
-  { in: "informace", out: "" },
-  { in: "najit", out: "" },
-  {
-    in: "operator",
-    out: "Logické operátory AND / OR nejsou implementovány. Pro kombinaci vyhledávání z několika polí, použijte filtry.",
-  },
-  {
-    in: "logické",
-    out: "Logické operátory AND / OR nejsou implementovány. Pro kombinaci vyhledávání z několika polí, použijte filtry.",
-  },
-  {
-    in: "spojky",
-    out: "Logické operátory AND / OR nejsou implementovány. Pro kombinaci vyhledávání z několika polí, použijte filtry.",
-  },
-  { in: "autor", out: "Autorem je myšlenka osoba či korporace." },
-  {
-    in: "nazev",
-    out: "Pro nalezení dokumentu můžete využít jakékoliv slovo z názvu.",
-  },
-  {
-    in: "klicova slova",
-    out: "Klíčová slova jsou slova z řízeného slovníku PraK.",
-  },
-  { in: "misto vydani", out: "Je město vydání." },
-  {
-    in: "jazyk",
-    out: "Je jazyk dokumentu. V případě, že je jazyk vícejazyčný, můžete jazyk dofiltrovat v pravém panelu.",
-  },
-  {
-    in: "typ dokumentu",
-    out: "Hledáte-li konkrétní typ dokumentu vyberte konkrétní typ dokument v levém panelu.",
-  },
-  {
-    in: "standardni cislo",
-    out: "Standardní číslo je ISBN pro knihy nebo ISSN pro časopisy.",
-  },
-  {
-    in: "rok vydani",
-    out: "Zvolte konkrétní rok či rozmezí let na posuvníku v pravém panelu.",
-  },
-  { in: "zdravim", out: "ahoj" },
-  { in: "nemuzu najit", out: "Zkuste modifikovat svůj dotaz." },
-  {
-    in: "moc výsledku",
-    out: "Pokud vám systém našel příliš mnoho výsledků, zkuste zúžit svůj dotaz pomocí filtrů na pravé straně obrazovky.",
-  },
-  {
-    in: "prilis mnoho vysledku",
-    out: "Pokud vám systém našel příliš mnoho výsledků, zkuste zúžit svůj dotaz pomocí filtrů na pravé straně obrazovky.",
-  },
-  {
-    in: "chyba",
-    out: "Pokud jste narazili na chybu nahlašte ji prosím na e-mailovou adresu…",
-  },
-  {
-    in: "chybu",
-    out: "Pokud jste narazili na chybu nahlašte ji prosím na e-mailovou adresu",
-  },        
-  { in: 'zdravím', out: 'ahoj' },
-  { in: 'ahoj', out: 'ahoj' },
-  { in: 'cau', out: 'ahoj' },
-  { in: '', out: 'Hmmm, nevím, zkus svou otázku položit jinak.' },
-].map((item) => ({ ...item, in: this.toSimpleText(item.in) }))
+        { in: 'vyhledavatko', out: 'Vyhledávátko naleznete zde.' },
+        {
+            in: 'vyhledavani',
+            out: 'Zadejte hledaný výraz do levého panelu. Můžete vyplnit více jak jedno pole. Pro zpřesnění dotazu můžete využít filtry v pravém panelu.',
+        },
+        {
+            in: 'hledat',
+            out: 'Zadejte hledaný výraz či typ dokumentu do pravého panelu. Nezapomeňte zmáčknout tlačítko Vyhledat.',
+        },
+        {
+            in: 'nejde vyhledat',
+            out: 'Ujistěte se, že nemáte vyplněné některé pole z původního vyhledávání.',
+        },
+        {
+            in: 'nove vyhledavani',
+            out: 'Pro vymazání předchozího dotazu můžete využít tlačítko Smazat vše.',
+        },
+        {
+            in: 'filtry',
+            out: 'Panel s filtry slouží ke zpřesnění výsledků vyhledávání.',
+        },
+        { in: 'ikonka', out: 'Provede inverzní výběr.' },
+        { in: 'knihu', out: 'V pole Druh dokumentu zvolte variantu Svazek.' },
+        {
+            in: 'casopisy',
+            out: 'Pro hledání článků z časopisu zvolte v poli Druh dokumentu Články, pro hledání celých ročníků časopisu zvolte možnost Periodika.',
+        },
+        { in: 'informace', out: '' },
+        { in: 'najit', out: '' },
+        {
+            in: 'operator',
+            out: 'Logické operátory AND / OR nejsou implementovány. Pro kombinaci vyhledávání z několika polí, použijte filtry.',
+        },
+        {
+            in: 'logické',
+            out: 'Logické operátory AND / OR nejsou implementovány. Pro kombinaci vyhledávání z několika polí, použijte filtry.',
+        },
+        {
+            in: 'spojky',
+            out: 'Logické operátory AND / OR nejsou implementovány. Pro kombinaci vyhledávání z několika polí, použijte filtry.',
+        },
+        { in: 'autor', out: 'Autorem je myšlenka osoba či korporace.' },
+        {
+            in: 'nazev',
+            out: 'Pro nalezení dokumentu můžete využít jakékoliv slovo z názvu.',
+        },
+        {
+            in: 'klicova slova',
+            out: 'Klíčová slova jsou slova z řízeného slovníku PraK.',
+        },
+        { in: 'misto vydani', out: 'Je město vydání.' },
+        {
+            in: 'jazyk',
+            out: 'Je jazyk dokumentu. V případě, že je jazyk vícejazyčný, můžete jazyk dofiltrovat v pravém panelu.',
+        },
+        {
+            in: 'typ dokumentu',
+            out: 'Hledáte-li konkrétní typ dokumentu vyberte konkrétní typ dokument v levém panelu.',
+        },
+        {
+            in: 'standardni cislo',
+            out: 'Standardní číslo je ISBN pro knihy nebo ISSN pro časopisy.',
+        },
+        {
+            in: 'rok vydani',
+            out: 'Zvolte konkrétní rok či rozmezí let na posuvníku v pravém panelu.',
+        },
+        { in: 'zdravim', out: 'ahoj' },
+        { in: 'nemuzu najit', out: 'Zkuste modifikovat svůj dotaz.' },
+        {
+            in: 'moc výsledku',
+            out: 'Pokud vám systém našel příliš mnoho výsledků, zkuste zúžit svůj dotaz pomocí filtrů na pravé straně obrazovky.',
+        },
+        {
+            in: 'prilis mnoho vysledku',
+            out: 'Pokud vám systém našel příliš mnoho výsledků, zkuste zúžit svůj dotaz pomocí filtrů na pravé straně obrazovky.',
+        },
+        {
+            in: 'chyba',
+            out: 'Pokud jste narazili na chybu nahlašte ji prosím na e-mailovou adresu…',
+        },
+        {
+            in: 'chybu',
+            out: 'Pokud jste narazili na chybu nahlašte ji prosím na e-mailovou adresu',
+        },
+        { in: 'zdravím', out: 'ahoj' },
+        { in: 'ahoj', out: 'ahoj' },
+        { in: 'cau', out: 'ahoj' },
+        { in: '', out: 'Hmmm, nevím, zkus svou otázku položit jinak.' },
+    ].map((item) => ({ ...item, in: this.toSimpleText(item.in) }))
 
     send = () => {
         this.sendAsLog(this.state.value)
@@ -214,7 +220,7 @@ export default class ChatBot extends React.Component {
                         <Close />
                     </Button>
                 </div>
-                <div className={styles.messages}>
+                <div className={styles.messages} id="messagesBlock">
                     {this.state.messages.map((item, key) =>
                         item.rec === 'R' ? (
                             <div key={key} className={styles.rightMessage}>

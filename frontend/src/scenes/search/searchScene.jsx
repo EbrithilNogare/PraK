@@ -147,7 +147,12 @@ class SearchScene extends React.Component {
     createSearchParams = (records) => {
         let searchParams = {}
 
-        let properties = ['documentType', 'language', 'author', 'publish_place']
+        let properties = [
+            'documentType',
+            'language',
+            'author.author_person',
+            'publish.publish_place',
+        ]
 
         for (let property of properties) {
             searchParams[property] = { _other: { count: 0, checked: true } }
@@ -221,8 +226,9 @@ class SearchScene extends React.Component {
             ) {
                 const recordDate = record.publishing_date.split('.').at(-1)
                 if (
-                    recordDate < dateFilter[0] ||
-                    recordDate > this.state.publishingDateFilter[1]
+                    (recordDate < dateFilter[0] &&
+                        dateFilter[0] !== this.getCornerYears()[0].value) ||
+                    recordDate > dateFilter[1]
                 ) {
                     passing = false
                 }
@@ -268,7 +274,7 @@ class SearchScene extends React.Component {
                             label={'Vyhledávání přes všechna pole'}
                             onChange={(e) => {
                                 this.setDescription(
-                                    '$**',
+                                    '$text',
                                     e.target.value,
                                     false,
                                     true
@@ -283,7 +289,7 @@ class SearchScene extends React.Component {
                             }
                             onChange={(e) => {
                                 this.setDescription(
-                                    'author',
+                                    'author.author_person',
                                     e.target.value,
                                     false,
                                     true
@@ -327,7 +333,7 @@ class SearchScene extends React.Component {
                             }
                             onChange={(e) => {
                                 this.setDescription(
-                                    'publish_place',
+                                    'publish.publish_place',
                                     e.target.value,
                                     true,
                                     true

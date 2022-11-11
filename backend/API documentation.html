@@ -1112,10 +1112,7 @@ metadata: {
 	language: [String],
 	publish: [{	
 		publish_country: String,
-		publish_place: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
+		publish_place: String,
 		publisher: {
 			type: mongoose.Types.ObjectId,
 			ref: "corporationIndex",

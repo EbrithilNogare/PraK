@@ -1,6 +1,8 @@
 import "./input.js";
 import * as fs from "fs";
 
+const SEPARATOR_REGEXP = /[;, ]+/;
+
 const metadata = [];
 const corporation = [];
 const creation = [];
@@ -46,7 +48,7 @@ function cleanEmpty(input) {
         case "object":
           if (Array.isArray(val))
             return val.length !== 0 && val[0] !== "" && val[0] != null;
-          else return Object.keys(val).length === 0;
+          else return Object.keys(val).length !== 0;
       }
       return true;
     })
@@ -147,9 +149,7 @@ function createMetadata(item) {
     publish: [
       {
         publish_country: item.zemeVydani270d,
-        publish_place: getGeographic(
-          OR(item.mistoVydani264a, item.mistoVydani260a)
-        ),
+        publish_place: OR(item.mistoVydani264a, item.mistoVydani260a),
       },
     ],
     publishing_date: [
@@ -194,9 +194,10 @@ function createMetadata(item) {
       },
     ],
     submitter: "Export",
-    keywords: getKeyword(item.klicoveSlovo650a),
+    keywords: item.klicoveSlovo650a
+      .split(SEPARATOR_REGEXP)
+      .map((keyword) => getKeyword(keyword)),
   };
-
   return newItem;
 }
 
@@ -311,6 +312,7 @@ function toFile(data, fileName) {
   });
 }
 
+/*/ //switch
 toFile(metadata, "metadata");
 toFile(corporation, "corporation");
 toFile(creation, "creation");
@@ -319,9 +321,13 @@ toFile(geographic, "geographic");
 toFile(keyword, "keyword");
 toFile(person, "person");
 toFile(subject, "subject");
-
-/*/
+/**/
 console.log(
-  data.map((item) => item.ISSN022a).filter((a) => a !== undefined && a !== "")
+  data
+    .map((item) => OR(item.ISBN020a, item.ISSN022a))
+    .filter((a) => a !== undefined && a !== "")
 );
 /**/
+/**
+db.metadata.deleteMany({});db.corporationIndex.deleteMany({});db.creationIndex.deleteMany({});db.familyIndex.deleteMany({});db.geographicIndex.deleteMany({});db.keywordIndex.deleteMany({});db.personIndex.deleteMany({});db.subjectIndex.deleteMany({})
+*/

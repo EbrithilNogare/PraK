@@ -15,7 +15,7 @@ import {
     FormControlLabel,
 } from '@material-ui/core'
 import { TreeView, TreeItem } from '@material-ui/lab'
-import { ExpandMore, ChevronRight, ThreeSixtySharp } from '@material-ui/icons'
+import { ExpandMore, ChevronRight } from '@material-ui/icons'
 import styles from './showScene.module.scss'
 
 import corporationTypes from '../../components/indices/corporationTypes.json'
@@ -26,7 +26,6 @@ import keywordTypes from '../../components/indices/keywordTypes.json'
 import metadataTypes from '../../components/indices/metadataTypes.json'
 import personTypes from '../../components/indices/personTypes.json'
 import subjectTypes from '../../components/indices/subjectTypes.json'
-import { prevElementSibling } from 'domutils'
 
 class ShowScene extends React.Component {
     constructor(props) {
@@ -71,6 +70,8 @@ class ShowScene extends React.Component {
     }
 
     translateRecord = (record, type) => {
+        if (!this.state.translated) return record
+
         let types
         switch (type) {
             case 'corporation':
@@ -325,6 +326,15 @@ class ShowScene extends React.Component {
                                                     this.setState({
                                                         translated:
                                                             e.target.checked,
+                                                        treeViewItems:
+                                                            this.recursiveTreeItem(
+                                                                e.target.checked
+                                                                    ? this.state
+                                                                          .translatedRecord
+                                                                    : this.state
+                                                                          .record,
+                                                                0
+                                                            ),
                                                     })
                                                 }
                                             />
