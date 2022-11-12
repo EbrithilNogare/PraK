@@ -189,6 +189,15 @@ function createMetadata(item) {
     digitized_document_url: [item.url852u],
     external_source: [
       {
+        url: item.uloziste852a,
+      },
+      {
+        url: item.elektroUmisteni856u,
+      },
+      {
+        url: item.url852u,
+      },
+      {
         url: item.propojeniElekZdroj787t,
         url_leading_to_document: item.propojeniElekZdroj787t,
       },
@@ -324,7 +333,7 @@ toFile(subject, "subject");
 /**/
 console.log(
   data
-    .map((item) => OR(item.ISBN020a, item.ISSN022a))
+    .map((item) => OR(item.uloziste852a))
     .filter((a) => a !== undefined && a !== "")
 );
 /**/

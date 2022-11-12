@@ -15,7 +15,6 @@ router.route("/:id").get((req, res) => {
     .populate("other_authors_corporation.id", "name_main_part")
     .populate("publish.publisher", "name_main_part")
     .populate("action_name", "name_main_part")
-    .populate("source_document_name", "name")
     .populate("corporation.corporation_name", "name_main_part")
     .populate("external_source.name", "name")
     .populate("described_object_citation", "name")

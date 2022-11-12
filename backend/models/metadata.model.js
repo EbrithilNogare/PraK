@@ -84,10 +84,7 @@ const schema = new mongoose.Schema({
     },
   ],
   issn: [String],
-  source_document_name: {
-    type: mongoose.Types.ObjectId,
-    ref: "metadata",
-  },
+  source_document_name: String,
   copies: {
     year: Number,
     volume: Number,
