@@ -8,10 +8,13 @@ import {
     Typography,
     Chip,
     Slider,
+    Tooltip,
+    IconButton,
 } from '@material-ui/core'
 import {
     KeyboardArrowRight as KeyboardArrowRightIcon,
     KeyboardArrowLeft as KeyboardArrowLeftIcon,
+    Flip as FlipIcon,
 } from '@material-ui/icons'
 import {
     PersonComboBox,
@@ -147,12 +150,7 @@ class SearchScene extends React.Component {
     createSearchParams = (records) => {
         let searchParams = {}
 
-        let properties = [
-            'documentType',
-            'language',
-            'author.author_person',
-            'publish.publish_place',
-        ]
+        let properties = ['documentType', 'language']
 
         for (let property of properties) {
             searchParams[property] = { _other: { count: 0, checked: true } }
@@ -541,41 +539,43 @@ class SearchScene extends React.Component {
                                             {typeDefinitionFile.properties[
                                                 searchParamsKey
                                             ]?.label ?? searchParamsKey}
-                                            <Button
-                                                onClick={() => {
-                                                    this.setState(
-                                                        (prevState) => {
-                                                            Object.entries(
-                                                                prevState
-                                                                    .searchParams[
-                                                                    searchParamsKey
-                                                                ]
-                                                            ).forEach(
-                                                                (
-                                                                    [
-                                                                        key,
-                                                                        value,
-                                                                    ],
-                                                                    index
-                                                                ) =>
-                                                                    (value.checked =
-                                                                        !value.checked)
-                                                            )
-                                                            return {
-                                                                filteredRecords:
-                                                                    this.filterRecords(
-                                                                        prevState.records,
-                                                                        prevState.searchParams,
-                                                                        prevState.publishingDateFilter
-                                                                    ),
-                                                            }
-                                                        },
-                                                        this.setPage
-                                                    )
-                                                }}
-                                            >
-                                                Reverse
-                                            </Button>
+                                            <Tooltip title="Obrátit výběr">
+                                                <IconButton
+                                                    onClick={() => {
+                                                        this.setState(
+                                                            (prevState) => {
+                                                                Object.entries(
+                                                                    prevState
+                                                                        .searchParams[
+                                                                        searchParamsKey
+                                                                    ]
+                                                                ).forEach(
+                                                                    (
+                                                                        [
+                                                                            key,
+                                                                            value,
+                                                                        ],
+                                                                        index
+                                                                    ) =>
+                                                                        (value.checked =
+                                                                            !value.checked)
+                                                                )
+                                                                return {
+                                                                    filteredRecords:
+                                                                        this.filterRecords(
+                                                                            prevState.records,
+                                                                            prevState.searchParams,
+                                                                            prevState.publishingDateFilter
+                                                                        ),
+                                                                }
+                                                            },
+                                                            this.setPage
+                                                        )
+                                                    }}
+                                                >
+                                                    <FlipIcon></FlipIcon>
+                                                </IconButton>
+                                            </Tooltip>
                                         </h3>
                                         <div className={styles.resultTag}>
                                             {Object.entries(value)
