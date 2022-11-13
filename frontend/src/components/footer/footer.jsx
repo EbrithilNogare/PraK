@@ -45,6 +45,12 @@ class Footer extends React.Component {
                                 {t('footer.search')}
                             </NavLink>{' '}
                         </li>
+                        <li>
+                            {' '}
+                            <NavLink to="/prak/input/metadata">
+                                {t('footer.metadata')}
+                            </NavLink>{' '}
+                        </li>
                         {(this.props.cookies.get('permission') & 2) > 0 && (
                             <li>
                                 {' '}
@@ -77,12 +83,6 @@ class Footer extends React.Component {
                         <ul>
                             <b>{t('footer.titleCreate')}</b>
                             <hr />
-                            <li>
-                                {' '}
-                                <NavLink to="/prak/input/metadata">
-                                    {t('footer.metadata')}
-                                </NavLink>{' '}
-                            </li>
                             <li>
                                 {' '}
                                 <NavLink to="/prak/input/corporation">

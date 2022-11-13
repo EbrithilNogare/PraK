@@ -722,8 +722,9 @@ class Metadata extends IndexParent {
                             )}
                         </Multiplier>
                         {this.conditionalField('submitter') && (
-                            <SubmitterComboBox
+                            <TextField
                                 {...this.createFieldProps('submitter')}
+                                label={'Zadavatelův email'}
                             />
                         )}
                     </FoldablePaper>

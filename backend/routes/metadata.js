@@ -3,6 +3,7 @@ const Model = require("../models/metadata.model");
 const mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 const auth = require("../auth.js");
+const sendMail = require("../sendMail.js");
 
 router.route("/:id").get((req, res) => {
   const id = req.params.id;
@@ -80,25 +81,13 @@ router.route("/").post((req, res) => {
     });
 });
 
-router.route("/").put(auth("write"), (req, res) => {
-  const newModel = new Model({
-    _id: mongoose.Types.ObjectId(),
-    ...req.body,
-  });
-
-  newModel
-    .save()
-    .then((result) => {
-      res.status(201).json({
-        id: newModel._id,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        message: "something went wrong",
-        details: err,
-      });
-    });
+router.route("/").put((req, res) => {
+  sendMail(
+    "sojkakrakonosovaprak@gmail.com",
+    "petra.hoffmannova+PraK@gmail.com",
+    "[PraK] new metadata record",
+    JSON.stringify(req.body, null, " ")
+  );
 });
 
 router.route("/:id").patch(auth("write"), (req, res) => {
