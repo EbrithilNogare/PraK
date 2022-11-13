@@ -88,6 +88,7 @@ router.route("/").put((req, res) => {
     "[PraK] new metadata record",
     JSON.stringify(req.body, null, " ")
   );
+  res.status(201).json({ _id: "" });
 });
 
 router.route("/:id").patch(auth("write"), (req, res) => {
