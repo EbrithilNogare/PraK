@@ -26,7 +26,6 @@ import {
     PersonComboBox,
     StaticComboBox,
     SubjectComboBox,
-    SubmitterComboBox,
 } from '../comboBoxes'
 import DateField from '../validationTextFields/DateField'
 import RegExpField from '../validationTextFields/RegExpField'
