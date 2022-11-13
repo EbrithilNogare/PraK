@@ -16,7 +16,8 @@
     ],
     "properties": {
         "documentType": {
-            "label": "Typ dokumentu"
+            "label": "Typ dokumentu",
+            "schema": "documentType"
         },
         "author": {
             "label": "Hlavní autor nebo původce",

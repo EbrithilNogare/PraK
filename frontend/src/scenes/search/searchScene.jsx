@@ -697,15 +697,28 @@ class SearchScene extends React.Component {
                         Přejít do vyhledávání KOHA
                     </Button>
                 </Paper>
+                <div className={styles.queryContainer}>
+                    <Paper className={styles.helperBlock}>
+                        <h3>Dotaz</h3>
+                        <pre>
+                            URL: https://quest.ms.mff.cuni.cz/prak/api/metadata
+                        </pre>
+                        <pre>Method: POST</pre>
+                        <pre>{JSON.stringify(this.description, null, 2)}</pre>
+                    </Paper>
 
-                <Paper className={styles.helperBlock}>
-                    <h3>Dotaz</h3>
-                    <pre>
-                        URL: https://quest.ms.mff.cuni.cz/prak/api/metadata
-                    </pre>
-                    <pre>Method: POST</pre>
-                    <pre>{JSON.stringify(this.description, null, 2)}</pre>
-                </Paper>
+                    <Paper className={styles.helperBlock}>
+                        Export záznamů je možný dotazem na API přes webovou
+                        aplikaci ReqBin (
+                        <a href="https://reqbin.com/kl41uyfb" target="_blank">
+                            www.reqbin.com
+                        </a>
+                        ). Na webu ReqBin vložíme do okénka pro URL URl z
+                        dotazu. V okénku metody zvolíme “Post”. Vybereme
+                        “Content” a do políčka vložíme dotaz včetně složených
+                        závorek.
+                    </Paper>
+                </div>
             </div>
         )
     }

@@ -321,7 +321,7 @@ function toFile(data, fileName) {
   });
 }
 
-/*/ //switch
+/**/ //switch
 toFile(metadata, "metadata");
 toFile(corporation, "corporation");
 toFile(creation, "creation");
@@ -330,7 +330,7 @@ toFile(geographic, "geographic");
 toFile(keyword, "keyword");
 toFile(person, "person");
 toFile(subject, "subject");
-/**/
+/*/
 console.log(
   data
     .map((item) => OR(item.uloziste852a))

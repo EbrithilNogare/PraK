@@ -26,6 +26,7 @@ import keywordTypes from '../../components/indices/keywordTypes.json'
 import metadataTypes from '../../components/indices/metadataTypes.json'
 import personTypes from '../../components/indices/personTypes.json'
 import subjectTypes from '../../components/indices/subjectTypes.json'
+import sortingPriority from './sortingPriority.json'
 
 class ShowScene extends React.Component {
     constructor(props) {
@@ -69,6 +70,14 @@ class ShowScene extends React.Component {
             })
     }
 
+    sortingFunction = (a, b) => {
+        let aVal = sortingPriority.indexOf(a)
+        if (aVal === -1) aVal = 1000
+        let bVal = sortingPriority.indexOf(b)
+        if (bVal === -1) bVal = 1000
+        return a - b
+    }
+
     translateRecord = (record, type) => {
         if (!this.state.translated) return record
 
@@ -101,6 +110,9 @@ class ShowScene extends React.Component {
             default:
                 console.error('incompatible type: ', type)
         }
+
+        if (record.documentType != null)
+            record.documentType = types.types[record.documentType]
 
         return this.translateSubRecord(record, types.properties, '')
     }
@@ -165,15 +177,16 @@ class ShowScene extends React.Component {
             return Object.keys(nodes).map((value, key) => {
                 const nodeId = uniqueKey + '-' + key
                 this.initExpanded.push(nodeId)
-                if (nodes[value] === null || nodes[value].length === 0)
+                if (nodes[value] === null || nodes[value].length === 0) {
                     return null
-                if (typeof nodes[value] === 'object' && nodes[value] !== null)
+                }
+                if (typeof nodes[value] === 'object' && nodes[value] !== null) {
                     return (
                         <TreeItem key={key} nodeId={nodeId} label={value}>
                             {this.recursiveTreeItem(nodes[value], nodeId)}
                         </TreeItem>
                     )
-                else
+                } else {
                     return (
                         <TreeItem
                             key={key}
@@ -181,6 +194,7 @@ class ShowScene extends React.Component {
                             label={value + ': ' + nodes[value]}
                         />
                     )
+                }
             })
         } else {
             return (
