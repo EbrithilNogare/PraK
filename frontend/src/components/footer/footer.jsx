@@ -47,6 +47,18 @@ class Footer extends React.Component {
                         </li>
                         <li>
                             {' '}
+                            <NavLink
+                                to={{
+                                    pathname:
+                                        'https://github.com/EbrithilNogare/PraK/blob/master/frontend/U%C5%BEivatelsk%C3%BD%20n%C3%A1vod.pdf',
+                                }}
+                                target="_blank"
+                            >
+                                {'Uživatelský manuál'}
+                            </NavLink>{' '}
+                        </li>
+                        <li>
+                            {' '}
                             <NavLink to="/prak/input/metadata">
                                 {t('footer.metadata')}
                             </NavLink>{' '}
