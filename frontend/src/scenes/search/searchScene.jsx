@@ -463,7 +463,7 @@ class SearchScene extends React.Component {
                                             'background: #222; color: #bada55',
                                             value.id
                                         )
-                                        this.props.history.push(
+                                        window.open(
                                             `/prak/show/metadata/${value.id}`
                                         )
                                     }}
