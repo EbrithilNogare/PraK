@@ -51,6 +51,18 @@ class Footer extends React.Component {
                                 {t('footer.metadata')}
                             </NavLink>{' '}
                         </li>
+                        <li>
+                            {' '}
+                            <NavLink
+                                to={{
+                                    pathname:
+                                        'https://github.com/EbrithilNogare/PraK/tree/master/aplikace%20vystava',
+                                }}
+                                target="_blank"
+                            >
+                                {'Aplikace výstavy'}
+                            </NavLink>{' '}
+                        </li>
                         {(this.props.cookies.get('permission') & 2) > 0 && (
                             <li>
                                 {' '}
