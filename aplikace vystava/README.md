@@ -30,9 +30,9 @@ from folium import Popup
 from geopy.geocoders import Nominatim
 ```
 
-Pro Tesseract OCR je třeba nainstalovat příslušnou knihovnu s českými trénovacími daty, která se nachází zde:
-https://github.com/tesseract-ocr/tessdata/blob/main/ces.traineddata.
-Dokumentace k instalaci se nachází zde:
-https://github.com/tesseract-ocr/tessdoc/blob/main/Installation.md
+Pro Tesseract OCR je třeba nainstalovat příslušnou knihovnu s českými trénovacími daty, která se nachází zde:  
+https://github.com/tesseract-ocr/tessdata/blob/main/ces.traineddata.  
+Dokumentace k instalaci se nachází zde:  
+https://github.com/tesseract-ocr/tessdoc/blob/main/Installation.md  
 
 Ke správnému provozu aplikace je nezbytné stabilní internetové připojení.
