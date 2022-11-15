@@ -37,9 +37,12 @@ windows: `nginx -s reload`
 
 ### Create and fill ./backend/.env
 ```
-DBUsername = XXXXXXX
-DBPassword = XXXXXXX
-DBName = XXXXXXX
+DBUsername = 
+DBPassword = 
+DBName = 
+
+GMAILusername = 
+GMAILpassword = 
 ```
 
 ### Run in project root
