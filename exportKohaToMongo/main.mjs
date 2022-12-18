@@ -142,7 +142,7 @@ function createMetadata(item) {
     },
     other_authors_person: [{ id: getPerson(item.autor700a) }],
     other_authors_corporation: [{ id: getCorporation(item.korporace710a) }],
-    name: item.nazev245a, // ! todo unique
+    name: item.nazev245a,
     author_responsibility: item.odpovednost245c,
     other_names: [item.podnazev245b, item.nazevCasti245n],
     language: getLanguage(item.jazyk041a),
@@ -202,9 +202,11 @@ function createMetadata(item) {
         url_leading_to_document: item.propojeniElekZdroj787t,
       },
     ],
+    biblionumber: item.biblionumber,
     submitter: "Export",
-    keywords: item.klicoveSlovo650a
+    keywords: (item.klicoveSlovo650a + " " + item.Pole651a)
       .split(SEPARATOR_REGEXP)
+      .filter((keyword) => keyword !== "")
       .map((keyword) => getKeyword(keyword)),
   };
   return newItem;
@@ -333,10 +335,11 @@ toFile(subject, "subject");
 /*/
 console.log(
   data
-    .map((item) => OR(item.uloziste852a))
+    .map((item) => OR(item.Pole651a))
     .filter((a) => a !== undefined && a !== "")
 );
 /**/
+
 /**
 db.metadata.deleteMany({});db.corporationIndex.deleteMany({});db.creationIndex.deleteMany({});db.familyIndex.deleteMany({});db.geographicIndex.deleteMany({});db.keywordIndex.deleteMany({});db.personIndex.deleteMany({});db.subjectIndex.deleteMany({})
 */

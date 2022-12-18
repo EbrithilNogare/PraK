@@ -181,11 +181,12 @@ class ShowScene extends React.Component {
                     return null
                 }
                 if (typeof nodes[value] === 'object' && nodes[value] !== null) {
-                    return (
+                    const child = this.recursiveTreeItem(nodes[value], nodeId)
+                    return child ? (
                         <TreeItem key={key} nodeId={nodeId} label={value}>
-                            {this.recursiveTreeItem(nodes[value], nodeId)}
+                            {child}
                         </TreeItem>
-                    )
+                    ) : null
                 } else {
                     return (
                         <TreeItem
@@ -197,13 +198,13 @@ class ShowScene extends React.Component {
                 }
             })
         } else {
-            return (
+            return nodes !== '' ? (
                 <TreeItem
                     key={nodes}
                     nodeId={uniqueKey + '-' + 0}
                     label={nodes}
                 />
-            )
+            ) : null
         }
     }
 
@@ -361,7 +362,26 @@ class ShowScene extends React.Component {
                                         spacing={10}
                                         justifyContent="flex-end"
                                     >
-                                        <Grid item></Grid>
+                                        <Grid item>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                href={
+                                                    'https://katalog.koha.pramenykrkonos.cz/cgi-bin/koha/opac-detail.pl?biblionumber=' +
+                                                    this.state.record
+                                                        ?.biblionumber
+                                                }
+                                                disabled={
+                                                    !(
+                                                        this.state.record
+                                                            ?.biblionumber !=
+                                                        null
+                                                    )
+                                                }
+                                            >
+                                                Zobrazit záznam v KOHA
+                                            </Button>
+                                        </Grid>
                                         <Grid item>
                                             <Button
                                                 variant="contained"
