@@ -3,14 +3,14 @@ const getActiveYear = () => $("yearsDatalist").getElementsByTagName("option")[pa
 const labelClass = {
 	symbol: {
 		type: "text",  // autocasts as new TextSymbol()
-		color: "green",
+		color: "black",
 		font: {  // autocast as new Font()
 		  family: "Playfair Display",
 		  size: 12,
 		  weight: "bold"
 		}
 	  },
-	  
+	  labelPlacement: "above-center",
 	  labelExpressionInfo: {
 		expression: "42"
 		//expression: "Count($aggregatedFeatures)"
@@ -36,10 +36,10 @@ const layersByYears = [
 		{ layerID: "92eabea5425345eaab1e86feda8db7de", opacity: 1.0, name: "silnice", featureLayer: null }
 	] },
 	{ year: 1981, layers: [ 
-		{ layerID: "3c14e174a5d24ba2bbc454b9b5edb7c8", opacity: 1.0, name: "ORP", featureLayer: null, labelingInfo: labelClass},
-		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null },
-		{ layerID: "6883b5fcc8644287a7c3fed92176437f", opacity: 1.0, name: "zeleznice", featureLayer: null },
-		{ layerID: "b196d475d1b34975b44942ab390bf003", opacity: 1.0, name: "silnice", featureLayer: null }
+		{ layerID: "3c14e174a5d24ba2bbc454b9b5edb7c8", opacity: 1.0, name: "ORP", featureLayer: null, labelingInfo: labelClass },
+		{ layerID: "61a605dca69c4aa0ac1b3858ba328fd3", opacity: 1.0, name: "obceSouc", featureLayer: null,labelingInfo: labelClass },
+		{ layerID: "6883b5fcc8644287a7c3fed92176437f", opacity: 1.0, name: "zeleznice", featureLayer: null,labelingInfo: labelClass },
+		{ layerID: "b196d475d1b34975b44942ab390bf003", opacity: 1.0, name: "silnice", featureLayer: null,labelingInfo: labelClass }
 	] },
 	
 ]
@@ -76,23 +76,7 @@ require([
 		$(value).addEventListener("change", () => {
 			layersFromButtonsChanged();
 		});
-	})
-
-	// const labelClass = {
-	// 	symbol: {
-	// 		type: "text",  // autocasts as new TextSymbol()
-	// 		color: "green",
-	// 		font: {  // autocast as new Font()
-	// 		  family: "Playfair Display",
-	// 		  size: 12,
-	// 		  weight: "bold"
-	// 		}
-	// 	  },
-	// 	  labelPlacement: "above-center",
-	// 	  labelExpressionInfo: {
-	// 		expression: "$feature.Název"
-	// 	  }
-	// }
+	})	
 
 	
 	
@@ -100,12 +84,12 @@ require([
 		if(layer.featureLayer !== null && layer.featureLayer !== undefined)
 			return;
 
-		layer.featureLayer = new FeatureLayer({ portalItem: {
-			id: layer.layerID,
-			opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
-			visible: false,
-		 }
-		, labelingInfo: [labelClass]
+		layer.featureLayer = new FeatureLayer({ 
+			portalItem: {
+				id: layer.layerID,
+				opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
+				visible: false,
+			}, labelingInfo: [layer.labelingInfo]
 	 })
 
 		layer.featureLayer.load().then(function() {
