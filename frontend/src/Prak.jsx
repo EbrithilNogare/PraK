@@ -153,12 +153,9 @@ class Prak extends React.Component {
                                         <Route path="/prak/homepage">
                                             <Homepage />
                                         </Route>
-                                        <PrivateRoute
-                                            path="/prak/input"
-                                            privacyLevel="2"
-                                        >
+                                        <Route path="/prak/input">
                                             <InputScene />
-                                        </PrivateRoute>
+                                        </Route>
                                         <PrivateRoute
                                             path="/prak/edit"
                                             privacyLevel="2"

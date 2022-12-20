@@ -24,7 +24,7 @@
         "upload": "Nahrát soubor",
         "cms": "Redakční systém",
         "admin": "Admin",
-        "metadata": "Metadata",
+        "metadata": "Vložení nového záznamu",
         "corporation": "Rejstřík korporací",
         "creation": "Rejstřík dílo",
         "geographic": "Geografický rejstřík",
@@ -34,7 +34,7 @@
         "family": "Rejstřík rodů",
         "titleTools": "Nástroje",
         "titleCreate": "Založení nového záznamu",
-        "search": "Vyhledávátko"
+        "search": "Vyhledávání"
     },
     "indices": {},
     "pageCategory": {

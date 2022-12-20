@@ -19,6 +19,7 @@
     "md5": "^2.3.0",
     "mongoose": "^5.13.2",
     "mongoose-unique-validator": "^2.0.3",
+    "nodemailer": "^6.8.0",
     "nodemon": "^2.0.12",
     "randomstring": "^1.2.1"
   }

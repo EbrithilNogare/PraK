@@ -45,6 +45,72 @@ class Footer extends React.Component {
                                 {t('footer.search')}
                             </NavLink>{' '}
                         </li>
+                        <li>
+                            {' '}
+                            <NavLink
+                                to={{
+                                    pathname:
+                                        'https://github.com/EbrithilNogare/PraK/blob/master/frontend/U%C5%BEivatelsk%C3%BD%20n%C3%A1vod.pdf',
+                                }}
+                                target="_blank"
+                            >
+                                {'Uživatelský manuál'}
+                            </NavLink>{' '}
+                        </li>
+                        <li>
+                            {' '}
+                            <NavLink to="/prak/input/metadata">
+                                {t('footer.metadata')}
+                            </NavLink>{' '}
+                        </li>
+                        <li>
+                            {' '}
+                            <NavLink
+                                to={{
+                                    pathname:
+                                        'https://github.com/EbrithilNogare/PraK/tree/master/aplikace%20vystava',
+                                }}
+                                target="_blank"
+                            >
+                                {'Aplikace výstavy'}
+                            </NavLink>{' '}
+                        </li>
+                        <li>
+                            {' '}
+                            <NavLink
+                                to={{
+                                    pathname:
+                                        'https://lindat.mff.cuni.cz/services/translation/',
+                                }}
+                                target="_blank"
+                            >
+                                {'LINDAT překladač'}
+                            </NavLink>{' '}
+                        </li>
+                        <li>
+                            {' '}
+                            <NavLink
+                                to={{
+                                    pathname:
+                                        'https://lindat.mff.cuni.cz/services/uwebasr/',
+                                }}
+                                target="_blank"
+                            >
+                                {'LINDAT UWebASR'}
+                            </NavLink>{' '}
+                        </li>
+                        <li>
+                            {' '}
+                            <NavLink
+                                to={{
+                                    pathname:
+                                        'https://ufal.mff.cuni.cz/nametag/2',
+                                }}
+                                target="_blank"
+                            >
+                                {'LINDAT NameTag 2'}
+                            </NavLink>{' '}
+                        </li>
                         {(this.props.cookies.get('permission') & 2) > 0 && (
                             <li>
                                 {' '}
@@ -77,12 +143,6 @@ class Footer extends React.Component {
                         <ul>
                             <b>{t('footer.titleCreate')}</b>
                             <hr />
-                            <li>
-                                {' '}
-                                <NavLink to="/prak/input/metadata">
-                                    {t('footer.metadata')}
-                                </NavLink>{' '}
-                            </li>
                             <li>
                                 {' '}
                                 <NavLink to="/prak/input/corporation">

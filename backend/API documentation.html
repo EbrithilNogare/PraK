@@ -1112,10 +1112,7 @@ metadata: {
 	language: [String],
 	publish: [{	
 		publish_country: String,
-		publish_place: {
-			type: mongoose.Types.ObjectId,
-			ref: "geographicIndex",
-		},
+		publish_place: String,
 		publisher: {
 			type: mongoose.Types.ObjectId,
 			ref: "corporationIndex",
@@ -1145,10 +1142,7 @@ metadata: {
 		periodicity: String,
 	}],
 	issn: [String],
-	source_document_name: {
-		type: mongoose.Types.ObjectId,
-		ref: "metadata",
-	},
+	source_document_name: String,
 	copies:{
 		year: Number,
 		volume: Number,

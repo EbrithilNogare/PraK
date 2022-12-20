@@ -25,7 +25,10 @@ class ComboBox extends React.Component {
 
     handleKeyUp = (e) => {
         if (e.key === 'Escape') {
-            this.setState({ value: '', menuList: [] })
+            this.setState({ value: '', menuList: [], ID: '' })
+
+            if (this.props.onChange)
+                this.props.onChange({ target: { value: undefined } })
         }
     }
 
@@ -56,15 +59,19 @@ class ComboBox extends React.Component {
             ID: '',
         }))
 
-        if (event.target.value.length === 0) return
+        if (this.props.onChange) this.props.onChange({ target: { value: '' } })
 
-        if (this.props.onChange)
-            this.props.onChange({ target: { value: undefined } })
+        if (event.target.value.length === 0) return
 
         this.setState({ loading: true })
 
         const thisRequestVersion = this.request_v++
-        fetch(this.getFetchURL(), {
+        const url =
+            window.location.hostname === 'localhost'
+                ? 'http://localhost:50080'
+                : ''
+
+        fetch(url + this.getFetchURL(), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

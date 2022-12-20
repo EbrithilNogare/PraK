@@ -3,6 +3,7 @@ const Model = require("../models/metadata.model");
 const mongoose = require("mongoose");
 mongoose.set("useFindAndModify", false);
 const auth = require("../auth.js");
+const sendMail = require("../sendMail.js");
 
 router.route("/:id").get((req, res) => {
   const id = req.params.id;
@@ -13,10 +14,8 @@ router.route("/:id").get((req, res) => {
     .populate("author.author_corporation", "name_main_part")
     .populate("other_authors_person.id", ["name", "surname"])
     .populate("other_authors_corporation.id", "name_main_part")
-    .populate("publish.publish_place", "name_main_part")
     .populate("publish.publisher", "name_main_part")
     .populate("action_name", "name_main_part")
-    .populate("source_document_name", "name")
     .populate("corporation.corporation_name", "name_main_part")
     .populate("external_source.name", "name")
     .populate("described_object_citation", "name")
@@ -45,7 +44,7 @@ router.route("/:id").get((req, res) => {
       res.status(200).json(result);
     })
     .catch((err) => {
-      res.status(500).json("something went wrong");
+      res.status(500).json(err);
     });
 });
 
@@ -65,7 +64,10 @@ router.route("/").post((req, res) => {
       };
 
   // extract special attributes
-  const { _limit, ...description } = req.body;
+  let { _limit, ...description } = req.body;
+
+  if (description.$text)
+    description = { $text: { $search: description.$text } };
 
   Model.find(description)
     .limit(_limit || 5)
@@ -79,25 +81,14 @@ router.route("/").post((req, res) => {
     });
 });
 
-router.route("/").put(auth("write"), (req, res) => {
-  const newModel = new Model({
-    _id: mongoose.Types.ObjectId(),
-    ...req.body,
-  });
-
-  newModel
-    .save()
-    .then((result) => {
-      res.status(201).json({
-        id: newModel._id,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        message: "something went wrong",
-        details: err,
-      });
-    });
+router.route("/").put((req, res) => {
+  sendMail(
+    "sojkakrakonosovaprak@gmail.com",
+    "petra.hoffmannova+PraK@gmail.com",
+    "[PraK] new metadata record",
+    JSON.stringify(req.body, null, " ")
+  );
+  res.status(201).json({ _id: "" });
 });
 
 router.route("/:id").patch(auth("write"), (req, res) => {

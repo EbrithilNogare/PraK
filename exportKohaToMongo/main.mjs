@@ -1,6 +1,8 @@
 import "./input.js";
 import * as fs from "fs";
 
+const SEPARATOR_REGEXP = /[;, ]+/;
+
 const metadata = [];
 const corporation = [];
 const creation = [];
@@ -17,6 +19,22 @@ function generateID() {
   return { $oid: id };
 }
 
+function OR(a, b = "", c = "", d = "", e = "", f = "") {
+  return a !== ""
+    ? a
+    : b !== ""
+    ? b
+    : c !== ""
+    ? c
+    : d !== ""
+    ? d
+    : e !== ""
+    ? e
+    : f !== ""
+    ? f
+    : undefined;
+}
+
 function cleanEmpty(input) {
   return Object.fromEntries(
     Object.entries(input).filter(([key, val]) => {
@@ -30,7 +48,7 @@ function cleanEmpty(input) {
         case "object":
           if (Array.isArray(val))
             return val.length !== 0 && val[0] !== "" && val[0] != null;
-          else return Object.keys(val).length === 0;
+          else return Object.keys(val).length !== 0;
       }
       return true;
     })
@@ -94,6 +112,25 @@ function getDocumentType(type) {
   }
 }
 
+function getLanguage(language) {
+  const SEPARATOR_REGEXP = /[;, ]+/;
+  language = language.trim().split(SEPARATOR_REGEXP);
+  return language.map((item) => {
+    switch (item) {
+      case "cze":
+        return "čeština";
+      case "ger":
+        return "němčina";
+      case "eng":
+        return "angličtina";
+      case "pol":
+        return "polština";
+      default:
+        return item;
+    }
+  });
+}
+
 function createMetadata(item) {
   const newItem = {
     _id: generateID(),
@@ -105,20 +142,19 @@ function createMetadata(item) {
     },
     other_authors_person: [{ id: getPerson(item.autor700a) }],
     other_authors_corporation: [{ id: getCorporation(item.korporace710a) }],
-    name: item.nazev245a, // ! todo unique
+    name: item.nazev245a,
     author_responsibility: item.odpovednost245c,
     other_names: [item.podnazev245b, item.nazevCasti245n],
-    language: [item.jazyk041a],
+    language: getLanguage(item.jazyk041a),
     publish: [
       {
         publish_country: item.zemeVydani270d,
-        publish_place: getGeographic(item.mistoVydani260a),
+        publish_place: OR(item.mistoVydani264a, item.mistoVydani260a),
       },
     ],
     publishing_date: [
       {
-        date:
-          item.rokVydani260c === "" ? item.rokVydani264c : item.rokVydani260c,
+        date: OR(item.rokVydani264c, item.rokVydani260c),
         note: item.poznODatu518a,
       },
     ],
@@ -145,7 +181,7 @@ function createMetadata(item) {
     ],
     location: [
       {
-        institution: item["852b"],
+        institution: OR(item["852b"], item.siglaVlastnika910a),
         fund: item.signatura852c,
         note: item.neverejnaPoznamka852x,
       },
@@ -153,20 +189,33 @@ function createMetadata(item) {
     digitized_document_url: [item.url852u],
     external_source: [
       {
+        url: item.uloziste852a,
+      },
+      {
+        url: item.elektroUmisteni856u,
+      },
+      {
+        url: item.url852u,
+      },
+      {
         url: item.propojeniElekZdroj787t,
         url_leading_to_document: item.propojeniElekZdroj787t,
       },
     ],
+    biblionumber: item.biblionumber,
     submitter: "Export",
+    keywords: (item.klicoveSlovo650a + " " + item.Pole651a)
+      .split(SEPARATOR_REGEXP)
+      .filter((keyword) => keyword !== "")
+      .map((keyword) => getKeyword(keyword)),
   };
-
   return newItem;
 }
 
 function getCorporation(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = corporation.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -180,7 +229,7 @@ function getCorporation(name_main_part) {
 function getCreation(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = creation.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -194,7 +243,7 @@ function getCreation(name_main_part) {
 function getFamily(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = family.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -208,7 +257,7 @@ function getFamily(name_main_part) {
 function getGeographic(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = geographic.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -222,7 +271,7 @@ function getGeographic(name_main_part) {
 function getKeyword(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = keyword.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -236,7 +285,7 @@ function getKeyword(name_main_part) {
 function getPerson(name) {
   if (name === "") return undefined;
   const foundItems = person.filter((item) => {
-    item.name === name;
+    return item.name === name;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name };
@@ -250,7 +299,7 @@ function getPerson(name) {
 function getSubject(name_main_part) {
   if (name_main_part === "") return undefined;
   const foundItems = subject.filter((item) => {
-    item.name_main_part === name_main_part;
+    return item.name_main_part === name_main_part;
   });
   if (foundItems.length === 0) {
     const newItem = { _id: generateID(), name_main_part };
@@ -266,6 +315,7 @@ data.forEach((dato) => {
 });
 
 function toFile(data, fileName) {
+  if (data.length === 0) return;
   fs.writeFile(`./outDB/${fileName}.json`, JSON.stringify(data), (err) => {
     if (err) {
       console.error(err);
@@ -273,6 +323,7 @@ function toFile(data, fileName) {
   });
 }
 
+/**/ //switch
 toFile(metadata, "metadata");
 toFile(corporation, "corporation");
 toFile(creation, "creation");
@@ -281,3 +332,14 @@ toFile(geographic, "geographic");
 toFile(keyword, "keyword");
 toFile(person, "person");
 toFile(subject, "subject");
+/*/
+console.log(
+  data
+    .map((item) => OR(item.Pole651a))
+    .filter((a) => a !== undefined && a !== "")
+);
+/**/
+
+/**
+db.metadata.deleteMany({});db.corporationIndex.deleteMany({});db.creationIndex.deleteMany({});db.familyIndex.deleteMany({});db.geographicIndex.deleteMany({});db.keywordIndex.deleteMany({});db.personIndex.deleteMany({});db.subjectIndex.deleteMany({})
+*/

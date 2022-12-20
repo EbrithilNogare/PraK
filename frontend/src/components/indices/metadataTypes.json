@@ -9,11 +9,15 @@
         "Obrazový dokument",
         "Periodika",
         "Svazek",
-        "3D objekt"
+        "3D objekt",
+        "Časopisy",
+        "Mapy",
+        "Nezařaditelný dokument"
     ],
     "properties": {
         "documentType": {
-            "label": "Typ dokumentu"
+            "label": "Typ dokumentu",
+            "schema": "documentType"
         },
         "author": {
             "label": "Hlavní autor nebo původce",
@@ -790,11 +794,11 @@
             ]
         },
         "publish-category": {
-            "label": "Země vydání nebo vzniku",
+            "label": "Místo vydání nebo vzniku",
             "schema": "publish[%]"
         },
         "publish_country": {
-            "label": "Země vydání nebo vzniku",
+            "label": "Místo vydání nebo vzniku",
             "schema": "publish[%].publish_country",
             "fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             "options": [

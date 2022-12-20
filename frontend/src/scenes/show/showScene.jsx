@@ -26,6 +26,7 @@ import keywordTypes from '../../components/indices/keywordTypes.json'
 import metadataTypes from '../../components/indices/metadataTypes.json'
 import personTypes from '../../components/indices/personTypes.json'
 import subjectTypes from '../../components/indices/subjectTypes.json'
+import sortingPriority from './sortingPriority.json'
 
 class ShowScene extends React.Component {
     constructor(props) {
@@ -35,14 +36,20 @@ class ShowScene extends React.Component {
             record: undefined,
             translatedRecord: undefined,
             translated: true,
+            expanded: [],
         }
         this.uniqueId = 0
+        this.initExpanded = []
     }
 
     getRecord = (type, id) => {
         if (this.state.record !== undefined) return
+        const url =
+            window.location.hostname === 'localhost'
+                ? 'http://localhost:50080/prak/api/'
+                : '/prak/api/'
 
-        fetch(`/prak/api/${type}${type === 'metadata' ? '' : 'index'}/${id}`)
+        fetch(`${url}${type}${type === 'metadata' ? '' : 'index'}/${id}`)
             .then((response) => response.json())
             .then((data) => {
                 console.info(
@@ -50,9 +57,12 @@ class ShowScene extends React.Component {
                     'background: #222; color: #bada55',
                     data
                 )
+                const tmp = this.translateRecord(data, type)
                 this.setState({
                     record: data,
-                    translatedRecord: this.translateRecord(data, type),
+                    translatedRecord: tmp,
+                    treeViewItems: this.recursiveTreeItem(tmp, 0),
+                    expanded: this.initExpanded,
                 })
             })
             .catch((err) => {
@@ -60,7 +70,17 @@ class ShowScene extends React.Component {
             })
     }
 
+    sortingFunction = (a, b) => {
+        let aVal = sortingPriority.indexOf(a)
+        if (aVal === -1) aVal = 1000
+        let bVal = sortingPriority.indexOf(b)
+        if (bVal === -1) bVal = 1000
+        return a - b
+    }
+
     translateRecord = (record, type) => {
+        if (!this.state.translated) return record
+
         let types
         switch (type) {
             case 'corporation':
@@ -90,6 +110,9 @@ class ShowScene extends React.Component {
             default:
                 console.error('incompatible type: ', type)
         }
+
+        if (record.documentType != null)
+            record.documentType = types.types[record.documentType]
 
         return this.translateSubRecord(record, types.properties, '')
     }
@@ -137,63 +160,51 @@ class ShowScene extends React.Component {
 
     recursiveTreeItem = (nodes, uniqueKey) => {
         if (Array.isArray(nodes)) {
-            return nodes.map((value, key) => {
+            return nodes.map((value, key, self) => {
+                const nodeId = uniqueKey + '-' + key
+                this.initExpanded.push(nodeId)
                 if (typeof value === 'object' && value !== null)
-                    return (
-                        <TreeItem
-                            key={key}
-                            nodeId={uniqueKey + '-' + key}
-                            label={key}
-                        >
-                            {this.recursiveTreeItem(
-                                value,
-                                uniqueKey + '-' + key
-                            )}
+                    return self.length === 1 ? (
+                        this.recursiveTreeItem(value, nodeId)
+                    ) : (
+                        <TreeItem key={key} nodeId={nodeId} label={key}>
+                            {this.recursiveTreeItem(value, nodeId)}
                         </TreeItem>
                     )
-                else
-                    return (
-                        <TreeItem
-                            key={key}
-                            nodeId={uniqueKey + '-' + key}
-                            label={value}
-                        />
-                    )
+                else return <TreeItem key={key} nodeId={nodeId} label={value} />
             })
         } else if (typeof nodes === 'object' && nodes !== null) {
             return Object.keys(nodes).map((value, key) => {
-                if (nodes[value] === null || nodes[value].length === 0)
+                const nodeId = uniqueKey + '-' + key
+                this.initExpanded.push(nodeId)
+                if (nodes[value] === null || nodes[value].length === 0) {
                     return null
-                if (typeof nodes[value] === 'object' && nodes[value] !== null)
-                    return (
-                        <TreeItem
-                            key={key}
-                            nodeId={uniqueKey + '-' + key}
-                            label={value}
-                        >
-                            {this.recursiveTreeItem(
-                                nodes[value],
-                                uniqueKey + '-' + key
-                            )}
+                }
+                if (typeof nodes[value] === 'object' && nodes[value] !== null) {
+                    const child = this.recursiveTreeItem(nodes[value], nodeId)
+                    return child ? (
+                        <TreeItem key={key} nodeId={nodeId} label={value}>
+                            {child}
                         </TreeItem>
-                    )
-                else
+                    ) : null
+                } else {
                     return (
                         <TreeItem
                             key={key}
-                            nodeId={uniqueKey + '-' + key}
+                            nodeId={nodeId}
                             label={value + ': ' + nodes[value]}
                         />
                     )
+                }
             })
         } else {
-            return (
+            return nodes !== '' ? (
                 <TreeItem
                     key={nodes}
                     nodeId={uniqueKey + '-' + 0}
                     label={nodes}
                 />
-            )
+            ) : null
         }
     }
 
@@ -314,14 +325,12 @@ class ShowScene extends React.Component {
                                         <TreeView
                                             defaultCollapseIcon={<ExpandMore />}
                                             defaultExpandIcon={<ChevronRight />}
+                                            expanded={this.state.expanded}
+                                            onNodeToggle={(event, expanded) =>
+                                                this.setState({ expanded })
+                                            }
                                         >
-                                            {this.recursiveTreeItem(
-                                                this.state.translated
-                                                    ? this.state
-                                                          .translatedRecord
-                                                    : this.state.record,
-                                                0
-                                            )}
+                                            {this.state.treeViewItems}
                                         </TreeView>
                                     </Paper>
                                     <FormControlLabel
@@ -332,6 +341,15 @@ class ShowScene extends React.Component {
                                                     this.setState({
                                                         translated:
                                                             e.target.checked,
+                                                        treeViewItems:
+                                                            this.recursiveTreeItem(
+                                                                e.target.checked
+                                                                    ? this.state
+                                                                          .translatedRecord
+                                                                    : this.state
+                                                                          .record,
+                                                                0
+                                                            ),
                                                     })
                                                 }
                                             />
@@ -344,7 +362,26 @@ class ShowScene extends React.Component {
                                         spacing={10}
                                         justifyContent="flex-end"
                                     >
-                                        <Grid item></Grid>
+                                        <Grid item>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                href={
+                                                    'https://katalog.koha.pramenykrkonos.cz/cgi-bin/koha/opac-detail.pl?biblionumber=' +
+                                                    this.state.record
+                                                        ?.biblionumber
+                                                }
+                                                disabled={
+                                                    !(
+                                                        this.state.record
+                                                            ?.biblionumber !=
+                                                        null
+                                                    )
+                                                }
+                                            >
+                                                Zobrazit záznam v KOHA
+                                            </Button>
+                                        </Grid>
                                         <Grid item>
                                             <Button
                                                 variant="contained"

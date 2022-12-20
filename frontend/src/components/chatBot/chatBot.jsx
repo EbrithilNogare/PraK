@@ -1,6 +1,7 @@
 import { Button, Paper, TextField, Typography, Fab } from '@material-ui/core'
 import { Close, ChatRounded, SendRounded } from '@material-ui/icons'
 import React from 'react'
+import dictionary from './dictionary.json'
 
 import styles from './chatBot.module.scss'
 
@@ -19,6 +20,36 @@ export default class ChatBot extends React.Component {
                 },
             ],
         }
+    }
+
+    componentDidUpdate() {
+        if (document.getElementById('messagesBlock'))
+            document.getElementById('messagesBlock').scrollTop =
+                document.getElementById('messagesBlock').lastChild.offsetTop
+    }
+
+    sendAsLog = (data) => {
+        const url =
+            window.location.hostname === 'localhost'
+                ? 'http://localhost:50080/prak/api/log'
+                : '/prak/api/log'
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data }),
+        })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                //console.log('log: ', data)
+            })
+            .catch((error) => {
+                console.error('Error:', error)
+            })
     }
 
     toSimpleText = (r) => {
@@ -40,29 +71,13 @@ export default class ChatBot extends React.Component {
             .replace(new RegExp(/[ž]/g), 'z')
     }
 
-    dataSet = [
-        { in: 'vyhledávátko', out: 'vyhledávátko naleznete zde: XXX' },
-        { in: 'vyhledávátka', out: 'vyhledávátko naleznete zde: XXX' },
-        { in: 'vyhledavani', out: '' },
-        { in: 'hledat', out: '' },
-        { in: 'metadata', out: '' },
-        { in: 'vystava', out: '' },
-        { in: 'informace o projektu', out: '' },
-        { in: 'virtualni katalog', out: '' },
-        { in: 'katalog', out: '' },
-        { in: 'prameny', out: '' },
-        { in: 'knihy', out: '' },
-        { in: 'casopisy', out: '' },
-        { in: 'informace', out: '' },
-        { in: 'najit', out: '' },
-        { in: 'resitelsky tym', out: '' },
-        { in: 'zdravím', out: 'ahoj' },
-        { in: '', out: '' },
-        { in: '', out: '' },
-        { in: '', out: '' },
-    ].map((item) => ({ ...item, in: this.toSimpleText(item.in) }))
+    dataSet = dictionary.map((item) => ({
+        ...item,
+        in: this.toSimpleText(item.in),
+    }))
 
     send = () => {
+        this.sendAsLog(this.state.value)
         const input = this.toSimpleText(this.state.value)
 
         if (input.length === 0) return
@@ -109,7 +124,7 @@ export default class ChatBot extends React.Component {
         return (
             <Paper className={styles.chatBot}>
                 <div className={styles.header}>
-                    Chat s Krakonošem
+                    Poradit se se sojkou
                     <Button
                         color="primary"
                         onClick={() => {
@@ -119,7 +134,7 @@ export default class ChatBot extends React.Component {
                         <Close />
                     </Button>
                 </div>
-                <div className={styles.messages}>
+                <div className={styles.messages} id="messagesBlock">
                     {this.state.messages.map((item, key) =>
                         item.rec === 'R' ? (
                             <div key={key} className={styles.rightMessage}>
@@ -142,7 +157,7 @@ export default class ChatBot extends React.Component {
                                     variant="caption"
                                     className={styles.messageAuthor}
                                 >
-                                    Krakonoš {item.time}
+                                    Sojka {item.time}
                                 </Typography>
                             </div>
                         )

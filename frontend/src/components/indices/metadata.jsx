@@ -26,7 +26,6 @@ import {
     PersonComboBox,
     StaticComboBox,
     SubjectComboBox,
-    SubmitterComboBox,
 } from '../comboBoxes'
 import DateField from '../validationTextFields/DateField'
 import RegExpField from '../validationTextFields/RegExpField'
@@ -722,8 +721,9 @@ class Metadata extends IndexParent {
                             )}
                         </Multiplier>
                         {this.conditionalField('submitter') && (
-                            <SubmitterComboBox
+                            <TextField
                                 {...this.createFieldProps('submitter')}
+                                label={'Zadavatelův email'}
                             />
                         )}
                     </FoldablePaper>

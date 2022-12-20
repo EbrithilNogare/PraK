@@ -8,18 +8,22 @@ import {
     Typography,
     Chip,
     Slider,
+    Tooltip,
+    IconButton,
 } from '@material-ui/core'
 import {
     KeyboardArrowRight as KeyboardArrowRightIcon,
     KeyboardArrowLeft as KeyboardArrowLeftIcon,
+    Flip as FlipIcon,
 } from '@material-ui/icons'
 import {
     PersonComboBox,
     KeywordComboBox,
     StaticComboBox,
 } from '../../components/comboBoxes'
+import ChatBot from '../../components/chatBot'
+
 import typeDefinitionFile from '../../components/indices/metadataTypes.json'
-import DateField from '../../components/validationTextFields/DateField'
 import styles from './searchScene.module.scss'
 
 class SearchScene extends React.Component {
@@ -60,7 +64,10 @@ class SearchScene extends React.Component {
     }
 
     getCornerYears = () => {
-        const minMax = [1838, new Date().getFullYear()]
+        const minMax = [
+            new Date().getFullYear() - 200,
+            new Date().getFullYear(),
+        ]
         return [
             { value: minMax[0], label: minMax[0] },
             { value: minMax[1], label: minMax[1] },
@@ -143,12 +150,7 @@ class SearchScene extends React.Component {
     createSearchParams = (records) => {
         let searchParams = {}
 
-        let properties = [
-            'documentType',
-            'language',
-            'author',
-            'publish_country',
-        ]
+        let properties = ['documentType', 'language']
 
         for (let property of properties) {
             searchParams[property] = { _other: { count: 0, checked: true } }
@@ -222,8 +224,9 @@ class SearchScene extends React.Component {
             ) {
                 const recordDate = record.publishing_date.split('.').at(-1)
                 if (
-                    recordDate < dateFilter[0] ||
-                    recordDate > this.state.publishingDateFilter[1]
+                    (recordDate < dateFilter[0] &&
+                        dateFilter[0] !== this.getCornerYears()[0].value) ||
+                    recordDate > dateFilter[1]
                 ) {
                     passing = false
                 }
@@ -251,8 +254,9 @@ class SearchScene extends React.Component {
     render() {
         return (
             <div className={styles.SearchScene}>
+                <ChatBot />
                 <Paper className={styles.header}>
-                    <h1>Vyhledavátko</h1>
+                    <h1>Vyhledávání</h1>
                 </Paper>
                 <div className={styles.phasesBlock}>
                     <Paper className={styles.body}>
@@ -268,7 +272,7 @@ class SearchScene extends React.Component {
                             label={'Vyhledávání přes všechna pole'}
                             onChange={(e) => {
                                 this.setDescription(
-                                    '$**',
+                                    '$text',
                                     e.target.value,
                                     false,
                                     true
@@ -283,7 +287,7 @@ class SearchScene extends React.Component {
                             }
                             onChange={(e) => {
                                 this.setDescription(
-                                    'author',
+                                    'author.author_person',
                                     e.target.value,
                                     false,
                                     true
@@ -320,23 +324,19 @@ class SearchScene extends React.Component {
                         />
 
                         <Typography variant="h5">Místo vydání</Typography>
-                        <StaticComboBox
+                        <TextField
                             label={
-                                typeDefinitionFile.properties['publish_country']
+                                typeDefinitionFile.properties['publish_place']
                                     .label
                             }
                             onChange={(e) => {
                                 this.setDescription(
-                                    'publish_country',
+                                    'publish.publish_place',
                                     e.target.value,
-                                    false,
+                                    true,
                                     true
                                 )
                             }}
-                            options={
-                                typeDefinitionFile.properties['publish_country']
-                                    .options
-                            }
                             fullWidth
                         />
 
@@ -364,9 +364,12 @@ class SearchScene extends React.Component {
                         <StaticComboBox
                             label="Typ dokumentu"
                             onChange={(e) => {
+                                const index = typeDefinitionFile.types.indexOf(
+                                    e.target.value
+                                )
                                 this.setDescription(
                                     'documentType',
-                                    e.target.value,
+                                    index === -1 ? '' : index,
                                     false,
                                     true
                                 )
@@ -460,7 +463,7 @@ class SearchScene extends React.Component {
                                             'background: #222; color: #bada55',
                                             value.id
                                         )
-                                        this.props.history.push(
+                                        window.open(
                                             `/prak/show/metadata/${value.id}`
                                         )
                                     }}
@@ -536,41 +539,43 @@ class SearchScene extends React.Component {
                                             {typeDefinitionFile.properties[
                                                 searchParamsKey
                                             ]?.label ?? searchParamsKey}
-                                            <Button
-                                                onClick={() => {
-                                                    this.setState(
-                                                        (prevState) => {
-                                                            Object.entries(
-                                                                prevState
-                                                                    .searchParams[
-                                                                    searchParamsKey
-                                                                ]
-                                                            ).forEach(
-                                                                (
-                                                                    [
-                                                                        key,
-                                                                        value,
-                                                                    ],
-                                                                    index
-                                                                ) =>
-                                                                    (value.checked =
-                                                                        !value.checked)
-                                                            )
-                                                            return {
-                                                                filteredRecords:
-                                                                    this.filterRecords(
-                                                                        prevState.records,
-                                                                        prevState.searchParams,
-                                                                        prevState.publishingDateFilter
-                                                                    ),
-                                                            }
-                                                        },
-                                                        this.setPage
-                                                    )
-                                                }}
-                                            >
-                                                Reverse
-                                            </Button>
+                                            <Tooltip title="Obrátit výběr">
+                                                <IconButton
+                                                    onClick={() => {
+                                                        this.setState(
+                                                            (prevState) => {
+                                                                Object.entries(
+                                                                    prevState
+                                                                        .searchParams[
+                                                                        searchParamsKey
+                                                                    ]
+                                                                ).forEach(
+                                                                    (
+                                                                        [
+                                                                            key,
+                                                                            value,
+                                                                        ],
+                                                                        index
+                                                                    ) =>
+                                                                        (value.checked =
+                                                                            !value.checked)
+                                                                )
+                                                                return {
+                                                                    filteredRecords:
+                                                                        this.filterRecords(
+                                                                            prevState.records,
+                                                                            prevState.searchParams,
+                                                                            prevState.publishingDateFilter
+                                                                        ),
+                                                                }
+                                                            },
+                                                            this.setPage
+                                                        )
+                                                    }}
+                                                >
+                                                    <FlipIcon></FlipIcon>
+                                                </IconButton>
+                                            </Tooltip>
                                         </h3>
                                         <div className={styles.resultTag}>
                                             {Object.entries(value)
@@ -680,16 +685,40 @@ class SearchScene extends React.Component {
                     <br /> <br />
                     <b>Zobrazení záznamu:</b> klikněte kamkoliv na příslušný
                     záznam v tabulce níže
+                    <br /> <br />
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => {
+                            window.location.href =
+                                'https://katalog.koha.pramenykrkonos.cz/'
+                        }}
+                    >
+                        Přejít do vyhledávání KOHA
+                    </Button>
                 </Paper>
+                <div className={styles.queryContainer}>
+                    <Paper className={styles.helperBlock}>
+                        <h3>Dotaz</h3>
+                        <pre>
+                            URL: https://quest.ms.mff.cuni.cz/prak/api/metadata
+                        </pre>
+                        <pre>Method: POST</pre>
+                        <pre>{JSON.stringify(this.description, null, 2)}</pre>
+                    </Paper>
 
-                <Paper className={styles.helperBlock}>
-                    <h3>Dotaz</h3>
-                    <pre>
-                        URL: https://quest.ms.mff.cuni.cz/prak/api/metadata
-                    </pre>
-                    <pre>Method: POST</pre>
-                    <pre>{JSON.stringify(this.description, null, 2)}</pre>
-                </Paper>
+                    <Paper className={styles.helperBlock}>
+                        Export záznamů je možný dotazem na API přes webovou
+                        aplikaci ReqBin (
+                        <a href="https://reqbin.com/kl41uyfb" target="_blank">
+                            www.reqbin.com
+                        </a>
+                        ). Na webu ReqBin vložíme do okénka pro URL URl z
+                        dotazu. V okénku metody zvolíme “Post”. Vybereme
+                        “Content” a do políčka vložíme dotaz včetně složených
+                        závorek.
+                    </Paper>
+                </div>
             </div>
         )
     }

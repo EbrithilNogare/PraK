@@ -54,7 +54,6 @@
 .helperBlock {
     margin: 50px;
     padding: 20px;
-    width: max-content;
 }
 
 .cursorPoiter {
@@ -136,6 +135,10 @@
 
 .chip span div {
     white-space: break-spaces !important;
+    padding: 6px 4px;
+}
+.chip {
+    height: auto;
 }
 
 .resultTag {
@@ -151,4 +154,10 @@
 .tagCount {
     font-size: x-small;
     color: #aaa;
+}
+
+.queryContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
 }
