@@ -14,7 +14,7 @@ import {
     Switch,
     FormControlLabel,
 } from '@material-ui/core'
-import { TreeView, TreeItem } from '@material-ui/lab'
+import { TreeView } from '@material-ui/lab'
 import { ExpandMore, ChevronRight } from '@material-ui/icons'
 import styles from './showScene.module.scss'
 
@@ -120,7 +120,7 @@ class ShowScene extends React.Component {
     translateSubRecord = (record, types, path) => {
         if (record instanceof Array)
             return record.map((value) =>
-                this.translateSubRecord(value, types, path + '[%].')
+                this.translateSubRecord(value, types, path + '[%]')
             )
 
         if (!(record instanceof Object)) return record
@@ -130,7 +130,9 @@ class ShowScene extends React.Component {
         Object.entries(record).forEach((entry) => {
             const [key, value] = entry
             const newKey = this.findBySchema(
-                path + key + (value instanceof Array ? '[%]' : ''),
+                (path === '' ? path : path + '.') +
+                    key +
+                    (value instanceof Array ? '[%]' : ''),
                 types
             )
             if (newKey) {
@@ -140,7 +142,17 @@ class ShowScene extends React.Component {
                     types,
                     path + '.' + key
                 )
-            } else translatedRecord[key] = value
+            } else {
+                key !== '_id' &&
+                    console.error('translation was not found for: ', {
+                        key,
+                        path:
+                            (path === '' ? path : path + '.') +
+                            key +
+                            (value instanceof Array ? '[%]' : ''),
+                    })
+                translatedRecord[key] = value
+            }
         })
         return translatedRecord
     }
@@ -158,52 +170,57 @@ class ShowScene extends React.Component {
         )
     }
 
-    recursiveTreeItem = (nodes, uniqueKey) => {
+    recursiveTreeItem = (nodes) => {
         if (Array.isArray(nodes)) {
-            return nodes.map((value, key, self) => {
-                const nodeId = uniqueKey + '-' + key
-                this.initExpanded.push(nodeId)
-                if (typeof value === 'object' && value !== null)
-                    return self.length === 1 ? (
-                        this.recursiveTreeItem(value, nodeId)
-                    ) : (
-                        <TreeItem key={key} nodeId={nodeId} label={key}>
-                            {this.recursiveTreeItem(value, nodeId)}
-                        </TreeItem>
-                    )
-                else return <TreeItem key={key} nodeId={nodeId} label={value} />
-            })
+            const childs = nodes
+                .map((value, key) => {
+                    if (value == null || value === '') return null
+                    if (typeof value === 'object') {
+                        const childs = this.recursiveTreeItem(value)
+                        return childs != null ? (
+                            <li key={key}>{childs}</li>
+                        ) : null
+                    } else return <li key={key}>{value}</li>
+                })
+                .filter((child) => child != null && child !== '')
+            if (childs.length === 0) return null
+            return <ul>{childs}</ul>
         } else if (typeof nodes === 'object' && nodes !== null) {
-            return Object.keys(nodes).map((value, key) => {
-                const nodeId = uniqueKey + '-' + key
-                this.initExpanded.push(nodeId)
-                if (nodes[value] === null || nodes[value].length === 0) {
-                    return null
-                }
-                if (typeof nodes[value] === 'object' && nodes[value] !== null) {
-                    const child = this.recursiveTreeItem(nodes[value], nodeId)
-                    return child ? (
-                        <TreeItem key={key} nodeId={nodeId} label={value}>
-                            {child}
-                        </TreeItem>
-                    ) : null
-                } else {
-                    return (
-                        <TreeItem
-                            key={key}
-                            nodeId={nodeId}
-                            label={value + ': ' + nodes[value]}
-                        />
-                    )
-                }
-            })
+            const childs = Object.keys(nodes)
+                .map((value, key) => {
+                    if (
+                        nodes[value] == null ||
+                        nodes[value].length === 0 ||
+                        nodes[value] === ''
+                    ) {
+                        return null
+                    }
+                    if (
+                        typeof nodes[value] === 'object' &&
+                        nodes[value] != null
+                    ) {
+                        const child = this.recursiveTreeItem(nodes[value])
+                        return child ? (
+                            <div key={key}>
+                                <b>{value}</b>
+                                <div className={styles.leftOffset}>{child}</div>
+                            </div>
+                        ) : null
+                    } else {
+                        if (value[0] === '_') return null
+                        return (
+                            <div key={key}>
+                                <b>{value + ': '}</b>
+                                {nodes[value]}{' '}
+                            </div>
+                        )
+                    }
+                })
+                .filter((item) => item != null)
+            return childs.length === 0 ? null : childs
         } else {
-            return nodes !== '' ? (
-                <TreeItem
-                    key={nodes}
-                    nodeId={uniqueKey + '-' + 0}
-                    label={nodes}
-                />
+            return nodes !== '' && nodes != null ? (
+                <div key={nodes}>{nodes}</div>
             ) : null
         }
     }
