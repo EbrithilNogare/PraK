@@ -29,6 +29,18 @@
             "fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             "helper": "Osoba odpovědná za vznik díla nebo za narůstání a správu archiválií."
         },
+        "author.author_person.name":{
+            "label": "Jméno",
+            "schema": "author.author_person.name"
+        },
+        "author.author_role":{
+            "label": "Role",
+            "schema": "author.author_role"
+        },
+        "author.author_corporation.name_main_part":{
+            "label": "Název",
+            "schema": "author.author_corporation.name_main_part"
+        },
         "author_corporation": {
             "label": "Hlavní původce",
             "schema": "author.author_corporation",
@@ -275,6 +287,10 @@
             "schema": "other_authors_person[%].id",
             "fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             "helper": "Osoba/korporace, která přispěla ke vzniku díla nebo k narůstání a správě archiválií. "
+        },
+        "other_authors_person[%].id.name": {
+            "label": "Jméno",
+            "schema": "other_authors_person[%].id.name"
         },
         "other_authors_person_role": {
             "label": "Role",
@@ -1251,6 +1267,10 @@
             "fields": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             "helper": "Popis obsahu díla nebo archiválií pomocí klíčových slov. "
         },
+        "keywords[%].name_main_part": {
+            "label": "Hlavní část názvu",
+            "schema": "keywords[%].name_main_part"
+        },
         "description": {
             "label": "Abstrakt/Popis",
             "schema": "description[%]",
@@ -1286,6 +1306,10 @@
         "attachment_description": {
             "label": "Popis",
             "schema": "attachment[%].description"
+        },
+        "biblionumber":{
+            "label": "Biblionumber v KOHA",
+            "schema": "biblionumber"
         }
     }
 }

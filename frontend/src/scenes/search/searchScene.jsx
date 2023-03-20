@@ -710,7 +710,11 @@ class SearchScene extends React.Component {
                     <Paper className={styles.helperBlock}>
                         Export záznamů je možný dotazem na API přes webovou
                         aplikaci ReqBin (
-                        <a href="https://reqbin.com/kl41uyfb" target="_blank">
+                        <a
+                            rel="noreferrer"
+                            href="https://reqbin.com/kl41uyfb"
+                            target="_blank"
+                        >
                             www.reqbin.com
                         </a>
                         ). Na webu ReqBin vložíme do okénka pro URL URl z
