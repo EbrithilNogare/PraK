@@ -4,23 +4,23 @@ const getActiveYear = () =>
     parseInt($("rokyRange").value)
   ].label;
 
-const labelClass = {
-  symbol: {
-    type: "text", // autocasts as new TextSymbol()
-    color: "green",
-    font: {
-      // autocast as new Font()
-      family: "Playfair Display",
-      size: 12,
-      weight: "bold",
-    },
-  },
+// const labelClass = {
+//   symbol: {
+//     type: "text", // autocasts as new TextSymbol()
+//     color: "green",
+//     font: {
+//       // autocast as new Font()
+//       family: "Playfair Display",
+//       size: 12,
+//       weight: "bold",
+//     },
+//   },
 
-  labelExpressionInfo: {
-    expression: "42",
-    //expression: "Count($aggregatedFeatures)"
-  },
-};
+//   labelExpressionInfo: {
+//     expression: "42",
+//     //expression: "Count($aggregatedFeatures)"
+//   },
+// };
 const layersByYears = [
   {
     year: 1918,
@@ -121,7 +121,7 @@ const layersByYears = [
         opacity: 1.0,
         name: "ORP",
         featureLayer: null,
-        labelingInfo: labelClass,
+        // labelingInfo: labelClass,
       },
       {
         layerID: "61a605dca69c4aa0ac1b3858ba328fd3",
@@ -216,7 +216,7 @@ require([
         opacity: layer.opacity !== undefined ? layer.opacity : 1.0,
         visible: false,
       },
-      labelingInfo: [labelClass],
+      // labelingInfo: [labelClass],
     });
 
     layer.featureLayer.load().then(function () {
@@ -411,17 +411,19 @@ function changeYear(newValue) {
   cngRok(newValue);
   showLayerByYear(newValue);
   updateSelectBox(getActiveYear());
+  console.log(`ID rok je ${newValue}`);
+  console.log(getActiveYearValue(newValue));
   //   var s = document.getElementById("rokShow");
   //   s.innerHTML = "<p>To je test</p>";
 }
 
 function updateSelectBox(newValue) {
   let layer = layersByYears.filter((layer) => layer.yearLabel === newValue)[0];
-//   console.log(newValue);
-//   console.log(layer);
-//   $("attSelect").hidden = !layer.options.includes("attSelect");
-//   $("signSelect").hidden = !layer.options.includes("signSelect");
-//   $("valSelect").hidden = !layer.options.includes("valSelect");
+  //   console.log(newValue);
+  //   console.log(layer);
+  //   $("attSelect").hidden = !layer.options.includes("attSelect");
+  //   $("signSelect").hidden = !layer.options.includes("signSelect");
+  //   $("valSelect").hidden = !layer.options.includes("valSelect");
 }
 
 function cngRok(vol) {
@@ -442,6 +444,97 @@ function cngRok(vol) {
     a_vrstvy = vrstvy[vol];
   }
 }
+
+const dataByYear = [
+  {
+    id: 0,
+    year: 1918,
+    sektors: [
+      { Sektor: "Primární", visibility: true },
+      { Sektor: "Sekundární", visibility: true },
+      { Sektor: "Terciární", visibility: true },
+    ],
+    typePodniky: [
+      { Forma_podn: "Akciová společnost", visibility: true },
+      { Forma_podn: "Banka", visibility: true },
+      { Forma_podn: "Družstvo", visibility: true },
+      { Forma_podn: "Národní podnik", visibility: false },
+    ],
+    obor: [
+      { Obor: "Chemie", visibility: true },
+      { Obor: "Doprava", visibility: true },
+      { Obor: "Potravinářství", visibility: true },
+      { Obor: "Stavebnictví", visibility: false },
+      { Obor: "Strojírenství", visibility: true },
+    ],
+  },
+  {
+    id: 1,
+    year: 1936,
+    sektors: [
+      { Sektor: "Primární", visibility: true },
+      { Sektor: "Sekundární", visibility: true },
+      { Sektor: "Terciární", visibility: true },
+    ],
+    typePodniky: [
+      { Forma_podn: "Akciová společnost", visibility: true },
+      { Forma_podn: "Banka", visibility: true },
+      { Forma_podn: "Družstvo", visibility: true },
+      { Forma_podn: "Národní podnik", visibility: false },
+    ],
+    obor: [
+      { Obor: "Chemie", visibility: true },
+      { Obor: "Doprava", visibility: true },
+      { Obor: "Potravinářství", visibility: true },
+      { Obor: "Stavebnictví", visibility: false },
+      { Obor: "Strojírenství", visibility: true },
+    ],
+  },
+  {
+    id: 2,
+    year: 1950,
+    sektors: [
+      { Sektor: "Primární", visibility: true },
+      { Sektor: "Sekundární", visibility: true },
+      { Sektor: "Terciární", visibility: true },
+    ],
+    typePodniky: [
+      { Forma_podn: "Akciová společnost", visibility: true },
+      { Forma_podn: "Banka", visibility: true },
+      { Forma_podn: "Družstvo", visibility: true },
+      { Forma_podn: "Národní podnik", visibility: false },
+    ],
+    obor: [
+      { Obor: "Chemie", visibility: true },
+      { Obor: "Doprava", visibility: true },
+      { Obor: "Potravinářství", visibility: true },
+      { Obor: "Stavebnictví", visibility: false },
+      { Obor: "Strojírenství", visibility: true },
+    ],
+  },
+  {
+    id: 3,
+    year: 1981,
+    sektors: [
+      { Sektor: "Primární", visibility: true },
+      { Sektor: "Sekundární", visibility: true },
+      { Sektor: "Terciární", visibility: true },
+    ],
+    typePodniky: [
+      { Forma_podn: "Akciová společnost", visibility: true },
+      { Forma_podn: "Banka", visibility: true },
+      { Forma_podn: "Družstvo", visibility: true },
+      { Forma_podn: "Národní podnik", visibility: false },
+    ],
+    obor: [
+      { Obor: "Chemie", visibility: true },
+      { Obor: "Doprava", visibility: true },
+      { Obor: "Potravinářství", visibility: true },
+      { Obor: "Stavebnictví", visibility: false },
+      { Obor: "Strojírenství", visibility: true },
+    ],
+  },
+];
 
 const moduly = [];
 moduly["0"] = [
@@ -512,3 +605,57 @@ function moduleChanged() {
   }
 }
 moduleChanged();
+
+const getActiveYearValue = (rokyRange) => {
+  return layersByYears[rokyRange].year;
+};
+
+const getActiveYearData = (rokyRange) => {
+  let result = dataByYear.filter(function (itemsObj) {
+    return itemsObj.id == rokyRange;
+  });
+
+  //console.log(result);
+  //return layersByYears[rokyRange].year
+};
+//const getActiveYearValue2 = layersByYears[parseInt($("rokyRange").value)].year
+// const getActiveYearValue = Object.values(layersByYears[
+//   parseInt($("rokyRange").value)
+// ]);
+let newValueLoad = parseInt($("rokyRange").value);
+//console.log(getActiveYearData(newValueLoad));
+getActiveYearData(newValueLoad);
+
+function createSelectElement(getObject, valueSelect) {
+  var parent = document.getElementById("create-select");
+  parent.innerHTML = "";
+  var newSelect = document.createElement("select"),
+    option,
+    i = 0,
+    il = getObject.length;
+
+  for (; i < il; i++) {
+    option = document.createElement("option");
+    option.setAttribute("value", valueSelect);
+    option.appendChild(document.createTextNode(getObject[0].sektors[i].Sektor));
+    newSelect.appendChild(option);
+  }
+  parent.appendChild(newSelect);
+}
+
+$("moduleSelection").addEventListener("change", (e) => {
+  console.log(e.target.options[e.target.selectedIndex].text);
+  let valueSelect = e.target.options[e.target.selectedIndex].text;
+  let newValueLoadYear = parseInt($("rokyRange").value);
+  let result = dataByYear.filter(function (itemsObj) {
+    return itemsObj.id == newValueLoadYear;
+  });
+  let testText = Object.values(result)[0].obor[0].Obor;
+  console.log(testText);
+  console.log(result);
+  //createSelectElement(result,newValueLoadYear)
+});
+
+// window.onload = function WindowLoad(event) {
+//   let newValueLoadYear = parseInt($("rokyRange").value);
+// }
