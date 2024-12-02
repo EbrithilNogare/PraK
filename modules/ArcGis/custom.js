@@ -13,11 +13,12 @@ function updateLayerGrid() {
     let layersGridEl = document.querySelector(".layersGrid");
     layersGridEl.innerHTML = "";
     for (const property in selectedYearData) {
+        const data = selectedYearData[property];
         layersGridEl.innerHTML += `
         <div class="mui-checkbox">
-			<label>
-				<input type="checkbox" id="${property}">
-				${selectedYearData[property]}
+			<label style="color:${data.color};text-shadow: 1px -1px grey;" >
+				<input type="checkbox" id="${property}" ${data.checked ? 'checked' : ''} >
+				${data.label}
 			</label>
 		</div>
         `;
@@ -97,119 +98,129 @@ function getSelectedYearOptionsFilterData(year) {
 }
 //inputs for Vrstvy div by year
 //vstupy pro přepinaní vrstev
+const redColor = "red";
+const greyColor = "yellow";
+const greenColor = "green";
+const greenyellow = "greenyellow";
+const blueColor = "rgb(51, 204, 255)";
+const lightgreenColor = "rgb(0, 255, 153)";
+const darkgreenColor = "rgb(0, 153, 51)";
+const brownColor = "rgb(255, 153, 0)";
+
+
 const yearsInputsDataList = {
     "1910": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "katSoucPol": "Osady 1910",
-        "ZSJSoucBod": "Místní část 1910",
-        "castObcPol": "Katastrální území 1910",        
-        "obceSouc": "Obce 1910",
-        "ZSJPol": "Struktura obce 1910",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP": {"label": "Obce s rozšířenou působností 2021", "color":redColor, "checked": false},
+        "POU": {"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "katSoucPol": {"label":  "Osady 1910","color":greenColor, "checked": false},
+        "ZSJSoucBod": {"label": "Místní část 1910","color":greenyellow, "checked": false},
+        "castObcPol": {"label": "Katastrální území 1910","color":blueColor, "checked": false},        
+        "obceSouc": {"label": "Obce 1910","color":darkgreenColor, "checked": true},
+        "ZSJPol": {"label": "Struktura obce 1910","color":lightgreenColor, "checked": false},
+        "soudOkresy": {"label": "Soudní okresy 1946","color":brownColor, "checked": false},
         
     },
     "1921": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "katSoucPol": "Osady 1921",
-        "ZSJSoucBod": "Místní část 1921",
-        "castObcPol": "Katastrální území 1921",
-        "obceSouc": "Obce 1921",
-        "ZSJPol": "Struktura obce 1921",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP":{"label":  "Obce s rozšířenou působností 2021", "color":redColor, "checked": false},
+        "POU":{"label":  "Obce s pověřeným obecním úřadem 2021", "color":greyColor, "checked": false},
+        "katSoucPol":{"label":  "Osady 1921", "color":greenColor, "checked": false},
+        "ZSJSoucBod":{"label":  "Místní část 1921", "color":greenyellow, "checked": false},
+        "castObcPol":{"label":  "Katastrální území 1921", "color":blueColor, "checked": false},
+        "obceSouc":{"label":  "Obce 1921", "color":darkgreenColor, "checked": true},
+        "ZSJPol":{"label":  "Struktura obce 1921", "color":darkgreenColor, "checked": false},
+        "soudOkresy": {"label": "Soudní okresy 1946",  "color":brownColor, "checked": false},
     },
     "1930": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "katSoucPol": "Osady 1930",
-        "ZSJSoucBod": "Místní část 1930",
-        "castObcPol": "Katastrální území 1930",
-        "obceSouc": "Obce 1930",
-        "ZSJPol": "Struktura obce 1930",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP": {"label":"Obce s rozšířenou působností 2021", "color":redColor, "checked": false},
+        "POU": {"label":"Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "katSoucPol":{"label": "Osady 1930","color":greenColor, "checked": false},
+        "ZSJSoucBod":{"label": "Místní část 1930","color":greenyellow, "checked": false},
+        "castObcPol":{"label": "Katastrální území 1930","color":blueColor, "checked": false},
+        "obceSouc": {"label":"Obce 1930","color":darkgreenColor, "checked": true},
+        "ZSJPol": {"label":"Struktura obce 1930","color":darkgreenColor, "checked": false},
+        "soudOkresy": {"label":"Soudní okresy 1946",  "color":brownColor, "checked": false},
     },
     "1939": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "katSoucPol": "Osady Protektorát 1939",        
-        "obceSouc": "Obce Protektorát 1939",               
-        "castObcPol": "Obce Župa 1939",        
-        "soudOkresy": "Soudní okresy 1946"              
+        "ORP":{"label": "Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU": {"label":"Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "katSoucPol":{"label": "Osady Protektorát 1939", "color":greenColor, "checked": false},       
+        "obceSouc":{"label": "Obce Protektorát 1939",    "color":darkgreenColor, "checked": false},           
+        "castObcPol":{"label": "Obce Župa 1939", "color":lightgreenColor, "checked": true},
+        "soudOkresy":{"label": "Soudní okresy 1946",  "color":brownColor, "checked": false},
     },   
     "1946": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "obceSouc": "Obce 1946 Archivni soupis",
-        "katSoucPol": "Obce 1946 Soupis obyvatel",
-        "ZSJSoucBod": "Části obce 1946 Soupis obyvatel",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP":{"label": "Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU":{"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "obceSouc":{"label": "Obce 1946 Archivni soupis","color":blueColor, "checked": false},  
+        "katSoucPol":{"label": "Obce 1946 Soupis obyvatel","color":darkgreenColor, "checked": false},
+        "ZSJSoucBod":{"label": "Části obce 1946 Soupis obyvatel","color":lightgreenColor, "checked": true},
+        "soudOkresy":{"label": "Soudní okresy 1946",  "color":brownColor, "checked": false},
     },
     "1947": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "obceSouc": "Obce 1947",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP":{"label": "Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU":{"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "obceSouc":{"label": "Obce 1947","color":darkgreenColor, "checked": true},
+        "soudOkresy":{"label": "Soudní okresy 1946",  "color":brownColor, "checked": false},
     },
     "1949": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "obceSouc": "Obce 1949",
-        "ZSJSoucBod": "Část obce 1949",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP":{"label": "Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU":{"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "obceSouc":{"label": "Obce 1949","color":darkgreenColor, "checked": true},
+        "ZSJSoucBod": {"label":"Část obce 1949","color":blueColor, "checked": false},  
+        "soudOkresy":{"label": "Soudní okresy 1946",  "color":brownColor, "checked": false},
     },   
     "1950": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "katSoucPol": "Osady 1950",
-        "obceSouc": "Obce 1950",
-        "ZSJPol": "Struktura obce 1950",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP":{"label": "Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU":{"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "katSoucPol":{"label": "Osady 1950","color":greenColor, "checked": false},
+        "obceSouc": {"label":"Obce 1950","color":darkgreenColor, "checked": true},
+        "ZSJPol":{"label": "Struktura obce 1950","color":lightgreenColor, "checked": false},
+        "soudOkresy": {"label":"Soudní okresy 1946",  "color":brownColor, "checked": false},
     },
     "1961": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "ZSJSoucBod": "Část obce 1961",
-        "obceSouc": "Obce 1961",
-        "ZSJPol": "Struktura obce 1961",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP":{"label": "Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU":{"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "ZSJSoucBod":{"label": "Část obce 1961","color":blueColor, "checked": true},  
+        "obceSouc":{"label": "Obce 1961","color":darkgreenColor, "checked": false},
+        "ZSJPol":{"label": "Struktura obce 1961","color":lightgreenColor, "checked": false},
+        "soudOkresy":{"label":"Soudní okresy 1946",  "color":brownColor, "checked": false},
     },
     "1970": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "ZSJSoucBod": "Část obce 1970",
-        "castObcPol": "Základní sídelní jednotky 1970",
-        "obceSouc": "Obce 1970",
-        "ZSJPol": "Struktura obce 1970",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP": {"label":"Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU":{"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "ZSJSoucBod": {"label":"Část obce 1970","color":blueColor, "checked": true},  
+        "castObcPol":{"label": "Základní sídelní jednotky 1970","color":greenyellow, "checked": false},
+        "obceSouc":{"label": "Obce 1970","color":darkgreenColor, "checked": false},
+        "ZSJPol":{"label": "Struktura obce 1970","color":lightgreenColor, "checked": false},
+        "soudOkresy": {"label":"Soudní okresy 1946",  "color":brownColor, "checked": false},
     },
     "1980": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "ZSJSoucBod": "Část obce 1980",
-        "castObcPol": "Základní sídelní jednoty 1980",
-        "obceSouc": "Obce 1980",
-        "ZSJPol": "Struktura obce 1980",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP":{"label": "Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU":{"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "ZSJSoucBod":{"label": "Část obce 1980","color":blueColor, "checked": false},  
+        "castObcPol": {"label":"Základní sídelní jednoty 1980","color":greenyellow, "checked": true},
+        "obceSouc":{"label": "Obce 1980","color":darkgreenColor, "checked": false},
+        "ZSJPol": {"label":"Struktura obce 1980","color":lightgreenColor, "checked": false},
+        "soudOkresy":{"label": "Soudní okresy 1946",  "color":brownColor, "checked": false},
     },
     "1991": {
-        "ORP": "Obce s rozšířenou působností 2021",
-        "POU": "Obce s pověřeným obecním úřadem 2021",
-        "obceSouc": "Obce 1991",
-        "ZSJSoucBod": "Část obce 1991",
-        "castObcPol": "Základní sídelní jednoty 1991",
-        "ZSJPol": "Struktura obce 1980",        
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP":{"label": "Obce s rozšířenou působností 2021","color":redColor, "checked": false},
+        "POU":{"label": "Obce s pověřeným obecním úřadem 2021","color":greyColor, "checked": false},
+        "obceSouc": {"label":"Obce 1991","color":darkgreenColor, "checked": false},
+        "ZSJSoucBod": {"label":"Část obce 1991","color":blueColor, "checked": true},  
+        "castObcPol":{"label": "Základní sídelní jednoty 1991","color":lightgreenColor, "checked": false},
+        "ZSJPol":{"label": "Struktura obce 1980", "color":greenyellow, "checked": false},       
+        "soudOkresy":{"label": "Soudní okresy 1946",  "color":brownColor, "checked": false},
      },
     "2021": {
-        "ORP": "Obce s rozšířenou působností",
-        "POU": "Obce s pověřeným obecním úřadem",
-        "katSoucPol": "Katastrální území 2021",
-        "ZSJSoucBod": "Prostranství 2021",
-        "castObcPol": "Části obcí 2021",
-        "ZSJPol": "Základní sídelní jednotky 2021",
-        "obceSouc": "Obce 2021",
-        "soudOkresy": "Soudní okresy 1946"
+        "ORP": {"label":"Obce s rozšířenou působností","color":redColor, "checked": false},
+        "POU": {"label":"Obce s pověřeným obecním úřadem","color":greyColor, "checked": false},
+        "katSoucPol":{"label": "Katastrální území 2021","color":greenColor, "checked": false},
+        "ZSJSoucBod":{"label": "Prostranství 2021","color":greenyellow, "checked": false},
+        "castObcPol": {"label":"Části obcí 2021","color":blueColor, "checked": true},  
+        "ZSJPol": {"label":"Základní sídelní jednotky 2021","color":lightgreenColor, "checked": false},
+        "obceSouc": {"label":"Obce 2021","color":darkgreenColor, "checked": false},
+        "soudOkresy":{"label": "Soudní okresy 1946",  "color":brownColor, "checked": false},
     }
 }
 
